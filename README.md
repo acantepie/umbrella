@@ -52,7 +52,7 @@ php -S localhost:8000 -t public/
 
 Go on url http://localhost:8000/admin and hint **umbrella** / **umbrella** to login on backoffice.
 
-## Enable Ckeditor4
+## Use Ckeditor component
 Install js library
 ```bash
 yarn add ckeditor4
@@ -72,6 +72,57 @@ cp -R node_modules/ckeditor4 public
 
 You can now use `CkeditorType`on your symfony form :)
 
-## Enable File
+## Use UmbrellaFile component
 
-TODO
+Install flysystem :
+```bash
+composer require league/flysystem-bundle
+```
+
+packages/umbrella_core.yaml
+```yaml
+umbrella_core:
+  file:
+    default_config: default
+    configs:
+      - name: default
+        flystorage: default.storage
+        uri: /admin/download/{id}
+
+```
+Enable file component :
+```yaml
+# config/packages/umbrella_core.yaml
+umbrella_core:
+  file:
+    default_config: default
+    configs:
+      - name: default
+        flystorage: default.storage
+        uri: /admin/download/{id}
+```
+
+```yaml
+# config/packages/flysystem.yaml
+flysystem:
+  storages:
+    default.storage:
+      adapter: 'local'
+      options:
+        directory: '%kernel.project_dir%/var/storage/default'
+```
+
+```yaml
+# config/routes.yaml
+umbrella_file:
+  path: /admin/download/{id}
+  controller: Umbrella\CoreBundle\Controller\UmbrellaFileController::downloadAction
+```
+You can now use :
+ - `UmbrellaFileType` (symfony form)
+ - `FileColumnType` (DataTable)
+ - `ImageColumnType` (DataTable)
+ - `FileStorage`
+ - `UmbrellaFileExtension` (twig extension that provide two twigs functions `file_url(file)` and `image_url(file)`)
+
+It's possible to install [liip/LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
