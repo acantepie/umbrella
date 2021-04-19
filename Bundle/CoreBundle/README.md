@@ -1,6 +1,7 @@
-UmbrellaAdmin bundle
+UmbrellaCore bundle
 =========
+**\[Read only\]** repository
 
 Core vendor of umbrella Framework.
-- [Main documentation](https://github.com/acantepie/umbrella-admin-demo)
+- [Main documentation](https://github.com/acantepie/umbrella)
 - [Online demo](https://umbrella-corp.dev)

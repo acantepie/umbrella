@@ -9,7 +9,7 @@ function push()
 {
     PACKAGE_PATH="$1"
     REMOTE_NAME="$2"
-    REMOTE_URL="{$BASE_URL}/{$REMOTE_NAME}.git"
+    REMOTE_URL="${BASE_URL}/${REMOTE_NAME}.git"
 
     git remote add "$REMOTE_NAME" "$REMOTE_URL" || true
     SHA1=`splitsh-lite --prefix=$PACKAGE_PATH`
