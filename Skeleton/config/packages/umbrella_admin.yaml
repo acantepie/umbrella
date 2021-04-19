@@ -1,0 +1,11 @@
+umbrella_admin:
+  home_route: app_admin_default_index
+  theme:
+    name: "My App"
+  assets:
+    script_entry: admin
+    stylesheet_entry: admin
+  user:
+    class: App\Entity\User
+  user_group:
+    class: App\Entity\UserGroup

@@ -19,3 +19,4 @@ function push()
 
 push 'Bundle/AdminBundle' 'umbrella-adminbundle'
 push 'Bundle/CoreBundle' 'umbrella-corebundle'
+push 'Skeleton' 'umbrella-skeleton'

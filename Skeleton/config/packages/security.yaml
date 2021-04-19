@@ -1,0 +1,44 @@
+security:
+    enable_authenticator_manager: true
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: plaintext
+        App\Entity\User:
+            algorithm: sodium
+
+    role_hierarchy:
+        ROLE_ADMIN: [ ROLE_USER ]
+        ROLE_GODLIKE_ADMIN: [ ROLE_ADMIN ]
+
+    providers:
+        admin_provider:
+            chain :
+                providers: [admin_memory_provider, admin_entity_provider]
+        admin_memory_provider:
+            memory:
+                users:
+                    umbrella:  { password: umbrella, roles: [ 'ROLE_GODLIKE_ADMIN']}
+        admin_entity_provider:
+            id: Umbrella\AdminBundle\Security\UserProvider
+
+    firewalls:
+        dev:
+            pattern:    ^/(_profiler|_wdt|css|js)
+            security:   false
+
+        admin:
+            pattern: ^/admin
+            user_checker: Umbrella\AdminBundle\Security\UserChecker
+            entry_point: Umbrella\AdminBundle\Security\AuthenticationEntryPoint
+            provider: admin_provider
+            guard:
+                authenticators:
+                    - Umbrella\AdminBundle\Security\LoginFormAuthenticator
+            logout:
+                path: umbrella_admin_logout
+
+    access_control:
+        - { path: ^/admin/login$, role: PUBLIC_ACCESS }
+        - { path: ^/admin/password_request, role: PUBLIC_ACCESS }
+        - { path: ^/admin/password_reset, role: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }

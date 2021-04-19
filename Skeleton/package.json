@@ -1,0 +1,38 @@
+{
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@iconscout/unicons": "^3.0.6",
+        "@mdi/font": "^5.9.55",
+        "bootstrap": "^4.6.0",
+        "datatables.net": "^1.10.23",
+        "datatables.net-bs4": "^1.10.23",
+        "datatables.net-fixedheader": "^3.1.8",
+        "datatables.net-fixedheader-bs4": "^3.1.8",
+        "datatables.net-rowreorder": "^1.2.7",
+        "datatables.net-rowreorder-bs4": "^1.2.7",
+        "dragula": "^3.7.3",
+        "flatpickr": "^4.6.9",
+        "jquery": "^3.6.0",
+        "jquery-treetable": "^3.2.0-1",
+        "metismenu": "^3.0.6",
+        "mustache": "^4.0.1",
+        "popper.js": "^1.16.1",
+        "select2": "^4.0.13",
+        "simplebar": "^5.3.0",
+        "toastr": "^2.1.4"
+    },
+    "devDependencies": {
+        "@symfony/webpack-encore": "^0.31.0",
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "file-loader": "^6.0.0",
+        "sass": "^1.32.8",
+        "sass-loader": "^9.0.1"
+    },
+    "scripts": {
+        "dev-server": "encore dev-server --port 9000 --disable-host-check --host=0.0.0.0",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    }
+}
