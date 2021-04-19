@@ -79,17 +79,6 @@ Install flysystem :
 composer require league/flysystem-bundle
 ```
 
-packages/umbrella_core.yaml
-```yaml
-umbrella_core:
-  file:
-    default_config: default
-    configs:
-      - name: default
-        flystorage: default.storage
-        uri: /admin/download/{id}
-
-```
 Enable file component :
 ```yaml
 # config/packages/umbrella_core.yaml
