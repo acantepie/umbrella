@@ -25,3 +25,7 @@ yarn-error.log
 ###> ide/tools ###
 .idea/
 ###< ide/tools ###
+
+###> unlock dependency ###
+yarn.lock
+###< unlock dependency ###
