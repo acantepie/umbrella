@@ -123,6 +123,25 @@ You can now use :
  - `FileColumnType` (DataTable)
  - `ImageColumnType` (DataTable)
  - `FileStorage`
- - `UmbrellaFileExtension` (twig extension that provide two twigs functions `file_url(file)` and `image_url(file)`)
+ - `UmbrellaFileExtension` (twig extension that provide two twig filters ` file | file_url()` and `file | image_url()`)
 
-It's possible to install [liip/LiipImagineBundle](https://github.com/liip/LiipImagineBundle)
+Additionaly, you can install [liip/LiipImagineBundle](https://github.com/liip/LiipImagineBundle) to display file:
+
+```yaml
+# config/packages/liip_imagine.yaml
+liip_imagine:
+  driver: "gd"
+  loaders:
+    default:
+      flysystem:
+        filesystem_service: default.storage
+
+  filter_sets:
+    thumbnail: ...
+
+```
+
+```twig
+    {# twig #}
+    {{ file | image_url('thumbnail') }}
+```
