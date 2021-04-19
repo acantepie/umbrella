@@ -1,0 +1,9 @@
+{% extends "@UmbrellaCore/Modal/form.html.twig" %}
+
+{% block modal_title %}
+    {% if title is defined %}
+        {{ parent() }}
+    {% elseif entity is defined and entity %}
+        <h4 class="modal-title">{{ entity.id ? ( 'action.edit' | trans) : ( 'action.add' | trans) }}</h4>
+    {% endif %}
+{% endblock %}

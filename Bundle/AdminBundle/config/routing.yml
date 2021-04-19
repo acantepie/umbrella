@@ -1,0 +1,5 @@
+umbrella_user:
+  resource: "_user_routing.yml"
+
+umbrella_notification:
+  resource: "_notification_routing.yml"

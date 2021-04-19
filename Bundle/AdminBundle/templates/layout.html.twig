@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {% block title %}
+            <title>{{ admin_theme_name() }}</title>
+        {% endblock %}
+
+        {% block stylesheets %}
+            {% include "@UmbrellaAdmin/_stylesheets.html.twig" %}
+        {% endblock %}
+
+    </head>
+
+    {% include "@UmbrellaCore/_toast.html.twig" %}
+
+    {% block body %}
+        <body data-leftbar-theme="dark" class="env-{{ app.environment }} {% block body_class %}{% endblock %}">
+
+            <div class="wrapper">
+                {% block sidebar %}
+                    {{ admin_menu_render() }}
+                {% endblock %}
+
+                <div class="content-page">
+                    <div class="content mt-3">
+
+                        {% block topbar %}
+                            {% include "@UmbrellaAdmin/_topbar.html.twig" %}
+                        {% endblock %}
+
+                        <div class="container-fluid">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </body>
+    {% endblock %}
+
+    {% block html_template %}
+        {% if admin_notification_enabled() %}
+            {% include "@UmbrellaAdmin/Notification/template.html.twig" %}
+        {% endif %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% include "@UmbrellaAdmin/_scripts.html.twig" %}
+    {% endblock %}
+</html>
+
+
+
+
+
+

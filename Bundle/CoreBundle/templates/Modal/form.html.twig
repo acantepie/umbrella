@@ -1,0 +1,27 @@
+{% extends "@UmbrellaCore/Modal/default.html.twig" %}
+
+{% block modal_body %}
+    {{ umbrella_form_theme(form) }}
+    <form enctype="multipart/form-data" method="POST" data-xhr="{{ action | default(app.request.uri) }}">
+
+        <div class="modal-body {% block modal_body_class %}{% endblock %}">
+            {% block modal_content %}
+                {{ form_errors(form) }}
+                {{ form_rest(form) }}
+            {% endblock %}
+        </div>
+
+        <div class="modal-footer">
+            {% block modal_footer %}
+                <button type="button" class="btn btn-light" data-dismiss="modal">
+                    <i class="mdi mdi-close mr-1"></i> {{ 'action.cancel' | trans }}
+                </button>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="mdi mdi-check mr-1"></i> {{ 'action.save' | trans }}
+                </button>
+            {% endblock %}
+        </div>
+
+    </form>
+{% endblock %}

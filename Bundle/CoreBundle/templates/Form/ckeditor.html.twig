@@ -1,0 +1,9 @@
+{% block ckeditor_widget %}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+
+    {# load js here #}
+    {{ encore_entry_script_tags('ckeditor') }}
+    <script>
+        {{ render_ckeditor_js(form.vars.id, config) }}
+    </script>
+{% endblock %}

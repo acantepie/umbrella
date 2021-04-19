@@ -1,0 +1,36 @@
+//
+// reboot.scss
+//
+
+body {
+  &.loading {
+    visibility: hidden;
+  }
+}
+
+button, a {
+  outline: none !important;
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+// Forms
+
+label, legend {
+  font-weight: $font-weight-semibold;
+}
+
+// Address
+address.address-lg {
+  line-height: 24px;
+}
+
+b, strong {
+  font-weight: $font-weight-bold;
+}

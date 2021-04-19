@@ -1,0 +1,54 @@
+{% use "bootstrap_4_horizontal_layout.html.twig" %}
+
+{% use "@UmbrellaCore/Form/umbrellafile.html.twig" %}
+{% use "@UmbrellaCore/Form/umbrellacollection.html.twig" %}
+{% use "@UmbrellaCore/Form/async_entity2.html.twig" %}
+{% use "@UmbrellaCore/Form/ckeditor.html.twig" %}
+{% use "@UmbrellaCore/Form/divider.html.twig" %}
+{% use "@UmbrellaCore/Form/tag.html.twig" %}
+
+{% block form_group_class -%}
+{{ group_class }}
+{%- endblock form_group_class %}
+
+{% block form_label_class -%}
+{{ label_class }}
+{%- endblock form_label_class %}
+
+{% block form_row -%}
+    {%- if expanded is defined and expanded -%}
+        {{ block('fieldset_form_row') }}
+    {%- else -%}
+        {%- set widget_attr = {} -%}
+        {%- if help is not empty -%}
+            {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+        {%- endif -%}
+        <div{% with {attr: row_attr|merge({class: (row_attr.class|default('') ~ ' form-group row' ~ ((not compound or force_error|default(false)) and not valid ? ' is-invalid'))|trim})} %}{{ block('attributes') }}{% endwith %}>
+            {{- form_label(form) -}}
+            <div class="{{ block('form_group_class') }}">
+                {{- form_widget(form, widget_attr) -}}
+                {{- form_help(form) -}}
+                {{- form_errors(form) -}}
+            </div>
+        </div>
+    {%- endif -%}
+{%- endblock form_row %}
+
+{% block form_label_errors %}
+{% endblock form_label_errors %}
+
+{% block form_widget_simple -%}
+    {% if input_prefix or input_suffix %}
+        <div class="input-group">
+            {% if input_prefix %}
+                <div class="input-group-prepend">{{ input_prefix | raw }}</div>
+            {% endif %}
+            {{- parent() -}}
+            {% if input_suffix %}
+                <div class="input-group-append">{{ input_suffix | raw }}</div>
+            {% endif %}
+        </div>
+    {% else %}
+        {{- parent() -}}
+    {% endif %}
+{%- endblock form_widget_simple %}

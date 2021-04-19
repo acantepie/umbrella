@@ -1,0 +1,36 @@
+<template id="notification-umbrella-tpl">
+    [[#url]]
+        <a href="[[url]]" class="dropdown-item notify-item">
+    [[/url]]
+    [[^url]]
+        <span class="dropdown-item notify-item">
+    [[/url]]
+        <div class="notify-icon [[#bg-icon]][[bg-icon]][[/bg-icon]][[^bg-icon]]bg-info[[/bg-icon]]">
+            [[#icon]]
+                <i class="[[icon]]"></i>
+            [[/icon]]
+            [[^icon]]
+                <i class="mdi mdi-bell"></i>
+            [[/icon]]
+        </div>
+        <p class="notify-details">[[title]]
+            <small class="text-muted">[[date]]</small>
+        </p>
+        [[#text]]
+        <p class="mb-0 user-msg">
+            <small>[[text]]</small>
+        </p>
+        [[/text]]
+    [[^url]]
+        </span>
+    [[/url]]
+    [[#url]]
+        </a>
+    [[/url]]
+</template>
+
+<template id="notification-umbrella-empty-tpl">
+    <span class="dropdown-item notify-item disabled">
+        <small class="empty">{{ 'notification.empty' | trans }}</small>
+    </span>
+</template>

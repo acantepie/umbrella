@@ -1,0 +1,126 @@
+// 
+// metis-menu.scss
+//
+
+// Metis Menu Overwrite
+
+.metismenu {
+    padding: 0;
+
+    li {
+        list-style: none;
+    }
+    ul {
+        padding: 0;
+    }
+
+    .mm-collapse:not(.mm-show) {
+        display: none;
+    }
+
+    .mm-collapsing {
+        position: relative;
+        height: 0;
+        overflow: hidden;
+        transition-timing-function: ease;
+        transition-duration: .35s;
+        transition-property: height, visibility;
+    }
+
+    .menu-arrow {
+        font-family: 'unicons-line';
+        &::before {
+            content: '\eb6d';
+        }
+    }
+}
+
+.side-nav-second-level,
+.side-nav-third-level,
+.side-nav-forth-level {
+    li {
+        a {
+            padding: 8px 30px 8px 65px !important;
+            color: $menu-item;
+            display: block;
+            position: relative;
+            transition: all 0.4s;
+            font-size: 0.85rem;
+            &:focus,
+            &:hover {
+                color: $menu-item-hover;
+            }
+
+            .menu-arrow {
+                line-height: 1.3rem;
+            }
+        }
+        &.active {
+            >a {
+                color: $menu-item-active;
+            }
+        }
+    }
+}
+
+body[data-leftbar-theme="light"] {
+    .side-nav {
+        .side-nav-second-level,
+        .side-nav-third-level,
+        .side-nav-forth-level {
+            li {
+                a {
+                    color: $menu-item-light;
+                    &:focus,
+                    &:hover {
+                        color: $menu-item-light-hover;
+                    }
+                }
+                &.active {
+                    >a {
+                        color: $menu-item-light-active;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body[data-leftbar-theme="dark"] {
+    .side-nav {
+        .side-nav-second-level,
+        .side-nav-third-level,
+        .side-nav-forth-level {
+            li {
+                a {
+                    color: $sidebar-dark-menu-item;
+                    &:focus,
+                    &:hover {
+                        color: $sidebar-dark-menu-item-hover;
+                    }
+                }
+                &.active {
+                    >a {
+                        color: $sidebar-dark-menu-item-active;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.side-nav-third-level {
+    li {
+        a {
+            padding: 8px 30px 8px 80px !important;
+        }
+    }
+}
+
+.side-nav-forth-level {
+    li {
+        a {
+            padding: 8px 30px 8px 100px !important;
+        }
+    }
+}

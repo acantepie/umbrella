@@ -1,0 +1,92 @@
+//
+// datatable.scss
+//
+
+.dataTables_wrapper {
+    &.container-fluid {
+        padding: 0;
+    }
+}
+
+.dataTables_info {
+    font-weight: $font-weight-semibold;
+}
+
+
+// Responsive data table
+table.dataTable.dtr-inline.collapsed {
+    > tbody {
+        >tr[role=row] {
+            > td, > th {
+                &:first-child{
+                    &:before{
+                        box-shadow: $shadow-lg;
+                        background-color: $success;
+                        top: auto;
+                        bottom: auto;
+                    }
+                }
+            }
+        }
+        >tr.parent {
+            > td, > th {
+                &:first-child{
+                    &:before{
+                        background-color: $danger;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Data Table copy button
+div.dt-button-info {
+    background-color: $primary;
+    border: none;
+    color: $white;
+    box-shadow: none;
+    border-radius: 3px;
+    text-align: center;
+    z-index: 21;
+
+    h2 {
+        border-bottom: none;
+        background-color: rgba($white, 0.2);
+        color: $white;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    li.paginate_button.previous,li.paginate_button.next {
+        display: inline-block;
+        font-size: 1.5rem;
+    }
+ 
+    li.paginate_button {
+        display: none;
+    }
+    .dataTables_paginate {
+        ul {
+            text-align: center;
+            display: block;
+            margin: $spacer 0 0 !important;
+        }
+    }
+    div.dt-buttons {
+        display: inline-table;
+        margin-bottom: $spacer;
+    }
+}
+
+// Active status
+.activate-select {
+    .sorting_1 {
+        background-color: $gray-100;
+    }
+}
+
+table.dataTable { // ugly hack
+    width: 100% !important;
+}

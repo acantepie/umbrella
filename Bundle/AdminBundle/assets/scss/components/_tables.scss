@@ -1,0 +1,28 @@
+// 
+// tables.scss
+//
+
+//Table centered (Custom)
+.table-centered {
+    th, td {
+        vertical-align: middle !important;
+    }
+}
+
+
+// Custom table components (Custom)
+.table {
+    .table-user {
+        img {
+            height: 30px;
+            width: 30px;
+        }
+    }
+}
+
+// Tables fluid
+.table-nowrap {
+    th, td {
+      white-space: nowrap;
+    }
+}

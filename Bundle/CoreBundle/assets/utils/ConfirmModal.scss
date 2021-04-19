@@ -1,0 +1,23 @@
+.confirm-modal {
+
+  .modal-content {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    color: white;
+    text-align: center;
+    border: 0;
+
+    .modal-body {
+      font-size: 1.7em;
+    }
+
+    .modal-footer {
+      justify-content: center;
+      border: 0;
+    }
+
+  }
+
+}

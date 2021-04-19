@@ -1,0 +1,22 @@
+{% block divider_row %}
+    <div class="divider mt-4 mb-3">
+        {% if label is not same as(false) -%}
+            <h5>
+                {%- if translation_domain is same as(false) -%}
+                    {%- if label_html is same as(false) -%}
+                        {{- label -}}
+                    {%- else -%}
+                        {{- label|raw -}}
+                    {%- endif -%}
+                {%- else -%}
+                    {%- if label_html is same as(false) -%}
+                        {{- label|trans(label_translation_parameters, translation_domain) -}}
+                    {%- else -%}
+                        {{- label|trans(label_translation_parameters, translation_domain)|raw -}}
+                    {%- endif -%}
+                {%- endif -%}
+            </h5>
+        {% endif %}
+        <hr>
+    </div>
+{% endblock %}

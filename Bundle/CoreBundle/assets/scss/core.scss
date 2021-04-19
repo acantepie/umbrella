@@ -1,0 +1,29 @@
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/bootstrap";
+
+// Icon pack
+@import '~@mdi/font/scss/materialdesignicons.scss';
+
+// FlatPickr
+@import "~flatpickr";
+
+// DataTable
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+@import '~datatables.net-rowreorder-bs4/css/rowReorder.bootstrap4.css';
+@import '~datatables.net-fixedheader-bs4/css/fixedHeader.bootstrap4.css';
+@import "~jquery-treetable/css/jquery.treetable.css";
+
+// Toast
+@import "~toastr";
+
+// Other
+@import "~dragula/dist/dragula.css"; // plugin for drag&drop
+
+// Plugins
+@import "./plugins/flatpickr.scss";
+@import "./plugins/select2.scss";
+@import "./plugins/umbrella_collection.scss";
+@import "./plugins/umbrella_datatable.scss";
+@import "./plugins/umbrella_file.scss";
+@import "./plugins/umbrella_toolbar.scss";

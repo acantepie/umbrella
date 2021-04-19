@@ -1,0 +1,51 @@
+{
+    "name": "umbrella/adminbundle",
+    "type": "symfony-bundle",
+    "description": "Umbrella Admin Symfony bundle.",
+    "keywords": [
+        "backend",
+        "admin",
+        "umbrella"
+    ],
+    "homepage": "https://github.com/acantepie/umbrella",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrien Cantepie",
+            "email": "adrien.cantepie@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "php": ">=7.4",
+        "doctrine/doctrine-bundle": "^2.0",
+        "doctrine/orm": "^2.8",
+        "symfony/asset": "^5.2",
+        "symfony/console": "^5.2",
+        "symfony/config": "^5.2",
+        "symfony/dependency-injection": "^5.2",
+        "symfony/filesystem": "^5.2",
+        "symfony/form": "^5.2",
+        "symfony/framework-bundle": "^5.2",
+        "symfony/http-foundation": "^5.2",
+        "symfony/http-kernel": "^5.2",
+        "symfony/mailer": "^5.2",
+        "symfony/mime": "^5.2",
+        "symfony/routing": "^5.2",
+        "symfony/security-bundle": "^5.2",
+        "symfony/translation": "^5.2",
+        "symfony/options-resolver": "^5.2",
+        "symfony/twig-bundle": "^5.2",
+        "symfony/webpack-encore-bundle": "^1.11",
+        "symfony/yaml": "^5.2",
+        "umbrella2/corebundle": "*"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Umbrella\\AdminBundle\\": "src/"
+        }
+    }
+}

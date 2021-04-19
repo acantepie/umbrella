@@ -1,0 +1,21 @@
+<div class="umbrella-breadcrumb">
+    {{ breadcrumb.icon | icon }}
+    <ol data-count="{{ breadcrumb | length }}">
+
+        {% for item in breadcrumb %}
+            {% if not loop.first %}
+                {% set label = item.translationDomain ? (item.label | trans([], item.translationDomain)) : item.label %}
+
+                {% if loop.last %}
+                    <li class="active">{{ label }}</li>
+                {% elseif item.route %}
+                    <li>
+                        <a href="{{ path(item.route, item.routeParams) }}">{{ label }}</a>
+                    </li>
+                {% else %}
+                    <li>{{ label }}</li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </ol>
+</div>

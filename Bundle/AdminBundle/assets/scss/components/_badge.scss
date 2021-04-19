@@ -1,0 +1,57 @@
+// 
+// _badges.scss
+// 
+
+// Lighten badge (soft)
+
+
+.badge {
+  line-height: 1;
+  vertical-align: baseline;
+  margin: 0 .25em;
+  background-image: none;
+  padding: .5833em .833em;
+  text-transform: none;
+  font-weight: 700;
+  border: 0 solid transparent;
+  transition: background .1s ease;
+  display: inline-flex;
+  align-items: center;
+
+  i {
+    margin-right: .15em;
+  }
+
+}
+
+@each $color, $value in $theme-colors {
+
+  .badge-#{$color} {
+    @include gradient-bg($value);
+  }
+
+}
+
+@each $color, $value in $colors {
+
+  .badge-#{$color} {
+    @include gradient-bg($value);
+    color: color-yiq($value);
+  }
+
+}
+
+
+@each $color, $value in $theme-colors {
+  .badge-#{$color}-lighten {
+    @include badge-variant-light($value);
+  }
+}
+
+// Outline badge
+
+@each $color, $value in $theme-colors {
+  .badge-outline-#{$color} {
+    @include badge-variant-outline($value);
+  }
+}

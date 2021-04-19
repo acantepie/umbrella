@@ -1,0 +1,75 @@
+// 
+// breadcrumb.scss
+//
+
+
+// Breadcrumb item arrow
+.breadcrumb-item {
+    +.breadcrumb-item {
+        &::before {
+            font-family: "Material Design Icons";
+            content: "\F0142";
+        }
+    }
+}
+
+.umbrella-breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 0;
+    height: $topbar-height;
+
+    > i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: $border-radius;
+        background-color: $primary;
+        margin-right: 1rem;
+        color: color-yiq($primary);
+        font-size: 1.5rem;
+    }
+
+    ol {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+
+            a {
+                text-decoration: underline;
+
+                &:hover {
+                    text-decoration: none;
+                }
+
+            }
+
+            &:after {
+                content: '/';
+                display: inline-block;
+                margin: 0 .25rem;
+            }
+
+            &.active {
+                flex-basis: 100%;
+                font-weight: 700;
+                font-size: 1rem;
+
+                &:after {
+                    display: none;
+                }
+
+            }
+
+        }
+
+    }
+
+}

@@ -1,0 +1,9 @@
+{% block tag_widget %}
+    <select {{ block('widget_attributes') }}>
+        {% if value is iterable %}
+            {% for item in value %}
+                <option value="{{ item }}" selected="selected">{{ item }}</option>
+            {% endfor %}
+        {% endif %}
+    </select>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends '@UmbrellaAdmin/Security/layout.html.twig' %}
+
+{% block content %}
+    <div class="card">
+
+        {% include '@UmbrellaAdmin/Security/head.html.twig' %}
+
+        <div class="card-body p-4">
+
+            <div class="text-center w-75 m-auto">
+                <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{{  'action.signin' | trans }}</h4>
+                <p class="text-muted mb-4">{{ 'message.signin_to_bo' | trans | raw }}</p>
+            </div>
+
+            {% if error %}
+                <div class="alert alert-warning text-center">
+                    {{ error.messageKey|trans(error.messageData, 'security') | raw }}
+                </div>
+            {% endif %}
+
+            <form action="{{ path(constant('Umbrella\\AdminBundle\\Controller\\SecurityController::LOGIN_ROUTE')) }}" method="post">
+
+                <div class="form-group">
+                    <label for="username">{{ 'form.label.username' | trans }}</label>
+                    <input class="form-control" type="text" id="username" required="required" name="_username" value="{{ last_username }}">
+                </div>
+
+                <div class="form-group">
+                    <a href="{{ path('umbrella_admin_security_passwordrequest') }}" class="text-muted float-right">
+                        <small>{{ 'action.forget_password' | trans }}</small>
+                    </a>
+                    <label for="password">{{ 'form.label.password' | trans }}</label>
+                    <input class="form-control" type="password" required="required" id="password" name="_password">
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="form-group mb-0 text-center">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="mdi mdi-check mr-1"></i> {{ 'action.signin' | trans }}
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+

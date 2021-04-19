@@ -1,0 +1,25 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__ . '/src');
+
+return PhpCsFixer\Config::create()
+    ->setRules([
+        '@Symfony' => true,
+        '@DoctrineAnnotation' => true,
+        'phpdoc_summary' => false,
+        'no_unneeded_final_method' => false,
+        'no_superfluous_phpdoc_tags' => true,
+        'concat_space' => ['spacing' => 'one'],
+        'phpdoc_to_comment' => false,
+        'array_syntax' => ['syntax' => 'short'],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
+        'fully_qualified_strict_types' => true,
+        'trailing_comma_in_multiline_array' => false,
+        'header_comment' => [
+            'header' => ''
+        ]
+    ])
+    ->setRiskyAllowed(true)
+    ->setFinder($finder)
+    ->setCacheFile(__DIR__.'/.php_cs.cache');

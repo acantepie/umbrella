@@ -1,0 +1,41 @@
+.umbrella-file {
+
+  &.deleted {
+    .deleted-hide {
+      display: none;
+    }
+
+    .deleted-show {
+      display: block;
+    }
+  }
+
+  .deleted-hide {
+    display: show;
+  }
+
+  .deleted-show {
+    display: none;
+  }
+
+  .file-info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .file-deleted {
+    opacity: 0.5;
+  }
+
+  .input-file-group {
+    display: none;
+  }
+
+  .input-delete-group {
+    .form-check {
+      display: none;
+    }
+  }
+
+}

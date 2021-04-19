@@ -1,0 +1,7 @@
+// Background lighten
+
+@each $color, $value in $theme-colors {
+  .bg-#{$color}-lighten {
+      @include bg-variant-light($value);
+  }
+}

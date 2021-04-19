@@ -1,0 +1,51 @@
+//
+// frappe-gantt.scss
+//
+
+.gantt .bar-progress {
+    fill: $primary;
+}
+
+.gantt .bar-wrapper:hover .bar-progress {
+    fill: lighten($primary, 5%);
+}
+
+.gantt-container .popup-wrapper .pointer {
+    display: none;
+}
+
+.gantt .bar,
+.gantt .bar-wrapper:hover .bar  {
+    fill: $progress-bg;
+}
+
+.gantt .bar-label,
+.gantt .bar-label.big  {
+    fill: $gray-700;
+}
+
+.gantt .grid-header {
+    fill: $table-accent-bg;
+    stroke: $table-accent-bg;
+}
+
+.gantt .grid-row:nth-child(even) {
+    fill: $table-accent-bg;
+}
+
+.gantt .grid-row {
+    fill: transparent;
+}
+
+.gantt .lower-text ,
+.gantt .upper-text{
+    fill:  $table-color;
+}
+
+.gantt .row-line {
+    stroke: $table-border-color;
+}
+
+.gantt .today-highlight {
+    fill: $light;
+}

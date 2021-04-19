@@ -1,0 +1,97 @@
+//Core files
+@import "~bootstrap/scss/functions";
+@import "config/variables";
+@import "config/custom-variables";
+@import "~bootstrap/scss/bootstrap";
+
+// Structure
+@import "structure/general";
+@import "structure/left-menu";
+@import "structure/topbar";
+//@import "structure/right-sidebar";
+@import "structure/page-head";
+//@import "structure/footer";
+//@import "structure/horizontal-nav";
+
+
+//Fonts
+@import "fonts/nunito";
+@import '~@iconscout/unicons/css/animation.css';
+@import '~@iconscout/unicons/css/before.css';
+@import '~@iconscout/unicons/css/line.css';
+
+//Components
+@import "components/mixins";
+@import "components/accordions";
+@import "components/avatar";
+@import "components/breadcrumb";
+@import "components/buttons";
+@import "components/badge";
+@import "components/card";
+@import "components/dropdown";
+//@import "components/docs";
+@import "components/forms";
+@import "components/modal";
+@import "components/nav";
+@import "components/pagination";
+@import "components/popover";
+//@import "components/print";
+@import "components/progress";
+@import "components/reboot";
+//@import "components/ribbons";
+@import "components/switch";
+@import "components/tables";
+@import "components/type";
+@import "components/utilities";
+//@import "components/widgets";
+//@import "components/social";
+//@import "components/steps";
+@import "components/spinner";
+//@import "components/hero";
+
+//Pages
+@import "pages/authentication";
+@import "pages/security";
+//@import "pages/components-demo";
+//@import "pages/error";
+//@import "pages/faq";
+//@import "pages/maintenance";
+//@import "pages/tasks";
+//@import "pages/email";
+//@import "pages/timeline";
+
+
+// Vendors
+@import "~umbrella_core/scss/core";
+
+//@import "vendor/daterangepicker";
+//@import "vendor/bootstrap-timepicker.min";
+//@import "vendor/jquery.bootstrap-touchspin.min";
+
+
+// Plugins
+//@import "plugins/apexcharts";
+//@import "plugins/britechart";
+//@import "plugins/calendar";
+//@import "plugins/chartjs";
+@import "plugins/datatable";
+//@import "plugins/daterange";
+//@import "plugins/datepicker";
+@import "plugins/dragula";
+//@import "plugins/dropzone";
+//@import "plugins/form-wizard";
+//@import "plugins/maps";
+@import "plugins/metis-menu";
+@import "plugins/select2";
+@import "plugins/simplebar";
+@import "plugins/toast";
+//@import "plugins/bootstrap-touchspin";
+//@import "plugins/bootstrap-timepicker";
+//@import "plugins/summernote";
+//@import "plugins/simplemde";
+//@import "plugins/typehead";
+//@import "plugins/sparklines";
+//@import "plugins/rateit";
+//@import "plugins/ion-rangeslider";
+//@import "plugins/frappe-gantt";
+

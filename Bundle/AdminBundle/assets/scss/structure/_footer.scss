@@ -1,0 +1,82 @@
+// 
+// footer.scss
+//
+
+.footer {
+    border-top: 1px solid rgba($gray-600, 0.2);
+    bottom: 0;
+    padding: 19px 24px 20px;
+    position: absolute;
+    right: 0;
+    color: $gray-600;
+    left: $leftbar-width;
+
+    .footer-links {
+        a {
+            color: $gray-600;
+            margin-left: 1.5rem;
+            transition: all .4s;
+            &:hover {
+                color: $gray-900;
+            }
+            &:first-of-type {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .footer {
+        left: 0 !important;
+        text-align: center;
+    }
+}
+
+
+// Used for account authentication pages
+.footer-alt {
+    left: 0;
+    border: none;
+    text-align: center;
+}
+
+// Layout - Topnav
+body[data-layout="topnav"] {
+    .footer {
+        left: 0 !important;
+        padding: 19px 0 20px;
+    }
+    &[data-layout-mode="boxed"] {
+        .footer {
+            max-width: $boxed-layout-width;
+        }
+    }
+}
+
+body[data-layout-mode="boxed"] {
+    .footer {
+        border: none;
+        margin: 0 auto;
+        background-color: $body-bg;
+        box-shadow: $shadow;
+        max-width: calc(#{$boxed-layout-width} - #{$leftbar-width});
+    }
+
+    &[data-leftbar-compact-mode="condensed"] {
+        .footer {
+            max-width: calc(#{$boxed-layout-width} - 70px);
+        }
+    }
+}
+
+body[data-layout="detached"] {
+    .footer {
+        left: 0;
+
+        .container-fluid {
+            max-width: 100%;
+            padding: 0;
+        }
+    }
+}

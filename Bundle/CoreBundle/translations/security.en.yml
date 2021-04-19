@@ -1,0 +1,3 @@
+account_disabled: Your account was disabled.
+Too many failed login attempts, please try again in %minutes% minute.: Too many failed login attempts, please try again in %minutes% minute.
+password_expired: Your password has expired. You have to update it before login.<br> <a href="%url%" class="text-primary">Update my password</a>.

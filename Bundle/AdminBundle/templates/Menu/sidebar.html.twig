@@ -1,0 +1,17 @@
+{% use "@UmbrellaAdmin/Menu/sidebar_block.html.twig" %}
+
+<umbrella-sidebar class="left-side-menu" data-theme="{{ theme }}">
+
+    {% block head %}
+        {% include '@UmbrellaAdmin/Menu/head.html.twig' %}
+    {% endblock %}
+
+    {% block sidemenu %}
+        <div class="h-100" id="left-side-menu-container" data-simplebar>
+            <ul class="metismenu side-nav">
+                {{ block('menu_widget') }}
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    {% endblock %}
+</umbrella-sidebar>

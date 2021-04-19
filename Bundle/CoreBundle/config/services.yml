@@ -1,0 +1,89 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # ---- Component ---- #
+
+    # Menu
+    Umbrella\CoreBundle\Component\Menu\MenuFactory:
+    Umbrella\CoreBundle\Component\Menu\MenuAuthorizationChecker:
+        $tokenStorage: "@security.token_storage"
+        $language: "@security.expression_language"
+        $trustResolver: "@security.authentication.trust_resolver"
+        $authChecker: "@security.authorization_checker"
+        $roleHierarchy: "@security.role_hierarchy"
+    Umbrella\CoreBundle\Component\Menu\MenuHelper:
+    Umbrella\CoreBundle\Component\Menu\Extension\MenuTwigExtension:
+
+    # JsResponse
+    Umbrella\CoreBundle\Component\JsResponse\JsResponseBuilder:
+    Umbrella\CoreBundle\Component\JsResponse\JsResponseViewListener:
+        tags:
+            - {name: kernel.event_subscriber }
+
+    # Widget
+    Umbrella\CoreBundle\Component\Widget\WidgetFactory:
+    Umbrella\CoreBundle\Component\Widget\WidgetRegistry:
+    Umbrella\CoreBundle\Component\Widget\WidgetRenderer:
+    Umbrella\CoreBundle\Component\Widget\WidgetExtension:
+    Umbrella\CoreBundle\Component\Widget\Type\:
+        resource: '../src/Component/Widget/Type'
+
+    # DataTable
+    Umbrella\CoreBundle\Component\DataTable\DataTableFactory:
+    Umbrella\CoreBundle\Component\DataTable\DataTableRegistry:
+    Umbrella\CoreBundle\Component\DataTable\DataTableRenderer:
+    Umbrella\CoreBundle\Component\DataTable\Extension\DataTableTwigExtension:
+
+    Umbrella\CoreBundle\Component\DataTable\Adapter\CallableAdapter:
+    Umbrella\CoreBundle\Component\DataTable\Adapter\EntityAdapter:
+    Umbrella\CoreBundle\Component\DataTable\Adapter\NestedEntityAdapter:
+
+    Umbrella\CoreBundle\Component\DataTable\Column\:
+        resource: '../src/Component/DataTable/Column'
+
+    # Toast
+    Umbrella\CoreBundle\Component\Toast\ToastRenderer:
+    Umbrella\CoreBundle\Component\Toast\ToastExtension:
+
+    # Time
+    Umbrella\CoreBundle\Component\Time\TimeHelper:
+    Umbrella\CoreBundle\Component\Time\DateTimeFormatter:
+    Umbrella\CoreBundle\Component\Time\TimeExtension:
+
+    # Ckeditor
+    Umbrella\CoreBundle\Component\Ckeditor\CkeditorConfiguration:
+    Umbrella\CoreBundle\Component\Ckeditor\CkeditorExtension:
+
+    # Tabs
+    Umbrella\CoreBundle\Component\Tabs\TabsHelper:
+    Umbrella\CoreBundle\Component\Tabs\TabsExtension:
+
+    # Search
+    Umbrella\CoreBundle\Component\Search\Annotation\SearchableAnnotationReader:
+    Umbrella\CoreBundle\Component\Search\EntityIndexer:
+    Umbrella\CoreBundle\Component\Search\SearchableEntitySubscriber:
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    # ---- Common ----#
+
+    #Command
+    Umbrella\CoreBundle\Command\IndexEntityCommand:
+
+    #Controller
+    Umbrella\CoreBundle\Controller\UmbrellaFileController:
+        tags: [ 'controller.service_arguments' ]
+
+    #Extension
+    Umbrella\CoreBundle\Twig\CoreExtension:
+        bind:
+            $formRenderer: '@twig.form.renderer'
+
+    #Form
+    Umbrella\CoreBundle\Form\:
+        resource: '../src/Form'
+
+

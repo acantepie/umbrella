@@ -1,0 +1,4 @@
+###> Tools / Other ###
+/.idea/*
+.php_cs.cache
+###< Tools / Other ###

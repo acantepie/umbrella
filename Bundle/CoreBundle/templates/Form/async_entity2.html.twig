@@ -1,0 +1,18 @@
+{% block async_entity2_widget %}
+    {% if multiple %}
+        {% set attr = attr|merge({'multiple': 'multiple'}) %}
+    {% endif %}
+
+    {% apply spaceless %}
+        <select {{ block('widget_attributes') }}>
+            {% if value is iterable %}
+{#                {% if allow_clear %}#}
+{#                    <option value=""></option>#}
+{#                {% endif %}#}
+                {% for id, label in value %}
+                    <option value="{{ id }}" selected="selected">{{ label }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    {% endapply %}
+{% endblock %}

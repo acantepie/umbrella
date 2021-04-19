@@ -1,0 +1,22 @@
+<umbrella-toolbar class="umbrella-toolbar {% if form | length == 0  and widget | length ==0 %}d-none{% endif %}">
+
+    {% if form | length > 0 %}
+        <form class="form-inline js-toolbar-form" enctype="multipart/form-data" method="{{ form.vars.method }}">
+            {{ umbrella_form_theme(form) }}
+
+            {% for child in form -%}
+                <div class="form-group">
+                    {{- form_widget(child) -}}
+                </div>
+            {%- endfor -%}
+        </form>
+    {% endif %}
+
+    <div class="widgets">
+        {% for child in widget -%}
+            {{- render_widget(child) -}}
+        {%- endfor -%}
+    </div>
+
+
+</umbrella-toolbar>

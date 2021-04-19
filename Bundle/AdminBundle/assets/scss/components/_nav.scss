@@ -1,0 +1,45 @@
+// 
+// tabs.scss
+//
+
+.nav-tabs,.nav-pills {
+    > li {
+        > a {
+            color: $gray-700;
+            font-weight: $font-weight-semibold;
+        }
+    }
+}
+
+.nav-pills {
+    > a {
+        color: $gray-700;
+        font-weight: $font-weight-semibold;   
+    }
+}
+
+.bg-nav-pills {
+    background-color: $nav-pills-bg;
+}
+
+// 
+// nav-bordered
+//
+
+.nav-tabs.nav-bordered {
+    border-bottom: 2px solid rgba($gray-600, 0.2);
+
+    .nav-item {
+        margin-bottom: -2px;
+    }
+
+    li {
+        a {
+            border: 0;
+            padding: 0.625rem 1.25rem;
+        }
+        a.active {
+            border-bottom: 2px solid $primary;
+        }
+    }
+}

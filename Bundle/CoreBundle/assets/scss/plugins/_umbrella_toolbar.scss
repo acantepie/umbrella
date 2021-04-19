@@ -1,0 +1,44 @@
+.umbrella-toolbar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+
+  .form-inline {
+
+    .select2.select2-container {
+      min-width: 200px;
+    }
+
+    .form-group {
+      margin-top: 3px;
+      margin-bottom: 3px;
+
+      &:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+
+    }
+  }
+
+  .widgets {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    > *:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+
+}
+
+@include media-breakpoint-down(sm) {
+  .umbrella-toolbar {
+    margin-left: 0;
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
+  }
+}

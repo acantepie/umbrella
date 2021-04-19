@@ -1,0 +1,109 @@
+{% block umbrellacollection_widget %}
+{% apply spaceless %}
+
+    {% set attr = attr|merge({
+        'data-index': form | length,
+        'data-sortable' : form.vars.sortable ? 'true' : 'false',
+        'data-prototype': block('umbrellacollection_prototype_widget'),
+        'data-prototype-name' : prototype is defined ? prototype.vars.name : null,
+        'data-max-length' : form.vars.max_length
+    }) %}
+
+    {% set compound = prototype is defined and prototype.vars.compound and 'umbrellafile' not in prototype.vars.block_prefixes %}
+
+    <umbrella-collection {{ block('widget_container_attributes') }}>
+
+        <table class="table mb-0">
+
+            {% if compound and headers %}
+                <thead>
+                    <tr>
+                        {% if form.vars.sortable %}
+                            <th></th>
+                        {% endif %}
+
+                        {% for col_form in prototype %}
+                            {% if 'hidden' not in col_form.vars.block_prefixes %}
+                                <th class="{{ col_form.vars.required ? 'required' }}">
+                                    <span>{{ col_form.vars.label | trans }}</span>
+                                </th>
+                            {% endif %}
+                        {% endfor %}
+                        <th></th>
+                    </tr>
+                </thead>
+            {% endif %}
+            <tbody>
+                {% for entry_form in form %}
+                    {{ block('umbrellacollection_item_widget') }}
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="100%">
+                        {% if form.vars.allow_add %}
+                            <a class="js-add-row btn btn-light btn-sm" href="#">
+                                <i class="mdi mdi-plus mr-1"></i> {{ 'action.add_row' | trans }}
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+    </umbrella-collection>
+{% endapply %}
+{% endblock %}
+
+{% block umbrellacollection_prototype_widget %}
+{% apply spaceless %}
+    {% if prototype is defined %}
+        {%  set entry_form = prototype %}
+        {{ block('umbrellacollection_item_widget') }}
+    {% endif %}
+{% endapply %}
+{% endblock %}
+
+{% block umbrellacollection_item_widget %}
+{% apply spaceless %}
+    <tr class="js-row" data-idx="{{ entry_form.vars.name }}">
+
+        {% if form.vars.sortable %}
+            <td class="js-drag-handle drag-handle">
+                <i class="mdi mdi-menu text-primary" aria-hidden="true"></i>
+            </td>
+        {% endif %}
+
+        {% set compound = entry_form.vars.compound and 'umbrellafile' not in entry_form.vars.block_prefixes %}
+
+        {% if compound %}
+            {% for col_form in entry_form %}
+                {{ block('umbrellacollection_item_col') }}
+            {% endfor %}
+        {% else %}
+            {% set col_form = entry_form %}
+            {{ block('umbrellacollection_item_col') }}
+        {% endif %}
+
+        {% if form.vars.allow_delete %}
+            <td class="text-center">
+                <a class="js-del-row action-icon" href="#">
+                    <i class="mdi mdi-delete text-danger"></i>
+                </a>
+            </td>
+        {% endif %}
+    </tr>
+{% endapply %}
+{% endblock %}
+
+{% block umbrellacollection_item_col %}
+    {% if 'hidden' in col_form.vars.block_prefixes %}
+        {{ form_widget(col_form) }}
+    {% else %}
+        <td>
+            {{ form_widget(col_form) }}
+            {{ form_errors(col_form) }}
+        </td>
+    {% endif %}
+{% endblock %}

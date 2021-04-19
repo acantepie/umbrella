@@ -1,0 +1,42 @@
+// 
+// accordions.scss
+//
+
+.custom-accordion {
+
+    .card {
+        box-shadow: none;
+    }
+
+    .card-header {
+        background-color: $gray-100;
+    }
+
+    .card-body {
+        border: 1px solid $gray-100;
+    }
+
+    .accordion-arrow {
+        font-size: 1.2rem;
+        position: absolute;
+        right: 0;
+    }
+    a {
+        &.collapsed {
+            i.accordion-arrow {
+                &:before {
+                    content: "\F142";
+                }
+            }
+        }
+    }
+}
+
+.custom-accordion-title {
+    color: $custom-accordion-title-color;
+    position: relative;
+
+    &:hover {
+        color: lighten($custom-accordion-title-color,7.5%)
+    }
+}

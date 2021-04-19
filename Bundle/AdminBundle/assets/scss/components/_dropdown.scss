@@ -1,0 +1,45 @@
+// 
+// dropdown.scss
+//
+
+.dropdown-menu {
+    box-shadow: $shadow;
+}
+
+// Dropdown Animated (Custom)
+.dropdown-menu-animated {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease;
+    margin-top: 20px !important;
+}
+
+.show {
+    > .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        margin-top: 0 !important;
+    }
+}
+
+
+// Dropdown Large (Custom)
+.dropdown-lg {
+    width: $dropdown-lg-width;
+}
+
+
+@include media-breakpoint-down(sm) {
+    .dropdown-lg {
+        width: 200px !important;
+    }
+}
+
+
+// Dropdown arrow hide
+.arrow-none {
+    &:after {
+        display: none;
+    }
+}

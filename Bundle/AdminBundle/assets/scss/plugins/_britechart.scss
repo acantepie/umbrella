@@ -1,0 +1,23 @@
+//
+// britechart.scss
+//
+
+.britechart,.tick text {
+  font-family: $font-family-base;
+  font-size: 0.75rem;
+}
+
+.horizontal-grid-line, 
+.vertical-grid-line,
+.extended-x-line, 
+.extended-y-line  {
+    stroke: $gray-300;
+}
+
+.tick text,
+.bar-chart .percentage-label,
+.donut-text,
+.legend-entry-name,
+.legend-entry-value  {
+    fill: $gray-600;
+}
