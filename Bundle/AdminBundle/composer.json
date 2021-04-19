@@ -38,7 +38,7 @@
         "symfony/twig-bundle": "^5.2",
         "symfony/webpack-encore-bundle": "^1.11",
         "symfony/yaml": "^5.2",
-        "umbrella2/corebundle": "*"
+        "umbrella/corebundle": "*"
     },
     "config": {
         "sort-packages": true
