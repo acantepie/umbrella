@@ -16,7 +16,7 @@ class UmbrellaFileSubscriber implements EventSubscriberInterface
     private FileStorage $storage;
 
     /**
-     * UmbrellaFileListener constructor.
+     * UmbrellaFileSubscriber constructor.
      */
     public function __construct(FileStorage $storage)
     {
@@ -30,7 +30,6 @@ class UmbrellaFileSubscriber implements EventSubscriberInterface
         if (!$entity instanceof UmbrellaFile) {
             return;
         }
-
         $this->storage->remove($entity);
     }
 

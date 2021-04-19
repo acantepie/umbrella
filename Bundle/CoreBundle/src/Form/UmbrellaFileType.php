@@ -103,13 +103,13 @@ class UmbrellaFileType extends AbstractType
         }
 
         $uploadedFile = $file->_uploadedFile;
-
         if ($options['config_name']) {
             $file->configName = $options['config_name'];
         }
 
         // delete current uploaded file !
         if (null === $uploadedFile && $form->has('_deleteFile') && $form->get('_deleteFile')->getData()) {
+            $file->configName; // load entity else doctrine will cry ...
             $this->em->remove($file);
             $event->setData(null);
 
@@ -126,6 +126,7 @@ class UmbrellaFileType extends AbstractType
 
         // persisted umbrellafile + file uploaded => remove previous // new current
         if (null !== $uploadedFile && null !== $file->id) {
+            $file->configName; // load entity else doctrine will cry ...
             $this->em->remove($file);
 
             $newFile = clone $file;
