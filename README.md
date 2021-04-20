@@ -17,7 +17,7 @@ Umbrella framework contains two bundle (Adminbundle and CoreBundle) that provide
 ### Installation
 
 ```bash
-composer create-project umbrella2/skeleton:dev-master my_project
+composer create-project umbrella2/skeleton my_project
 cd my_project/
 ```
 

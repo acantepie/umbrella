@@ -41,7 +41,7 @@
         "umbrella2/corebundle": "*"
     },
     "suggest": {
-        "knplabs/knp-time-bundle": "Display pretty time on notification",
+        "knplabs/knp-time-bundle": "Display pretty time on notification"
     },
     "config": {
         "sort-packages": true
