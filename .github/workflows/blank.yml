@@ -1,0 +1,13 @@
+name: split
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Split
+        run: ./bin/split.sh
