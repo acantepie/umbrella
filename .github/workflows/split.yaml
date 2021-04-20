@@ -3,7 +3,7 @@ name: split
 on: [ push ]
 
 env:
-  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
   build:

@@ -3,7 +3,7 @@
 set -e
 set -x
 
-BASE_REMOTE_URL="${GITHUB_TOKEN:-git}@github.com:acantepie"
+BASE_REMOTE_URL="${INPUT_GITHUB_TOKEN:-git}@github.com:acantepie"
 CURRENT_BRANCH="master"
 
 function split()
