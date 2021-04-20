@@ -18,7 +18,10 @@ function remote()
     git remote add $1 $REMOTE_URL || true
 }
 
-git pull origin "$CURRENT_BRANCH"
+if [[ "$1" == '--pull' ]]
+then
+  git pull origin "$CURRENT_BRANCH"
+fi
 
 remote adminbundle umbrella-adminbundle
 remote corebundle umbrella-corebundle
