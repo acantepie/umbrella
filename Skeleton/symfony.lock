@@ -97,9 +97,6 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.2.0"
     },
-    "league/mime-type-detection": {
-        "version": "1.7.0"
-    },
     "monolog/monolog": {
         "version": "2.2.0"
     },

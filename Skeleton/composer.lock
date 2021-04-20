@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23a5fa7f9dd4a6a083b1ae0825eb7ea9",
+    "content-hash": "d0d57ab5f4f8d4078a47523579097ebf",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -7513,7 +7513,7 @@
         },
         {
             "name": "umbrella2/adminbundle",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acantepie/umbrella-adminbundle.git",
@@ -7550,7 +7550,6 @@
                 "symfony/yaml": "^5.2",
                 "umbrella2/corebundle": "*"
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
@@ -7575,23 +7574,22 @@
                 "umbrella"
             ],
             "support": {
-                "issues": "https://github.com/acantepie/umbrella-adminbundle/issues",
-                "source": "https://github.com/acantepie/umbrella-adminbundle/tree/master"
+                "source": "https://github.com/acantepie/umbrella-adminbundle/tree/v1.0"
             },
             "time": "2021-04-19T19:07:44+00:00"
         },
         {
             "name": "umbrella2/corebundle",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acantepie/umbrella-corebundle.git",
-                "reference": "dd6303caa1e82b5f21db691b4796f74084371f28"
+                "reference": "b3bc595be68918892bcf739689afc06b962879ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acantepie/umbrella-corebundle/zipball/dd6303caa1e82b5f21db691b4796f74084371f28",
-                "reference": "dd6303caa1e82b5f21db691b4796f74084371f28",
+                "url": "https://api.github.com/repos/acantepie/umbrella-corebundle/zipball/b3bc595be68918892bcf739689afc06b962879ec",
+                "reference": "b3bc595be68918892bcf739689afc06b962879ec",
                 "shasum": ""
             },
             "require": {
@@ -7623,7 +7621,6 @@
                 "liip/imagine-bundle": "Allow use liip filter with UmbrellaFile",
                 "symfony/monolog-bundle": "Symfony logger, used on Indexer for example."
             },
-            "default-branch": true,
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
@@ -7647,10 +7644,9 @@
                 "umbrella"
             ],
             "support": {
-                "issues": "https://github.com/acantepie/umbrella-corebundle/issues",
-                "source": "https://github.com/acantepie/umbrella-corebundle/tree/master"
+                "source": "https://github.com/acantepie/umbrella-corebundle/tree/v1.0"
             },
-            "time": "2021-04-19T18:26:53+00:00"
+            "time": "2021-04-19T21:27:47+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -8308,9 +8304,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "umbrella2/adminbundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
