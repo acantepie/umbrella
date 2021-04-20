@@ -10,7 +10,7 @@ else
   BASE_REMOTE_URL="git@github.com:acantepie"
 fi
 
-CURRENT_BRANCH="master"
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 function split()
 {
@@ -23,11 +23,6 @@ function remote()
     REMOTE_URL="$BASE_REMOTE_URL/$2.git"
     git remote add $1 $REMOTE_URL || true
 }
-
-if [[ "$1" == '--pull' ]]
-then
-  git pull origin "$CURRENT_BRANCH"
-fi
 
 remote adminbundle umbrella-adminbundle
 remote corebundle umbrella-corebundle

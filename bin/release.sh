@@ -11,8 +11,8 @@ then
 fi
 
 BASE_REMOTE_URL="git@github.com:acantepie"
-RELEASE_BRANCH="master"
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+RELEASE_BRANCH=$CURRENT_BRANCH
 VERSION=$1
 
 # Make sure current branch and release branch match.
