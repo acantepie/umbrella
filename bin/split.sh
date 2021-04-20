@@ -3,7 +3,13 @@
 set -e
 set -x
 
-BASE_REMOTE_URL="${INPUT_GITHUB_TOKEN:-git}@github.com:acantepie"
+if [[ -n "${INPUT_GITHUB_TOKEN}" ]]
+then
+  BASE_REMOTE_URL="https://acantepie:${INPUT_GITHUB_TOKEN}@github.com"
+else
+  BASE_REMOTE_URL="git@github.com:acantepie"
+fi
+
 CURRENT_BRANCH="master"
 
 function split()
