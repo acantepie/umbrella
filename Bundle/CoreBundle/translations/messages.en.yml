@@ -34,32 +34,25 @@ action:
     movedown: Move down
     moveup: Move up
 
-form:
-    label:
-        title: Title
-        firstname: Firstname
-        lastname: Lastname
-        username: Username
-        email: Email
-        your_email: Your email
-        password: Password
-        password_confirm: Confirm
-        groups: Groups
-        roles: Roles
-        active: Active
-
-    placeholder:
-        search: Search ...
-        password_not_set_if_empty: Let empty to keep your current password.
-
-table:
+label:
     name: Name
-    active: Active
-    groups: Groups
     title: Title
+    firstname: Firstname
+    lastname: Lastname
+    username: Username
+    email: Email
+    your_email: Your email
+    password: Password
+    password_confirm: Confirm
+    groups: Groups
     roles: Roles
+    active: Active
     updatedAt: Updated at
     createdAt: Created at
+
+placeholder:
+    search: Search ...
+    password_not_set_if_empty: Let empty to keep your current password.
 
 message:
     delete_confirm: Confirm delete ?

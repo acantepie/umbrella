@@ -19,7 +19,7 @@ class ColumnType
             })
             ->setAllowedTypes('label', ['null', 'string'])
 
-            ->setDefault('label_prefix', 'table.')
+            ->setDefault('label_prefix', 'label.')
             ->setAllowedTypes('label_prefix', ['null', 'string'])
 
             ->setDefault('translation_domain', 'messages')

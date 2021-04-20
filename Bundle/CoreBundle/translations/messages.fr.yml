@@ -34,32 +34,25 @@ action:
     movedown: Déplacer vers le bas
     moveup: Déplacer vers le haut
 
-form:
-    label:
-        title: Titre
-        firstname: Prénom
-        lastname: Nom
-        username: Login
-        email: Email
-        your_email: Votre email
-        password: Mot de passe
-        password_confirm: Confirmation
-        groups: Groupes
-        roles: Roles
-        active: Actif
-
-    placeholder:
-        search: Rechercher ...
-        password_not_set_if_empty: Laissez vide pour conserver le mot de passe actuel
-
-table:
+label:
     name: Nom
-    active: Actif
-    groups: Groupes
     title: Titre
+    firstname: Prénom
+    lastname: Nom
+    username: Login
+    email: Email
+    your_email: Votre email
+    password: Mot de passe
+    password_confirm: Confirmation
+    groups: Groupes
     roles: Roles
+    active: Actif
     updatedAt: Modifié le
     createdAt: Crée le
+
+placeholder:
+    search: Rechercher ...
+    password_not_set_if_empty: Laissez vide pour conserver le mot de passe actuel
 
 message:
     delete_confirm: Confirmez-vous la suppression ?

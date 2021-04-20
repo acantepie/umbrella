@@ -62,7 +62,7 @@ class FormTypeExtension extends AbstractTypeExtension
             ->setDefault('group_class', null)
             ->setAllowedTypes('group_class', ['string', 'null'])
 
-            ->setDefault('label_prefix', 'form.label.')
+            ->setDefault('label_prefix', 'label.')
             ->setAllowedTypes('label_prefix', ['null', 'string'])
 
             ->setDefault('input_prefix', null)

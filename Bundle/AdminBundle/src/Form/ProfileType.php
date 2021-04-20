@@ -35,7 +35,7 @@ class ProfileType extends AbstractType
             'label' => 'password',
             'required' => false,
             'attr' => [
-                'placeholder' => 'form.placeholder.password_not_set_if_empty',
+                'placeholder' => 'placeholder.password_not_set_if_empty',
             ],
         ]);
     }

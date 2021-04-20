@@ -29,7 +29,7 @@ class SearchType extends AbstractType implements DataTransformerInterface
         $resolver->setDefaults([
             'required' => false,
             'attr' => [
-                'placeholder' => 'form.placeholder.search',
+                'placeholder' => 'placeholder.search',
             ],
         ]);
     }

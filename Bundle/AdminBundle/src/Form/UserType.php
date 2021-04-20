@@ -45,7 +45,7 @@ class UserType extends AbstractType
         ];
 
         if (!$options['password_required']) {
-            $params['attr']['placeholder'] = 'form.placeholder.password_not_set_if_empty';
+            $params['attr']['placeholder'] = 'placeholder.password_not_set_if_empty';
         }
 
         $builder->add('plainPassword', PasswordType::class, $params);
