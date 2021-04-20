@@ -3,20 +3,25 @@
 set -e
 set -x
 
-BASE_URL="git@github.com:acantepie"
+CURRENT_BRANCH="master"
 
-function push()
+function split()
 {
-    PACKAGE_PATH="$1"
-    REMOTE_NAME="$2"
-    REMOTE_URL="${BASE_URL}/${REMOTE_NAME}.git"
-
-    git remote add "$REMOTE_NAME" "$REMOTE_URL" || true
-    SHA1=`splitsh-lite --prefix=$PACKAGE_PATH`
-    git push "$REMOTE_NAME" "$SHA1:master" -f
-    git remote remove "$REMOTE_NAME"
+    SHA1=`./bin/splitsh-lite --prefix=$1`
+    git push $2 "$SHA1:refs/heads/$CURRENT_BRANCH" -f
 }
 
-push 'Bundle/AdminBundle' 'umbrella-adminbundle'
-push 'Bundle/CoreBundle' 'umbrella-corebundle'
-push 'Skeleton' 'umbrella-skeleton'
+function remote()
+{
+    git remote add $1 $2 || true
+}
+
+git pull origin "$CURRENT_BRANCH"
+
+remote adminbundle 'git@github.com:acantepie/umbrella-adminbundle'
+remote corebundle 'git@github.com:acantepie/umbrella-corebundle'
+remote skeleton 'git@github.com:acantepie/umbrella-skeleton'
+
+split 'Bundle/AdminBundle' adminbundle
+split 'Bundle/CoreBundle' corebundle
+split 'Skeleton' skeleton
