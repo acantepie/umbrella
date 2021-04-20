@@ -2,33 +2,39 @@
 
 namespace Umbrella\AdminBundle\Notification\Renderer;
 
+use Knp\Bundle\TimeBundle\DateTimeFormatter;
 use Umbrella\AdminBundle\Entity\BaseNotification;
-use Umbrella\CoreBundle\Component\Time\TimeHelper;
 
 /**
  * Class NotificationRenderer
  */
 class NotificationRenderer implements NotificationRendererInterface
 {
-    private TimeHelper $timeHelper;
+    private ?DateTimeFormatter $timeFormatter;
 
     /**
      * NotificationRenderer constructor.
      */
-    public function __construct(TimeHelper $timeHelper)
+    public function __construct(?DateTimeFormatter $timeFormatter)
     {
-        $this->timeHelper = $timeHelper;
+        $this->timeFormatter = $timeFormatter;
     }
 
     public function render(BaseNotification $notification): NotificationView
     {
+        if (null === $this->timeFormatter) {
+            $date = $notification->createdAt->format('d/m/Y H:i');
+        } else {
+            $date = $this->timeFormatter->formatDiff($notification->createdAt, new \DateTime());
+        }
+
         $data = [
             'bg-icon' => $notification->bgIcon,
             'icon' => $notification->icon,
             'title' => $notification->title,
             'text' => $notification->text,
             'url' => $notification->url,
-            'date' => $this->timeHelper->diff($notification->createdAt)
+            'date' => $date
         ];
 
         return new NotificationView($data, '#notification-umbrella-tpl');

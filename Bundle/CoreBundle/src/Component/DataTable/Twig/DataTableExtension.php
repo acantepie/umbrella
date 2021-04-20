@@ -1,15 +1,15 @@
 <?php
 
-namespace Umbrella\CoreBundle\Component\DataTable\Extension;
+namespace Umbrella\CoreBundle\Component\DataTable\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use Umbrella\CoreBundle\Component\DataTable\DataTableRenderer;
 
 /**
- * Class DataTableTwigExtension.
+ * Class DataTableExtension.
  */
-class DataTableTwigExtension extends AbstractExtension
+class DataTableExtension extends AbstractExtension
 {
     protected DataTableRenderer $renderer;
 

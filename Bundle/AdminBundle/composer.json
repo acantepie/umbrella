@@ -40,6 +40,9 @@
         "symfony/yaml": "^5.2",
         "umbrella2/corebundle": "*"
     },
+    "suggest": {
+        "knplabs/knp-time-bundle": "Display pretty time on notification",
+    },
     "config": {
         "sort-packages": true
     },

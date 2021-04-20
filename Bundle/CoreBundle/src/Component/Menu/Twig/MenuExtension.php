@@ -1,20 +1,20 @@
 <?php
 
-namespace Umbrella\CoreBundle\Component\Menu\Extension;
+namespace Umbrella\CoreBundle\Component\Menu\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use Umbrella\CoreBundle\Component\Menu\MenuHelper;
 
 /**
- * Class MenuTwigExtension.
+ * Class MenuExtension.
  */
-class MenuTwigExtension extends AbstractExtension
+class MenuExtension extends AbstractExtension
 {
     private MenuHelper $helper;
 
     /**
-     * MenuTwigExtension constructor.
+     * MenuExtension constructor.
      */
     public function __construct(MenuHelper $helper)
     {

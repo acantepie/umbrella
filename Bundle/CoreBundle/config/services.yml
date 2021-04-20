@@ -15,7 +15,7 @@ services:
         $authChecker: "@security.authorization_checker"
         $roleHierarchy: "@security.role_hierarchy"
     Umbrella\CoreBundle\Component\Menu\MenuHelper:
-    Umbrella\CoreBundle\Component\Menu\Extension\MenuTwigExtension:
+    Umbrella\CoreBundle\Component\Menu\Twig\MenuExtension:
 
     # JsResponse
     Umbrella\CoreBundle\Component\JsResponse\JsResponseBuilder:
@@ -35,7 +35,7 @@ services:
     Umbrella\CoreBundle\Component\DataTable\DataTableFactory:
     Umbrella\CoreBundle\Component\DataTable\DataTableRegistry:
     Umbrella\CoreBundle\Component\DataTable\DataTableRenderer:
-    Umbrella\CoreBundle\Component\DataTable\Extension\DataTableTwigExtension:
+    Umbrella\CoreBundle\Component\DataTable\Twig\DataTableExtension:
 
     Umbrella\CoreBundle\Component\DataTable\Adapter\CallableAdapter:
     Umbrella\CoreBundle\Component\DataTable\Adapter\EntityAdapter:
@@ -47,11 +47,6 @@ services:
     # Toast
     Umbrella\CoreBundle\Component\Toast\ToastRenderer:
     Umbrella\CoreBundle\Component\Toast\ToastExtension:
-
-    # Time
-    Umbrella\CoreBundle\Component\Time\TimeHelper:
-    Umbrella\CoreBundle\Component\Time\DateTimeFormatter:
-    Umbrella\CoreBundle\Component\Time\TimeExtension:
 
     # Ckeditor
     Umbrella\CoreBundle\Component\Ckeditor\CkeditorConfiguration:
