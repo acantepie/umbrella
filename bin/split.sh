@@ -3,6 +3,7 @@
 set -e
 set -x
 
+BASE_REMOTE_URL="git@github.com:acantepie"
 CURRENT_BRANCH="master"
 
 function split()
@@ -13,14 +14,15 @@ function split()
 
 function remote()
 {
-    git remote add $1 $2 || true
+    REMOTE_URL="$BASE_REMOTE_URL/$2.git"
+    git remote add $1 $REMOTE_URL || true
 }
 
 git pull origin "$CURRENT_BRANCH"
 
-remote adminbundle 'git@github.com:acantepie/umbrella-adminbundle'
-remote corebundle 'git@github.com:acantepie/umbrella-corebundle'
-remote skeleton 'git@github.com:acantepie/umbrella-skeleton'
+remote adminbundle umbrella-adminbundle
+remote corebundle umbrella-corebundle
+remote skeleton umbrella-skeleton
 
 split 'Bundle/AdminBundle' adminbundle
 split 'Bundle/CoreBundle' corebundle
