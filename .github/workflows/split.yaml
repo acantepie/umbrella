@@ -2,6 +2,9 @@ name: split
 
 on: [ push ]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
