@@ -2,7 +2,6 @@
 
 namespace Umbrella\AdminBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -19,13 +18,12 @@ use Umbrella\CoreBundle\Model\TimestampTrait;
  * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks
  */
-class BaseUser implements EquatableInterface, \Serializable, AdminUserInterface
+abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserInterface
 {
     use ActiveTrait;
     use IdTrait;
     use SearchTrait;
     use TimestampTrait;
-    const ROLE_DEFAULT = 'ROLE_USER';
 
     /**
      * @var string|null
@@ -97,31 +95,11 @@ class BaseUser implements EquatableInterface, \Serializable, AdminUserInterface
     public $roles = [];
 
     /**
-     * @var ArrayCollection|BaseUserGroup[]
-     */
-    public $groups;
-
-    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->salt = md5(uniqid('', true));
-        $this->groups = new ArrayCollection();
-    }
-
-    public function addGroup(BaseUserGroup $group)
-    {
-        if (!$this->groups->contains($group)) {
-            $this->groups->add($group);
-        }
-    }
-
-    public function removeGroup(BaseUserGroup $group)
-    {
-        if ($this->groups->contains($group)) {
-            $this->groups->removeElement($group);
-        }
     }
 
     // Equatable implementation
@@ -186,23 +164,6 @@ class BaseUser implements EquatableInterface, \Serializable, AdminUserInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getRoles()
-    {
-        $roles = $this->roles;
-
-        foreach ($this->groups as $group) {
-            $roles = array_merge($roles, $group->getRoles());
-        }
-
-        // we need to make sure to have at least one role
-        $roles[] = static::ROLE_DEFAULT;
-
-        return array_values(array_unique($roles));
     }
 
     /**

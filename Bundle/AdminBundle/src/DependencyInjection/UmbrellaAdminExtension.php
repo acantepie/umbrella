@@ -15,7 +15,6 @@ use Umbrella\AdminBundle\Notification\NotificationManager;
 use Umbrella\AdminBundle\Notification\Provider\NotificationProviderInterface;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRenderer;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRendererInterface;
-use Umbrella\AdminBundle\Services\UserGroupManager;
 use Umbrella\CoreBundle\Utils\ArrayUtils;
 
 /**
@@ -36,7 +35,7 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.yml');
 
-        $parameters = ArrayUtils::remap_nested_array($config, 'umbrella_admin', ['umbrella_admin.user_group.form_roles']);
+        $parameters = ArrayUtils::remap_nested_array($config, 'umbrella_admin');
 
         foreach ($parameters as $pKey => $pValue) {
             if (!$container->hasParameter($pKey)) {
@@ -47,11 +46,6 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
         // Notification are enabled
         if ($config['notification']['enabled']) {
             $this->enableNotification($container, $config['notification']);
-        }
-
-        // UserGroup are enabled
-        if ($config['user_group']['enabled']) {
-            $this->enableUserGroup($container, $config['user_group']);
         }
 
         $container->registerForAutoconfiguration(MakerInterface::class)
@@ -104,25 +98,5 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
             ->setAutowired(true)
             ->addMethodCall('registerProvider', [new Reference(NotificationProviderInterface::class)])
             ->addMethodCall('registerRenderer', [new Reference(NotificationRendererInterface::class)]);
-    }
-
-    private function enableUserGroup(ContainerBuilder $container, array $config)
-    {
-        $container
-            ->register($config['table'])
-            ->setPublic(false)
-            ->setAutoconfigured(true)
-            ->setAutowired(true);
-
-        $container
-            ->register($config['form'])
-            ->setPublic(false)
-            ->setAutoconfigured(true)
-            ->setAutowired(true);
-
-        $container
-            ->register(UserGroupManager::class)
-            ->setPublic(false)
-            ->setAutowired(true);
     }
 }

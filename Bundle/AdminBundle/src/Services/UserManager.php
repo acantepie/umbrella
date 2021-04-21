@@ -106,14 +106,6 @@ class UserManager
         $qb = $this->em->createQueryBuilder();
         $qb->select('e');
         $qb->from($this->class, 'e');
-
-        $metadata = $this->em->getClassMetadata($this->class);
-
-        if ($metadata->hasAssociation('groups')) {
-            $qb->leftJoin('e.groups', 'groups');
-            $qb->addSelect('groups');
-        }
-
         return $qb;
     }
 }

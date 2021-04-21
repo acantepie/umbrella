@@ -16,8 +16,6 @@ action:
     save: Sauvegarder
     show: Prévisualiser
     signout: Se déconnecter
-    add_group: Ajouter un groupe
-    edit_group: Modifier un groupe
     add_user: Ajouter un utilisateur
     edit_user: Modifier un utilisateur
     cancel: Annuler
@@ -44,8 +42,6 @@ label:
     your_email: Votre email
     password: Mot de passe
     password_confirm: Confirmation
-    groups: Groupes
-    roles: Roles
     active: Actif
     updatedAt: Modifié le
     createdAt: Crée le

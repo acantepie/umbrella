@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\Form\CustomCheckboxType;
-use Umbrella\CoreBundle\Form\Entity2Type;
 
 /**
  * Class UserType.
@@ -49,14 +48,6 @@ class UserType extends AbstractType
         }
 
         $builder->add('plainPassword', PasswordType::class, $params);
-
-        if ($this->parameters->get('umbrella_admin.user_group.enabled')) {
-            $builder->add('groups', Entity2Type::class, [
-                'class' => $this->parameters->get('umbrella_admin.user_group.class'),
-                'required' => false,
-                'multiple' => true,
-            ]);
-        }
     }
 
     /**

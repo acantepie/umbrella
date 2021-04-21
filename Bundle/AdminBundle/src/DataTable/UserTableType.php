@@ -8,7 +8,6 @@ use Umbrella\AdminBundle\DataTable\Column\UserNameColumnType;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
 use Umbrella\CoreBundle\Component\DataTable\Column\BooleanColumnType;
 use Umbrella\CoreBundle\Component\DataTable\Column\DateColumnType;
-use Umbrella\CoreBundle\Component\DataTable\Column\ManyColumnType;
 use Umbrella\CoreBundle\Component\DataTable\Column\WidgetColumnType;
 use Umbrella\CoreBundle\Component\DataTable\DataTableBuilder;
 use Umbrella\CoreBundle\Component\DataTable\DataTableType;
@@ -53,9 +52,6 @@ class UserTableType extends DataTableType
     {
         $builder->add('name', UserNameColumnType::class);
         $builder->add('createdAt', DateColumnType::class);
-        $builder->add('groups', ManyColumnType::class, [
-            'one_path' => 'title',
-        ]);
         $builder->add('active', BooleanColumnType::class);
 
         $builder->add('links', WidgetColumnType::class, [

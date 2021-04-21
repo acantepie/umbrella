@@ -16,8 +16,6 @@ action:
     save: Save
     show: Preview
     signout: Logout
-    add_group: Add a group
-    edit_group: Edit a group
     add_user: Add an user
     edit_user: Edit an user
     cancel: Cancel
@@ -44,8 +42,6 @@ label:
     your_email: Your email
     password: Password
     password_confirm: Confirm
-    groups: Groups
-    roles: Roles
     active: Active
     updatedAt: Updated at
     createdAt: Created at

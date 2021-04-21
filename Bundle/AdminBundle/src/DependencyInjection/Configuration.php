@@ -6,10 +6,8 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Umbrella\AdminBundle\Controller\ProfileController;
-use Umbrella\AdminBundle\DataTable\UserGroupTableType;
 use Umbrella\AdminBundle\DataTable\UserTableType;
 use Umbrella\AdminBundle\Form\ProfileType;
-use Umbrella\AdminBundle\Form\UserGroupType;
 use Umbrella\AdminBundle\Form\UserType;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRenderer;
 
@@ -81,14 +79,6 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('class')->defaultValue('App\\Entity\\User')->end()
                     ->scalarNode('table')->defaultValue(UserTableType::class)->end()
                     ->scalarNode('form')->defaultValue(UserType::class)->end()
-                ->end()
-            ->end()
-            ->arrayNode('user_group')->addDefaultsIfNotSet()->canBeDisabled()
-                ->children()
-                    ->scalarNode('class')->defaultValue('App\\Entity\\UserGroup')->end()
-                    ->scalarNode('table')->defaultValue(UserGroupTableType::class)->end()
-                    ->scalarNode('form')->defaultValue(UserGroupType::class)->end()
-                    ->arrayNode('form_roles')->scalarPrototype()->end()->defaultValue(['ROLE_ADMIN'])->end()
                 ->end()
             ->end()
             ->arrayNode('user_profile')->addDefaultsIfNotSet()->canBeDisabled()

@@ -9,7 +9,3 @@ umbrella_admin_security_:
 umbrella_admin_user_:
     resource: "../src/Controller/UserController.php"
     type: annotation
-
-umbrella_admin_usergroup_:
-    resource: "../src/Controller/UserGroupController.php"
-    type: annotation

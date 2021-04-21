@@ -19,9 +19,10 @@ use Umbrella\CoreBundle\Component\Search\Annotation\Searchable;
 class User extends BaseUser
 {
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="UserGroup", inversedBy="users")
-     * @ORM\JoinTable(name="umbrella_user_group_assoc")
+     * @inheritDoc
      */
-    public $groups;
+    public function getRoles()
+    {
+        return ['ROLE_ADMIN'];
+    }
 }
