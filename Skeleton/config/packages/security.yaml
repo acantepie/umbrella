@@ -8,7 +8,6 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN: [ ROLE_USER ]
-        ROLE_GODLIKE_ADMIN: [ ROLE_ADMIN ]
 
     providers:
         admin_provider:
@@ -17,7 +16,7 @@ security:
         admin_memory_provider:
             memory:
                 users:
-                    umbrella:  { password: umbrella, roles: [ 'ROLE_GODLIKE_ADMIN']}
+                    umbrella:  { password: umbrella, roles: [ 'ROLE_ADMIN']}
         admin_entity_provider:
             id: Umbrella\AdminBundle\Security\UserProvider
 

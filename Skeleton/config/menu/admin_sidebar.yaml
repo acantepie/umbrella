@@ -3,7 +3,3 @@ admin:
     users:
       icon: uil-user
       route: umbrella_admin_user_index
-
-    groups:
-      icon: uil-users-alt
-      route: umbrella_admin_usergroup_index

@@ -59,10 +59,10 @@ class Configuration implements ConfigurationInterface
     private function addAssetsSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode->children()
-            ->arrayNode('assets')->addDefaultsIfNotSet()
+            ->arrayNode('assets')->isRequired()
             ->children()
-                ->scalarNode('stylesheet_entry')->defaultValue('umbrella_admin')->end()
-                ->scalarNode('script_entry')->defaultValue('umbrella_admin')->end();
+                ->scalarNode('stylesheet_entry')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('script_entry')->isRequired()->cannotBeEmpty()->end();
     }
 
     private function addUserSection(ArrayNodeDefinition $rootNode)

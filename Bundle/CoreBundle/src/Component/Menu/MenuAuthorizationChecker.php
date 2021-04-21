@@ -44,11 +44,6 @@ class MenuAuthorizationChecker
             return $this->cache[$item];
         }
 
-        // no user authenticated
-        if (null === $this->tokenStorage->getToken()) {
-            throw new \LogicException('To use the MenuAuthorizationChecker service, your route needs to be behind a firewall.');
-        }
-
         // no securityExpression => look at children
         if (empty($item->getSecurity())) {
             // no children => granted

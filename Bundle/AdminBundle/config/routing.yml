@@ -1,5 +1,15 @@
-umbrella_user:
-  resource: "_user_routing.yml"
+umbrella_admin_profile_:
+  resource: "../src/Controller/ProfileController.php"
+  type: annotation
+
+umbrella_admin_security_:
+  resource: "../src/Controller/SecurityController.php"
+  type: annotation
+
+umbrella_admin_user_:
+  resource: "../src/Controller/UserController.php"
+  type: annotation
 
 umbrella_notification:
-  resource: "_notification_routing.yml"
+  resource: "../src/Controller/NotificationController.php"
+  type: annotation
