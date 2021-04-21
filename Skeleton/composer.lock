@@ -7517,12 +7517,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/acantepie/umbrella-adminbundle.git",
-                "reference": "0b6794d82a70e09aa28e5387fb2757e52c5bc127"
+                "reference": "6fc8be1ebc59fa93a41f2de62b572535c8e130a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acantepie/umbrella-adminbundle/zipball/0b6794d82a70e09aa28e5387fb2757e52c5bc127",
-                "reference": "0b6794d82a70e09aa28e5387fb2757e52c5bc127",
+                "url": "https://api.github.com/repos/acantepie/umbrella-adminbundle/zipball/6fc8be1ebc59fa93a41f2de62b572535c8e130a8",
+                "reference": "6fc8be1ebc59fa93a41f2de62b572535c8e130a8",
                 "shasum": ""
             },
             "require": {
@@ -7550,6 +7550,9 @@
                 "symfony/yaml": "^5.2",
                 "umbrella2/corebundle": "*"
             },
+            "suggest": {
+                "knplabs/knp-time-bundle": "Display pretty time on notification"
+            },
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
@@ -7576,7 +7579,7 @@
             "support": {
                 "source": "https://github.com/acantepie/umbrella-adminbundle/tree/v1.0"
             },
-            "time": "2021-04-19T19:07:44+00:00"
+            "time": "2021-04-20T20:13:30+00:00"
         },
         {
             "name": "umbrella2/corebundle",
@@ -7584,12 +7587,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/acantepie/umbrella-corebundle.git",
-                "reference": "b3bc595be68918892bcf739689afc06b962879ec"
+                "reference": "a7c2464f709cebaee1c92dd8153eb599ba1439ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acantepie/umbrella-corebundle/zipball/b3bc595be68918892bcf739689afc06b962879ec",
-                "reference": "b3bc595be68918892bcf739689afc06b962879ec",
+                "url": "https://api.github.com/repos/acantepie/umbrella-corebundle/zipball/a7c2464f709cebaee1c92dd8153eb599ba1439ae",
+                "reference": "a7c2464f709cebaee1c92dd8153eb599ba1439ae",
                 "shasum": ""
             },
             "require": {
@@ -7646,7 +7649,7 @@
             "support": {
                 "source": "https://github.com/acantepie/umbrella-corebundle/tree/v1.0"
             },
-            "time": "2021-04-19T21:27:47+00:00"
+            "time": "2021-04-20T18:47:38+00:00"
         },
         {
             "name": "webmozart/assert",
