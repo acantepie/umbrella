@@ -21,7 +21,7 @@
             <form action="{{ path(constant('Umbrella\\AdminBundle\\Controller\\SecurityController::LOGIN_ROUTE')) }}" method="post">
 
                 <div class="form-group">
-                    <label for="username">{{ 'form.label.username' | trans }}</label>
+                    <label for="username">{{ 'label.username' | trans }}</label>
                     <input class="form-control" type="text" id="username" required="required" name="_username" value="{{ last_username }}">
                 </div>
 
@@ -29,7 +29,7 @@
                     <a href="{{ path('umbrella_admin_security_passwordrequest') }}" class="text-muted float-right">
                         <small>{{ 'action.forget_password' | trans }}</small>
                     </a>
-                    <label for="password">{{ 'form.label.password' | trans }}</label>
+                    <label for="password">{{ 'label.password' | trans }}</label>
                     <input class="form-control" type="password" required="required" id="password" name="_password">
                 </div>
 
