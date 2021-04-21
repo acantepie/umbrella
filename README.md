@@ -52,6 +52,42 @@ php -S localhost:8000 -t public/
 
 Go on url http://localhost:8000/admin and hint **umbrella** / **umbrella** to login on backoffice.
 
+## Use Umbrella on existing project
+You can copy files from [skeleton repository](https://github.com/acantepie/umbrella-skeleton) on your current project:
+```bash
+.
+├── assets
+│   └── admin
+│       ├── admin.js
+│       └── admin.scss
+├── composer.json
+├── config
+│   ├── menu
+│   │   └── admin_sidebar.yaml
+│   ├── packages
+│   │   ├── security.yaml
+│   │   ├── umbrella_admin.yaml
+│   │   └── umbrella_core.yaml
+│   ├── routes
+│   │   └── umbrella_admin.yaml
+│   └── routes.yaml
+├── package.json
+├── src
+│   ├── Controller
+│   │   └── Admin
+│   │       └── DefaultController.php
+│   └── Entity
+│       └── User.php
+├── templates
+│   └── admin
+│       └── default
+│           └── index.html.twig
+├── translations
+│   └── messages.en.yaml
+└── webpack.config.js
+```
+Instead of copy `composer.json` just install this package : `composer require umbrella2/adminbundle` on your project
+
 ## Use Ckeditor component
 Install js library
 ```bash
