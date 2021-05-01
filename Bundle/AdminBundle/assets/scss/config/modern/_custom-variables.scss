@@ -1,0 +1,115 @@
+//
+// custom-variables.scss
+//
+
+// Shadow
+$shadow:                            0px 0px 35px 0px rgba(154, 161, 171, 0.15);
+$shadow-lg:                         0 0 45px 0 rgba(0, 0, 0, 0.12);
+
+// Background left-sidebar
+$bg-leftbar:                        linear-gradient(135deg, #6379c3 0%, #546ee5 60%);
+$bg-leftbar-light:                #ffffff;
+$bg-leftbar-dark:                 #313a46;
+$bg-topnav:                         linear-gradient(to bottom,#6379c3,#546ee5);
+
+// Deatched left sidenav
+$bg-detached-leftbar:             #ffffff;
+
+// Topbar Height
+$topbar-height:                     70px;
+
+// Logo Display
+$logo-light-display:                block;
+$logo-dark-display:                 none;
+// Logo auth display
+$logo-auth-light-display:                none;
+$logo-auth-dark-display:                 block;
+
+// Leftbar width
+$leftbar-width:                     260px;
+
+// Boxed Layout
+$boxed-layout-width:                1300px;
+$boxed-layout-bg:                 #ffffff;
+
+// Menu item colors (Default-dark)
+$menu-item:                       #cedce4;
+$menu-item-hover:                 #ffffff;
+$menu-item-active:                #ffffff;
+
+// Menu item colors (light)
+$menu-item-light:                 #6c757d;
+$menu-item-light-hover:           #3d73dd;
+$menu-item-light-active:          #3d73dd;
+
+// Detached Menu item colors
+$menu-item-dark:                  #6c757d;
+$menu-item-dark-hover:            #3d73dd;
+$menu-item-dark-active:           #3d73dd;
+
+// Dark sidenav Menu item color
+$sidebar-dark-menu-item:          #8391a2;
+$sidebar-dark-menu-item-hover:    #bccee4;
+$sidebar-dark-menu-item-active:   #ffffff;
+
+// Rightbar Width
+$rightbar-width:                    280px;
+$rightbar-bg:                     #ffffff;
+$rightbar-title-bg:               #313a46;
+$rightbar-title-color:            #ffffff;
+$rightbar-title-btn-bg:           #444e5a;
+$rightbar-title-btn-color:        #ffffff;
+$rightbar-overlay-bg:             #37404a;
+
+// Topbar Background
+$bg-topbar:                       #ffffff;
+$bg-topbar-dark:                  #313a46;
+
+// Topbar Search
+$bg-topbar-search:                #f1f3fa;
+$bg-topbar-dark-search:           #3c4655;
+
+// Helpbox
+$help-box-light-bg:               rgba(255,255,255,0.07);
+$help-box-dark-bg:                #3d73dd;
+
+// Font weight
+$font-weight-semibold:              600;
+
+// Dropdown Large
+$dropdown-lg-width:                 320px;
+
+// Page title color
+$page-title-color:                  inherit;
+
+// Nav-pill background
+$nav-pills-bg:                    #eef2f7;
+
+// Custom-accordion
+$custom-accordion-title-color:    #313a46;
+
+// Dragula demo background
+$dragula-bg:                      #f7f9fb;
+
+// Form wizard header background
+$form-wizard-header-bg:           #eef2f7;
+
+// Text title color
+$text-title-color:                #6c757d;
+
+// card Loader background
+$card-loader-bg:                  #313a46;
+
+// Chat widget
+$chat-primary-user-bg:            #fef5e4;
+$chat-secondary-user-bg:          #f1f3fa;
+
+// User authentication Background
+$auth-bg:                         #ffffff;
+$auth-bg-pattern-img:               url("../images/bg-pattern-light.svg");
+
+// Apex chart
+$apex-grid-color:                 #f9f9fd;
+
+// Hero
+$hero-bg: linear-gradient(to bottom,#6379c3,#546ee5);

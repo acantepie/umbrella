@@ -1,0 +1,611 @@
+// Variables
+
+//
+// Color system
+//
+
+// stylelint-disable
+$gray-100: #404954;
+$gray-200: #37404a;
+$gray-300: #464f5b;
+$gray-400: #8391a2;
+$gray-500: #aab8c5;
+$gray-600: #ced4da;
+$gray-700: #dee2e6;
+$gray-800: #e3eaef;
+$gray-900: #f1f1f1;
+
+$grays: ();
+$grays: map-merge((
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+), $grays);
+
+$blue:       #3688fc;
+$indigo:     #727cf5;
+$purple:     #6b5eae;
+$pink:       #ff679b;
+$red:        #fa6767;
+$orange:     #ff9041;
+$yellow:     #f9bc0d;
+$green:      #42d29d;
+$teal:       #02a8b5;
+$cyan:       #44badc;
+
+
+$colors: ();
+$colors: map-merge((
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+), $colors);
+
+$primary:       $blue;
+$secondary:     $gray-300;
+$success:       $green;
+$info:          $cyan;
+$warning:       $yellow;
+$danger:        $red;
+$light:         $gray-300;
+$dark:          $gray-900;
+
+$theme-colors: ();
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+), $theme-colors);
+
+
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold:  200;
+
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+
+$yiq-text-dark: $gray-200;
+
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-caret:              true;
+
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 1.5rem;
+$spacers: ();
+$spacers: map-merge((
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 1.5),
+  5: ($spacer * 3)
+), $spacers);
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: ();
+$sizes: map-merge((
+  15: 15%,
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%
+), $sizes);
+
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg:                   #343a40;
+$body-color:                $gray-500;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                $primary;
+$link-hover-color:          darken($link-color, 15%);
+$link-hover-decoration:     none;
+
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1367px
+);
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:                12;
+$grid-gutter-width:           24px;
+
+
+// Components
+//
+$component-active-bg:         $primary;
+
+$caret-width:                 .25em;
+
+$border-color:                $gray-300;
+
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+
+// stylelint-disable value-keyword-case
+$font-family-sans-serif:      'Nunito', sans-serif;
+$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base:            $font-family-sans-serif;
+
+// stylelint-enable value-keyword-case
+$font-size-base:              0.875rem;
+$font-weight-bold:            700;
+
+$headings-margin-bottom:      $spacer;
+$headings-font-weight:        400;
+$headings-line-height:        1.1;
+
+$h1-font-size:                2.25rem;
+$h2-font-size:                1.875rem;
+$h3-font-size:                1.5rem;
+$h4-font-size:                1.125rem;
+$h5-font-size:                0.9375rem;
+$h6-font-size:                0.75rem;
+
+$display-line-height:         $headings-line-height;
+
+$lead-font-size:              ($font-size-base * 1.25);
+
+$small-font-size:             0.75rem;
+
+$text-muted:                  $gray-400;
+
+$blockquote-font-size:        ($font-size-base * 1.25);
+
+$hr-border-color:             lighten($gray-300,5%);
+
+$list-inline-padding:         6px;
+
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-cell-padding:          .95rem;
+$table-cell-padding-sm:       .5rem;
+
+$table-color:                 $body-color;
+$table-hover-color:           $table-color;
+
+$table-accent-bg:             lighten($gray-200,3%);
+$table-hover-bg:              lighten($gray-200,3%);
+
+$table-border-color:          $gray-300;
+
+$table-head-bg:               $gray-300;
+$table-head-color:            $gray-700;
+
+$table-dark-bg:               $gray-300;
+$table-dark-border-color:     lighten($gray-300, 7.5%);
+$table-dark-color:            $gray-600;
+
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+$input-btn-padding-y:         .45rem;
+$input-btn-padding-x:         .90rem;
+$input-btn-font-size:         $font-size-base;
+$input-btn-focus-width:       .15rem;
+$input-btn-focus-color:       rgba($primary, .25);
+$input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color;
+
+$input-btn-padding-y-sm:      .28rem;
+$input-btn-padding-x-sm:      .8rem;
+
+$input-btn-padding-y-lg:      .5rem;
+$input-btn-padding-x-lg:      1rem;
+
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+
+$btn-padding-y:               $input-btn-padding-y;
+$btn-padding-x:               $input-btn-padding-x;
+$btn-font-size:               $input-btn-font-size;
+$btn-line-height:             $input-btn-line-height;
+
+$btn-padding-y-sm:            $input-btn-padding-y-sm;
+$btn-padding-x-sm:            $input-btn-padding-x-sm;
+$btn-line-height-sm:          $input-btn-line-height-sm;
+
+$btn-padding-y-lg:            $input-btn-padding-y-lg;
+$btn-padding-x-lg:            $input-btn-padding-x-lg;
+$btn-line-height-lg:          $input-btn-line-height-lg;
+
+$btn-font-weight:             $font-weight-normal;
+$btn-focus-box-shadow:        $input-btn-focus-box-shadow;
+
+$btn-link-disabled-color:     $gray-500;
+
+$btn-box-shadow:              0 0 0;  // button box shadow
+
+$btn-focus-width:             0.15rem;
+
+
+// Allows for customizing button radius independently from global border radius
+
+$btn-border-radius:           .15rem;
+$btn-border-radius-lg:        .15rem;
+$btn-border-radius-sm:        .15rem;
+
+
+// Forms
+
+$input-padding-y:                       $input-btn-padding-y;
+$input-padding-x:                       $input-btn-padding-x;
+$input-font-size:                       $input-btn-font-size;
+$input-line-height:                     $input-btn-line-height;
+
+$input-padding-y-sm:                    $input-btn-padding-y-sm;
+$input-padding-x-sm:                    $input-btn-padding-x-sm;
+$input-line-height-sm:                  $input-btn-line-height-sm;
+
+$input-padding-y-lg:                    $input-btn-padding-y-lg;
+$input-padding-x-lg:                    $input-btn-padding-x-lg;
+$input-line-height-lg:                  $input-btn-line-height-lg;
+
+$input-bg:                              $gray-100;
+
+$input-color:                           $gray-800;
+$input-border-width:                    1px;
+$input-border-color:                    lighten($gray-100,3%);
+$input-border-radius:                   0.25rem;
+
+$input-focus-bg:                        lighten($input-bg,2.5%);
+$input-focus-color:                     $gray-800;
+$input-focus-box-shadow:                none;
+$input-focus-border-color:              lighten($input-border-color,5%);
+
+
+$input-disabled-bg:                     $input-focus-bg;
+
+$input-placeholder-color:               $gray-400;
+$input-plaintext-color:                 $body-color;
+
+$input-height-border:                   $input-border-width * 2;
+
+$input-height-inner:                    ($font-size-base * $input-btn-line-height) + ($input-btn-padding-y * 2);
+$input-height:                          calc(#{$input-height-inner} + #{$input-height-border});
+
+$input-height-inner-sm:                 ($font-size-sm * $input-btn-line-height-sm) + ($input-btn-padding-y-sm * 2);
+$input-height-sm:                       calc(#{$input-height-inner-sm} + #{$input-height-border});
+
+$input-height-inner-lg:                 ($font-size-lg * $input-btn-line-height-lg) + ($input-btn-padding-y-lg * 2);
+$input-height-lg:                       calc(#{$input-height-inner-lg} + #{$input-height-border});
+
+$input-group-addon-border-color:        $input-border-color;
+
+$input-group-addon-color:               $input-color;
+$input-group-addon-bg:                  $input-border-color;
+$input-group-addon-border-color:        $input-border-color;
+
+$custom-select-padding-y:           .45rem;
+$custom-select-padding-x:           .90rem;
+$custom-select-height:              $input-height;
+$custom-select-font-size:           $input-font-size;
+
+$custom-control-indicator-disabled-bg:      $gray-200;
+$custom-control-indicator-bg:           $gray-300;
+$custom-control-indicator-border-color:         lighten($input-border-color,5%);
+$custom-control-indicator-checked-color:        $primary;
+$custom-control-indicator-checked-border-color: $primary;
+$custom-control-indicator-checked-bg:           $primary;
+$custom-control-indicator-checked-disabled-bg:  rgba($primary, .5);
+
+$custom-checkbox-indicator-indeterminate-border-color:   $primary;
+$custom-checkbox-indicator-indeterminate-bg:             $primary;
+
+$custom-select-border-width:        $input-border-width;
+$custom-select-color:               $input-color;
+$custom-select-bg:                  $input-bg;
+$custom-select-border-color:        $input-border-color;
+$custom-select-border-radius:       $border-radius;
+$custom-select-focus-border-color:  $input-focus-border-color;
+$custom-select-focus-box-shadow:    none;
+$custom-control-indicator-focus-box-shadow:     0 0 0 1px $body-bg, $input-btn-focus-box-shadow;
+$custom-select-indicator-color:     $gray-800;
+$custom-select-indicator:           str-replace(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='#{$custom-select-indicator-color}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e"), "#", "%23");
+$custom-select-background:          $custom-select-indicator no-repeat right $custom-select-padding-x center / $custom-select-bg-size; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
+
+$custom-range-track-width:          100%;
+$custom-range-track-height:         .5rem;
+$custom-range-track-cursor:         pointer;
+$custom-range-track-bg:             $gray-300;
+$custom-range-track-border-radius:  1rem;
+$custom-range-track-box-shadow:     inset 0 .25rem .25rem rgba($black, .1);
+
+$custom-range-thumb-width:                   1rem;
+$custom-range-thumb-height:                  $custom-range-thumb-width;
+$custom-range-thumb-bg:                      $component-active-bg;
+$custom-range-thumb-border:                  0;
+$custom-range-thumb-border-radius:           1rem;
+$custom-range-thumb-box-shadow:              0 .1rem .25rem rgba($black, .1);
+$custom-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-btn-focus-box-shadow;
+$custom-range-thumb-focus-box-shadow-width:  $input-btn-focus-width; // For focus box shadow issue in IE/Edge
+$custom-range-thumb-active-bg:               lighten($component-active-bg, 35%);
+
+
+$custom-file-height:                $input-height;
+$custom-file-height-inner:          $input-height-inner;
+$custom-file-focus-border-color:    $input-focus-border-color;
+$custom-file-focus-box-shadow:      none;
+
+
+$custom-file-padding-y:             $input-btn-padding-y;
+$custom-file-padding-x:             $input-btn-padding-x;
+$custom-file-line-height:           $input-btn-line-height;
+$custom-file-color:                 $input-color;
+$custom-file-bg:                    $input-bg;
+$custom-file-border-width:          $input-border-width;
+$custom-file-border-color:          $input-border-color;
+$custom-file-border-radius:         $input-border-radius;
+$custom-file-box-shadow:            none;
+$custom-file-button-color:          $custom-file-color;
+$custom-file-button-bg:             $input-group-addon-bg;
+$custom-file-text: (
+  en: "Browse"
+) !default;
+
+// Form validation
+
+$form-feedback-margin-top:          $form-text-margin-top;
+$form-feedback-font-size:           $small-font-size;
+$form-feedback-valid-color:         theme-color("success");
+$form-feedback-invalid-color:       theme-color("danger");
+
+$form-feedback-icon-valid-color:    $form-feedback-valid-color;
+$form-feedback-icon-valid:          str-replace(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='#{$form-feedback-icon-valid-color}' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e"), "#", "%23");
+$form-feedback-icon-invalid-color:  $form-feedback-invalid-color;
+$form-feedback-icon-invalid:        str-replace(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='#{$form-feedback-icon-invalid-color}' viewBox='-2 -2 7 7'%3e%3cpath stroke='#{$form-feedback-icon-invalid-color}' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E"), "#", "%23");
+
+$form-validation-states: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$form-validation-states: map-merge(
+  (
+    "valid": (
+      "color": $form-feedback-valid-color,
+      "icon": $form-feedback-icon-valid
+    ),
+    "invalid": (
+      "color": $form-feedback-invalid-color,
+      "icon": $form-feedback-icon-invalid
+    ),
+  ),
+  $form-validation-states
+);
+
+
+// Dropdowns
+//
+// Dropdown menu container and contents.
+
+
+$dropdown-bg:                       $gray-300;
+$dropdown-padding-y:                .25rem;
+$dropdown-border-color:             lighten($gray-300, 3%);
+$dropdown-font-size:                $font-size-base;
+
+$dropdown-link-color:               $body-color;
+$dropdown-color:                    $body-color;
+$dropdown-link-hover-color:         $headings-color;
+$dropdown-link-hover-bg:            lighten($gray-300, 3%);
+
+$dropdown-link-active-color:        $white;
+$dropdown-link-active-bg:           lighten($gray-300, 3%);
+
+$dropdown-item-padding-y:           .375rem;
+
+$dropdown-header-color:             inherit;
+
+$dropdown-divider-bg:               lighten($gray-300, 3%);
+
+
+// Navs
+$nav-pills-link-active-color:       $component-active-color;
+$nav-pills-link-active-bg:          $component-active-bg;
+
+$nav-tabs-border-color:             lighten($gray-300, 3%);
+$nav-tabs-link-hover-border-color:  lighten($gray-300, 3%);
+
+$nav-tabs-link-active-color:        $gray-700;
+$nav-tabs-link-active-bg:           $gray-300;
+$nav-tabs-link-active-border-color: lighten($gray-300, 3%);
+
+$nav-divider-color:                 $gray-300;
+
+//Navbar
+$navbar-light-color:                $gray-500;
+$navbar-light-hover-color:          $gray-600;
+$navbar-light-active-color:         rgba($white, .9);
+$navbar-light-brand-color:          $navbar-light-active-color;
+$navbar-light-brand-hover-color:    $navbar-light-active-color;
+
+// Pagination
+
+$pagination-color:                  $gray-400;
+$pagination-bg:                     lighten($gray-200, 3%);
+$pagination-border-color:           $gray-300;
+$pagination-focus-box-shadow:       $input-btn-focus-box-shadow;
+
+$pagination-hover-color:            $gray-700;
+$pagination-hover-bg:               lighten($pagination-bg,3%);
+$pagination-hover-border-color:     $gray-300;
+$pagination-active-bg:              $component-active-bg;
+$pagination-active-border-color:    $pagination-active-bg;
+
+$pagination-disabled-color:         $gray-400;
+$pagination-disabled-bg:            lighten($pagination-bg,5%);
+$pagination-disabled-border-color:  lighten($pagination-bg,5%);
+
+// Cards
+$card-bg:                           $gray-200;
+$card-spacer-x:                     $spacer;
+$card-border-color:                 lighten($gray-300,3%);
+$card-cap-bg:                       $gray-300;
+
+$card-box-shadow:                   0 0 35px 0 rgba(49,57,66,.5);
+
+
+// Tooltips
+
+$tooltip-font-size:                 14px;
+$tooltip-color:                     $gray-200;
+$tooltip-bg:                        $gray-700;
+$tooltip-border-radius:             0.2rem;
+$tooltip-padding-y:                 .4rem;
+$tooltip-padding-x:                 .8rem;
+
+$tooltip-arrow-color:               $tooltip-bg;
+
+
+// Popovers
+
+$popover-border-color:              $gray-700;
+$popover-bg:                        $gray-700;
+$popover-border-color:              $gray-700;
+$popover-header-bg:                 lighten($popover-bg,2.5%);
+$popover-header-color:              $gray-200;
+$popover-header-padding-y:          .7rem;
+$popover-header-padding-x:          .8rem;
+$popover-body-color:                $gray-200;
+$popover-arrow-color:               $gray-700;
+
+// Badges
+
+$badge-font-weight:                 $font-weight-bold;
+
+
+// Modals
+
+$modal-content-bg:                  $gray-300;
+$modal-content-border-color:        transparent;
+$modal-content-border-radius:       0.2rem;
+$modal-content-border-width:        0;
+$modal-backdrop-bg:                 $gray-500;
+$modal-backdrop-opacity:            .8;
+$modal-header-border-color:         lighten($gray-300,5%);
+$modal-footer-border-color:         lighten($gray-300,5%);
+
+
+// Progress bars
+$progress-bg:                       $gray-300;
+$progress-bar-bg:                   theme-color("primary");
+
+
+// List group
+
+$list-group-bg:                     $card-bg;
+$list-group-border-color:           lighten($gray-300,3%);
+$list-group-active-bg:              $component-active-bg;
+$list-group-active-border-color:    $component-active-bg;
+$list-group-action-color:           $gray-500;
+$list-group-action-hover-color:     $gray-500;
+$list-group-hover-bg:               $gray-100;
+$list-group-action-active-color:    $gray-700;
+$list-group-action-active-bg:       $gray-100;
+
+$list-group-disabled-color:         $gray-400;
+$list-group-disabled-bg:            $gray-100;
+
+// Image thumbnails
+
+$thumbnail-bg:                      $gray-300;
+$thumbnail-border-color:            $gray-300;
+
+
+// Breadcrumbs
+
+$breadcrumb-padding-y:              $spacer/1.5;
+$breadcrumb-padding-x:              0;
+$breadcrumb-item-padding:           .5rem;
+
+$breadcrumb-bg:                     transparent;
+$breadcrumb-divider:                quote("\F0142");
+$breadcrumb-divider-color:          $gray-400;
+$breadcrumb-active-color:           $gray-500;
+
+
+// Close
+
+$close-color:                       $gray-800;
+$close-text-shadow:                 none;
+$close-font-size:                   $font-size-base * 1.5;
+
+
+// Code
+
+$code-color:                        $cyan;
+
+$pre-color:                         $gray-500;

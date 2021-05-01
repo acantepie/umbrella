@@ -2,6 +2,8 @@
 // Nunito fonts
 //
 
+$nunito-font-path: '~umbrella_admin/fonts' !default;
+
 @font-face {
   font-family: 'Nunito';
   src: url('#{$nunito-font-path}/Nunito-Light.eot');

@@ -1,0 +1,118 @@
+//
+// custom-variables.scss
+//
+
+// Shadow
+$shadow:                            0 0 35px 0 rgba(49, 57, 66, 0.5);
+$shadow-lg:                         0 0 45px 0 rgba(0, 0, 0, 0.12);
+
+//Background left-sidebar
+$bg-leftbar:                        linear-gradient(135deg, #6379c3 0%, #546ee5 60%);
+$bg-leftbar-light:                #ffffff;
+$bg-leftbar-dark:                 #313a46;
+$bg-topnav:                       #37404a;
+
+// Deatched left sidenav
+$bg-detached-leftbar:             #37404a;
+
+// Leftbar width
+$leftbar-width:                     260px;
+
+// Logo Display
+$logo-light-display:                block;
+$logo-dark-display:                 none;
+// Logo auth display
+$logo-auth-light-display:                block;
+$logo-auth-dark-display:                 none;
+
+// Boxed Layout
+$boxed-layout-width:                1300px;
+$boxed-layout-bg:                 #3e4853;
+
+// Topbar Height
+$topbar-height:                     70px;
+
+// Menu item colors (Default-dark)
+$menu-item:                       #cedce4;
+$menu-item-hover:                 #ffffff;
+$menu-item-active:                #ffffff;
+
+// Menu item colors (light)
+$menu-item-light:                 #6c757d;
+$menu-item-light-hover:           #3d73dd;
+$menu-item-light-active:          #3d73dd;
+
+// Detached Menu item colors
+$menu-item-dark:                  #8391a2;
+$menu-item-dark-hover:            #bccee4;
+$menu-item-dark-active:           #cfe1f7;
+
+// Dark sidenav Menu item color
+$sidebar-dark-menu-item:          #8391a2;
+$sidebar-dark-menu-item-hover:    #bccee4;
+$sidebar-dark-menu-item-active:   #ffffff;
+
+// Rightbar
+$rightbar-width:                    280px;
+$rightbar-bg:                     #37404a;
+$rightbar-title-bg:               #3d73dd;
+$rightbar-title-color:            #ffffff;
+$rightbar-title-btn-bg:             lighten($rightbar-title-bg, 5%);
+$rightbar-title-btn-color:        #ffffff;
+$rightbar-overlay-bg:             #000;
+
+// Topbar Background
+$bg-topbar:                       #3a444e;
+$bg-topbar-dark:                  #3a444e;
+
+// Topbar Search
+$bg-topbar-search:                #464f5b;
+$bg-topbar-dark-search:           #464f5b;
+
+// Helpbox
+$help-box-light-bg:               rgba(255,255,255,0.1);
+$help-box-dark-bg:                #3d73dd;
+
+// Font weight
+$font-weight-semibold:              600;
+
+// Dropdown Large
+$dropdown-lg-width:                 320px;
+
+// Page title color
+$page-title-color:                #fff;
+
+// Header title
+$header-title-color:              #ffffff;
+
+// Nav-pill background
+$nav-pills-bg:                    #404954;
+
+// Custom-accordion
+$custom-accordion-title-color:    #8391a2;
+
+// Dragula demo background
+$dragula-bg:                      #404954;
+
+// Form wizard header background
+$form-wizard-header-bg:           #404954;
+
+// Custom title color
+$text-title-color:                #ffffff;
+
+// card Loader background
+$card-loader-bg:                  #313a46;
+
+// Chat widget
+$chat-primary-user-bg:            #404954;
+$chat-secondary-user-bg:          #404954;
+
+// User authentication Background
+$auth-bg:                         #404954;
+$auth-bg-pattern-img:               url("../images/bg-pattern-dark.png");
+
+// Apex chart
+$apex-grid-color:                 #404954;
+
+// Hero
+$hero-bg: linear-gradient(to bottom,#6379c3,#546ee5);

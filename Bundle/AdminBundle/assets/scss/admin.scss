@@ -1,7 +1,8 @@
 //Core files
 @import "~bootstrap/scss/functions";
-@import "config/variables";
-@import "config/custom-variables";
+@import "~bootstrap/scss/variables";
+@import "config/default/variables";
+@import "config/default/custom-variables";
 @import "~bootstrap/scss/bootstrap";
 
 // Structure
