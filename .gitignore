@@ -1,5 +1,5 @@
 ###> Tools / Other ###
 /.idea/*
 .php_cs.cache
-/node_modules/
+/node_modules
 ###< Tools / Other ###
