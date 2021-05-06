@@ -72,7 +72,7 @@ $icon-select2-width: 26px;
         background-color: $primary;
     }
     .select2-results__option[aria-selected=true] {
-        background-color: lighten($dropdown-bg,2.5%);
+        background-color: $gray-200;
         color: $dropdown-link-active-color;
         &:hover {
             background-color: $primary;
