@@ -23,7 +23,7 @@
         "metismenu": "^3.0.6",
         "mustache": "^4.2.0",
         "popper.js": "^1.16.1",
-        "select2": "^4.1.0-rc.0",
+        "select2": "^4.0.13",
         "simplebar": "^5.3.3",
         "toastr": "^2.1.4"
     },
