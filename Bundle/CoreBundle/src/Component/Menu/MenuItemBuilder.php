@@ -36,6 +36,14 @@ class MenuItemBuilder
         return $this;
     }
 
+    public function setClass(string $class): MenuItemBuilder
+    {
+        $this->item->setClass($class);
+
+        return $this;
+    }
+
+
     public function setRoute(?string $route, array $routeParams = []): MenuItemBuilder
     {
         $this->item->setRoute($route);
