@@ -64,7 +64,7 @@ export default class JsResponseHandler {
             }
 
             if (!this.actionRegistry.hasOwnProperty(message.action)) {
-                console.error(`[JsReponseHandler] Action "${message.action}" not found on regsitry. have you register it using umbrellaApp.jsResponseHandler.registerAction(new MyAction()) ?`);
+                console.error(`[JsReponseHandler] Action "${message.action}" not found on regsitry. have you register it using JsResponseHandler.jsResponseHandler.registerAction(new MyAction()) ?`);
                 continue;
             }
 

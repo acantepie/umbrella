@@ -7,7 +7,6 @@ export default class OpenModal extends JsResponseAction {
 
         if ($opened_modal.length) {
             $opened_modal.html($modal.find('.modal-dialog'));
-            umbrellaApp.mount($opened_modal);
 
         } else {
             // Remove this one day ...

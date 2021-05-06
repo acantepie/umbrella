@@ -67,7 +67,7 @@ export default class Select2 extends HTMLSelectElement {
     }
 
     disconnectedCallback() {
-        this.$view.select2('destroy');
+        //this.$view.select2('destroy');
     }
 
     open() {

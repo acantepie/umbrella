@@ -56,7 +56,7 @@ class RowModifier
      */
     public function setIdModifier($idModifier): self
     {
-        if (!is_string($idModifier) || !is_callable($idModifier)) {
+        if (!is_string($idModifier) && !is_callable($idModifier)) {
             throw new \InvalidArgumentException('RowId must be an property path or a callback');
         }
 
