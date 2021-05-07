@@ -22,7 +22,15 @@
 
                 <div class="form-group">
                     <label for="username">{{ 'label.username' | trans }}</label>
-                    <input class="form-control" type="text" id="username" required="required" name="_username" value="{{ last_username }}">
+                    <input
+                            class="form-control"
+                            type="text"
+                            id="username"
+                            required="required"
+                            name="_username"
+                            placeholder="{{ 'placeholder.enter_your_username' | trans }}"
+                            value="{{ last_username }}"
+                            autofocus />
                 </div>
 
                 <div class="form-group">
@@ -30,7 +38,16 @@
                         <small>{{ 'action.forget_password' | trans }}</small>
                     </a>
                     <label for="password">{{ 'label.password' | trans }}</label>
-                    <input class="form-control" type="password" required="required" id="password" name="_password">
+                    <div is="umbrella-password">
+                        <input
+                                autocomplete="current-password"
+                                class="form-control"
+                                type="password"
+                                required="required"
+                                id="password"
+                                name="_password"
+                                placeholder="{{ 'placeholder.enter_your_password' | trans }}" />
+                    </div>
                 </div>
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

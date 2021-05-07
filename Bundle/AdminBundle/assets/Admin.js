@@ -7,9 +7,11 @@ import "simplebar"
 // components
 import Sidebar from "./components/Sidebar";
 import Notification from "./components/Notification";
+import Password from "./components/Password";
 
 customElements.define('umbrella-sidebar', Sidebar);
 customElements.define('umbrella-notification', Notification, {extends: 'li'});
+customElements.define('umbrella-password', Password, {extends: 'div'});
 
 // Hyper layout
 const $body = $('body');
