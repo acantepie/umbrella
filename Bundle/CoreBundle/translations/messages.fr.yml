@@ -37,7 +37,7 @@ label:
     title: Titre
     firstname: Prénom
     lastname: Nom
-    username: Login
+    username: Identifiant
     email: Email
     your_email: Votre email
     password: Mot de passe
@@ -49,6 +49,8 @@ label:
 placeholder:
     search: Rechercher ...
     password_not_set_if_empty: Laissez vide pour conserver le mot de passe actuel
+    enter_your_username: Saisissez votre identifiant
+    enter_your_password: Saisissez votre mot de passe
 
 message:
     delete_confirm: Confirmez-vous la suppression ?

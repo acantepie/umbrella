@@ -49,6 +49,8 @@ label:
 placeholder:
     search: Search ...
     password_not_set_if_empty: Let empty to keep your current password.
+    enter_your_username: Enter your username
+    enter_your_password: Enter your password
 
 message:
     delete_confirm: Confirm delete ?
