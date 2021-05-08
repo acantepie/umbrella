@@ -9,7 +9,8 @@
     "dependencies": {
         "@iconscout/unicons": "^3.0.6",
         "@mdi/font": "^5.9.55",
-        "bootstrap": "4.6.0",
+        "@popperjs/core": "^2.9.2",
+        "bootstrap": "^5.0.0",
         "datatables.net": "^1.10.24",
         "datatables.net-bs4": "^1.10.24",
         "datatables.net-fixedheader": "^3.1.8",
@@ -20,15 +21,13 @@
         "flatpickr": "^4.6.9",
         "jquery": "^3.6.0",
         "jquery-treetable": "^3.2.0-1",
-        "metismenu": "^3.0.6",
         "mustache": "^4.2.0",
-        "popper.js": "^1.16.1",
         "select2": "^4.0.13",
         "simplebar": "^5.3.3",
         "toastr": "^2.1.4"
     },
     "scripts": {
-        "dev-server": "encore dev-server --port 9000 --host=0.0.0.0",
+        "dev-server": "encore dev-server --port 9000 --host=0.0.0.0 --no-firewall",
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
