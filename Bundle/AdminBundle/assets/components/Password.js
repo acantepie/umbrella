@@ -10,8 +10,8 @@ export default class Password extends HTMLDivElement {
 
     connectedCallback() {
         const e = document.createElement('div')
-        e.className = 'input-group-append'
-        e.innerHTML = `<div class="input-group-text">${this.icon()}</div>`
+        e.className = 'input-group-text'
+        e.innerHTML = `${this.icon()}`
 
         this.appendChild(e)
         this.querySelector('.input-group-text').addEventListener('click', this.onClick)

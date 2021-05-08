@@ -47,7 +47,7 @@ class WidgetColumnType extends ColumnType
             ->setDefault('build', null)
             ->setAllowedTypes('build', ['null', 'callable'])
 
-            ->setDefault('class', 'text-right')
+            ->setDefault('class', 'text-end')
             ->setDefault('label', '')
 
             ->setDefault('is_safe_html', true);

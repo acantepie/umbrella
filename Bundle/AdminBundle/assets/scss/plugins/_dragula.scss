@@ -15,10 +15,6 @@
     filter: alpha(opacity=80);
 }
 
-tr.gu-mirror {
-    display: inline-table;
-}
-
 .gu-hide {
     display: none !important;
 }
@@ -42,7 +38,7 @@ tr.gu-mirror {
     cursor: move;
 
     &:before {
-        content: "\F1DB";
+        content: "\F01DB";
         font-family: "Material Design Icons";
         position: absolute;
     }

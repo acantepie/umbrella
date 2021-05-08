@@ -47,7 +47,7 @@
     }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
     .page-title-box {
         .page-title {
             display: block;

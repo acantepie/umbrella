@@ -20,8 +20,8 @@
 
             <form action="{{ path(constant('Umbrella\\AdminBundle\\Controller\\SecurityController::LOGIN_ROUTE')) }}" method="post">
 
-                <div class="form-group">
-                    <label for="username">{{ 'label.username' | trans }}</label>
+                <div class="mb-3">
+                    <label for="username" class="form-label">{{ 'label.username' | trans }}</label>
                     <input
                             class="form-control"
                             type="text"
@@ -33,11 +33,11 @@
                             autofocus />
                 </div>
 
-                <div class="form-group">
-                    <a href="{{ path('umbrella_admin_security_passwordrequest') }}" class="text-muted float-right">
+                <div class="mb-3">
+                    <a href="{{ path('umbrella_admin_security_passwordrequest') }}" class="text-muted float-end">
                         <small>{{ 'action.forget_password' | trans }}</small>
                     </a>
-                    <label for="password">{{ 'label.password' | trans }}</label>
+                    <label for="password" class="form-label">{{ 'label.password' | trans }}</label>
                     <div is="umbrella-password">
                         <input
                                 autocomplete="current-password"
@@ -52,9 +52,9 @@
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                <div class="form-group mb-0 text-center">
+                <div class="text-center">
                     <button class="btn btn-primary" type="submit">
-                        <i class="mdi mdi-check mr-1"></i> {{ 'action.signin' | trans }}
+                        <i class="mdi mdi-check me-1"></i> {{ 'action.signin' | trans }}
                     </button>
                 </div>
 

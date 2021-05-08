@@ -1,9 +1,9 @@
-<a href="{{ path(admin_home_route()) }}" class="logo text-center">
+<a href="{{ path(admin_home_route()) }}" class="logo text-center text-reset">
     <span class="logo-lg">
         {% if admin_theme_logo() %}
             <img src="{{ asset(admin_theme_logo()) }}">
         {% else %}
-            <span>{% if admin_theme_icon() %}{{ (admin_theme_icon() ~ ' mr-1') | icon }}{% endif %} {{ admin_theme_name() }}</span>
+            <span>{% if admin_theme_icon() %}{{ (admin_theme_icon() ~ ' me-1') | icon }}{% endif %} {{ admin_theme_name() }}</span>
         {% endif %}
     </span>
     <span class="logo-sm">

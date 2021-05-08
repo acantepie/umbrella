@@ -3,15 +3,15 @@ import AjaxUtils from "./AjaxUtils";
 export default class BindUtils
 {
     static bindTooltip($container) { // must be rebinded on dom update
-        $container.find('[data-toggle="tooltip"]').tooltip({
-            container: $container
-        });
+        // $container.find('[data-bs-toggle="tooltip"]').tooltip({
+        //     container: $container
+        // });
     }
 
     static bindPopover($container) { // must be rebinded on dom update
-        $container.find('[data-toggle="popover"]').popover({
-            container: $container
-        });
+        // $container.find('[data-bs-toggle="popover"]').popover({
+        //     container: $container
+        // });
     }
 
     // if you don't want your link was bind : use class no-bind

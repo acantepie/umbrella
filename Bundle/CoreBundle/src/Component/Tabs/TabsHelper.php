@@ -104,7 +104,7 @@ class TabsHelper
         }
 
         if ('#' === substr($config['attr_link']['href'], 0, 1)) { // anchor
-            $config['attr_link']['data-toggle'] = 'tab';
+            $config['attr_link']['data-bs-toggle'] = 'tab';
         }
 
         if ($this->isActive($config)) {

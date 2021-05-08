@@ -1,17 +1,17 @@
-<li class="dropdown notification-list" is="umbrella-notification"
+<li class="dropdown notification-list " is="umbrella-notification"
     data-poll-interval="{{ admin_notification_poll_intervall() }}"
     data-refresh-url="{{ path('umbrella_admin_notification_list') }}">
 
-    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+    <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
         <i class="mdi mdi-bell-outline noti-icon"></i>
         <span class="noti-icon-badge"></span>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
+    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
 
         <div class="dropdown-item noti-title">
             <h5 class="m-0">
-{#                <span class="float-right">#}
+{#                <span class="float-end">#}
 {#                    <a href="javascript: void(0);" class="text-dark">#}
 {#                        <small>Clear All</small>#}
 {#                    </a>#}
@@ -26,6 +26,5 @@
 {#        <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">#}
 {#            View All#}
 {#        </a>#}
-
     </div>
 </li>

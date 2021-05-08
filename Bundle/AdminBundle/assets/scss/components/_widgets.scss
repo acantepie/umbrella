@@ -50,6 +50,9 @@
 // Dashboard widgets
 .dash-item-overlay {
     position: absolute;
+    /*rtl:ignore*/
+    text-align: left;
+    /*rtl:ignore*/
     left: 8%;
     max-width: 350px;
     padding: 20px;
@@ -243,7 +246,7 @@
             padding-top: 3px;
         }
         &:after {
-            right: 99%;
+            left: -11px;
             top: 0;
             border: solid transparent;
             content: " ";
@@ -259,7 +262,7 @@
     }
     .conversation-text {
         float: left;
-        font-size: 12px;
+        font-size: 13px;
         margin-left: 12px;
         width: 70%;
     }
@@ -279,7 +282,8 @@
                 border-color: transparent;
                 border-left-color: $chat-primary-user-bg;
                 border-top-color: $chat-primary-user-bg;
-                left: 99% !important;
+                right: -10px;
+                left: auto;
             }
         }
 

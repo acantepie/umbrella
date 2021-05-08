@@ -12,6 +12,6 @@ class AddLinkType extends LinkType
 
         $resolver
             ->setDefault('class', 'btn btn-primary')
-            ->setDefault('icon', 'mdi mdi-plus mr-1');
+            ->setDefault('icon', 'mdi mdi-plus me-1');
     }
 }

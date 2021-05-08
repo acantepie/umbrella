@@ -112,11 +112,11 @@ export default class DataTable extends HTMLElement {
     }
 
     _preDrawCallback() {
-        this.$tableBody.find('[data-toggle=tooltip]').tooltip('dispose');
+        // this.$tableBody.find('[data-bs-toggle=tooltip]').tooltip('dispose');
     }
 
     _drawCallback() {
-        this.$tableBody.find('[data-toggle=tooltip]').tooltip();
+        // this.$tableBody.find('[data-bs-toggle=tooltip]').tooltip();
         if (this.options['tree']) {
             this._drawTree();
         }
@@ -144,7 +144,7 @@ export default class DataTable extends HTMLElement {
             stringCollapse: '',
             expandable: true,
             clickableNodeNames: false,
-            expanderTemplate: '<a href="#" data-toggle="tooltip"><i class="mdi"></i></a>',
+            expanderTemplate: '<a href="#" data-bs-toggle="tooltip"><i class="mdi"></i></a>',
             initialState: this.options['tree_state']
         }, true);
 
@@ -248,7 +248,7 @@ export default class DataTable extends HTMLElement {
         let html = '<tr>';
         html += '<td class="text-danger text-center" colspan="100%">';
         if (icon) {
-            html += `<i class="${icon} mr-1"></i>`;
+            html += `<i class="${icon} me-1"></i>`;
         }
         html += error;
         html += '</td>';

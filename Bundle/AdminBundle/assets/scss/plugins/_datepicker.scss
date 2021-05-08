@@ -112,3 +112,16 @@
         }
     }
 }
+
+[dir="rtl"] .daterangepicker {
+    &.opensright {
+        &:after {
+            right: 10px;
+            left: auto;
+        }
+        &:before {
+            right: 9px;
+            left: auto;
+        }
+    }
+}

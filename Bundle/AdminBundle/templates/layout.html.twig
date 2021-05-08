@@ -18,7 +18,7 @@
     {% include "@UmbrellaCore/_toast.html.twig" %}
 
     {% block body %}
-        <body data-leftbar-theme="dark" class="env-{{ app.environment }} {% block body_class %}{% endblock %}">
+        <body data-leftbar-theme="light" class="env-{{ app.environment }} {% block body_class %}{% endblock %}">
 
             <div class="wrapper">
                 {% block sidebar %}
@@ -26,13 +26,13 @@
                 {% endblock %}
 
                 <div class="content-page">
-                    <div class="content mt-3">
+                    <div class="content">
 
                         {% block topbar %}
                             {% include "@UmbrellaAdmin/_topbar.html.twig" %}
                         {% endblock %}
 
-                        <div class="container-fluid">
+                        <div class="container-fluid mt-3">
                             {% block content %}
                             {% endblock %}
                         </div>

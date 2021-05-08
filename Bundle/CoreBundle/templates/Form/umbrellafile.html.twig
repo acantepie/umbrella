@@ -6,15 +6,13 @@
         </div>
 
         <div class="input-group">
-            <div class="input-group-prepend">
-                <button class="btn btn-light js-browse-action browse-action" type="button">
-                    {%- if translation_domain is same as(false) -%}
-                        {{ label_browse | raw  }}
-                    {%- else -%}
-                        {{ label_browse | trans([], translation_domain) | raw  }}
-                    {%- endif -%}
-                </button>
-            </div>
+            <button class="btn btn-light js-browse-action browse-action" type="button">
+                {%- if translation_domain is same as(false) -%}
+                    {{ label_browse | raw  }}
+                {%- else -%}
+                    {{ label_browse | trans([], translation_domain) | raw  }}
+                {%- endif -%}
+            </button>
 
             <div class="form-control">
                 <div class="file-info deleted-hide">{{ file_info | raw }}</div>
@@ -22,15 +20,16 @@
             </div>
 
             {% if form._deleteFile is defined %}
-                <div class="input-group-append input-delete-group">
-                    {{ form_widget(form._deleteFile, {attr: {class: 'js-delete-checkbox'}}) }}
-                    <button class="btn btn-light js-delete-action delete-action" type="button">
-                        <i class="mdi mdi-delete deleted-hide"></i>
-                        <i class="mdi mdi-delete-off deleted-show"></i>
-                    </button>
-                </div>
+                <button class="btn btn-light js-delete-action delete-action" type="button">
+                    <i class="mdi mdi-delete deleted-hide"></i>
+                    <i class="mdi mdi-delete-off deleted-show"></i>
+                </button>
             {% endif %}
-
         </div>
+
+        {% if form._deleteFile is defined %}
+            {{ form_widget(form._deleteFile, {attr: {class: 'js-delete-checkbox d-none'}}) }}
+        {% endif %}
+
     </umbrella-file>
 {% endblock %}

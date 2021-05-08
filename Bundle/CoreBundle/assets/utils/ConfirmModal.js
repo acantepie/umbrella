@@ -7,7 +7,7 @@ export default class ConfirmModal {
         '<div class="modal-content">' +
         '<div class="modal-body">__text__</div>' +
         '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-outline-light btn-cancel" data-dismiss="modal">__cancel__</button>' +
+        '<button type="button" class="btn btn-outline-light btn-cancel" data-bs-dismiss="modal">__cancel__</button>' +
         '<button type="button" class="btn btn-outline-light btn-confirm">__confirm__</button></div></div></div></div>';
 
     static $modal = null;

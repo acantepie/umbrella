@@ -4,11 +4,14 @@
         <form class="form-inline js-toolbar-form" enctype="multipart/form-data" method="{{ form.vars.method }}">
             {{ umbrella_form_theme(form) }}
 
-            {% for child in form -%}
-                <div class="form-group">
-                    {{- form_widget(child) -}}
-                </div>
-            {%- endfor -%}
+            <div class="d-flex">
+                {% for child in form -%}
+                    <div class="me-2">
+                        {{- form_widget(child) -}}
+                    </div>
+                {%- endfor -%}
+            </div>
+
         </form>
     {% endif %}
 

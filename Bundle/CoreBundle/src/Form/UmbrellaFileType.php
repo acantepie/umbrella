@@ -50,7 +50,7 @@ class UmbrellaFileType extends AbstractType
             $view->vars['file_info'] = '';
         } else {
             $view->vars['file_info'] = sprintf(
-                '<a href="%s" class="text-primary" download><i class="mdi mdi-download mr-1"></i>%s %s</a>',
+                '<a href="%s" class="text-primary" download><i class="mdi mdi-download me-1"></i>%s %s</a>',
                 $this->fileHelper->getUrl($umbrellaFile),
                 HtmlUtils::escape($umbrellaFile->name),
                 $umbrellaFile->getHumanSize()

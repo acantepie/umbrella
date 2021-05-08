@@ -4,7 +4,7 @@
 
 .card {
     border: none;
-    box-shadow: $card-box-shadow;
+    box-shadow: $box-shadow;
     margin-bottom: $grid-gutter-width;
 
     .header-title {
@@ -94,7 +94,7 @@
 
     .card-pricing-icon {
         font-size: 22px;
-        box-shadow: $shadow;
+        box-shadow: $box-shadow;
         height: 60px;
         display: inline-block;
         width: 60px;
@@ -126,7 +126,7 @@
 
 .card-pricing-recommended {
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
         margin-top: -1.9375rem;
     }
 
@@ -138,4 +138,10 @@
         border-radius: .25rem .25rem 0 0;
         margin: -1.5rem -1.5rem 1.5rem -1.5rem;
     }
+}
+
+// Custom card height
+
+.card-h-100 {
+    height: calc(100% - #{$grid-gutter-width});
 }

@@ -41,11 +41,11 @@
     {% if input_prefix or input_suffix %}
         <div class="input-group">
             {% if input_prefix %}
-                <div class="input-group-prepend">{{ input_prefix | raw }}</div>
+                {{ input_prefix | raw }}
             {% endif %}
             {{- parent() -}}
             {% if input_suffix %}
-                <div class="input-group-append">{{ input_suffix | raw }}</div>
+                {{ input_suffix | raw }}
             {% endif %}
         </div>
     {% else %}

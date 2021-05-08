@@ -4,8 +4,8 @@
 
 // Used invoice page
 @media print {
-    .left-side-menu,
-    .right-bar,
+    .leftside-menu,
+    .end-bar,
     .page-title-box,
     .navbar-custom,
     .footer {
@@ -13,7 +13,7 @@
     }
     .card-body,
     .content-page,
-    .right-bar,
+    .end-bar,
     .content,
     body {
         padding: 0;

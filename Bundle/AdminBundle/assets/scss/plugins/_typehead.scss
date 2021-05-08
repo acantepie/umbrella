@@ -9,7 +9,7 @@
 
 .tt-query,
 .tt-hint {
-  line-height: 30px;
+  // line-height: 30px;
   outline: none;
 }
 
@@ -28,7 +28,7 @@
   max-height: 200px;
   overflow-y: auto;
   background-color: $dropdown-bg;
-  box-shadow: $shadow;
+  box-shadow: $box-shadow;
   border: 1px solid $dropdown-border-color;
 }
 

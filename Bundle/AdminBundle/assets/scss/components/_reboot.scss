@@ -12,17 +12,9 @@ button, a {
   outline: none !important;
 }
 
-a {
-  color: inherit;
-
-  &:hover {
-    color: inherit;
-  }
-}
-
 // Forms
 
-label, legend {
+label {
   font-weight: $font-weight-semibold;
 }
 

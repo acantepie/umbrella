@@ -13,6 +13,6 @@ class DeleteAllLinkType extends LinkType
             ->setDefault('xhr', true)
             ->setDefault('confirm', 'message.delete_all_confirm')
             ->setDefault('class', 'btn btn-secondary')
-            ->setDefault('icon', 'mdi mdi-delete mr-1');
+            ->setDefault('icon', 'mdi mdi-delete me-1');
     }
 }

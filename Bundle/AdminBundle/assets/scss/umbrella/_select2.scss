@@ -1,0 +1,18 @@
+$icon-select2-width: 26px;
+
+.select2-container {
+
+  .select2-selection--single {
+    .select2-selection__rendered {
+      padding-right: $icon-select2-width;
+    }
+    .select2-selection__arrow {
+      width: $icon-select2-width;
+    }
+
+    .select2-selection__clear {
+      width: $icon-select2-width;
+      text-align: center;
+    }
+  }
+}

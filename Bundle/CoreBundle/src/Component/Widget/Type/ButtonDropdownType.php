@@ -17,7 +17,7 @@ class ButtonDropdownType extends WidgetType
         }
 
         $view->vars['attr']['type'] = 'button';
-        $view->vars['attr']['data-toggle'] = 'dropdown';
+        $view->vars['attr']['data-bs-toggle'] = 'dropdown';
     }
 
     public function buildWidget(WidgetBuilder $builder, array $options)

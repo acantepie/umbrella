@@ -1,9 +1,11 @@
 //Core files
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
 @import "config/default/variables";
 @import "config/default/custom-variables";
-@import "~bootstrap/scss/bootstrap";
+@import "umbrella/variables";
+@import "./node_modules/bootstrap/scss/bootstrap";
+
 
 // Structure
 @import "structure/general";
@@ -29,6 +31,7 @@
 @import "components/buttons";
 @import "components/badge";
 @import "components/card";
+@import "components/custom-forms";
 @import "components/dropdown";
 //@import "components/docs";
 @import "components/forms";
@@ -47,12 +50,12 @@
 //@import "components/widgets";
 //@import "components/social";
 //@import "components/steps";
-@import "components/spinner";
+@import "components/preloader";
 //@import "components/hero";
+
 
 //Pages
 @import "pages/authentication";
-@import "pages/security";
 //@import "pages/components-demo";
 //@import "pages/error";
 //@import "pages/faq";
@@ -64,10 +67,6 @@
 
 // Vendors
 @import "~umbrella_core/scss/core";
-
-//@import "vendor/daterangepicker";
-//@import "vendor/bootstrap-timepicker.min";
-//@import "vendor/jquery.bootstrap-touchspin.min";
 
 
 // Plugins
@@ -82,17 +81,24 @@
 //@import "plugins/dropzone";
 //@import "plugins/form-wizard";
 //@import "plugins/maps";
-@import "plugins/metis-menu";
+//@import "plugins/quill-editor";
 @import "plugins/select2";
 @import "plugins/simplebar";
-@import "plugins/toast";
+//@import "plugins/toaster";
 //@import "plugins/bootstrap-touchspin";
 //@import "plugins/bootstrap-timepicker";
-//@import "plugins/summernote";
 //@import "plugins/simplemde";
 //@import "plugins/typehead";
 //@import "plugins/sparklines";
+//@import "plugins/timepicker";
 //@import "plugins/rateit";
+//@import "plugins/rating";
 //@import "plugins/ion-rangeslider";
 //@import "plugins/frappe-gantt";
 
+// Umbrella
+@import "umbrella/misc";
+@import "umbrella/breadcrumb";
+@import "umbrella/leftside-menu";
+@import "umbrella/select2";
+@import "umbrella/security-page";

@@ -5,7 +5,7 @@
 .daterangepicker {
     font-family: $font-family-base;
     border: $dropdown-border-width solid $dropdown-border-color;
-    box-shadow: $shadow;
+    box-shadow: $box-shadow;
     background-color: $dropdown-bg;
 
     .calendar-table {
@@ -23,6 +23,17 @@
             }
         }
     }   
+
+    .ranges {
+        li {
+            &:hover {
+                background-color: $dropdown-link-hover-bg;
+            }
+            &.active {
+                background-color: $primary;
+            }
+        }
+    }
 
     td {
         &.in-range {
@@ -57,19 +68,19 @@
         border-bottom: 7px solid $dropdown-border-color;
     }
 
-    .ranges {
-        li {
-            &.active {
-                background-color: $primary;
-            }
-            &:hover {
-                background-color: $dropdown-link-hover-bg;
-            }
-        }
-    }
-
     .drp-buttons {
         border-top: 1px solid $dropdown-border-color;
+    }
+
+    select {
+        &.ampmselect, 
+        &.hourselect, 
+        &.minuteselect, 
+        &.secondselect {
+            background: lighten($dropdown-bg,5%);;
+            border: 1px solid lighten($dropdown-bg,5%);
+            color: $dropdown-link-color;
+        }
     }
 
     &.show-ranges {

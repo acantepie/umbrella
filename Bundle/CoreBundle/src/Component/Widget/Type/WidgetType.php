@@ -29,7 +29,7 @@ class WidgetType
 
         if (!empty($options['title'])) {
             $view->vars['attr']['title'] = $options['title'];
-            $view->vars['attr']['data-toggle'] = 'tooltip';
+            $view->vars['attr']['data-bs-toggle'] = 'tooltip';
         }
     }
 

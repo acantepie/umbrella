@@ -4,63 +4,57 @@
 
 // Form-control light
 .form-control-light {
-  background-color: $gray-100 !important;
-  border-color: $gray-100 !important;
+    background-color: $gray-100 !important;
+    border-color: $gray-100 !important;
 }
 
 
 // Form elements (Color and Range)
 input.form-control[type="color"],
 input.form-control[type="range"] {
-  min-height: 39px;
-}
-
-// Custom range
-.custom-range.form-control {
-  border: 0;
+    min-height: 39px;
 }
 
 
 // Custom select
-.custom-select.is-invalid, .form-control.is-invalid, .custom-select:invalid, .form-control:invalid,
-.custom-select.is-valid, .form-control.is-valid, .custom-select:valid, .form-control:valid {
-  &:focus {
-    box-shadow: none !important;
-  }
+.custom-select.is-invalid, .form-control.is-invalid,.custom-select:invalid, .form-control:invalid,
+.custom-select.is-valid, .form-control.is-valid, .custom-select:valid,.form-control:valid {
+    &:focus {
+        box-shadow: none !important;
+    }
 }
 
 select.form-control {
-  &:not([size]):not([multiple]) {
-    height: $input-height;
-  }
+    &:not([size]):not([multiple]) {
+        height: $input-height;
+    }
 }
 
 select.form-control-sm {
-  &:not([size]):not([multiple]) {
+&:not([size]):not([multiple]) {
     height: $input-height-sm;
-  }
+}
 }
 
-label.required:after, legend.required:after {
-  content: " *";
-  color: $danger;
-  font-weight: 500;
-  line-height: 1;
-  font-size: 1.2em;
-}
-
-.custom-control-lg {
-  min-height: 1.70rem;
-
-  .checkbox-custom {
-    &::after {
-      width: 1.25rem;
-      height: 1.25rem;
+// Show Password
+.password-eye {
+    &:before {
+        font-family: "Material Design Icons";
+        content: "\F06D0";
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        vertical-align: middle;
+        line-height: 1.2;
+        font-size: 16px;
     }
-
-    &::before {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-  }
 }
+
+.show-password {
+    .password-eye {
+        &:before {
+            content: "\F06D1";
+        }
+    }  
+}
+

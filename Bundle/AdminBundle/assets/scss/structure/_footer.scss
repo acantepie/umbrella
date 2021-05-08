@@ -26,7 +26,7 @@
     }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
     .footer {
         left: 0 !important;
         text-align: center;
@@ -59,7 +59,7 @@ body[data-layout-mode="boxed"] {
         border: none;
         margin: 0 auto;
         background-color: $body-bg;
-        box-shadow: $shadow;
+        box-shadow: $box-shadow;
         max-width: calc(#{$boxed-layout-width} - #{$leftbar-width});
     }
 

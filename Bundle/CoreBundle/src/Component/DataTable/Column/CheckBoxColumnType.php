@@ -31,17 +31,15 @@ class CheckBoxColumnType extends ColumnType
 
     private function columnTemplate(string $htmlId): string
     {
-        return '<div class="custom-control custom-control-lg custom-checkbox">'
-            . '<input type="checkbox" id="cb-' . $htmlId . '" class="custom-control-input">'
-            . '<label class="checkbox-custom custom-control-label" for="cb-' . $htmlId . '">'
-            . '</label>'
+        return '<div>'
+            . '<input class="form-check-input" type="checkbox">'
             . '</div>';
     }
 
     private function labelTemplate(): string
     {
         return '<div class="dropdown">'
-            . '<button class="btn btn-sm p-0 w-100" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+            . '<button class="btn btn-sm p-0 w-100" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
             . '<i class="mdi mdi-dots-vertical"></i>'
             . '</button>'
             . '<div class="dropdown-menu">'

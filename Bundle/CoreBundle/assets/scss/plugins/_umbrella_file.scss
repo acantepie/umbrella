@@ -18,6 +18,10 @@
     display: none;
   }
 
+  .form-control {
+    background-color: $white;
+  }
+
   .file-info {
     white-space: nowrap;
     overflow: hidden;
@@ -30,12 +34,6 @@
 
   .input-file-group {
     display: none;
-  }
-
-  .input-delete-group {
-    .form-check {
-      display: none;
-    }
   }
 
 }

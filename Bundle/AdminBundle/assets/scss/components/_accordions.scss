@@ -40,3 +40,12 @@
         color: lighten($custom-accordion-title-color,7.5%)
     }
 }
+
+.accordion {
+    >.card {
+        >.card-header {
+            border-radius: 0;
+            margin-bottom: -1px;
+        }
+    }
+}

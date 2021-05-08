@@ -72,6 +72,13 @@ input[data-switch="bool"] {
     }
 }
 
+input:disabled {
+    + label {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
 input[data-switch="bool"]+label:before,
 input[data-switch="bool"]:checked+label:before {
     color: $white !important;

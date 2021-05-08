@@ -68,9 +68,9 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->booleanNode('is_safe_html')->defaultFalse()->end()
                     ->integerNode('page_length')->defaultValue(25)->end()
-                    ->scalarNode('table_class')->defaultValue('table table-striped table-centered')->end()
+                    ->scalarNode('table_class')->defaultValue('table table-striped table-centered dt-responsive w-100')->end()
                     ->scalarNode('tree_class')->defaultValue('table table-centered')->end()
-                    ->scalarNode('dom')->defaultValue("<'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'li><'col-sm-12 col-md-7'p>>")->end();
+                    ->scalarNode('dom')->defaultValue("< tr><'row'<'col-sm-12 col-md-5'li><'col-sm-12 col-md-7'p>>")->end();
     }
 
     private function fileSection(ArrayNodeDefinition $rootNode)

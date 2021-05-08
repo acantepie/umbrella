@@ -31,7 +31,7 @@
 
 .timeline-box {
     background-color: $card-bg;
-    box-shadow: $shadow;
+    box-shadow: $box-shadow;
     display: block;
     margin: 15px 0;
     position: relative;
@@ -133,7 +133,7 @@
             }
             .timeline-icon {
                 left: auto;
-                right: -56px;
+                right: -58px;
             }
             &:before {
                 display: none;
@@ -146,7 +146,7 @@
     }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
     .timeline {
         .timeline-icon {
             display: none;

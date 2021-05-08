@@ -7,7 +7,7 @@
                     {% block modal_title %}
                         <h4 class="modal-title">{{ title | default('') }}</h4>
                     {% endblock %}
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
             {% endblock %}
 
@@ -18,8 +18,8 @@
                 </div>
                 <div class="modal-footer">
                     {% block modal_footer %}
-                        <button type="button" class="btn btn-light" data-dismiss="modal">
-                            <i class="mdi mdi-close mr-1"></i> {{ 'action.close' | trans }}
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                            <i class="mdi mdi-close me-1"></i> {{ 'action.close' | trans }}
                         </button>
                     {% endblock %}
                 </div>

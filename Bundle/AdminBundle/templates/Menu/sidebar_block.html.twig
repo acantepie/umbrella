@@ -19,14 +19,10 @@
     {% set isTopLevel = level == 2 %}
 
     {% if menu_is_granted_item(item) %}
-        <li class="side-nav-item {{ menu_is_current_item(item) ? 'mm-active' }} {{ item.class }}" data-lvl="{{ level }}">
-            <a {{ block('menu_url') }} class="{{ isTopLevel ? 'side-nav-link' }}">
-                {% if isTopLevel %}
-                    {{ item.icon | icon }}
-                    <span class="nav-text">{{ block('menu_item_label') }}</span>
-                {% else %}
-                    {{ block('menu_item_label') }}
-                {% endif %}
+        <li class="side-nav-item {{ menu_is_current_item(item) ? 'menuitem-active' }} {{ item.class }}" data-lvl="{{ level }}">
+            <a {{ block('menu_url') }} class="{{ isTopLevel ? 'side-nav-link' }}" {% if item.hasChildren() %}data-bs-toggle="collapse"{% endif %}>
+                {{ item.icon | icon }}
+                <span>{{ block('menu_item_label') }}</span>
                 {% if item.hasChildren() %}
                     <span class="menu-arrow"></span>
                 {% endif %}
@@ -41,11 +37,13 @@
                     {% set item_level_class = 'side-nav-forth-level' %}
                 {% endif %}
 
-                <ul class="{{ item_level_class }}">
-                    {% for item in item %}
-                        {{ block('menu_item') }}
-                    {% endfor %}
-                </ul>
+                <div id="{{ item.path | replace({':': '__'}) }}" class="collapse {{ menu_is_current_item(item) ? 'show' }}">
+                    <ul class="{{ item_level_class }}">
+                        {% for item in item %}
+                            {{ block('menu_item') }}
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
         </li>
     {% endif %}
@@ -63,6 +61,6 @@
     {% if item.route %}
         href="{{ path(item.route, item.routeParams) }}"
     {% else %}
-        href="javascript: void(0);"
+        href="#{{ item.path | replace({':': '__'}) }}"
     {% endif %}
 {%- endblock -%}

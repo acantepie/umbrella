@@ -3,6 +3,11 @@
 //
 
 // authentication pages background
+body.authentication-bg {
+    //background-image: $auth-bg-pattern-img;
+    //background-size: cover;
+    //background-position: center;
+}
 
 .authentication-bg.enlarged,
 .auth-fluid-pages.enlarged,
@@ -23,6 +28,7 @@ body.auth-fluid-pages[data-leftbar-compact-mode=condensed] {
     min-height: 100vh;
     flex-direction: row;
     align-items: stretch;
+    //background: url("../images/bg-auth.jpg") center;
     background-size: cover;
 
     .auth-fluid-form-box {
@@ -35,7 +41,7 @@ body.auth-fluid-pages[data-leftbar-compact-mode=condensed] {
         width: 100%;
     }
 
-    .auth-fluid-right {
+    .auth-fluid-right, .auth-fluid-left {
         padding: 6rem 3rem;
         flex: 1;
         position: relative;
@@ -46,6 +52,14 @@ body.auth-fluid-pages[data-leftbar-compact-mode=condensed] {
 
 .auth-brand {
     margin-bottom: 2rem;
+
+    .logo-dark  {
+        display: $logo-auth-dark-display;
+    }
+
+    .logo-light  {
+        display: $logo-auth-light-display;
+    }
 }
 
 .auth-user-testimonial {
@@ -70,7 +84,7 @@ body.auth-fluid-pages[data-leftbar-compact-mode=condensed] {
     }
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(lg) {
     .auth-fluid {
         display: block;
 

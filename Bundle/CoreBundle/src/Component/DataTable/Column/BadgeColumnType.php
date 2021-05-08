@@ -24,7 +24,7 @@ class BadgeColumnType extends PropertyColumnType
     {
         parent::configureOptions($resolver);
         $resolver
-            ->setDefault('badge_class', 'badge-primary')
+            ->setDefault('badge_class', 'bg-primary')
             ->setAllowedTypes('badge_class', ['null', 'string'])
             ->setDefault('is_safe_html', true);
     }
