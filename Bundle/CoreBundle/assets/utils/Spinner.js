@@ -1,25 +1,36 @@
-export default class Spinner {
+import './Spinner.scss'
 
-    static template = '<div id="spinner">' +
-        '<div class="bouncing-loader-wrapper">' +
-        '<div class="bouncing-loader">' +
-        '<div></div>' +
-        '<div></div>' +
-        '<div></div>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
+class Spinner {
 
-
-    static show() {
-        Spinner.hide();
-        $('body').after(Spinner.template);
+    constructor() {
+        this.body = document.querySelector('body');
+        this.initialOverflowY = this.body.style.overflowY;
     }
 
-    static hide() {
-        const $spinner = $('#spinner');
-        if ($spinner.length) {
-            $spinner.remove();
+    show() {
+        const spinnerEl = document.createElement('div')
+        spinnerEl.id = 'spinner'
+        spinnerEl.innerHTML = `
+            <div id="status">
+                <div class="bouncing-loader">
+                    <div class="bg-primary"></div>
+                    <div class="bg-danger"></div>
+                    <div class="bg-success"></div>
+                </div>
+            </div>`
+
+        this.hide();
+        this.body.style.overflowY = 'hidden'
+        this.body.appendChild(spinnerEl);
+    }
+
+    hide() {
+        const spinnerEl = document.querySelector('#spinner');
+        if (spinnerEl) {
+            this.body.style.overflowY = this.initialOverflowY
+            spinnerEl.remove()
         }
     }
 }
+
+export default new Spinner()

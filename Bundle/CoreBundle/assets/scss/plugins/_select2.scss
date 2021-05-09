@@ -75,7 +75,7 @@
   position: absolute;
   left: -100000px;
   width: 100%;
-  z-index: 1051
+  z-index: $zindex-modal + 1
 }
 
 .select2-results {
