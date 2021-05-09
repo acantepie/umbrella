@@ -43,7 +43,6 @@ class MenuItemBuilder
         return $this;
     }
 
-
     public function setRoute(?string $route, array $routeParams = []): MenuItemBuilder
     {
         $this->item->setRoute($route);

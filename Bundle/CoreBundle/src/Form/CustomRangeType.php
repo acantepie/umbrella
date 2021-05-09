@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class CustomCheckboxType
+ * Class CustomRangeType
  */
 class CustomRangeType extends AbstractType
 {
@@ -18,7 +18,7 @@ class CustomRangeType extends AbstractType
     {
         $resolver->setDefaults([
             'attr' => [
-                'class' => 'custom-range',
+                'class' => 'form-range',
             ],
         ]);
     }
