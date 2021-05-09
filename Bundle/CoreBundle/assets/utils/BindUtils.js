@@ -2,21 +2,21 @@ import AjaxUtils from "./AjaxUtils";
 
 export default class BindUtils
 {
-    static bindTooltip($container) { // must be rebinded on dom update
-        // $container.find('[data-bs-toggle="tooltip"]').tooltip({
-        //     container: $container
-        // });
-    }
+    static enableTooltip(container = null, selector = '[data-bs-toggle=tooltip]') {
+        container = container || document
 
-    static bindPopover($container) { // must be rebinded on dom update
-        // $container.find('[data-bs-toggle="popover"]').popover({
-        //     container: $container
-        // });
+        var els = document.querySelectorAll(selector)
+        els.forEach((el) => {
+            new bootstrap.Tooltip(el, {
+                container: 'body',
+                trigger: el.getAttribute('data-bs-trigger') || 'hover focus'
+            })
+        })
     }
 
     // if you don't want your link was bind : use class no-bind
-    static bindXhrElement($container) {
-        $container.on('click', '[data-xhr]:not(form):not(.no-bind)', (e) => {
+    static enableXhrElement() {
+        $('body').on('click', '[data-xhr]:not(form):not(.no-bind)', (e) => {
             e.preventDefault();
             const $e = $(e.currentTarget);
 
@@ -30,8 +30,8 @@ export default class BindUtils
     }
 
     // if you don't want your form was bind : use class no-bind
-    static bindXhrForm($container) {
-        $container.on('submit', 'form[data-xhr]:not(.no-bind)', (e) => {
+    static enableXhrForm() {
+        $('body').on('submit', 'form[data-xhr]:not(.no-bind)', (e) => {
             e.preventDefault();
             const $e = $(e.currentTarget);
 
@@ -46,15 +46,9 @@ export default class BindUtils
         });
     }
 
-    static bindAll($container = null) {
-
-        if (null === $container) {
-            $container = $('body');
-        }
-
-        BindUtils.bindTooltip($container);
-        BindUtils.bindPopover($container);
-        BindUtils.bindXhrElement($container);
-        BindUtils.bindXhrForm($container);
+    static enableAll() {
+        this.enableTooltip()
+        this.enableXhrElement()
+        this.enableXhrForm()
     }
 }

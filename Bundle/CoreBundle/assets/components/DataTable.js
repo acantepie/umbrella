@@ -1,4 +1,5 @@
 import AjaxUtils from "../utils/AjaxUtils";
+import BindUtils from "../utils/BindUtils"
 
 import i18n from "./DataTable.i18n.js";
 
@@ -112,11 +113,11 @@ export default class DataTable extends HTMLElement {
     }
 
     _preDrawCallback() {
-        // this.$tableBody.find('[data-bs-toggle=tooltip]').tooltip('dispose');
     }
 
     _drawCallback() {
-        // this.$tableBody.find('[data-bs-toggle=tooltip]').tooltip();
+        BindUtils.enableTooltip(this.$tableBody[0])
+
         if (this.options['tree']) {
             this._drawTree();
         }
@@ -144,7 +145,7 @@ export default class DataTable extends HTMLElement {
             stringCollapse: '',
             expandable: true,
             clickableNodeNames: false,
-            expanderTemplate: '<a href="#" data-bs-toggle="tooltip"><i class="mdi"></i></a>',
+            expanderTemplate: '<a href="#"><i class="mdi"></i></a>',
             initialState: this.options['tree_state']
         }, true);
 

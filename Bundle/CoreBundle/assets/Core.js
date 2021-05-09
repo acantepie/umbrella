@@ -9,7 +9,13 @@ import './jquery/SerializeFormToFormData';
 import './jquery/SerializeFormToJson';
 
 // --- Bootstrap
-import 'bootstrap';
+import {Tooltip, Modal, Popover} from "bootstrap";
+window.bootstrap = {
+    Tooltip : Tooltip,
+    Modal: Modal,
+    Popover: Popover
+}
+
 
 // --- DataTable.js
 import 'datatables.net';
@@ -78,4 +84,4 @@ jsResponseHandler.registerAction('remove', new RemoveHtml());
 
 // --- Bind some elements
 import BindUtils from "./utils/BindUtils";
-BindUtils.bindAll();
+BindUtils.enableAll();
