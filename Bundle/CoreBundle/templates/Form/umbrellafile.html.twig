@@ -28,7 +28,9 @@
         </div>
 
         {% if form._deleteFile is defined %}
-            {{ form_widget(form._deleteFile, {attr: {class: 'js-delete-checkbox d-none'}}) }}
+            <div class="d-none">
+                {{ form_row(form._deleteFile, {attr: {class: 'js-delete-checkbox'}}) }}
+            </div>
         {% endif %}
 
     </umbrella-file>
