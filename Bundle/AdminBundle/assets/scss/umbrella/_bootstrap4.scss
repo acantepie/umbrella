@@ -3,3 +3,7 @@
 .form-group {
   margin-bottom: 1rem;
 }
+
+legend.col-form-label, legend.form-label {
+  font-weight: $font-weight-semibold;
+}
