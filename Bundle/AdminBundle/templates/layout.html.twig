@@ -15,8 +15,8 @@
 
     </head>
 
-    {% block body %}
-        <body data-leftbar-theme="light" class="env-{{ app.environment }} {% block body_class %}{% endblock %}">
+    <body data-leftbar-theme="light" class="env-{{ app.environment }} {% block body_class %}{% endblock %}">
+        {% block body %}
 
             <div class="wrapper">
                 {% block sidebar %}
@@ -36,19 +36,21 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-        </body>
-    {% endblock %}
+
+        {% endblock %}
+
+        {% include "@UmbrellaCore/Toast/_flash.html.twig" %}
+
+        {% block javascripts %}
+            {% include "@UmbrellaAdmin/_scripts.html.twig" %}
+        {% endblock %}
+    </body>
 
     {% block html_template %}
         {% if admin_notification_enabled() %}
             {% include "@UmbrellaAdmin/Notification/template.html.twig" %}
         {% endif %}
-    {% endblock %}
-
-    {% block javascripts %}
-        {% include "@UmbrellaAdmin/_scripts.html.twig" %}
     {% endblock %}
 </html>
 

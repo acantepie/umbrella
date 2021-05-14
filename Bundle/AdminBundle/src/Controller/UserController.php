@@ -61,7 +61,7 @@ class UserController extends AdminController
         }
 
         return $this->jsResponseBuilder()
-            ->modalView('@UmbrellaAdmin/User/edit.html.twig', [
+            ->modal('@UmbrellaAdmin/User/edit.html.twig', [
                 'form' => $form->createView(),
                 'title' => null !== $id ? $this->trans('action.edit_user') : $this->trans('action.add_user'),
                 'entity' => $entity,

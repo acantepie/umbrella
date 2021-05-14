@@ -71,7 +71,7 @@ class <?= $controller->getShortClassName(); ?> extends AdminController
         }
 
         return $this->jsResponseBuilder()
-            ->modalView('<?= $templatepath_edit; ?>', [
+            ->modal('<?= $templatepath_edit; ?>', [
                 'form' => $form->createView(),
                 'entity' => $entity,
             ]);

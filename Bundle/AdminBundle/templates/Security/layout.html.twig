@@ -1,18 +1,18 @@
 {% extends '@UmbrellaAdmin/layout.html.twig' %}
 
+{% block body_class %}security-page{% endblock %}
+
 {% block body %}
-    <body class="env-{{ app.environment }} security-page">
-        <div class="account-pages mt-5 mb-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xxl-4 col-lg-5">
-                        {% block content %}
-                        {% endblock %}
-                    </div>
+    <div class="account-pages mt-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-4 col-lg-5">
+                    {% block content %}
+                    {% endblock %}
                 </div>
             </div>
         </div>
-    </body>
+    </div>
 {% endblock %}
 
 {% block html_template %}
