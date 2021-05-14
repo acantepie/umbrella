@@ -67,18 +67,18 @@ class <?= $controller->getShortClassName(); ?> extends AdminController
             return $this->jsResponseBuilder()
                 ->closeModal()
                 ->reloadTable()
-                ->toastSuccess(t('message.entity_updated'));
+                ->alertSuccess(t('message.entity_updated'));
         }
 
         return $this->jsResponseBuilder()
-            ->openModalView('<?= $templatepath_edit; ?>', [
+            ->modalView('<?= $templatepath_edit; ?>', [
                 'form' => $form->createView(),
                 'entity' => $entity,
             ]);
 <?php } else { ?>
         if ($form->isSubmitted() && $form->isValid()) {
             $this->persistAndFlush($entity);
-            $this->toastSuccess(t('message.entity_updated'));
+            $this->alertSuccess(t('message.entity_updated'));
             return $this->redirectToRoute('<?= $routename_prefix; ?>_edit', [
                 'id' => $entity->id
             ]);
@@ -119,7 +119,7 @@ class <?= $controller->getShortClassName(); ?> extends AdminController
 
         return $this->jsResponseBuilder()
             ->reloadTable()
-            ->toastSuccess(t('message.entity_deleted'));
+            ->alertSuccess(t('message.entity_deleted'));
     }
 
 }
