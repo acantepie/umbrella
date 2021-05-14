@@ -6,7 +6,6 @@ use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 use Umbrella\CoreBundle\Component\Menu\MenuHelper;
 use Umbrella\CoreBundle\Component\Toast\Toast;
-use Umbrella\CoreBundle\Component\Toast\ToastRenderer;
 
 /**
  * Class JsResponseBuilder

@@ -5,7 +5,6 @@ namespace Umbrella\CoreBundle\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Umbrella\CoreBundle\Component\DataTable\DataTableFactory;
 use Umbrella\CoreBundle\Component\DataTable\DTO\DataTable;
