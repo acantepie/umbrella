@@ -18,8 +18,8 @@ class ConfirmModal {
 
         const defaultOptions = {
             text: '',
-            cancel_text: Translator.trans('cancel'),
-            confirm_text: Translator.trans('confirm'),
+            cancel_text: umbrella.Translator.trans('cancel'),
+            confirm_text: umbrella.Translator.trans('confirm'),
             confirm: () => {}
         };
 

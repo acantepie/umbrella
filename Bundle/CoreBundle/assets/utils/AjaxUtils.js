@@ -1,6 +1,3 @@
-import ConfirmModal from "./ConfirmModal";
-import Spinner from "./Spinner";
-
 export default class AjaxUtils {
 
     static xhrPendingRegistryIds = [];
@@ -21,14 +18,14 @@ export default class AjaxUtils {
         }
 
         if ('spinner' in options && false !== options['spinner']) {
-            Spinner.show({text: options['spinner']});
+            umbrella.Spinner.show({text: options['spinner']});
         }
 
         options['success'] = (response) => {
-            jsResponseHandler.success(response);
+            umbrella.jsResponseHandler.success(response);
         };
         options['error'] = (requestObject, error, errorThrown) => {
-            jsResponseHandler.error(requestObject, error, errorThrown);
+            umbrella.jsResponseHandler.error(requestObject, error, errorThrown);
         };
         options['complete'] = () => {
 
@@ -38,7 +35,7 @@ export default class AjaxUtils {
                 });
             }
 
-            Spinner.hide();
+            umbrella.Spinner.hide();
         };
 
         // mark request with cutom headers to allow server to identify it
@@ -48,7 +45,7 @@ export default class AjaxUtils {
         options['headers']['xhr-request'] = 'js';
 
         if ('confirm' in options && false !== options['confirm']) {
-            ConfirmModal.show({
+            umbrella.ConfirmModal.show({
                 'text': options['confirm'],
                 'confirm': () => $.ajax(options)
             });

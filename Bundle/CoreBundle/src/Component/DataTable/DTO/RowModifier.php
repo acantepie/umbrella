@@ -51,9 +51,6 @@ class RowModifier
         return $this;
     }
 
-    /**
-     * @param callable|string $idModifier
-     */
     public function setIdModifier($idModifier): self
     {
         if (!is_string($idModifier) && !is_callable($idModifier)) {

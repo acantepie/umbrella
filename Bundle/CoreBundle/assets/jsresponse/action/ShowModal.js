@@ -1,6 +1,6 @@
 import JsResponseAction from "../JsResponseAction";
 
-export default class OpenModal extends JsResponseAction {
+export default class ShowModal extends JsResponseAction {
     eval(params) {
         let $modal = $(params.value);
         let $opened_modal = $('.js-umbrella-modal.show');

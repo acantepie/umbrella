@@ -44,10 +44,6 @@ services:
     Umbrella\CoreBundle\Component\DataTable\Column\:
         resource: '../src/Component/DataTable/Column'
 
-    # Toast
-    Umbrella\CoreBundle\Component\Toast\ToastRenderer:
-    Umbrella\CoreBundle\Component\Toast\ToastExtension:
-
     # Ckeditor
     Umbrella\CoreBundle\Component\Ckeditor\CkeditorConfiguration:
     Umbrella\CoreBundle\Component\Ckeditor\CkeditorExtension:

@@ -1,0 +1,36 @@
+{% if type == 'info' %}
+
+    {% set toastClass = 'text-white bg-primary border-0' %}
+    {% set btnClass = 'btn-close-white' %}
+
+{% elseif type == 'success' %}
+
+    {% set toastClass = 'text-white bg-success border-0' %}
+    {% set btnClass = 'btn-close-white' %}
+
+{% elseif type == 'warning' %}
+
+    {% set toastClass = 'text-white bg-warning border-0' %}
+    {% set btnClass = 'btn-close-white' %}
+
+{% elseif type == 'error' %}
+
+    {% set toastClass = 'text-white bg-danger border-0' %}
+    {% set btnClass = 'btn-close-white' %}
+
+{% else %}
+
+    {% set toastClass = '' %}
+    {% set btnClass = '' %}
+
+{% endif %}
+
+<div class="toast show d-flex align-items-center {{ toastClass }}" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+        {% if title %}
+            <div class="fw-bold">{{ title }}</div>
+        {% endif %}
+        <div>{{ text }}</div>
+    </div>
+    <button type="button" class="btn-close ms-auto me-2 {{ btnClass }}" data-bs-dismiss="toast" aria-label="Close"></button>
+</div>

@@ -15,7 +15,7 @@ export default class Select2 extends HTMLSelectElement {
 
         this._options = data_options ? JSON.parse(Utils.decode_html(data_options)) : {};
         this.s2_options = this._options['select2'] ? this._options['select2'] : {};
-        this.s2_options['language'] = LANG;
+        this.s2_options['language'] = umbrella.LANG;
 
         // templating
         let mustacheTemplate = null;

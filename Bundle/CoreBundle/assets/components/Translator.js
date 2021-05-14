@@ -24,6 +24,10 @@ export default class Translator {
         this.lang = lang;
     }
 
+    getLang() {
+        return this.lang
+    }
+
     getTranslations(lang = null) {
         if (null === lang) {
             lang = this.lang;

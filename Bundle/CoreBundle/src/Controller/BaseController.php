@@ -88,33 +88,20 @@ abstract class BaseController extends AbstractController
 
     // Toast Api
 
-    protected function toast(Toast $toast): Toast
+    public function alertInfo($text, $title = null) : void
     {
-        /** @var Session $session */
-        $session = $this->get('session');
-        $session->getFlashBag()->add(self::BAG_TOAST, $toast);
-
-        return $toast;
     }
 
-    public function toastInfo($text, $title = null, bool $safeHtml = true): Toast
+    public function alertSuccess($text, $title = null) : void
     {
-        return $this->toast(Toast::createInfo($text, $title, $safeHtml));
     }
 
-    public function toastSuccess($text, $title = null, bool $safeHtml = true): Toast
+    public function alertWarning($text, $title = null) : void
     {
-        return $this->toast(Toast::createSuccess($text, $title, $safeHtml));
     }
 
-    public function toastWarning($text, $title = null, bool $safeHtml = true): Toast
+    public function alertError($text, $title = null) : void
     {
-        return $this->toast(Toast::createWarning($text, $title, $safeHtml));
-    }
-
-    public function toastError($text, $title = null, bool $safeHtml = true): Toast
-    {
-        return $this->toast(Toast::createError($text, $title, $safeHtml));
     }
 
     // Exception helper

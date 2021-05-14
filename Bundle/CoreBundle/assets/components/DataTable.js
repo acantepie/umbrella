@@ -73,8 +73,8 @@ export default class DataTable extends HTMLElement {
     }
 
     _buildOptions() {
-        if (LANG in i18n) {
-            this.options['language'] = i18n[LANG];
+        if (umbrella.LANG in i18n) {
+            this.options['language'] = i18n[umbrella.LANG];
         }
 
         this.options['ajax']['data'] = (data) => this._handleData(data);
@@ -98,7 +98,7 @@ export default class DataTable extends HTMLElement {
 
     _handleError(requestObject, error, errorThrown) {
         if (requestObject.status === 401) {
-            this.displayError(Translator.trans('disconnected_error'));
+            this.displayError(umbrella.Translator.trans('disconnected_error'));
         } else {
 
             if (requestObject.responseJSON && requestObject.responseJSON.error) {
@@ -245,7 +245,7 @@ export default class DataTable extends HTMLElement {
 
     // ----- Api ----- //
 
-    displayError(error = Translator.trans('loading_data_error'), icon = null) {
+    displayError(error = umbrella.Translator.trans('loading_data_error'), icon = null) {
         let html = '<tr>';
         html += '<td class="text-danger text-center" colspan="100%">';
         if (icon) {

@@ -1,21 +1,32 @@
-// --- Translator
-import Translator from "./Translator";
-window.LANG = document.querySelector('html').getAttribute('lang');
-window.Translator = new Translator(LANG);
-
 // --- Jquery
 import './jquery/JQuery';
 import './jquery/SerializeFormToFormData';
 import './jquery/SerializeFormToJson';
 
 // --- Bootstrap
-import {Tooltip, Modal, Popover} from "bootstrap";
+import {Tooltip as bsTooltip, Modal as bsModal, Popover as bsPopover, Toast as bsToast} from "bootstrap";
 window.bootstrap = {
-    Tooltip : Tooltip,
-    Modal: Modal,
-    Popover: Popover
+    Tooltip : bsTooltip,
+    Modal: bsModal,
+    Popover: bsPopover,
+    Toast: bsToast
 }
 
+// --- Umbrella
+import Translator from "./components/Translator";
+import Spinner from "./components/Spinner"
+import ConfirmModal from "./components/ConfirmModal"
+import Toast from "./components/Toast"
+
+const LANG = document.querySelector('html').getAttribute('lang')
+
+window.umbrella = {
+    LANG: LANG,
+    Translator : new Translator(LANG),
+    Spinner : Spinner,
+    ConfirmModal : ConfirmModal,
+    Toast : Toast
+}
 
 // --- DataTable.js
 import 'datatables.net';
@@ -29,13 +40,6 @@ import Toolbar from "./components/Toolbar";
 import DataTable from "./components/DataTable";
 customElements.define('umbrella-toolbar', Toolbar);
 customElements.define('umbrella-datatable', DataTable);
-
-// --- Toast
-import toastr from 'toastr';
-window.toastr = toastr;
-
-import Toast from "./components/Toast";
-customElements.define('umbrella-toast', Toast);
 
 // --- Forms (select2)
 import 'select2/dist/js/select2.full';
@@ -60,9 +64,9 @@ customElements.define('umbrella-collection', UmbrellaCollection);
 
 // --- JsResponseHandler
 import JsResponseHandler from './jsresponse/JsResponseHandler';
-window.jsResponseHandler = new JsResponseHandler();
+const jsResponseHandler = new JsResponseHandler();
 
-import OpenModal from "./jsresponse/action/OpenModal";
+import ShowModal from "./jsresponse/action/ShowModal";
 import CloseModal from "./jsresponse/action/CloseModal";
 import Eval from "./jsresponse/action/Eval";
 import Redirect from "./jsresponse/action/Redirect";
@@ -72,15 +76,17 @@ import UpdateHtml from "./jsresponse/action/UpdateHtml";
 import ReloadTable from "./jsresponse/action/ReloadTable";
 import ShowToast from "./jsresponse/action/ShowToast";
 
-jsResponseHandler.registerAction('toast', new ShowToast());
+jsResponseHandler.registerAction('show_toast', new ShowToast());
 jsResponseHandler.registerAction('reload_table', new ReloadTable());
-jsResponseHandler.registerAction('open_modal', new OpenModal());
+jsResponseHandler.registerAction('show_modal', new ShowModal());
 jsResponseHandler.registerAction('close_modal', new CloseModal());
 jsResponseHandler.registerAction('eval', new Eval());
 jsResponseHandler.registerAction('redirect', new Redirect());
 jsResponseHandler.registerAction('reload', new Reload());
 jsResponseHandler.registerAction('update', new UpdateHtml());
 jsResponseHandler.registerAction('remove', new RemoveHtml());
+
+window.umbrella.jsResponseHandler = jsResponseHandler
 
 // --- Bind some elements
 import BindUtils from "./utils/BindUtils";

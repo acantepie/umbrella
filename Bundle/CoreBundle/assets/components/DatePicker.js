@@ -8,7 +8,7 @@ export default class DatePicker extends HTMLInputElement {
         this.$view = $(this);
 
         this.options = this.$view.data('options');
-        this.options['locale'] = LANG;
+        this.options['locale'] = umbrella.LANG;
     }
 
     connectedCallback() {

@@ -13,15 +13,15 @@ use Umbrella\CoreBundle\Component\Toast\ToastRenderer;
  */
 class JsResponseBuilder implements \Countable
 {
-    const TOAST = 'toast';
     const EVAL = 'eval';
     const REDIRECT = 'redirect';
     const RELOAD = 'reload';
-
     const UPDATE_HTML = 'update';
     const REMOVE_HTML = 'remove';
 
-    const OPEN_MODAL = 'open_modal';
+    const SHOW_TOAST = 'show_toast';
+
+    const SHOW_MODAL = 'show_modal';
     const CLOSE_MODAL = 'close_modal';
 
     const RELOAD_TABLE = 'reload_table';
@@ -30,19 +30,17 @@ class JsResponseBuilder implements \Countable
     private RouterInterface $router;
     private Environment $twig;
     private MenuHelper $menuHelper;
-    private ToastRenderer $toastRenderer;
 
     private array $messages = [];
 
     /**
      * JsResponseBuilder constructor.
      */
-    public function __construct(RouterInterface $router, Environment $twig, MenuHelper $menuHelper, ToastRenderer $toastRenderer)
+    public function __construct(RouterInterface $router, Environment $twig, MenuHelper $menuHelper)
     {
         $this->router = $router;
         $this->twig = $twig;
         $this->menuHelper = $menuHelper;
-        $this->toastRenderer = $toastRenderer;
     }
 
     public function add(string $action, array $params = []): JsResponseBuilder
@@ -75,29 +73,34 @@ class JsResponseBuilder implements \Countable
 
     // Toast actions
 
-    public function toast(Toast $toast): JsResponseBuilder
+    public function alert(string $type, $text, $title = null): JsResponseBuilder
     {
-        return $this->add(self::TOAST, $this->toastRenderer->getJsOptions($toast));
+        $html = $this->twig->render('@UmbrellaCore/Toast/alert.html.twig', [
+            'type' => $type,
+            'text' => $text,
+            'title' => $title
+        ]);
+        return $this->add(self::SHOW_TOAST, ['value' => $html]);
     }
 
-    public function toastInfo($text, $title = null, bool $safeHtml = true): JsResponseBuilder
+    public function alertInfo($text, $title = null): JsResponseBuilder
     {
-        return $this->toast(Toast::createInfo($text, $title, $safeHtml));
+        return $this->alert('info', $text, $title);
     }
 
-    public function toastSuccess($text, $title = null, bool $safeHtml = true): JsResponseBuilder
+    public function alertSuccess($text, $title = null): JsResponseBuilder
     {
-        return $this->toast(Toast::createSuccess($text, $title, $safeHtml));
+        return $this->alert('success', $text, $title);
     }
 
-    public function toastWarning($text, $title = null, bool $safeHtml = true): JsResponseBuilder
+    public function alertWarning($text, $title = null): JsResponseBuilder
     {
-        return $this->toast(Toast::createWarning($text, $title, $safeHtml));
+        return $this->alert('warning', $text, $title);
     }
 
-    public function toastError($text, $title = null, bool $safeHtml = true): JsResponseBuilder
+    public function alertError($text, $title = null): JsResponseBuilder
     {
-        return $this->toast(Toast::createError($text, $title, $safeHtml));
+        return $this->alert('error', $text, $title);
     }
 
     // Nav actions
@@ -147,14 +150,14 @@ class JsResponseBuilder implements \Countable
 
     // Modal actions
 
-    public function openModal(string $html): JsResponseBuilder
+    public function modal(string $html): JsResponseBuilder
     {
-        return $this->addHtmlMessage(self::OPEN_MODAL, $html);
+        return $this->addHtmlMessage(self::SHOW_MODAL, $html);
     }
 
-    public function openModalView($template, array $context = []): JsResponseBuilder
+    public function modalView($template, array $context = []): JsResponseBuilder
     {
-        return $this->openModal($this->twig->render($template, $context));
+        return $this->modal($this->twig->render($template, $context));
     }
 
     public function closeModal(): JsResponseBuilder
