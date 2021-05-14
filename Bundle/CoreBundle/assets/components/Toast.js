@@ -15,11 +15,17 @@ class Toast {
         this.containerEl = null;
     }
 
-    _createContainer() {
+    _initContainer() {
         if (null === this.containerEl) {
-            this.containerEl = document.createElement('div')
-            this.containerEl.className = 'toast-container'
-            document.querySelector('body').appendChild(this.containerEl)
+
+            if (null === document.querySelector('.toast-container')) {
+                this.containerEl = document.createElement('div')
+                this.containerEl.className = 'toast-container'
+                document.querySelector('body').appendChild(this.containerEl)
+            } else {
+                this.containerEl = document.querySelector('.toast-container')
+            }
+
         }
 
         this.containerEl.style.top = this.top
@@ -30,21 +36,27 @@ class Toast {
         this.containerEl.style.position = 'fixed'
     }
 
-    render(html) {
+    // render and show a toast from an HTML string
+    renderFromHTML(html) {
+        this._initContainer()
+
         const templateEl = document.createElement('template')
         templateEl.innerHTML = html.trim()
 
         const toastEl = templateEl.content.firstChild
-
-        this._createContainer()
         this.containerEl.appendChild(toastEl)
 
-        const bsToast = new bootstrap.Toast(toastEl, this.options)
+        this.show(toastEl)
+    }
 
+    // show a toast from node
+    show(el) {
+        this._initContainer()
+
+        const bsToast = new bootstrap.Toast(el, this.options)
         bsToast.show()
-
-        toastEl.addEventListener('hidden.bs.toast', () => {
-            toastEl.remove()
+        el.addEventListener('hidden.bs.toast', () => {
+            el.remove()
         })
     }
 
@@ -84,7 +96,7 @@ class Toast {
         html += `<button type="button" class="btn-close ms-auto me-2 ${btnCloseClass}" data-bs-dismiss="toast" aria-label="Close"></button>`
         html += '</div>'
 
-        this.render(html)
+        this.renderFromHTML(html)
 
     }
 

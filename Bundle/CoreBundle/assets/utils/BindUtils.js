@@ -2,6 +2,15 @@ import AjaxUtils from "./AjaxUtils";
 
 export default class BindUtils
 {
+    static enableToast(container = null, selector = '.toast-container .toast') {
+        container = container || document
+
+        var els = document.querySelectorAll(selector)
+        els.forEach((el) => {
+            umbrella.Toast.show(el)
+        })
+    }
+
     static enableTooltip(container = null, selector = '[data-bs-toggle=tooltip]') {
         container = container || document
 
@@ -47,6 +56,7 @@ export default class BindUtils
     }
 
     static enableAll() {
+        this.enableToast()
         this.enableTooltip()
         this.enableXhrElement()
         this.enableXhrForm()
