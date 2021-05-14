@@ -1,0 +1,5 @@
+<div class="toast-container">
+    {% for toast in app.session.flashbag.get('toast') %}
+        {{ toast | raw }}
+    {% endfor %}
+</div>

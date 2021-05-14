@@ -133,14 +133,14 @@ class JsResponseBuilder implements \Countable
 
     // Html actions
 
-    public function update(string $cssSelector, string $html): JsResponseBuilder
+    public function updateHtml(string $cssSelector, string $html): JsResponseBuilder
     {
         return $this->addHtmlMessage(self::UPDATE_HTML, $html, $cssSelector);
     }
 
-    public function updateView(string $cssSelector, $template, array $context = []): JsResponseBuilder
+    public function update(string $cssSelector, $template, array $context = []): JsResponseBuilder
     {
-        return $this->update($cssSelector, $this->twig->render($template, $context));
+        return $this->updateHtml($cssSelector, $this->twig->render($template, $context));
     }
 
     public function remove(string $cssSelector): JsResponseBuilder
@@ -150,14 +150,14 @@ class JsResponseBuilder implements \Countable
 
     // Modal actions
 
-    public function modal(string $html): JsResponseBuilder
+    public function modalHtml(string $html): JsResponseBuilder
     {
         return $this->addHtmlMessage(self::SHOW_MODAL, $html);
     }
 
-    public function modalView($template, array $context = []): JsResponseBuilder
+    public function modal($template, array $context = []): JsResponseBuilder
     {
-        return $this->modal($this->twig->render($template, $context));
+        return $this->modalHtml($this->twig->render($template, $context));
     }
 
     public function closeModal(): JsResponseBuilder

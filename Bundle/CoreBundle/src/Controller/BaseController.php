@@ -88,20 +88,34 @@ abstract class BaseController extends AbstractController
 
     // Toast Api
 
-    public function alertInfo($text, $title = null) : void
+    protected function alert(string $type, $text, $title = null): void
     {
+        $html = $this->renderView('@UmbrellaCore/Toast/alert.html.twig', [
+            'type' => $type,
+            'text' => $text,
+            'title' => $title
+        ]);
+        $this->addFlash(self::BAG_TOAST, $html);
     }
 
-    public function alertSuccess($text, $title = null) : void
+    protected function alertInfo($text, $title = null): void
     {
+        $this->alert('info', $text, $title);
     }
 
-    public function alertWarning($text, $title = null) : void
+    protected function alertSuccess($text, $title = null): void
     {
+        $this->alert('success', $text, $title);
     }
 
-    public function alertError($text, $title = null) : void
+    protected function alertWarning($text, $title = null): void
     {
+        $this->alert('warning', $text, $title);
+    }
+
+    protected function alertError($text, $title = null): void
+    {
+        $this->alert('error', $text, $title);
     }
 
     // Exception helper

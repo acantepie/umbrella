@@ -56,8 +56,8 @@ message:
     delete_confirm: Confirm delete ?
     forget_password_explanation: Enter the email address associated to your account. We will send your password recovery procedure to your mailbox.
     reset_password: Reset your password
-    entity_updated: The item has been updated.
-    entity_deleted: The item has been delete.
+    entity_updated: Item has been updated.
+    entity_deleted: Item has been deleted.
     account_updated: Your account has been updated.
     check_your_email: Check your emails
     request_password_success: An email was sent to <b>%email%</b>. Check your mailbox and follow instructions given.
