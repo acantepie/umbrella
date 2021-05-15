@@ -7,8 +7,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class DataTableType
 {
-    const EXPORT_FILTER = 'filter';
-    const EXPORT_SELECTION = 'selection';
+    const SEND_FILTER = 'send-filter';
+    const SEND_SELECTION = 'send-selection';
 
     // FIXME : statically called to avoid to have add parent::configureOptions() on all inherit Type class
     public static function __configureOptions(OptionsResolver $resolver)

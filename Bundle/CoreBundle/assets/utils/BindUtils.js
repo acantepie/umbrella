@@ -23,9 +23,8 @@ export default class BindUtils
         })
     }
 
-    // if you don't want your link was bind : use class no-bind
     static enableXhrElement() {
-        $('body').on('click', '[data-xhr]:not(form):not(.no-bind)', (e) => {
+        $('body').on('click', '[data-xhr]:not(form)', (e) => {
             e.preventDefault();
             const $e = $(e.currentTarget);
 
@@ -38,9 +37,8 @@ export default class BindUtils
         });
     }
 
-    // if you don't want your form was bind : use class no-bind
     static enableXhrForm() {
-        $('body').on('submit', 'form[data-xhr]:not(.no-bind)', (e) => {
+        $('body').on('submit', 'form[data-xhr]', (e) => {
             e.preventDefault();
             const $e = $(e.currentTarget);
 

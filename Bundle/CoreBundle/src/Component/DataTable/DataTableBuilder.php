@@ -139,28 +139,28 @@ class DataTableBuilder
 
     public function setRowId($rowId): self
     {
-        $this->rowModifier->setIdModifier($rowId);
+        $this->rowModifier->setId($rowId);
 
         return $this;
     }
 
     public function setParentRowId($parentRowId): self
     {
-        $this->rowModifier->setParentIdModifier($parentRowId);
+        $this->rowModifier->setParentId($parentRowId);
 
         return $this;
     }
 
     public function setRowClass($rowClass): self
     {
-        $this->rowModifier->setClassModifier($rowClass);
+        $this->rowModifier->setClass($rowClass);
 
         return $this;
     }
 
     public function setRowAttr($rowAttr): self
     {
-        $this->rowModifier->setAttrModifier($rowAttr);
+        $this->rowModifier->setAttr($rowAttr);
 
         return $this;
     }

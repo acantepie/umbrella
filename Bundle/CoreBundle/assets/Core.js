@@ -73,11 +73,10 @@ import Redirect from "./jsresponse/action/Redirect";
 import Reload from "./jsresponse/action/Reload";
 import RemoveHtml from "./jsresponse/action/RemoveHtml";
 import UpdateHtml from "./jsresponse/action/UpdateHtml";
-import ReloadTable from "./jsresponse/action/ReloadTable";
+import WebComponent from "./jsresponse/action/WebComponent";
 import ShowToast from "./jsresponse/action/ShowToast";
 
 jsResponseHandler.registerAction('show_toast', new ShowToast());
-jsResponseHandler.registerAction('reload_table', new ReloadTable());
 jsResponseHandler.registerAction('show_modal', new ShowModal());
 jsResponseHandler.registerAction('close_modal', new CloseModal());
 jsResponseHandler.registerAction('eval', new Eval());
@@ -85,6 +84,7 @@ jsResponseHandler.registerAction('redirect', new Redirect());
 jsResponseHandler.registerAction('reload', new Reload());
 jsResponseHandler.registerAction('update', new UpdateHtml());
 jsResponseHandler.registerAction('remove', new RemoveHtml());
+jsResponseHandler.registerAction('web_component', new WebComponent());
 
 window.umbrella.jsResponseHandler = jsResponseHandler
 

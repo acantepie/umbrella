@@ -55,11 +55,6 @@ class Column
 
         $value = $this->options['is_safe_html'] ? $value : HtmlUtils::escape($value);
 
-        // add drag icon if has drag-handle
-        if ($this->options['drag_handle']) {
-            $value = sprintf('<div class="drag-widget"><span class="drag-handle"><i class="mdi mdi-drag"></i></span>%s</div>', $value);
-        }
-
         return $value;
     }
 }

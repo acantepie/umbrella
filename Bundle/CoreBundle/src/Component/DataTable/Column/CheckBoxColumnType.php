@@ -4,7 +4,6 @@ namespace Umbrella\CoreBundle\Component\DataTable\Column;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Umbrella\CoreBundle\Utils\Utils;
 
 /**
  * Class CheckBoxColumnType
@@ -26,14 +25,7 @@ class CheckBoxColumnType extends ColumnType
      */
     public function render($rowData, array $options): string
     {
-        return $this->columnTemplate(Utils::random(8));
-    }
-
-    private function columnTemplate(string $htmlId): string
-    {
-        return '<div>'
-            . '<input class="form-check-input" type="checkbox">'
-            . '</div>';
+        return '<input class="form-check-input" type="checkbox">';
     }
 
     private function labelTemplate(): string
@@ -43,8 +35,8 @@ class CheckBoxColumnType extends ColumnType
             . '<i class="mdi mdi-dots-vertical"></i>'
             . '</button>'
             . '<div class="dropdown-menu">'
-            . '<a class="dropdown-item js-action-select" href="#" data-filter="all">' . $this->translator->trans('common.all') . '</a>'
-            . '<a class="dropdown-item js-action-select" href="#" data-filter="none">' . $this->translator->trans('common.none') . '</a>'
+            . '<a class="dropdown-item" href data-onclick="select-page">' . $this->translator->trans('common.all') . '</a>'
+            . '<a class="dropdown-item" href data-onclick="unselect-page">' . $this->translator->trans('common.none') . '</a>'
             . '</div>';
     }
 
@@ -57,7 +49,7 @@ class CheckBoxColumnType extends ColumnType
 
         $resolver
             ->setDefault('order', false)
-            ->setDefault('class', 'text-center js-select')
+            ->setDefault('class', 'text-center row-selector')
             ->setDefault('label', $this->labelTemplate())
             ->setDefault('label_prefix', null)
             ->setDefault('translation_domain', null)

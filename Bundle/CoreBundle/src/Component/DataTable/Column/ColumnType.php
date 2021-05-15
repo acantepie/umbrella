@@ -41,10 +41,7 @@ class ColumnType
             ->setAllowedTypes('renderer', ['null', 'callable'])
 
             ->setDefault('is_safe_html', true)
-            ->setAllowedTypes('is_safe_html', 'bool')
-
-            ->setDefault('drag_handle', false)
-            ->setAllowedTypes('drag_handle', 'bool');
+            ->setAllowedTypes('is_safe_html', 'bool');
     }
 
     public function render($rowData, array $options): string

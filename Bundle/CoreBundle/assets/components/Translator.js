@@ -1,5 +1,9 @@
 const TRANS = {
     en: {
+        'row_selected': {
+             '1' : '%c% item selected. <a href data-onclick="unselect-all">Clear selection</a>',
+            '_': '%c% items selected. <a href data-onclick="unselect-all">Clear selection</a>'
+        },
         'cancel': 'Cancel',
         'confirm': 'Confirm',
         'disconnected_error': 'You are disconnected. Refresh page to login',
@@ -9,6 +13,10 @@ const TRANS = {
     },
 
     fr: {
+        'row_selected': {
+            '1' : '%c% élément sélectionnée. <a href data-onclick="unselect-all">Effacer la sélection</a>',
+            '_': '%c% éléments sélectionnées. <a href data-onclick="unselect-all">Effacer la sélection</a>',
+        },
         'cancel': 'Annuler',
         'confirm': 'Confirmer',
         'disconnected_error': 'Vous n\'etes plus connecté. Veuillez rafraichir la page pour vous authentifier',
@@ -35,8 +43,29 @@ export default class Translator {
         return lang in TRANS ? TRANS[lang] : {};
     }
 
-    trans(key, lang = null) {
+    trans(key, params = {}, lang = null) {
         const translations = this.getTranslations(lang);
-        return key in translations ? translations[key] : key;
+
+        let translation = key in translations ? translations[key] : key
+
+        if (typeof translation === 'object') {
+            const ks = Object.keys(params);
+            const k = ks.length > 0 ? params[ks[0]] : '_'
+
+            if (k in translation) {
+                translation = translation[k]
+            } else if ('_' in translation) {
+                translation = translation['_']
+            } else {
+                throw new Error('Invalid translation', translation)
+            }
+        }
+
+        for (const [k, v] of Object.entries(params)) {
+            translation = translation.replace(k, v)
+        }
+
+
+        return translation;
     }
 }

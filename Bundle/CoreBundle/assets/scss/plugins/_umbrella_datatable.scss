@@ -1,5 +1,6 @@
 .umbrella-datatable-container {
 
+  // tree
   tr.branch {
 
     &.collapsed .indenter a i.mdi::before {
@@ -19,32 +20,7 @@
     }
   }
 
-  .dataTables_wrapper {
-    &.container-fluid {
-      padding: 0;
-    }
-  }
-
   table.dataTable {
-    border-collapse: collapse !important;
-    margin-bottom: 15px !important;
-
-    .table-link {
-      color: $gray-600;
-      font-size: 1.2rem;
-      display: inline-block;
-      padding: 0 3px;
-
-      &.disabled {
-        opacity: 0.4;
-        pointer-events: none;
-      }
-
-      &:hover {
-        color: $gray-700;
-      }
-    }
-
     // Change icons view
     thead {
       .sorting,
@@ -69,40 +45,31 @@
       }
     }
 
-    tbody {
-      // Multi select table
+    // row selector
+    .row-selector {
+      cursor: pointer;
 
-      > tr.selected, >tr>.selected {
-        background-color: rgba($primary, 0.125);
-
-        td {
-          border-color: rgba($primary, 0.125);
-        }
-      }
-      td {
-        &:focus {
-          outline: none !important;
-        }
-      }
-      // Key Tables
-      th.focus,td.focus{
-        outline: 2px solid $primary !important;
-        outline-offset: -1px;
-        background-color: rgba($primary, 0.15);
+      * {
+        cursor: pointer;
       }
     }
 
-    td .drag-widget {
-      display: flex;
-      align-items: center;
-
-      .drag-handle {
-        height: 36px;
-        font-size: 24px;
-        text-align: center;
-        cursor: move;
-        margin-right: 0.5rem;
-      }
+    .drag-handle {
+      font-size: 24px;
+      text-align: center;
+      cursor: move;
+      padding: $table-cell-padding-y-sm $table-cell-padding-x;
     }
+
+    .row-details-handle i.mdi::before {
+      content: "\F0142";
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    tr.shown .row-details-handle i.mdi::before {
+      content: "\F0140";
+    }
+
   }
 }

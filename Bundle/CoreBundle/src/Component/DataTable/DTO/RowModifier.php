@@ -13,22 +13,22 @@ class RowModifier
     /**
      * @var callable|string
      */
-    protected $idModifier = self::DEFAULT_PATH_ID;
+    protected $id = self::DEFAULT_PATH_ID;
 
     /**
      * @var callable|string
      */
-    protected $idParentModifier = self::DEFAULT_PATH_PARENT_ID;
+    protected $parentId = self::DEFAULT_PATH_PARENT_ID;
 
     /**
      * @var callable|string|null
      */
-    protected $classModifier = null;
+    protected $class = null;
 
     /**
      * @var callable|array
      */
-    protected $attrModifier = [];
+    protected $attr = [];
 
     protected bool $isTree = false;
 
@@ -51,77 +51,83 @@ class RowModifier
         return $this;
     }
 
-    public function setIdModifier($idModifier): self
+    public function setId($id): self
     {
-        if (!is_string($idModifier) && !is_callable($idModifier)) {
+        if (!is_string($id) && !is_callable($id)) {
             throw new \InvalidArgumentException('RowId must be an property path or a callback');
         }
 
-        $this->idModifier = $idModifier;
+        $this->id = $id;
 
         return $this;
     }
 
-    public function setParentIdModifier($idParentModifier): self
+    public function setParentId($parentId): self
     {
-        if (!is_string($idParentModifier) && !is_callable($idParentModifier)) {
+        if (!is_string($parentId) && !is_callable($parentId)) {
             throw new \InvalidArgumentException('RowParentId must be an property path or a callback');
         }
 
-        $this->idParentModifier = $idParentModifier;
+        $this->parentId = $parentId;
 
         return $this;
     }
 
-    public function setClassModifier($classModifier): self
+    public function setClass($class): self
     {
-        if (!is_string($classModifier) && !is_callable($classModifier)) {
-            throw new \InvalidArgumentException('RowClass must be a class or a callback');
+        if (!is_string($class) && !is_callable($class)) {
+            throw new \InvalidArgumentException('RowClass must be a string or a callback');
         }
 
-        $this->classModifier = $classModifier;
+        $this->class = $class;
 
         return $this;
     }
 
-    public function setAttrModifier($attrModifier): self
+    public function setAttr($attr): self
     {
-        if (!is_array($attrModifier) && !is_callable($attrModifier)) {
+        if (!is_array($attr) && !is_callable($attr)) {
             throw new \InvalidArgumentException('RowAttr must be an array or a callback');
         }
 
-        $this->attrModifier = $attrModifier;
+        $this->attr = $attr;
 
         return $this;
     }
 
     public function modify(RowView $view, $data): void
     {
-        $id = is_callable($this->idModifier)
-            ? (string) call_user_func($this->idModifier, $data)
-            : (string) $this->accessor->getValue($data, $this->idModifier);
+        $id = is_callable($this->id)
+            ? (string) call_user_func($this->id, $data)
+            : (string) $this->accessor->getValue($data, $this->id);
 
         $this->computedIds[] = $id;
         $view->attr['data-id'] = $id;
 
-        if (null !== $this->classModifier) {
-            $view->class .= is_callable($this->classModifier)
-                ? ' ' . call_user_func($this->classModifier, $data)
-                : ' ' . $this->accessor->getValue($data, $this->classModifier);
+        if (null !== $this->class) {
+            $view->class .= is_callable($this->class)
+                ? ' ' . call_user_func($this->class, $data)
+                : ' ' . $this->class;
         }
 
-        if (is_callable($this->attrModifier)) {
-            $view->attr = array_merge($view->attr, call_user_func($this->attrModifier, $data));
-        } elseif (count($this->attrModifier) > 0) {
-            $view->attr = array_merge($view->attr, $this->attrModifier);
+        if (is_callable($this->attr)) {
+            $attr = call_user_func($this->attr, $data);
+
+            if (!\is_array($attr)) {
+                throw new \InvalidArgumentException('RowAttr callback must return an array of attributes');
+            }
+
+            $view->attr = array_merge($view->attr, $attr);
+        } elseif (count($this->attr) > 0) {
+            $view->attr = array_merge($view->attr, $this->attr);
         }
 
         if ($this->isTree) {
             $view->attr['data-tt-id'] = $id;
 
-            $parentId = is_callable($this->idParentModifier)
-                ? (string) call_user_func($this->idParentModifier, $data)
-                : (string) $this->accessor->getValue($data, $this->idParentModifier);
+            $parentId = is_callable($this->parentId)
+                ? (string) call_user_func($this->parentId, $data)
+                : (string) $this->accessor->getValue($data, $this->parentId);
 
             if (in_array($parentId, $this->computedIds)) { // Avoid attach row to unexisting parent id (else treegrid wont work)
                 $view->attr['data-tt-parent-id'] = $parentId;

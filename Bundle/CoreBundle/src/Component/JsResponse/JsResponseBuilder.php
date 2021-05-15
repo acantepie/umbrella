@@ -23,8 +23,7 @@ class JsResponseBuilder implements \Countable
     const SHOW_MODAL = 'show_modal';
     const CLOSE_MODAL = 'close_modal';
 
-    const RELOAD_TABLE = 'reload_table';
-    const RELOAD_MENU = 'reload_menu';
+    const WEB_COMPONENT = 'web_component';
 
     private RouterInterface $router;
     private Environment $twig;
@@ -42,14 +41,14 @@ class JsResponseBuilder implements \Countable
         $this->menuHelper = $menuHelper;
     }
 
-    public function add(string $action, array $params = []): JsResponseBuilder
+    public function add(string $action, array $params = []): self
     {
         $this->messages[] = new JsMessage($action, $params);
 
         return $this;
     }
 
-    public function clear(): JsResponseBuilder
+    public function clear(): self
     {
         $this->messages = [];
 
@@ -72,7 +71,7 @@ class JsResponseBuilder implements \Countable
 
     // Toast actions
 
-    public function alert(string $type, $text, $title = null): JsResponseBuilder
+    public function alert(string $type, $text, $title = null): self
     {
         $html = $this->twig->render('@UmbrellaCore/Toast/alert.html.twig', [
             'type' => $type,
@@ -82,48 +81,48 @@ class JsResponseBuilder implements \Countable
         return $this->add(self::SHOW_TOAST, ['value' => $html]);
     }
 
-    public function alertInfo($text, $title = null): JsResponseBuilder
+    public function alertInfo($text, $title = null): self
     {
         return $this->alert('info', $text, $title);
     }
 
-    public function alertSuccess($text, $title = null): JsResponseBuilder
+    public function alertSuccess($text, $title = null): self
     {
         return $this->alert('success', $text, $title);
     }
 
-    public function alertWarning($text, $title = null): JsResponseBuilder
+    public function alertWarning($text, $title = null): self
     {
         return $this->alert('warning', $text, $title);
     }
 
-    public function alertError($text, $title = null): JsResponseBuilder
+    public function alertError($text, $title = null): self
     {
         return $this->alert('error', $text, $title);
     }
 
     // Nav actions
 
-    public function redirectToRoute(string $route, array $params = []): JsResponseBuilder
+    public function redirectToRoute(string $route, array $params = []): self
     {
         return $this->redirect($this->router->generate($route, $params));
     }
 
-    public function redirect(string $url): JsResponseBuilder
+    public function redirect(string $url): self
     {
         return $this->add(self::REDIRECT, [
             'value' => $url,
         ]);
     }
 
-    public function reload(): JsResponseBuilder
+    public function reload(): self
     {
         return $this->add(self::RELOAD);
     }
 
     // Eval actions
 
-    public function eval(string $js): JsResponseBuilder
+    public function eval(string $js): self
     {
         return $this->add(self::EVAL, [
             'value' => $js,
@@ -132,61 +131,88 @@ class JsResponseBuilder implements \Countable
 
     // Html actions
 
-    public function updateHtml(string $cssSelector, string $html): JsResponseBuilder
+    public function updateHtml(string $cssSelector, string $html): self
     {
-        return $this->addHtmlMessage(self::UPDATE_HTML, $html, $cssSelector);
+        return $this->add(self::UPDATE_HTML, [
+            'value' => $html,
+            'selector' => $cssSelector,
+        ]);
     }
 
-    public function update(string $cssSelector, $template, array $context = []): JsResponseBuilder
+    public function update(string $cssSelector, $template, array $context = []): self
     {
         return $this->updateHtml($cssSelector, $this->twig->render($template, $context));
     }
 
-    public function remove(string $cssSelector): JsResponseBuilder
+    public function remove(string $cssSelector): self
     {
-        return $this->addHtmlMessage(self::REMOVE_HTML, null, $cssSelector);
+        return $this->add(self::REMOVE_HTML, [
+            'selector' => $cssSelector,
+        ]);
     }
 
     // Modal actions
 
-    public function modalHtml(string $html): JsResponseBuilder
+    public function modalHtml(string $html): self
     {
-        return $this->addHtmlMessage(self::SHOW_MODAL, $html);
+        return $this->add(self::SHOW_MODAL, [
+            'value' => $html,
+        ]);
     }
 
-    public function modal($template, array $context = []): JsResponseBuilder
+    public function modal($template, array $context = []): self
     {
         return $this->modalHtml($this->twig->render($template, $context));
     }
 
-    public function closeModal(): JsResponseBuilder
+    public function closeModal(): self
     {
-        return $this->addHtmlMessage(self::CLOSE_MODAL);
+        return $this->add(self::CLOSE_MODAL);
     }
 
-    // Components actions
+    // Menu actions
 
-    public function reloadTable($ids = null): JsResponseBuilder
-    {
-        return $this->add(self::RELOAD_TABLE, [
-            'ids' => (array) $ids,
-        ]);
-    }
-
-    public function reloadMenu(?string $name = null, string $cssSelector = '.left-side-menu'): JsResponseBuilder
+    public function reloadMenu(?string $name = null, string $cssSelector = '.left-side-menu'): self
     {
         $html = $this->menuHelper->renderMenu($name);
-
         return $this->update($cssSelector, $html);
     }
 
-    // Utils
+    // Web Components actions
 
-    private function addHtmlMessage(string $type, ?string $html = null, ?string $cssSelector = null): JsResponseBuilder
+    public function webComponent($selector, string $method, ...$methodParams): self
     {
-        return $this->add($type, [
-            'value' => $html,
-            'selector' => $cssSelector,
+        return $this->add(self::WEB_COMPONENT, [
+            'selector' => $selector,
+            'method' => $method,
+            'method_params' => $methodParams
         ]);
+    }
+
+    // DataTable actions
+
+    public function reloadTable($ids = null): self
+    {
+        return $this->table($ids, 'reload');
+    }
+
+    public function table($ids = null, string $method, ...$methodParams): self
+    {
+        return $this->webComponent($this->toSelector($ids, 'umbrella-datatable'), $method, $methodParams);
+    }
+
+    // utils
+
+    private function toSelector($ids = null, string $name): string
+    {
+        if (null === $ids) {
+            return $name;
+        }
+
+        $selector = '';
+        foreach ((array) $ids as $id) {
+            $selector .= $name . '#' . $id . ' ';
+        }
+        return $selector;
     }
 }
