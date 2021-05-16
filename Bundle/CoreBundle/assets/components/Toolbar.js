@@ -6,20 +6,22 @@ export default class Toolbar extends HTMLElement {
 
     constructor() {
         super();
-        this.$view = $(this);
-        this.$form = this.$view.find('.js-toolbar-form');
 
-        this.quiet = false;
+        this.form = this.querySelector('form')
+
+        this.events = true
         this.timer = null;
     }
 
     connectedCallback() {
-        this.$view.on('change', 'select:not([data-toolbar-type]), input:not([data-toolbar-type])', () => {
-            this._triggerChange(100); // avoid spam
+        const $form = $(this.form)
+
+        $form.on('change', 'select', () => {
+            this._triggerChange(100);
         });
 
-        this.$view.on('change paste input', '[data-toolbar-type=search]', () => {
-            this._triggerChange(200); // avoid spam
+        $form.on('change paste input', 'input[type=search], input[type=text]', () => {
+            this._triggerChange(200);
         });
     }
 
@@ -27,31 +29,38 @@ export default class Toolbar extends HTMLElement {
     _triggerChange(wait = 0) {
         clearTimeout(this.timer);
 
-        if (this.quiet) {
-            return;
-        }
-
         this.timer = setTimeout(() => {
-            this.dispatchEvent(new Event('tb:change'));
+            if (this.events) {
+                this.dispatchEvent(new Event('tb:change'));
+            }
         }, wait);
     }
 
-    // Api
+    enableEvents() {
+        this.events = true
+    }
+
+    disableEvents() {
+        this.events = false
+    }
+
+    setMode(mode) {
+        this.setAttribute('data-mode', mode)
+    }
+
+    setAlert(html) {
+        this.querySelector('.toolbar-alert').innerHTML = html
+    }
 
     getData() {
-        return this.$form.length
-            ? this.$form.serializeFormToJson()
-            : [];
+        return $(this.form).serializeFormToJson();
     }
 
     reset() {
-        if (this.$form.length) {
+        this.disableEvents()
+        this.form.reset()
+        this.enableEvents()
 
-            this.quiet = true;
-            this.$form[0].reset(); // doens't trigger any change
-            this.quiet = false;
-
-            this._triggerChange();
-        }
+        this._triggerChange()
     }
 }

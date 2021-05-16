@@ -7,8 +7,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class DataTableType
 {
-    const SEND_FILTER = 'send-filter';
-    const SEND_SELECTION = 'send-selection';
+    const TAG_SEND_DATA = 'dt:senddata';
+
+    const DEFAULT_MODE = 'default';
+    const SELECTION_MODE = 'selection';
 
     // FIXME : statically called to avoid to have add parent::configureOptions() on all inherit Type class
     public static function __configureOptions(OptionsResolver $resolver)

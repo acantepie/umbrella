@@ -2,6 +2,7 @@
 
 namespace Umbrella\CoreBundle\Component\Widget\Type;
 
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\Component\Widget\DTO\WidgetView;
 use Umbrella\CoreBundle\Component\Widget\WidgetBuilder;
@@ -11,6 +12,18 @@ class WidgetType
     public function buildView(WidgetView $view, array $options)
     {
         $view->vars['attr'] = $options['attr'];
+
+        // for dataTable
+        if ($options['tag']) {
+            $view->vars['attr']['data-tag'] = $options['tag'];
+        }
+        $view->vars['tag'] = $options['tag'];
+
+        if ($options['mode']) {
+            $view->vars['attr']['data-mode'] = $options['mode'];
+        }
+        $view->vars['mode'] = $options['mode'];
+        // end
 
         if ($options['class']) {
             if (isset($view->vars['attr']['class'])) {
@@ -32,6 +45,8 @@ class WidgetType
             $view->vars['attr']['data-bs-toggle'] = 'tooltip';
             $view->vars['attr']['data-bs-trigger'] = 'hover';
         }
+
+        // hack (used only by DataTable)
     }
 
     public function buildWidget(WidgetBuilder $builder, array $options)
@@ -45,6 +60,35 @@ class WidgetType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        $normalizer = function (Options $options, $value) {
+            if (null === $value) {
+                return $value;
+            }
+
+            if (\is_string($value)) {
+                $value = trim($value);
+                return $value ?? null;
+            }
+
+            $a = \array_filter(\array_map('trim', $value));
+
+            return count($a) > 0 ? implode(' ', $a) : null;
+        };
+
+        // for dataTable
+        $resolver
+            ->define('tag')
+            ->default(null)
+            ->allowedTypes('string', 'array', 'null')
+            ->normalize($normalizer);
+
+        $resolver
+            ->define('mode')
+            ->default(null)
+            ->allowedTypes('string', 'array', 'null')
+            ->normalize($normalizer);
+        // end
+
         $resolver
             ->define('title')
             ->default(null)
@@ -71,7 +115,7 @@ class WidgetType
             ->allowedTypes('string', 'null', 'bool');
 
         $resolver // keep backward compatibily (only used if translatio_domain is not false)
-            ->define('text_prefix')
+        ->define('text_prefix')
             ->default(null)
             ->allowedTypes('string', 'null');
 

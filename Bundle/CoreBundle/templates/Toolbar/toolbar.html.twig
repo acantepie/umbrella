@@ -1,25 +1,17 @@
-<umbrella-toolbar class="umbrella-toolbar {% if form | length == 0  and widget | length ==0 %}d-none{% endif %}">
-
-    {% if form | length > 0 %}
-        <form class="form-inline js-toolbar-form" enctype="multipart/form-data" method="{{ form.vars.method }}">
-            {{ umbrella_form_theme(form) }}
-
-            <div class="d-flex">
-                {% for child in form -%}
-                    <div class="me-2">
-                        {{- form_widget(child) -}}
-                    </div>
-                {%- endfor -%}
+<umbrella-toolbar theme="default">
+    {{ umbrella_form_theme(form) }}
+    <form class="toolbar-item-container">
+        {%- for child in form -%}
+            <div class="toolbar-item-filter toolbar-item">
+                {{- form_widget(child) -}}
             </div>
-
-        </form>
-    {% endif %}
-
-    <div class="widgets">
-        {% for child in widget -%}
-            {{- render_widget(child) -}}
         {%- endfor -%}
-    </div>
-
-
+        <div class="toolbar-item-separator"></div>
+        {%- for child in widget -%}
+            <div class="toolbar-item-widget toolbar-item" data-mode="{{ child.vars.mode }}">
+                {{- render_widget(child) -}}
+            </div>
+        {%- endfor -%}
+    </form>
+    <div class="toolbar-alert"></div>
 </umbrella-toolbar>

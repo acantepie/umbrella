@@ -68,9 +68,6 @@ class DataTableRenderer
         $jsOptions['ajax'] = [
             'url' => $options['load_url'],
         ];
-        $jsOptions['ajax_data'] = [
-            '_dtid' => $options['id'],
-        ];
 
         if ($options['paging']) {
             $jsOptions['lengthChange'] = $options['length_change'];

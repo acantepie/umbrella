@@ -18,7 +18,7 @@ export default class DataTable extends HTMLElement {
         this.toolbar = this.querySelector('umbrella-toolbar');
         this.timer = null;
 
-        this.selectedIds = new Set([]);
+        this.selectedIds = new Set([]); // selection mode if selectedIds > 0
 
         this.reload = this.reload.bind(this)
         this._handleData = this._handleData.bind(this)
@@ -34,9 +34,7 @@ export default class DataTable extends HTMLElement {
         this.table = this.$table.DataTable(this.options);
         this._startAutoReload(this.options['poll_interval']);
 
-        if (this.toolbar) {
-            this.toolbar.addEventListener('tb:change', this.reload)
-        }
+        this.toolbar.addEventListener('tb:change', this.reload)
 
         // row re-order
         if (this.options['rowReorder']) {
@@ -48,50 +46,12 @@ export default class DataTable extends HTMLElement {
             this.toggleRowSelection($(e.currentTarget).closest('tr[data-id]'));
         })
 
-        // custom event
-        this.$view.on('click', '[data-onclick]', (e) => {
-            const $e = $(e.currentTarget)
-            e.preventDefault();
-
-            switch ($e.data('onclick')) {
-                case 'reset':
-                    if (this.toolbar) {
-                        this.toolbar.reset();
-                    }
-                    return
-
-                case 'select-page':
-                    this.selectPage()
-                    return
-
-                case 'unselect-page':
-                    this.unselectPage()
-                    return
-
-                case 'unselect-all':
-                    this.unselectAll()
-                    return
-
-                case 'show-details':
-                    this.toggleRowDetails($e)
-                    return
-
-                case 'send-selection':
-                case 'send-filter':
-                    this._sendExtraData($e)
-                    return
-
-            }
-
+        // handle tagged actions
+        this.$view.on('click', '[data-tag^=dt]', (e) => {
+            this._handleClickAction(e);
         })
 
-
-        this.$view.on('click', '[data-export]', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            this._export($(e.currentTarget));
-        });
+        // handle
     }
 
     disconnectedCallback() {
@@ -104,35 +64,36 @@ export default class DataTable extends HTMLElement {
             this.options['language'] = i18n[umbrella.LANG];
         }
 
+        this.options['processing'] = true
         this.options['ajax']['data'] = this._handleData;
         this.options['ajax']['error'] = this._handleError;
         this.options['preDrawCallback'] = this._preDrawCallback;
         this.options['drawCallback'] = this._drawCallback;
     }
 
-    // ----- DataTable Callback ----- //
-
-    _handleData(data, addFormData = true) {
+    _handleData(data) {
         // avoid send useless data
         delete data['columns'];
         delete data['search'];
 
-        const toolbarData = this.toolbar ? this.toolbar.getData() : {};
+        // add dataTable id
+        data['_dtid'] = this.id
 
-        return {...data, ...this.options['ajax_data'], ...toolbarData}; // pass data from options
+        // add toolbar data
+        data = {...data, ...this.toolbar.getData()}
+
+        return data;
     }
 
     _handleError(requestObject, error, errorThrown) {
         if (requestObject.status === 401) {
             this.displayError(umbrella.Translator.trans('disconnected_error'));
         } else {
-
             if (requestObject.responseJSON && requestObject.responseJSON.error) {
                 this.displayError(requestObject.responseJSON.error);
             } else {
-                this.displayError();
+                this.displayError(umbrella.Translator.trans('loading_data_error'));
             }
-
         }
 
         this._stopAutoReload();
@@ -184,16 +145,14 @@ export default class DataTable extends HTMLElement {
     }
 
     _drawSelection() {
-        if (0 === this.selectedIds.size) {
-            return
+        if (this.isSelectionMode()) {
+            this.$tableBody.find('tr[data-id]').each((i, e) => {
+                const $row = $(e);
+                if (this.selectedIds.has($row.data('id'))) {
+                    this.selectRow($row)
+                }
+            })
         }
-
-        this.$tableBody.find('tr[data-id]').each((i, e) => {
-            const $row = $(e);
-            if (this.selectedIds.has($row.data('id'))) {
-                this.selectRow($row)
-            }
-        })
     }
 
     // ----- Autoreload ----- //
@@ -221,7 +180,7 @@ export default class DataTable extends HTMLElement {
         }
     }
 
-    // ----- Extra ----- //
+    // ----- Row reorder ----- //
 
     _rowReorder(e, details, edit) {
 
@@ -245,113 +204,150 @@ export default class DataTable extends HTMLElement {
         }
     }
 
-    _sendExtraData($e) { // FIXME - hack - must override default Binding
-        const mode = $e.data('onclick');
+    // ----- Custom actions ----- //
 
-        let data = {};
+    _handleClickAction(e) {
+        const $action = $(e.currentTarget)
+        const tag = $action.attr('data-tag')
 
-        if (mode === 'send-selection') {
+        switch (tag) {
+            case 'dt:action':
+                // no click to handle - let default behaviour
+                break
 
-            if (0 === this.selectedIds.size) {
-                return
-            }
+            case 'dt:unselectall':
+                e.preventDefault()
+                this.unselectAll()
+                break
 
-            data['ids'] = [...this.selectedIds];
+            case 'dt:selectpage':
+                e.preventDefault()
+                this.selectPage()
+                break
 
-        } else {
-            data = this.table.ajax.params();
+            case 'dt:unselectpage':
+                e.preventDefault()
+                this.unselectPage()
+                break
+
+            case 'dt:reset':
+                e.preventDefault()
+                this.toolbar.reset()
+                break
+
+            case 'dt:details':
+                e.preventDefault()
+                this.toggleRowDetails($action)
+                break
+
+            case 'dt:senddata':
+                e.preventDefault()
+                e.stopPropagation()
+                this._doXhr($action);
+                break
+
+            default:
+                console.warn('Unknow tag ', tag, $action[0])
+                break
+        }
+    }
+
+    _doXhr($e) {
+        if (null === $e.data('xhr')) {
+            console.warn('Can\'t handle action, missing data-xhr attribute', $e[0])
+            return
         }
 
-        // do ajax call and send extra params
-        if ($e.data('xhr')) {
-            AjaxUtils.get({
-                url: $e.data('xhr'),
-                data: data,
-                xhr_id: $e.data('xhr-id') || null,
-                confirm: $e.data('confirm') || false,
-                spinner: $e.data('spinner') || false
-            });
+        let data = {}
 
+        if (this.isSelectionMode()) {
+            data['ids'] = [...this.selectedIds]
+            data['mode'] = 'selection'
         } else {
-            window.location.href = $e.attr('href') + '?' + $.param(data);
+            data = this.table.ajax.params()
+            data['mode'] = 'default';
+        }
+
+        AjaxUtils.get({
+            url: $e.data('xhr'),
+            data: data,
+            xhr_id: $e.data('xhr-id') || null,
+            confirm: $e.data('confirm') || false,
+            spinner: $e.data('spinner') || false
+        });
+    }
+
+
+    _renderMode() {
+        if (this.isSelectionMode()) {
+            this.toolbar.setAlert(umbrella.Translator.trans('row_selected', {'%c%': this.selectedIds.size}));
+            this.toolbar.setMode('selection')
+        } else {
+            this.toolbar.setAlert('')
+            this.toolbar.setMode('default')
         }
     }
 
     // ----- Api ----- //
 
-    displayError(error = umbrella.Translator.trans('loading_data_error'), icon = null) {
-        let html = '<tr>';
-        html += '<td class="text-danger text-center" colspan="100%">';
-        if (icon) {
-            html += `<i class="${icon} me-1"></i>`;
-        }
-        html += error;
-        html += '</td>';
-        html += '</tr>';
-        this.$tableBody.html(html);
-    }
-
-    displaySpinner() {
-        this.$tableBody.html(this.$tableBody.data('spinner'));
+    displayError(error) {
+        this.$tableBody.html(`
+            <tr>
+                <td class="text-danger text-center" colspan="100%">${error}</td>
+            </tr>`);
     }
 
     reload(paging = true) {
         this.table.draw(paging);
     }
 
-    selectPage(updateInfo = true) {
+    isSelectionMode() {
+        return this.selectedIds.size > 0
+    }
+
+    selectPage(renderMode = false) {
         this.$tableBody.find('tr[data-id]').each((i, e) => {
             this.selectRow($(e), false)
         })
 
-        if (updateInfo) {
-            this.renderSelectionInfo()
-        }
+        if (renderMode) this._renderMode()
     }
 
-    unselectPage(updateInfo = true) {
+    unselectPage(renderMode = true) {
         this.$tableBody.find('tr[data-id]').each((i, e) => {
             this.unselectRow($(e), false)
         })
 
-        if (updateInfo) {
-            this.renderSelectionInfo()
-        }
+        if (renderMode) this._renderMode()
     }
 
-    unselectAll(updateInfo = true) {
+    unselectAll(renderMode = true) {
         this.unselectPage(false)
         this.selectedIds.clear()
 
-        if (updateInfo) {
-            this.renderSelectionInfo()
-        }
+        if (renderMode) this._renderMode()
     }
 
-    toggleRowSelection($row, updateInfo = true) {
+    toggleRowSelection($row, renderMode = true) {
         this.selectedIds.has($row.data('id'))
-            ? this.unselectRow($row, updateInfo)
-            : this.selectRow($row, updateInfo)
+            ? this.unselectRow($row, renderMode)
+            : this.selectRow($row, renderMode)
     }
 
-    selectRow($row, updateInfo = true) {
+    selectRow($row, renderMode = true) {
         this.selectedIds.add($row.data('id'))
         $row.addClass('selected')
         $row.find('.row-selector input[type=checkbox]').prop('checked', true)
 
-        if (updateInfo) {
-            this.renderSelectionInfo()
-        }
+        if (renderMode) this._renderMode()
     }
 
-    unselectRow($row, updateInfo = true) {
+    unselectRow($row, renderMode = true) {
         this.selectedIds.delete($row.data('id'))
         $row.removeClass('selected')
         $row.find('.row-selector input[type=checkbox]').prop('checked', false)
 
-        if (updateInfo) {
-            this.renderSelectionInfo()
-        }
+        if (renderMode) this._renderMode()
     }
 
     unselectRowId(id) {
@@ -361,7 +357,7 @@ export default class DataTable extends HTMLElement {
             this.unselectRow($row, true)
         } else {
             this.selectedIds.delete(id)
-            this.renderSelectionInfo()
+            this._renderMode()
         }
     }
 
@@ -372,27 +368,8 @@ export default class DataTable extends HTMLElement {
             this.selectRow($row, true)
         } else {
             this.selectedIds.add(id)
-            this.renderSelectionInfo()
+            this._renderMode()
         }
-    }
-
-    renderSelectionInfo() {
-        if (0 === this.selectedIds.size) {
-            if (null !== this.$selectionInfo) {
-                this.$selectionInfo.remove();
-                this.$selectionInfo = null
-            }
-            return
-        }
-
-        if (null === this.$selectionInfo) {
-            this.$selectionInfo = $('<div class="alert bg-light fade show"></div>');
-            this.$table.before(this.$selectionInfo);
-        }
-
-        this.$selectionInfo.html(`<div>
-            ${umbrella.Translator.trans('row_selected', {'%c%': this.selectedIds.size})}
-            </div>`);
     }
 
     toggleRowDetails($e) {

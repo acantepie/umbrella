@@ -9,7 +9,7 @@ export default {
         "sLoadingRecords": "Chargement...",
         "sProcessing": "Traitement...",
         "sSearch": "Rechercher :",
-        "sZeroRecords": 'Aucun résultat trouvé - <a href data-onclick="reset">réinitialiser les filtres</a>',
+        "sZeroRecords": 'Aucun résultat trouvé - <a href data-tag="dt:reset">réinitialiser les filtres</a>',
         "oPaginate": {
             "sFirst": "Premier",
             "sLast": "Dernier",
@@ -30,6 +30,6 @@ export default {
     },
 
     en: {
-        "sZeroRecords": 'No result found - <a href data-onclick="reset">reset filters</a>',
+        "sZeroRecords": 'No result found - <a href data-tag="dt:reset">reset filters</a>',
     }
 }

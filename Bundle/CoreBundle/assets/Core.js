@@ -75,6 +75,7 @@ import RemoveHtml from "./jsresponse/action/RemoveHtml";
 import UpdateHtml from "./jsresponse/action/UpdateHtml";
 import WebComponent from "./jsresponse/action/WebComponent";
 import ShowToast from "./jsresponse/action/ShowToast";
+import Download from "./jsresponse/action/Download";
 
 jsResponseHandler.registerAction('show_toast', new ShowToast());
 jsResponseHandler.registerAction('show_modal', new ShowModal());
@@ -85,6 +86,7 @@ jsResponseHandler.registerAction('reload', new Reload());
 jsResponseHandler.registerAction('update', new UpdateHtml());
 jsResponseHandler.registerAction('remove', new RemoveHtml());
 jsResponseHandler.registerAction('web_component', new WebComponent());
+jsResponseHandler.registerAction('download', new Download());
 
 window.umbrella.jsResponseHandler = jsResponseHandler
 

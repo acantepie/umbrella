@@ -25,6 +25,8 @@ class JsResponseBuilder implements \Countable
 
     const WEB_COMPONENT = 'web_component';
 
+    const DOWNLOAD = 'download';
+
     private RouterInterface $router;
     private Environment $twig;
     private MenuHelper $menuHelper;
@@ -67,6 +69,16 @@ class JsResponseBuilder implements \Countable
     public function count(): int
     {
         return count($this->messages);
+    }
+
+    // Misc
+
+    public function download(string $content, string $filename = null)
+    {
+        return $this->add(self::DOWNLOAD, [
+            'content' => $content,
+            'filename' => $filename
+        ]);
     }
 
     // Toast actions

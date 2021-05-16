@@ -10,7 +10,7 @@ class DetailsHandleColumnType extends ColumnType
     public function render($rowData, array $options): string
     {
         return sprintf(
-            '<a href data-onclick="show-details" row-details="%s" class="row-details-handle"><i class="mdi"></i></a>',
+            '<a href data-tag="dt:details" row-details="%s" class="row-details-handle"><i class="mdi"></i></a>',
             HtmlUtils::escape(call_user_func($options['details_renderer'], $rowData, $options), 'html_attr')
         );
     }

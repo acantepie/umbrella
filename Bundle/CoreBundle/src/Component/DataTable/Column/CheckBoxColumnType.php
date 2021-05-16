@@ -35,8 +35,8 @@ class CheckBoxColumnType extends ColumnType
             . '<i class="mdi mdi-dots-vertical"></i>'
             . '</button>'
             . '<div class="dropdown-menu">'
-            . '<a class="dropdown-item" href data-onclick="select-page">' . $this->translator->trans('common.all') . '</a>'
-            . '<a class="dropdown-item" href data-onclick="unselect-page">' . $this->translator->trans('common.none') . '</a>'
+            . '<a class="dropdown-item" href data-tag="dt:selectpage">' . $this->translator->trans('common.all') . '</a>'
+            . '<a class="dropdown-item" href data-tag="dt:unselectpage">' . $this->translator->trans('common.none') . '</a>'
             . '</div>';
     }
 
