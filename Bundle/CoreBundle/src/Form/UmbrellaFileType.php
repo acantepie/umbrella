@@ -59,6 +59,7 @@ class UmbrellaFileType extends AbstractType
 
         $view->vars['allow_delete'] = $options['allow_delete'];
         $view->vars['label_browse'] = $options['label_browse'];
+        $view->vars['icon_browse'] = $options['icon_browse'];
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -140,18 +141,25 @@ class UmbrellaFileType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'config_name' => null,
-            'data_class' => UmbrellaFile::class,
-            'error_bubbling' => false, // resolve error at this level
-            'allow_delete' => true,
-            'label_browse' => 'common.browse',
-            'mapping' => null
-        ]);
+        $resolver
+            ->setDefault('data_class', UmbrellaFile::class)
+            ->setDefault('error_bubbling', false);
 
-        $resolver->setAllowedTypes('config_name', ['null', 'string']);
-        $resolver->setAllowedTypes('allow_delete', 'boolean');
-        $resolver->setAllowedTypes('mapping', ['null', 'string']);
+        $resolver
+            ->setDefault('config_name', null)
+            ->setAllowedTypes('config_name', ['null', 'string']);
+
+        $resolver
+            ->setDefault('allow_delete', true)
+            ->setAllowedTypes('allow_delete', 'boolean');
+
+        $resolver
+            ->setDefault('icon_browse', '<i class="uil-folder me-1"></i>')
+            ->setAllowedTypes('icon_browse', ['string', 'null']);
+
+        $resolver
+            ->setDefault('label_browse', 'common.browse')
+            ->setAllowedTypes('label_browse', ['string', 'null']);
     }
 
     /**
