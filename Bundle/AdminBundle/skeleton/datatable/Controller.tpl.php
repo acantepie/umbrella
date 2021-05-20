@@ -24,7 +24,7 @@ class <?= $controller->getShortClassName(); ?> extends AdminController
     /**
      * @Route("")
      */
-    public function indexAction(Request $request)
+    public function index(Request $request)
     {
         $table = $this->createTable(<?= $table->getShortClassName(); ?>::class);
         $table->handleRequest($request);
@@ -41,7 +41,7 @@ class <?= $controller->getShortClassName(); ?> extends AdminController
     /**
      * @Route(path="/edit/{id}", requirements={"id"="\d+"})
      */
-    public function editAction(Request $request, $id = null)
+    public function edit(Request $request, $id = null)
     {
 <?php if ('page' === $view_type) { ?>
         $this->getMenu()->setCurrent('<?= $routename_prefix; ?>_index', Menu::BY_ROUTE);
@@ -95,7 +95,7 @@ class <?= $controller->getShortClassName(); ?> extends AdminController
     /**
      * @Route("/move/{id}/{direction}", requirements={"id": "\d+"})
      */
-    public function moveAction(<?= $repository->getShortClassName(); ?> $repository, $id, string $direction)
+    public function move(<?= $repository->getShortClassName(); ?> $repository, $id, string $direction)
     {
         $entity = $this->findOrNotFound(<?= $entity->getShortClassName(); ?>::class, $id);
         if ('up' === $direction) {
@@ -112,7 +112,7 @@ class <?= $controller->getShortClassName(); ?> extends AdminController
     /**
      * @Route(path="/delete/{id}", requirements={"id"="\d+"})
      */
-    public function deleteAction(Request $request, $id)
+    public function delete(Request $request, $id)
     {
         $entity = $this->findOrNotFound(<?= $entity->getShortClassName(); ?>::class, $id);
         $this->removeAndFlush($entity);

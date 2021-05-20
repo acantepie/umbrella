@@ -36,7 +36,7 @@ class SecurityController extends AdminController
     /**
      * @Route("/login", name="umbrella_admin_login")
      */
-    public function loginAction(AuthenticationUtils $authenticationUtils, Request $request)
+    public function login(AuthenticationUtils $authenticationUtils, Request $request)
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -53,7 +53,7 @@ class SecurityController extends AdminController
     /**
      * @Route("/logout", name="umbrella_admin_logout", methods={"GET"})
      */
-    public function logoutAction()
+    public function logout()
     {
         throw new \LogicException();
     }
@@ -61,7 +61,7 @@ class SecurityController extends AdminController
     /**
      * @Route("/password_request")
      */
-    public function passwordRequestAction(UserMailer $userMailer, Request $request)
+    public function passwordRequest(UserMailer $userMailer, Request $request)
     {
         // form submitted
         if ($request->isMethod('POST')) {
@@ -87,7 +87,7 @@ class SecurityController extends AdminController
     /**
      * @Route("/password_request_success")
      */
-    public function passwordRequestSuccessAction(Request $request)
+    public function passwordRequestSuccess(Request $request)
     {
         return $this->render('@UmbrellaAdmin/Security/password_request_success.html.twig', [
             'email' => $request->query->get('email'),
@@ -97,7 +97,7 @@ class SecurityController extends AdminController
     /**
      * @Route("/password_reset/{token}")
      */
-    public function passwordResetAction(Request $request, $token)
+    public function passwordReset(Request $request, $token)
     {
         $user = $this->userManager->findUserByConfirmationToken($token);
 

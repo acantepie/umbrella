@@ -17,7 +17,7 @@ class UserController extends AdminController
     /**
      * @Route("")
      */
-    public function indexAction(Request $request)
+    public function index(Request $request)
     {
         $table = $this->createTable($this->getParameter('umbrella_admin.user.table'));
         $table->handleRequest($request);
@@ -36,7 +36,7 @@ class UserController extends AdminController
      *
      * @param mixed|null $id
      */
-    public function editAction(UserManager $manager, Request $request, $id = null)
+    public function edit(UserManager $manager, Request $request, $id = null)
     {
         if (null === $id) {
             $entity = $manager->createUser();
@@ -71,7 +71,7 @@ class UserController extends AdminController
     /**
      * @Route("/delete/{id}", requirements={"id": "\d+"})
      */
-    public function deleteAction(UserManager $manager, Request $request, $id)
+    public function delete(UserManager $manager, Request $request, $id)
     {
         $entity = $manager->find($id);
         $this->throwNotFoundExceptionIfNull($entity);

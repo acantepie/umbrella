@@ -106,6 +106,7 @@ class UserManager
         $qb = $this->em->createQueryBuilder();
         $qb->select('e');
         $qb->from($this->class, 'e');
+
         return $qb;
     }
 }

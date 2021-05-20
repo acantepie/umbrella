@@ -40,6 +40,7 @@ services:
         bind:
             $ymlPath: "%kernel.project_dir%/config/menu/admin_sidebar.yaml"
             $theme: "light"
+            $searchable: true
         tags:
           - { name: umbrella.menu.factory, method: createMenu, alias: admin_sidebar }
           - { name: umbrella.menu.renderer, method: renderMenu, alias: admin_sidebar }

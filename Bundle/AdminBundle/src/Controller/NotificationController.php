@@ -16,7 +16,7 @@ class NotificationController extends AdminController
     /**
      * @Route("")
      */
-    public function listAction(NotificationManager $manager)
+    public function list(NotificationManager $manager)
     {
         $notifications = $manager->findByUser($this->getUser());
 

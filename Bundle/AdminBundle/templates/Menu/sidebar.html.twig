@@ -1,10 +1,20 @@
 {% use "@UmbrellaAdmin/Menu/sidebar_block.html.twig" %}
 
-<div class="leftside-menu">
+<div class="leftside-menu" is="umbrella-menu">
 
     {% block head %}
         {% include '@UmbrellaAdmin/Menu/head.html.twig' %}
     {% endblock %}
+
+    {% if searchable %}
+        <div class="input-group menu-search">
+            <div>
+                <input type="text" class="form-control menu-search-input" placeholder="{{ 'placeholder.search' | trans }}" autofocus>
+                <i class="mdi mdi-magnify"></i>
+            </div>
+        </div>
+    {% endif %}
+
 
     {% block sidemenu %}
         <div class="h-100" id="left-side-menu-container" data-simplebar>

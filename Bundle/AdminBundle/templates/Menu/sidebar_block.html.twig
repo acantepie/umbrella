@@ -20,7 +20,7 @@
 
     {% if menu_is_granted_item(item) %}
         <li class="side-nav-item {{ menu_is_current_item(item) ? 'menuitem-active' }} {{ item.class }}" data-lvl="{{ level }}">
-            <a {{ block('menu_url') }} class="{{ isTopLevel ? 'side-nav-link' }}" {% if item.hasChildren() %}data-bs-toggle="collapse"{% endif %}>
+            <a {{ block('menu_url') }} class="{{ isTopLevel ? 'side-nav-link' }} menu-link" {% if item.hasChildren() %}data-bs-toggle="collapse"{% endif %}>
                 {{ item.icon | icon }}
                 <span>{{ block('menu_item_label') }}</span>
                 {% if item.hasChildren() %}

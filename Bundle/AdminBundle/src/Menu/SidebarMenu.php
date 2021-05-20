@@ -17,15 +17,17 @@ class SidebarMenu
 
     private string $ymlPath;
     private string $theme;
+    private bool $searchable;
 
     /**
      * SidebarMenu constructor.
      */
-    public function __construct(Environment $twig, string $ymlPath, string $theme)
+    public function __construct(Environment $twig, string $ymlPath, string $theme, bool $searchable)
     {
         $this->twig = $twig;
         $this->ymlPath = $ymlPath;
         $this->theme = $theme;
+        $this->searchable = $searchable;
     }
 
     public function createMenu(MenuBuilder $builder): Menu
@@ -48,7 +50,8 @@ class SidebarMenu
     {
         return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
             'menu' => $menu,
-            'theme' => $this->theme
+            'theme' => $this->theme,
+            'searchable' => $this->searchable
         ]);
     }
 
