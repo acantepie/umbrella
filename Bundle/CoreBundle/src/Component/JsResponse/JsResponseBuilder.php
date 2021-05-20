@@ -90,6 +90,7 @@ class JsResponseBuilder implements \Countable
             'text' => $text,
             'title' => $title
         ]);
+
         return $this->add(self::SHOW_TOAST, ['value' => $html]);
     }
 
@@ -187,6 +188,7 @@ class JsResponseBuilder implements \Countable
     public function reloadMenu(?string $name = null, string $cssSelector = '.left-side-menu'): self
     {
         $html = $this->menuHelper->renderMenu($name);
+
         return $this->update($cssSelector, $html);
     }
 
@@ -225,6 +227,7 @@ class JsResponseBuilder implements \Countable
         foreach ((array) $ids as $id) {
             $selector .= $name . '#' . $id . ' ';
         }
+
         return $selector;
     }
 }

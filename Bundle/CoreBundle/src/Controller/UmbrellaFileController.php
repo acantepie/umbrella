@@ -12,7 +12,7 @@ use Umbrella\CoreBundle\Component\UmbrellaFile\DownloadHandler;
  */
 class UmbrellaFileController extends AbstractController
 {
-    public function downloadAction(DownloadHandler $downloadHandler, Request $request)
+    public function download(DownloadHandler $downloadHandler, Request $request)
     {
         $file = $downloadHandler->loadFromRequest($request);
 
