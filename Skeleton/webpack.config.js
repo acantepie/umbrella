@@ -24,10 +24,6 @@ Encore
     .cleanupOutputBeforeBuild()
     //.enableBuildNotifications()
 
-    .configureBabel(function (babelConfig) {
-        babelConfig.plugins.push('transform-class-properties');
-    })
-
     .copyFiles([
         {
             from: './assets/images',
