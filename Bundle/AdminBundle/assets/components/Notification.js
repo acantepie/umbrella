@@ -8,6 +8,7 @@ export default class Notification extends HTMLLIElement {
         mustache.tags = [ '[[', ']]' ];
 
         this.$view = $(this);
+        this.$view.find('.js-notification-list').css('max-height', '230px');
         this.refreshUrl = this.$view.data('refresh-url');
         this.pollInterval = this.$view.data('poll-interval'); // second
         this.refreshXhr = null;
