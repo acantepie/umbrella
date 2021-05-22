@@ -78,7 +78,11 @@ class MenuFactory
     public function createBreadcrumb(?MenuItem $menuItem, string $name): Breadcrumb
     {
         if (null === $menuItem) {
-            return new Breadcrumb();
+            if (!isset($this->breadcrumbs[$name][':'])) {
+                $this->breadcrumbs[$name][':'] = new Breadcrumb();
+            }
+
+            return $this->breadcrumbs[$name][':'];
         }
 
         $iPath = $menuItem->getPath();
