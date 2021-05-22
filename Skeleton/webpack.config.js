@@ -30,6 +30,10 @@ Encore
 
     .copyFiles([
         {
+            from: './assets/images',
+            to: 'images/[path][name].[ext]'
+        },
+        {
             from: './vendor/umbrella2/corebundle/assets/images',
             to: 'images/[path][name].[ext]'
         }
