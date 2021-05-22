@@ -1,4 +1,4 @@
-{% use "bootstrap_5_layout.html.twig"  %}
+{% use "bootstrap_5_horizontal_layout.html.twig"  %}
 
 {% use "@UmbrellaCore/Form/umbrellafile.html.twig" %}
 {% use "@UmbrellaCore/Form/umbrellacollection.html.twig" %}
@@ -6,6 +6,14 @@
 {% use "@UmbrellaCore/Form/ckeditor.html.twig" %}
 {% use "@UmbrellaCore/Form/divider.html.twig" %}
 {% use "@UmbrellaCore/Form/tag.html.twig" %}
+
+{% block form_group_class -%}
+    {{ group_class }}
+{%- endblock form_group_class %}
+
+{% block form_label_class -%}
+    {{ label_class }}
+{%- endblock form_label_class %}
 
 {% block form_widget_simple -%}
     {% if input_prefix or input_suffix %}

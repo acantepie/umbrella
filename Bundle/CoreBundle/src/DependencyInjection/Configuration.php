@@ -35,7 +35,8 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('form')->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('label_class')->defaultValue('form-label col-sm-2')->end()
+                ->scalarNode('layout')->defaultValue('horizontal')->end()
+                ->scalarNode('label_class')->defaultValue('col-sm-2')->end()
                 ->scalarNode('group_class')->defaultValue('col-sm-10')->end();
     }
 
