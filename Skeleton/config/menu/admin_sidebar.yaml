@@ -1,3 +1,10 @@
+app:
+  class: d-none
+  children:
+    welcome:
+      icon: uil-apps
+      route: app_admin_default_index
+
 admin:
   children:
     users:

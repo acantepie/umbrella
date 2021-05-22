@@ -16,7 +16,7 @@ class DefaultController extends AdminController
     /**
      * @Route("")
      */
-    public function indexAction()
+    public function index()
     {
         return $this->render('admin/default/index.html.twig');
     }
