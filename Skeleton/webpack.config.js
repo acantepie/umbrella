@@ -15,6 +15,7 @@ Encore
     })
 
     .addEntry('admin', './assets/admin/admin.js')
+    .addEntry('front', './assets/admin/front.js')
 
     .enableSassLoader()
 

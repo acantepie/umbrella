@@ -4,12 +4,11 @@ import './jquery/SerializeFormToFormData';
 import './jquery/SerializeFormToJson';
 
 // --- Bootstrap
-import {Tooltip as bsTooltip, Modal as bsModal, Popover as bsPopover, Toast as bsToast} from "bootstrap";
+import {Tooltip as bsTooltip, Modal as bsModal, Popover as bsPopover} from "bootstrap";
 window.bootstrap = {
     Tooltip : bsTooltip,
     Modal: bsModal,
-    Popover: bsPopover,
-    Toast: bsToast
+    Popover: bsPopover
 }
 
 // --- Umbrella

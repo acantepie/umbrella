@@ -2,12 +2,14 @@ import AjaxUtils from "./AjaxUtils";
 
 export default class BindUtils
 {
-    static enableToast(container = null, selector = '.toast-container .toast') {
-        container = container || document
-
+    static enableToast(selector = '[data-toggle=toast]') {
         var els = document.querySelectorAll(selector)
         els.forEach((el) => {
-            umbrella.Toast.show(el)
+            umbrella.Toast.show(
+                el.getAttribute('data-type'),
+                el.getAttribute('data-text'),
+                el.getAttribute('data-title')
+            )
         })
     }
 

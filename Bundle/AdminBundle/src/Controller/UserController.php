@@ -57,7 +57,7 @@ class UserController extends AdminController
             return $this->jsResponseBuilder()
                 ->closeModal()
                 ->reloadTable()
-                ->alertSuccess(t('message.entity_updated'));
+                ->toastSuccess(t('message.entity_updated'));
         }
 
         return $this->jsResponseBuilder()
@@ -80,6 +80,6 @@ class UserController extends AdminController
         return $this->jsResponseBuilder()
             ->closeModal()
             ->reloadTable()
-            ->alertSuccess(t('message.entity_deleted'));
+            ->toastSuccess(t('message.entity_deleted'));
     }
 }

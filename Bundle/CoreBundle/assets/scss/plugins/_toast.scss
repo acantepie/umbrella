@@ -1,0 +1,33 @@
+$umbrella-toast-grad0: 3%;
+$umbrella-toast-grad1: 2%;
+
+.umbrella-toast {
+  display : flex;
+  align-items: center;
+  max-width: 300px;
+
+  .umbrella-toast-wrapper {
+    min-width: 150px;
+
+    .umbrella-toast-head {
+      font-weight: bold;
+    }
+  }
+
+  &.umbrella-toast-success {
+    background: linear-gradient(135deg, lighten($success, $umbrella-toast-grad0), darken($success, $umbrella-toast-grad1));
+  }
+
+  &.umbrella-toast-error {
+    background: linear-gradient(135deg, lighten($danger, $umbrella-toast-grad0), darken($danger, $umbrella-toast-grad1));
+  }
+
+  &.umbrella-toast-warning {
+    background: linear-gradient(135deg, lighten($warning, $umbrella-toast-grad0), darken($warning, $umbrella-toast-grad1));
+  }
+
+  &.umbrella-toast-info {
+    background: linear-gradient(135deg, lighten($primary, $umbrella-toast-grad0), darken($primary, $umbrella-toast-grad1));
+  }
+
+}

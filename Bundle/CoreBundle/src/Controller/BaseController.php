@@ -5,6 +5,7 @@ namespace Umbrella\CoreBundle\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Umbrella\CoreBundle\Component\DataTable\DataTableFactory;
 use Umbrella\CoreBundle\Component\DataTable\DTO\DataTable;
@@ -87,34 +88,33 @@ abstract class BaseController extends AbstractController
 
     // Toast Api
 
-    protected function alert(string $type, $text, $title = null): void
+    protected function toast(string $type, $text, $title = null): void
     {
-        $html = $this->renderView('@UmbrellaCore/Toast/alert.html.twig', [
+        $this->addFlash(self::BAG_TOAST, [
             'type' => $type,
-            'text' => $text,
-            'title' => $title
+            'text' => $text instanceof TranslatableMessage ? $text->trans($this->get('translator')) : $text,
+            'title' => $title instanceof TranslatableMessage ? $title->trans($this->get('translator')) : $title,
         ]);
-        $this->addFlash(self::BAG_TOAST, $html);
     }
 
-    protected function alertInfo($text, $title = null): void
+    protected function toastInfo($text, $title = null): void
     {
-        $this->alert('info', $text, $title);
+        $this->toast('info', $text, $title);
     }
 
-    protected function alertSuccess($text, $title = null): void
+    protected function toastSuccess($text, $title = null): void
     {
-        $this->alert('success', $text, $title);
+        $this->toast('success', $text, $title);
     }
 
-    protected function alertWarning($text, $title = null): void
+    protected function toastWarning($text, $title = null): void
     {
-        $this->alert('warning', $text, $title);
+        $this->toast('warning', $text, $title);
     }
 
-    protected function alertError($text, $title = null): void
+    protected function toastError($text, $title = null): void
     {
-        $this->alert('error', $text, $title);
+        $this->toast('error', $text, $title);
     }
 
     // Exception helper

@@ -3,6 +3,8 @@
 namespace Umbrella\CoreBundle\Component\JsResponse;
 
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Translation\TranslatableMessage;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 use Umbrella\CoreBundle\Component\Menu\MenuHelper;
 use Umbrella\CoreBundle\Component\Toast\Toast;
@@ -27,6 +29,7 @@ class JsResponseBuilder implements \Countable
 
     const DOWNLOAD = 'download';
 
+    private TranslatorInterface $translator;
     private RouterInterface $router;
     private Environment $twig;
     private MenuHelper $menuHelper;
@@ -36,8 +39,9 @@ class JsResponseBuilder implements \Countable
     /**
      * JsResponseBuilder constructor.
      */
-    public function __construct(RouterInterface $router, Environment $twig, MenuHelper $menuHelper)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, Environment $twig, MenuHelper $menuHelper)
     {
+        $this->translator = $translator;
         $this->router = $router;
         $this->twig = $twig;
         $this->menuHelper = $menuHelper;
@@ -83,35 +87,34 @@ class JsResponseBuilder implements \Countable
 
     // Toast actions
 
-    public function alert(string $type, $text, $title = null): self
+    public function toast(string $type, $text, $title = null, array $options = []): self
     {
-        $html = $this->twig->render('@UmbrellaCore/Toast/alert.html.twig', [
+        return $this->add(self::SHOW_TOAST, [
             'type' => $type,
-            'text' => $text,
-            'title' => $title
+            'text' => $text instanceof TranslatableMessage ? $text->trans($this->translator) : $text,
+            'title' => $title instanceof TranslatableMessage ? $title->trans($this->translator) : $title,
+            'options' => $options
         ]);
-
-        return $this->add(self::SHOW_TOAST, ['value' => $html]);
     }
 
-    public function alertInfo($text, $title = null): self
+    public function toastInfo($text, $title = null): self
     {
-        return $this->alert('info', $text, $title);
+        return $this->toast('info', $text, $title);
     }
 
-    public function alertSuccess($text, $title = null): self
+    public function toastSuccess($text, $title = null): self
     {
-        return $this->alert('success', $text, $title);
+        return $this->toast('success', $text, $title);
     }
 
-    public function alertWarning($text, $title = null): self
+    public function toastWarning($text, $title = null): self
     {
-        return $this->alert('warning', $text, $title);
+        return $this->toast('warning', $text, $title);
     }
 
-    public function alertError($text, $title = null): self
+    public function toastError($text, $title = null): self
     {
-        return $this->alert('error', $text, $title);
+        return $this->toast('error', $text, $title);
     }
 
     // Nav actions

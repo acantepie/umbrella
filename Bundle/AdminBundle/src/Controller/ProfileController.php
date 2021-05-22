@@ -45,7 +45,7 @@ class ProfileController extends AdminController
         if ($settingsForm->isSubmitted() && $settingsForm->isValid()) {
             $this->userManager->update($user);
 
-            $this->alertSuccess(t('message.account_updated'));
+            $this->toastSuccess(t('message.account_updated'));
 
             return $this->redirectToRoute(self::PROFILE_ROUTE);
         }

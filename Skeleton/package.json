@@ -24,7 +24,7 @@
         "mustache": "^4.2.0",
         "select2": "^4.0.13",
         "simplebar": "^5.3.3",
-        "toastr": "^2.1.4"
+        "toastify-js": "^1.11.0"
     },
     "scripts": {
         "dev-server": "encore dev-server --port 9000 --host=0.0.0.0 --no-firewall",

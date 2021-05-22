@@ -5,6 +5,9 @@
 // Icon pack
 @import '~@mdi/font/scss/materialdesignicons.scss';
 
+// Toastify
+@import "~toastify-js/src/toastify.css";
+
 // FlatPickr
 @import "~flatpickr";
 
@@ -25,3 +28,4 @@
 @import "./plugins/umbrella_file.scss";
 @import "./plugins/umbrella_toolbar.scss";
 @import "./plugins/link.scss";
+@import "./plugins/toast.scss";
