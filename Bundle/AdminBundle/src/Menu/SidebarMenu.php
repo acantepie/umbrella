@@ -18,16 +18,18 @@ class SidebarMenu
     private string $ymlPath;
     private string $theme;
     private bool $searchable;
+    private bool $showFirstLevelOnBreadcrumb;
 
     /**
      * SidebarMenu constructor.
      */
-    public function __construct(Environment $twig, string $ymlPath, string $theme, bool $searchable)
+    public function __construct(Environment $twig, string $ymlPath, string $theme, bool $searchable, bool $showFirstLevelOnBreadcrumb)
     {
         $this->twig = $twig;
         $this->ymlPath = $ymlPath;
         $this->theme = $theme;
         $this->searchable = $searchable;
+        $this->showFirstLevelOnBreadcrumb = $showFirstLevelOnBreadcrumb;
     }
 
     public function createMenu(MenuBuilder $builder): Menu
@@ -51,7 +53,7 @@ class SidebarMenu
         return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
             'menu' => $menu,
             'theme' => $this->theme,
-            'searchable' => $this->searchable
+            'searchable' => $this->searchable,
         ]);
     }
 
@@ -59,6 +61,7 @@ class SidebarMenu
     {
         return $this->twig->render('@UmbrellaAdmin/Menu/breadcrumb.html.twig', [
             'breadcrumb' => $breadcrumb,
+            'show_first_level' => $this->showFirstLevelOnBreadcrumb
         ]);
     }
 }

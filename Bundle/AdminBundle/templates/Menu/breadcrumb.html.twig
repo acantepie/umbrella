@@ -3,7 +3,7 @@
     <ol data-count="{{ breadcrumb | length }}">
 
         {% for item in breadcrumb %}
-            {% if not loop.first %}
+            {% if show_first_level or not loop.first %}
                 {% set label = item.translationDomain ? (item.label | trans([], item.translationDomain)) : item.label %}
 
                 {% if loop.last %}

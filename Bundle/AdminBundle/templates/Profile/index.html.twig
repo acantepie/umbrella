@@ -1,42 +1,32 @@
 {% extends '@UmbrellaAdmin/layout.html.twig' %}
 
+{% block topbar %}
+    {% embed "@UmbrellaAdmin/_topbar.html.twig" %}
+        {% block breadcrumb %}
+            <div class="umbrella-breadcrumb">
+                <i class="uil-user"></i>
+                <ol data-count="1">
+                    <li class="active">{{ 'action.my_account' | trans }}</li>
+                </ol>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
 {% block content %}
     {{ umbrella_form_theme(settings_form) }}
 
-    <div class="mb-2">
-        <div class="row">
-            <div class="col-sm-8 col-lg-9">
+    <div class="container-md">
 
-                <form method="post" enctype="multipart/form-data">
-                <div class="card">
-                    <div class="card-body">
-                        {{ form_rest(settings_form) }}
-                    </div>
-                    <div class="card-footer text-end">
-                        <button type="submit" class="btn btn-primary">
-                            {{ 'mdi mdi-check me-1' | icon  }}
-                            {{ 'action.save' | trans }}
-                        </button>
-                    </div>
-                </div>
-                </form>
-
+        <form method="post" enctype="multipart/form-data">
+            <div class="card card-body">
+                {{ form_rest(settings_form) }}
+                <button type="submit" class="btn btn-primary">
+                    {{ 'mdi mdi-check me-1' | icon  }}
+                    {{ 'action.save' | trans }}
+                </button>
             </div>
+        </form>
 
-            <div class="col-sm-4 col-lg-3">
-
-                <div class="card text-center">
-                    <div class="card-body">
-                        <div class="card-body">
-                            <div class="avatar-icon avatar-lg rounded-circle"><i class="uil-user font-24"></i></div>
-
-                            <h4 class="mb-0 mt-2">{{ user.getFullName() }}</h4>
-                            <p class="text-muted font-14">{{ user.email }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </div>
 {% endblock %}
