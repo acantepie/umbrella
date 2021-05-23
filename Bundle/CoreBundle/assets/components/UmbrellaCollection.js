@@ -32,20 +32,10 @@ export default class UmbrellaCollection extends HTMLElement {
         // bind delete row
         this.$view.on('click', '.js-del-row', (e) => {
             e.preventDefault();
-
             $(e.currentTarget).closest('tr').remove();
+
             this.toggleAdd();
-
             this.$view.trigger('form:row:del');
-        });
-
-        // before submit => refresh input row order
-        this.$view.closest('form').on('submit', () => {
-            let order = 0;
-            this.$view.find('.js-order').each((i, e) => {
-                $(e).val(order);
-                order++;
-            });
         });
 
         // sorting
