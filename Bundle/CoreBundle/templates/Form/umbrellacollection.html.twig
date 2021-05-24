@@ -83,9 +83,9 @@
         {% endif %}
 
         {% if form.vars.allow_delete %}
-            <td class="text-center">
+            <td style="width: 50px" class="text-center">
                 <a class="js-del-row action-icon" href="#">
-                    <i class="mdi mdi-delete text-danger"></i>
+                    <i class="mdi mdi-delete"></i>
                 </a>
             </td>
         {% endif %}
@@ -97,7 +97,7 @@
     {% if 'hidden' in col_form.vars.block_prefixes %}
         {{ form_widget(col_form) }}
     {% else %}
-        <td>
+        <td >
             {{ form_widget(col_form) }}
             {{ form_errors(col_form) }}
         </td>
