@@ -5,8 +5,8 @@ namespace Umbrella\CoreBundle\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
-use Umbrella\CoreBundle\Component\UmbrellaFile\Storage\FileStorage;
-use Umbrella\CoreBundle\Component\UmbrellaFile\Storage\StorageConfig;
+use Umbrella\CoreBundle\UmbrellaFile\Storage\FileStorage;
+use Umbrella\CoreBundle\UmbrellaFile\Storage\StorageConfig;
 
 class FileStoragePass implements CompilerPassInterface
 {

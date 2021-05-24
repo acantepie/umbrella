@@ -6,7 +6,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
-use Umbrella\CoreBundle\Component\Menu\MenuFactory;
+use Umbrella\CoreBundle\Menu\MenuFactory;
 
 /**
  * Class MenuPass

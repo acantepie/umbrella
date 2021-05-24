@@ -7,10 +7,10 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Umbrella\CoreBundle\Component\DataTable\DataTableFactory;
-use Umbrella\CoreBundle\Component\DataTable\DTO\DataTable;
-use Umbrella\CoreBundle\Component\JsResponse\JsResponseBuilder;
-use Umbrella\CoreBundle\Component\Toast\Toast;
+use Umbrella\CoreBundle\DataTable\DataTableFactory;
+use Umbrella\CoreBundle\DataTable\DTO\DataTable;
+use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
+use Umbrella\CoreBundle\Toast\Toast;
 
 /**
  * Class BaseController.

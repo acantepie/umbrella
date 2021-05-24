@@ -7,55 +7,55 @@ services:
     # ---- Component ---- #
 
     # Menu
-    Umbrella\CoreBundle\Component\Menu\MenuFactory:
-    Umbrella\CoreBundle\Component\Menu\MenuAuthorizationChecker:
+    Umbrella\CoreBundle\Menu\MenuFactory:
+    Umbrella\CoreBundle\Menu\MenuAuthorizationChecker:
         $tokenStorage: "@security.token_storage"
         $language: "@security.expression_language"
         $trustResolver: "@security.authentication.trust_resolver"
         $authChecker: "@security.authorization_checker"
         $roleHierarchy: "@security.role_hierarchy"
-    Umbrella\CoreBundle\Component\Menu\MenuHelper:
-    Umbrella\CoreBundle\Component\Menu\Twig\MenuExtension:
+    Umbrella\CoreBundle\Menu\MenuHelper:
+    Umbrella\CoreBundle\Menu\Twig\MenuExtension:
 
     # JsResponse
-    Umbrella\CoreBundle\Component\JsResponse\JsResponseBuilder:
-    Umbrella\CoreBundle\Component\JsResponse\JsResponseViewListener:
+    Umbrella\CoreBundle\JsResponse\JsResponseBuilder:
+    Umbrella\CoreBundle\JsResponse\JsResponseViewListener:
         tags:
             - {name: kernel.event_subscriber }
 
     # Widget
-    Umbrella\CoreBundle\Component\Widget\WidgetFactory:
-    Umbrella\CoreBundle\Component\Widget\WidgetRegistry:
-    Umbrella\CoreBundle\Component\Widget\WidgetRenderer:
-    Umbrella\CoreBundle\Component\Widget\WidgetExtension:
-    Umbrella\CoreBundle\Component\Widget\Type\:
-        resource: '../src/Component/Widget/Type'
+    Umbrella\CoreBundle\Widget\WidgetFactory:
+    Umbrella\CoreBundle\Widget\WidgetRegistry:
+    Umbrella\CoreBundle\Widget\WidgetRenderer:
+    Umbrella\CoreBundle\Widget\WidgetExtension:
+    Umbrella\CoreBundle\Widget\Type\:
+        resource: '../src/Widget/Type'
 
     # DataTable
-    Umbrella\CoreBundle\Component\DataTable\DataTableFactory:
-    Umbrella\CoreBundle\Component\DataTable\DataTableRegistry:
-    Umbrella\CoreBundle\Component\DataTable\DataTableRenderer:
-    Umbrella\CoreBundle\Component\DataTable\Twig\DataTableExtension:
+    Umbrella\CoreBundle\DataTable\DataTableFactory:
+    Umbrella\CoreBundle\DataTable\DataTableRegistry:
+    Umbrella\CoreBundle\DataTable\DataTableRenderer:
+    Umbrella\CoreBundle\DataTable\Twig\DataTableExtension:
 
-    Umbrella\CoreBundle\Component\DataTable\Adapter\CallableAdapter:
-    Umbrella\CoreBundle\Component\DataTable\Adapter\EntityAdapter:
-    Umbrella\CoreBundle\Component\DataTable\Adapter\NestedEntityAdapter:
+    Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter:
+    Umbrella\CoreBundle\DataTable\Adapter\EntityAdapter:
+    Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapter:
 
-    Umbrella\CoreBundle\Component\DataTable\Column\:
-        resource: '../src/Component/DataTable/Column'
+    Umbrella\CoreBundle\DataTable\Column\:
+        resource: '../src/DataTable/Column'
 
     # Ckeditor
-    Umbrella\CoreBundle\Component\Ckeditor\CkeditorConfiguration:
-    Umbrella\CoreBundle\Component\Ckeditor\CkeditorExtension:
+    Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration:
+    Umbrella\CoreBundle\Ckeditor\CkeditorExtension:
 
     # Tabs
-    Umbrella\CoreBundle\Component\Tabs\TabsHelper:
-    Umbrella\CoreBundle\Component\Tabs\TabsExtension:
+    Umbrella\CoreBundle\Tabs\TabsHelper:
+    Umbrella\CoreBundle\Tabs\TabsExtension:
 
     # Search
-    Umbrella\CoreBundle\Component\Search\Annotation\SearchableAnnotationReader:
-    Umbrella\CoreBundle\Component\Search\EntityIndexer:
-    Umbrella\CoreBundle\Component\Search\SearchableEntitySubscriber:
+    Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader:
+    Umbrella\CoreBundle\Search\EntityIndexer:
+    Umbrella\CoreBundle\Search\SearchableEntitySubscriber:
         tags:
             - { name: doctrine.event_subscriber }
 

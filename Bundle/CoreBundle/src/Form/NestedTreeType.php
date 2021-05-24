@@ -22,27 +22,15 @@ class NestedTreeType extends AbstractType
                 return $er->createQueryBuilder('e')
                     ->orderBy('e.left', 'ASC');
             })
-            ->setDefault('select2_options', [
-                'dropdownCssClass' => 'select2-tree-dropdown',
-            ])
-            ->setDefault('expose', function ($entity) {
+            ->setDefault('choice_attr', function ($entity) {
                 if (is_a($entity, NestedTreeEntityInterface::class)) {
                     return [
-                        'lvl' => $entity->getLevel(),
-                        'indent' => range(0, $entity->getLevel()),
+                        'data-lvl' => $entity->getLevel(),
+                        'data-indent' => range(0, $entity->getLevel()),
                     ];
                 }
             })
-            ->setDefault('template_html', $this->getHtmlTemplate());
-    }
-
-    private function getHtmlTemplate()
-    {
-        $mLvl = '[[lvl]]';
-        $mClass = 'select2-tree-option';
-        $mText = '[[text]]';
-
-        return sprintf('<span data-lvl="%s" class="%s"> <span class="value">%s</span></span>', $mLvl, $mClass, $mText);
+            ->setDefault('template', '<span data-lvl="[[ lvl ]]" class="[[ select2-tree-node ]]"> <span class="value">[[ text ]]</span></span>');
     }
 
     /**

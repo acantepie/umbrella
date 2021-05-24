@@ -13,8 +13,8 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\CoreBundle\Component\UmbrellaFile\UmbrellaFileHelper;
 use Umbrella\CoreBundle\Entity\UmbrellaFile;
+use Umbrella\CoreBundle\UmbrellaFile\UmbrellaFileHelper;
 use Umbrella\CoreBundle\Utils\HtmlUtils;
 
 // Limitation : HTML5 required dos not work.

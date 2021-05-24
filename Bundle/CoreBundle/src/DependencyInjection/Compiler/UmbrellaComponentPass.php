@@ -6,8 +6,8 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
-use Umbrella\CoreBundle\Component\DataTable\DataTableRegistry;
-use Umbrella\CoreBundle\Component\Widget\WidgetRegistry;
+use Umbrella\CoreBundle\DataTable\DataTableRegistry;
+use Umbrella\CoreBundle\Widget\WidgetRegistry;
 
 /**
  * Class UmbrellaComponentPass

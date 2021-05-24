@@ -40,26 +40,17 @@ import DataTable from "./components/DataTable";
 customElements.define('umbrella-toolbar', Toolbar);
 customElements.define('umbrella-datatable', DataTable);
 
-// --- Forms (select2)
-import 'select2/dist/js/select2.full';
-import 'select2/dist/js/i18n/fr';
-
+// --- Forms
 import Select2 from "./components/Select2";
-import AsyncSelect2 from "./components/AsyncSelect2";
-import TagsInput from "./components/TagsInput";
-
-customElements.define('select-2', Select2, {extends: 'select'});
-customElements.define('async-select-2', AsyncSelect2, {extends: 'select'});
-customElements.define('tags-select-2', TagsInput, {extends: 'select'});
-
-// --- Forms (other)
 import UmbrellaFile from "./components/UmbrellaFile";
 import UmbrellaCollection from "./components/UmbrellaCollection";
 import DatePicker from "./components/DatePicker";
 
-customElements.define('date-picker', DatePicker, {extends: 'input'});
+customElements.define('umbrella-datepicker', DatePicker, {extends: 'input'});
 customElements.define('umbrella-file', UmbrellaFile);
 customElements.define('umbrella-collection', UmbrellaCollection);
+customElements.define('umbrella-select2', Select2, {extends: 'select'});
+
 
 // --- JsResponseHandler
 import JsResponseHandler from './jsresponse/JsResponseHandler';

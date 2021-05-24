@@ -1,0 +1,4 @@
+.col-form-label.required:after {
+  content: " *";
+  color: $danger;
+}

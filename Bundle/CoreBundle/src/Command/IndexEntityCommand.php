@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Umbrella\CoreBundle\Component\Search\EntityIndexer;
+use Umbrella\CoreBundle\Search\EntityIndexer;
 
 /**
  * Class IndexEntityCommand.

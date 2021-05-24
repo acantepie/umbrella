@@ -1,40 +1,54 @@
-import mustache from 'mustache';
-import Utils from "../utils/Utils";
+import 'select2/dist/js/select2.full';
+import 'select2/dist/js/i18n/fr';
+import mustache from "mustache";
 
-// don't use this.options on HTMLSelectElement elements
-export default class Select2 extends HTMLSelectElement {
-
+export default class select2 extends HTMLSelectElement {
     constructor() {
         super();
+        this.render()
+    }
 
-        mustache.tags = [ '[[', ']]' ];
+    _getOptions() {
+        const formOptions = JSON.parse(this.getAttribute('data-options'))
 
-        this.$view = $(this);
+        let select2Options = {
+            language: umbrella.LANG,
+            placeholder: formOptions['placeholder'],
+            allowClear: formOptions['allow_clear'],
+            minimumInputLength: formOptions['min_search_length'],
+        }
 
-        let data_options = this.$view.data('options');
-
-        this._options = data_options ? JSON.parse(Utils.decode_html(data_options)) : {};
-        this.s2_options = this._options['select2'] ? this._options['select2'] : {};
-        this.s2_options['language'] = umbrella.LANG;
-
-        // templating
-        let mustacheTemplate = null;
-
-        if (this._options['template_selector']) {
-            const $template = $(this._options['template_selector']);
-            if ($template.length === 0) {
-                console.error("No template found with selector " + this._options['template_selector']);
-            } else {
-                mustacheTemplate = $template.html();
+        // ajax loading
+        if (formOptions['autocomplete_url']) {
+            select2Options['ajax'] = {
+                url: formOptions['autocomplete_url'],
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {'query': params.term, 'page': params.page};
+                },
+                cache: true
             }
         }
 
-        if (this._options['template_html']) {
-            mustacheTemplate = this._options['template_html'];
+        // template renderer
+        let template = null;
+
+        if (formOptions['template_selector']) {
+            const templateEl = document.querySelector(formOptions['template_selector'])
+            if (templateEl) {
+                template = templateEl.innerHTML
+            } else {
+                console.error("[Select2.js] No template found with selector " + formOptions['template_selector']);
+            }
+        } else if (formOptions['template']) {
+            template = formOptions['template']
         }
 
-        if (mustacheTemplate) {
-            this.s2_options['templateResult'] = (state) => {
+        if (template) {
+            mustache.tags = [ '[[', ']]' ];
+
+            select2Options['templateResult'] = (state) => {
                 if (!state.id) {
                     return state.text;
                 }
@@ -43,34 +57,18 @@ export default class Select2 extends HTMLSelectElement {
 
                 // add data retrieve from vanilla option element
                 if (state.element) {
-                    const exposedData = $(state.element).data('json') || {};
-                    data = {...exposedData,...data}
+                    const exposedData = $(state.element).data() || {};
+                    data = {...exposedData, ...data}
                 }
 
-                return $('<span>' + mustache.render(mustacheTemplate, data) + '</span>');
-
+                return $('<span>' + mustache.render(template, data) + '</span>');
             };
         }
+
+        return select2Options;
     }
 
-    connectedCallback() {
-        this.$view.select2(this.s2_options);
-
-        // Hack - reset to default value if form is resseted
-        this.$view.closest('form').on('reset', (e) => {
-
-            this.$view.find('option').prop('selected', function () {
-                return this.defaultSelected;
-            });
-            this.$view.trigger('change.select2');
-        });
-    }
-
-    disconnectedCallback() {
-        //this.$view.select2('destroy');
-    }
-
-    open() {
-        this.$view.select2('open');
+    render() {
+        $(this).select2(this._getOptions());
     }
 }

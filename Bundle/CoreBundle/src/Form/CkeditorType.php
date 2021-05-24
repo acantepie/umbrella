@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\CoreBundle\Component\Ckeditor\CkeditorConfiguration;
+use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 
 /**
  * Class CkeditorType
