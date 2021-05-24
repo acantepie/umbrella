@@ -4,7 +4,6 @@ namespace Umbrella\CoreBundle\DataTable\Column;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Umbrella\CoreBundle\Utils\HtmlUtils;
 
 /**
  * Class EnableColumnType
@@ -30,15 +29,15 @@ class BooleanColumnType extends PropertyColumnType
         switch ($value) {
             case true:
                 return sprintf(
-                    '<span class="badge bg-success">%s %s</span>',
-                    HtmlUtils::to_icon($options['yes_icon']),
+                    '<span class="badge bg-success"><i class="%s"></i> %s</span>',
+                    $options['yes_icon'],
                     $this->translator->trans($options['yes_value'])
                 );
 
             case false:
                 return sprintf(
-                    '<span class="badge bg-danger">%s %s</span>',
-                    HtmlUtils::to_icon($options['no_icon']),
+                    '<span class="badge bg-danger"><i class="%s"></i> %s</span>',
+                    $options['no_icon'],
                     $this->translator->trans($options['no_value'])
                 );
             default:

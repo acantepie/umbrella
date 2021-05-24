@@ -7,37 +7,14 @@ namespace Umbrella\CoreBundle\Utils;
  */
 class HtmlUtils
 {
-    public static function to_attr(array $attributes, bool $filter = false): string
+    public static function to_attr(array $attributes): string
     {
         $html = '';
         foreach ($attributes as $key => $value) {
-            if (!$filter || !empty($value)) {
-                $html .= sprintf('%s="%s" ', $key, self::to_attr_value($value));
-            }
+            $html .= sprintf('%s="%s" ', $key, self::escape($value, 'html_attr'));
         }
 
         return $html;
-    }
-
-    /**
-     * @return mixed|string
-     */
-    public static function to_attr_value($value)
-    {
-        if (is_array($value)) {
-            $value = json_encode($value);
-
-            if (false === $value) {
-                throw new \JsonException('Unable to encode json_data');
-            }
-        }
-
-        return self::escape($value, 'html_attr');
-    }
-
-    public static function to_icon(?string $class): string
-    {
-        return empty($class) ? '' : sprintf('<i class="%s"></i>', $class);
     }
 
     /**

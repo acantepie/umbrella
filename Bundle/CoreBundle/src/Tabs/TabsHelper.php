@@ -114,7 +114,7 @@ class TabsHelper
         $html .= sprintf('<a %s>', HtmlUtils::to_attr($config['attr_link']));
 
         if ($config['icon']) {
-            $html .= HtmlUtils::to_icon($config['icon']);
+            $html .= sprintf('<i class="%s"></i>', $config['icon']);
         }
 
         if ($config['label']) {

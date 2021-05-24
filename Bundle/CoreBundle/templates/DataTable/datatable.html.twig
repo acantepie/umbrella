@@ -1,4 +1,11 @@
-<umbrella-datatable {{ attr | html_attr }}>
+{% macro attributes(attr) -%}
+    {%- for attrname, attrvalue in attr -%}
+        {{- " " -}}
+        {{- attrname }}="{{ attrvalue }}"
+    {%- endfor -%}
+{%- endmacro -%}
+
+<umbrella-datatable {{ _self.attributes(attr) }}>
 
     {% block toolbar %}
         {{ render_toolbar(toolbar) }}
@@ -6,11 +13,11 @@
 
     {% block table %}
         <div class="table-responsive">
-            <table {{ table_attr | html_attr }}>
+            <table {{ _self.attributes(table_attr) }}>
                 <thead>
                     <tr>
                         {% for column in columns %}
-                            <th {{ column.attr | html_attr }}>
+                            <th {{ _self.attributes(column.attr) }}>
                                 {%- if column.label is not empty %}
                                     {%- if column.translation_domain %}
                                         {{- (column.label_prefix ~ column.label) | trans([], column.translation_domain) | raw -}}

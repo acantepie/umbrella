@@ -6,10 +6,8 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\FormRendererInterface;
 use Symfony\Component\Form\FormView;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
 use Twig\TwigFunction;
 use Twig\TwigTest;
-use Umbrella\CoreBundle\Utils\HtmlUtils;
 
 /**
  * Class CoreExtension
@@ -26,15 +24,6 @@ class CoreExtension extends AbstractExtension
     {
         $this->parameterBag = $parameterBag;
         $this->formRenderer = $formRenderer;
-    }
-
-    public function getFilters()
-    {
-        return [
-            new TwigFilter('icon', [HtmlUtils::class, 'to_icon'], ['is_safe' => ['html']]),
-            new TwigFilter('html_attr_value', [HtmlUtils::class, 'to_attr_value'], ['is_safe' => ['html']]),
-            new TwigFilter('html_attr', [HtmlUtils::class, 'to_attr'], ['is_safe' => ['html']]),
-        ];
     }
 
     public function getFunctions()
