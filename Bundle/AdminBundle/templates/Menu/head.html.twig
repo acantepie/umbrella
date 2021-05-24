@@ -3,14 +3,14 @@
         {% if admin_theme_logo() %}
             <img src="{{ asset(admin_theme_logo()) }}">
         {% else %}
-            <span>{% if admin_theme_icon() %}{{ (admin_theme_icon() ~ ' me-1') | icon }}{% endif %} {{ admin_theme_name() }}</span>
+            <span>{% if admin_theme_icon() %}<i class="{{ admin_theme_icon() }} me-1"></i>{% endif %} {{ admin_theme_name() }}</span>
         {% endif %}
     </span>
     <span class="logo-sm">
        {% if admin_theme_logo_sm() %}
            <img src="{{ asset(admin_theme_logo_sm()) }}" width="10">
        {% elseif admin_theme_icon() %}
-           {{ (admin_theme_icon()) | icon }}
+           <i class="{{ admin_theme_icon() }}"></i>
        {% endif %}
     </span>
 </a>

@@ -1,7 +1,8 @@
 <div class="umbrella-breadcrumb">
-    {{ breadcrumb.icon | icon }}
+    {% if breadcrumb.icon %}
+        <i class="{{ breadcrumb.icon }}"></i>
+    {% endif %}
     <ol data-count="{{ breadcrumb | length }}">
-
         {% for item in breadcrumb %}
             {% if show_first_level or not loop.first %}
                 {% set label = item.translationDomain ? (item.label | trans([], item.translationDomain)) : item.label %}

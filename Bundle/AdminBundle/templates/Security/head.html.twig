@@ -2,6 +2,6 @@
     {% if admin_theme_logo() %}
         <img src="{{ asset(admin_theme_logo()) }}">
     {% else %}
-        <h4>{% if admin_theme_icon() %}{{ (admin_theme_icon() ~ ' me-1') | icon }}{% endif %} {{ admin_theme_name() }}</h4>
+        <h4>{% if admin_theme_icon() %}<i class="{{ admin_theme_icon() }} me-1"></i>{% endif %} {{ admin_theme_name() }}</h4>
     {% endif %}
 </div>
