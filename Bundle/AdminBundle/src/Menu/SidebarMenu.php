@@ -4,9 +4,9 @@ namespace Umbrella\AdminBundle\Menu;
 
 use Symfony\Component\Yaml\Yaml;
 use Twig\Environment;
-use Umbrella\CoreBundle\Component\Menu\MenuBuilder;
-use Umbrella\CoreBundle\Component\Menu\Model\Breadcrumb;
-use Umbrella\CoreBundle\Component\Menu\Model\Menu;
+use Umbrella\CoreBundle\Menu\MenuBuilder;
+use Umbrella\CoreBundle\Menu\Model\Breadcrumb;
+use Umbrella\CoreBundle\Menu\Model\Menu;
 
 /**
  * Class SidebarMenu.

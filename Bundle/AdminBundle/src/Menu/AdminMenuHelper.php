@@ -2,9 +2,9 @@
 
 namespace Umbrella\AdminBundle\Menu;
 
-use Umbrella\CoreBundle\Component\Menu\MenuHelper;
-use Umbrella\CoreBundle\Component\Menu\Model\Breadcrumb;
-use Umbrella\CoreBundle\Component\Menu\Model\Menu;
+use Umbrella\CoreBundle\Menu\MenuHelper;
+use Umbrella\CoreBundle\Menu\Model\Breadcrumb;
+use Umbrella\CoreBundle\Menu\Model\Menu;
 
 class AdminMenuHelper
 {

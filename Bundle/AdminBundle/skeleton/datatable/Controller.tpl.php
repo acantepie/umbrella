@@ -11,7 +11,7 @@ use <?= $repository->getClassName(); ?>;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 <?php if ('page' === $view_type) { ?>
-use Umbrella\CoreBundle\Component\Menu\Model\Menu;
+use Umbrella\CoreBundle\Menu\Model\Menu;
 <?php } ?>
 use Umbrella\AdminBundle\Controller\AdminController;
 use function Symfony\Component\Translation\t;

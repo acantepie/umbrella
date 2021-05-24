@@ -3,9 +3,9 @@
 namespace Umbrella\AdminBundle\Controller;
 
 use Umbrella\AdminBundle\Menu\AdminMenuHelper;
-use Umbrella\CoreBundle\Component\Menu\Model\Breadcrumb;
-use Umbrella\CoreBundle\Component\Menu\Model\Menu;
 use Umbrella\CoreBundle\Controller\BaseController;
+use Umbrella\CoreBundle\Menu\Model\Breadcrumb;
+use Umbrella\CoreBundle\Menu\Model\Menu;
 
 abstract class AdminController extends BaseController
 {

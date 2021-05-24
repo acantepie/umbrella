@@ -3,15 +3,15 @@
 namespace <?= $table->getNamespace(); ?>;
 
 use <?= $entity->getClassName(); ?>;
-use Umbrella\CoreBundle\Component\DataTable\Column\PropertyColumnType;
-use Umbrella\CoreBundle\Component\DataTable\Column\WidgetColumnType;
-use Umbrella\CoreBundle\Component\DataTable\DataTableBuilder;
-use Umbrella\CoreBundle\Component\DataTable\DataTableType;
-use Umbrella\CoreBundle\Component\DataTable\ToolbarBuilder;
-use Umbrella\CoreBundle\Component\Widget\Type\AddLinkType;
-use Umbrella\CoreBundle\Component\Widget\Type\RowDeleteLinkType;
-use Umbrella\CoreBundle\Component\Widget\Type\RowEditLinkType;
-use Umbrella\CoreBundle\Component\Widget\WidgetBuilder;
+use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
+use Umbrella\CoreBundle\DataTable\Column\WidgetColumnType;
+use Umbrella\CoreBundle\DataTable\DataTableBuilder;
+use Umbrella\CoreBundle\DataTable\DataTableType;
+use Umbrella\CoreBundle\DataTable\ToolbarBuilder;
+use Umbrella\CoreBundle\Widget\Type\AddLinkType;
+use Umbrella\CoreBundle\Widget\Type\RowDeleteLinkType;
+use Umbrella\CoreBundle\Widget\Type\RowEditLinkType;
+use Umbrella\CoreBundle\Widget\WidgetBuilder;
 use Umbrella\CoreBundle\Form\SearchType;
 
 class <?= $table->getShortClassName(); ?> extends DataTableType
