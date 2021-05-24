@@ -630,11 +630,8 @@
 .select2-tree-dropdown {
 
   .select2-results__option {
-    padding: 0;
 
     .select2-tree-option {
-      padding: 6px;
-      line-height: 20px;
       font-weight: bold;
 
       @for $i from 1 through 10 {

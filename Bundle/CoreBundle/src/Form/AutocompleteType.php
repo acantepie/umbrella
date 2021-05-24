@@ -62,6 +62,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $dataOptions['min_search_length'] = $options['min_search_length'];
         $dataOptions['template'] = $options['template'];
         $dataOptions['template_selector'] = $options['template_selector'];
+        $dataOptions['dropdown_class'] = $options['dropdown_class'];
 
         $view->vars['attr']['data-options'] = json_encode($dataOptions);
     }
@@ -106,6 +107,10 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $resolver
             ->setDefault('template_selector', null)
             ->setAllowedTypes('template_selector', ['string', 'null']);
+
+        $resolver
+            ->setDefault('dropdown_class', null)
+            ->setAllowedTypes('dropdown_class', ['string', 'null']);
     }
 
     /**

@@ -18,6 +18,10 @@ export default class select2 extends HTMLSelectElement {
             minimumInputLength: formOptions['min_search_length'],
         }
 
+        if (formOptions['dropdown_class']) {
+            select2Options['dropdownCssClass'] = formOptions['dropdown_class']
+        }
+
         // ajax loading
         if (formOptions['autocomplete_url']) {
             select2Options['ajax'] = {
