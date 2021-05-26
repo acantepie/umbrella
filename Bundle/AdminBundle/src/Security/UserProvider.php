@@ -3,7 +3,7 @@
 namespace Umbrella\AdminBundle\Security;
 
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
@@ -27,9 +27,17 @@ class UserProvider implements UserProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function loadUserByUsername(string $username)
+    public function loadUserByIdentifier(string $identifier): UserInterface
     {
-        return $this->userManager->findUserByUsername($username);
+        $user = $this->userManager->findUserByEmail($identifier);
+
+        if (null === $user) {
+            $e = new UserNotFoundException();
+            $e->setUserIdentifier($identifier);
+            throw $e;
+        }
+
+        return $user;
     }
 
     /**
@@ -46,7 +54,7 @@ class UserProvider implements UserProviderInterface
         }
 
         if (null === $reloadedUser = $this->userManager->find($user->getId())) {
-            throw new UsernameNotFoundException(sprintf('User with id "%s" could not be reloaded.', $user->getId()));
+            throw new UserNotFoundException();
         }
 
         return $reloadedUser;

@@ -121,7 +121,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
             return false;
         }
 
-        if ($this->getUsername() !== $user->getUsername()) {
+        if ($this->getUserIdentifier() !== $user->getUserIdentifier()) {
             return false;
         }
 
@@ -258,7 +258,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function getUsername()
+    public function getUserIdentifier()
     {
         return $this->email;
     }
@@ -308,6 +308,6 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
      */
     public function __toString()
     {
-        return (string) $this->getUsername();
+        return (string) $this->getEmail();
     }
 }

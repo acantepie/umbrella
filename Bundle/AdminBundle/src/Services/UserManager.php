@@ -62,11 +62,6 @@ class UserManager
             ->getOneOrNullResult();
     }
 
-    public function findUserByUsername(string $username): ?AdminUserInterface
-    {
-        return $this->findUserByEmail($username);
-    }
-
     public function findUserByConfirmationToken(string $confirmationToken): ?AdminUserInterface
     {
         return $this->repo->findOneBy([

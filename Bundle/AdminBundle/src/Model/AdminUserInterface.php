@@ -26,11 +26,9 @@ interface AdminUserInterface extends UserInterface
     public function setEmail($email);
 
     /**
-     * Username of user (used to login)
-     *
      * @return string
      */
-    public function getUsername();
+    public function getUserIdentifier();
 
     /**
      * Full name of user

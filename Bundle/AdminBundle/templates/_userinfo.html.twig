@@ -8,9 +8,9 @@
         <span>
             {% if isAdminUser %}
                 <span class="account-user-name">{{ app.user.getFullName() }}</span>
-                <span class="account-position">{{ app.user.getUsername() }}</span>
+                <span class="account-position">{{ app.user.getEmail() }}</span>
             {% else %}
-                <span class="account-user-name">{{ app.user.username }}</span>
+                <span class="account-user-name">{{ app.user.userIdentifier }}</span>
                 <span class="account-position">{{ '-' }}</span>
             {% endif %}
         </span>

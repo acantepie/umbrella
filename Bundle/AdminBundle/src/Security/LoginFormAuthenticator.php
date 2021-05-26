@@ -40,7 +40,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         UrlGeneratorInterface $urlGenerator,
         CsrfTokenManagerInterface $csrfTokenManager,
         UserPasswordEncoderInterface $passwordEncoder
-    ) {
+    )
+    {
         $this->paramaters = $paramaters;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
@@ -72,14 +73,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $userProvider->loadUserByUsername($credentials['username']);
-
-        /** @phpstan-ignore-next-line */
-        if (!$user) { // Avoid mesage "credentials not found"
-            throw new BadCredentialsException();
-        }
-
-        return $user;
+        return $userProvider->loadUserByIdentifier($credentials['username']);
     }
 
     public function checkCredentials($credentials, UserInterface $user)
