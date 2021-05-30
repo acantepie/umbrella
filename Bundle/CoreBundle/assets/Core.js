@@ -63,7 +63,7 @@ import Redirect from "./jsresponse/action/Redirect";
 import Reload from "./jsresponse/action/Reload";
 import RemoveHtml from "./jsresponse/action/RemoveHtml";
 import UpdateHtml from "./jsresponse/action/UpdateHtml";
-import WebComponent from "./jsresponse/action/WebComponent";
+import CallWebComponent from "./jsresponse/action/CallWebComponent";
 import ShowToast from "./jsresponse/action/ShowToast";
 import Download from "./jsresponse/action/Download";
 
@@ -75,7 +75,7 @@ jsResponseHandler.registerAction('redirect', new Redirect());
 jsResponseHandler.registerAction('reload', new Reload());
 jsResponseHandler.registerAction('update', new UpdateHtml());
 jsResponseHandler.registerAction('remove', new RemoveHtml());
-jsResponseHandler.registerAction('web_component', new WebComponent());
+jsResponseHandler.registerAction('call_webcomponent', new CallWebComponent());
 jsResponseHandler.registerAction('download', new Download());
 
 window.umbrella.jsResponseHandler = jsResponseHandler

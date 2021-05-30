@@ -25,7 +25,7 @@ class JsResponseBuilder implements \Countable
     const SHOW_MODAL = 'show_modal';
     const CLOSE_MODAL = 'close_modal';
 
-    const WEB_COMPONENT = 'web_component';
+    const CALL_WEBCOMPONENT = 'call_webcomponent';
 
     const DOWNLOAD = 'download';
 
@@ -197,9 +197,9 @@ class JsResponseBuilder implements \Countable
 
     // Web Components actions
 
-    public function webComponent($selector, string $method, ...$methodParams): self
+    public function callWebComponent($selector, string $method, ...$methodParams): self
     {
-        return $this->add(self::WEB_COMPONENT, [
+        return $this->add(self::CALL_WEBCOMPONENT, [
             'selector' => $selector,
             'method' => $method,
             'method_params' => $methodParams
@@ -210,12 +210,12 @@ class JsResponseBuilder implements \Countable
 
     public function reloadTable($ids = null): self
     {
-        return $this->table($ids, 'reload');
+        return $this->callTable($ids, 'reload');
     }
 
-    public function table($ids = null, string $method, ...$methodParams): self
+    public function callTable($ids = null, string $method, ...$methodParams): self
     {
-        return $this->webComponent($this->toSelector($ids, 'umbrella-datatable'), $method, $methodParams);
+        return $this->callWebComponent($this->toSelector($ids, 'umbrella-datatable'), $method, $methodParams);
     }
 
     // utils
