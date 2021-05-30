@@ -70,7 +70,6 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('security')->addDefaultsIfNotSet()
                 ->children()
-                    ->integerNode('password_expire_in')->defaultValue(0)->end() // s
                     ->integerNode('password_request_ttl')->defaultValue(86400)->end() // s
                 ->end()
             ->end()

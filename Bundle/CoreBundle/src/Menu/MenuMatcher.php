@@ -109,7 +109,7 @@ class MenuMatcher
             return false;
         }
 
-        $request = $this->requestStack->getMasterRequest();
+        $request = $this->requestStack->getMainRequest();
         $route = $request->attributes->get('_route');
         if ($testRoute !== $route) {
             return false;
