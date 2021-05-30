@@ -305,7 +305,7 @@ export default class DataTable extends HTMLElement {
         return this.selectedIds.size > 0
     }
 
-    selectPage(renderMode = false) {
+    selectPage(renderMode = true) {
         this.$tableBody.find('tr[data-id]').each((i, e) => {
             this.selectRow($(e), false)
         })
