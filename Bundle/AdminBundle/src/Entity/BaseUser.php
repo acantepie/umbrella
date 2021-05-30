@@ -55,12 +55,6 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     public $plainPassword;
 
     /**
-     * @var string|null
-     * @ORM\Column(type="string", length=32)
-     */
-    public $salt;
-
-    /**
      * @var string
      * @ORM\Column(type="string", length=60, unique=true)
      *
@@ -80,27 +74,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
      * @var \DateTime|null
      * @ORM\Column(type="datetime", nullable=true)
      */
-    public $passwordUpdatedAt;
-
-    /**
-     * @var \DateTime|null
-     * @ORM\Column(type="datetime", nullable=true)
-     */
     public $passwordRequestedAt;
-
-    /**
-     * @var array
-     * @ORM\Column(type="simple_array", nullable=true)
-     */
-    public $roles = [];
-
-    /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        $this->salt = md5(uniqid('', true));
-    }
 
     // Equatable implementation
 
@@ -114,10 +88,6 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
         }
 
         if ($this->getPassword() !== $user->getPassword()) {
-            return false;
-        }
-
-        if ($this->getSalt() !== $user->getSalt()) {
             return false;
         }
 
@@ -138,7 +108,6 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
         return serialize([
             $this->id,
             $this->password,
-            $this->salt,
             $this->email,
         ]);
     }
@@ -151,7 +120,6 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
         list(
             $this->id,
             $this->password,
-            $this->salt,
             $this->email
             ) = unserialize($serialized);
     }
@@ -169,7 +137,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function getPlainPassword()
+    public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
@@ -177,7 +145,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function setPlainPassword($password)
+    public function setPlainPassword(?string $password)
     {
         $this->plainPassword = $password;
     }
@@ -185,9 +153,8 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function setPassword($password)
+    public function setPassword(?string $password)
     {
-        $this->passwordUpdatedAt = new \DateTime('NOW');
         $this->password = $password;
         $this->passwordRequestedAt = null;
         $this->confirmationToken = null;
@@ -196,9 +163,20 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
     }
 
     /**
@@ -212,7 +190,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function getConfirmationToken()
+    public function getConfirmationToken(): ?string
     {
         return $this->confirmationToken;
     }
@@ -232,15 +210,6 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function isPasswordNonExpired(int $ttl): bool
-    {
-        return null === $this->passwordUpdatedAt ||
-            $this->passwordUpdatedAt->getTimestamp() + $ttl > time();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function isPasswordRequestNonExpired(int $ttl): bool
     {
         return $this->passwordRequestedAt instanceof \DateTime &&
@@ -250,23 +219,15 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function getSalt()
+    public function getUserIdentifier(): string
     {
-        return $this->salt;
+        return (string) $this->email;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getUserIdentifier()
-    {
-        return $this->email;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -274,7 +235,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function setEmail($email)
+    public function setEmail(?string $email)
     {
         $this->email = $email;
     }
@@ -282,7 +243,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function getFullName()
+    public function getFullName(): string
     {
         return sprintf('%s %s', $this->firstname, $this->lastname);
     }
@@ -308,6 +269,6 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
      */
     public function __toString()
     {
-        return (string) $this->getEmail();
+        return $this->getUserIdentifier();
     }
 }

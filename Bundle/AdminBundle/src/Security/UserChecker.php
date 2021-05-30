@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
 use Umbrella\AdminBundle\Security\Exception\AccountDisabledException;
-use Umbrella\AdminBundle\Security\Exception\PasswordExpiredException;
 
 /**
  * Class UserChecker
@@ -44,17 +43,6 @@ class UserChecker implements UserCheckerInterface
             $e = new AccountDisabledException();
             $e->setUser($user);
 
-            throw $e;
-        }
-
-        $passwordExpireIn = $this->parameters->get('umbrella_admin.security.password_expire_in');
-
-        if ($passwordExpireIn > 0 && !$user->isPasswordNonExpired($passwordExpireIn)) {
-            $e = new PasswordExpiredException();
-            $e->setUser($user);
-            $e->setRequestPasswordUrl($this->router->generate('umbrella_admin_security_passwordrequest', [
-                'email' => $user->getEmail()
-            ]));
             throw $e;
         }
     }

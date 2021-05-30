@@ -9,84 +9,41 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 interface AdminUserInterface extends UserInterface
 {
+    /**
+     * @see UserInterface
+     * {@inheritdoc}
+     */
+    public function getUserIdentifier(): string;
+
     public function getId();
 
-    /**
-     * Gets email.
-     *
-     * @return string
-     */
-    public function getEmail();
+    public function getEmail(): ?string;
 
-    /**
-     * Sets the email.
-     *
-     * @param string $email
-     */
-    public function setEmail($email);
+    public function setEmail(?string $email);
 
-    /**
-     * @return string
-     */
-    public function getUserIdentifier();
+    public function getFullName(): string;
 
-    /**
-     * Full name of user
-     *
-     * @return string
-     */
-    public function getFullName();
+    public function getSalt(): ?string;
 
-    /**
-     * Gets the plain password.
-     *
-     * @return string|null
-     */
-    public function getPlainPassword();
+    public function setPassword(?string $password);
 
-    /**
-     * Sets the plain password.
-     *
-     * @param string $password
-     */
-    public function setPlainPassword($password);
+    public function getPassword(): ?string;
 
-    /**
-     * Sets the hashed password.
-     *
-     * @param string|null $password
-     */
-    public function setPassword($password);
+    public function getPlainPassword(): ?string;
 
-    /**
-     * Gets the confirmation token.
-     *
-     * @return string|null
-     */
-    public function getConfirmationToken();
+    public function setPlainPassword(?string $password);
 
-    /**
-     * Sets the confirmation token.
-     */
+    // confirmation token used on password resseting
+
+    public function getConfirmationToken(): ?string;
+
     public function setConfirmationToken(?string $confirmationToken);
 
-    /**
-     * Return true if password hasn't expired (depends of ttl)
-     */
-    public function isPasswordNonExpired(int $ttl): bool;
-
-    /**
-     * Return true if request for new password hasn't expired (depends of ttl)
-     */
     public function isPasswordRequestNonExpired(int $ttl): bool;
 
-    /**
-     * Enable/Disable a user
-     */
+    // Account active
+
     public function setActive(bool $active);
 
-    /**
-     * Return true if User is active (i.e : allowed to log in)
-     */
     public function isActive(): bool;
 }
