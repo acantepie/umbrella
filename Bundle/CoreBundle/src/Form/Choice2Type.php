@@ -34,15 +34,15 @@ class Choice2Type extends AbstractType
         $view->vars['placeholder'] = null;
         $view->vars['expanded'] = false;
 
+        if (!$options['required'] && !$options['multiple']) {
+            $view->vars['placeholder'] = ''; // hack (parent form will ass an empty options)
+        }
+
         $dataOptions['allow_clear'] = !$options['required'] ? true : $options['allow_clear'];
 
-        if (null === $options['placeholder'] || false === $options['placeholder']) {
-            $dataOptions['placeholder'] = $dataOptions['allow_clear'] ? '' : null;
-        } else {
-            $dataOptions['placeholder'] = empty($options['placeholder']) || false === $options['translation_domain']
-                ? $options['placeholder']
-                : $this->translator->trans($options['placeholder'], [], $options['translation_domain']);
-        }
+        $dataOptions['placeholder'] = empty($options['placeholder']) || false === $options['translation_domain']
+            ? $options['placeholder']
+            : $this->translator->trans($options['placeholder'], [], $options['translation_domain']);
 
         $dataOptions['min_search_length'] = $options['min_search_length'];
         $dataOptions['template'] = $options['template'];
@@ -58,7 +58,7 @@ class Choice2Type extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefault('allow_clear', true)
+            ->setDefault('allow_clear', false)
             ->setAllowedTypes('allow_clear', 'boolean');
 
         $resolver
