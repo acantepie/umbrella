@@ -59,6 +59,7 @@ table.dataTable {
     text-align: center;
     cursor: move;
     padding: $table-cell-padding-y-sm $table-cell-padding-x;
+    color: $primary;
   }
 
   .row-details-handle i.mdi::before {
