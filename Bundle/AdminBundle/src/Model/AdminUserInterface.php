@@ -2,12 +2,13 @@
 
 namespace Umbrella\AdminBundle\Model;
 
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Interface AdminUserInterface
  */
-interface AdminUserInterface extends UserInterface
+interface AdminUserInterface extends PasswordAuthenticatedUserInterface, UserInterface
 {
     /**
      * @see UserInterface

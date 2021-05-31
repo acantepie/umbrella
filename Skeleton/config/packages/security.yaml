@@ -1,10 +1,8 @@
 security:
     enable_authenticator_manager: true
-    encoders:
-        Symfony\Component\Security\Core\User\User:
-            algorithm: plaintext
-        App\Entity\User:
-            algorithm: sodium
+    password_hashers:
+        Symfony\Component\Security\Core\User\InMemoryUser: 'plaintext'
+        App\Entity\User: 'sodium'
 
     role_hierarchy:
         ROLE_ADMIN: [ ROLE_USER ]
@@ -18,7 +16,9 @@ security:
                 users:
                     umbrella:  { password: umbrella, roles: [ 'ROLE_ADMIN']}
         admin_entity_provider:
-            id: Umbrella\AdminBundle\Security\UserProvider
+            entity:
+                class: App\Entity\User
+                property: email
 
     firewalls:
         dev:

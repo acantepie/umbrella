@@ -25,7 +25,6 @@ services:
     # Security
     Umbrella\AdminBundle\Security\LoginFormAuthenticator:
     Umbrella\AdminBundle\Security\AuthenticationEntryPoint:
-    Umbrella\AdminBundle\Security\UserProvider:
     Umbrella\AdminBundle\Security\UserChecker:
 
     # Services

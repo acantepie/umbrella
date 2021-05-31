@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ObjectRepository;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
 
 /**
@@ -15,22 +15,18 @@ use Umbrella\AdminBundle\Model\AdminUserInterface;
 class UserManager
 {
     protected EntityManagerInterface $em;
-
-    protected UserPasswordEncoderInterface $passwordEncoder;
-
+    protected UserPasswordHasherInterface $passwordHasher;
     protected ParameterBagInterface $parameters;
-
     protected string $class;
-
     protected ObjectRepository $repo;
 
     /**
      * UserManager constructor.
      */
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, ParameterBagInterface $parameters)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, ParameterBagInterface $parameters)
     {
         $this->em = $em;
-        $this->passwordEncoder = $passwordEncoder;
+        $this->passwordHasher = $passwordHasher;
         $this->parameters = $parameters;
 
         $this->class = $parameters->get('umbrella_admin.user.class');
@@ -72,7 +68,7 @@ class UserManager
     public function updatePassword(AdminUserInterface $user): void
     {
         if (!empty($user->plainPassword)) {
-            $user->setPassword($this->passwordEncoder->encodePassword($user, $user->plainPassword));
+            $user->setPassword($this->passwordHasher->hashPassword($user, $user->plainPassword));
             $user->eraseCredentials();
         }
     }
