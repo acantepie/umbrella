@@ -2,7 +2,7 @@
     "name": "umbrella2/skeleton",
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
@@ -37,14 +37,14 @@
         "symfony/serializer": "5.3.*",
         "symfony/string": "5.3.*",
         "symfony/translation": "5.3.*",
-        "symfony/twig-bundle": "^5.2",
+        "symfony/twig-bundle": "5.3.*",
         "symfony/validator": "5.3.*",
         "symfony/web-link": "5.3.*",
         "symfony/yaml": "5.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
-        "umbrella2/corebundle": "dev-master",
-        "umbrella2/adminbundle": "dev-master"
+        "umbrella2/adminbundle": "dev-master",
+        "umbrella2/corebundle": "dev-master"
     },
     "require-dev": {
         "symfony/browser-kit": "^5.2",
