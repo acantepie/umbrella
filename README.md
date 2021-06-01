@@ -1,172 +1,77 @@
-# Umbrella Framework
-Umbrella framework contains two bundle (Adminbundle and CoreBundle) that provide a set of components and template to create administration backends.
+<h1 align="center" style="border-bottom: none">
+    ☂ Umbrella framework
+</h1>
 
-## Showcase project
-![Screenshot of the Umbrella Admin Demo app](screenshot.png)
+<p align="center">
+    Easiest way to create beautiful administration backends with Symfony.
+</p>
 
-- [Online demo](https://umbrella-corp.dev/)
-- [umbrella-admin-demo repository](https://github.com/acantepie/umbrella-admin-demo)
 
-## Create new project with Umbrella
+<div align="center">
 
-### Requirements
+[![Symfony version](https://img.shields.io/badge/Symfony-5.3-red?style=for-the-badge)](https://symfony.com/)
+[![PHP version](https://img.shields.io/badge/php-7.4+-red?style=for-the-badge)](https://www.php.net/)
+[![Bootstrap version](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge)](https://getbootstrap.com/)
 
-* PHP 7.4 or higher;
-* and the [usual Symfony application requirements](https://symfony.com/doc/current/reference/requirements.html).
+</div>
 
-### Installation
+<p align="center">
+    <a href="https://umbrella-corp.dev"><b>Demo website</b></a> •
+    <a href="https://github.com/acantepie/umbrella-admin-demo"><b>Demo repository</b></a>
+</p> 
 
+<p align="center">
+    <img src="/screenshot.png" width="100%">
+    <br/><br/>
+</p>
+
+# Quick start
+First, make sure you <a href="https://nodejs.org/en/download/">install Node.js</a>, <a href="https://yarnpkg.com/getting-started/install">Yarn package manager</a> and also php7.4.
+
+- `composer create-project umbrella2/skeleton my_project`
+- `cd my_project/`
+
+Configure your database:
+
+- Edit the `DATABASE_URL` env var in the `.env` file to use your database credentials.
+- `php bin/console doctrine:database:create`
+- `php bin/console doctrine:schema:create`
+
+Build assets with webpack:
+
+- `yarn install`
+- `yarn build`
+
+Serve:
+
+- `php -S localhost:8000 -t public/`
+- Browse http://localhost:8000/admin and hint **umbrella** / **umbrella** to login.
+
+# Install umbrella on your current symfony project
+Copy files from [skeleton repository](https://github.com/acantepie/umbrella-skeleton) on your current project except `composer.json`.
+
+Install umbrella bundle :
 ```bash
-composer create-project umbrella2/skeleton my_project
-cd my_project/
+composer require umbrella2/adminbundle
 ```
 
-Configure database connection :<br>
-Edit `DATABASE_URL` env var in the `.env`file.
-```bash
-# Sqlite
-DATABASE_URL="sqlite:///%kernel.project_dir%/var/database.sqlite"
+# Documentation
 
-# mariadb/mysql
-DATABASE_URL="mysql://login:password@127.0.0.1:3306/database"
-```
+A good way to learn how to use components is to look at <b>umbrella-admin-demo</b> code.
 
-Create database and update schema :
-```bash
-php bin/console doctrine:database:create
-php bin/console doctrine:schema:update --force
-```
+~~ work in progress ~~
 
-Build assets:
-```bash
-yarn install
-yarn build
-```
+### Components - [umbrella-corebundle](https://github.com/acantepie/umbrella-corebundle)
+- ⚡ Menu
+- ⚡ DataTable
+- ⚡ [UmbrellaFile (file upload)](docs/umbrella-file.md)
+- ⚡ [Ckeditor](docs/ckeditor.md)
+- ⚡ Js response
+- ⚡ Tabs
 
-### Serve
+### Admin - [umbrella-adminbundle](https://github.com/acantepie/umbrella-adminbundle)
+- ⚡ Admin theme
+- ⚡ Lightweight user managment
 
-Start web server :
-```bash
-php -S localhost:8000 -t public/
-```
-
-Go on url http://localhost:8000/admin and hint **umbrella** / **umbrella** to login on backoffice.
-
-## Use Umbrella on existing project
-You can copy files from [skeleton repository](https://github.com/acantepie/umbrella-skeleton) on your current project:
-```bash
-.
-├── assets
-│   └── admin
-│       ├── admin.js
-│       └── admin.scss
-├── composer.json
-├── config
-│   ├── menu
-│   │   └── admin_sidebar.yaml
-│   ├── packages
-│   │   ├── security.yaml
-│   │   ├── umbrella_admin.yaml
-│   │   └── umbrella_core.yaml
-│   ├── routes
-│   │   └── umbrella_admin.yaml
-│   └── routes.yaml
-├── package.json
-├── src
-│   ├── Controller
-│   │   └── Admin
-│   │       └── DefaultController.php
-│   └── Entity
-│       └── User.php
-├── templates
-│   └── admin
-│       └── default
-│           └── index.html.twig
-├── translations
-│   └── messages.en.yaml
-└── webpack.config.js
-```
-Instead of copy `composer.json` just install this package : `composer require umbrella2/adminbundle` on your project
-
-## Use Ckeditor component
-Install js library
-```bash
-yarn add ckeditor4
-```
-
-Add entry on `webpack.config.js` :
-```javascripts
-Encore
-    .addEntry('ckeditor', './vendor/umbrella2/corebundle/assets/ckeditor/ckeditor.js')
-```
-
-Rebuild javascripts with yarn and copy vendor on public/ directory
-```bash
-yarn build
-cp -R node_modules/ckeditor4 public
-```
-
-You can now use `CkeditorType`on your symfony form :)
-
-## Use UmbrellaFile component
-
-Install flysystem :
-```bash
-composer require league/flysystem-bundle
-```
-
-Enable file component :
-```yaml
-# config/packages/umbrella_core.yaml
-umbrella_core:
-  file:
-    default_config: default
-    configs:
-      - name: default
-        flystorage: default.storage
-        uri: /admin/download/{id}
-```
-
-```yaml
-# config/packages/flysystem.yaml
-flysystem:
-  storages:
-    default.storage:
-      adapter: 'local'
-      options:
-        directory: '%kernel.project_dir%/var/storage/default'
-```
-
-```yaml
-# config/routes.yaml
-umbrella_file:
-  path: /admin/download/{id}
-  controller: Umbrella\CoreBundle\Controller\UmbrellaFileController::downloadAction
-```
-You can now use :
- - `UmbrellaFileType` (symfony form)
- - `FileColumnType` (DataTable)
- - `ImageColumnType` (DataTable)
- - `FileStorage`
- - `UmbrellaFileExtension` (twig extension that provide two twig filters ` file | file_url()` and `file | image_url()`)
-
-Additionaly, you can install [liip/LiipImagineBundle](https://github.com/liip/LiipImagineBundle) to display file:
-
-```yaml
-# config/packages/liip_imagine.yaml
-liip_imagine:
-  driver: "gd"
-  loaders:
-    default:
-      flysystem:
-        filesystem_service: default.storage
-
-  filter_sets:
-    thumbnail: ...
-
-```
-
-```twig
-    {# twig #}
-    {{ file | image_url('thumbnail') }}
-```
+# Contributors
+Any help, suggestions or contributions are welcome.
