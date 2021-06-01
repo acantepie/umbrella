@@ -26,7 +26,7 @@
 </p>
 
 # Quick start
-First, make sure you <a href="https://nodejs.org/en/download/">install Node.js</a>, <a href="https://yarnpkg.com/getting-started/install">Yarn package manager</a> and also php7.4.
+First, make sure you <a href="https://nodejs.org/en/download/">install Node.js</a>, <a href="https://yarnpkg.com/getting-started/install">Yarn package manager</a>, php7.4 and also <a href="https://getcomposer.org/download/">composer</a>.
 
 - `composer create-project umbrella2/skeleton my_project`
 - `cd my_project/`
