@@ -1,3 +1,2 @@
 account_disabled: Votre compte est désactivé.
 Too many failed login attempts, please try again in %minutes% minute.: Trop de tentatives de connexion ont échoué, veuillez réessayer dans %minutes% minute.
-password_expired: Votre mot de passe à éxpiré. Vous devez mettre à jour votre mot de passe avant de vous authentifier.<br> <a href="%url%" class="text-primary">Mettre à jour mon mot de passe</a>.

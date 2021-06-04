@@ -23,7 +23,6 @@ services:
     Umbrella\AdminBundle\Form\UserType:
 
     # Security
-    Umbrella\AdminBundle\Security\LoginFormAuthenticator:
     Umbrella\AdminBundle\Security\AuthenticationEntryPoint:
     Umbrella\AdminBundle\Security\UserChecker:
 
