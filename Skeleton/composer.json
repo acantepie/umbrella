@@ -43,7 +43,8 @@
         "symfony/yaml": "5.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
-        "umbrella2/adminbundle": "*"
+        "umbrella2/corebundle": "^2.0",
+        "umbrella2/adminbundle": "^2.0"
     },
     "require-dev": {
         "symfony/browser-kit": "^5.2",
@@ -78,12 +79,14 @@
         "symfony/polyfill-php72": "*"
     },
     "scripts": {
+        "del-webpack-encore-recipes": "rm -Rf assets/app.js assets/bootstrap.js assets/controllers.json assets/styles assets/controllers",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@del-webpack-encore-recipes"
         ],
         "post-update-cmd": [
             "@auto-scripts"

@@ -7,7 +7,9 @@ BUILD_DIRECTORY="$HOME/projects/umbrella-skeleton"
 
 rm -Rf "$BUILD_DIRECTORY"
 cp -R ./Skeleton "$BUILD_DIRECTORY"
-cp ./bin/resources/composer.json.dist "$BUILD_DIRECTORY/composer.json"
+sed -i -e 's/"umbrella2\/corebundle"\:\ ".*"/"umbrella2\/corebundle": "dev-master"/g' "$BUILD_DIRECTORY/composer.json"
+sed -i -e 's/"umbrella2\/adminbundle"\:\ ".*"/"umbrella2\/adminbundle": "dev-master"/g' "$BUILD_DIRECTORY/composer.json"
+
 cd "$BUILD_DIRECTORY"
 
 echo 'DATABASE_URL="sqlite:///%kernel.project_dir%/var/database.sqlite"' > "$BUILD_DIRECTORY/.env.local"
