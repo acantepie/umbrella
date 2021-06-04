@@ -27,6 +27,14 @@ umbrella-toolbar[theme=default] {
     .toolbar-item {
       margin-bottom: 1rem;
     }
+
+    .toolbar-item-filter {
+      .form-check {
+        padding-top: 7px;
+      }
+    }
+
+
   }
 
   @include media-breakpoint-up(md) {

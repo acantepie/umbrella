@@ -16,7 +16,7 @@ export default class Toolbar extends HTMLElement {
     connectedCallback() {
         const $form = $(this.form)
 
-        $form.on('change', 'select', () => {
+        $form.on('change', 'select, input[type=checkbox], input[type=radio]', () => {
             this._triggerChange(100);
         });
 
