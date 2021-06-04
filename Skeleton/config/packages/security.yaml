@@ -30,11 +30,15 @@ security:
             user_checker: Umbrella\AdminBundle\Security\UserChecker
             entry_point: Umbrella\AdminBundle\Security\AuthenticationEntryPoint
             provider: admin_provider
-            guard:
-                authenticators:
-                    - Umbrella\AdminBundle\Security\LoginFormAuthenticator
+            lazy: true
+            form_login:
+                login_path: umbrella_admin_login
+                check_path: umbrella_admin_login
+                default_target_path: app_admin_default_index
+                enable_csrf: true
             logout:
                 path: umbrella_admin_logout
+                target: umbrella_admin_login
 
     access_control:
         - { path: ^/admin/login$, role: PUBLIC_ACCESS }
