@@ -85,8 +85,7 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts",
-            "@del-webpack-encore-recipes"
+            "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
