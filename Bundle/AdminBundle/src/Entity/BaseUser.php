@@ -224,6 +224,14 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
         return (string) $this->email;
     }
 
+    /*
+     * Keep for backward compatibility with Symfony 5.3
+     */
+    public final function getUsername()
+    {
+        return $this->getUserIdentifier();
+    }
+
     /**
      * {@inheritdoc}
      */
