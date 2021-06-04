@@ -26,6 +26,10 @@ class BooleanColumnType extends PropertyColumnType
      */
     public function renderProperty($value, array $options): string
     {
+        if ($options['strict_comparison'] && !is_bool($value)) {
+            return '';
+        }
+
         switch ($value) {
             case true:
                 return sprintf(
@@ -53,6 +57,9 @@ class BooleanColumnType extends PropertyColumnType
         parent::configureOptions($resolver);
 
         $resolver
+            ->setDefault('strict_comparison', false)
+            ->setAllowedTypes('strict_comparison', 'bool')
+
             ->setDefault('yes_value', 'common.yes')
             ->setAllowedTypes('yes_value', 'string')
 
