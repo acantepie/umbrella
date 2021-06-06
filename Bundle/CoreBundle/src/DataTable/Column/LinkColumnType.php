@@ -59,19 +59,15 @@ class LinkColumnType extends PropertyColumnType
             $attr['class'] = $options['link_class'];
         }
 
-        $text = '';
-
-        if (false !== $options['text']) { // link have text
-            if (empty($options['text'])) {
-                $text = HtmlUtils::escape($this->accessor->getValue($rowData, $options['property_path']));
-            } else {
-                $text = $options['text'];
-            }
+        if (null === $options['text']) {
+            $text = HtmlUtils::escape($this->accessor->getValue($rowData, $options['property_path']));
+        } elseif (is_callable($options['text'])) {
+            $text = (string) call_user_func($options['text'], $rowData);
+        } else {
+            $text = (string) $options['text'];
         }
 
-        $icon = empty($options['icon']) ? '' : sprintf('<i class="%s"></i>', $options['icon']);
-
-        return sprintf('<a %s>%s %s</a>', HtmlUtils::to_attr($attr), $icon, $text);
+        return sprintf('<a %s>%s</a>', HtmlUtils::to_attr($attr), $text);
     }
 
     /**
@@ -90,14 +86,9 @@ class LinkColumnType extends PropertyColumnType
             ->allowedTypes('string', 'null');
 
         $resolver
-            ->define('icon')
-            ->default(null)
-            ->allowedTypes('string', 'null');
-
-        $resolver
             ->define('text')
             ->default(null)
-            ->allowedTypes('string', 'null', 'bool');
+            ->allowedTypes('string', 'callable', 'null');
 
         $resolver
             ->define('route')

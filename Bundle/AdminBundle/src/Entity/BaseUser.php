@@ -227,7 +227,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /*
      * Keep for backward compatibility with Symfony 5.3
      */
-    public final function getUsername()
+    final public function getUsername()
     {
         return $this->getUserIdentifier();
     }
