@@ -61,17 +61,19 @@ A good way to learn how to use components is to look at <b>umbrella-admin-demo</
 
 ~~ work in progress ~~
 
-### Components - [umbrella-corebundle](https://github.com/acantepie/umbrella-corebundle)
-- ⚡ Menu
-- ⚡ DataTable
-- ⚡ [UmbrellaFile (file upload)](docs/umbrella-file.md)
-- ⚡ [Ckeditor](docs/ckeditor.md)
+### Core - [umbrella-corebundle](https://github.com/acantepie/umbrella-corebundle)
+- ⚡ Menu, Breadcrumb component
+- ⚡ DataTable component
+- ⚡ FormType : Choice2Type, Entity2Type, [Ckeditor](docs/ckeditor.md), DatePickerType, AutoCompleteType
 - ⚡ Js response
-- ⚡ Tabs
+- ⚡ Tabs component
+- ⚡ Searchable entity
 
 ### Admin - [umbrella-adminbundle](https://github.com/acantepie/umbrella-adminbundle)
 - ⚡ Admin theme
-- ⚡ Lightweight user managment
+- ⚡ User management
+- ⚡ Notification system
+- ⚡ Maker : Create a DataTable view, Create a TreeTable view
 
 # Contributors
 Any help, suggestions or contributions are welcome.
