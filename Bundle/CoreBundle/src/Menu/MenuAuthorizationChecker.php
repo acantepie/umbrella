@@ -92,22 +92,10 @@ class MenuAuthorizationChecker
 
     private function getRoles(TokenInterface $token): array
     {
-        if (method_exists($this->roleHierarchy, 'getReachableRoleNames')) {
-            if (null !== $this->roleHierarchy) {
-                $roles = $this->roleHierarchy->getReachableRoleNames($token->getRoleNames());
-            } else {
-                $roles = $token->getRoleNames();
-            }
+        if (null !== $this->roleHierarchy) {
+            $roles = $this->roleHierarchy->getReachableRoleNames($token->getRoleNames());
         } else {
-            if (null !== $this->roleHierarchy) {
-                $roles = $this->roleHierarchy->getReachableRoles($token->getRoles());
-            } else {
-                $roles = $token->getRoles();
-            }
-
-            $roles = array_map(function ($role) {
-                return $role->getRole();
-            }, $roles);
+            $roles = $token->getRoleNames();
         }
 
         return $roles;

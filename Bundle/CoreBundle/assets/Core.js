@@ -42,12 +42,10 @@ customElements.define('umbrella-datatable', DataTable);
 
 // --- Forms
 import Select2 from "./components/Select2";
-import UmbrellaFile from "./components/UmbrellaFile";
 import UmbrellaCollection from "./components/UmbrellaCollection";
 import DatePicker from "./components/DatePicker";
 
 customElements.define('umbrella-datepicker', DatePicker, {extends: 'input'});
-customElements.define('umbrella-file', UmbrellaFile);
 customElements.define('umbrella-collection', UmbrellaCollection);
 customElements.define('umbrella-select2', Select2, {extends: 'select'});
 

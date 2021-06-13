@@ -45,6 +45,9 @@ label:
     active: Actif
     updatedAt: Modifié le
     createdAt: Crée le
+    vich_uploader:
+        form_label:
+            delete_confirm: Supprimer le fichier
 
 placeholder:
     search: Rechercher ...

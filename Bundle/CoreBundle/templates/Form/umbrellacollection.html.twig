@@ -9,7 +9,7 @@
         'data-max-length' : form.vars.max_length
     }) %}
 
-    {% set compound = prototype is defined and prototype.vars.compound and 'umbrellafile' not in prototype.vars.block_prefixes %}
+    {% set compound = prototype is defined and prototype.vars.compound  %}
 
     <umbrella-collection {{ block('widget_container_attributes') }}>
 
@@ -71,7 +71,7 @@
             </td>
         {% endif %}
 
-        {% set compound = entry_form.vars.compound and 'umbrellafile' not in entry_form.vars.block_prefixes %}
+        {% set compound = entry_form.vars.compound %}
 
         {% if compound %}
             {% for col_form in entry_form %}

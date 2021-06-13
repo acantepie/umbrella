@@ -119,7 +119,7 @@ class FlatCountPaginator implements Countable, IteratorAggregate
     /**
      * {@inheritdoc}
      *
-     * @return ArrayIterator<mixed, T>
+     * @return ArrayIterator<array-key, T>
      */
     public function getIterator()
     {

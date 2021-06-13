@@ -25,7 +25,6 @@ class Configuration implements ConfigurationInterface
         $this->addWidgetSection($rootNode);
         $this->ckeditorSection($rootNode);
         $this->datatableSection($rootNode);
-        $this->fileSection($rootNode);
 
         return $treeBuilder;
     }
@@ -72,19 +71,5 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('table_class')->defaultValue('table table-striped table-centered dt-responsive w-100')->end()
                     ->scalarNode('tree_class')->defaultValue('table table-centered')->end()
                     ->scalarNode('dom')->defaultValue("< tr><'row'<'col-sm-12 col-md-5'li><'col-sm-12 col-md-7'p>>")->end();
-    }
-
-    private function fileSection(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode->children()
-            ->arrayNode('file')->canBeEnabled()->addDefaultsIfNotSet()
-            ->children()
-                ->scalarNode('default_config')->defaultNull()->end()
-                ->arrayNode('configs')
-                    ->useAttributeAsKey('name')
-                    ->arrayPrototype()
-                    ->children()
-                        ->scalarNode('flystorage')->isRequired()->end()
-                        ->scalarNode('uri')->isRequired()->end();
     }
 }

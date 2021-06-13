@@ -5,26 +5,14 @@ namespace Umbrella\CoreBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
-use Umbrella\CoreBundle\DataTable\Column\FileColumnType;
-use Umbrella\CoreBundle\DataTable\Column\ImageColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
 use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableConfig;
 use Umbrella\CoreBundle\Form\Extension\FormTypeExtension;
-use Umbrella\CoreBundle\Form\UmbrellaFileType;
-use Umbrella\CoreBundle\UmbrellaFile\DownloadHandler;
-use Umbrella\CoreBundle\UmbrellaFile\Storage\FileStorage;
-use Umbrella\CoreBundle\UmbrellaFile\Storage\StorageConfig;
-use Umbrella\CoreBundle\UmbrellaFile\Twig\UmbrellaFileExtension;
-use Umbrella\CoreBundle\UmbrellaFile\UmbrellaFileHelper;
-use Umbrella\CoreBundle\UmbrellaFile\UmbrellaFileSubscriber;
-use Umbrella\CoreBundle\UmbrellaFile\Validator\UmbrellaFileValidator;
-use Umbrella\CoreBundle\UmbrellaFile\Validator\UmbrellaImageValidator;
 use Umbrella\CoreBundle\Utils\ArrayUtils;
 use Umbrella\CoreBundle\Widget\Type\WidgetType;
 use Umbrella\CoreBundle\Widget\WidgetRegistry;
@@ -71,70 +59,12 @@ class UmbrellaCoreExtension extends Extension
             ->register(DataTableConfig::class)
             ->setArgument(0, $config['datatable']);
 
-        $parameters = ArrayUtils::remap_nested_array($config, 'umbrella_core', ['umbrella_core.file.configs']);
+        $parameters = ArrayUtils::remap_nested_array($config, 'umbrella_core');
 
         foreach ($parameters as $pKey => $pValue) {
             if (!$container->hasParameter($pKey)) {
                 $container->setParameter($pKey, $pValue);
             }
         }
-
-        $this->enableFile($container, $config['file']);
-    }
-
-    private function enableFile(ContainerBuilder $container, array $config)
-    {
-        if (!$config['enabled']) {
-            $container->removeDefinition(UmbrellaFileType::class);
-            $container->removeDefinition(FileColumnType::class);
-            $container->removeDefinition(ImageColumnType::class);
-
-            return;
-        }
-
-        // build configs
-        $defaultName = $config['default_config'];
-
-        $configs = [];
-        foreach ($config['configs'] as $name => $configData) {
-            $serviceId = sprintf('umbrella.file.%s.config', $name);
-
-            $container->register($serviceId, StorageConfig::class)
-                ->setPublic(false)
-                ->setArguments([$name, $configData['uri'], $name === $defaultName, new Reference($configData['flystorage'])])
-                ->addTag(StorageConfig::TAG);
-        }
-
-        $container->register(FileStorage::class)
-            ->setAutowired(true)
-            ->setPublic(false);
-
-        $container->register(UmbrellaFileHelper::class)
-            ->setAutowired(true)
-            ->setPublic(false);
-
-        $container->register(DownloadHandler::class)
-            ->setAutowired(true)
-            ->setPublic(false);
-
-        $container->register(UmbrellaFileSubscriber::class)
-            ->setAutoconfigured(true)
-            ->setAutowired(true)
-            ->setPublic(false);
-
-        $container->register(UmbrellaFileValidator::class)
-            ->setAutoconfigured(true)
-            ->setAutowired(true)
-            ->setPublic(false);
-
-        $container->register(UmbrellaImageValidator::class)
-            ->setAutoconfigured(true)
-            ->setAutowired(true)
-            ->setPublic(false);
-
-        $container->register(UmbrellaFileExtension::class)
-            ->setAutoconfigured(true)
-            ->setAutowired(true)
-            ->setPublic(false);
     }
 }

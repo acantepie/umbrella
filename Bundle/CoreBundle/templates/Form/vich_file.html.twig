@@ -1,0 +1,56 @@
+{%- block vich_file_row -%}
+    {%- set force_error = true -%}
+    {{- block('form_row') -}}
+{%- endblock -%}
+
+{%- block vich_file_widget -%}
+    <div class="vich-file">
+        {%- if errors|length > 0 -%}
+            {%- set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim}) -%}
+        {%- endif -%}
+        {{- form_widget(form.file, {attr: attr}) -}}
+
+        {%- if form.delete is defined or download_uri -%}
+            <div class="vich-file-actions">
+                {%- if form.delete is defined -%}
+                    {{- form_widget(form.delete) -}}
+                {%- endif -%}
+
+                {%- if download_uri -%}
+                    <a href="{{ asset_helper is same as(true) ? asset(download_uri) : download_uri }}" download>
+                        <i class="mdi mdi-download"></i> {{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}
+                    </a>
+                {%- endif -%}
+            </div>
+        {% endif %}
+
+    </div>
+{%- endblock -%}
+
+{%- block vich_image_row -%}
+    {%- set force_error = true -%}
+    {{- block('form_row') -}}
+{%- endblock -%}
+
+{%- block vich_image_widget -%}
+    <div class="vich-image">
+        {%- if errors|length > 0 -%}
+            {%- set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim}) -%}
+        {%- endif -%}
+        {{- form_widget(form.file, {attr: attr}) -}}
+        {%- if form.delete is defined -%}
+            {{- form_row(form.delete) -}}
+        {%- endif -%}
+
+        {%- if image_uri -%}
+            <a href="{{ asset_helper is same as(true) ? asset(image_uri) : image_uri }}" download>
+                <img src="{{ asset_helper is same as(true) ? asset(image_uri) : image_uri }}" alt="" />
+            </a>
+        {%- endif -%}
+        {%- if download_uri -%}
+            <a href="{{ asset_helper is same as(true) ? asset(download_uri) : download_uri }}" download>
+                {{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}
+            </a>
+        {%- endif -%}
+    </div>
+{%- endblock -%}

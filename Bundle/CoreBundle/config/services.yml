@@ -64,10 +64,6 @@ services:
     #Command
     Umbrella\CoreBundle\Command\IndexEntityCommand:
 
-    #Controller
-    Umbrella\CoreBundle\Controller\UmbrellaFileController:
-        tags: [ 'controller.service_arguments' ]
-
     #Extension
     Umbrella\CoreBundle\Twig\CoreExtension:
         bind:
