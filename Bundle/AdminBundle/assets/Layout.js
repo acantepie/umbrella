@@ -25,7 +25,6 @@ class Layout {
     }
 
     handleMenuBtnClick() {
-        console.log('ho !')
         this.body.classList.toggle('sidebar-enable');
 
         if (window.innerWidth >= 576) {

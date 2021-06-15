@@ -70,7 +70,6 @@ message:
     reset_password_error: Ce lien a éxpiré.
     reset_password_error_cause1: Cela fait fait plus de 24 heures que vous avez demandé à cet que votre mot de passe soit réinitialisé. Veuillez faire une nouvelle demande de <a href="%url%" class="text-primary">réinitialisation de mot de passe</a>.
     reset_password_error_cause2: Si vous avez effectué plusieurs demande, seul l'email de réinitialisation envoyé en dernier sera valide.
-    missing_tag: Veuillez saisir au moins un tag.
     no_row_selected: Aucune ligne sélectionnée.
 
 notification:

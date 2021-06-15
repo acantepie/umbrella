@@ -70,7 +70,6 @@ message:
     reset_password_error: This link has expired.
     reset_password_error_cause1: It has been more than 24 hours since you requested a password reset. You can do a new <a href="%url%" class="text-primary">password request</a>.
     reset_password_error_cause2: If you have made more than one request, only the last email will be valid.
-    missing_tag: Enter at least one tag.
     no_row_selected: No row selected.
 
 notification:
