@@ -1,3 +1,5 @@
+import Utils from "umbrella_core/utils/Utils";
+
 /**
  * Custom events:
  * tb:change
@@ -53,7 +55,7 @@ export default class Toolbar extends HTMLElement {
     }
 
     getData() {
-        return $(this.form).serializeFormToJson();
+        return Utils.objectify_formdata(new FormData(this.form))
     }
 
     reset() {

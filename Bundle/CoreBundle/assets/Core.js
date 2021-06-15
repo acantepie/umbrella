@@ -1,7 +1,5 @@
 // --- Jquery
 import './jquery/JQuery';
-import './jquery/SerializeFormToFormData';
-import './jquery/SerializeFormToJson';
 
 // --- Bootstrap
 import {Tooltip as bsTooltip, Modal as bsModal, Popover as bsPopover} from "bootstrap";

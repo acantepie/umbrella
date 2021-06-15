@@ -1,4 +1,5 @@
 import AjaxUtils from "./AjaxUtils";
+import Utils from "./Utils";
 
 export default class BindUtils
 {
@@ -50,7 +51,7 @@ export default class BindUtils
                 confirm: $e.data('confirm') || false,
                 spinner: $e.data('spinner') || false,
                 method: $e.attr('method') || 'post',
-                data: $e.serializeFormToFormData(),
+                data: Utils.create_formdata_with_files(e.currentTarget),
             })
         });
     }
