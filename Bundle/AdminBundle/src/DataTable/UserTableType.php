@@ -58,12 +58,14 @@ class UserTableType extends DataTableType
             'build' => function (WidgetBuilder $builder, AdminUserInterface $entity) {
                 $builder->add('add', RowEditLinkType::class, [
                     'route' => 'umbrella_admin_user_edit',
-                    'route_params' => ['id' => $entity->getId()]
+                    'route_params' => ['id' => $entity->getId()],
+                    'xhr' => true
                 ]);
 
                 $builder->add('delete', RowDeleteLinkType::class, [
                     'route' => 'umbrella_admin_user_delete',
-                    'route_params' => ['id' => $entity->getId()]
+                    'route_params' => ['id' => $entity->getId()],
+                    'xhr' => true
                 ]);
             }
         ]);

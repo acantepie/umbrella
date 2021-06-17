@@ -1,142 +1,185 @@
 <?php
 
+
 namespace Umbrella\AdminBundle\Maker;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\MakerBundle\ConsoleStyle;
+use Symfony\Bundle\MakerBundle\DependencyBuilder;
+use Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper;
+use Symfony\Bundle\MakerBundle\Generator;
+use Symfony\Bundle\MakerBundle\InputConfiguration;
+use Symfony\Bundle\MakerBundle\Maker\AbstractMaker;
+use Symfony\Bundle\MakerBundle\Str;
+use Symfony\Bundle\MakerBundle\Validator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
-use Umbrella\AdminBundle\Maker\Console\ConsoleStyle;
-use Umbrella\AdminBundle\Maker\Console\InputConfiguration;
-use Umbrella\AdminBundle\Maker\Generator\Generator;
-use Umbrella\AdminBundle\Maker\Utils\MakerUtils;
 
-/**
- * Class MakeTable
- */
 class MakeTable extends AbstractMaker
 {
-    const ACTION_EDIT = 'edit';
+    private DoctrineHelper $doctrineHelper;
 
-    const ACTION_SHOW = 'show';
-    const ACTION_DELETE = 'delete';
-    const VIEW_MODAL = 'modal';
-
-    const VIEW_PAGE = 'page';
-    const VIEW_TYPES = [self::VIEW_MODAL, self::VIEW_PAGE];
-
-    const STRUCTURE_NONE = 'none';
-    const STRUCTURE_TREE = 'tree';
-
-    protected EntityManagerInterface $em;
-
-    protected string $_structure = self::STRUCTURE_NONE;
-    protected string $_directory = 'Admin';
-    protected string $_viewType = self::VIEW_MODAL;
-    protected bool $_createTemplate = true;
-
-    /**
-     * MakeTable constructor.
-     */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(DoctrineHelper $doctrineHelper)
     {
-        $this->em = $em;
+        $this->doctrineHelper = $doctrineHelper;
     }
 
     public static function getCommandName(): string
     {
-        return 'umbrella:make:table';
+        return 'make:table';
     }
+
+    public static function getCommandDescription(): string
+    {
+        return 'Creates an admin table view';
+    }
+
 
     public function configureCommand(Command $command, InputConfiguration $inputConfig)
     {
-        $command->setDescription('Creates a new Table CRUD');
-        $command->addArgument('entity', InputArgument::OPTIONAL, 'The class name of the entity to create');
-        $command->addOption('force', 'f', InputOption::VALUE_NONE, 'Overwrite existing files');
-        $command->addOption('update-schema', 'u', InputOption::VALUE_NONE, 'Update doctrine schema');
+        $command
+            ->addArgument('entity_name', InputArgument::OPTIONAL, sprintf('Class name of the entity to create (e.g. <fg=yellow>%s</>)', Str::asClassName(Str::getRandomTerm())));
+    }
+
+    public function configureDependencies(DependencyBuilder $dependencies)
+    {
     }
 
     public function interact(InputInterface $input, ConsoleStyle $io, Command $command)
     {
-        $this->_directory = $io->askQuestion(new Question('Directory to use for Controller, Table or Form ?', $this->_directory));
-        $this->_viewType = $io->askQuestion(new ChoiceQuestion('View type ?', self::VIEW_TYPES, $this->_viewType));
-        $this->_createTemplate = $io->askQuestion(new ConfirmationQuestion('Create twig template on project directory ?', $this->_createTemplate));
+        if ($input->getArgument('entity_name')) {
+            return;
+        }
+
+        $argument = $command->getDefinition()->getArgument('entity_name');
+        $question = $this->createEntityClassQuestion($argument->getDescription());
+        $value = $io->askQuestion($question);
+
+        $input->setArgument('entity_name', $value);
     }
 
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
     {
-        $entityName = $input->getArgument('entity');
-        $force = $input->getOption('force');
-        $updateSchema = $input->getOption('update-schema');
+        $entitySearchable = $io->askQuestion(new ConfirmationQuestion('Add the ability to search your entity with text', true));
+        $editOnModal = $io->askQuestion(new ConfirmationQuestion('Edit entity on a modal', true));
+        $createTemplate = $io->askQuestion(new ConfirmationQuestion('Create twig template', true));
 
-        $entityMeta = $generator->createMetaClass($entityName, 'Entity');
-        $repositoryMeta = $generator->createMetaClass($entityName, 'Repository', 'Repository');
-        $formMeta = $generator->createMetaClass($entityName, 'Form\\' . $this->_directory, 'Type');
-        $tableMeta = $generator->createMetaClass($entityName, 'DataTable\\' . $this->_directory, 'TableType');
-        $controllerMeta = $generator->createMetaClass($entityName, 'Controller\\' . $this->_directory, 'Controller');
+        // class details
 
-        $params = [
-            'structure' => $this->_structure,
-            'i18n_id' => MakerUtils::asRouteName($entityMeta->getShortName()),
-            'entity' => $entityMeta,
-            'repository' => $repositoryMeta,
-            'table' => $tableMeta,
-            'controller' => $controllerMeta,
-            'form' => $formMeta,
-            'routename_prefix' => $controllerMeta->getRouteNamePrefix(),
-            'routepath' => $controllerMeta->getRoutePath(),
-            'view_type' => $this->_viewType,
-            'templatepath_index' => '@UmbrellaAdmin/DataTable/index.html.twig',
-        ];
+        $entityClassDetails = $generator->createClassNameDetails(
+            $input->getArgument('entity_name'),
+            'Entity\\'
+        );
+        $formClassDetails = $generator->createClassNameDetails(
+            $entityClassDetails->getShortName(),
+            'Form\\',
+            'Type'
+        );
+        $tableClassDetails = $generator->createClassNameDetails(
+            $entityClassDetails->getShortName(),
+            'DataTable\\',
+            'TableType',
+        );
+        $controllerClassDetails = $generator->createClassNameDetails(
+            $entityClassDetails->getShortName(),
+            'Controller\\Admin\\',
+            'Controller'
+        );
 
-        switch ($this->_viewType) {
-            case self::VIEW_MODAL:
-                if ($this->_createTemplate) {
-                    $params['templatepath_edit'] = $controllerMeta->getTemplatePath() . '/edit.html.twig';
-                    $generator->generateTemplate($params['templatepath_edit'], 'datatable/edit_modal.tpl.php', $params);
-                } else {
-                    $params['templatepath_edit'] = '@UmbrellaAdmin/edit_modal.html.twig';
-                }
-                break;
+        $routePath = Str::asRoutePath($controllerClassDetails->getRelativeNameWithoutSuffix());
+        $routeName = 'app_admin_' . Str::asRouteName($controllerClassDetails->getRelativeNameWithoutSuffix());
 
-            case self::VIEW_PAGE:
-                if ($this->_createTemplate) {
-                    $params['templatepath_edit'] = $controllerMeta->getTemplatePath() . '/edit.html.twig';
-                    $generator->generateTemplate($params['templatepath_edit'], 'datatable/edit.tpl.php', $params);
-                } else {
-                    $params['templatepath_edit'] = '@UmbrellaAdmin/edit.html.twig';
-                }
-                break;
+        if ($createTemplate) {
+            $indexTemplateName = 'admin/' . Str::asFilePath($controllerClassDetails->getRelativeNameWithoutSuffix()) . '/index.html.twig';
+            $editTemplateName = 'admin/' . Str::asFilePath($controllerClassDetails->getRelativeNameWithoutSuffix()) . '/edit.html.twig';
+        } else {
+            $indexTemplateName = '@UmbrellaAdmin/DataTable/index.html.twig';
+
+            if ($editOnModal) {
+                $editTemplateName = '@UmbrellaAdmin/edit_modal.html.twig';
+            } else {
+                $editTemplateName = '@UmbrellaAdmin/edit.html.twig';
+            }
         }
 
-        switch ($this->_structure) {
-            case self::STRUCTURE_TREE:
-                $generator->generateClass($entityMeta->getFilePath(), 'NestedTreeEntity.tpl.php', $params);
-                $generator->generateClass($repositoryMeta->getFilePath(), 'NestedTreeRepository.tpl.php', $params);
-                $generator->generateClass($formMeta->getFilePath(), 'NestedTreeFormType.tpl.php', $params);
-                $generator->generateClass($tableMeta->getFilePath(), 'datatable/NestedTreeTableType.tpl.php', $params);
-                $generator->generateClass($controllerMeta->getFilePath(), 'datatable/Controller.tpl.php', $params);
-                break;
+        // add operation
 
-            default:
-                $generator->generateClass($entityMeta->getFilePath(), 'Entity.tpl.php', $params);
-                $generator->generateClass($repositoryMeta->getFilePath(), 'Repository.tpl.php', $params);
-                $generator->generateClass($formMeta->getFilePath(), 'FormType.tpl.php', $params);
-                $generator->generateClass($tableMeta->getFilePath(), 'datatable/TableType.tpl.php', $params);
-                $generator->generateClass($controllerMeta->getFilePath(), 'datatable/Controller.tpl.php', $params);
-                break;
+        if (!class_exists($entityClassDetails->getFullName())) {
+            $generator->generateClass(
+                $entityClassDetails->getFullName(),
+                __DIR__ . '/../../skeleton/Entity.tpl.php',
+                [
+                    'entity_searchable' => $entitySearchable
+                ]
+            );
         }
 
-        $generator->writeChanges($force);
-
-        if ($updateSchema) {
-            $this->updateSchema($this->em, $io);
+        if (!class_exists($formClassDetails->getFullName())) {
+            $generator->generateClass(
+                $formClassDetails->getFullName(),
+                __DIR__ . '/../../skeleton/FormType.tpl.php',
+                [
+                    'entity' => $entityClassDetails
+                ]
+            );
         }
 
-        $io->doneSuccess();
+        if (!class_exists($tableClassDetails->getFullName())) {
+            $generator->generateClass(
+                $tableClassDetails->getFullName(),
+                __DIR__ . '/../../skeleton/TableType.tpl.php',
+                [
+                    'route_name' => $routeName,
+                    'entity' => $entityClassDetails,
+                    'entity_searchable' => $entitySearchable,
+                    'edit_on_modal' => $editOnModal
+                ]
+            );
+        }
+
+        $generator->generateClass(
+            $controllerClassDetails->getFullName(),
+            __DIR__ . '/../../skeleton/Controller.tpl.php',
+            [
+                'route_name' => $routeName,
+                'route_path' => $routePath,
+                'entity' => $entityClassDetails,
+                'table' => $tableClassDetails,
+                'form' => $formClassDetails,
+                'index_template_name' => $indexTemplateName,
+                'edit_template_name' => $editTemplateName,
+                'edit_on_modal' => $editOnModal
+            ]
+        );
+
+        if ($createTemplate) {
+            $generator->generateTemplate(
+                $editTemplateName,
+                __DIR__ . '/../../skeleton/template_edit.tpl.php', [
+                    'edit_on_modal' => $editOnModal
+                ]
+            );
+
+            $generator->generateTemplate(
+                $indexTemplateName,
+                __DIR__ . '/../../skeleton/template_index.tpl.php'
+            );
+        }
+
+        $generator->writeChanges();
+        $this->writeSuccessMessage($io);
+
+        $io->text(sprintf('Next: Check your new CRUD by going to <fg=yellow>/admin%s/</>', $routePath));
+    }
+
+    private function createEntityClassQuestion(string $questionText): Question
+    {
+        $question = new Question($questionText);
+        $question->setValidator([Validator::class, 'notBlank']);
+        $question->setAutocompleterValues($this->doctrineHelper->getEntitiesForAutocomplete());
+
+        return $question;
     }
 }

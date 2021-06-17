@@ -1,24 +1,25 @@
-<?= "<?php\n"; ?>
+<?= "<?php\n" ?>
 
-namespace <?= $entity->getNamespace(); ?>;
+namespace <?= $namespace; ?>;
 
 use Doctrine\ORM\Mapping as ORM;
-use <?= $repository->getClassName(); ?>;
-use Umbrella\CoreBundle\Search\Annotation\Searchable;
 use Umbrella\CoreBundle\Model\IdTrait;
+<?php if ($entity_searchable) { ?>
 use Umbrella\CoreBundle\Model\SearchTrait;
-use Umbrella\CoreBundle\Model\TimestampTrait;
+use Umbrella\CoreBundle\Search\Annotation\Searchable;
+<?php } ?>
 
 /**
- * Class <?= $entity->getShortClassName(); ?>.
- *
- * @ORM\Entity(<?= $repository->getShortClassName(); ?>::class)
- * @ORM\HasLifecycleCallbacks
- * @Searchable
- */
-class <?= $entity->getShortClassName() . "\n"; ?>
+* @ORM\Entity
+<?php if ($entity_searchable) { ?>
+* @ORM\HasLifecycleCallbacks
+* @Searchable
+<?php } ?>
+*/
+class <?= $class_name."\n" ?>
 {
     use IdTrait;
-    use TimestampTrait;
+<?php if ($entity_searchable) { ?>
     use SearchTrait;
+<?php } ?>
 }

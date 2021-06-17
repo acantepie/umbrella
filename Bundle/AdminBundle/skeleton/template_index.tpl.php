@@ -1,0 +1,1 @@
+{% extends "@UmbrellaAdmin/DataTable/index.html.twig" %}

@@ -40,6 +40,9 @@
         "symfony/yaml": "^5.3",
         "umbrella2/corebundle": "*"
     },
+    "require-dev": {
+        "symfony/maker-bundle": "^1.21"
+    },
     "suggest": {
         "knplabs/knp-time-bundle": "Display pretty time on notification"
     },

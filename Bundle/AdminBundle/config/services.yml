@@ -49,10 +49,6 @@ services:
     Umbrella\AdminBundle\Twig\AdminExtension:
 
     # Maker
-    Umbrella\AdminBundle\Maker\Generator\Generator:
-        bind:
-            $projectDir: "%kernel.project_dir%"
-            $rootNs: 'App'
     Umbrella\AdminBundle\Maker\MakeTable:
-    Umbrella\AdminBundle\Maker\MakeTree:
-    Umbrella\AdminBundle\Maker\MakeNotification:
+        bind:
+            $doctrineHelper: '@maker.doctrine_helper'

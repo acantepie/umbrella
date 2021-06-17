@@ -1,15 +1,14 @@
 <?= "<?php\n"; ?>
 
-namespace <?= $form->getNamespace(); ?>;
+namespace <?= $namespace ?>;
 
+use <?= $entity->getFullName() ?>;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use <?= $entity->getClassName(); ?>;
 
-class <?= $form->getShortClassName(); ?> extends AbstractType
+class <?= $class_name ?> extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     }
@@ -17,7 +16,7 @@ class <?= $form->getShortClassName(); ?> extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => <?= $entity->getShortClassName(); ?>::class,
+            'data_class' => <?= $entity->getShortName() ?>::class,
         ));
     }
 }
