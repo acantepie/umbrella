@@ -11,7 +11,6 @@ class RowLinkType extends LinkType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefault('xhr', true)
             ->setDefault('text', false)
             ->setDefault('class', 'table-link');
     }

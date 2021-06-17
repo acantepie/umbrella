@@ -21,7 +21,8 @@ class RowMoveLinkType extends WidgetType
             'class' => $upClass,
             'icon' => 'mdi mdi-arrow-up',
             'route' => $options['route'],
-            'route_params' => $upParams
+            'route_params' => $upParams,
+            'xhr' => true
         ]);
 
         $downParams = $options['route_params'];
@@ -36,7 +37,8 @@ class RowMoveLinkType extends WidgetType
             'class' => $downClass,
             'icon' => 'mdi mdi-arrow-down',
             'route' => $options['route'],
-            'route_params' => $downParams
+            'route_params' => $downParams,
+            'xhr' => true
         ]);
     }
 
