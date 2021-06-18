@@ -55,7 +55,7 @@ Install umbrella bundle :
 composer require umbrella2/adminbundle
 ```
 
-# Create your admin first view
+# Create your first admin view
 ```bash
 php bin/console make:table # Table view
 php bin/console make:tree # Tree view
