@@ -52,3 +52,6 @@ services:
     Umbrella\AdminBundle\Maker\MakeTable:
         bind:
             $doctrineHelper: '@maker.doctrine_helper'
+    Umbrella\AdminBundle\Maker\MakeTree:
+        bind:
+            $doctrineHelper: '@maker.doctrine_helper'

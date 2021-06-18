@@ -64,8 +64,7 @@ class UserTableType extends DataTableType
 
                 $builder->add('delete', RowDeleteLinkType::class, [
                     'route' => 'umbrella_admin_user_delete',
-                    'route_params' => ['id' => $entity->getId()],
-                    'xhr' => true
+                    'route_params' => ['id' => $entity->getId()]
                 ]);
             }
         ]);

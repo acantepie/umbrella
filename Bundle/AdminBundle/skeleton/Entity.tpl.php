@@ -1,6 +1,6 @@
 <?= "<?php\n" ?>
 
-namespace <?= $namespace; ?>;
+namespace <?= $namespace ?>;
 
 use Doctrine\ORM\Mapping as ORM;
 use Umbrella\CoreBundle\Model\IdTrait;

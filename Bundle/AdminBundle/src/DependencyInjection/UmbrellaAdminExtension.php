@@ -8,8 +8,6 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Umbrella\AdminBundle\DependencyInjection\CompilerPass\MakeCommandRegistrationPass;
-use Umbrella\AdminBundle\Maker\MakerInterface;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
 use Umbrella\AdminBundle\Notification\NotificationManager;
 use Umbrella\AdminBundle\Notification\Provider\NotificationProviderInterface;
@@ -47,9 +45,6 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
         if ($config['notification']['enabled']) {
             $this->enableNotification($container, $config['notification']);
         }
-
-        $container->registerForAutoconfiguration(MakerInterface::class)
-            ->addTag(MakeCommandRegistrationPass::MAKER_TAG);
     }
 
     /**

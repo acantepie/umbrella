@@ -16,7 +16,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
-class MakeTable extends AbstractMaker
+class MakeTree extends AbstractMaker
 {
     private DoctrineHelper $doctrineHelper;
     private string $baseTemplateName = __DIR__ . '/../../skeleton/';
@@ -28,12 +28,12 @@ class MakeTable extends AbstractMaker
 
     public static function getCommandName(): string
     {
-        return 'make:table';
+        return 'make:tree';
     }
 
     public static function getCommandDescription(): string
     {
-        return 'Creates an admin table view';
+        return 'Creates an admin tree view';
     }
 
     public function configureCommand(Command $command, InputConfiguration $inputConfig)
@@ -61,12 +61,12 @@ class MakeTable extends AbstractMaker
 
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
     {
-        $entitySearchable = $io->askQuestion(new ConfirmationQuestion('Add the ability to search your entity with text', true));
         $editOnModal = $io->askQuestion(new ConfirmationQuestion('Edit entity on a modal', true));
         $createTemplate = $io->askQuestion(new ConfirmationQuestion('Create twig template', true));
 
         // class details
         $entity = $generator->createClassNameDetails($input->getArgument('entity_name'), 'Entity\\');
+        $repository = $generator->createClassNameDetails($entity->getShortName(), 'Repository\\', 'Repository');
         $form = $generator->createClassNameDetails($entity->getShortName(), 'Form\\', 'Type');
         $table = $generator->createClassNameDetails($entity->getShortName(), 'DataTable\\', 'TableType', );
         $controller = $generator->createClassNameDetails($entity->getShortName(), 'Controller\\Admin\\', 'Controller');
@@ -88,23 +88,19 @@ class MakeTable extends AbstractMaker
         }
 
         // add operation
+        $generator->generateClass($entity->getFullName(), $this->baseTemplateName . 'NestedEntity.tpl.php', [
+            'repository' => $repository
+        ]);
+        $generator->generateClass($repository->getFullName(), $this->baseTemplateName . 'NestedRepository.tpl.php', [
+            'entity' => $entity
+        ]);
+        $generator->generateClass($form->getFullName(), $this->baseTemplateName . 'NestedFormType.tpl.php', [
+            'entity' => $entity
+        ]);
 
-        if (!class_exists($entity->getFullName())) {
-            $generator->generateClass($entity->getFullName(), $this->baseTemplateName . 'Entity.tpl.php', [
-                'entity_searchable' => $entitySearchable
-            ]);
-        }
-
-        if (!class_exists($form->getFullName())) {
-            $generator->generateClass($form->getFullName(), $this->baseTemplateName . 'FormType.tpl.php', [
-                'entity' => $entity
-            ]);
-        }
-
-        $generator->generateClass($table->getFullName(), $this->baseTemplateName . 'TableType.tpl.php', [
+        $generator->generateClass($table->getFullName(), $this->baseTemplateName . 'NestedTableType.tpl.php', [
             'route_name' => $routeName,
             'entity' => $entity,
-            'entity_searchable' => $entitySearchable,
             'edit_on_modal' => $editOnModal
         ]);
 
@@ -117,7 +113,7 @@ class MakeTable extends AbstractMaker
             'index_template_name' => $indexTemplateName,
             'edit_template_name' => $editTemplateName,
             'edit_on_modal' => $editOnModal,
-            'tree_view' => false
+            'tree_view' => true
         ]);
 
         if ($createTemplate) {

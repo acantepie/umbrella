@@ -11,6 +11,7 @@ class RowDeleteLinkType extends RowLinkType
         parent::configureOptions($resolver);
 
         $resolver
+            ->setDefault('xhr', true)
             ->setDefault('title', 'action.delete')
             ->setDefault('icon', 'mdi mdi-delete')
             ->setDefault('confirm', 'message.delete_confirm');
