@@ -1,5 +1,5 @@
-import AjaxUtils from "./AjaxUtils";
-import Utils from "./Utils";
+import AjaxUtils from './AjaxUtils';
+import Utils from './Utils';
 
 export default class BindUtils
 {

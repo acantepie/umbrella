@@ -1,13 +1,11 @@
-import "flatpickr";
-import "flatpickr/dist/l10n/fr.js"
+import 'flatpickr';
+import 'flatpickr/dist/l10n/fr.js'
 
 export default class DatePicker extends HTMLInputElement {
 
     constructor() {
         super();
-        this.$view = $(this);
-
-        this.options = this.$view.data('options');
+        this.options = JSON.parse(this.dataset.options);
         this.options['locale'] = umbrella.LANG;
     }
 

@@ -1,6 +1,6 @@
 import 'select2/dist/js/select2.full';
 import 'select2/dist/js/i18n/fr';
-import mustache from "mustache";
+import mustache from 'mustache';
 
 export default class select2 extends HTMLSelectElement {
     constructor() {
@@ -43,7 +43,7 @@ export default class select2 extends HTMLSelectElement {
             if (templateEl) {
                 template = templateEl.innerHTML
             } else {
-                console.error("[Select2.js] No template found with selector " + formOptions['template_selector']);
+                console.error('[Select2.js] No template found with selector ' + formOptions['template_selector']);
             }
         } else if (formOptions['template']) {
             template = formOptions['template']

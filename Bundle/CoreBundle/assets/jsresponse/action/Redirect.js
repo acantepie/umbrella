@@ -1,4 +1,4 @@
-import JsResponseAction from "../JsResponseAction";
+import JsResponseAction from '../JsResponseAction';
 
 export default class Redirect extends JsResponseAction {
     eval(params) {

@@ -19,7 +19,7 @@ export default class UmbrellaCollection extends HTMLElement {
         this.$view.on('click', '.js-add-row', (e) => {
             e.preventDefault();
             this.index += 1;
-            const regexp = new RegExp(this._prototype_name, "g");
+            const regexp = new RegExp(this._prototype_name, 'g');
             const $newRow = $(this._prototype.replace(regexp, this.index));
 
             this.$view.data('index', this.index);

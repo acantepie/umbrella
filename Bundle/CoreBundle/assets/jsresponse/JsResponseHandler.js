@@ -1,6 +1,6 @@
-import JsResponseAction from "./JsResponseAction";
-import Callback from "./action/Callback";
-import ErrorHandler from "./ErrorHandler";
+import JsResponseAction from './JsResponseAction';
+import Callback from './action/Callback';
+import ErrorHandler from './ErrorHandler';
 
 export default class JsResponseHandler {
 
@@ -22,7 +22,7 @@ export default class JsResponseHandler {
             return;
         }
 
-        console.error(`Can\'t register action ${obj}, obj must be a function or extends JsResponseAction class`);
+        console.error(`Can't register action ${obj}, obj must be a function or extends JsResponseAction class`);
     }
 
     removeAction(id) {
@@ -41,7 +41,7 @@ export default class JsResponseHandler {
             return;
         }
 
-        console.error(`Can\'t set ${obj} as error handler, obj must extends ErrorHandler class`);
+        console.error(`Can't set ${obj} as error handler, obj must extends ErrorHandler class`);
     }
 
     // Handle jsResponse

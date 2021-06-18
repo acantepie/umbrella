@@ -43,7 +43,7 @@ export default class Menu extends HTMLDivElement {
             return
         }
 
-        do {
+        for(;;) {
             parentItem = item.parentNode.closest('li.side-nav-item')
             if (!parentItem) {
                 break
@@ -57,8 +57,7 @@ export default class Menu extends HTMLDivElement {
             }
 
             link.hidden = false
-        } while (true)
-
+        }
 
         if (item) {
             const titleItem = this._findMenuTitleItem(item)

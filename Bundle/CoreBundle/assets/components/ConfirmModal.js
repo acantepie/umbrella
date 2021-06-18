@@ -1,4 +1,4 @@
-import "./ConfirmModal.scss"
+import './ConfirmModal.scss'
 
 class ConfirmModal {
 

@@ -8,7 +8,7 @@ export default class Utils {
     }
 
     static decode_html(html) {
-        let txt = document.createElement("textarea");
+        let txt = document.createElement('textarea');
         txt.innerHTML = html;
         return txt.value;
     }
@@ -38,7 +38,7 @@ export default class Utils {
         // rewrite this part on vanilla js
         let $form = $(form);
 
-        $.each($form.find("input[type=file]"), (i, tag) => {
+        $.each($form.find('input[type=file]'), (i, tag) => {
             $.each($(tag)[0].files, (i, file) => {
                 formData.append(tag.name, file);
             });

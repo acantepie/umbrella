@@ -1,4 +1,4 @@
-import Toastify from "toastify-js"
+import Toastify from 'toastify-js'
 
 class Toast {
 
@@ -8,8 +8,8 @@ class Toast {
         duration: 3000,
         className: 'umbrella-toast',
         escapeMarkup: false,
-        gravity: "top",
-        position: "right",
+        gravity: 'top',
+        position: 'right',
         stopOnFocus: true,
     }
 

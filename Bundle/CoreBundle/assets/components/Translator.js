@@ -1,7 +1,7 @@
 const TRANS = {
     en: {
         'row_selected': {
-             '1' : '%c% item selected. <a href data-tag="dt:unselectall">Clear selection</a>',
+            '1' : '%c% item selected. <a href data-tag="dt:unselectall">Clear selection</a>',
             '_': '%c% items selected. <a href data-tag="dt:unselectall">Clear selection</a>'
         },
         'cancel': 'Cancel',

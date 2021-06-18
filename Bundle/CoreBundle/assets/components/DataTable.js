@@ -1,7 +1,7 @@
-import AjaxUtils from "../utils/AjaxUtils";
-import BindUtils from "../utils/BindUtils"
+import AjaxUtils from '../utils/AjaxUtils';
+import BindUtils from '../utils/BindUtils'
 
-import i18n from "./DataTable.i18n.js";
+import i18n from './DataTable.i18n.js';
 
 export default class DataTable extends HTMLElement {
 
@@ -140,6 +140,7 @@ export default class DataTable extends HTMLElement {
             try {
                 this.$table.treetable('expandNode', nodeId);
             } catch (error) {
+                // continue regardless of error
             }
         }
     }
@@ -211,44 +212,44 @@ export default class DataTable extends HTMLElement {
         const tag = $action.attr('data-tag')
 
         switch (tag) {
-            case 'dt:action':
-                // no click to handle - let default behaviour
-                break
+        case 'dt:action':
+            // no click to handle - let default behaviour
+            break
 
-            case 'dt:unselectall':
-                e.preventDefault()
-                this.unselectAll()
-                break
+        case 'dt:unselectall':
+            e.preventDefault()
+            this.unselectAll()
+            break
 
-            case 'dt:selectpage':
-                e.preventDefault()
-                this.selectPage()
-                break
+        case 'dt:selectpage':
+            e.preventDefault()
+            this.selectPage()
+            break
 
-            case 'dt:unselectpage':
-                e.preventDefault()
-                this.unselectPage()
-                break
+        case 'dt:unselectpage':
+            e.preventDefault()
+            this.unselectPage()
+            break
 
-            case 'dt:reset':
-                e.preventDefault()
-                this.toolbar.reset()
-                break
+        case 'dt:reset':
+            e.preventDefault()
+            this.toolbar.reset()
+            break
 
-            case 'dt:details':
-                e.preventDefault()
-                this.toggleRowDetails($action)
-                break
+        case 'dt:details':
+            e.preventDefault()
+            this.toggleRowDetails($action)
+            break
 
-            case 'dt:senddata':
-                e.preventDefault()
-                e.stopPropagation()
-                this._doXhr($action);
-                break
+        case 'dt:senddata':
+            e.preventDefault()
+            e.stopPropagation()
+            this._doXhr($action);
+            break
 
-            default:
-                console.warn('Unknow tag ', tag, $action[0])
-                break
+        default:
+            console.warn('Unknow tag ', tag, $action[0])
+            break
         }
     }
 

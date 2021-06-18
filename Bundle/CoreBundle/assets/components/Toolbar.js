@@ -1,4 +1,4 @@
-import Utils from "umbrella_core/utils/Utils";
+import Utils from 'umbrella_core/utils/Utils';
 
 /**
  * Custom events:
