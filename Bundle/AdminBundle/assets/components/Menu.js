@@ -15,15 +15,14 @@ export default class Menu extends HTMLDivElement {
     search(search) {
         search = search.toLowerCase().trim()
 
-
         // show all
         if ('' === search) {
-            this.querySelectorAll('.menu-link, .side-nav-title').forEach(e => e.classList.remove('d-none'))
+            this.querySelectorAll('.menu-link, .side-nav-title').forEach(e => e.hidden = false)
             return
         }
 
         // hide all
-        this.querySelectorAll('.menu-link, .side-nav-title').forEach(e => e.classList.add('d-none'))
+        this.querySelectorAll('.menu-link, .side-nav-title').forEach(e => e.hidden = true)
 
         // show found
         this.querySelectorAll('.menu-link').forEach((e) => {
@@ -37,7 +36,7 @@ export default class Menu extends HTMLDivElement {
     _showMenuLinkAndParent(link) {
         let parentItem = null
 
-        link.classList.remove('d-none')
+        link.hidden = false
         let item = link.closest('li.side-nav-item')
 
         if (!item) {
@@ -57,14 +56,14 @@ export default class Menu extends HTMLDivElement {
                 break
             }
 
-            link.classList.remove('d-none')
+            link.hidden = false
         } while (true)
 
 
         if (item) {
             const titleItem = this._findMenuTitleItem(item)
             if (titleItem) {
-                titleItem.classList.remove('d-none')
+                titleItem.hidden = false
             }
         }
 
