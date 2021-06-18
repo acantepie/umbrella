@@ -55,6 +55,12 @@ Install umbrella bundle :
 composer require umbrella2/adminbundle
 ```
 
+# Create your admin first view
+```bash
+php bin/console make:table # Table view
+php bin/console make:tree # Tree view
+```
+
 # Documentation
 
 A good way to learn how to use components is to look at <b>umbrella-admin-demo</b> code.
