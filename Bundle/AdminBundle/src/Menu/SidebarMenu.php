@@ -16,18 +16,16 @@ class SidebarMenu
     protected Environment $twig;
 
     private string $ymlPath;
-    private string $theme;
     private bool $searchable;
     private bool $showFirstLevelOnBreadcrumb;
 
     /**
      * SidebarMenu constructor.
      */
-    public function __construct(Environment $twig, string $ymlPath, string $theme, bool $searchable, bool $showFirstLevelOnBreadcrumb)
+    public function __construct(Environment $twig, string $ymlPath, bool $searchable, bool $showFirstLevelOnBreadcrumb)
     {
         $this->twig = $twig;
         $this->ymlPath = $ymlPath;
-        $this->theme = $theme;
         $this->searchable = $searchable;
         $this->showFirstLevelOnBreadcrumb = $showFirstLevelOnBreadcrumb;
     }
