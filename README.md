@@ -63,7 +63,7 @@ php bin/console make:tree # Tree view
 
 # Documentation
 
-A good way to learn how to use components is to look at <b>umbrella-admin-demo</b> code.
+A good way to learn how to use components is to look at [umbrella-admin-demo](https://github.com/acantepie/umbrella-admin-demo) code.
 
 ~~ work in progress ~~
 
