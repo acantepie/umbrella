@@ -1,8 +1,8 @@
 //Core files
 @import "./node_modules/bootstrap/scss/functions";
 @import "./node_modules/bootstrap/scss/variables";
-@import "config/default/variables";
-@import "config/default/custom-variables";
+@import "config/variables";
+@import "config/custom-variables";
 @import "umbrella/variables";
 @import "./node_modules/bootstrap/scss/bootstrap";
 
@@ -11,10 +11,8 @@
 @import "structure/general";
 @import "structure/left-menu";
 @import "structure/topbar";
-//@import "structure/right-sidebar";
 @import "structure/page-head";
 //@import "structure/footer";
-//@import "structure/horizontal-nav";
 
 
 //Fonts
@@ -70,31 +68,10 @@
 
 
 // Plugins
-//@import "plugins/apexcharts";
-//@import "plugins/britechart";
-//@import "plugins/calendar";
-//@import "plugins/chartjs";
 @import "plugins/datatable";
-//@import "plugins/daterange";
-//@import "plugins/datepicker";
 @import "plugins/dragula";
-//@import "plugins/dropzone";
-//@import "plugins/form-wizard";
-//@import "plugins/maps";
-//@import "plugins/quill-editor";
 @import "plugins/select2";
 @import "plugins/simplebar";
-//@import "plugins/toaster";
-//@import "plugins/bootstrap-touchspin";
-//@import "plugins/bootstrap-timepicker";
-//@import "plugins/simplemde";
-//@import "plugins/typehead";
-//@import "plugins/sparklines";
-//@import "plugins/timepicker";
-//@import "plugins/rateit";
-//@import "plugins/rating";
-//@import "plugins/ion-rangeslider";
-//@import "plugins/frappe-gantt";
 
 // Umbrella
 @import "umbrella/misc";
@@ -103,4 +80,3 @@
 @import "umbrella/left-menu";
 @import "umbrella/select2";
 @import "umbrella/security-page";
-@import "umbrella/bootstrap4";

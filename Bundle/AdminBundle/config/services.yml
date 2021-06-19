@@ -37,7 +37,6 @@ services:
     Umbrella\AdminBundle\Menu\SidebarMenu:
         bind:
             $ymlPath: "%kernel.project_dir%/config/menu/admin_sidebar.yaml"
-            $theme: "light"
             $searchable: true
             $showFirstLevelOnBreadcrumb: false
         tags:

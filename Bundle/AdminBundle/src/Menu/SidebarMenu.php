@@ -52,7 +52,6 @@ class SidebarMenu
     {
         return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
             'menu' => $menu,
-            'theme' => $this->theme,
             'searchable' => $this->searchable,
         ]);
     }
