@@ -17,8 +17,8 @@ class CallableAdapter extends DataTableAdapter
             ->setAllowedTypes('callable', 'callable');
     }
 
-    public function getResult(DataTableState $request, array $options): DataTableResult
+    public function getResult(DataTableState $state, array $options): DataTableResult
     {
-        return call_user_func($options['callable'], $request);
+        return call_user_func($options['callable'], $state);
     }
 }
