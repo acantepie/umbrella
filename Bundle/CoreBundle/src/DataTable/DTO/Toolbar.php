@@ -3,6 +3,7 @@
 namespace Umbrella\CoreBundle\DataTable\DTO;
 
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Umbrella\CoreBundle\Widget\DTO\Widget;
 
 class Toolbar
@@ -12,6 +13,8 @@ class Toolbar
     protected Widget $widget;
 
     protected array $options;
+
+    protected array $formData = [];
 
     /**
      * Toolbar constructor.
@@ -43,9 +46,14 @@ class Toolbar
         return $this->options[$name];
     }
 
-    public function handleRequest(DataTableRequest $request)
+    public function getFormData(): array
     {
-        $this->form->handleRequest($request->getHttpRequest());
+        return $this->formData;
+    }
+
+    public function handleRequest(Request $request): self
+    {
+        $this->form->handleRequest($request);
         $data = $this->form->getData();
 
         // Limitation
@@ -55,15 +63,22 @@ class Toolbar
             throw new \InvalidArgumentException('Toolbar can only handle array form::getData()');
         }
 
-        $request->setFormData($data ?: []);
+        $this->formData = $data ?? [];
+
+        return $this;
     }
 
-    public function submitData(array $data)
+    public function submitData(array $data): self
     {
         $name = $this->form->getName();
 
         if (isset($data[$name]) && is_array($data[$name])) {
             $this->form->submit($data[$name]);
         }
+
+        $data = $this->form->getData();
+        $this->formData = $data ?? [];
+
+        return $this;
     }
 }

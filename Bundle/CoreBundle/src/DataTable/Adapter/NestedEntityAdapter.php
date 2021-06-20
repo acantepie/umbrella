@@ -5,8 +5,8 @@ namespace Umbrella\CoreBundle\DataTable\Adapter;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\CoreBundle\DataTable\DTO\DataTableRequest;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
+use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
 /**
@@ -42,9 +42,9 @@ class NestedEntityAdapter extends DataTableAdapter
             ->setAllowedTypes('init_metadata', 'bool');
     }
 
-    public function getResult(DataTableRequest $request, array $options): DataTableResult
+    public function getResult(DataTableState $state, array $options): DataTableResult
     {
-        $data = $this->getQueryBuilder($request, $options)
+        $data = $this->getQueryBuilder($state, $options)
             ->getQuery()
             ->getResult();
 
@@ -80,9 +80,9 @@ class NestedEntityAdapter extends DataTableAdapter
         }
     }
 
-    public function getQueryBuilder(DataTableRequest $request, array $options): QueryBuilder
+    public function getQueryBuilder(DataTableState $state, array $options): QueryBuilder
     {
-        $formData = $request->getFormData();
+        $formData = $state->getFormData();
 
         $qb = $this->em->createQueryBuilder()
             ->select($options['query_alias'])

@@ -8,6 +8,9 @@ use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
 
 class DataTable
 {
+    const SORT_ASCENDING = 'asc';
+    const SORT_DESCENDING = 'desc';
+
     protected Toolbar $toolbar;
 
     /**
@@ -23,7 +26,7 @@ class DataTable
 
     protected array $options;
 
-    protected ?DataTableRequest $request = null;
+    protected DataTableState $state;
 
     protected ?DataTableResponse $response = null;
 
@@ -44,16 +47,13 @@ class DataTable
         $this->rowModifier = $rowModifier->setIsTree($options['tree']);
         $this->adapterOptions = $adapterOptions;
         $this->options = $options;
+
+        $this->state = new DataTableState($this);
     }
 
     public function getId(): string
     {
         return $this->options['id'];
-    }
-
-    public function hasPaging(): bool
-    {
-        return $this->options['paging'];
     }
 
     public function getToolbar(): Toolbar
@@ -99,34 +99,46 @@ class DataTable
         return $this->options[$name];
     }
 
-    public function createRequest($httpRequest = null): DataTableRequest
+    public function getState(): DataTableState
     {
-        if (!is_a($httpRequest, Request::class)) {
-            $httpRequest = Request::create('', Request::METHOD_GET, \is_array($httpRequest) ? $httpRequest : []);
-        }
-
-        $request = new DataTableRequest($httpRequest, $this, false);
-        $this->toolbar->handleRequest($request);
-
-        return $request;
+        return $this->state;
     }
 
-    // --- Callback
-
-    public function handleRequest(Request $httpRequest)
+    public function handleRequest(Request $httpRequest): self
     {
         $this->response = null;
-        $this->request = new DataTableRequest($httpRequest, $this);
 
-        // Callback
-        if ($this->request->isCallback()) {
-            $this->toolbar->handleRequest($this->request);
+        $isCallback = $httpRequest->isXmlHttpRequest()
+            && $httpRequest->isMethod('GET')
+            && $httpRequest->query->has('_dtid')
+            && $httpRequest->query->get('_dtid') == $this->getId();
+
+        if ($isCallback) {
+            $this->state = new DataTableState($this);
+            $this->state->applyParameters($httpRequest->query->all());
+
+            $this->toolbar->handleRequest($httpRequest);
+            $this->state->setFormData($this->toolbar->getFormData());
         }
+
+        return $this;
+    }
+
+    public function handleParamaters(array $parameters): self
+    {
+        $this->response = null;
+
+        $this->state = new DataTableState($this);
+        $this->state->applyParameters($parameters);
+        $this->toolbar->submitData($parameters);
+        $this->state->setFormData($this->toolbar->getFormData());
+
+        return $this;
     }
 
     public function isCallback(): bool
     {
-        return null !== $this->request && $this->request->isCallback();
+        return $this->state->isCallback();
     }
 
     public function getCallbackResponse(): DataTableResponse
@@ -140,7 +152,7 @@ class DataTable
         }
 
         try {
-            $result = $this->adapter->getResult($this->request, $this->adapterOptions);
+            $result = $this->adapter->getResult($this->state, $this->adapterOptions);
         } catch (AdapterException $exception) {
             return DataTableResponse::createError($exception->getMessage());
         }
@@ -156,6 +168,6 @@ class DataTable
             $rowViews[] = $view;
         }
 
-        return DataTableResponse::createSuccess($rowViews, $result->getCount(), $this->request->getDraw());
+        return DataTableResponse::createSuccess($rowViews, $result->getCount(), $this->state->getDraw());
     }
 }

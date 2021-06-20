@@ -3,8 +3,8 @@
 namespace Umbrella\CoreBundle\DataTable\Adapter;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\CoreBundle\DataTable\DTO\DataTableRequest;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
+use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
 /**
  * Class DataTableAdapter
@@ -18,5 +18,5 @@ abstract class DataTableAdapter
     /**
      * @throws AdapterException
      */
-    abstract public function getResult(DataTableRequest $request, array $options): DataTableResult;
+    abstract public function getResult(DataTableState $state, array $options): DataTableResult;
 }

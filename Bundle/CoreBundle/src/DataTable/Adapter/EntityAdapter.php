@@ -7,8 +7,8 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\CoreBundle\DataTable\DTO\DataTableRequest;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
+use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 use Umbrella\CoreBundle\Utils\FlatCountPaginator;
 
 /**
@@ -49,22 +49,21 @@ class EntityAdapter extends DataTableAdapter
             ->setAllowedTypes('flat_query', 'bool');
     }
 
-    public function getResult(DataTableRequest $request, array $options): DataTableResult
+    public function getResult(DataTableState $state, array $options): DataTableResult
     {
         if ($options['flat_query']) {
-            $paginator = new FlatCountPaginator($this->getQueryBuilder($request, $options), $options['fetch_join_collection']);
+            $paginator = new FlatCountPaginator($this->getQueryBuilder($state, $options), $options['fetch_join_collection']);
         } else {
-            $paginator = new Paginator($this->getQueryBuilder($request, $options), $options['fetch_join_collection']);
+            $paginator = new Paginator($this->getQueryBuilder($state, $options), $options['fetch_join_collection']);
         }
 
         return new DataTableResult($paginator);
     }
 
-    public function getQueryBuilder(DataTableRequest $request, array $options): QueryBuilder
+    public function getQueryBuilder(DataTableState $state, array $options): QueryBuilder
     {
-        $dataTable = $request->getDataTable();
-        $data = $request->getData();
-        $formData = $request->getFormData();
+        $dataTable = $state->getDataTable();
+        $formData = $state->getFormData();
 
         $qb = $this->em->createQueryBuilder()
             ->select($options['query_alias'])
@@ -75,43 +74,20 @@ class EntityAdapter extends DataTableAdapter
         }
 
         // pagination
-        if ($dataTable->hasPaging()) {
-            if (isset($data['start'])) {
-                $qb->setFirstResult($data['start']);
-            }
-
-            if (isset($data['length'])) {
-                $qb->setMaxResults($data['length']);
-            }
+        $qb->setFirstResult($state->getStart());
+        if ($state->getLength() >= 0) {
+            $qb->setMaxResults($state->getLength());
         }
 
         // order by
-        $orders = $data['order'] ?? [];
-        foreach ($orders as $order) {
-            if (!isset($order['column']) || !isset($order['dir']) || !\in_array($order['dir'], ['asc', 'desc'])) {
-                continue; // request valid ?
-            }
-
-            $idx = $order['column'];
-            $dir = $order['dir'];
-
-            if (!$dataTable->hasColumn($idx)) {
-                continue;
-            }
-
-            $column = $dataTable->getColumn($idx);
-
-            if (!$column->isOrderable()) {
-                continue;
-            }
-
+        foreach ($state->getOrderBy() as [$column, $direction]) {
             foreach ($column->getOrderBy() as $path) {
                 // if path is not a sub property path, prefix it by alias
                 if (false === strpos($path, '.')) {
                     $path = sprintf('%s.%s', $options['query_alias'], $path);
                 }
 
-                $qb->addOrderBy($path, strtoupper($dir));
+                $qb->addOrderBy($path, strtoupper($direction));
             }
         }
 
