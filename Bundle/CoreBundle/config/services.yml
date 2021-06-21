@@ -32,6 +32,7 @@ services:
         resource: '../src/Widget/Type'
 
     # DataTable
+    Umbrella\CoreBundle\DataTable\DataTableBuilerHelper:
     Umbrella\CoreBundle\DataTable\DataTableFactory:
     Umbrella\CoreBundle\DataTable\DataTableRegistry:
     Umbrella\CoreBundle\DataTable\DataTableRenderer:

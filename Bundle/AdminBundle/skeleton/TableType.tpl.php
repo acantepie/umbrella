@@ -10,7 +10,6 @@ use Umbrella\CoreBundle\Form\SearchType;
 use Umbrella\CoreBundle\DataTable\Column\WidgetColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableType;
-use Umbrella\CoreBundle\DataTable\ToolbarBuilder;
 use Umbrella\CoreBundle\Widget\Type\AddLinkType;
 use Umbrella\CoreBundle\Widget\Type\RowDeleteLinkType;
 use Umbrella\CoreBundle\Widget\Type\RowEditLinkType;
@@ -18,7 +17,7 @@ use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
 class <?= $class_name ?> extends DataTableType
 {
-    public function buildToolbar(ToolbarBuilder $builder, array $options = [])
+    public function buildTable(DataTableBuilder $builder, array $options)
     {
 <?php if ($entity_searchable) { ?>
         $builder->addFilter('search', SearchType::class);
@@ -29,10 +28,7 @@ class <?= $class_name ?> extends DataTableType
             'xhr' => true
 <?php } ?>
         ]);
-    }
 
-    public function buildTable(DataTableBuilder $builder, array $options = [])
-    {
         $builder->add('id');
         $builder->add('links', WidgetColumnType::class, [
             'build' => function (WidgetBuilder $builder, <?= $entity->getShortName() ?> $e) {

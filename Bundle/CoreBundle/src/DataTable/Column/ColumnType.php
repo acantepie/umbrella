@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ColumnType
 {
     // FIXME : statically called to avoid to have add parent::configureOptions() on all inherit Type class
-    public static function __configureOptions(OptionsResolver $resolver)
+    final public static function __configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setRequired('id')

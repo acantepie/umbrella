@@ -11,7 +11,6 @@ use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\WidgetColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableType;
-use Umbrella\CoreBundle\DataTable\ToolbarBuilder;
 use Umbrella\CoreBundle\Form\SearchType;
 use Umbrella\CoreBundle\Widget\Type\AddLinkType;
 use Umbrella\CoreBundle\Widget\Type\RowDeleteLinkType;
@@ -36,20 +35,14 @@ class UserTableType extends DataTableType
     /**
      * {@inheritdoc}
      */
-    public function buildToolbar(ToolbarBuilder $builder, array $options = [])
+    public function buildTable(DataTableBuilder $builder, array $options = [])
     {
         $builder->addFilter('search', SearchType::class);
         $builder->addWidget('add_user', AddLinkType::class, [
             'route' => 'umbrella_admin_user_edit',
             'xhr' => true,
         ]);
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildTable(DataTableBuilder $builder, array $options = [])
-    {
         $builder->add('name', UserNameColumnType::class);
         $builder->add('createdAt', DateColumnType::class);
         $builder->add('active', BooleanColumnType::class);

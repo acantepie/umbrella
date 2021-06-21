@@ -13,7 +13,7 @@ abstract class DataTableType
     const SELECTION_MODE = 'selection';
 
     // FIXME : statically called to avoid to have add parent::configureOptions() on all inherit Type class
-    public static function __configureOptions(OptionsResolver $resolver)
+    final public static function __configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setRequired('id')
@@ -85,10 +85,6 @@ abstract class DataTableType
             ->setAllowedTypes('toolbar_template', 'string')
 
             ->setDefault('toolbar_form_data', null);
-    }
-
-    public function buildToolbar(ToolbarBuilder $builder, array $options)
-    {
     }
 
     public function buildTable(DataTableBuilder $builder, array $options)
