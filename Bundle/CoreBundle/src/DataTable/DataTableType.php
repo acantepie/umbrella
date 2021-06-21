@@ -36,8 +36,8 @@ class DataTableType
             ->setRequired('page_length')
             ->setAllowedTypes('page_length', 'int')
 
-            ->setDefault('fixed_header', false)
-            ->setAllowedTypes('fixed_header', ['bool', 'array'])
+            ->setDefault('scroll_y', null)
+            ->setAllowedTypes('scroll_y', ['int', 'null'])
 
             ->setDefault('poll_interval', null)
             ->setAllowedTypes('poll_interval', ['int', 'null'])

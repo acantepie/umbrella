@@ -12,8 +12,6 @@
         "bootstrap": "^5.0.0",
         "datatables.net": "^1.10.24",
         "datatables.net-bs4": "^1.10.24",
-        "datatables.net-fixedheader": "^3.1.8",
-        "datatables.net-fixedheader-bs4": "^3.1.8",
         "datatables.net-rowreorder": "^1.2.7",
         "datatables.net-rowreorder-bs4": "^1.2.7",
         "dragula": "^3.7.3",

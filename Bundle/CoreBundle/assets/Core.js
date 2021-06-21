@@ -30,7 +30,6 @@ import 'datatables.net';
 
 import 'datatables.net-bs4';
 import 'datatables.net-rowreorder';
-import 'datatables.net-fixedheader';
 import 'jquery-treetable'
 
 import Toolbar from './components/Toolbar';

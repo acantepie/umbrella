@@ -77,7 +77,7 @@ class DataTableRenderer
             $jsOptions['paging'] = false;
         }
 
-        $jsOptions['fixedHeader'] = $options['fixed_header'];
+        $jsOptions['scrollY'] = $options['scroll_y'];
 
         if ($options['rowreorder_url']) {
             $jsOptions['rowReorder'] = [
