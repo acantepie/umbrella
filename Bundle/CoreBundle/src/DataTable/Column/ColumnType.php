@@ -37,8 +37,8 @@ class ColumnType
             ->setDefault('width', null)
             ->setAllowedTypes('width', ['null', 'string'])
 
-            ->setDefault('renderer', null)
-            ->setAllowedTypes('renderer', ['null', 'callable'])
+            ->setDefault('render', null)
+            ->setAllowedTypes('render', ['null', 'callable'])
 
             ->setDefault('is_safe_html', true)
             ->setAllowedTypes('is_safe_html', 'bool');

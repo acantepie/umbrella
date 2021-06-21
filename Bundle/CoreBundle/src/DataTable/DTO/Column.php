@@ -47,8 +47,8 @@ class Column
 
     public function render($rowData): string
     {
-        if (is_callable($this->options['renderer'])) {
-            $value = (string) call_user_func($this->options['renderer'], $rowData, $this->options);
+        if (is_callable($this->options['render'])) {
+            $value = (string) call_user_func($this->options['render'], $rowData, $this->options);
         } else {
             $value = $this->type->render($rowData, $this->options);
         }
