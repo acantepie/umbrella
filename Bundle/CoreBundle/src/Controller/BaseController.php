@@ -7,7 +7,9 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Umbrella\CoreBundle\DataTable\DataTableBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableFactory;
+use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
 use Umbrella\CoreBundle\Toast\Toast;
@@ -84,6 +86,12 @@ abstract class BaseController extends AbstractController
     {
         /** @phpstan-ignore-next-line */
         return $this->get('datatable.factory')->create($type, $options);
+    }
+
+    protected function createTableBuilder(array $options = []): DataTableBuilder
+    {
+        /** @phpstan-ignore-next-line */
+        return $this->get('datatable.factory')->createBuilder(DataTableType::class, $options);
     }
 
     // Toast Api

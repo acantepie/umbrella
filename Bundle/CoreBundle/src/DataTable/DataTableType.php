@@ -5,7 +5,7 @@ namespace Umbrella\CoreBundle\DataTable;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-abstract class DataTableType
+class DataTableType
 {
     const TAG_SEND_DATA = 'dt:senddata';
 

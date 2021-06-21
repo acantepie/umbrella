@@ -36,6 +36,8 @@ services:
     Umbrella\CoreBundle\DataTable\DataTableFactory:
     Umbrella\CoreBundle\DataTable\DataTableRegistry:
     Umbrella\CoreBundle\DataTable\DataTableRenderer:
+    Umbrella\CoreBundle\DataTable\DataTableType:
+
     Umbrella\CoreBundle\DataTable\Twig\DataTableExtension:
 
     Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter:
