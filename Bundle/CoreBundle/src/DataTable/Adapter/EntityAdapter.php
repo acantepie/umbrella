@@ -4,12 +4,12 @@ namespace Umbrella\CoreBundle\DataTable\Adapter;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
-use Umbrella\CoreBundle\Utils\FlatCountPaginator;
 
 /**
  * Class EntityAdapter
@@ -40,21 +40,36 @@ class EntityAdapter extends DataTableAdapter
             ->setDefault('query', null)
             ->setAllowedTypes('query', ['callable', 'null'])
 
-            ->setDefault('fetch_join_collection', function (Options $options) {
-                return !$options['flat_query'];
-            }) // Paginator options
+            /*
+             * Paginator / query options (use for optimization)
+             *
+             * To fetch large data (~over 1m) use options :
+             *  [
+             *      'fetch_join_collection' => false,
+             *      'use_output_walker' => false,
+             *      'use_distinct_hint' => false
+             * ]
+             */
+            ->setDefault('fetch_join_collection', true)
             ->setAllowedTypes('fetch_join_collection', 'bool')
 
-            ->setDefault('flat_query', false) // Used this only with qb without OTM or MTM in to optimize db querying
-            ->setAllowedTypes('flat_query', 'bool');
+            ->setDefault('use_output_walker', null)
+            ->setAllowedTypes('use_output_walker', ['null', 'bool'])
+
+            ->setDefault('use_distinct_hint', true)
+            ->setAllowedTypes('use_distinct_hint', 'bool');
     }
 
     public function getResult(DataTableState $state, array $options): DataTableResult
     {
-        if ($options['flat_query']) {
-            $paginator = new FlatCountPaginator($this->getQueryBuilder($state, $options), $options['fetch_join_collection']);
-        } else {
-            $paginator = new Paginator($this->getQueryBuilder($state, $options), $options['fetch_join_collection']);
+        $query = $this->getQueryBuilder($state, $options)->getQuery();
+        if (false === $options['use_distinct_hint']) {
+            $query->setHint(CountWalker::HINT_DISTINCT, false);
+        }
+
+        $paginator = new Paginator($query, $options['fetch_join_collection']);
+        if (null !== $options['use_output_walker']) {
+            $paginator->setUseOutputWalkers($options['use_output_walker']);
         }
 
         return new DataTableResult($paginator);
