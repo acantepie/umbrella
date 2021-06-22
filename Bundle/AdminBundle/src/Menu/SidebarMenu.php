@@ -15,28 +15,28 @@ class SidebarMenu
 {
     protected Environment $twig;
 
-    private string $ymlPath;
+    private string $path;
     private bool $searchable;
     private bool $showFirstLevelOnBreadcrumb;
 
     /**
      * SidebarMenu constructor.
      */
-    public function __construct(Environment $twig, string $ymlPath, bool $searchable, bool $showFirstLevelOnBreadcrumb)
+    public function __construct(Environment $twig, string $path, bool $searchable, bool $showFirstLevelOnBreadcrumb)
     {
         $this->twig = $twig;
-        $this->ymlPath = $ymlPath;
+        $this->path = $path;
         $this->searchable = $searchable;
         $this->showFirstLevelOnBreadcrumb = $showFirstLevelOnBreadcrumb;
     }
 
     public function createMenu(MenuBuilder $builder): Menu
     {
-        if (!file_exists($this->ymlPath)) {
-            throw new \LogicException(sprintf("Can't load menu from YAML, resource %s doesn't exist", $this->ymlPath));
+        if (!file_exists($this->path)) {
+            throw new \LogicException(sprintf("Can't load menu from YAML, resource %s doesn't exist", $this->path));
         }
 
-        $data = (array) Yaml::parse(file_get_contents($this->ymlPath));
+        $data = (array) Yaml::parse(file_get_contents($this->path));
 
         $root = $builder->root();
         foreach ($data as $id => $childOptions) {
