@@ -6,21 +6,22 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use Umbrella\AdminBundle\Menu\AdminMenuHelper;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
  * Class AdminExtension.
  */
 class AdminExtension extends AbstractExtension
 {
-    private ParameterBagInterface $parameters;
+    private UmbrellaAdminConfiguration $configuration;
     private AdminMenuHelper $menuHelper;
 
     /**
      * AdminExtension constructor.
      */
-    public function __construct(ParameterBagInterface $parameters, AdminMenuHelper $menuHelper)
+    public function __construct(UmbrellaAdminConfiguration $configuration, AdminMenuHelper $menuHelper)
     {
-        $this->parameters = $parameters;
+        $this->configuration = $configuration;
         $this->menuHelper = $menuHelper;
     }
 

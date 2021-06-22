@@ -16,6 +16,7 @@ use Umbrella\AdminBundle\Security\UserChecker;
 use Umbrella\AdminBundle\Services\UserMailer;
 use Umbrella\AdminBundle\Services\UserManager;
 use Umbrella\AdminBundle\Twig\AdminExtension;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 return static function (ContainerConfigurator $configurator): void {
 
@@ -71,9 +72,10 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('umbrella.menu.renderer', ['method' => 'renderMenu', 'alias' => 'admin_sidebar'])
         ->tag('umbrella.breadcrumb.renderer', ['method' => 'renderBreadcrumb', 'alias' => 'admin_sidebar']);
 
-    // Twig
+    // Admin
     $services->set(AdminExtension::class)
         ->tag('twig.extension');
+    $services->set(UmbrellaAdminConfiguration::class);
 
     // Maker
     $services->set(MakeTable::class)

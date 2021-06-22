@@ -13,6 +13,7 @@ use Umbrella\AdminBundle\Notification\NotificationManager;
 use Umbrella\AdminBundle\Notification\Provider\NotificationProviderInterface;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRenderer;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRendererInterface;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Utils\ArrayUtils;
 
 /**
@@ -32,6 +33,9 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
 
         $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.php');
+
+        $container->getDefinition(UmbrellaAdminConfiguration::class)
+            ->setArgument(0, $config);
 
         $parameters = ArrayUtils::remap_nested_array($config, 'umbrella_admin');
 
