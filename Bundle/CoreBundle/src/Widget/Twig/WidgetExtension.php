@@ -1,9 +1,10 @@
 <?php
 
-namespace Umbrella\CoreBundle\Widget;
+namespace Umbrella\CoreBundle\Widget\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+use Umbrella\CoreBundle\Widget\WidgetRenderer;
 
 class WidgetExtension extends AbstractExtension
 {

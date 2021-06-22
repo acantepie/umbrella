@@ -2,7 +2,6 @@
 
 namespace Umbrella\CoreBundle\Twig;
 
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\FormRendererInterface;
 use Symfony\Component\Form\FormView;
 use Twig\Extension\AbstractExtension;
@@ -14,16 +13,16 @@ use Twig\TwigTest;
  */
 class CoreExtension extends AbstractExtension
 {
-    private ParameterBagInterface $parameterBag;
     private FormRendererInterface $formRenderer;
+    private string $bootstrapLayout;
 
     /**
      * CoreExtension constructor.
      */
-    public function __construct(ParameterBagInterface $parameterBag, FormRendererInterface $formRenderer)
+    public function __construct(FormRendererInterface $formRenderer, string $bootstrapLayout)
     {
-        $this->parameterBag = $parameterBag;
         $this->formRenderer = $formRenderer;
+        $this->bootstrapLayout = $bootstrapLayout;
     }
 
     public function getFunctions()
@@ -48,7 +47,7 @@ class CoreExtension extends AbstractExtension
     public function applyFormTheme(FormView $view, ?string $bootstrapLayout = null, bool $useDefaultThemes = true): void
     {
         if (null === $bootstrapLayout) {
-            $bootstrapLayout = $this->parameterBag->get('umbrella_core.form.layout');
+            $bootstrapLayout = $this->bootstrapLayout;
         }
 
         if ('horizontal' === $bootstrapLayout) {

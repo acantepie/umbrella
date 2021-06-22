@@ -1,8 +1,8 @@
 <?php
 
-namespace Umbrella\CoreBundle\DataTable\DTO;
+namespace Umbrella\CoreBundle\DataTable;
 
-class DataTableConfig
+class DataTableConfiguration
 {
     protected array $config = [];
 

@@ -184,7 +184,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         }
 
         // reset some critical lazy options
-        unset($options['em'], $options['loader'], $options['empty_data'], $options['choice_list'], $options['choices_as_values']);
+        unset($options['em'], $options['loader'], $options['empty_data'], $options['choice_list']);
 
         $form->add('autocomplete', EntityType::class, $options);
     }

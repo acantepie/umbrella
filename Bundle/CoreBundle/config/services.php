@@ -1,0 +1,140 @@
+<?php
+
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
+use Umbrella\CoreBundle\Ckeditor\CkeditorExtension;
+use Umbrella\CoreBundle\Command\IndexEntityCommand;
+use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter;
+use Umbrella\CoreBundle\DataTable\Adapter\EntityAdapter;
+use Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapter;
+use Umbrella\CoreBundle\DataTable\DataTableBuilerHelper;
+use Umbrella\CoreBundle\DataTable\DataTableFactory;
+use Umbrella\CoreBundle\DataTable\DataTableRegistry;
+use Umbrella\CoreBundle\DataTable\DataTableRenderer;
+use Umbrella\CoreBundle\DataTable\DataTableType;
+use Umbrella\CoreBundle\DataTable\Twig\DataTableExtension;
+use Umbrella\CoreBundle\Form\Extension\ChoiceTypeExtension;
+use Umbrella\CoreBundle\Form\Extension\FormTypeExtension;
+use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
+use Umbrella\CoreBundle\JsResponse\JsResponseViewListener;
+use Umbrella\CoreBundle\Menu\MenuAuthorizationChecker;
+use Umbrella\CoreBundle\Menu\MenuFactory;
+use Umbrella\CoreBundle\Menu\MenuHelper;
+use Umbrella\CoreBundle\Menu\Twig\MenuExtension;
+use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
+use Umbrella\CoreBundle\Search\EntityIndexer;
+use Umbrella\CoreBundle\Search\SearchableEntitySubscriber;
+use Umbrella\CoreBundle\Tabs\TabsExtension;
+use Umbrella\CoreBundle\Tabs\TabsHelper;
+use Umbrella\CoreBundle\Twig\CoreExtension;
+use Umbrella\CoreBundle\UmbrellaCoreConfiguration;
+use Umbrella\CoreBundle\Widget\Twig\WidgetExtension;
+use Umbrella\CoreBundle\Widget\WidgetFactory;
+use Umbrella\CoreBundle\Widget\WidgetRegistry;
+use Umbrella\CoreBundle\Widget\WidgetRenderer;
+
+return static function (ContainerConfigurator $configurator): void {
+
+    $services = $configurator->services();
+
+    $services->defaults()
+        ->private()
+        ->autowire(true)
+        ->autoconfigure(false);
+
+    // -- Menu -- //
+
+    $services->set(MenuFactory::class);
+    $services->set(MenuAuthorizationChecker::class)
+        ->args([
+            service('security.token_storage'),
+            service('security.expression_language'),
+            service('security.authentication.trust_resolver'),
+            service('security.authorization_checker'),
+            service('security.role_hierarchy'),
+        ]);
+    $services->set(MenuHelper::class);
+    $services->set(MenuExtension::class)
+        ->tag('twig.extension');
+
+
+    // -- Js Response -- //
+
+    $services->set(JsResponseBuilder::class);
+    $services->set(JsResponseViewListener::class)
+        ->tag('kernel.event_subscriber');
+
+
+    // -- Widget -- //
+
+    $services->set(WidgetFactory::class);
+    $services->set(WidgetRegistry::class);
+    $services->set(WidgetRenderer::class);
+    $services->set(WidgetExtension::class)
+        ->tag('twig.extension');
+    $services->load('Umbrella\\CoreBundle\\Widget\\Type\\', '../src/Widget/Type/*')
+        ->tag('umbrella.widget.type');
+
+    // -- DataTable -- //
+    $services->set(DataTableBuilerHelper::class);
+    $services->set(DataTableFactory::class);
+    $services->set(DataTableRegistry::class);
+    $services->set(DataTableRenderer::class);
+    $services->set(DataTableType::class);
+
+    $services->set(DataTableExtension::class)
+        ->tag('twig.extension');
+
+    $services->set(CallableAdapter::class)
+        ->tag('umbrella.datatable.adapter');
+    $services->set(EntityAdapter::class)
+        ->tag('umbrella.datatable.adapter');
+    $services->set(NestedEntityAdapter::class)
+        ->tag('umbrella.datatable.adapter');
+
+    $services->load('Umbrella\\CoreBundle\\DataTable\\Column\\', '../src/DataTable/Column/*')
+        ->tag('umbrella.datatable.columntype');
+
+    // -- Ckeditor -- //
+    $services->set(CkeditorConfiguration::class);
+    $services->set(CkeditorExtension::class)
+        ->tag('twig.extension');
+
+    // -- Tabs -- //
+    $services->set(TabsHelper::class);
+    $services->set(TabsExtension::class)
+        ->tag('twig.extension');
+
+    // -- Search -- //
+    $services->set(IndexEntityCommand::class)
+        ->tag('console.command');
+    $services->set(SearchableAnnotationReader::class);
+    $services->set(EntityIndexer::class);
+    $services->set(SearchableEntitySubscriber::class)
+        ->tag('doctrine.event_subscriber');
+
+    // -- Core -- //
+    $services->set(UmbrellaCoreConfiguration::class);
+    $services->set(CoreExtension::class)
+        ->arg(0, service('twig.form.renderer'))
+        ->tag('twig.extension');
+
+    // -- Form -- //
+    $services->load('Umbrella\\CoreBundle\\Form\\', '../src/Form/*')
+        ->tag('form.type');
+
+    $services->set(FormTypeExtension::class)
+        ->tag('form.type_extension', [
+            'extended_type' => FormType::class
+        ]);
+    $services->set(ChoiceTypeExtension::class)
+        ->tag('form.type_extension', [
+            'extended_type' => ChoiceType::class
+        ]);
+
+};

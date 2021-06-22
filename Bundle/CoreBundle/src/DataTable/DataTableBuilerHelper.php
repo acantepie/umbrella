@@ -10,7 +10,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
-use Umbrella\CoreBundle\DataTable\DTO\DataTableConfig;
 use Umbrella\CoreBundle\Widget\Type\WidgetType;
 use Umbrella\CoreBundle\Widget\WidgetBuilder;
 use Umbrella\CoreBundle\Widget\WidgetFactory;
@@ -21,12 +20,12 @@ class DataTableBuilerHelper
     private WidgetFactory $widgetFactory;
     private FormFactoryInterface $formFactory;
     private RouterInterface $router;
-    private DataTableConfig $config;
+    private DataTableConfiguration $config;
 
     /**
      * DataTableBuilerHelper constructor.
      */
-    public function __construct(DataTableRegistry $registry, WidgetFactory $widgetFactory, FormFactoryInterface $formFactory, RouterInterface $router, DataTableConfig $config)
+    public function __construct(DataTableRegistry $registry, WidgetFactory $widgetFactory, FormFactoryInterface $formFactory, RouterInterface $router, DataTableConfiguration $config)
     {
         $this->registry = $registry;
         $this->widgetFactory = $widgetFactory;
@@ -45,7 +44,7 @@ class DataTableBuilerHelper
         return $this->formFactory->createNamedBuilder($name, $type, $data, $options);
     }
 
-    public function getConfig(): DataTableConfig
+    public function getConfig(): DataTableConfiguration
     {
         return $this->config;
     }

@@ -34,9 +34,24 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('form')->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('layout')->defaultValue('horizontal')->end()
-                ->scalarNode('label_class')->defaultValue('col-sm-2')->end()
-                ->scalarNode('group_class')->defaultValue('col-sm-10')->end();
+                ->scalarNode('layout')
+                    ->defaultValue('horizontal')
+                    ->info('Layout of bootstrap : default or horizontal.')
+                    ->validate()
+                        ->ifTrue(static function ($v) {
+                            return !\in_array($v, ['default', 'horizontal'], true);
+                        })
+                        ->thenInvalid('Must be default or horizontal.')
+                    ->end()
+                ->end()
+                ->scalarNode('label_class')
+                    ->defaultValue('col-sm-2')
+                    ->info('Default label class form horizontal bootstrap layout.')
+                    ->end()
+                ->scalarNode('group_class')
+                    ->defaultValue('col-sm-10')
+                    ->info('Default group class form horizontal bootstrap layout.')
+                    ->end();
     }
 
     private function addWidgetSection(ArrayNodeDefinition $rootNode)
@@ -44,7 +59,10 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('widget')->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('template')->defaultValue('@UmbrellaCore/Widget/widget.html.twig')->end();
+                ->scalarNode('template')
+                    ->defaultValue('@UmbrellaCore/Widget/widget.html.twig')
+                    ->info('Twig template used to render Widget Type.')
+                    ->end();
     }
 
     private function ckeditorSection(ArrayNodeDefinition $rootNode)
@@ -52,9 +70,13 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('ckeditor')->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('default_config')->defaultNull()->end()
+                ->scalarNode('default_config')
+                    ->defaultNull()
+                    ->info('Default config to use on CkeditorType (if none specified).')
+                    ->end()
                 ->arrayNode('configs')
                     ->useAttributeAsKey('name')
+                    ->info('List of configs for CkeditorType @see Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration for example.')
                     ->normalizeKeys(false)
                     ->arrayPrototype()
                         ->variablePrototype()->end()
@@ -66,10 +88,25 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('datatable')->addDefaultsIfNotSet()
                 ->children()
-                    ->booleanNode('is_safe_html')->defaultFalse()->end()
-                    ->integerNode('page_length')->defaultValue(25)->end()
-                    ->scalarNode('table_class')->defaultValue('table table-striped table-centered dt-responsive w-100')->end()
-                    ->scalarNode('tree_class')->defaultValue('table table-centered')->end()
-                    ->scalarNode('dom')->defaultValue("< tr><'row'<'col-sm-12 col-md-5'li><'col-sm-12 col-md-7'p>>")->end();
+                    ->booleanNode('is_safe_html')
+                        ->defaultFalse()
+                        ->info('If false, all content render on DataTable column will be escaped.')
+                        ->end()
+                    ->integerNode('page_length')
+                        ->defaultValue(25)
+                        ->info('Default page length for datatable.')
+                        ->end()
+                    ->scalarNode('table_class')
+                        ->defaultValue('table table-striped table-centered dt-responsive w-100')
+                        ->info('Default css class for datatable.')
+                        ->end()
+                    ->scalarNode('tree_class')
+                        ->defaultValue('table table-centered')
+                        ->info('Default css class for tree datatable.')
+                        ->end()
+                    ->scalarNode('dom')
+                        ->defaultValue("< tr><'row'<'col-sm-12 col-md-5'li><'col-sm-12 col-md-7'p>>")
+                        ->info('Default dom for datatable @see https://datatables.net/reference/option/dom')
+                        ->end();
     }
 }

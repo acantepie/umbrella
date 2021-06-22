@@ -9,11 +9,11 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
+use Umbrella\CoreBundle\DataTable\DataTableConfiguration;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
 use Umbrella\CoreBundle\DataTable\DataTableType;
-use Umbrella\CoreBundle\DataTable\DTO\DataTableConfig;
 use Umbrella\CoreBundle\Form\Extension\FormTypeExtension;
-use Umbrella\CoreBundle\Utils\ArrayUtils;
+use Umbrella\CoreBundle\Twig\CoreExtension;
 use Umbrella\CoreBundle\Widget\Type\WidgetType;
 use Umbrella\CoreBundle\Widget\WidgetRegistry;
 use Umbrella\CoreBundle\Widget\WidgetRenderer;
@@ -33,13 +33,16 @@ class UmbrellaCoreExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
-        $loader->load('services.yml');
-        $loader->load('form_extension.yml');
+        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
+        $loader->load('services.php');
 
         $container
             ->getDefinition(CkeditorConfiguration::class)
             ->setArgument(0, $config['ckeditor']);
+
+        $container
+            ->register(DataTableConfiguration::class)
+            ->setArgument(0, $config['datatable']);
 
         $container
             ->getDefinition(WidgetRenderer::class)
@@ -50,21 +53,13 @@ class UmbrellaCoreExtension extends Extension
             ->setArgument(0, $config['form']['label_class'])
             ->setArgument(1, $config['form']['group_class']);
 
+        $container
+            ->getDefinition(CoreExtension::class)
+            ->setArgument(1, $config['form']['layout']);
+
         $container->registerForAutoconfiguration(DataTableType::class)->addTag(DataTableRegistry::TAG_TYPE);
         $container->registerForAutoconfiguration(ColumnType::class)->addTag(DataTableRegistry::TAG_COLUMN_TYPE);
         $container->registerForAutoconfiguration(DataTableAdapter::class)->addTag(DataTableRegistry::TAG_ADAPTER);
         $container->registerForAutoconfiguration(WidgetType::class)->addTag(WidgetRegistry::TAG_TYPE);
-
-        $container
-            ->register(DataTableConfig::class)
-            ->setArgument(0, $config['datatable']);
-
-        $parameters = ArrayUtils::remap_nested_array($config, 'umbrella_core');
-
-        foreach ($parameters as $pKey => $pValue) {
-            if (!$container->hasParameter($pKey)) {
-                $container->setParameter($pKey, $pValue);
-            }
-        }
     }
 }
