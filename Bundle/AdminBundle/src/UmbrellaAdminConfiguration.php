@@ -9,7 +9,10 @@ class UmbrellaAdminConfiguration
     /**
      * UmbrellaAdminConfiguration constructor.
      */
-    public function __construct(array $config = []) {$this->config = $config;}
+    public function __construct(array $config = [])
+    {
+        $this->config = $config;
+    }
 
     public function homeRoute(): string
     {
