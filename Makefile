@@ -18,3 +18,5 @@ lint-js: ## Lint file with eslint
 
 fix-js: ## Fix files with eslint
 	$(YARN) lint-fix
+
+fix-all: fix-php fix-js ## Fix all files
