@@ -23,7 +23,7 @@ fix-php: ## Fix files with php-cs-fixer
 	$(PHP_CS_FIXER) fix --allow-risky=yes
 
 lint-js: ## Lint file with eslint
-	$(YARN) eslint 'Bundle/AdminBundle/assets' 'Bundle/CoreBundle/assets'
+	$(YARN) lint
 
 fix-js: ## Fix files with eslint
-	$(YARN) eslint 'Bundle/AdminBundle/assets' 'Bundle/CoreBundle/assets' --fix
+	$(YARN) lint-fix

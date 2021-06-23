@@ -1,2 +1,2 @@
-import "./front.scss"
-import "bootstrap";
+import './front.scss'
+import 'bootstrap';

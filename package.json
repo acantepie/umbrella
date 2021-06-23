@@ -5,5 +5,9 @@
     "@babel/core": "^7.14.6",
     "@babel/eslint-parser": "^7.14.7",
     "eslint": "^7.29.0"
+  },
+  "scripts": {
+    "lint": "eslint Bundle/*/assets Skeleton/assets",
+    "lint-fix": "eslint Bundle/*/assets Skeleton/assets --fix"
   }
 }
