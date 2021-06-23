@@ -8,10 +8,10 @@ help: ## Outputs this help screen
 ## —— Coding standards ——————————————————————————————————————————————————————
 
 lint-php: ## Lint files with php-cs-fixer
-	$(PHP_CS_FIXER) fix --allow-risky=yes --dry-run
+	$(PHP_CS_FIXER) fix--dry-run
 
 fix-php: ## Fix files with php-cs-fixer
-	$(PHP_CS_FIXER) fix --allow-risky=yes
+	$(PHP_CS_FIXER) fix
 
 lint-js: ## Lint file with eslint
 	$(YARN) lint
