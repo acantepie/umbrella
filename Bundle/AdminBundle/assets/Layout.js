@@ -1,7 +1,7 @@
 class Layout {
 
     constructor() {
-        this.body = document.querySelector('body');
+        this.body = document.querySelector("body");
         this.menuBtn = document.querySelector('.button-menu-mobile')
 
         this.adjustLayout = this.adjustLayout.bind(this)

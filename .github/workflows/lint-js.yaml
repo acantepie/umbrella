@@ -15,8 +15,6 @@ jobs:
         with:
           node-version: 16
       - name: Install Node.js dependencies
-        run: npm install
-      - name: Lint
-        uses: wearerequired/lint-action@v1
-        with:
-          eslint: true
+        run: |
+          npm install
+          npm run lint
