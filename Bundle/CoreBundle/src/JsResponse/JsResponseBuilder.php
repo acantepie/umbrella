@@ -14,20 +14,20 @@ use Umbrella\CoreBundle\Toast\Toast;
  */
 class JsResponseBuilder implements \Countable
 {
-    const EVAL = 'eval';
-    const REDIRECT = 'redirect';
-    const RELOAD = 'reload';
-    const UPDATE_HTML = 'update';
-    const REMOVE_HTML = 'remove';
+    public const EVAL = 'eval';
+    public const REDIRECT = 'redirect';
+    public const RELOAD = 'reload';
+    public const UPDATE_HTML = 'update';
+    public const REMOVE_HTML = 'remove';
 
-    const SHOW_TOAST = 'show_toast';
+    public const SHOW_TOAST = 'show_toast';
 
-    const SHOW_MODAL = 'show_modal';
-    const CLOSE_MODAL = 'close_modal';
+    public const SHOW_MODAL = 'show_modal';
+    public const CLOSE_MODAL = 'close_modal';
 
-    const CALL_WEBCOMPONENT = 'call_webcomponent';
+    public const CALL_WEBCOMPONENT = 'call_webcomponent';
 
-    const DOWNLOAD = 'download';
+    public const DOWNLOAD = 'download';
 
     private TranslatorInterface $translator;
     private RouterInterface $router;

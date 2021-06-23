@@ -17,7 +17,7 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
  */
 class ProfileController extends AdminController
 {
-    const PROFILE_ROUTE = 'umbrella_admin_profile_index';
+    public const PROFILE_ROUTE = 'umbrella_admin_profile_index';
 
     protected UserManager $userManager;
     protected UmbrellaAdminConfiguration $config;

@@ -10,9 +10,9 @@ use Umbrella\CoreBundle\DataTable\Column\ColumnType;
  */
 class DataTableRegistry
 {
-    const TAG_TYPE = 'umbrella.datatable.type';
-    const TAG_COLUMN_TYPE = 'umbrella.datatable.columntype';
-    const TAG_ADAPTER = 'umbrella.datatable.adapter';
+    public const TAG_TYPE = 'umbrella.datatable.type';
+    public const TAG_COLUMN_TYPE = 'umbrella.datatable.columntype';
+    public const TAG_ADAPTER = 'umbrella.datatable.adapter';
 
     /**
      * @var DataTableType[]

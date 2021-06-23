@@ -7,12 +7,12 @@ namespace Umbrella\CoreBundle\Menu\Model;
  */
 class Menu
 {
-    const MATCH_BY_REQUEST = 1;
-    const MATCH_BY_RULE = 2;
+    public const MATCH_BY_REQUEST = 1;
+    public const MATCH_BY_RULE = 2;
 
-    const BY_ROUTE = 1;
-    const BY_PATH = 2;
-    const BY_FULL_PATH = 3;
+    public const BY_ROUTE = 1;
+    public const BY_PATH = 2;
+    public const BY_FULL_PATH = 3;
 
     protected MenuItem $root;
 

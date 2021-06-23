@@ -14,7 +14,7 @@ use Umbrella\CoreBundle\Search\EntityIndexer;
  */
 class IndexEntityCommand extends Command
 {
-    const CMD_NAME = 'umbrella:index:entity';
+    public const CMD_NAME = 'umbrella:index:entity';
 
     private EntityIndexer $indexer;
 

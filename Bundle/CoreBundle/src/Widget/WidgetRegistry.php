@@ -6,7 +6,7 @@ use Umbrella\CoreBundle\Widget\Type\WidgetType;
 
 class WidgetRegistry
 {
-    const TAG_TYPE = 'umbrella.widget.type';
+    public const TAG_TYPE = 'umbrella.widget.type';
 
     /**
      * @var WidgetType[]

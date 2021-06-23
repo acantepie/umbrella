@@ -18,8 +18,8 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
  */
 class SecurityController extends AdminController
 {
-    const LOGIN_ROUTE = 'umbrella_admin_login';
-    const LOGOUT_ROUTE = 'umbrella_admin_logout';
+    public const LOGIN_ROUTE = 'umbrella_admin_login';
+    public const LOGOUT_ROUTE = 'umbrella_admin_logout';
 
     protected UserManager $userManager;
     protected UmbrellaAdminConfiguration $config;

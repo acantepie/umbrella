@@ -19,7 +19,7 @@ use Umbrella\CoreBundle\Toast\Toast;
  */
 abstract class BaseController extends AbstractController
 {
-    const BAG_TOAST = 'toast';
+    public const BAG_TOAST = 'toast';
 
     public static function getSubscribedServices()
     {

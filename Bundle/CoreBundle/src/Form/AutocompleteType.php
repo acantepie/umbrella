@@ -17,7 +17,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AutocompleteType extends AbstractType implements DataMapperInterface, EventSubscriberInterface
 {
-    const IGNORED_OPTIONS = ['allow_clear', 'placeholder', 'route', 'route_params', 'min_search_length', 'template', 'template_selector', 'dropdown_class'];
+    private const IGNORED_OPTIONS = ['allow_clear', 'placeholder', 'route', 'route_params', 'min_search_length', 'template', 'template_selector', 'dropdown_class'];
 
     private RouterInterface $router;
     private TranslatorInterface $translator;

@@ -7,10 +7,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DataTableType
 {
-    const TAG_SEND_DATA = 'dt:senddata';
+    public const TAG_SEND_DATA = 'dt:senddata';
 
-    const DEFAULT_MODE = 'default';
-    const SELECTION_MODE = 'selection';
+    public const DEFAULT_MODE = 'default';
+    public const SELECTION_MODE = 'selection';
 
     // FIXME : statically called to avoid to have add parent::configureOptions() on all inherit Type class
     final public static function __configureOptions(OptionsResolver $resolver)

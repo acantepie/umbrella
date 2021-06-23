@@ -7,7 +7,7 @@ namespace Umbrella\CoreBundle\Menu\Model;
  */
 class MenuItem implements \Countable, \IteratorAggregate
 {
-    const ID_REGEXP = '/^[0a-zA-Z0-9\-\_\.]+$/';
+    protected const ID_REGEXP = '/^[0a-zA-Z0-9\-\_\.]+$/';
 
     protected Menu $menu;
 

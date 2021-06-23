@@ -13,7 +13,7 @@ use Umbrella\CoreBundle\Utils\Utils;
  */
 class TabsHelper
 {
-    const DEFAULT_CONFIG = 'default';
+    public const DEFAULT_CONFIG = 'default';
 
     private RequestStack $requestStack;
     private RouterInterface $router;

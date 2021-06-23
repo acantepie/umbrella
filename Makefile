@@ -1,14 +1,5 @@
-# Parameters
-SHELL         = bash
-PROJECT       = strangebuzz
-GIT_AUTHOR    = COil
-HTTP_PORT     = 8000
-
-# Executables
 COMPOSER      = composer
 YARN          = yarn
-
-# Executables: vendors
 PHP_CS_FIXER  = ./vendor/bin/php-cs-fixer
 
 help: ## Outputs this help screen

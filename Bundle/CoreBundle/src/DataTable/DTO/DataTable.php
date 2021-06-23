@@ -8,8 +8,8 @@ use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
 
 class DataTable
 {
-    const SORT_ASCENDING = 'asc';
-    const SORT_DESCENDING = 'desc';
+    public const SORT_ASCENDING = 'asc';
+    public const SORT_DESCENDING = 'desc';
 
     protected Toolbar $toolbar;
 
