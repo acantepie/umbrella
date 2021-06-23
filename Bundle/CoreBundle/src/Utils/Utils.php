@@ -50,4 +50,36 @@ class Utils
 
         return round($bytes, $precision) . ' ' . $units[$pow];
     }
+
+    public static function array_merge_recursive()
+    {
+        $args = func_get_args();
+
+        return self::_array_merge_recursive($args);
+    }
+
+    // source : https://api.drupal.org/api/drupal/includes%21bootstrap.inc/function/drupal_array_merge_deep_array/7.x
+    private static function _array_merge_recursive(array $arrays): array
+    {
+        $result = [];
+        foreach ($arrays as $array) {
+            foreach ($array as $key => $value) {
+                // Renumber integer keys as array_merge_recursive() does. Note that PHP
+                // automatically converts array keys that are integer strings (e.g., '1')
+                // to integers.
+                if (is_integer($key)) {
+                    $result[] = $value;
+                } elseif (isset($result[$key]) && is_array($result[$key]) && is_array($value)) {
+                    $result[$key] = self::_array_merge_recursive([
+                        $result[$key],
+                        $value,
+                    ]);
+                } else {
+                    $result[$key] = $value;
+                }
+            }
+        }
+
+        return $result;
+    }
 }

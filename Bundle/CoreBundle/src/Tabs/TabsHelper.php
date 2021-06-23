@@ -5,8 +5,8 @@ namespace Umbrella\CoreBundle\Tabs;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Yaml\Yaml;
-use Umbrella\CoreBundle\Utils\ArrayUtils;
 use Umbrella\CoreBundle\Utils\HtmlUtils;
+use Umbrella\CoreBundle\Utils\Utils;
 
 /**
  * Class TabsHelper
@@ -53,7 +53,7 @@ class TabsHelper
             unset($configs['base']);
 
             foreach ($configs as $configName => $config) {
-                $this->_configs[$configName] = ArrayUtils::array_merge_recursive($baseConfig, $config);
+                $this->_configs[$configName] = Utils::array_merge_recursive($baseConfig, $config);
             }
 
             $this->_currentConfig = $this->_configs[self::DEFAULT_CONFIG];
@@ -68,7 +68,7 @@ class TabsHelper
             throw new \InvalidArgumentException(sprintf('Invalid config name "%s". Configs defined are : %s', $configName, implode(', ', array_keys($this->_configs))));
         }
 
-        $this->_currentConfig = ArrayUtils::array_merge_recursive($this->_configs[$configName], $config);
+        $this->_currentConfig = Utils::array_merge_recursive($this->_configs[$configName], $config);
     }
 
     public function navStart(array $parameters = []): string
@@ -76,7 +76,7 @@ class TabsHelper
         $this->initialize();
         $this->_navItemCount = 0;
 
-        $config = ArrayUtils::array_merge_recursive($this->_currentConfig['nav'], $parameters);
+        $config = Utils::array_merge_recursive($this->_currentConfig['nav'], $parameters);
 
         return sprintf('<ul %s>', HtmlUtils::to_attr($config['attr']));
     }
@@ -93,7 +93,7 @@ class TabsHelper
         $this->initialize();
         ++$this->_navItemCount;
 
-        $config = ArrayUtils::array_merge_recursive($this->_currentConfig['nav_item'], $parameters);
+        $config = Utils::array_merge_recursive($this->_currentConfig['nav_item'], $parameters);
 
         $html = sprintf('<li %s>', HtmlUtils::to_attr($config['attr']));
 
