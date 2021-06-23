@@ -1,7 +1,6 @@
-# It checks the syntax of the PHP code (using PHP-CS-Fixer)
 name: "Linter: PHP"
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 env:
   fail-fast: true

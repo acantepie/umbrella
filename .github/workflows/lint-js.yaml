@@ -1,0 +1,22 @@
+name: "Linter: Js"
+
+on: [ push, pull_request ]
+
+env:
+  fail-fast: true
+
+jobs:
+  eslinter:
+    runs-on: ubuntu-latest
+    name: eslint
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Lint
+        uses: wearerequired/lint-action@v1
+        with:
+          eslint: true
