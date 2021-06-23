@@ -8,7 +8,7 @@ help: ## Outputs this help screen
 ## —— Coding standards ——————————————————————————————————————————————————————
 
 lint-php: ## Lint files with php-cs-fixer
-	$(PHP_CS_FIXER) fix--dry-run
+	$(PHP_CS_FIXER) fix --dry-run
 
 fix-php: ## Fix files with php-cs-fixer
 	$(PHP_CS_FIXER) fix
