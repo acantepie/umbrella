@@ -1,9 +1,11 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__ . '/src');
+$finder = new PhpCsFixer\Finder();
+$finder->in([__DIR__ . '/Bundle/*/src', __DIR__ . '/Skeleton/src']);
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+
+return $config
     ->setRules([
         '@Symfony' => true,
         '@DoctrineAnnotation' => true,
@@ -15,11 +17,11 @@ return PhpCsFixer\Config::create()
         'array_syntax' => ['syntax' => 'short'],
         'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'fully_qualified_strict_types' => true,
-        'trailing_comma_in_multiline_array' => false,
+        'trailing_comma_in_multiline' => false,
         'header_comment' => [
             'header' => ''
-        ]
+        ],
+        'blank_line_before_statement' => []
     ])
     ->setRiskyAllowed(true)
-    ->setFinder($finder)
-    ->setCacheFile(__DIR__.'/.php_cs.cache');
+    ->setFinder($finder);

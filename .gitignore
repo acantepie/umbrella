@@ -1,5 +1,13 @@
-###> Tools / Other ###
+###> Ide ###
 /.idea/*
-.php_cs.cache
+
+###> node modules ###
+yarn.lock
 /node_modules
-###< Tools / Other ###
+
+###> composer ###
+/vendor/
+composer.lock
+
+###> Linter ###
+.php-cs-fixer.cache

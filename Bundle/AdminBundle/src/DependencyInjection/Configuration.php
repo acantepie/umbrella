@@ -28,9 +28,17 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->scalarNode('home_route')->isRequired()->cannotBeEmpty();
+                ->scalarNode('home_route')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                    ->info('Route of admin home')
+                    ->end()
+                ->scalarNode('menu_alias')
+                    ->cannotBeEmpty()
+                    ->defaultValue('admin_sidebar')
+                    ->info('Alias of admin sidebar')
+                    ->end();
 
-        $this->addMenuSection($rootNode);
         $this->addThemeSection($rootNode);
         $this->addAssetsSection($rootNode);
         $this->addUserSection($rootNode);
@@ -39,21 +47,27 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    private function addMenuSection(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode->children()
-            ->scalarNode('menu_alias')->cannotBeEmpty()->defaultValue('admin_sidebar');
-    }
-
     private function addThemeSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode->children()
             ->arrayNode('theme')->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('name')->defaultValue('umbrella')->end()
-                ->scalarNode('icon')->defaultNull()->end()
-                ->scalarNode('logo')->defaultNull()->end()
-                ->scalarNode('logo_sm')->defaultNull()->end();
+                ->scalarNode('name')
+                    ->defaultValue('umbrella')
+                    ->info('Name of app (Used on mail, sidebar title, login page, ...)')
+                    ->end()
+                ->scalarNode('icon')
+                    ->defaultNull()
+                    ->info('Icon class (ex: mdi mdi-umbrella) - available only if no logo was configured.')
+                    ->end()
+                ->scalarNode('logo')
+                    ->defaultNull()
+                    ->info('Path of logo')
+                    ->end()
+                ->scalarNode('logo_sm')
+                    ->defaultNull()
+                    ->info('Path of logo for small resolution')
+                    ->end();
     }
 
     private function addAssetsSection(ArrayNodeDefinition $rootNode)
@@ -61,8 +75,16 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('assets')->isRequired()
             ->children()
-                ->scalarNode('stylesheet_entry')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('script_entry')->isRequired()->cannotBeEmpty()->end();
+                ->scalarNode('stylesheet_entry')
+                    ->info('Encore stylesheet name used on layout')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                    ->end()
+                ->scalarNode('script_entry')
+                    ->info('Encore script name used on layout')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                    ->end();
     }
 
     private function addUserSection(ArrayNodeDefinition $rootNode)
@@ -70,26 +92,50 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('security')->addDefaultsIfNotSet()
                 ->children()
-                    ->integerNode('password_request_ttl')->defaultValue(86400)->end() // s
+                    ->integerNode('password_request_ttl')
+                        ->info('Time to live (in s) for request password.')
+                        ->defaultValue(86400)
+                        ->end()
                 ->end()
             ->end()
             ->arrayNode('user')->addDefaultsIfNotSet()
                 ->children()
-                    ->scalarNode('class')->defaultValue('App\\Entity\\User')->end()
-                    ->scalarNode('table')->defaultValue(UserTableType::class)->end()
-                    ->scalarNode('form')->defaultValue(UserType::class)->end()
+                    ->scalarNode('class')
+                        ->info('Entity class of Admin user.')
+                        ->defaultValue('App\\Entity\\User')
+                        ->end()
+                    ->scalarNode('table')
+                        ->info('DataTable Type class of Admin CRUD.')
+                        ->defaultValue(UserTableType::class)
+                        ->end()
+                    ->scalarNode('form')
+                        ->info('Form Type class of Admin CRUD.')
+                        ->defaultValue(UserType::class)
+                        ->end()
                 ->end()
             ->end()
             ->arrayNode('user_profile')->addDefaultsIfNotSet()->canBeDisabled()
                 ->children()
-                    ->scalarNode('route')->defaultValue(ProfileController::PROFILE_ROUTE)->end()
-                    ->scalarNode('form')->defaultValue(ProfileType::class)->end()
+                    ->scalarNode('route')
+                        ->info('Route of Profile view.')
+                        ->defaultValue(ProfileController::PROFILE_ROUTE)
+                        ->end()
+                    ->scalarNode('form')
+                        ->info('Form Type class of Profile CRUD.')
+                        ->defaultValue(ProfileType::class)
+                        ->end()
                 ->end()
             ->end()
             ->arrayNode('user_mailer')->addDefaultsIfNotSet()
                 ->children()
-                    ->scalarNode('from_name')->defaultValue('')->end()
-                    ->scalarNode('from_email')->defaultValue('no-reply@umbrella.dev')->end();
+                    ->scalarNode('from_name')
+                        ->info('Name of sender for user email.')
+                        ->defaultValue('')
+                        ->end()
+                    ->scalarNode('from_email')
+                        ->info('Email of sender for user email.')
+                        ->defaultValue('no-reply@umbrella.dev')
+                        ->end();
     }
 
     private function notificationSection(ArrayNodeDefinition $rootNode)
@@ -97,8 +143,18 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('notification')->canBeEnabled()
             ->children()
-                ->scalarNode('renderer')->defaultValue(NotificationRenderer::class)->end()
-                ->scalarNode('provider')->cannotBeEmpty()->end()
-                ->integerNode('poll_interval')->defaultValue(10)->treatFalseLike(0)->end();
+                ->scalarNode('renderer')
+                    ->info('Notification renderer service used to render notification, must implements NotificationRendererInterface.')
+                    ->defaultValue(NotificationRenderer::class)
+                    ->end()
+                ->scalarNode('provider')
+                    ->info('Notification provider service used to provide notification from an user, must implements NotificationProviderInterface.')
+                    ->cannotBeEmpty()
+                    ->end()
+                ->integerNode('poll_interval')
+                    ->info('Time (in s) between two requests of notification short-polling used to refresh notification view  (set it to 0 to disable).')
+                    ->defaultValue(10)
+                    ->treatFalseLike(0)
+                    ->end();
     }
 }
