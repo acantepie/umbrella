@@ -5,9 +5,9 @@ namespace Umbrella\AdminBundle\Services;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ObjectRepository;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
  * Class UserManager
@@ -16,20 +16,18 @@ class UserManager
 {
     protected EntityManagerInterface $em;
     protected UserPasswordHasherInterface $passwordHasher;
-    protected ParameterBagInterface $parameters;
     protected string $class;
     protected ObjectRepository $repo;
 
     /**
      * UserManager constructor.
      */
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, ParameterBagInterface $parameters)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, UmbrellaAdminConfiguration $config)
     {
         $this->em = $em;
         $this->passwordHasher = $passwordHasher;
-        $this->parameters = $parameters;
 
-        $this->class = $parameters->get('umbrella_admin.user.class');
+        $this->class = $config->userClass();
         $this->repo = $this->em->getRepository($this->class);
     }
 

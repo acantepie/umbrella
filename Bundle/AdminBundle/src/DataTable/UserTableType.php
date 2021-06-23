@@ -3,9 +3,9 @@
 namespace Umbrella\AdminBundle\DataTable;
 
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Umbrella\AdminBundle\DataTable\Column\UserNameColumnType;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\WidgetColumnType;
@@ -22,20 +22,20 @@ use Umbrella\CoreBundle\Widget\WidgetBuilder;
  */
 class UserTableType extends DataTableType
 {
-    private ParameterBagInterface $parameters;
+    private UmbrellaAdminConfiguration $config;
 
     /**
      * UserTableType constructor.
      */
-    public function __construct(ParameterBagInterface $parameters)
+    public function __construct(UmbrellaAdminConfiguration $config)
     {
-        $this->parameters = $parameters;
+        $this->config = $config;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function buildTable(DataTableBuilder $builder, array $options = [])
+    public function buildTable(DataTableBuilder $builder, array $options)
     {
         $builder->addFilter('search', SearchType::class);
         $builder->addWidget('add_user', AddLinkType::class, [
@@ -63,7 +63,7 @@ class UserTableType extends DataTableType
         ]);
 
         $builder->useEntityAdapter([
-            'class' => $this->parameters->get('umbrella_admin.user.class'),
+            'class' => $this->config->userClass(),
             'query' => function (QueryBuilder $qb, $formData) {
                 if (isset($formData['search'])) {
                     $qb->andWhere('lower(e.search) LIKE :search');

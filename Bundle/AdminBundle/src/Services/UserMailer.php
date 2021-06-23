@@ -2,7 +2,6 @@
 
 namespace Umbrella\AdminBundle\Services;
 
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
@@ -10,6 +9,7 @@ use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
  * Class UserMailer
@@ -19,17 +19,17 @@ class UserMailer
     protected Environment $twig;
     protected RouterInterface $router;
     protected MailerInterface $mailer;
-    protected ParameterBagInterface $parameters;
+    protected UmbrellaAdminConfiguration $config;
 
     /**
      * UserMailer constructor.
      */
-    public function __construct(Environment $twig, RouterInterface $router, MailerInterface $mailer, ParameterBagInterface $parameters)
+    public function __construct(Environment $twig, RouterInterface $router, MailerInterface $mailer, UmbrellaAdminConfiguration $config)
     {
         $this->twig = $twig;
         $this->router = $router;
         $this->mailer = $mailer;
-        $this->parameters = $parameters;
+        $this->config = $config;
     }
 
     public function sendPasswordRequest(AdminUserInterface $user): void
@@ -37,7 +37,7 @@ class UserMailer
         $email = new Email();
         $email
             ->subject('Changement de mot de passe')
-            ->from(new Address($this->parameters->get('umbrella_admin.user_mailer.from_email'), $this->parameters->get('umbrella_admin.user_mailer.from_name')))
+            ->from(new Address($this->config->userMailerFromEmail(), $this->config->userMailerFromName()))
             ->to($user->getEmail())
             ->html($this->twig->render('@UmbrellaAdmin/Mail/password_request.html.twig', [
                 'user' => $user,

@@ -2,27 +2,27 @@
 
 namespace Umbrella\AdminBundle\Form;
 
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
  * Class AccountType
  */
 class ProfileType extends AbstractType
 {
-    private ParameterBagInterface $parameters;
+    private UmbrellaAdminConfiguration $config;
 
     /**
-     * UserGroupTableType constructor.
+     * ProfileType constructor.
      */
-    public function __construct(ParameterBagInterface $parameters)
+    public function __construct(UmbrellaAdminConfiguration $config)
     {
-        $this->parameters = $parameters;
+        $this->config = $config;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -43,7 +43,7 @@ class ProfileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => $this->parameters->get('umbrella_admin.user.class'),
+            'data_class' => $this->config->userClass(),
         ]);
     }
 }

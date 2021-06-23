@@ -37,11 +37,6 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('controller.service_arguments')
         ->tag('container.service_subscriber');
 
-    $services->set(SecurityController::class)
-        ->tag('controller.service_arguments')
-        ->tag('container.service_subscriber')
-        ->bind('$retryTtl', param('umbrella_admin.security.password_request_ttl'));
-
     // Table
     $services->set(UserNameColumnType::class)
         ->tag('umbrella.datatable.columntype');

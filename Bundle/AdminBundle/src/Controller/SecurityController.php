@@ -9,6 +9,7 @@ use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Form\UserPasswordConfirmType;
 use Umbrella\AdminBundle\Services\UserMailer;
 use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
  * Class SecurityController.
@@ -21,16 +22,15 @@ class SecurityController extends AdminController
     const LOGOUT_ROUTE = 'umbrella_admin_logout';
 
     protected UserManager $userManager;
-
-    protected int $retryTtl;
+    protected UmbrellaAdminConfiguration $config;
 
     /**
      * SecurityController constructor.
      */
-    public function __construct(UserManager $userManager, int $retryTtl)
+    public function __construct(UserManager $userManager, UmbrellaAdminConfiguration $config)
     {
         $this->userManager = $userManager;
-        $this->retryTtl = $retryTtl;
+        $this->config = $config;
     }
 
     /**
@@ -97,11 +97,11 @@ class SecurityController extends AdminController
     /**
      * @Route("/password_reset/{token}")
      */
-    public function passwordReset(Request $request, $token)
+    public function passwordReset(Request $request, string $token)
     {
         $user = $this->userManager->findUserByConfirmationToken($token);
 
-        if (null === $user || !$user->isPasswordRequestNonExpired($this->retryTtl)) {
+        if (null === $user || !$user->isPasswordRequestNonExpired($this->config->passwordRequestTtl())) {
             return $this->render('@UmbrellaAdmin/Security/password_reset_error.html.twig');
         }
 

@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
  * Class UserController.
@@ -14,12 +15,22 @@ use Umbrella\AdminBundle\Services\UserManager;
  */
 class UserController extends AdminController
 {
+    private UmbrellaAdminConfiguration $config;
+
+    /**
+     * UserController constructor.
+     */
+    public function __construct(UmbrellaAdminConfiguration $config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * @Route("")
      */
     public function index(Request $request)
     {
-        $table = $this->createTable($this->getParameter('umbrella_admin.user.table'));
+        $table = $this->createTable($this->config->userTable());
         $table->handleRequest($request);
 
         if ($table->isCallback()) {
@@ -33,10 +44,8 @@ class UserController extends AdminController
 
     /**
      * @Route("/edit/{id}", requirements={"id": "\d+"})
-     *
-     * @param mixed|null $id
      */
-    public function edit(UserManager $manager, Request $request, $id = null)
+    public function edit(UserManager $manager, Request $request, ?int $id = null)
     {
         if (null === $id) {
             $entity = $manager->createUser();
@@ -45,7 +54,7 @@ class UserController extends AdminController
             $this->throwNotFoundExceptionIfNull($entity);
         }
 
-        $form = $this->createForm($this->getParameter('umbrella_admin.user.form'), $entity, [
+        $form = $this->createForm($this->config->userForm(), $entity, [
             'password_required' => null === $id,
         ]);
 
@@ -71,7 +80,7 @@ class UserController extends AdminController
     /**
      * @Route("/delete/{id}", requirements={"id": "\d+"})
      */
-    public function delete(UserManager $manager, Request $request, $id)
+    public function delete(UserManager $manager, Request $request, int $id)
     {
         $entity = $manager->find($id);
         $this->throwNotFoundExceptionIfNull($entity);

@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Model\AdminUserInterface;
 use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
  * Class AccountController
@@ -19,13 +20,15 @@ class ProfileController extends AdminController
     const PROFILE_ROUTE = 'umbrella_admin_profile_index';
 
     protected UserManager $userManager;
+    protected UmbrellaAdminConfiguration $config;
 
     /**
      * ProfileController constructor.
      */
-    public function __construct(UserManager $userManager)
+    public function __construct(UserManager $userManager, UmbrellaAdminConfiguration $config)
     {
         $this->userManager = $userManager;
+        $this->config = $config;
     }
 
     /**
@@ -39,7 +42,7 @@ class ProfileController extends AdminController
             throw new AccessDeniedException();
         }
 
-        $settingsForm = $this->createForm($this->getParameter('umbrella_admin.user_profile.form'), $user);
+        $settingsForm = $this->createForm($this->config->profileForm(), $user);
         $settingsForm->handleRequest($request);
 
         if ($settingsForm->isSubmitted() && $settingsForm->isValid()) {

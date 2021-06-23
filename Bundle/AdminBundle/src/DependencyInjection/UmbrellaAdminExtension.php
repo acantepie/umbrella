@@ -14,7 +14,6 @@ use Umbrella\AdminBundle\Notification\Provider\NotificationProviderInterface;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRenderer;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRendererInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
-use Umbrella\CoreBundle\Utils\ArrayUtils;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -37,13 +36,8 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
         $container->getDefinition(UmbrellaAdminConfiguration::class)
             ->setArgument(0, $config);
 
-        $parameters = ArrayUtils::remap_nested_array($config, 'umbrella_admin');
-
-        foreach ($parameters as $pKey => $pValue) {
-            if (!$container->hasParameter($pKey)) {
-                $container->setParameter($pKey, $pValue);
-            }
-        }
+        $container->setParameter('umbrella_admin.user.class', $config['user']['class']);
+        $container->setParameter('umbrella_admin.menu_alias', $config['menu_alias']);
 
         // Notification are enabled
         if ($config['notification']['enabled']) {

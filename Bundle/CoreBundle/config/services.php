@@ -85,7 +85,8 @@ return static function (ContainerConfigurator $configurator): void {
     $services->set(DataTableFactory::class);
     $services->set(DataTableRegistry::class);
     $services->set(DataTableRenderer::class);
-    $services->set(DataTableType::class);
+    $services->set(DataTableType::class)
+        ->tag('umbrella.datatable.type');
 
     $services->set(DataTableExtension::class)
         ->tag('twig.extension');
