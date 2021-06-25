@@ -30,12 +30,8 @@ class AdminExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('admin_home_route', [$this->configuration, 'homeRoute']),
-
-            new TwigFunction('admin_theme_name', [$this->configuration, 'themeName']),
-            new TwigFunction('admin_theme_icon', [$this->configuration, 'themeIcon']),
-            new TwigFunction('admin_theme_logo', [$this->configuration, 'themeLogo']),
-            new TwigFunction('admin_theme_logo_sm', [$this->configuration, 'themeLogoSm']),
+            new TwigFunction('admin_app_name', [$this->configuration, 'appName']),
+            new TwigFunction('admin_app_logo', [$this->configuration, 'appLogo']),
 
             new TwigFunction('admin_script_entry', [$this->configuration, 'assetScriptEntry']),
             new TwigFunction('admin_stylesheet_entry', [$this->configuration, 'assetStylesheetEntry']),

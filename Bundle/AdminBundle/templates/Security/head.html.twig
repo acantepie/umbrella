@@ -1,7 +1,7 @@
 <div class="card-header pt-3 pb-3 text-center bg-primary">
-    {% if admin_theme_logo() %}
-        <img src="{{ asset(admin_theme_logo()) }}">
+    {% if admin_app_logo() %}
+        <img src="{{ asset(admin_app_logo()) }}">
     {% else %}
-        <h4>{% if admin_theme_icon() %}<i class="{{ admin_theme_icon() }} me-1"></i>{% endif %} {{ admin_theme_name() }}</h4>
+        <h4>{{ admin_app_name() }}</h4>
     {% endif %}
 </div>

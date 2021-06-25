@@ -28,18 +28,16 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('home_route')
-                    ->isRequired()
-                    ->cannotBeEmpty()
-                    ->info('Route of admin home')
+                ->scalarNode('app_name')
+                    ->defaultValue('umbrella')
+                    ->info('Name of app (Used on mail, sidebar title, login page, ...)')
                     ->end()
-                ->scalarNode('menu_alias')
-                    ->cannotBeEmpty()
-                    ->defaultValue('admin_sidebar')
-                    ->info('Alias of admin sidebar')
+                ->scalarNode('app_logo')
+                    ->defaultNull()
+                    ->info('Path of logo')
                     ->end();
 
-        $this->addThemeSection($rootNode);
+        $this->addMenuSection($rootNode);
         $this->addAssetsSection($rootNode);
         $this->addUserSection($rootNode);
         $this->notificationSection($rootNode);
@@ -47,26 +45,19 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    private function addThemeSection(ArrayNodeDefinition $rootNode)
+    private function addMenuSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode->children()
-            ->arrayNode('theme')->addDefaultsIfNotSet()
+            ->arrayNode('menu')->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('name')
-                    ->defaultValue('umbrella')
-                    ->info('Name of app (Used on mail, sidebar title, login page, ...)')
+                ->scalarNode('alias')
+                    ->cannotBeEmpty()
+                    ->defaultValue('admin_sidebar')
+                    ->info('Alias of admin sidebar')
                     ->end()
-                ->scalarNode('icon')
-                    ->defaultNull()
-                    ->info('Icon class (ex: mdi mdi-umbrella) - available only if no logo was configured.')
-                    ->end()
-                ->scalarNode('logo')
-                    ->defaultNull()
-                    ->info('Path of logo')
-                    ->end()
-                ->scalarNode('logo_sm')
-                    ->defaultNull()
-                    ->info('Path of logo for small resolution')
+                ->arrayNode('options')
+                    ->variablePrototype()->end()
+                    ->info('Options of menu')
                     ->end();
     }
 

@@ -38,9 +38,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('horizontal')
                     ->info('Layout of bootstrap : default or horizontal.')
                     ->validate()
-                        ->ifTrue(static function ($v) {
-                            return !\in_array($v, ['default', 'horizontal'], true);
-                        })
+                        ->ifNotInArray(['default', 'horizontal'])
                         ->thenInvalid('Must be default or horizontal.')
                     ->end()
                 ->end()
@@ -75,11 +73,11 @@ class Configuration implements ConfigurationInterface
                     ->info('Default config to use on CkeditorType (if none specified).')
                     ->end()
                 ->arrayNode('configs')
-                    ->useAttributeAsKey('name')
                     ->info('List of configs for CkeditorType @see Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration for example.')
                     ->normalizeKeys(false)
+                    ->useAttributeAsKey('name')
                     ->arrayPrototype()
-                        ->variablePrototype()->end()
+                        ->scalarPrototype()->end()
                     ->end();
     }
 

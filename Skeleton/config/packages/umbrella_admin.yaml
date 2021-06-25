@@ -1,7 +1,5 @@
 umbrella_admin:
-  home_route: app_admin_default_index
-  theme:
-    name: "My App"
+  app_name: "My App"
   assets:
     script_entry: admin
     stylesheet_entry: admin

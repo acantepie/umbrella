@@ -14,36 +14,28 @@ class UmbrellaAdminConfiguration
         $this->config = $config;
     }
 
-    public function homeRoute(): string
+    // Theme
+
+    public function appName(): ?string
     {
-        return $this->config['home_route'];
+        return $this->config['app_name'];
     }
+
+    public function appLogo(): ?string
+    {
+        return $this->config['app_logo'];
+    }
+
+    // Menu
 
     public function menuAlias(): string
     {
-        return $this->config['menu_alias'];
+        return $this->config['menu']['alias'];
     }
 
-    // Theme
-
-    public function themeName(): string
+    public function menuOptions(): array
     {
-        return $this->config['theme']['name'];
-    }
-
-    public function themeIcon(): ?string
-    {
-        return $this->config['theme']['icon'];
-    }
-
-    public function themeLogo(): ?string
-    {
-        return $this->config['theme']['logo'];
-    }
-
-    public function themeLogoSm(): ?string
-    {
-        return $this->config['theme']['logo_sm'];
+        return $this->config['menu']['options'];
     }
 
     // Assets

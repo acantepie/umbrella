@@ -37,7 +37,7 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
             ->setArgument(0, $config);
 
         $container->setParameter('umbrella_admin.user.class', $config['user']['class']);
-        $container->setParameter('umbrella_admin.menu_alias', $config['menu_alias']);
+        $container->setParameter('umbrella_admin.menu_alias', $config['menu']['alias']);
 
         // Notification are enabled
         if ($config['notification']['enabled']) {

@@ -20,11 +20,6 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 return static function (ContainerConfigurator $configurator): void {
 
-    $configurator->parameters()
-        ->set('admin_sidebar.path', param('kernel.project_dir') . '/config/menu/admin_sidebar.yaml')
-        ->set('admin_sidebar.searchable', true)
-        ->set('admin_sidebar.showFirstLevelOnBreadcrumb', false);
-
     $services = $configurator->services();
 
     $services->defaults()
@@ -60,9 +55,7 @@ return static function (ContainerConfigurator $configurator): void {
         ->bind('$menuAlias', param('umbrella_admin.menu_alias'));
 
     $services->set(SidebarMenu::class)
-        ->bind('$path', param('admin_sidebar.path'))
-        ->bind('$searchable', param('admin_sidebar.searchable'))
-        ->bind('$showFirstLevelOnBreadcrumb', param('admin_sidebar.showFirstLevelOnBreadcrumb'))
+        ->bind('$projectDir', param('kernel.project_dir'))
         ->tag('umbrella.menu.factory', ['method' => 'createMenu', 'alias' => 'admin_sidebar'])
         ->tag('umbrella.menu.renderer', ['method' => 'renderMenu', 'alias' => 'admin_sidebar'])
         ->tag('umbrella.breadcrumb.renderer', ['method' => 'renderBreadcrumb', 'alias' => 'admin_sidebar']);

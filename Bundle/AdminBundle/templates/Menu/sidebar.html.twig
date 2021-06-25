@@ -6,7 +6,7 @@
         {% include '@UmbrellaAdmin/Menu/head.html.twig' %}
     {% endblock %}
 
-    {% if searchable %}
+    {% if options.searchable %}
         <div class="input-group menu-search d-lg-block d-none">
             <div>
                 <input type="text" class="form-control menu-search-input" placeholder="{{ 'placeholder.search' | trans }}" autofocus>
