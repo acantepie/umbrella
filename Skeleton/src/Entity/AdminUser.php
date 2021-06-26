@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Umbrella\AdminBundle\Entity\BaseUser;
+use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\CoreBundle\Search\Annotation\Searchable;
 
 /**
@@ -15,7 +15,7 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
  * @Searchable
  * @UniqueEntity("email")
  */
-class User extends BaseUser
+class AdminUser extends BaseAdminUser
 {
     /**
      * {@inheritDoc}

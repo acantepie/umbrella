@@ -1,3 +1,12 @@
-umbrella_admin_:
-  resource: "@UmbrellaAdminBundle/config/routing.yml"
+admin_user_:
+  resource: "@UmbrellaAdminBundle/config/routes/user.yaml"
   prefix: /admin
+
+admin_userprofile_:
+  resource: "@UmbrellaAdminBundle/config/routes/user_profile.yaml"
+  prefix: /admin
+
+# Uncomment if you enable notifications
+#admin_notification_:
+#  resource: "@UmbrellaAdminBundle/config/routes/notification.yaml"
+#  prefix: /admin

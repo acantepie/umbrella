@@ -4,4 +4,4 @@ umbrella_admin:
     script_entry: admin
     stylesheet_entry: admin
   user:
-    class: App\Entity\User
+    class: App\Entity\AdminUser
