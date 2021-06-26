@@ -2,16 +2,20 @@
 
 namespace Umbrella\AdminBundle;
 
+use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
+
 class UmbrellaAdminConfiguration
 {
     private array $config;
+    private LogoutUrlGenerator $logoutUrlGenerator;
 
     /**
      * UmbrellaAdminConfiguration constructor.
      */
-    public function __construct(array $config = [])
+    public function __construct(array $config = [], LogoutUrlGenerator $logoutUrlGenerator)
     {
         $this->config = $config;
+        $this->logoutUrlGenerator = $logoutUrlGenerator;
     }
 
     // Theme
@@ -48,6 +52,13 @@ class UmbrellaAdminConfiguration
     public function assetStylesheetEntry(): string
     {
         return $this->config['assets']['stylesheet_entry'];
+    }
+
+    // Security
+
+    public function logoutPath(): ?string
+    {
+        return $this->logoutUrlGenerator->getLogoutPath();
     }
 
     // User

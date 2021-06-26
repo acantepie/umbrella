@@ -93,7 +93,7 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->scalarNode('class')
                         ->info('Entity class of Admin user.')
-                        ->defaultValue('App\\Entity\\User')
+                        ->defaultValue('App\\Entity\\AdminUser')
                         ->end()
                     ->scalarNode('table')
                         ->info('DataTable Type class of Admin CRUD.')

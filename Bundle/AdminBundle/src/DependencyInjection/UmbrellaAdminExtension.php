@@ -4,11 +4,9 @@ namespace Umbrella\AdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Umbrella\AdminBundle\Model\AdminUserInterface;
 use Umbrella\AdminBundle\Notification\NotificationManager;
 use Umbrella\AdminBundle\Notification\Provider\NotificationProviderInterface;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRenderer;
@@ -20,7 +18,7 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class UmbrellaAdminExtension extends Extension implements PrependExtensionInterface
+class UmbrellaAdminExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -43,24 +41,6 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
         if ($config['notification']['enabled']) {
             $this->enableNotification($container, $config['notification']);
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function prepend(ContainerBuilder $container)
-    {
-        // add some config for doctrine bundle
-        // orm:
-        //      resolve_target_entities:
-        //             Umbrella\AdminBundle\Model\AdminUserInterface : <value of umbrella_admin.user.class config>
-        //
-        $configs = $container->getExtensionConfig('umbrella_admin');
-        $config = $this->processConfiguration(new Configuration(), $configs);
-
-        $doctrineConfig = [];
-        $doctrineConfig['orm']['resolve_target_entities'][AdminUserInterface::class] = $config['user']['class'];
-        $container->prependExtensionConfig('doctrine', $doctrineConfig);
     }
 
     private function enableNotification(ContainerBuilder $container, array $config)

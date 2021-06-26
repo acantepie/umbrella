@@ -4,7 +4,7 @@ namespace Umbrella\AdminBundle\DataTable;
 
 use Doctrine\ORM\QueryBuilder;
 use Umbrella\AdminBundle\DataTable\Column\UserNameColumnType;
-use Umbrella\AdminBundle\Model\AdminUserInterface;
+use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
@@ -48,16 +48,16 @@ class UserTableType extends DataTableType
         $builder->add('active', BooleanColumnType::class);
 
         $builder->add('links', WidgetColumnType::class, [
-            'build' => function (WidgetBuilder $builder, AdminUserInterface $entity) {
+            'build' => function (WidgetBuilder $builder, BaseAdminUser $e) {
                 $builder->add('add', RowEditLinkType::class, [
                     'route' => 'umbrella_admin_user_edit',
-                    'route_params' => ['id' => $entity->getId()],
+                    'route_params' => ['id' => $e->id],
                     'xhr' => true
                 ]);
 
                 $builder->add('delete', RowDeleteLinkType::class, [
                     'route' => 'umbrella_admin_user_delete',
-                    'route_params' => ['id' => $entity->getId()]
+                    'route_params' => ['id' => $e->id]
                 ]);
             }
         ]);

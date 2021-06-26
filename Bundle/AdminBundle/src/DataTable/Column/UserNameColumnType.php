@@ -3,7 +3,7 @@
 namespace Umbrella\AdminBundle\DataTable\Column;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\AdminBundle\Model\AdminUserInterface;
+use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
 use Umbrella\CoreBundle\Utils\HtmlUtils;
 
@@ -17,14 +17,14 @@ class UserNameColumnType extends PropertyColumnType
      */
     public function render($user, array $options): string
     {
-        if (!is_a($user, AdminUserInterface::class)) {
-            throw new \RuntimeException(sprintf('Can\'t render user::name, expected "%s" class.', AdminUserInterface::class));
+        if (!$user instanceof BaseAdminUser) {
+            throw new \LogicException(sprintf('UserNameColumnType works only with "%s" entity.', BaseAdminUser::class));
         }
 
         return sprintf(
             '<div><div>%s</div><div class="text-muted">%s</div></div>',
             HtmlUtils::escape($user->getFullName()),
-            HtmlUtils::escape($user->getEmail())
+            HtmlUtils::escape($user->email)
         );
     }
 

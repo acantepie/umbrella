@@ -3,10 +3,10 @@
 namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use function Symfony\Component\Translation\t;
-use Umbrella\AdminBundle\Model\AdminUserInterface;
+use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\Services\UserManager;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
@@ -38,8 +38,8 @@ class ProfileController extends AdminController
     {
         $user = $this->getUser();
 
-        if (!$user || !is_a($user, AdminUserInterface::class)) {
-            throw new AccessDeniedException();
+        if (!$user instanceof BaseAdminUser) {
+            throw new NotFoundHttpException(sprintf('Profile view are only available for fully authenticate %s user.', BaseAdminUser::class));
         }
 
         $settingsForm = $this->createForm($this->config->profileForm(), $user);

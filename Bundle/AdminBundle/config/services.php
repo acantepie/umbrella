@@ -63,7 +63,8 @@ return static function (ContainerConfigurator $configurator): void {
     // Admin
     $services->set(AdminExtension::class)
         ->tag('twig.extension');
-    $services->set(UmbrellaAdminConfiguration::class);
+    $services->set(UmbrellaAdminConfiguration::class)
+        ->bind('$logoutUrlGenerator', service('security.logout_url_generator'));
 
     // Maker
     $services->set(MakeTable::class)

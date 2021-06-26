@@ -5,7 +5,6 @@ namespace Umbrella\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Umbrella\AdminBundle\Model\AdminUserInterface;
 use Umbrella\CoreBundle\Model\ActiveTrait;
 use Umbrella\CoreBundle\Model\IdTrait;
 use Umbrella\CoreBundle\Model\SearchTrait;
@@ -18,7 +17,7 @@ use Umbrella\CoreBundle\Search\Annotation\SearchableField;
  * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks
  */
-abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserInterface
+abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface
 {
     use ActiveTrait;
     use IdTrait;
@@ -76,6 +75,31 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
      */
     public $passwordRequestedAt;
 
+    public function getFullName(): string
+    {
+        return sprintf('%s %s', $this->firstname, $this->lastname);
+    }
+
+    public function getConfirmationToken(): ?string
+    {
+        return $this->confirmationToken;
+    }
+
+    public function setConfirmationToken(?string $confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+
+        if (null !== $confirmationToken) {
+            $this->passwordRequestedAt = new \DateTime();
+        }
+    }
+
+    public function isPasswordRequestNonExpired(int $ttl): bool
+    {
+        return $this->passwordRequestedAt instanceof \DateTime &&
+            $this->passwordRequestedAt->getTimestamp() + $ttl > time();
+    }
+
     // Equatable implementation
 
     /**
@@ -124,35 +148,8 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
             ) = unserialize($serialized);
     }
 
-    // AdminUserInterface implementation
+    // UserInterface implementation
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPlainPassword(): ?string
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setPlainPassword(?string $password)
-    {
-        $this->plainPassword = $password;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setPassword(?string $password)
     {
         $this->password = $password;
@@ -190,35 +187,6 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
     /**
      * {@inheritdoc}
      */
-    public function getConfirmationToken(): ?string
-    {
-        return $this->confirmationToken;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setConfirmationToken(?string $confirmationToken)
-    {
-        $this->confirmationToken = $confirmationToken;
-
-        if (null !== $confirmationToken) {
-            $this->passwordRequestedAt = new \DateTime();
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isPasswordRequestNonExpired(int $ttl): bool
-    {
-        return $this->passwordRequestedAt instanceof \DateTime &&
-            $this->passwordRequestedAt->getTimestamp() + $ttl > time();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
@@ -232,45 +200,7 @@ abstract class BaseUser implements EquatableInterface, \Serializable, AdminUserI
         return $this->getUserIdentifier();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setEmail(?string $email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getFullName(): string
-    {
-        return sprintf('%s %s', $this->firstname, $this->lastname);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setActive(bool $active)
-    {
-        $this->active = $active;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isActive(): bool
-    {
-        return $this->active;
-    }
+    // Std implementation
 
     /**
      * {@inheritdoc}

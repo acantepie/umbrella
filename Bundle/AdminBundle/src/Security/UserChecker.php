@@ -6,7 +6,7 @@ use Symfony\Component\Security\Core\Exception\AccountStatusException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAccountStatusException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Umbrella\AdminBundle\Model\AdminUserInterface;
+use Umbrella\AdminBundle\Entity\BaseAdminUser;
 
 /**
  * Class UserChecker
@@ -20,11 +20,11 @@ class UserChecker implements UserCheckerInterface
      */
     public function checkPreAuth(UserInterface $user)
     {
-        if (!$user instanceof AdminUserInterface) {
+        if (!$user instanceof BaseAdminUser) {
             return;
         }
 
-        if (!$user->isActive()) {
+        if (!$user->active) {
             throw new CustomUserMessageAccountStatusException('account_disabled');
         }
     }

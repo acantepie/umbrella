@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ObjectRepository;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Umbrella\AdminBundle\Model\AdminUserInterface;
+use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
@@ -31,14 +31,14 @@ class UserManager
         $this->repo = $this->em->getRepository($this->class);
     }
 
-    public function createUser(): AdminUserInterface
+    public function createUser(): BaseAdminUser
     {
         $user = new $this->class();
 
         return $user;
     }
 
-    public function find($id): ?AdminUserInterface
+    public function find($id): ?BaseAdminUser
     {
         return $this->createQb()
             ->where('e.id = :id')
@@ -47,7 +47,7 @@ class UserManager
             ->getOneOrNullResult();
     }
 
-    public function findUserByEmail(string $email): ?AdminUserInterface
+    public function findUserByEmail(string $email): ?BaseAdminUser
     {
         return $this->createQb()
             ->where('e.email = :email')
@@ -56,14 +56,14 @@ class UserManager
             ->getOneOrNullResult();
     }
 
-    public function findUserByConfirmationToken(string $confirmationToken): ?AdminUserInterface
+    public function findUserByConfirmationToken(string $confirmationToken): ?BaseAdminUser
     {
         return $this->repo->findOneBy([
             'confirmationToken' => $confirmationToken,
         ]);
     }
 
-    public function updatePassword(AdminUserInterface $user): void
+    public function updatePassword(BaseAdminUser $user): void
     {
         if (!empty($user->plainPassword)) {
             $user->setPassword($this->passwordHasher->hashPassword($user, $user->plainPassword));
@@ -71,7 +71,7 @@ class UserManager
         }
     }
 
-    public function update(AdminUserInterface $user): void
+    public function update(BaseAdminUser $user): void
     {
         $this->updatePassword($user);
 
@@ -79,7 +79,7 @@ class UserManager
         $this->em->flush();
     }
 
-    public function remove(AdminUserInterface $user): void
+    public function remove(BaseAdminUser $user): void
     {
         $this->em->remove($user);
         $this->em->flush();

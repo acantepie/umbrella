@@ -1,6 +1,6 @@
 <div class="navbar-custom">
     <ul class="list-unstyled topbar-menu float-end mb-0">
-        {% if admin_notification_enabled() %}
+        {% if uac.notificationEnable() %}
             {% include "@UmbrellaAdmin/Notification/widget.html.twig" %}
         {% endif %}
 
