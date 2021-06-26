@@ -63,6 +63,11 @@ class UmbrellaAdminConfiguration
 
     // User
 
+    public function userEnable(): bool
+    {
+        return $this->config['user']['enabled'];
+    }
+
     public function userClass(): string
     {
         return $this->config['user']['class'];
@@ -80,36 +85,32 @@ class UmbrellaAdminConfiguration
 
     public function userMailerFromEmail(): string
     {
-        return $this->config['user_mailer']['from_email'];
+        return $this->config['user']['from_email'];
     }
 
     public function userMailerFromName(): string
     {
-        return $this->config['user_mailer']['from_name'];
+        return $this->config['user']['from_name'];
     }
 
-    // Profile
-
-    public function profileEnable(): bool
+    public function userPasswordRequestTtl(): int
     {
-        return $this->config['user_profile']['enabled'];
+        return $this->config['user']['password_request_ttl'];
     }
 
-    public function routeProfile(): string
+    public function userProfileEnable(): bool
     {
-        return $this->config['user_profile']['route'];
+        return $this->config['user']['profile']['enabled'];
     }
 
-    public function profileForm(): string
+    public function userProfileRoute(): string
     {
-        return $this->config['user_profile']['form'];
+        return $this->config['user']['profile']['route'];
     }
 
-    // Security
-
-    public function passwordRequestTtl(): int
+    public function userProfileForm(): string
     {
-        return $this->config['security']['password_request_ttl'];
+        return $this->config['user']['profile']['form'];
     }
 
     // Notification

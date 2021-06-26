@@ -33,6 +33,8 @@ action:
     moveup: Move up
 
 label:
+    anonymous_user: Anonymous
+    unauthenticated_user: Unauthenticated
     name: Name
     title: Title
     firstname: Firstname

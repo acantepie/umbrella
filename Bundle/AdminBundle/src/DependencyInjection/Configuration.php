@@ -80,53 +80,45 @@ class Configuration implements ConfigurationInterface
 
     private function addUserSection(ArrayNodeDefinition $rootNode)
     {
-        $rootNode->children()
-            ->arrayNode('security')->addDefaultsIfNotSet()
-                ->children()
-                    ->integerNode('password_request_ttl')
-                        ->info('Time to live (in s) for request password.')
-                        ->defaultValue(86400)
-                        ->end()
-                ->end()
-            ->end()
-            ->arrayNode('user')->addDefaultsIfNotSet()
-                ->children()
-                    ->scalarNode('class')
-                        ->info('Entity class of Admin user.')
-                        ->defaultValue('App\\Entity\\AdminUser')
-                        ->end()
-                    ->scalarNode('table')
-                        ->info('DataTable Type class of Admin CRUD.')
-                        ->defaultValue(UserTableType::class)
-                        ->end()
-                    ->scalarNode('form')
-                        ->info('Form Type class of Admin CRUD.')
-                        ->defaultValue(UserType::class)
-                        ->end()
-                ->end()
-            ->end()
-            ->arrayNode('user_profile')->addDefaultsIfNotSet()->canBeDisabled()
-                ->children()
-                    ->scalarNode('route')
-                        ->info('Route of Profile view.')
-                        ->defaultValue(ProfileController::PROFILE_ROUTE)
-                        ->end()
-                    ->scalarNode('form')
-                        ->info('Form Type class of Profile CRUD.')
-                        ->defaultValue(ProfileType::class)
-                        ->end()
-                ->end()
-            ->end()
-            ->arrayNode('user_mailer')->addDefaultsIfNotSet()
-                ->children()
-                    ->scalarNode('from_name')
-                        ->info('Name of sender for user email.')
-                        ->defaultValue('')
-                        ->end()
-                    ->scalarNode('from_email')
-                        ->info('Email of sender for user email.')
-                        ->defaultValue('no-reply@umbrella.dev')
-                        ->end();
+        $u = $rootNode->children()
+            ->arrayNode('user')->addDefaultsIfNotSet()->canBeEnabled()
+            ->children();
+
+        $u->scalarNode('class')
+            ->info('Entity class of Admin user.')
+            ->defaultValue('App\\Entity\\AdminUser');
+
+        $u->scalarNode('table')
+            ->info('DataTable Type class of Admin CRUD.')
+            ->defaultValue(UserTableType::class);
+
+        $u->scalarNode('form')
+            ->info('Form Type class of Admin CRUD.')
+            ->defaultValue(UserType::class);
+
+        $u->scalarNode('from_name')
+            ->info('Name of sender for user email.')
+            ->defaultValue('');
+
+        $u->scalarNode('from_email')
+            ->info('Email of sender for user email.')
+            ->defaultValue('no-reply@umbrella.dev');
+
+        $u->integerNode('password_request_ttl')
+            ->info('Time to live (in s) for request password.')
+            ->defaultValue(86400);
+
+        $u->arrayNode('profile')->addDefaultsIfNotSet()->canBeDisabled()
+            ->children()
+                ->scalarNode('route')
+                    ->info('Route of Profile view.')
+                    ->defaultValue(ProfileController::PROFILE_ROUTE)
+                    ->end()
+                ->scalarNode('form')
+                    ->info('Form Type class of Profile CRUD.')
+                    ->defaultValue(ProfileType::class)
+                    ->end()
+                ->end();
     }
 
     private function notificationSection(ArrayNodeDefinition $rootNode)

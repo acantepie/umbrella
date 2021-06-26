@@ -68,7 +68,12 @@ class MenuAuthorizationChecker
             return false;
         }
 
-        $granted = (bool) $this->language->evaluate($item->getSecurity(), $this->getVariables());
+        if (null === $this->tokenStorage->getToken()) {
+            $granted = false;
+        } else {
+            $granted = (bool) $this->language->evaluate($item->getSecurity(), $this->getVariables());
+        }
+
         $this->cache[$item] = $granted;
 
         return $granted;

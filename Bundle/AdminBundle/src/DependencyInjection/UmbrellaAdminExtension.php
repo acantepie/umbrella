@@ -31,16 +31,23 @@ class UmbrellaAdminExtension extends Extension
         $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.php');
 
-        $container->getDefinition(UmbrellaAdminConfiguration::class)
-            ->setArgument(0, $config);
+        if ($config['user']['enabled']) {
+            $loader->load('user.php');
+            $container->setParameter('umbrella_admin.user.class', $config['user']['class']);
 
-        $container->setParameter('umbrella_admin.user.class', $config['user']['class']);
-        $container->setParameter('umbrella_admin.menu_alias', $config['menu']['alias']);
+            if ($config['user']['profile']['enabled']) {
+                $loader->load('userProfile.php');
+            }
+        }
 
-        // Notification are enabled
         if ($config['notification']['enabled']) {
+            $loader->load('notification.php');
             $this->enableNotification($container, $config['notification']);
         }
+
+        $container->setParameter('umbrella_admin.menu_alias', $config['menu']['alias']);
+        $container->getDefinition(UmbrellaAdminConfiguration::class)
+            ->setArgument(0, $config);
     }
 
     private function enableNotification(ContainerBuilder $container, array $config)

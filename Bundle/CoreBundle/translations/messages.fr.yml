@@ -33,6 +33,8 @@ action:
     moveup: Déplacer vers le haut
 
 label:
+    anonymous_user: Anonyme
+    unauthenticated_user: Non authentifié
     name: Nom
     title: Titre
     firstname: Prénom
