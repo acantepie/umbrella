@@ -24,6 +24,7 @@
         "symfony/config": "^5.3",
         "symfony/dependency-injection": "^5.3",
         "symfony/event-dispatcher": "^5.3",
+        "symfony/expression-language": "^5.3",
         "symfony/form": "^5.3",
         "symfony/framework-bundle": "^5.3",
         "symfony/http-foundation": "^5.3",
