@@ -5,9 +5,6 @@ namespace Umbrella\CoreBundle\DataTable\Column;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class EnableColumnType
- */
 class BooleanColumnType extends PropertyColumnType
 {
     protected TranslatorInterface $translator;

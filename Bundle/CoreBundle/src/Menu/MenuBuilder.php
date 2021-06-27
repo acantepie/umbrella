@@ -4,9 +4,6 @@ namespace Umbrella\CoreBundle\Menu;
 
 use Umbrella\CoreBundle\Menu\Model\Menu;
 
-/**
- * Class MenuBuilder.
- */
 class MenuBuilder
 {
     private Menu $menu;

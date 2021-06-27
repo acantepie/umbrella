@@ -7,9 +7,6 @@ use Umbrella\CoreBundle\Menu\Model\BreadcrumbItem;
 use Umbrella\CoreBundle\Menu\Model\Menu;
 use Umbrella\CoreBundle\Menu\Model\MenuItem;
 
-/**
- * Class MenuFactory.
- */
 class MenuFactory
 {
     private array $menuFactories = [];

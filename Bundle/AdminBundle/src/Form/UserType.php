@@ -5,15 +5,12 @@ namespace Umbrella\AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
+use Umbrella\CoreBundle\Form\PasswordTogglableType;
 
-/**
- * Class UserType.
- */
 class UserType extends AbstractType
 {
     private UmbrellaAdminConfiguration $config;
@@ -47,7 +44,7 @@ class UserType extends AbstractType
             $params['attr']['placeholder'] = 'placeholder.password_not_set_if_empty';
         }
 
-        $builder->add('plainPassword', PasswordType::class, $params);
+        $builder->add('plainPassword', PasswordTogglableType::class, $params);
     }
 
     /**

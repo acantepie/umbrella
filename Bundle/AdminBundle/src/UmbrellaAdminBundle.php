@@ -5,9 +5,6 @@ namespace Umbrella\AdminBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- * Class UmbrellaAdminBundle
- */
 class UmbrellaAdminBundle extends Bundle
 {
     /**

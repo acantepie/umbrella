@@ -8,9 +8,6 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use Twig\TwigTest;
 
-/**
- * Class CoreExtension
- */
 class CoreExtension extends AbstractExtension
 {
     private FormRendererInterface $formRenderer;

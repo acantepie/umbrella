@@ -6,8 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Umbrella\CoreBundle\Model\IdTrait;
 
 /**
- * Class BaseNotification
- *
  * @ORM\MappedSuperclass
  */
 class BaseNotification

@@ -2,9 +2,6 @@
 
 namespace Umbrella\CoreBundle\Utils;
 
-/**
- * Class Utils
- */
 class Utils
 {
     public static function type_class_to_id(string $typeClass): string

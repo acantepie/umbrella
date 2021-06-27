@@ -11,9 +11,6 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 use Umbrella\AdminBundle\Controller\SecurityController;
 
-/**
- * Class AuthenticationEntryPoint
- */
 class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
 {
     private RouterInterface $router;

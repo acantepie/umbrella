@@ -4,15 +4,12 @@ namespace Umbrella\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
+use Umbrella\CoreBundle\Form\PasswordTogglableType;
 
-/**
- * Class AccountType
- */
 class ProfileType extends AbstractType
 {
     private UmbrellaAdminConfiguration $config;
@@ -31,7 +28,7 @@ class ProfileType extends AbstractType
         $builder->add('lastname', TextType::class);
         $builder->add('email', EmailType::class);
 
-        $builder->add('plainPassword', PasswordType::class, [
+        $builder->add('plainPassword', PasswordTogglableType::class, [
             'label' => 'password',
             'required' => false,
             'attr' => [

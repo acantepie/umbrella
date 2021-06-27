@@ -6,9 +6,6 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 
-/**
- * Class EntitySubscriber.
- */
 class SearchableEntitySubscriber implements EventSubscriber
 {
     private EntityIndexer $entityIndexer;

@@ -9,9 +9,6 @@ use Symfony\Component\DependencyInjection\Reference;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
 use Umbrella\CoreBundle\Widget\WidgetRegistry;
 
-/**
- * Class UmbrellaComponentPass
- */
 class UmbrellaComponentPass implements CompilerPassInterface
 {
     /**

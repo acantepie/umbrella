@@ -6,9 +6,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-/**
- * Class JsResponseViewListener
- */
 class JsResponseViewListener implements EventSubscriberInterface
 {
     public function onKernelView(ViewEvent $event): void

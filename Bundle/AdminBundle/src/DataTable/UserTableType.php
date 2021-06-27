@@ -17,9 +17,6 @@ use Umbrella\CoreBundle\Widget\Type\RowDeleteLinkType;
 use Umbrella\CoreBundle\Widget\Type\RowEditLinkType;
 use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
-/**
- * Class UserTableType.
- */
 class UserTableType extends DataTableType
 {
     private UmbrellaAdminConfiguration $config;

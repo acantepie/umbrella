@@ -8,9 +8,6 @@ use Twig\TwigFunction;
 use Umbrella\AdminBundle\Menu\AdminMenuHelper;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
-/**
- * Class AdminExtension.
- */
 class AdminExtension extends AbstractExtension implements GlobalsInterface
 {
     private UmbrellaAdminConfiguration $configuration;

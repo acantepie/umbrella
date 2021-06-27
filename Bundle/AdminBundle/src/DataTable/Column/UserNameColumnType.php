@@ -7,9 +7,6 @@ use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
 use Umbrella\CoreBundle\Utils\HtmlUtils;
 
-/**
- * Class UserNameColumnType
- */
 class UserNameColumnType extends PropertyColumnType
 {
     /**

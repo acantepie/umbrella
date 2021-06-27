@@ -8,9 +8,6 @@ use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 
-/**
- * Class UserChecker
- */
 class UserChecker implements UserCheckerInterface
 {
     /**

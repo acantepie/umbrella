@@ -7,9 +7,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
-/**
- * Class ManyColumnType
- */
 class ManyColumnType extends ColumnType
 {
     protected PropertyAccessorInterface $accessor;

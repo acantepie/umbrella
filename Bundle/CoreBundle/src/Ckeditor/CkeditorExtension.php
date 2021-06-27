@@ -5,9 +5,6 @@ namespace Umbrella\CoreBundle\Ckeditor;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class CkeditorExtension
- */
 class CkeditorExtension extends AbstractExtension
 {
     /**

@@ -9,9 +9,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
-/**
- * Class UserManager
- */
 class UserManager
 {
     protected EntityManagerInterface $em;

@@ -4,9 +4,6 @@ namespace Umbrella\CoreBundle\DataTable\DTO;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-/**
- * Class DataTableResponse
- */
 class DataTableResponse extends JsonResponse
 {
     public static function createError(string $error): DataTableResponse

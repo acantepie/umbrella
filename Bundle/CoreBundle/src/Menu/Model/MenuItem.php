@@ -2,9 +2,6 @@
 
 namespace Umbrella\CoreBundle\Menu\Model;
 
-/**
- * Class MenuItem
- */
 class MenuItem implements \Countable, \IteratorAggregate
 {
     protected const ID_REGEXP = '/^[0a-zA-Z0-9\-\_\.]+$/';

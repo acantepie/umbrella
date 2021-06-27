@@ -14,9 +14,6 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
 use Umbrella\CoreBundle\Toast\Toast;
 
-/**
- * Class BaseController.
- */
 abstract class BaseController extends AbstractController
 {
     public const BAG_TOAST = 'toast';

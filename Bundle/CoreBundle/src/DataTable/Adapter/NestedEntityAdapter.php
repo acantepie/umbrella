@@ -9,9 +9,6 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
-/**
- * Class NestedEntityAdapter
- */
 class NestedEntityAdapter extends DataTableAdapter
 {
     protected EntityManagerInterface $em;

@@ -10,6 +10,7 @@ common:
     welcome: Welcome
 
 action:
+    reset_password: Reset password
     add: Add
     edit: Edit
     delete: Delete
@@ -25,7 +26,8 @@ action:
     my_account: My account
     forget_password: Forgot your password ?
     signin: Login
-    back_login: back to login screen
+    back_login_markup: back to <b>Log In</b>
+    back_login: back to Log In
     send: Send
     create: Create
     delete_all: Delete all
@@ -43,7 +45,8 @@ label:
     email: Email
     your_email: Your email
     password: Password
-    password_confirm: Confirm
+    newpassword: New password
+    password_confirm: Confirm password
     active: Active
     updatedAt: Updated at
     createdAt: Created at
@@ -60,7 +63,7 @@ placeholder:
 message:
     delete_confirm: Confirm delete ?
     forget_password_explanation: Enter the email address associated to your account. We will send your password recovery procedure to your mailbox.
-    reset_password: Reset your password
+    reset_password: Reset your password.
     entity_updated: Item has been updated.
     entity_deleted: Item has been deleted.
     account_updated: Your account has been updated.

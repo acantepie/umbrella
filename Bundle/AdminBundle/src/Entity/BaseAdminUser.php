@@ -12,8 +12,6 @@ use Umbrella\CoreBundle\Model\TimestampTrait;
 use Umbrella\CoreBundle\Search\Annotation\SearchableField;
 
 /**
- * Class User.
- *
  * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks
  */

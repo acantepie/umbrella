@@ -9,8 +9,6 @@ use Umbrella\AdminBundle\Services\UserManager;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
- * Class UserController.
- *
  * @Route("/user")
  */
 class UserController extends AdminController

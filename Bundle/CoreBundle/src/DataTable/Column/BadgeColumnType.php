@@ -4,9 +4,6 @@ namespace Umbrella\CoreBundle\DataTable\Column;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class BadgeColumnType
- */
 class BadgeColumnType extends PropertyColumnType
 {
     /**

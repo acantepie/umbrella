@@ -5,8 +5,6 @@ namespace Umbrella\CoreBundle\Search\Annotation;
 use Doctrine\Common\Annotations\Annotation\Target;
 
 /**
- * Class Searchable
- *
  * @Annotation
  * @Target("CLASS")
  */

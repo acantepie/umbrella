@@ -3,15 +3,12 @@
 namespace Umbrella\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
+use Umbrella\CoreBundle\Form\PasswordTogglableType;
 
-/**
- * Class UserPasswordConfirmType
- */
 class UserPasswordConfirmType extends AbstractType
 {
     private UmbrellaAdminConfiguration $config;
@@ -27,18 +24,14 @@ class UserPasswordConfirmType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('plainPassword', RepeatedType::class, [
-            'type' => PasswordType::class,
-            'required' => true,
+            'type' => PasswordTogglableType::class,
             'first_options' => [
-                'attr' => [
-                    'class' => 'md-input',
-                ],
+                'label' => 'newpassword'
             ],
             'second_options' => [
-                'attr' => [
-                    'class' => 'md-input',
-                ],
+                'label' => 'password_confirm'
             ],
+            'required' => true,
             'invalid_message' => 'error.password.mismatch',
         ]);
     }

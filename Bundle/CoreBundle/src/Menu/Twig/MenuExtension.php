@@ -6,9 +6,6 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use Umbrella\CoreBundle\Menu\MenuHelper;
 
-/**
- * Class MenuExtension.
- */
 class MenuExtension extends AbstractExtension
 {
     private MenuHelper $helper;

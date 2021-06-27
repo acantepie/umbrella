@@ -2,9 +2,6 @@
 
 namespace Umbrella\CoreBundle\Ckeditor;
 
-/**
- * Class CKEditorConfiguration
- */
 class CkeditorConfiguration
 {
     private array $defaultConfig = [];

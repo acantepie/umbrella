@@ -12,8 +12,6 @@ use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use Umbrella\CoreBundle\Menu\Model\MenuItem;
 
 /**
- * Class MenuAuthorizationChecker
- *
  * @see SecurityListener
  */
 class MenuAuthorizationChecker

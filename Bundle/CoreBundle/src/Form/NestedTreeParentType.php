@@ -11,9 +11,6 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
-/**
- * Class NestedTreeParentType
- */
 class NestedTreeParentType extends AbstractType
 {
     private EntityManagerInterface $em;

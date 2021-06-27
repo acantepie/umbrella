@@ -12,8 +12,6 @@ use Umbrella\AdminBundle\Services\UserManager;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
- * Class SecurityController.
- *
  * @Route("/")
  */
 class SecurityController extends AdminController
@@ -101,7 +99,7 @@ class SecurityController extends AdminController
     {
         $user = $this->userManager->findUserByConfirmationToken($token);
 
-        if (null === $user || !$user->isPasswordRequestNonExpired($this->config->passwordRequestTtl())) {
+        if (null === $user || !$user->isPasswordRequestNonExpired($this->config->userPasswordRequestTtl())) {
             return $this->render('@UmbrellaAdmin/Security/password_reset_error.html.twig');
         }
 

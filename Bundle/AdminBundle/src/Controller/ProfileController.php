@@ -11,8 +11,6 @@ use Umbrella\AdminBundle\Services\UserManager;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
- * Class AccountController
- *
  * @Route("/profile")
  */
 class ProfileController extends AdminController

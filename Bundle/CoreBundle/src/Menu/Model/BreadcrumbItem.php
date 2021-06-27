@@ -2,9 +2,6 @@
 
 namespace Umbrella\CoreBundle\Menu\Model;
 
-/**
- * Class BreadcrumbItem
- */
 class BreadcrumbItem
 {
     protected string $label;

@@ -8,9 +8,6 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Umbrella\CoreBundle\Menu\MenuFactory;
 
-/**
- * Class MenuPass
- */
 class MenuPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)

@@ -5,9 +5,6 @@ namespace Umbrella\AdminBundle\Notification\Renderer;
 use Knp\Bundle\TimeBundle\DateTimeFormatter;
 use Umbrella\AdminBundle\Entity\BaseNotification;
 
-/**
- * Class NotificationRenderer
- */
 class NotificationRenderer implements NotificationRendererInterface
 {
     private ?DateTimeFormatter $timeFormatter;

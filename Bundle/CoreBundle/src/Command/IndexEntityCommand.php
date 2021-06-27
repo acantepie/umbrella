@@ -9,9 +9,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Umbrella\CoreBundle\Search\EntityIndexer;
 
-/**
- * Class IndexEntityCommand.
- */
 class IndexEntityCommand extends Command
 {
     public const CMD_NAME = 'umbrella:index:entity';

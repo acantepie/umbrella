@@ -10,9 +10,6 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 
-/**
- * Class CkeditorType
- */
 class CkeditorType extends AbstractType
 {
     private CkeditorConfiguration $ckeditorConfig;

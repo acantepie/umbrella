@@ -7,8 +7,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Umbrella\AdminBundle\Notification\NotificationManager;
 
 /**
- * Class UserController.
- *
  * @Route("/umbrella-notification")
  */
 class NotificationController extends AdminController

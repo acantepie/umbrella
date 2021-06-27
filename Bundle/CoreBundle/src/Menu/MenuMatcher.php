@@ -6,9 +6,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Umbrella\CoreBundle\Menu\Model\Menu;
 use Umbrella\CoreBundle\Menu\Model\MenuItem;
 
-/**
- * Class MenuMatcher
- */
 class MenuMatcher
 {
     private Menu $menu;

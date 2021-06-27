@@ -9,9 +9,6 @@ use Twig\Environment;
 use Umbrella\CoreBundle\Menu\MenuHelper;
 use Umbrella\CoreBundle\Toast\Toast;
 
-/**
- * Class JsResponseBuilder
- */
 class JsResponseBuilder implements \Countable
 {
     public const EVAL = 'eval';

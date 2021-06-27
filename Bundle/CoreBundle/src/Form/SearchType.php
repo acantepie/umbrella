@@ -10,9 +10,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class SearchType
- */
 class SearchType extends AbstractType implements DataTransformerInterface
 {
     public function finishView(FormView $view, FormInterface $form, array $options)

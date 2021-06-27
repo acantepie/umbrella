@@ -8,9 +8,6 @@ use Symfony\Component\Yaml\Yaml;
 use Umbrella\CoreBundle\Utils\HtmlUtils;
 use Umbrella\CoreBundle\Utils\Utils;
 
-/**
- * Class TabsHelper
- */
 class TabsHelper
 {
     public const DEFAULT_CONFIG = 'default';

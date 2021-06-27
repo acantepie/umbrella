@@ -11,9 +11,6 @@ use Twig\Environment;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
-/**
- * Class UserMailer
- */
 class UserMailer
 {
     protected Environment $twig;

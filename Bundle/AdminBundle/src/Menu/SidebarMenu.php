@@ -9,9 +9,6 @@ use Umbrella\CoreBundle\Menu\MenuBuilder;
 use Umbrella\CoreBundle\Menu\Model\Breadcrumb;
 use Umbrella\CoreBundle\Menu\Model\Menu;
 
-/**
- * Class SidebarMenu.
- */
 class SidebarMenu
 {
     protected Environment $twig;

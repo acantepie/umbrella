@@ -7,9 +7,6 @@ use Umbrella\CoreBundle\Menu\Model\Breadcrumb;
 use Umbrella\CoreBundle\Menu\Model\Menu;
 use Umbrella\CoreBundle\Menu\Model\MenuItem;
 
-/**
- * Class MenuHelper
- */
 class MenuHelper
 {
     protected MenuFactory $factory;

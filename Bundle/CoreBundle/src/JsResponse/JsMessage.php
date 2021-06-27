@@ -2,9 +2,6 @@
 
 namespace Umbrella\CoreBundle\JsResponse;
 
-/**
- * Class JsMessage
- */
 class JsMessage implements \JsonSerializable
 {
     private string $action;

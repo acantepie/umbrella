@@ -7,9 +7,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Umbrella\CoreBundle\DependencyInjection\Compiler\MenuPass;
 use Umbrella\CoreBundle\DependencyInjection\Compiler\UmbrellaComponentPass;
 
-/**
- * Class UmbrellaCoreBundle.
- */
 class UmbrellaCoreBundle extends Bundle
 {
     /**

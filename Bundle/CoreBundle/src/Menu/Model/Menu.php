@@ -2,9 +2,6 @@
 
 namespace Umbrella\CoreBundle\Menu\Model;
 
-/**
- * Class Menu
- */
 class Menu
 {
     public const MATCH_BY_REQUEST = 1;

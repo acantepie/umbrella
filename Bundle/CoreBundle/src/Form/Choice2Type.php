@@ -10,9 +10,6 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Class Choice2Type.
- */
 class Choice2Type extends AbstractType
 {
     protected TranslatorInterface $translator;

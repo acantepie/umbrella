@@ -13,9 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraints\Valid;
 
-/**
- * Class UmbrellaCollectionType
- */
 class UmbrellaCollectionType extends AbstractType
 {
     /**

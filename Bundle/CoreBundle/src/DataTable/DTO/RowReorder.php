@@ -5,9 +5,6 @@ namespace Umbrella\CoreBundle\DataTable\DTO;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Class RowReorder
- */
 class RowReorder
 {
     /**

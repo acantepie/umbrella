@@ -2,9 +2,6 @@
 
 namespace Umbrella\CoreBundle\Utils;
 
-/**
- * Class HtmlUtils
- */
 class HtmlUtils
 {
     public static function to_attr(array $attributes): string

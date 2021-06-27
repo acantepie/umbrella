@@ -7,9 +7,6 @@ use Doctrine\Persistence\Mapping\MappingException;
 use Psr\Log\LoggerInterface;
 use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
 
-/**
- * Class EntityIndexer
- */
 class EntityIndexer
 {
     private EntityManagerInterface $em;

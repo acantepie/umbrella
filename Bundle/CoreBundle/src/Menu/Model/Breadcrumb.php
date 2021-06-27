@@ -2,9 +2,6 @@
 
 namespace Umbrella\CoreBundle\Menu\Model;
 
-/**
- * Class Breadcrumb
- */
 class Breadcrumb implements \IteratorAggregate, \Countable
 {
     /**

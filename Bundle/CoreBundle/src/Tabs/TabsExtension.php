@@ -5,9 +5,6 @@ namespace Umbrella\CoreBundle\Tabs;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class TabsExtension
- */
 class TabsExtension extends AbstractExtension
 {
     private TabsHelper $tabsHelper;

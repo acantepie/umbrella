@@ -4,9 +4,6 @@ namespace Umbrella\CoreBundle\Search\Annotation;
 
 use Doctrine\Common\Annotations\Reader;
 
-/**
- * Class SearchableAnnotationReader
- */
 class SearchableAnnotationReader
 {
     private Reader $reader;

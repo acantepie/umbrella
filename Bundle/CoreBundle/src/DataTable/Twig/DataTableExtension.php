@@ -6,9 +6,6 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use Umbrella\CoreBundle\DataTable\DataTableRenderer;
 
-/**
- * Class DataTableExtension.
- */
 class DataTableExtension extends AbstractExtension
 {
     protected DataTableRenderer $renderer;

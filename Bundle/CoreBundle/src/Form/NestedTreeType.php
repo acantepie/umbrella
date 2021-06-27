@@ -7,9 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
-/**
- * Class NestedTreeType
- */
 class NestedTreeType extends AbstractType
 {
     /**
