@@ -38,9 +38,7 @@
         "symfony/twig-bundle": "^5.3",
         "symfony/webpack-encore-bundle": "^1.11",
         "symfony/yaml": "^5.3",
-        "umbrella2/corebundle": "*"
-    },
-    "require-dev": {
+        "umbrella2/corebundle": "*",
         "symfony/maker-bundle": "^1.21"
     },
     "suggest": {
