@@ -64,17 +64,15 @@ class Configuration implements ConfigurationInterface
     private function addAssetsSection(ArrayNodeDefinition $rootNode)
     {
         $rootNode->children()
-            ->arrayNode('assets')->isRequired()
+            ->arrayNode('assets')->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('stylesheet_entry')
                     ->info('Encore stylesheet name used on layout')
-                    ->isRequired()
-                    ->cannotBeEmpty()
+                    ->defaultNull()
                     ->end()
                 ->scalarNode('script_entry')
                     ->info('Encore script name used on layout')
-                    ->isRequired()
-                    ->cannotBeEmpty()
+                    ->defaultNull()
                     ->end();
     }
 
