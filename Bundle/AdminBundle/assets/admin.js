@@ -1,6 +1,7 @@
 // App
-import  'umbrella_core/Core';
+import "./scss/admin.scss"
 
+import  'umbrella_core/core';
 import 'simplebar'
 
 // components

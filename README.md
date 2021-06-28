@@ -47,10 +47,7 @@ Serve:
 - `php -S localhost:8000 -t public/`
 - Browse http://localhost:8000/admin and hint **umbrella** / **umbrella** to login.
 
-# Install umbrella on your current symfony project
-Copy files from [skeleton repository](https://github.com/acantepie/umbrella-skeleton) on your current project except `composer.json`.
-
-Install umbrella bundle :
+# Install umbrella on your symfony project
 ```bash
 composer require umbrella2/adminbundle
 ```

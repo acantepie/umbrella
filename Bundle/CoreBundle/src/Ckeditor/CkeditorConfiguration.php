@@ -4,6 +4,7 @@ namespace Umbrella\CoreBundle\Ckeditor;
 
 class CkeditorConfiguration
 {
+    private ?string $asset = null;
     private array $defaultConfig = [];
     private array $configs = [];
 
@@ -20,6 +21,8 @@ class CkeditorConfiguration
      */
     private function resolveConfig(array $bundleConfig)
     {
+        $this->asset = $bundleConfig['asset'];
+
         $this->configs['minimal'] = [
             'toolbar' => [
                 ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
@@ -71,5 +74,10 @@ class CkeditorConfiguration
     public function getDefaultConfig(): array
     {
         return $this->defaultConfig;
+    }
+
+    public function getAsset(): ?string
+    {
+        return $this->asset;
     }
 }

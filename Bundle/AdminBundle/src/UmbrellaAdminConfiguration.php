@@ -42,18 +42,6 @@ class UmbrellaAdminConfiguration
         return $this->config['menu']['options'];
     }
 
-    // Assets
-
-    public function assetScriptEntry(): ?string
-    {
-        return $this->config['assets']['script_entry'];
-    }
-
-    public function assetStylesheetEntry(): ?string
-    {
-        return $this->config['assets']['stylesheet_entry'];
-    }
-
     // Security
 
     public function logoutPath(): ?string

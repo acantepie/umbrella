@@ -4,9 +4,30 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/eslint-parser": "^7.14.7",
-    "eslint": "^7.29.0"
+    "eslint": "^7.29.0",
+    "@iconscout/unicons": "^3.0.6",
+    "@mdi/font": "^5.9.55",
+    "@popperjs/core": "^2.9.2",
+    "@symfony/webpack-encore": "^1.2.0",
+    "bootstrap": "^5.0.0",
+    "datatables.net": "^1.10.24",
+    "datatables.net-bs4": "^1.10.24",
+    "datatables.net-rowreorder": "^1.2.7",
+    "datatables.net-rowreorder-bs4": "^1.2.7",
+    "dragula": "^3.7.3",
+    "file-loader": "^6.0.0",
+    "flatpickr": "^4.6.9",
+    "jquery": "^3.6.0",
+    "jquery-treetable": "^3.2.0-1",
+    "mustache": "^4.2.0",
+    "sass": "1.32.12",
+    "sass-loader": "^11.0.1",
+    "select2": "^4.0.13",
+    "simplebar": "^5.3.3",
+    "toastify-js": "^1.11.0"
   },
   "scripts": {
+    "build": "encore production --progress",
     "lint": "eslint Bundle/*/assets Skeleton/assets",
     "lint-fix": "eslint Bundle/*/assets Skeleton/assets --fix"
   }

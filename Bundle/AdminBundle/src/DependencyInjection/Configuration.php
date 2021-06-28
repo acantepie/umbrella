@@ -38,7 +38,6 @@ class Configuration implements ConfigurationInterface
                     ->end();
 
         $this->addMenuSection($rootNode);
-        $this->addAssetsSection($rootNode);
         $this->addUserSection($rootNode);
         $this->notificationSection($rootNode);
 
@@ -58,21 +57,6 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('options')
                     ->variablePrototype()->end()
                     ->info('Options of menu')
-                    ->end();
-    }
-
-    private function addAssetsSection(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode->children()
-            ->arrayNode('assets')->addDefaultsIfNotSet()
-            ->children()
-                ->scalarNode('stylesheet_entry')
-                    ->info('Encore stylesheet name used on layout')
-                    ->defaultNull()
-                    ->end()
-                ->scalarNode('script_entry')
-                    ->info('Encore script name used on layout')
-                    ->defaultNull()
                     ->end();
     }
 

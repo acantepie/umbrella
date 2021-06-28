@@ -28,6 +28,7 @@ class CkeditorType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['config'] = $form->getConfig()->getAttribute('config');
+        $view->vars['asset_name'] = $this->ckeditorConfig->getAsset();
     }
 
     /**
