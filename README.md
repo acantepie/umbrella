@@ -37,11 +37,6 @@ Configure your database:
 - `php bin/console doctrine:database:create`
 - `php bin/console doctrine:schema:create`
 
-Build assets with webpack:
-
-- `yarn install`
-- `yarn build`
-
 Serve:
 
 - `php -S localhost:8000 -t public/`
