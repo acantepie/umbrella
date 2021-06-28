@@ -25,7 +25,7 @@
     <br/><br/>
 </p>
 
-# Quick start
+# Create a new project with Umbrella
 First, make sure you <a href="https://nodejs.org/en/download/">install Node.js</a>, <a href="https://yarnpkg.com/getting-started/install">Yarn package manager</a>, php7.4 and also <a href="https://getcomposer.org/download/">composer</a>.
 
 - `composer create-project umbrella2/skeleton my_project`
