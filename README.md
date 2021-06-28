@@ -51,8 +51,44 @@ Serve:
 ```bash
 composer require umbrella2/adminbundle
 ```
+### Create your first admin view
+Create a controller on your project :
+```
+// src/Controller/Admin/DefaultController.php
+<?php
 
-# Create your first admin view
+namespace App\Controller\Admin;
+
+use Symfony\Component\Routing\Annotation\Route;
+use Umbrella\AdminBundle\Controller\AdminController;
+
+class DefaultController extends AdminController
+{
+    /**
+     * @Route("/admin", name="admin_home")
+     */
+    public function index()
+    {
+        return $this->render('@UmbrellaAdmin/layout.html.twig');
+    }
+
+}
+```
+Note, all your admin view must extends `@UmbrellaAdmin/layout.html.twig`.
+
+To configure menu create a yaml file `config/menu/admin_sidebar.yaml` :
+```
+# config/menu/admin_sidebar.yaml
+
+app:
+    children:
+        home: # Name of menu entry
+            icon: mdi mdi-home # Icon of menu entry (you can use https://materialdesignicons.com/ or https://iconscout.com/unicons)
+            route: admin_home # Route of menu entry
+```
+Et voila.
+
+# Create CRUD with maker
 ```bash
 php bin/console make:table # Table view
 php bin/console make:tree # Tree view
