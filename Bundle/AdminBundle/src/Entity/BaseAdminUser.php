@@ -4,6 +4,7 @@ namespace Umbrella\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Umbrella\CoreBundle\Model\ActiveTrait;
 use Umbrella\CoreBundle\Model\IdTrait;
@@ -15,7 +16,7 @@ use Umbrella\CoreBundle\Search\Annotation\SearchableField;
  * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks
  */
-abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface
+abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface, PasswordAuthenticatedUserInterface
 {
     use ActiveTrait;
     use IdTrait;
