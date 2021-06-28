@@ -1,4 +1,5 @@
 {
+    "name": "umbrella2/skeleton",
     "type": "project",
     "prefer-stable": true,
     "require": {
