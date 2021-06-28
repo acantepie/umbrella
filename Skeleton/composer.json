@@ -1,8 +1,5 @@
 {
-    "name": "umbrella2/skeleton",
     "type": "project",
-    "license": "proprietary",
-    "minimum-stability": "beta",
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
@@ -77,7 +74,6 @@
         "symfony/polyfill-php72": "*"
     },
     "scripts": {
-        "del-webpack-encore-recipes": "rm -Rf assets/app.js assets/bootstrap.js assets/controllers.json assets/styles assets/controllers",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"

@@ -14,7 +14,5 @@ cd "$BUILD_DIRECTORY"
 
 echo 'DATABASE_URL="sqlite:///%kernel.project_dir%/var/database.sqlite"' > "$BUILD_DIRECTORY/.env.local"
 composer update
-yarn install
-yarn build
 php bin/console d:s:c
 php bin/console d:s:u -f

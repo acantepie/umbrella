@@ -1,7 +1,4 @@
 umbrella_admin:
   app_name: "My App"
-  assets:
-    script_entry: admin
-    stylesheet_entry: admin
   user:
     class: App\Entity\AdminUser

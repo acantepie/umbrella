@@ -6,8 +6,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" rel="stylesheet">
     <title>My App</title>
-    {{ encore_entry_link_tags('front') }}
 
     <style type="text/css">
         .logo {
@@ -42,25 +43,23 @@
 
 <body>
 
-    <div class="text-center">
-        <header class="d-flex flex-column align-items-center justify-content-center">
-            <img src="{{ asset('build/images/umbrella.png') }}" class="logo" alt="logo">
-            <h2 class="mb-4">Welcome on your Symfony 5 app</h2>
+<div class="text-center">
+    <header class="d-flex flex-column align-items-center justify-content-center">
+        <img src="{{ asset('umbrella.png') }}" class="logo" alt="logo">
+        <h2 class="mb-4">Welcome on your Symfony 5 app</h2>
 
-            <div>Essential links</div>
-            <div class="d-flex links mb-5">
-                <a href="https://symfony.com/doc/current/index.html" target="_blank">Doc Symfony</a>
-                <a href="https://github.com/acantepie/umbrella" target="_blank">Doc Umbrella</a>
-                <a href="https://umbrella-corp.dev/" target="_blank">Showcase Umbrella</a>
-            </div>
+        <div>Essential links</div>
+        <div class="d-flex links mb-5">
+            <a href="https://symfony.com/doc/current/index.html" target="_blank">Doc Symfony</a>
+            <a href="https://github.com/acantepie/umbrella" target="_blank">Doc Umbrella</a>
+            <a href="https://umbrella-corp.dev/" target="_blank">Showcase Umbrella</a>
+        </div>
 
-            <a class="btn btn-default" href="/admin">
-                <i class="mdi mdi-security mr-1"></i> Go to the back-office
-            </a>
-        </header>
-    </div>
-
-    {{ encore_entry_script_tags('front') }}
+        <a class="btn btn-default" href="/admin">
+            <i class="mdi mdi-security mr-1"></i> Go to the back-office
+        </a>
+    </header>
+</div>
 </body>
 
 </html>
