@@ -25,7 +25,11 @@
                         {% for col_form in prototype %}
                             {% if 'hidden' not in col_form.vars.block_prefixes %}
                                 <th class="{{ col_form.vars.required ? 'required' }}">
-                                    <span>{{ col_form.vars.label | trans }}</span>
+                                    {%- if col_form.vars.translation_domain is same as(false) -%}
+                                        <span>{{- col_form.vars.label -}}</span>
+                                    {%- else -%}
+                                        <span>{{- col_form.vars.label | trans(col_form.vars.label_translation_parameters, col_form.vars.translation_domain) -}}</span>
+                                    {%- endif -%}
                                 </th>
                             {% endif %}
                         {% endfor %}
