@@ -53,7 +53,7 @@ composer require umbrella2/adminbundle
 ```
 ### Create your first admin view
 Create a controller on your project :
-```
+```php
 // src/Controller/Admin/DefaultController.php
 <?php
 
@@ -77,9 +77,8 @@ class DefaultController extends AdminController
 Note, all your admin view must extends `@UmbrellaAdmin/layout.html.twig`.
 
 To configure menu create a yaml file `config/menu/admin_sidebar.yaml` :
-```
+```yaml
 # config/menu/admin_sidebar.yaml
-
 app:
     children:
         home: # Name of menu entry
@@ -87,6 +86,89 @@ app:
             route: admin_home # Route of menu entry
 ```
 Et voila.
+
+### Manager admin user with doctrine
+Create user entity with maker :
+```bash
+php bin/console make:admin_user
+```
+Enable admin CRUD and security views :
+```yaml
+# config/packages/umbrella_admin.yaml
+umbrella_admin:
+  user:
+    class: App\Entity\AdminUser
+```
+
+```yaml
+# config/routes/umbrella_admin.yaml
+admin_user_:
+  resource: "@UmbrellaAdminBundle/config/routes/user.yaml"
+  prefix: /admin
+
+admin_userprofile_:
+  resource: "@UmbrellaAdminBundle/config/routes/user_profile.yaml"
+  prefix: /admin
+```
+
+Add entry on menu :
+```yaml
+# config/menu/admin_sidebar.yaml
+app:
+  children:
+    ...
+    users:
+      icon: uil-user
+      route: umbrella_admin_user_index
+```
+
+Protect all your admin urls by firewall :
+```yaml
+security:
+    # new Authentication manager must be enabled
+    enable_authenticator_manager: true
+
+    # Configure password hasher for your User
+    password_hashers:
+        App\Entity\AdminUser: 'sodium'
+
+    # Register a doctrine provider for your User
+    providers:
+        admin_provider:
+            entity:
+                class: App\Entity\AdminUser
+                property: email
+    firewalls:
+        ...
+
+        # Protect all urls start with /admin by firewall
+        admin:
+            pattern: ^/admin
+            user_checker: Umbrella\AdminBundle\Security\UserChecker
+            entry_point: Umbrella\AdminBundle\Security\AuthenticationEntryPoint
+            provider: admin_provider
+            lazy: true
+            form_login:
+                login_path: umbrella_admin_login
+                check_path: umbrella_admin_login
+                default_target_path: app_admin_default_index
+                enable_csrf: true
+            logout:
+                path: umbrella_admin_logout
+                target: umbrella_admin_login
+
+    access_control:
+        - { path: ^/admin/login$, role: PUBLIC_ACCESS } # Admin login url mus be public 
+        - { path: ^/admin/password_request, role: PUBLIC_ACCESS } # Admin password request url must be public
+        - { path: ^/admin/password_reset, role: PUBLIC_ACCESS } # Admin password reset url must be public
+        - { path: ^/admin, roles: ROLE_ADMIN } # Other admin urls must be protected
+```
+Regenerate symfony cache `php bin/console cache:clear` \
+Update doctrine schema `php bin/console doctrine:schema:update --force` \
+Et voila, you must be logged to access administration backends and you can manage your user on admin.
+
+To create a new user, you can use following symfony command :
+
 
 # Create CRUD with maker
 ```bash
@@ -100,19 +182,17 @@ A good way to learn how to use components is to look at [umbrella-admin-demo](ht
 
 ~~ work in progress ~~
 
-### Core - [umbrella-corebundle](https://github.com/acantepie/umbrella-corebundle)
-- ⚡ Menu, Breadcrumb component
-- ⚡ DataTable component
-- ⚡ FormType : Choice2Type, Entity2Type, [Ckeditor](docs/ckeditor.md), DatePickerType, AutoCompleteType
+### Components
+- ⚡ Menu, Breadcrumb
+- ⚡ DataTable
+- ⚡ FormType : Choice2Type, Entity2Type, CkeditorType, DatePickerType, AutoCompleteType
 - ⚡ Js response
-- ⚡ Tabs component
+- ⚡ Tabs
 - ⚡ Searchable entity
 
-### Admin - [umbrella-adminbundle](https://github.com/acantepie/umbrella-adminbundle)
-- ⚡ Admin theme
-- ⚡ User management
-- ⚡ Notification system
-- ⚡ Maker : Create a DataTable view, Create a TreeTable view
+### Admin
+- ⚡ Customize user managment
+- ⚡ Enable Notification system
 
 # Contributors
 Any help, suggestions or contributions are welcome.
