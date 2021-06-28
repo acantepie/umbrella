@@ -160,10 +160,12 @@ security:
 ```
 Regenerate symfony cache `php bin/console cache:clear` \
 Update doctrine schema `php bin/console doctrine:schema:update --force` \
-Et voila, you must be logged to access administration backends and you can manage your user on admin.
+Et voila, you must be logged to access administration backends and you can manage admin users.
 
-To create a new user, you can use following symfony command :
-
+Run following command to create a new admin user:
+```bash
+php bin/console create:admin_user
+```
 
 # Create CRUD with maker
 ```bash

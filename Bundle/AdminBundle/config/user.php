@@ -3,6 +3,7 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Umbrella\AdminBundle\Command\CreateAdminUserCommand;
 use Umbrella\AdminBundle\Controller\SecurityController;
 use Umbrella\AdminBundle\Controller\UserController;
 use Umbrella\AdminBundle\DataTable\Column\UserNameColumnType;
@@ -21,6 +22,9 @@ return static function (ContainerConfigurator $configurator): void {
         ->private()
         ->autowire(true)
         ->autoconfigure(false);
+
+    $services->set(CreateAdminUserCommand::class)
+        ->tag('console.command');
 
     $services->set(SecurityController::class)
         ->tag('controller.service_arguments')
