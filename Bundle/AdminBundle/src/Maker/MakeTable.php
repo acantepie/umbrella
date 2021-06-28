@@ -33,7 +33,7 @@ class MakeTable extends AbstractMaker
 
     public static function getCommandDescription(): string
     {
-        return 'Creates an admin table view';
+        return 'Create an admin table view';
     }
 
     public function configureCommand(Command $command, InputConfiguration $inputConfig)

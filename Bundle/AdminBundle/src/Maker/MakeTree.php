@@ -33,7 +33,7 @@ class MakeTree extends AbstractMaker
 
     public static function getCommandDescription(): string
     {
-        return 'Creates an admin tree view';
+        return 'Create an admin tree view';
     }
 
     public function configureCommand(Command $command, InputConfiguration $inputConfig)
