@@ -29,6 +29,13 @@ Encore
         config.corejs = 3;
     })
 
+    .copyFiles([
+        {
+            from: './Bundle/AdminBundle/assets/images',
+            to: 'images/[path][name].[ext]'
+        }
+    ])
+
     // add hash after file name
     .configureFilenames({
         js: '[name].js?[chunkhash]',

@@ -1,5 +1,5 @@
 {
-  "bundles/umbrellaadmin/admin.js": "/bundles/umbrellaadmin/admin.js?0bc8d398c906f3a5d1db",
+  "bundles/umbrellaadmin/admin.js": "/bundles/umbrellaadmin/admin.js?a8d6ec6342f9e80874e8",
   "bundles/umbrellaadmin/admin.css": "/bundles/umbrellaadmin/admin.css?4dcb3e1c1cec1edb9929",
   "bundles/umbrellaadmin/fonts/materialdesignicons-webfont.eot": "/bundles/umbrellaadmin/fonts/materialdesignicons-webfont.53f53f50.eot",
   "bundles/umbrellaadmin/fonts/materialdesignicons-webfont.ttf": "/bundles/umbrellaadmin/fonts/materialdesignicons-webfont.0e4e0b3d.ttf",
@@ -109,5 +109,6 @@
   "bundles/umbrellaadmin/fonts/unicons-20.ttf": "/bundles/umbrellaadmin/fonts/unicons-20.1ac99b82.ttf",
   "bundles/umbrellaadmin/fonts/unicons-20.woff": "/bundles/umbrellaadmin/fonts/unicons-20.cd1f0703.woff",
   "bundles/umbrellaadmin/fonts/unicons-20.woff2": "/bundles/umbrellaadmin/fonts/unicons-20.75d54c87.woff2",
-  "bundles/umbrellaadmin/images/unicons-20.svg": "/bundles/umbrellaadmin/images/unicons-20.a6d127d1.svg"
+  "bundles/umbrellaadmin/images/unicons-20.svg": "/bundles/umbrellaadmin/images/unicons-20.a6d127d1.svg",
+  "bundles/umbrellaadmin/images/mail_sent.svg": "/bundles/umbrellaadmin/images/mail_sent.svg"
 }
