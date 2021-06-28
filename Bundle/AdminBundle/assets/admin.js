@@ -1,5 +1,5 @@
 // App
-import "./scss/admin.scss"
+import './scss/admin.scss'
 
 import  'umbrella_core/core';
 import 'simplebar'
