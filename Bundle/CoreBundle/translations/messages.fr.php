@@ -25,7 +25,5 @@ return [
 
     'Confirm delete ?' => 'Confirmer la suppression ?',
 
-    'vich_uploader' => [
-        'form_label.delete_confirm' => 'Supprimer le fichier'
-    ]
+    'Delete file' => 'Supprimer le fichier'
 ];

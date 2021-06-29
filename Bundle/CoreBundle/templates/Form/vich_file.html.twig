@@ -13,7 +13,7 @@
         {%- if form.delete is defined or download_uri -%}
             <div class="vich-file-actions">
                 {%- if form.delete is defined -%}
-                    {{- form_widget(form.delete) -}}
+                    {{- form_widget(form.delete, {'label': 'Delete file'}) -}}
                 {%- endif -%}
 
                 {%- if download_uri -%}
