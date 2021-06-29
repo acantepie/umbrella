@@ -25,14 +25,15 @@ class UserPasswordConfirmType extends AbstractType
     {
         $builder->add('plainPassword', RepeatedType::class, [
             'type' => PasswordTogglableType::class,
+            'translation_domain' => 'UmbrellaAdmin',
             'first_options' => [
-                'label' => 'newpassword'
+                'label' => 'label.newpassword'
             ],
             'second_options' => [
-                'label' => 'password_confirm'
+                'label' => 'label.password_confirm'
             ],
             'required' => true,
-            'invalid_message' => 'error.password.mismatch',
+            'invalid_message' => 'error.password_mismatch',
         ]);
     }
 

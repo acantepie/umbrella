@@ -58,8 +58,7 @@ class LinkType extends WidgetType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefault('text', null) // enable text
-            ->setDefault('text_prefix', 'action.');
+            ->setDefault('text', null); // enable text
 
         $resolver
             ->define('route')

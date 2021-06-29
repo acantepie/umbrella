@@ -4,6 +4,7 @@ namespace Umbrella\CoreBundle\DataTable\Column;
 
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Umbrella\CoreBundle\Utils\Utils;
 
 class ColumnType
 {
@@ -15,14 +16,11 @@ class ColumnType
             ->setAllowedTypes('id', 'string')
 
             ->setDefault('label', function (Options $options) {
-                return $options['id'];
+                return Utils::humanize($options['id']);
             })
             ->setAllowedTypes('label', ['null', 'string'])
 
-            ->setDefault('label_prefix', 'label.')
-            ->setAllowedTypes('label_prefix', ['null', 'string'])
-
-            ->setDefault('translation_domain', 'messages')
+            ->setDefault('translation_domain', null)
             ->setAllowedTypes('translation_domain', ['null', 'string'])
 
             ->setDefault('order', false)

@@ -24,15 +24,25 @@ class ProfileType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstname', TextType::class);
-        $builder->add('lastname', TextType::class);
-        $builder->add('email', EmailType::class);
+        $builder->add('firstname', TextType::class, [
+            'label' => 'label.firstname',
+            'translation_domain' => 'UmbrellaAdmin'
+        ]);
+        $builder->add('lastname', TextType::class, [
+            'label' => 'label.lastname',
+            'translation_domain' => 'UmbrellaAdmin'
+        ]);
+        $builder->add('email', EmailType::class, [
+            'label' => 'label.email',
+            'translation_domain' => 'UmbrellaAdmin'
+        ]);
 
         $builder->add('plainPassword', PasswordTogglableType::class, [
-            'label' => 'password',
+            'label' => 'label.password',
+            'translation_domain' => 'UmbrellaAdmin',
             'required' => false,
             'attr' => [
-                'placeholder' => 'placeholder.password_not_set_if_empty',
+                'placeholder' => 'label.password_not_set_if_empty',
             ],
         ]);
     }

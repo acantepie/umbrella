@@ -4,6 +4,18 @@ namespace Umbrella\CoreBundle\Utils;
 
 class Utils
 {
+    /**
+     * Makes a technical name human readable.
+     *
+     * Sequences of underscores are replaced by single spaces. The first letter
+     * of the resulting string is capitalized, while all other letters are
+     * turned to lowercase.
+     */
+    public static function humanize(string $text): string
+    {
+        return ucfirst(strtolower(trim(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text))));
+    }
+
     public static function type_class_to_id(string $typeClass): string
     {
         $ns = preg_replace('/Type$/', '', $typeClass);

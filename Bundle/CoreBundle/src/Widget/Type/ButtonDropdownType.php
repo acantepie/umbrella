@@ -32,8 +32,7 @@ class ButtonDropdownType extends WidgetType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefault('text', null) // enable text
-            ->setDefault('text_prefix', 'action.');
+            ->setDefault('text', null);
 
         $resolver
             ->define('build')

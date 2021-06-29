@@ -36,7 +36,6 @@ class WidgetType
         }
 
         $view->vars['text'] = $options['text'];
-        $view->vars['text_prefix'] = $options['text_prefix'];
         $view->vars['translation_domain'] = $options['translation_domain'];
         $view->vars['icon'] = $options['icon'];
 
@@ -114,11 +113,6 @@ class WidgetType
             ->define('text')
             ->default(false)
             ->allowedTypes('string', 'null', 'bool');
-
-        $resolver // keep backward compatibily (only used if translatio_domain is not false)
-        ->define('text_prefix')
-            ->default(null)
-            ->allowedTypes('string', 'null');
 
         $resolver
             ->define('translation_domain')

@@ -49,13 +49,13 @@
     {% if text is not same as(false) -%}
 
         {% if text is empty -%}
-            {% set text = name %}
+            {% set text = name | humanize %}
         {%- endif -%}
 
         {%- if translation_domain is same as(false) -%}
             {{- text|raw -}}
         {%- else -%}
-            {{- (text_prefix ~ text) |trans([], translation_domain)|raw -}}
+            {{- text |trans([], translation_domain)|raw -}}
         {%- endif -%}
 
     {%- endif -%}

@@ -1,12 +1,13 @@
 {% extends '@UmbrellaAdmin/layout.html.twig' %}
 
+{% trans_default_domain 'UmbrellaAdmin' %}
 {% block topbar %}
     {% embed "@UmbrellaAdmin/_topbar.html.twig" %}
         {% block breadcrumb %}
             <div class="umbrella-breadcrumb">
                 <i class="uil-user"></i>
                 <ol data-count="1">
-                    <li class="active">{{ 'action.my_account' | trans }}</li>
+                    <li class="active">{{ 'label.my_account' | trans({}, 'UmbrellaAdmin') }}</li>
                 </ol>
             </div>
         {% endblock %}

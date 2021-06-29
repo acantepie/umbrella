@@ -29,17 +29,6 @@ class FormTypeExtension extends AbstractTypeExtension
     {
         $this->setView($view, $form, 'label_class', $this->defaultLabelClass);
         $this->setView($view, $form, 'group_class', $this->defaultGroupClass);
-
-        if (false !== $view->vars['label']) {
-            if (empty($view->vars['label'])) {
-                $view->vars['label'] = $view->vars['name'];
-            }
-
-            if (false !== $options['translation_domain']) {
-                $view->vars['label'] = $options['label_prefix'] . $view->vars['label'];
-            }
-        }
-
         $view->vars['input_prefix'] = $options['input_prefix'];
         $view->vars['input_suffix'] = $options['input_suffix'];
     }
@@ -58,9 +47,6 @@ class FormTypeExtension extends AbstractTypeExtension
 
             ->setDefault('group_class', null)
             ->setAllowedTypes('group_class', ['string', 'null'])
-
-            ->setDefault('label_prefix', 'label.')
-            ->setAllowedTypes('label_prefix', ['null', 'string'])
 
             ->setDefault('input_prefix', null)
             ->setAllowedTypes('input_prefix', ['null', 'string'])

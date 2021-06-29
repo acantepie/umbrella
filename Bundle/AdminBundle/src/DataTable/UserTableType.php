@@ -3,6 +3,7 @@
 namespace Umbrella\AdminBundle\DataTable;
 
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\AdminBundle\DataTable\Column\UserNameColumnType;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
@@ -35,14 +36,25 @@ class UserTableType extends DataTableType
     public function buildTable(DataTableBuilder $builder, array $options)
     {
         $builder->addFilter('search', SearchType::class);
-        $builder->addWidget('add_user', AddLinkType::class, [
+        $builder->addWidget('add', AddLinkType::class, [
             'route' => 'umbrella_admin_user_edit',
             'xhr' => true,
+            'text' => 'user.add',
+            'translation_domain' => 'UmbrellaAdmin'
         ]);
 
-        $builder->add('name', UserNameColumnType::class);
-        $builder->add('createdAt', DateColumnType::class);
-        $builder->add('active', BooleanColumnType::class);
+        $builder->add('name', UserNameColumnType::class, [
+            'label' => 'label.name',
+            'translation_domain' => 'UmbrellaAdmin'
+        ]);
+        $builder->add('createdAt', DateColumnType::class, [
+            'label' => 'label.created_at',
+            'translation_domain' => 'UmbrellaAdmin'
+        ]);
+        $builder->add('active', BooleanColumnType::class, [
+            'label' => 'label.active',
+            'translation_domain' => 'UmbrellaAdmin'
+        ]);
 
         $builder->add('links', WidgetColumnType::class, [
             'build' => function (WidgetBuilder $builder, BaseAdminUser $e) {
@@ -68,5 +80,10 @@ class UserTableType extends DataTableType
                 }
             }
         ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefault('translation_domain', 'UmbrellaAdmin');
     }
 }

@@ -64,13 +64,12 @@ class UserController extends AdminController
             return $this->jsResponseBuilder()
                 ->closeModal()
                 ->reloadTable()
-                ->toastSuccess(t('message.entity_updated'));
+                ->toastSuccess(t('Item updated'));
         }
 
         return $this->jsResponseBuilder()
             ->modal('@UmbrellaAdmin/User/edit.html.twig', [
                 'form' => $form->createView(),
-                'title' => null !== $id ? $this->trans('action.edit_user') : $this->trans('action.add_user'),
                 'entity' => $entity,
             ]);
     }
@@ -87,6 +86,6 @@ class UserController extends AdminController
         return $this->jsResponseBuilder()
             ->closeModal()
             ->reloadTable()
-            ->toastSuccess(t('message.entity_deleted'));
+            ->toastSuccess(t('Item deleted'));
     }
 }

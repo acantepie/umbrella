@@ -32,8 +32,8 @@ class CheckBoxColumnType extends ColumnType
             . '<i class="mdi mdi-dots-vertical"></i>'
             . '</button>'
             . '<div class="dropdown-menu">'
-            . '<a class="dropdown-item" href data-tag="dt:selectpage">' . $this->translator->trans('common.all') . '</a>'
-            . '<a class="dropdown-item" href data-tag="dt:unselectpage">' . $this->translator->trans('common.none') . '</a>'
+            . '<a class="dropdown-item" href data-tag="dt:selectpage">' . $this->translator->trans('All') . '</a>'
+            . '<a class="dropdown-item" href data-tag="dt:unselectpage">' . $this->translator->trans('None') . '</a>'
             . '</div>';
     }
 
@@ -48,7 +48,6 @@ class CheckBoxColumnType extends ColumnType
             ->setDefault('order', false)
             ->setDefault('class', 'text-center row-selector')
             ->setDefault('label', $this->labelTemplate())
-            ->setDefault('label_prefix', null)
             ->setDefault('translation_domain', null)
             ->setDefault('width', '80px')
             ->setDefault('is_safe_html', true);

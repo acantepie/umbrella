@@ -20,9 +20,9 @@
                             <th {{ _self.attributes(column.attr) }}>
                                 {%- if column.label is not empty %}
                                     {%- if column.translation_domain %}
-                                        {{- (column.label_prefix ~ column.label) | trans([], column.translation_domain) | raw -}}
+                                        {{- (column.label) | trans([], column.translation_domain) | raw -}}
                                     {% else -%}
-                                        {{- (column.label_prefix ~ column.label) | raw -}}
+                                        {{- (column.label) | raw -}}
                                     {% endif -%}
                                 {% endif -%}
                             </th>

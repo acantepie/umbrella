@@ -46,7 +46,7 @@ class ProfileController extends AdminController
         if ($settingsForm->isSubmitted() && $settingsForm->isValid()) {
             $this->userManager->update($user);
 
-            $this->toastSuccess(t('message.account_updated'));
+            $this->toastSuccess(t('alert.account_updated', [], 'UmbrellaAdmin'));
 
             return $this->redirectToRoute(self::PROFILE_ROUTE);
         }

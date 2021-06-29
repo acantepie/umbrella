@@ -11,7 +11,7 @@ class RowEditLinkType extends RowLinkType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefault('title', 'action.edit')
+            ->setDefault('title', 'Edit')
             ->setDefault('icon', 'mdi mdi-pencil');
     }
 }

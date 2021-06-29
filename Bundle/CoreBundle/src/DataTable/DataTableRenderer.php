@@ -121,7 +121,6 @@ class DataTableRenderer
         ];
 
         $vars['label'] = $options['label'];
-        $vars['label_prefix'] = $options['label_prefix'];
         $vars['translation_domain'] = $options['translation_domain'];
 
         return $vars;

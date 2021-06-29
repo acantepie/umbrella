@@ -1,89 +1,31 @@
 <?php
 
 return [
-    'common' => [
-        'yes' => 'Yes',
-        'no' => 'No',
-        'browse' => 'Browse',
-        'loading' => 'Loading...',
-        'enable' => 'Enable',
-        'disabled' => 'Disable',
-        'all' => 'All',
-        'none' => 'None',
-        'welcome' => 'Welcome',
-    ],
-    'action' => [
-        'reset_password' => 'Reset password',
-        'add' => 'Add',
-        'edit' => 'Edit',
-        'delete' => 'Delete',
-        'save' => 'Save',
-        'show' => 'Preview',
-        'signout' => 'Logout',
-        'add_user' => 'Add an user',
-        'edit_user' => 'Edit an user',
-        'cancel' => 'Cancel',
-        'continue' => 'Continue',
-        'close' => 'Close',
-        'add_row' => 'Add an element',
-        'my_account' => 'My account',
-        'forget_password' => 'Forgot your password ?',
-        'signin' => 'Login',
-        'back_login_markup' => 'back to <b>Log In</b>',
-        'back_login' => 'back to Log In',
-        'send' => 'Send',
-        'create' => 'Create',
-        'delete_all' => 'Delete all',
-        'movedown' => 'Move down',
-        'moveup' => 'Move up',
-    ],
-    'label' => [
-        'anonymous_user' => 'Anonymous',
-        'unauthenticated_user' => 'Unauthenticated',
-        'name' => 'Name',
-        'title' => 'Title',
-        'firstname' => 'Firstname',
-        'lastname' => 'Lastname',
-        'username' => 'Username',
-        'email' => 'Email',
-        'your_email' => 'Your email',
-        'password' => 'Password',
-        'newpassword' => 'New password',
-        'password_confirm' => 'Confirm password',
-        'active' => 'Active',
-        'updatedAt' => 'Updated at',
-        'createdAt' => 'Created at',
-        'vich_uploader' => [
-            'form_label' => [
-                'delete_confirm' => 'Delete file',
-            ],
-        ],
-    ],
-    'placeholder' => [
-        'search' => 'Search ...',
-        'password_not_set_if_empty' => 'Let empty to keep your current password.',
-        'enter_your_username' => 'Enter your username',
-        'enter_your_password' => 'Enter your password',
-    ],
-    'message' => [
-        'delete_confirm' => 'Confirm delete ?',
-        'forget_password_explanation' => 'Enter the email address associated to your account. We will send your password recovery procedure to your mailbox.',
-        'reset_password' => 'Reset your password.',
-        'entity_updated' => 'Item has been updated.',
-        'entity_deleted' => 'Item has been deleted.',
-        'account_updated' => 'Your account has been updated.',
-        'check_your_email' => 'Check your emails',
-        'request_password_success' => 'An email was sent to <b>%email%</b>. Check your mailbox and follow instructions given.',
-        'password_resetted' => 'Your password has been resetted.',
-        'signin_to_bo' => 'Login to access the service.',
-        'delete_all_confirm' => 'Delete all ?',
-        'reset_password_error' => 'This link has expired.',
-        'reset_password_error_cause1' => 'It has been more than 24 hours since you requested a password reset. You can do a new <a href="%url%" class="text-primary">password request</a>.',
-        'reset_password_error_cause2' => 'If you have made more than one request, only the last email will be valid.',
-        'no_row_selected' => 'No row selected.',
-    ],
-    'notification' => [
-        'title' => 'Notifications',
-        'empty' => 'You have no notifications.',
-    ],
+    'Item updated' => 'Item updated.',
+    'Item deleted' => 'Item deleted.',
+
+    'Add' => 'Add',
+    'Edit' => 'Edit',
+    'Delete' => 'Delete',
+    'Show' => 'Show',
+
+    'All' => 'All',
+    'None' => 'None',
+
+    'Cancel' => 'Cancel',
+    'Save' => 'Save',
+    'Close' => 'Close',
+
+    'Search ...' => 'Search ...,',
+
+    'Yes' => 'Yes',
+    'No' => 'No',
+
+    'Add item' => 'Add an item',
+
+    'Confirm delete ?' => 'Confirm delete ?',
+
+    'vich_uploader' => [
+        'form_label.delete_confirm' => 'Delete file'
+    ]
 ];

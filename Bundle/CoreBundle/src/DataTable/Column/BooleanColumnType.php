@@ -57,10 +57,10 @@ class BooleanColumnType extends PropertyColumnType
             ->setDefault('strict_comparison', false)
             ->setAllowedTypes('strict_comparison', 'bool')
 
-            ->setDefault('yes_value', 'common.yes')
+            ->setDefault('yes_value', 'Yes')
             ->setAllowedTypes('yes_value', 'string')
 
-            ->setDefault('no_value', 'common.no')
+            ->setDefault('no_value', 'No')
             ->setAllowedTypes('no_value', 'string')
 
             ->setDefault('yes_icon', 'mdi mdi-check me-1')

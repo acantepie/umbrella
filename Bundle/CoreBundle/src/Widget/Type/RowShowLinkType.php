@@ -11,7 +11,7 @@ class RowShowLinkType extends RowLinkType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefault('title', 'action.show')
+            ->setDefault('title', 'Show')
             ->setDefault('icon', 'mdi mdi-eye');
     }
 }

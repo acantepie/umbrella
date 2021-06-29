@@ -109,7 +109,7 @@ class SecurityController extends AdminController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userManager->update($user);
 
-            $this->toastSuccess(t('message.password_resetted'));
+            $this->toastSuccess(t('alert.password_resetted', [], 'UmbrellaAdmin'));
 
             return $this->redirectToRoute(self::LOGIN_ROUTE);
         }

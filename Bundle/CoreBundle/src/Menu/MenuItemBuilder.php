@@ -2,9 +2,9 @@
 
 namespace Umbrella\CoreBundle\Menu;
 
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\Menu\Model\MenuItem;
+use Umbrella\CoreBundle\Utils\Utils;
 
 class MenuItemBuilder
 {
@@ -95,9 +95,7 @@ class MenuItemBuilder
     {
         $resolver = new OptionsResolver();
         $resolver
-            ->setDefault('label', function (Options $options) {
-                return sprintf('menu.%s', $this->item->getId());
-            })
+            ->setDefault('label', Utils::humanize($this->item->getId()))
             ->setAllowedTypes('label', 'string')
 
             ->setDefault('class', '')

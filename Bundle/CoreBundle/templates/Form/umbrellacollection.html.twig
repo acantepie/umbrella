@@ -23,12 +23,16 @@
                         {% endif %}
 
                         {% for col_form in prototype %}
-                            {% if 'hidden' not in col_form.vars.block_prefixes %}
-                                <th class="{{ col_form.vars.required ? 'required' }}">
-                                    {%- if col_form.vars.translation_domain is same as(false) -%}
-                                        <span>{{- col_form.vars.label -}}</span>
+                            {% set cv = col_form.vars %}
+
+                            {% if 'hidden' not in cv.block_prefixes %}
+                                <th class="{{ cv.required ? 'required' }}">
+                                    {%- if cv.label is empty -%}
+                                        <span>{{- cv.name | humanize -}}</span>
+                                    {%- elseif cv.translation_domain is same as(false) -%}
+                                        <span>{{- cv.label -}}</span>
                                     {%- else -%}
-                                        <span>{{- col_form.vars.label | trans(col_form.vars.label_translation_parameters, col_form.vars.translation_domain) -}}</span>
+                                        <span>{{- cv.label | trans(cv.label_translation_parameters, cv.translation_domain) -}}</span>
                                     {%- endif -%}
                                 </th>
                             {% endif %}
@@ -47,7 +51,7 @@
         {% if form.vars.allow_add %}
             <div>
                 <a class="js-add-row btn btn-light btn-sm" href="#">
-                    <i class="mdi mdi-plus me-1"></i> {{ 'action.add_row' | trans }}
+                    <i class="mdi mdi-plus me-1"></i> {{ 'Add item' | trans }}
                 </a>
             </div>
         {% endif %}

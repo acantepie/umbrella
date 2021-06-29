@@ -64,9 +64,9 @@ class <?= $class_name ?> extends AdminController
             return $this->jsResponseBuilder()
                 ->closeModal()
                 ->reloadTable()
-                ->toastSuccess(t('message.entity_updated'));
+                ->toastSuccess(t('Item updated'));
 <?php } else { ?>
-            $this->toastSuccess(t('message.entity_updated'));
+            $this->toastSuccess(t('Item updated'));
             return $this->redirectToRoute('<?= $route_name ?>_edit', [
                 'id' => $entity->id
             ]);
@@ -117,6 +117,6 @@ class <?= $class_name ?> extends AdminController
 
         return $this->jsResponseBuilder()
             ->reloadTable()
-            ->toastSuccess(t('message.entity_deleted'));
+            ->toastSuccess(t('Item deleted'));
     }
 }

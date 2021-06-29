@@ -1,1 +1,7 @@
 {% extends "@UmbrellaAdmin/edit_modal.html.twig" %}
+
+{% block modal_title %}
+    <h4 class="modal-title">{{ entity.id
+        ? ( 'user.edit' | trans({}, 'UmbrellaAdmin'))
+        : ( 'user.add' | trans({}, 'UmbrellaAdmin')) }}</h4>
+{% endblock %}
