@@ -19,7 +19,7 @@ class UserNameColumnType extends PropertyColumnType
         }
 
         return sprintf(
-            '<div><div>%s</div><div class="text-muted">%s</div></div>',
+            '<strong>%s</strong><div class="text-muted">%s</div>',
             HtmlUtils::escape($user->getFullName()),
             HtmlUtils::escape($user->email)
         );
