@@ -1,4 +1,4 @@
-export default class Password extends HTMLDivElement {
+export default class PasswordTogglable extends HTMLDivElement {
 
     constructor() {
         super()

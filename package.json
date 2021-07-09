@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "encore production --progress",
-    "lint": "eslint Bundle/*/assets Skeleton/assets",
-    "lint-fix": "eslint Bundle/*/assets Skeleton/assets --fix"
+    "lint": "eslint Bundle/*/assets",
+    "lint-fix": "eslint Bundle/*/assets --fix"
   }
 }
