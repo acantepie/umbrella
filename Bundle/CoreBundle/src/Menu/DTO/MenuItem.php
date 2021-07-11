@@ -24,7 +24,7 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     protected string $label;
 
-    protected ?string $translationDomain = null;
+    protected ?string $translationDomain = 'messages';
 
     protected ?string $route = null;
 
