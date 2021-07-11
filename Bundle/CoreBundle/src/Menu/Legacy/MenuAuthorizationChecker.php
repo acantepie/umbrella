@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authorization\ExpressionLanguage;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
-use Umbrella\CoreBundle\Menu\Model\MenuItem;
+use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 
 /**
  * @see SecurityListener

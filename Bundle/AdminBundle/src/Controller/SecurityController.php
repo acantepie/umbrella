@@ -10,11 +10,12 @@ use Umbrella\AdminBundle\Form\UserPasswordConfirmType;
 use Umbrella\AdminBundle\Services\UserMailer;
 use Umbrella\AdminBundle\Services\UserManager;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
+use Umbrella\CoreBundle\Controller\BaseController;
 
 /**
  * @Route("/")
  */
-class SecurityController extends AdminController
+class SecurityController extends BaseController
 {
     public const LOGIN_ROUTE = 'umbrella_admin_login';
     public const LOGOUT_ROUTE = 'umbrella_admin_logout';

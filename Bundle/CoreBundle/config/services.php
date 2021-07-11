@@ -22,9 +22,9 @@ use Umbrella\CoreBundle\Form\Extension\ChoiceTypeExtension;
 use Umbrella\CoreBundle\Form\Extension\FormTypeExtension;
 use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
 use Umbrella\CoreBundle\JsResponse\JsResponseViewListener;
-use Umbrella\CoreBundle\Menu\MenuAuthorizationChecker;
-use Umbrella\CoreBundle\Menu\MenuFactory;
-use Umbrella\CoreBundle\Menu\MenuHelper;
+use Umbrella\CoreBundle\Menu\MenuRegistry;
+use Umbrella\CoreBundle\Menu\MenuResolver;
+use Umbrella\CoreBundle\Menu\MenuResolverCurrent;
 use Umbrella\CoreBundle\Menu\Twig\MenuExtension;
 use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
 use Umbrella\CoreBundle\Search\EntityIndexer;
@@ -48,20 +48,11 @@ return static function (ContainerConfigurator $configurator): void {
         ->autoconfigure(false);
 
     // -- Menu -- //
-
-    $services->set(MenuFactory::class);
-    $services->set(MenuAuthorizationChecker::class)
-        ->args([
-            service('security.token_storage'),
-            service('security.expression_language'),
-            service('security.authentication.trust_resolver'),
-            service('security.authorization_checker'),
-            service('security.role_hierarchy'),
-        ]);
-    $services->set(MenuHelper::class);
+    $services->set(MenuRegistry::class);
+    $services->set(MenuResolver::class);
+    $services->set(MenuResolverCurrent::class);
     $services->set(MenuExtension::class)
         ->tag('twig.extension');
-
 
     // -- Js Response -- //
 

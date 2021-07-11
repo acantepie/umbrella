@@ -1,17 +1,22 @@
-<div class="umbrella-breadcrumb">
-    {% if breadcrumb.icon %}
-        <i class="{{ breadcrumb.icon }}"></i>
+{% set icon = 'uil-angle-right' %}
+{% for item in breadcrumb %}
+    {% if item.icon %}
+        {% set icon = item.icon %}
     {% endif %}
+{% endfor %}
+
+<div class="umbrella-breadcrumb">
+    <i class="{{ icon }}"></i>
     <ol data-count="{{ breadcrumb | length }}">
         {% for item in breadcrumb %}
-            {% if options.breadcrumb_show_first_level or not loop.first %}
-                {% set label = item.translationDomain ? (item.label | trans([], item.translationDomain)) : item.label %}
+            {% if not loop.first %}
+                {% set label = item.translation_domain ? (item.label | trans([], item.translation_domain)) : item.label %}
 
                 {% if loop.last %}
                     <li class="active">{{ label }}</li>
                 {% elseif item.route %}
                     <li>
-                        <a href="{{ path(item.route, item.routeParams) }}">{{ label }}</a>
+                        <a href="{{ path(item.route, item.route_params) }}">{{ label }}</a>
                     </li>
                 {% else %}
                     <li>{{ label }}</li>

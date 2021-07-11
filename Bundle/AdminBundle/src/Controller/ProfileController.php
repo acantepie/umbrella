@@ -9,11 +9,12 @@ use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\Services\UserManager;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
+use Umbrella\CoreBundle\Controller\BaseController;
 
 /**
  * @Route("/profile")
  */
-class ProfileController extends AdminController
+class ProfileController extends BaseController
 {
     public const PROFILE_ROUTE = 'umbrella_admin_profile_index';
 

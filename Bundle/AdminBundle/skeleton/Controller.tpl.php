@@ -7,16 +7,13 @@ use <?= $entity->getFullName() ?>;
 use <?= $form->getFullName() ?>;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Umbrella\AdminBundle\Controller\AdminController;
-<?php if (!$edit_on_modal) { ?>
-use Umbrella\CoreBundle\Menu\Model\Menu;
-<?php } ?>
+use Umbrella\CoreBundle\Controller\BaseController;
 use function Symfony\Component\Translation\t;
 
 /**
 * @Route("<?= $route_path ?>")
 */
-class <?= $class_name ?> extends AdminController
+class <?= $class_name ?> extends BaseController
 {
     /**
      * @Route
@@ -40,11 +37,6 @@ class <?= $class_name ?> extends AdminController
      */
     public function edit(Request $request, ?int $id = null)
     {
-<?php if (!$edit_on_modal) { ?>
-        $this->getMenu()->setCurrent('<?= $route_name ?>_index', Menu::BY_ROUTE);
-        $this->getBreadcrumb()->addItem(['label' => $id ? 'action.edit' : 'action.add']);
-<?php } ?>
-
         if ($id === null) {
             $entity = new <?= $entity->getShortName() ?>();
 <?php if ($tree_view) { ?>

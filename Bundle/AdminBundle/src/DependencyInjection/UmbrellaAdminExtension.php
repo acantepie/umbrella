@@ -45,7 +45,6 @@ class UmbrellaAdminExtension extends Extension
             $this->enableNotification($container, $config['notification']);
         }
 
-        $container->setParameter('umbrella_admin.menu_alias', $config['menu']['alias']);
         $container->getDefinition(UmbrellaAdminConfiguration::class)
             ->setArgument(0, $config);
     }

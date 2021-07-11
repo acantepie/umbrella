@@ -7,11 +7,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Services\UserManager;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
+use Umbrella\CoreBundle\Controller\BaseController;
 
 /**
  * @Route("/user")
  */
-class UserController extends AdminController
+class UserController extends BaseController
 {
     private UmbrellaAdminConfiguration $config;
 

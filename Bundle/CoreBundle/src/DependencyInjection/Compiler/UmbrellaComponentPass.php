@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
+use Umbrella\CoreBundle\Menu\MenuRegistry;
 use Umbrella\CoreBundle\Widget\WidgetRegistry;
 
 class UmbrellaComponentPass implements CompilerPassInterface
@@ -23,6 +24,9 @@ class UmbrellaComponentPass implements CompilerPassInterface
 
         $registry = $container->getDefinition(WidgetRegistry::class);
         $this->addToRegistry($container, $registry, WidgetRegistry::TAG_TYPE, 'registerType');
+
+        $registry = $container->getDefinition(MenuRegistry::class);
+        $this->addToRegistry($container, $registry, MenuRegistry::TAG_TYPE, 'registerType');
     }
 
     private function addToRegistry(ContainerBuilder $container, Definition $registry, string $tag, string $method)

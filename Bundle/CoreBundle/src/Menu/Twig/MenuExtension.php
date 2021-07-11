@@ -4,18 +4,18 @@ namespace Umbrella\CoreBundle\Menu\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Umbrella\CoreBundle\Menu\MenuHelper;
+use Umbrella\CoreBundle\Menu\MenuResolver;
 
 class MenuExtension extends AbstractExtension
 {
-    private MenuHelper $helper;
+    private MenuResolver $resolver;
 
     /**
      * MenuExtension constructor.
      */
-    public function __construct(MenuHelper $helper)
+    public function __construct(MenuResolver $resolver)
     {
-        $this->helper = $helper;
+        $this->resolver = $resolver;
     }
 
     /**
@@ -24,13 +24,10 @@ class MenuExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('menu_get', [$this->helper, 'getMenu']),
-            new TwigFunction('menu_render', [$this->helper, 'renderMenu'], ['is_safe' => ['html']]),
-            new TwigFunction('menu_is_granted_item', [$this->helper, 'isGranted']),
-            new TwigFunction('menu_is_current_item', [$this->helper, 'isCurrent']),
+            new TwigFunction('menu_render', [$this->resolver, 'render'], ['is_safe' => ['html']]),
 
-            new TwigFunction('breadcrumb_get', [$this->helper, 'getBreadcrumb']),
-            new TwigFunction('breadcrumb_render', [$this->helper, 'renderBreadcrumb'], ['is_safe' => ['html']]),
+            new TwigFunction('breadcrumb', [$this->resolver, 'resolveBreadcrumb']),
+            new TwigFunction('breadcrumb_render', [$this->resolver, 'renderBreadcrumb'], ['is_safe' => ['html']]),
         ];
     }
 }

@@ -32,14 +32,9 @@ class UmbrellaAdminConfiguration
 
     // Menu
 
-    public function menuAlias(): string
+    public function menuName(): string
     {
-        return $this->config['menu']['alias'];
-    }
-
-    public function menuOptions(): array
-    {
-        return $this->config['menu']['options'];
+        return $this->config['menu'];
     }
 
     // Security

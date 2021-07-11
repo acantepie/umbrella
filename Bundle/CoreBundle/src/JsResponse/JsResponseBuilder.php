@@ -6,7 +6,6 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
-use Umbrella\CoreBundle\Menu\MenuHelper;
 use Umbrella\CoreBundle\Toast\Toast;
 
 class JsResponseBuilder implements \Countable
@@ -29,19 +28,17 @@ class JsResponseBuilder implements \Countable
     private TranslatorInterface $translator;
     private RouterInterface $router;
     private Environment $twig;
-    private MenuHelper $menuHelper;
 
     private array $messages = [];
 
     /**
      * JsResponseBuilder constructor.
      */
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, Environment $twig, MenuHelper $menuHelper)
+    public function __construct(TranslatorInterface $translator, RouterInterface $router, Environment $twig)
     {
         $this->translator = $translator;
         $this->router = $router;
         $this->twig = $twig;
-        $this->menuHelper = $menuHelper;
     }
 
     public function add(string $action, array $params = []): self
@@ -181,15 +178,6 @@ class JsResponseBuilder implements \Countable
     public function closeModal(): self
     {
         return $this->add(self::CLOSE_MODAL);
-    }
-
-    // Menu actions
-
-    public function reloadMenu(?string $name = null, string $cssSelector = '.left-side-menu'): self
-    {
-        $html = $this->menuHelper->renderMenu($name);
-
-        return $this->update($cssSelector, $html);
     }
 
     // Web Components actions

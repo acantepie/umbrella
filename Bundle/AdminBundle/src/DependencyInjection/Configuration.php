@@ -9,6 +9,7 @@ use Umbrella\AdminBundle\Controller\ProfileController;
 use Umbrella\AdminBundle\DataTable\UserTableType;
 use Umbrella\AdminBundle\Form\ProfileType;
 use Umbrella\AdminBundle\Form\UserType;
+use Umbrella\AdminBundle\Menu\BaseAdminMenu;
 use Umbrella\AdminBundle\Notification\Renderer\NotificationRenderer;
 
 /**
@@ -35,29 +36,16 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('app_logo')
                     ->defaultNull()
                     ->info('Path of logo')
+                    ->end()
+                ->scalarNode('menu')
+                    ->defaultValue(BaseAdminMenu::class)
+                    ->info('Name of menu to use on admin')
                     ->end();
 
-        $this->addMenuSection($rootNode);
         $this->addUserSection($rootNode);
         $this->notificationSection($rootNode);
 
         return $treeBuilder;
-    }
-
-    private function addMenuSection(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode->children()
-            ->arrayNode('menu')->addDefaultsIfNotSet()
-            ->children()
-                ->scalarNode('alias')
-                    ->cannotBeEmpty()
-                    ->defaultValue('admin_sidebar')
-                    ->info('Alias of admin sidebar')
-                    ->end()
-                ->arrayNode('options')
-                    ->variablePrototype()->end()
-                    ->info('Options of menu')
-                    ->end();
     }
 
     private function addUserSection(ArrayNodeDefinition $rootNode)

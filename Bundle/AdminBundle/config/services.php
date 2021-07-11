@@ -6,8 +6,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Umbrella\AdminBundle\Maker\MakeAdminUser;
 use Umbrella\AdminBundle\Maker\MakeTable;
 use Umbrella\AdminBundle\Maker\MakeTree;
-use Umbrella\AdminBundle\Menu\AdminMenuHelper;
-use Umbrella\AdminBundle\Menu\SidebarMenu;
+use Umbrella\AdminBundle\Menu\BaseAdminMenu;
 use Umbrella\AdminBundle\Security\AuthenticationEntryPoint;
 use Umbrella\AdminBundle\Twig\AdminExtension;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
@@ -24,15 +23,9 @@ return static function (ContainerConfigurator $configurator): void {
     // Security
     $services->set(AuthenticationEntryPoint::class);
 
-    // Sidebar
-    $services->set(AdminMenuHelper::class)
-        ->bind('$menuAlias', param('umbrella_admin.menu_alias'));
-
-    $services->set(SidebarMenu::class)
-        ->bind('$projectDir', param('kernel.project_dir'))
-        ->tag('umbrella.menu.factory', ['method' => 'createMenu', 'alias' => 'admin_sidebar'])
-        ->tag('umbrella.menu.renderer', ['method' => 'renderMenu', 'alias' => 'admin_sidebar'])
-        ->tag('umbrella.breadcrumb.renderer', ['method' => 'renderBreadcrumb', 'alias' => 'admin_sidebar']);
+    // Menu
+    $services->set(BaseAdminMenu::class)
+        ->tag('umbrella.menu.type');
 
     // Admin
     $services->set(AdminExtension::class)

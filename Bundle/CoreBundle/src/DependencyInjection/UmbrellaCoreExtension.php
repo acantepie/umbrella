@@ -13,6 +13,8 @@ use Umbrella\CoreBundle\DataTable\DataTableConfiguration;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
 use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\Form\Extension\FormTypeExtension;
+use Umbrella\CoreBundle\Menu\MenuRegistry;
+use Umbrella\CoreBundle\Menu\MenuType;
 use Umbrella\CoreBundle\Twig\CoreExtension;
 use Umbrella\CoreBundle\Widget\Type\WidgetType;
 use Umbrella\CoreBundle\Widget\WidgetRegistry;
@@ -61,5 +63,6 @@ class UmbrellaCoreExtension extends Extension
         $container->registerForAutoconfiguration(ColumnType::class)->addTag(DataTableRegistry::TAG_COLUMN_TYPE);
         $container->registerForAutoconfiguration(DataTableAdapter::class)->addTag(DataTableRegistry::TAG_ADAPTER);
         $container->registerForAutoconfiguration(WidgetType::class)->addTag(WidgetRegistry::TAG_TYPE);
+        $container->registerForAutoconfiguration(MenuType::class)->addTag(MenuRegistry::TAG_TYPE);
     }
 }
