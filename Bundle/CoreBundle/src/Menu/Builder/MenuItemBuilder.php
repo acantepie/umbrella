@@ -31,36 +31,48 @@ class MenuItemBuilder
         return new MenuItemBuilder($child, $this->menuBuilder, $this);
     }
 
-    public function setLabel(string $label): MenuItemBuilder
+    public function label(string $label): MenuItemBuilder
     {
         $this->item->setLabel($label);
 
         return $this;
     }
 
-    public function setRoute(?string $route, array $routeParams = []): MenuItemBuilder
+    public function route(string $route, array $routeParams = []): MenuItemBuilder
     {
-        $this->item->setRoute($route);
-        $this->item->setRouteParams($routeParams);
+        $this->item->setRoute($route, $routeParams);
+        return $this;
+    }
+
+    public function matchRoute(string $route, array $routeParams = []): MenuItemBuilder
+    {
+        $this->item->addMatchingRoute($route, $routeParams);
 
         return $this;
     }
 
-    public function setIcon(string $icon): MenuItemBuilder
+    public function icon(string $icon): MenuItemBuilder
     {
         $this->item->setIcon($icon);
 
         return $this;
     }
 
-    public function setTranslationDomain(?string $translationDomain): MenuItemBuilder
+    public function translationDomain(?string $translationDomain): MenuItemBuilder
     {
         $this->item->setTranslationDomain($translationDomain);
 
         return $this;
     }
 
-    public function setCurrent(bool $current = true): MenuItemBuilder
+    public function show(bool $show = true): MenuItemBuilder
+    {
+        $this->item->setVisible($show);
+
+        return $this;
+    }
+
+    public function current(bool $current = true): MenuItemBuilder
     {
         if ($current) {
             $this->menuBuilder->setCurrent($this->item);

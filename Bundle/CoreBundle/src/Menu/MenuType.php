@@ -13,11 +13,11 @@ abstract class MenuType
 
     public function renderMenu(Menu $menu, array $options = []): string
     {
-        return '';
+        throw new \LogicException('To render menu, you must implements renderMenu()');
     }
 
     public function renderBreadcrumb(array $breadcrumb, array $options = []): string
     {
-        return '';
+        throw new \LogicException('To render breadcrumb, you must implements renderBreadcrumb()');
     }
 }

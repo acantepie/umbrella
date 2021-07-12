@@ -30,6 +30,8 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     protected array $routeParams = [];
 
+    protected array $matchingRoutes = [];
+
     protected bool $active = false;
 
     protected bool $visible = true;
@@ -123,21 +125,34 @@ class MenuItem implements \Countable, \IteratorAggregate
         return $this->route;
     }
 
-    public function setRoute(?string $route): self
-    {
-        $this->route = $route;
-
-        return $this;
-    }
-
     public function getRouteParams(): array
     {
         return $this->routeParams;
     }
 
-    public function setRouteParams(array $routeParams): self
+    public function setRoute(string $route, array $routeParams = []): self
     {
+        $this->route = $route;
         $this->routeParams = $routeParams;
+        $this->addMatchingRoute($route, $routeParams);
+        return $this;
+    }
+
+    public function getMatchingRoutes(): array
+    {
+        return $this->matchingRoutes;
+    }
+
+    public function addMatchingRoute(string $route, array $routeParams): self
+    {
+        $this->matchingRoutes[$route] = $routeParams;
+
+        return $this;
+    }
+
+    public function clearMatchingRoutes(): self
+    {
+        $this->matchingRoutes = [];
 
         return $this;
     }

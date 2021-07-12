@@ -2,12 +2,16 @@
 
 namespace Umbrella\CoreBundle\Menu;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Umbrella\CoreBundle\Menu\DTO\Menu;
 use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 
 class MenuResolverCurrent
 {
+    public const CONTINUE_TRAVERSE = 0;
+    public const STOP_TRAVERSE = 1;
+
     private RequestStack $requestStack;
 
     /**
@@ -28,34 +32,48 @@ class MenuResolverCurrent
         $this->resolveActive($menu);
     }
 
-    private function findCurrent(MenuItem $item): void
+    private function findCurrent(MenuItem $item): int
     {
         if ($this->isItemMatch($item)) {
             $item->getMenu()->setCurrent($item);
-            return;
+            return self::STOP_TRAVERSE;
         }
 
         foreach ($item->getChildren() as $child) {
-            $this->findCurrent($child);
+            if (self::STOP_TRAVERSE === $this->findCurrent($child)) {
+                return self::STOP_TRAVERSE;
+            }
         }
+
+        return self::CONTINUE_TRAVERSE;
     }
 
     private function isItemMatch(MenuItem $item): bool
     {
-        $testRoute = $item->getRoute();
-        $testRouteParams = $item->getRouteParams();
-
-        if (null === $testRoute) {
-            return false;
-        }
-
         $request = $this->requestStack->getMainRequest();
-        $route = $request->attributes->get('_route');
-        if ($testRoute !== $route) {
+
+        if (null === $request) { // no request, no match
             return false;
         }
 
-        foreach ($testRouteParams as $key => $value) {
+        $currentRoute = $request->attributes->get('_route');
+
+        if (null === $currentRoute) { // no route, no match
+            return false;
+        }
+
+        foreach ($item->getMatchingRoutes() as $route => $params) {
+            if ($currentRoute === $route && $this->paramsAreInrequest($params, $request)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function paramsAreInrequest(array $params, Request $request)
+    {
+        foreach ($params as $key => $value) {
             if ($request->get($key) != $value) {
                 return false;
             }

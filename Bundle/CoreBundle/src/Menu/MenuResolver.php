@@ -2,13 +2,16 @@
 
 namespace Umbrella\CoreBundle\Menu;
 
+use Twig\Environment;
 use Umbrella\CoreBundle\Menu\Builder\MenuBuilder;
 use Umbrella\CoreBundle\Menu\DTO\Menu;
 
 class MenuResolver
 {
+    private Environment $twig;
     private MenuRegistry $registry;
     private MenuResolverCurrent $resolverCurrent;
+    private MenuResolverVisibility $resolverVisibility;
 
     /**
      * @var Menu[]
@@ -19,10 +22,16 @@ class MenuResolver
     /**
      * MenuResolver constructor.
      */
-    public function __construct(MenuRegistry $registry, MenuResolverCurrent $resolverCurrent)
+    public function __construct(
+        Environment $twig,
+        MenuRegistry $registry,
+        MenuResolverCurrent $resolverCurrent,
+        MenuResolverVisibility $resolverVisibility)
     {
+        $this->twig = $twig;
         $this->registry = $registry;
         $this->resolverCurrent = $resolverCurrent;
+        $this->resolverVisibility = $resolverVisibility;
     }
 
     private function resolve(string $name): Menu
@@ -35,6 +44,7 @@ class MenuResolver
             $menu = $builder->getMenu();
 
             $this->resolverCurrent->resolve($menu);
+            $this->resolverVisibility->resolve($menu);
 
             $this->resolvedMenu[$name] = $menu;
         }
@@ -44,6 +54,7 @@ class MenuResolver
 
     public function render(string $name, array $options = []): string
     {
+        $options['twig'] = $this->twig;
         $menu = $this->resolve($name);
         $type = $this->registry->getType($name);
 

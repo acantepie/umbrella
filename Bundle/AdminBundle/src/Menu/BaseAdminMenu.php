@@ -14,7 +14,7 @@ class BaseAdminMenu extends MenuType
     protected UmbrellaAdminConfiguration $configuration;
 
     /**
-     * SidebarMenu constructor.
+     * BaseAdminMenu constructor.
      */
     public function __construct(Environment $twig, UmbrellaAdminConfiguration $configuration)
     {
@@ -22,7 +22,7 @@ class BaseAdminMenu extends MenuType
         $this->configuration = $configuration;
     }
 
-    public function getOptions(): array
+    public function defaultOptions(): array
     {
         return [
             'logo_route' => null,
@@ -34,6 +34,9 @@ class BaseAdminMenu extends MenuType
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function buildMenu(MenuBuilder $builder)
     {
     }
@@ -45,15 +48,18 @@ class BaseAdminMenu extends MenuType
     {
         return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
             'menu' => $menu,
-            'options' => array_merge($this->getOptions(), $options),
+            'options' => array_merge($this->defaultOptions(), $options),
         ]);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function renderBreadcrumb(array $breadcrumb, array $options = []): string
     {
         return $this->twig->render('@UmbrellaAdmin/Menu/breadcrumb.html.twig', [
             'breadcrumb' => $breadcrumb,
-            'options' => $options,
+            'options' => array_merge($this->defaultOptions(), $options),
         ]);
     }
 }

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block menu_title %}
-    {% if true %} {# if menu is granted #}
+    {% if item.isVisible() %}
         <li class="side-nav-title side-nav-item">{{ block('menu_item_label') }}</li>
 
         {% for item in item %}
@@ -19,7 +19,7 @@
     {% set id = item.id %}
     {% set isTopLevel = level == 2 %}
 
-    {% if true %} {# if menu is granted #}
+    {% if item.isVisible() %}
         <li class="side-nav-item {{ item.isActive() ? 'menuitem-active' }}" data-lvl="{{ level }}">
             <a {{ block('menu_url') }} class="{{ isTopLevel ? 'side-nav-link' }} menu-link" {% if item.hasChildren() %}data-bs-toggle="collapse"{% endif %}>
                 {% if item.icon %}
