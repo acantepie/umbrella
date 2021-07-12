@@ -13,6 +13,7 @@ use Symfony\Bundle\MakerBundle\Validator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
@@ -61,6 +62,8 @@ class MakeTree extends AbstractMaker
 
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
     {
+        $controllerNamespace = $this->askControllerNamespace($io);
+
         $editOnModal = $io->askQuestion(new ConfirmationQuestion('Edit entity on a modal', true));
         $createTemplate = $io->askQuestion(new ConfirmationQuestion('Create twig template', true));
 
@@ -69,14 +72,14 @@ class MakeTree extends AbstractMaker
         $repository = $generator->createClassNameDetails($entity->getShortName(), 'Repository\\', 'Repository');
         $form = $generator->createClassNameDetails($entity->getShortName(), 'Form\\', 'Type');
         $table = $generator->createClassNameDetails($entity->getShortName(), 'DataTable\\', 'TableType', );
-        $controller = $generator->createClassNameDetails($entity->getShortName(), 'Controller\\Admin\\', 'Controller');
+        $controller = $generator->createClassNameDetails($controllerNamespace . $entity->getShortName(), 'Controller\\', 'Controller');
 
         $routePath = Str::asRoutePath($controller->getRelativeNameWithoutSuffix());
-        $routeName = 'app_admin_' . Str::asRouteName($controller->getRelativeNameWithoutSuffix());
+        $routeName = 'app_' . Str::asRouteName($controller->getRelativeNameWithoutSuffix());
 
         if ($createTemplate) {
-            $indexTemplateName = 'admin/' . Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/index.html.twig';
-            $editTemplateName = 'admin/' . Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/edit.html.twig';
+            $indexTemplateName = Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/index.html.twig';
+            $editTemplateName = Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/edit.html.twig';
         } else {
             $indexTemplateName = '@UmbrellaAdmin/DataTable/index.html.twig';
 
@@ -136,5 +139,27 @@ class MakeTree extends AbstractMaker
         $question->setAutocompleterValues($this->doctrineHelper->getEntitiesForAutocomplete());
 
         return $question;
+    }
+
+    private function askControllerNamespace(ConsoleStyle $io): ?string
+    {
+        $question = new ChoiceQuestion('Namespace of your your Controller', [
+            'admin', 'none', 'other'
+        ], 0);
+
+        $answer = $io->askQuestion($question);
+
+        if ('admin' === $answer) {
+            return 'Admin\\';
+        }
+
+        if ('other' === $answer) {
+            $question = new Question('Specify');
+            $question->setValidator([Validator::class, 'notBlank']);
+            $answer = $io->askQuestion($question);
+            return rtrim($answer, '\\') . '\\';
+        }
+
+        return null;
     }
 }

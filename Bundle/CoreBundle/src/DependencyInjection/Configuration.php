@@ -103,7 +103,7 @@ class Configuration implements ConfigurationInterface
                         ->info('Default css class for datatable.')
                         ->end()
                     ->scalarNode('tree_class')
-                        ->defaultValue('table table-centered')
+                        ->defaultValue('table table-centered dt-responsive w-100')
                         ->info('Default css class for tree datatable.')
                         ->end()
                     ->scalarNode('dom')
