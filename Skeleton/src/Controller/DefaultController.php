@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
-use Umbrella\CoreBundle\Controller\BaseController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/")
  */
-class DefaultController extends BaseController
+class DefaultController extends AbstractController
 {
     /**
      * @Route("")

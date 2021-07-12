@@ -3,12 +3,12 @@
 namespace App\Controller\Admin;
 
 use Symfony\Component\Routing\Annotation\Route;
-use Umbrella\AdminBundle\Controller\AdminController;
+use Umbrella\CoreBundle\Controller\BaseController;
 
 /**
  * @Route("")
  */
-class DefaultController extends AdminController
+class DefaultController extends BaseController
 {
     /**
      * @Route("")
