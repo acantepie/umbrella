@@ -44,7 +44,7 @@ class BaseAdminMenu extends MenuType
     /**
      * {@inheritDoc}
      */
-    public function renderMenu(Menu $menu, array $options = []): string
+    public function renderMenu(Menu $menu, array $options): string
     {
         return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
             'menu' => $menu,
@@ -55,7 +55,7 @@ class BaseAdminMenu extends MenuType
     /**
      * {@inheritDoc}
      */
-    public function renderBreadcrumb(array $breadcrumb, array $options = []): string
+    public function renderBreadcrumb(array $breadcrumb, array $options): string
     {
         return $this->twig->render('@UmbrellaAdmin/Menu/breadcrumb.html.twig', [
             'breadcrumb' => $breadcrumb,
