@@ -10,8 +10,6 @@ class MenuResolver
 {
     private Environment $twig;
     private MenuRegistry $registry;
-    private MenuResolverCurrent $resolverCurrent;
-    private MenuResolverVisibility $resolverVisibility;
 
     /**
      * @var Menu[]
@@ -22,16 +20,10 @@ class MenuResolver
     /**
      * MenuResolver constructor.
      */
-    public function __construct(
-        Environment $twig,
-        MenuRegistry $registry,
-        MenuResolverCurrent $resolverCurrent,
-        MenuResolverVisibility $resolverVisibility)
+    public function __construct(Environment $twig, MenuRegistry $registry)
     {
         $this->twig = $twig;
         $this->registry = $registry;
-        $this->resolverCurrent = $resolverCurrent;
-        $this->resolverVisibility = $resolverVisibility;
     }
 
     private function resolve(string $name): Menu
@@ -43,8 +35,9 @@ class MenuResolver
             $type->buildMenu($builder);
             $menu = $builder->getMenu();
 
-            $this->resolverCurrent->resolve($menu);
-            $this->resolverVisibility->resolve($menu);
+            foreach ($menu->getVisitors() as $visitorName) {
+                $this->registry->getVisitor($visitorName)->visit($menu);
+            }
 
             $this->resolvedMenu[$name] = $menu;
         }

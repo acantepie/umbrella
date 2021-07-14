@@ -6,20 +6,15 @@ use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 
 class MenuItemBuilder
 {
-    protected MenuBuilder $menuBuilder;
     protected ?MenuItemBuilder $parentBuilder = null;
-
     protected MenuItem $item;
-
-    protected bool $current = false;
 
     /**
      * MenuItemBuilder constructor.
      */
-    public function __construct(MenuItem $item, MenuBuilder $menuBuilder, ?MenuItemBuilder $parentBuilder = null)
+    public function __construct(MenuItem $item, ?MenuItemBuilder $parentBuilder = null)
     {
         $this->item = $item;
-        $this->menuBuilder = $menuBuilder;
         $this->parentBuilder = $parentBuilder;
     }
 
@@ -28,7 +23,7 @@ class MenuItemBuilder
         $child = new MenuItem($this->item->getMenu(), $id);
         $this->item->addChild($child);
 
-        return new MenuItemBuilder($child, $this->menuBuilder, $this);
+        return new MenuItemBuilder($child, $this);
     }
 
     public function label(string $label): MenuItemBuilder
@@ -75,8 +70,11 @@ class MenuItemBuilder
     public function current(bool $current = true): MenuItemBuilder
     {
         if ($current) {
-            $this->menuBuilder->setCurrent($this->item);
+            $this->item->getMenu()->setCurrent($this->item);
+        } elseif ($this->item->getMenu()->getCurrent() === $this->item) {
+            $this->item->getMenu()->setCurrent(null);
         }
+
         return $this;
     }
 

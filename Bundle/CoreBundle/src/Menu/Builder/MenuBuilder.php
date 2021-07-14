@@ -3,7 +3,8 @@
 namespace Umbrella\CoreBundle\Menu\Builder;
 
 use Umbrella\CoreBundle\Menu\DTO\Menu;
-use Umbrella\CoreBundle\Menu\DTO\MenuItem;
+use Umbrella\CoreBundle\Menu\Visitor\MenuCurrentVisitor;
+use Umbrella\CoreBundle\Menu\Visitor\MenuVisibilityVisitor;
 
 class MenuBuilder
 {
@@ -17,13 +18,7 @@ class MenuBuilder
     public function __construct()
     {
         $this->menu = new Menu();
-        $this->rootBuilder = new MenuItemBuilder($this->menu->getRoot(), $this);
-    }
-
-    public function setCurrent(MenuItem $item): MenuBuilder
-    {
-        $this->menu->setCurrent($item);
-        return $this;
+        $this->rootBuilder = new MenuItemBuilder($this->menu->getRoot());
     }
 
     public function root(): MenuItemBuilder
@@ -33,6 +28,12 @@ class MenuBuilder
 
     public function getMenu(): Menu
     {
+        // menu visitor isn't configurable
+        $this->menu
+            ->clearVisitors()
+            ->addVisitor(MenuVisibilityVisitor::class)
+            ->addVisitor(MenuCurrentVisitor::class);
+
         return $this->menu;
     }
 }

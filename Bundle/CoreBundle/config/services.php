@@ -27,6 +27,8 @@ use Umbrella\CoreBundle\Menu\MenuResolver;
 use Umbrella\CoreBundle\Menu\MenuResolverCurrent;
 use Umbrella\CoreBundle\Menu\MenuResolverVisibility;
 use Umbrella\CoreBundle\Menu\Twig\MenuExtension;
+use Umbrella\CoreBundle\Menu\Visitor\MenuCurrentVisitor;
+use Umbrella\CoreBundle\Menu\Visitor\MenuVisibilityVisitor;
 use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
 use Umbrella\CoreBundle\Search\EntityIndexer;
 use Umbrella\CoreBundle\Search\SearchableEntitySubscriber;
@@ -51,8 +53,10 @@ return static function (ContainerConfigurator $configurator): void {
     // -- Menu -- //
     $services->set(MenuRegistry::class);
     $services->set(MenuResolver::class);
-    $services->set(MenuResolverCurrent::class);
-    $services->set(MenuResolverVisibility::class);
+    $services->set(MenuVisibilityVisitor::class)
+        ->tag('umbrella.menu.visitor');
+    $services->set(MenuCurrentVisitor::class)
+        ->tag('umbrella.menu.visitor');
     $services->set(MenuExtension::class)
         ->tag('twig.extension');
 

@@ -27,6 +27,7 @@ class UmbrellaComponentPass implements CompilerPassInterface
 
         $registry = $container->getDefinition(MenuRegistry::class);
         $this->addToRegistry($container, $registry, MenuRegistry::TAG_TYPE, 'registerType');
+        $this->addToRegistry($container, $registry, MenuRegistry::TAG_VISITOR, 'registerVisitor');
     }
 
     private function addToRegistry(ContainerBuilder $container, Definition $registry, string $tag, string $method)

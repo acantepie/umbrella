@@ -132,6 +132,10 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     public function setRoute(string $route, array $routeParams = []): self
     {
+        if (null !== $this->route) {
+            $this->removeMatchingRoute($this->route);
+        }
+
         $this->route = $route;
         $this->routeParams = $routeParams;
         $this->addMatchingRoute($route, $routeParams);
@@ -146,6 +150,13 @@ class MenuItem implements \Countable, \IteratorAggregate
     public function addMatchingRoute(string $route, array $routeParams): self
     {
         $this->matchingRoutes[$route] = $routeParams;
+
+        return $this;
+    }
+
+    public function removeMatchingRoute(string $route): self
+    {
+        unset($this->matchingRoutes[$route]);
 
         return $this;
     }

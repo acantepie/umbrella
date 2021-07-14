@@ -1,14 +1,14 @@
 <?php
 
-namespace Umbrella\CoreBundle\Menu;
+namespace Umbrella\CoreBundle\Menu\Visitor;
 
 use Umbrella\CoreBundle\Menu\DTO\Menu;
 use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 
-class MenuResolverVisibility
+class MenuVisibilityVisitor implements MenuVisitor
 {
     // If all child are hidden => then parent should be hidden
-    public function resolve(Menu $menu)
+    public function visit(Menu $menu): void
     {
         $this->resolveVisible($menu->getRoot());
     }

@@ -1,16 +1,16 @@
 <?php
 
-namespace Umbrella\CoreBundle\Menu;
+namespace Umbrella\CoreBundle\Menu\Visitor;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Umbrella\CoreBundle\Menu\DTO\Menu;
 use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 
-class MenuResolverCurrent
+class MenuCurrentVisitor implements MenuVisitor
 {
-    public const CONTINUE_TRAVERSE = 0;
-    public const STOP_TRAVERSE = 1;
+    private const CONTINUE_TRAVERSE = 0;
+    private const STOP_TRAVERSE = 1;
 
     private RequestStack $requestStack;
 
@@ -22,7 +22,7 @@ class MenuResolverCurrent
         $this->requestStack = $requestStack;
     }
 
-    public function resolve(Menu $menu)
+    public function visit(Menu $menu): void
     {
         if (null === $menu->getCurrent()) {
             // find current depending of current request
