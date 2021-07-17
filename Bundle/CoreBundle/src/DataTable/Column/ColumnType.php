@@ -37,9 +37,18 @@ class ColumnType
 
             ->setDefault('render', null)
             ->setAllowedTypes('render', ['null', 'callable'])
+            ->setNormalizer('render', function (Options $options, $value) {
+                return $options['render_html'] ?? $value;
+            })
+
+            ->setDefault('render_html', null)
+            ->setAllowedTypes('render_html', ['null', 'callable'])
 
             ->setDefault('is_safe_html', true)
-            ->setAllowedTypes('is_safe_html', 'bool');
+            ->setAllowedTypes('is_safe_html', 'bool')
+            ->setNormalizer('is_safe_html', function (Options $options, $value) {
+                return $options['render_html'] ? true : $value;
+            });
     }
 
     public function render($rowData, array $options): string
