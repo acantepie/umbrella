@@ -25,9 +25,6 @@ class MenuExtension extends AbstractExtension
     {
         return [
             new TwigFunction('menu_render', [$this->resolver, 'render'], ['is_safe' => ['html']]),
-
-            new TwigFunction('breadcrumb', [$this->resolver, 'resolveBreadcrumb']),
-            new TwigFunction('breadcrumb_render', [$this->resolver, 'renderBreadcrumb'], ['is_safe' => ['html']]),
         ];
     }
 }

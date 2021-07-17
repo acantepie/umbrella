@@ -15,9 +15,4 @@ abstract class MenuType
     {
         throw new \LogicException('To render menu, you must implements renderMenu()');
     }
-
-    public function renderBreadcrumb(array $breadcrumb, array $options): string
-    {
-        throw new \LogicException('To render breadcrumb, you must implements renderBreadcrumb()');
-    }
 }

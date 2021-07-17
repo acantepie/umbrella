@@ -14,6 +14,6 @@
     </button>
 
     {% block breadcrumb %}
-        {{ breadcrumb_render(uac.menuName()) }}
+        {% include "@UmbrellaAdmin/_breadcrumb.html.twig" %}
     {% endblock %}
 </div>

@@ -15,7 +15,6 @@ class MenuResolver
      * @var Menu[]
      */
     private array $resolvedMenu = [];
-    private array $resolvedBreadcrumb = [];
 
     /**
      * MenuResolver constructor.
@@ -26,7 +25,7 @@ class MenuResolver
         $this->registry = $registry;
     }
 
-    private function resolve(string $name): Menu
+    public function resolve(string $name): Menu
     {
         if (!isset($this->resolvedMenu[$name])) {
             $type = $this->registry->getType($name);
@@ -52,41 +51,5 @@ class MenuResolver
         $type = $this->registry->getType($name);
 
         return $type->renderMenu($menu, $options);
-    }
-
-    // breadcrumb resolver
-
-    public function resolveBreadcrumb(string $name): array
-    {
-        if (!isset($this->resolvedBreadcrumb[$name])) {
-            $bc = [];
-
-            $menu = $this->resolve($name);
-            $item = $menu->getCurrent();
-
-            while (null !== $item && !$item->isRoot()) {
-                $bc[] = [
-                    'label' => $item->getLabel(),
-                    'translation_domain' => $item->getTranslationDomain(),
-                    'route' => $item->getRoute(),
-                    'route_params' => $item->getRouteParams(),
-                    'icon' => $item->getIcon()
-                ];
-
-                $item = $item->getParent();
-            }
-
-            $this->resolvedBreadcrumb[$name] = array_reverse($bc);
-        }
-
-        return $this->resolvedBreadcrumb[$name];
-    }
-
-    public function renderBreadcrumb(string $name, array $options = []): string
-    {
-        $bc = $this->resolveBreadcrumb($name);
-        $type = $this->registry->getType($name);
-
-        return $type->renderBreadcrumb($bc, $options);
     }
 }

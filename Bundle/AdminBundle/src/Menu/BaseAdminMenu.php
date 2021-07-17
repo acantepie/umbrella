@@ -51,15 +51,4 @@ class BaseAdminMenu extends MenuType
             'options' => array_merge($this->defaultOptions(), $options),
         ]);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function renderBreadcrumb(array $breadcrumb, array $options): string
-    {
-        return $this->twig->render('@UmbrellaAdmin/Menu/breadcrumb.html.twig', [
-            'breadcrumb' => $breadcrumb,
-            'options' => array_merge($this->defaultOptions(), $options),
-        ]);
-    }
 }
