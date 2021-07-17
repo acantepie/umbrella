@@ -12,9 +12,5 @@ export default class DatePicker extends HTMLInputElement {
     connectedCallback() {
         this.flatpickr = flatpickr(this, this.options);
     }
-
-    disconnectedCallback() {
-        this.flatpickr.destroy();
-    }
 }
 
