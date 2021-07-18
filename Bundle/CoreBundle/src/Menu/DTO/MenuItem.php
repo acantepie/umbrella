@@ -42,13 +42,13 @@ class MenuItem implements \Countable, \IteratorAggregate
     public function __construct(Menu $menu, string $name)
     {
         $this->menu = $menu;
-        $this->name = u($name)->snake();
+        $this->name = $name;
         $this->label = Utils::humanize($name);
     }
 
     public function getId(): string
     {
-        return sprintf('menu-item-%s-%d', $this->name, $this->getLevel());
+        return sprintf('menu-item-%s-%d', u($this->name)->snake(), $this->getLevel());
     }
 
     public function getMenu(): Menu

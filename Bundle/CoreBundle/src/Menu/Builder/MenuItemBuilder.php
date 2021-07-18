@@ -7,6 +7,8 @@ use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 class MenuItemBuilder
 {
     protected ?MenuItemBuilder $parentBuilder = null;
+    protected array $childrenBuilder = [];
+
     protected MenuItem $item;
 
     /**
@@ -23,7 +25,18 @@ class MenuItemBuilder
         $child = new MenuItem($this->item->getMenu(), $id);
         $this->item->addChild($child);
 
-        return new MenuItemBuilder($child, $this);
+        $this->childrenBuilder[$id] = new MenuItemBuilder($child, $this);
+        return $this->childrenBuilder[$id];
+    }
+
+    public function get(string $id): MenuItemBuilder
+    {
+        return $this->childrenBuilder[$id];
+    }
+
+    public function has(string $id): bool
+    {
+        return isset($this->childrenBuilder[$id]);
     }
 
     public function label(string $label): MenuItemBuilder
