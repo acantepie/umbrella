@@ -55,9 +55,9 @@ Create a controller on your project :
 namespace App\Controller\Admin;
 
 use Symfony\Component\Routing\Annotation\Route;
-use Umbrella\AdminBundle\Controller\AdminController;
+use Umbrella\CoreBundle\Controller\BaseController;
 
-class DefaultController extends AdminController
+class DefaultController extends BaseController
 {
     /**
      * @Route("/admin", name="admin_home")
@@ -71,16 +71,38 @@ class DefaultController extends AdminController
 ```
 Note, all your admin view must extends `@UmbrellaAdmin/layout.html.twig`.
 
-To configure menu create a yaml file `config/menu/admin_sidebar.yaml` :
+Additionally, you can add entry on menu :
+```php
+// src/Menu/AdminMenu.php
+<?php
+
+namespace App\Menu;
+
+use Umbrella\AdminBundle\Menu\BaseAdminMenu;
+use Umbrella\CoreBundle\Menu\Builder\MenuBuilder;
+
+class AdminMenu extends BaseAdminMenu
+{
+
+    public function buildMenu(MenuBuilder $builder)
+    {
+        $builder->root()
+            ->add('My app')
+                ->add('Home')
+                    ->icon('uil-home')
+                    ->route('admin_home');
+    }
+
+}
+```
+
 ```yaml
-# config/menu/admin_sidebar.yaml
-app:
-    children:
-        home: # Name of menu entry
-            icon: mdi mdi-home # Icon of menu entry (you can use https://materialdesignicons.com/ or https://iconscout.com/unicons)
-            route: admin_home # Route of menu entry
+# app/config/packages/umbrella_admin.yaml
+umbrella_admin:
+  menu: App\Menu\AdminMenu
 ```
 Et voila.
+
 
 ### Manager admin user with doctrine
 Create user entity with maker :
@@ -89,14 +111,14 @@ php bin/console make:admin_user
 ```
 Enable admin CRUD and security views :
 ```yaml
-# config/packages/umbrella_admin.yaml
+# app/config/packages/umbrella_admin.yaml
 umbrella_admin:
   user:
     class: App\Entity\AdminUser
 ```
 
 ```yaml
-# config/routes/umbrella_admin.yaml
+# app/config/routes.yaml
 admin_user_:
   resource: "@UmbrellaAdminBundle/config/routes/user.yaml"
   prefix: /admin
@@ -107,14 +129,21 @@ admin_userprofile_:
 ```
 
 Add entry on menu :
-```yaml
-# config/menu/admin_sidebar.yaml
-app:
-  children:
-    ...
-    users:
-      icon: uil-user
-      route: umbrella_admin_user_index
+```php
+// src/Menu/AdminMenu.php
+public function buildMenu(MenuBuilder $builder)
+{
+    $builder->root()
+        ->add('My app')
+            ->add('Home')
+                ->icon('uil-home')
+                ->route('admin_home')
+                ->end()
+            ->add('Users')
+                ->icon('uil-user')
+                ->route('umbrella_admin_user_index');
+
+}
 ```
 
 Protect all your admin urls by firewall :
