@@ -16,7 +16,7 @@ return [
     'Save' => 'Save',
     'Close' => 'Close',
 
-    'Search ...' => 'Search ...,',
+    'Search ...' => 'Search ...',
 
     'Yes' => 'Yes',
     'No' => 'No',

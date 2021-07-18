@@ -16,7 +16,7 @@ return [
     'Save' => 'Sauvegarder',
     'Close' => 'Fermer',
 
-    'Search ...' => 'Rechercher ...,',
+    'Search ...' => 'Rechercher ...',
 
     'Yes' => 'Oui',
     'No' => 'Non',
