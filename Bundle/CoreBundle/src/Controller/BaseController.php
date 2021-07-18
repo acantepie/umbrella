@@ -21,8 +21,8 @@ abstract class BaseController extends AbstractController
     public static function getSubscribedServices()
     {
         return parent::getSubscribedServices() + [
-                'datatable.factory' => DataTableFactory::class,
-                'jsresponse.builder' => JsResponseBuilder::class,
+                DataTableFactory::class => DataTableFactory::class,
+                JsResponseBuilder::class => JsResponseBuilder::class,
                 'translator' => TranslatorInterface::class,
             ];
     }
@@ -71,24 +71,21 @@ abstract class BaseController extends AbstractController
         return $e;
     }
 
-    protected function jsResponseBuilder(): JsResponseBuilder
+    protected function js(): JsResponseBuilder
     {
-        /** @phpstan-ignore-next-line */
-        return $this->get('jsresponse.builder');
+        return $this->get(JsResponseBuilder::class);
     }
 
     // DataTable Api
 
     protected function createTable(string $type, array $options = []): DataTable
     {
-        /** @phpstan-ignore-next-line */
-        return $this->get('datatable.factory')->create($type, $options);
+        return $this->get(DataTableFactory::class)->create($type, $options);
     }
 
     protected function createTableBuilder(array $options = []): DataTableBuilder
     {
-        /** @phpstan-ignore-next-line */
-        return $this->get('datatable.factory')->createBuilder(DataTableType::class, $options);
+        return $this->get(DataTableFactory::class)->createBuilder(DataTableType::class, $options);
     }
 
     // Toast Api

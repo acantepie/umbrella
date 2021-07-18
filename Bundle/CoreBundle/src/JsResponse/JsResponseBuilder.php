@@ -2,13 +2,14 @@
 
 namespace Umbrella\CoreBundle\JsResponse;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 use Umbrella\CoreBundle\Toast\Toast;
 
-class JsResponseBuilder implements \Countable
+class JsResponseBuilder extends Response implements \Countable
 {
     public const EVAL = 'eval';
     public const REDIRECT = 'redirect';
