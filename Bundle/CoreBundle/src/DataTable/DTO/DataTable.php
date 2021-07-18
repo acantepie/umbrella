@@ -2,9 +2,11 @@
 
 namespace Umbrella\CoreBundle\DataTable\DTO;
 
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Umbrella\CoreBundle\DataTable\Adapter\AdapterException;
 use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
+use Umbrella\CoreBundle\DataTable\Adapter\DoctrineAdapterInterface;
 
 class DataTable
 {
@@ -93,16 +95,6 @@ class DataTable
         return isset($this->columns[$name]);
     }
 
-    public function getAdapter(): DataTableAdapter
-    {
-        return $this->adapter;
-    }
-
-    public function getAdapterOptions(): array
-    {
-        return $this->adapterOptions;
-    }
-
     public function getOptions(): array
     {
         return $this->options;
@@ -166,7 +158,7 @@ class DataTable
         }
 
         try {
-            $result = $this->adapter->getResult($this->state, $this->adapterOptions);
+            $result = $this->getAdapterResult();
         } catch (AdapterException $exception) {
             return DataTableResponse::createError($exception->getMessage());
         }
@@ -183,5 +175,21 @@ class DataTable
         }
 
         return DataTableResponse::createSuccess($rowViews, $result->getCount(), $this->state->getDraw());
+    }
+
+    // Adapter helper
+
+    public function getAdapterResult(): DataTableResult
+    {
+        return $this->adapter->getResult($this->state, $this->adapterOptions);
+    }
+
+    public function getAdapterQueryBuilder(): QueryBuilder
+    {
+        if ($this->adapter instanceof DoctrineAdapterInterface) {
+            return $this->adapter->getQueryBuilder($this->state, $this->adapterOptions);
+        }
+
+        throw new \LogicException('You must use a DoctrineAdapter if you want to retrieve a query builder.');
     }
 }

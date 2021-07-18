@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
-class EntityAdapter extends DataTableAdapter
+class EntityAdapter extends DataTableAdapter implements DoctrineAdapterInterface
 {
     protected EntityManagerInterface $em;
 
