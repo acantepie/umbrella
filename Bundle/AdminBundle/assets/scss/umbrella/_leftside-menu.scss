@@ -9,4 +9,9 @@
       color: $primary;
     }
   }
+
+  // HACK : simplebar height
+  &.has-search .side-nav {
+    margin-bottom: 48px;
+  }
 }

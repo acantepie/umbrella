@@ -28,6 +28,7 @@
   },
   "scripts": {
     "build": "encore production --progress",
+    "watch": "encore dev --watch",
     "lint": "eslint Bundle/*/assets",
     "lint-fix": "eslint Bundle/*/assets --fix"
   }
