@@ -28,6 +28,8 @@
                 <span>{{ block('menu_item_label') }}</span>
                 {% if item.hasChildren() %}
                     <span class="menu-arrow"></span>
+                {% elseif item.hasBadge() %}
+                    <span class="badge float-end {{ item.badgeClass ?? 'bg-primary' }}">{{ item.badgeLabel }}</span>
                 {% endif %}
             </a>
 

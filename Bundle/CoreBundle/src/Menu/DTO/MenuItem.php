@@ -26,6 +26,9 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     protected ?string $translationDomain = 'messages';
 
+    protected ?string $badgeLabel = null;
+    protected ?string $badgeClass = null;
+
     protected ?string $route = null;
 
     protected array $routeParams = [];
@@ -118,6 +121,28 @@ class MenuItem implements \Countable, \IteratorAggregate
         $this->translationDomain = $translationDomain;
 
         return $this;
+    }
+
+    public function hasBadge(): bool
+    {
+        return !empty($this->badgeLabel);
+    }
+
+    public function setBadge(string $badgeLabel, ?string $badgeClass = null): MenuItem
+    {
+        $this->badgeLabel = $badgeLabel;
+        $this->badgeClass = $badgeClass;
+        return $this;
+    }
+
+    public function getBadgeLabel(): ?string
+    {
+        return $this->badgeLabel;
+    }
+
+    public function getBadgeClass(): ?string
+    {
+        return $this->badgeClass;
     }
 
     public function getRoute(): ?string

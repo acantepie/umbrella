@@ -46,6 +46,12 @@ class MenuItemBuilder
         return $this;
     }
 
+    public function badge(string $label, ?string $class = null): MenuItemBuilder
+    {
+        $this->item->setBadge($label, $class);
+        return $this;
+    }
+
     public function route(string $route, array $routeParams = []): MenuItemBuilder
     {
         $this->item->setRoute($route, $routeParams);
