@@ -62,13 +62,13 @@ class UserController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->update($entity);
 
-            return $this->jsResponseBuilder()
+            return $this->js()
                 ->closeModal()
                 ->reloadTable()
                 ->toastSuccess(t('Item updated'));
         }
 
-        return $this->jsResponseBuilder()
+        return $this->js()
             ->modal('@UmbrellaAdmin/User/edit.html.twig', [
                 'form' => $form->createView(),
                 'entity' => $entity,
@@ -84,7 +84,7 @@ class UserController extends BaseController
         $this->throwNotFoundExceptionIfNull($entity);
         $manager->remove($entity);
 
-        return $this->jsResponseBuilder()
+        return $this->js()
             ->closeModal()
             ->reloadTable()
             ->toastSuccess(t('Item deleted'));

@@ -53,7 +53,7 @@ class <?= $class_name ?> extends BaseController
             $this->persistAndFlush($entity);
 
 <?php if ($edit_on_modal) { ?>
-            return $this->jsResponseBuilder()
+            return $this->js()
                 ->closeModal()
                 ->reloadTable()
                 ->toastSuccess(t('Item updated'));
@@ -66,7 +66,7 @@ class <?= $class_name ?> extends BaseController
         }
 
 <?php if ($edit_on_modal) { ?>
-        return $this->jsResponseBuilder()
+        return $this->js()
             ->modal('<?= $edit_template_name ?>', [
                 'form' => $form->createView(),
                 'entity' => $entity,
@@ -94,7 +94,7 @@ class <?= $class_name ?> extends BaseController
             $repository->moveDown($entity);
         }
 
-        return $this->jsResponseBuilder()
+        return $this->js()
             ->reloadTable();
     }
 <?php } ?>
@@ -107,7 +107,7 @@ class <?= $class_name ?> extends BaseController
         $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
         $this->removeAndFlush($entity);
 
-        return $this->jsResponseBuilder()
+        return $this->js()
             ->reloadTable()
             ->toastSuccess(t('Item deleted'));
     }
