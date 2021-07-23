@@ -2,7 +2,6 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Umbrella\AdminBundle\Command\CreateAdminUserCommand;
 use Umbrella\AdminBundle\Controller\SecurityController;
 use Umbrella\AdminBundle\Controller\UserController;

@@ -2,8 +2,6 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
@@ -24,8 +22,6 @@ use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
 use Umbrella\CoreBundle\JsResponse\JsResponseViewListener;
 use Umbrella\CoreBundle\Menu\MenuRegistry;
 use Umbrella\CoreBundle\Menu\MenuResolver;
-use Umbrella\CoreBundle\Menu\MenuResolverCurrent;
-use Umbrella\CoreBundle\Menu\MenuResolverVisibility;
 use Umbrella\CoreBundle\Menu\Twig\MenuExtension;
 use Umbrella\CoreBundle\Menu\Visitor\MenuCurrentVisitor;
 use Umbrella\CoreBundle\Menu\Visitor\MenuVisibilityVisitor;
@@ -35,7 +31,6 @@ use Umbrella\CoreBundle\Search\SearchableEntitySubscriber;
 use Umbrella\CoreBundle\Tabs\TabsExtension;
 use Umbrella\CoreBundle\Tabs\TabsHelper;
 use Umbrella\CoreBundle\Twig\CoreExtension;
-use Umbrella\CoreBundle\UmbrellaCoreConfiguration;
 use Umbrella\CoreBundle\Widget\Twig\WidgetExtension;
 use Umbrella\CoreBundle\Widget\WidgetFactory;
 use Umbrella\CoreBundle\Widget\WidgetRegistry;
@@ -104,7 +99,8 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('twig.extension');
 
     // -- Tabs -- //
-    $services->set(TabsHelper::class);
+    $services->set(TabsHelper::class)
+        ->bind('$configPath', __DIR__ . '/../src/Tabs/config.yaml');
     $services->set(TabsExtension::class)
         ->tag('twig.extension');
 
@@ -117,7 +113,6 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('doctrine.event_subscriber');
 
     // -- Core -- //
-    $services->set(UmbrellaCoreConfiguration::class);
     $services->set(CoreExtension::class)
         ->arg(0, service('twig.form.renderer'))
         ->tag('twig.extension');

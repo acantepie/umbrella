@@ -2,7 +2,6 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Umbrella\AdminBundle\Maker\MakeAdminUser;
 use Umbrella\AdminBundle\Maker\MakeTable;
 use Umbrella\AdminBundle\Maker\MakeTree;

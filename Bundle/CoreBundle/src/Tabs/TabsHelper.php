@@ -28,15 +28,10 @@ class TabsHelper
     /**
      * TabsHelper constructor.
      */
-    public function __construct(RequestStack $requestStack, RouterInterface $router, ?string $configPath = null)
+    public function __construct(RequestStack $requestStack, RouterInterface $router, string $configPath)
     {
         $this->requestStack = $requestStack;
         $this->router = $router;
-
-        if (null === $configPath) {
-            $configPath = __DIR__ . '/config.yml';
-        }
-
         $this->configPath = $configPath;
     }
 

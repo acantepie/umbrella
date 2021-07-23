@@ -2,7 +2,6 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Umbrella\AdminBundle\Controller\NotificationController;
 
 return static function (ContainerConfigurator $configurator): void {
