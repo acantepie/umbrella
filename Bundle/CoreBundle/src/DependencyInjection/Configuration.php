@@ -5,6 +5,7 @@ namespace Umbrella\CoreBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -78,6 +79,7 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->arrayNode('configs')
                     ->info('List of configs for CkeditorType @see Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration for example.')
+                    ->example(['my_custom_config' => CkeditorConfiguration::EXAMPLE_CONFIG])
                     ->normalizeKeys(false)
                     ->useAttributeAsKey('name')
                     ->arrayPrototype()

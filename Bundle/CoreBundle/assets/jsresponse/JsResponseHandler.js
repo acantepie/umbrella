@@ -1,5 +1,3 @@
-import JsResponseAction from './JsResponseAction';
-import Callback from './action/Callback';
 import ErrorHandler from './ErrorHandler';
 
 export default class JsResponseHandler {
@@ -11,18 +9,13 @@ export default class JsResponseHandler {
 
     // Actions registry
 
-    registerAction(id, obj) {
-        if (obj instanceof JsResponseAction) {
-            this.actionRegistry[id] = obj;
+    registerAction(id, callback) {
+        if (typeof(callback) === 'function') {
+            this.actionRegistry[id] = callback;
             return;
         }
 
-        if (typeof(obj) === 'function') {
-            this.actionRegistry[id] = new Callback(obj);
-            return;
-        }
-
-        console.error(`Can't register action ${obj}, obj must be a function or extends JsResponseAction class`);
+        console.error(`Can't register action ${callback}, callback must be a function`);
     }
 
     removeAction(id) {
@@ -68,7 +61,7 @@ export default class JsResponseHandler {
                 continue;
             }
 
-            this.actionRegistry[message.action].eval(message.params);
+            this.actionRegistry[message.action](message.params);
         }
     }
 

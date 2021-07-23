@@ -4,6 +4,37 @@ namespace Umbrella\CoreBundle\Ckeditor;
 
 class CkeditorConfiguration
 {
+    public const EXAMPLE_CONFIG = [
+        'toolbar' => [
+            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+        ],
+        'uiColor' => '#FEFEFE',
+    ];
+
+    public const MINIMAL_CONFIG = [
+        'toolbar' => [
+            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+            ['name' => 'styles', 'items' => ['Format']],
+            ['name' => 'basicstyles', 'items' => ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']],
+            ['name' => 'paragraph', 'items' => ['NumberedList', 'BulletedList']],
+            ['name' => 'links', 'items' => ['Link', 'Unlink']],
+        ],
+        'uiColor' => '#FEFEFE',
+    ];
+
+    public const FULL_CONFIG = [
+        'toolbar' => [
+            ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
+            ['name' => 'styles', 'items' => ['Format']],
+            ['name' => 'basicstyles', 'items' => ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']],
+            ['name' => 'paragraph', 'items' => ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']],
+            ['name' => 'links', 'items' => ['Link', 'Unlink']],
+            ['name' => 'insert', 'items' => ['Image', 'oembed', 'Table']],
+            ['name' => 'tools', 'items' => ['Maximize', 'Scayt', 'Source']],
+        ],
+        'uiColor' => '#FEFEFE',
+    ];
+
     private ?string $asset = null;
     private array $defaultConfig = [];
     private array $configs = [];
@@ -23,29 +54,8 @@ class CkeditorConfiguration
     {
         $this->asset = $bundleConfig['asset'];
 
-        $this->configs['minimal'] = [
-            'toolbar' => [
-                ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
-                ['name' => 'styles', 'items' => ['Format']],
-                ['name' => 'basicstyles', 'items' => ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']],
-                ['name' => 'paragraph', 'items' => ['NumberedList', 'BulletedList']],
-                ['name' => 'links', 'items' => ['Link', 'Unlink']],
-            ],
-            'uiColor' => '#FEFEFE',
-        ];
-
-        $this->configs['full'] = [
-            'toolbar' => [
-                ['name' => 'clipboard', 'items' => ['Undo', 'Redo']],
-                ['name' => 'styles', 'items' => ['Format']],
-                ['name' => 'basicstyles', 'items' => ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']],
-                ['name' => 'paragraph', 'items' => ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']],
-                ['name' => 'links', 'items' => ['Link', 'Unlink']],
-                ['name' => 'insert', 'items' => ['Image', 'oembed', 'Table']],
-                ['name' => 'tools', 'items' => ['Maximize', 'Scayt', 'Source']],
-            ],
-            'uiColor' => '#FEFEFE',
-        ];
+        $this->configs['minimal'] = self::MINIMAL_CONFIG;
+        $this->configs['full'] = self::FULL_CONFIG;
 
         foreach ($bundleConfig['configs'] as $configName => $config) {
             $this->configs[$configName] = $config;

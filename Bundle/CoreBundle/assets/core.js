@@ -50,29 +50,10 @@ customElements.define('password-togglable', PasswordTogglable, {extends: 'div'})
 
 // --- JsResponseHandler
 import JsResponseHandler from './jsresponse/JsResponseHandler';
+import registerActions from './jsresponse/Actions'
+
 const jsResponseHandler = new JsResponseHandler();
-
-import ShowModal from './jsresponse/action/ShowModal';
-import CloseModal from './jsresponse/action/CloseModal';
-import Eval from './jsresponse/action/Eval';
-import Redirect from './jsresponse/action/Redirect';
-import Reload from './jsresponse/action/Reload';
-import RemoveHtml from './jsresponse/action/RemoveHtml';
-import UpdateHtml from './jsresponse/action/UpdateHtml';
-import CallWebComponent from './jsresponse/action/CallWebComponent';
-import ShowToast from './jsresponse/action/ShowToast';
-import Download from './jsresponse/action/Download';
-
-jsResponseHandler.registerAction('show_toast', new ShowToast());
-jsResponseHandler.registerAction('show_modal', new ShowModal());
-jsResponseHandler.registerAction('close_modal', new CloseModal());
-jsResponseHandler.registerAction('eval', new Eval());
-jsResponseHandler.registerAction('redirect', new Redirect());
-jsResponseHandler.registerAction('reload', new Reload());
-jsResponseHandler.registerAction('update', new UpdateHtml());
-jsResponseHandler.registerAction('remove', new RemoveHtml());
-jsResponseHandler.registerAction('call_webcomponent', new CallWebComponent());
-jsResponseHandler.registerAction('download', new Download());
+registerActions(jsResponseHandler);
 
 window.umbrella.jsResponseHandler = jsResponseHandler
 
