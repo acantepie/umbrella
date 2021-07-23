@@ -36,12 +36,15 @@ class CkeditorType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // resolve config
-        $config = null === $options['config_name']
-            ? $this->ckeditorConfig->getDefaultConfig()
-            : $this->ckeditorConfig->getConfig($options['config_name']);
+        if (null === $options['config']) {
+            $config = $this->ckeditorConfig->getDefaultConfig();
+        } elseif (is_string($options['config'])) {
+            $config = $this->ckeditorConfig->getConfig($options['config']);
+        } else {
+            $config = $options['config'];
+        }
 
-        $builder->setAttribute('config', array_merge($config, $options['config']));
+        $builder->setAttribute('config', $config);
     }
 
     /**
@@ -50,11 +53,8 @@ class CkeditorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefault('config_name', null)
-            ->setAllowedTypes('config_name', ['null', 'string'])
-
-            ->setDefault('config', [])
-            ->setAllowedTypes('config', ['array']);
+            ->setDefault('config', null)
+            ->setAllowedTypes('config', ['null', 'string', 'array']);
     }
 
     /**

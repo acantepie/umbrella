@@ -46,16 +46,15 @@ class CkeditorConfiguration
             ],
             'uiColor' => '#FEFEFE',
         ];
-        $this->configs['all'] = [];
 
         foreach ($bundleConfig['configs'] as $configName => $config) {
             $this->configs[$configName] = $config;
         }
 
-        if (isset($bundleConfig['default_config']) && isset($this->configs[$bundleConfig['default_config']])) {
-            $defaultConfigName = $bundleConfig['default_config'];
-        } else {
-            $defaultConfigName = 'full';
+        $defaultConfigName = $bundleConfig['default_config'];
+
+        if (!isset($this->configs[$defaultConfigName])) {
+            throw new \RuntimeException(sprintf('[Ckeditor] Invalid "umbrella_core.default_config". Config "%s" doesn\'t exist, available configs are %s. ', $defaultConfigName, implode(', ', array_keys($this->configs))));
         }
 
         $this->defaultConfig = $this->configs[$defaultConfigName];
@@ -65,7 +64,7 @@ class CkeditorConfiguration
     {
         if (!isset($this->configs[$name])) {
             $configNames = implode(', ', array_keys($this->configs));
-            throw new \UnexpectedValueException(sprintf('Config "%s" doesn\'t exist, config available are : %s', $name, $configNames));
+            throw new \UnexpectedValueException(sprintf('[Ckeditor] Config "%s" doesn\'t exist, config available are : %s', $name, $configNames));
         }
 
         return $this->configs[$name];

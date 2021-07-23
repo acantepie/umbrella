@@ -73,7 +73,7 @@ class Configuration implements ConfigurationInterface
                     ->info('Name of javascript asset to load with CkeditorType.')
                     ->end()
                 ->scalarNode('default_config')
-                    ->defaultNull()
+                    ->defaultValue('full')
                     ->info('Default config to use on CkeditorType (if none specified).')
                     ->end()
                 ->arrayNode('configs')
