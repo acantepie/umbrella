@@ -9,9 +9,20 @@ class DetailsHandleColumnType extends ColumnType
 {
     public function render($rowData, array $options): string
     {
+        $details = call_user_func($options['render_details'], $rowData, $options);
+
+        if (empty($details)) {
+            return '';
+        }
+
+        $expanded = is_callable($options['expanded'])
+            ? call_user_func($options['expanded'], $rowData, $options)
+            : $options['expanded'];
+
         return sprintf(
-            '<a href data-tag="dt:details" row-details="%s" class="row-details-handle"><i class="mdi"></i></a>',
-            HtmlUtils::escape(call_user_func($options['details_renderer'], $rowData, $options), 'html_attr')
+            '<a href data-tag="dt:details" data-init-state="%s" row-details="%s" class="row-details-handle"><i class="mdi"></i></a>',
+            $expanded ? 'expanded' : 'collapsed',
+            HtmlUtils::escape($details, 'html_attr')
         );
     }
 
@@ -22,8 +33,11 @@ class DetailsHandleColumnType extends ColumnType
         $resolver
             ->setDefault('label', null)
 
-            ->setRequired('details_renderer')
-            ->setAllowedTypes('details_renderer', 'callable')
+            ->setRequired('render_details')
+            ->setAllowedTypes('render_details', 'callable')
+
+            ->setDefault('expanded', false)
+            ->setAllowedTypes('expanded', ['boolean', 'callable'])
 
             ->setDefault('is_safe_html', true);
     }
