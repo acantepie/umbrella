@@ -1,12 +1,9 @@
 <?php
 
-namespace Umbrella\AdminBundle\Notification\Provider;
+namespace Umbrella\AdminBundle\Notification;
 
 use Umbrella\AdminBundle\Entity\BaseNotification;
 
-/**
- * Interface NotificationProviderInterface
- */
 interface NotificationProviderInterface
 {
     /**
@@ -15,4 +12,8 @@ interface NotificationProviderInterface
      * @return iterable|BaseNotification[]
      */
     public function findByUser($user): iterable;
+
+    public function view(BaseNotification $notification): NotificationView;
+
+    public function emptyView(): NotificationView;
 }

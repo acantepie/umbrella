@@ -1,11 +1,12 @@
 <?php
 
-namespace Umbrella\AdminBundle\Notification\Renderer;
+namespace Umbrella\AdminBundle\Notification;
 
 class NotificationView implements \JsonSerializable
 {
     private array $data;
 
+    // css selector of mustache template
     private string $template;
 
     /**

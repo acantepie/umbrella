@@ -1,23 +1,23 @@
 <?php
 
-namespace Umbrella\AdminBundle\Notification\Renderer;
+namespace Umbrella\AdminBundle\Notification;
 
 use Knp\Bundle\TimeBundle\DateTimeFormatter;
 use Umbrella\AdminBundle\Entity\BaseNotification;
 
-class NotificationRenderer implements NotificationRendererInterface
+abstract class BaseNotificationProvider implements NotificationProviderInterface
 {
-    private ?DateTimeFormatter $timeFormatter;
+    protected ?DateTimeFormatter $timeFormatter = null;
 
-    /**
-     * NotificationRenderer constructor.
-     */
-    public function __construct(?DateTimeFormatter $timeFormatter)
+    final public function setDateTimeFormatter(DateTimeFormatter $timeFormatter): void
     {
         $this->timeFormatter = $timeFormatter;
     }
 
-    public function render(BaseNotification $notification): NotificationView
+    /**
+     * {@inheritDoc}
+     */
+    public function view(BaseNotification $notification): NotificationView
     {
         if (null === $this->timeFormatter) {
             $date = $notification->createdAt->format('d/m/Y H:i');
@@ -37,7 +37,10 @@ class NotificationRenderer implements NotificationRendererInterface
         return new NotificationView($data, '#notification-umbrella-tpl');
     }
 
-    public function renderEmpty(): NotificationView
+    /**
+     * {@inheritDoc}
+     */
+    public function emptyView(): NotificationView
     {
         return new NotificationView([], '#notification-umbrella-empty-tpl');
     }

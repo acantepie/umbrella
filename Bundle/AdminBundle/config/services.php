@@ -3,6 +3,7 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Umbrella\AdminBundle\Maker\MakeAdminUser;
+use Umbrella\AdminBundle\Maker\MakeNotification;
 use Umbrella\AdminBundle\Maker\MakeTable;
 use Umbrella\AdminBundle\Maker\MakeTree;
 use Umbrella\AdminBundle\Menu\BaseAdminMenu;
@@ -40,6 +41,9 @@ return static function (ContainerConfigurator $configurator): void {
         ->bind('$doctrineHelper', service('maker.doctrine_helper'))
         ->tag('maker.command');
     $services->set(MakeAdminUser::class)
+        ->bind('$doctrineHelper', service('maker.doctrine_helper'))
+        ->tag('maker.command');
+    $services->set(MakeNotification::class)
         ->bind('$doctrineHelper', service('maker.doctrine_helper'))
         ->tag('maker.command');
 };

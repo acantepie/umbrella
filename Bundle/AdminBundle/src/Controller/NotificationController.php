@@ -4,7 +4,7 @@ namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Umbrella\AdminBundle\Notification\NotificationManager;
+use Umbrella\AdminBundle\Notification\NotificationProviderInterface;
 use Umbrella\CoreBundle\Controller\BaseController;
 
 /**
@@ -15,19 +15,19 @@ class NotificationController extends BaseController
     /**
      * @Route("")
      */
-    public function list(NotificationManager $manager)
+    public function list(NotificationProviderInterface $provider)
     {
-        $notifications = $manager->findByUser($this->getUser());
+        $notifications = $provider->findByUser($this->getUser());
 
         if (0 === count($notifications)) {
             return new JsonResponse([
-                'empty' => $manager->emptyView()
+                'empty' => $provider->emptyView()
             ]);
         }
 
         $views = [];
         foreach ($notifications as $notification) {
-            $views[] = $manager->view($notification);
+            $views[] = $provider->view($notification);
         }
 
         return new JsonResponse([

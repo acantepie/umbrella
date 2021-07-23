@@ -10,7 +10,7 @@ use Umbrella\AdminBundle\DataTable\UserTableType;
 use Umbrella\AdminBundle\Form\ProfileType;
 use Umbrella\AdminBundle\Form\UserType;
 use Umbrella\AdminBundle\Menu\BaseAdminMenu;
-use Umbrella\AdminBundle\Notification\Renderer\NotificationRenderer;
+use Umbrella\AdminBundle\Notification\BaseNotificationProvider;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -96,12 +96,9 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->arrayNode('notification')->canBeEnabled()
             ->children()
-                ->scalarNode('renderer')
-                    ->info('Notification renderer service used to render notification, must implements NotificationRendererInterface.')
-                    ->defaultValue(NotificationRenderer::class)
-                    ->end()
                 ->scalarNode('provider')
                     ->info('Notification provider service used to provide notification from an user, must implements NotificationProviderInterface.')
+                    ->defaultValue(BaseNotificationProvider::class)
                     ->cannotBeEmpty()
                     ->end()
                 ->integerNode('poll_interval')

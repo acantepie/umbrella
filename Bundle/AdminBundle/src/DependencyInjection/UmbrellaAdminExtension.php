@@ -5,12 +5,8 @@ namespace Umbrella\AdminBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Umbrella\AdminBundle\Notification\NotificationManager;
-use Umbrella\AdminBundle\Notification\Provider\NotificationProviderInterface;
-use Umbrella\AdminBundle\Notification\Renderer\NotificationRenderer;
-use Umbrella\AdminBundle\Notification\Renderer\NotificationRendererInterface;
+use Umbrella\AdminBundle\Notification\NotificationProviderInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
@@ -52,30 +48,6 @@ class UmbrellaAdminExtension extends Extension
     private function enableNotification(ContainerBuilder $container, array $config)
     {
         $provider = $config['provider'];
-        if (!class_exists($provider) || !in_array(NotificationProviderInterface::class, class_implements($provider))) {
-            throw new \InvalidArgumentException(sprintf('umbrella_admin.notification.provider must implement interface %s', NotificationProviderInterface::class));
-        }
-
-        $renderer = $config['renderer'];
-        if (!class_exists($renderer) || !in_array(NotificationRendererInterface::class, class_implements($renderer))) {
-            throw new \InvalidArgumentException(sprintf('umbrella_admin.notification.renderer must implement interface %s', NotificationRenderer::class));
-        }
-
-        $container
-            ->register(NotificationProviderInterface::class, $provider)
-            ->setPublic(false)
-            ->setAutowired(true);
-
-        $container
-            ->register(NotificationRendererInterface::class, $renderer)
-            ->setPublic(false)
-            ->setAutowired(true);
-
-        $container
-            ->register(NotificationManager::class)
-            ->setPublic(false)
-            ->setAutowired(true)
-            ->addMethodCall('registerProvider', [new Reference(NotificationProviderInterface::class)])
-            ->addMethodCall('registerRenderer', [new Reference(NotificationRendererInterface::class)]);
+        $container->setAlias(NotificationProviderInterface::class, $provider);
     }
 }
