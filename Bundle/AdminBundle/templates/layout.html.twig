@@ -47,12 +47,6 @@
             {% include "@UmbrellaAdmin/_scripts.html.twig" %}
         {% endblock %}
     </body>
-
-    {% block html_template %}
-        {% if uac.notificationEnable() %}
-            {% include "@UmbrellaAdmin/Notification/template.html.twig" %}
-        {% endif %}
-    {% endblock %}
 </html>
 
 

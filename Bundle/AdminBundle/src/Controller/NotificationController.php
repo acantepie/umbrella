@@ -17,21 +17,25 @@ class NotificationController extends BaseController
      */
     public function list(NotificationProviderInterface $provider)
     {
-        $notifications = $provider->findByUser($this->getUser());
+        $notifications = $provider->collect();
 
         if (0 === count($notifications)) {
             return new JsonResponse([
-                'empty' => $provider->emptyView()
+                'count' => 0,
+                'html' => $this->renderView('@UmbrellaAdmin/Notification/empty.html.twig')
             ]);
         }
 
-        $views = [];
+        $notificationData = [];
         foreach ($notifications as $notification) {
-            $views[] = $provider->view($notification);
+            $notificationData[] = [
+                'html' => $provider->render($notification)
+            ];
         }
 
         return new JsonResponse([
-            'notifications' => $views
+            'count' => count($notifications),
+            'notifications' => $notificationData
         ]);
     }
 }

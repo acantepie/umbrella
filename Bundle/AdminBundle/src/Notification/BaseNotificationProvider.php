@@ -3,13 +3,20 @@
 namespace Umbrella\AdminBundle\Notification;
 
 use Knp\Bundle\TimeBundle\DateTimeFormatter;
+use Twig\Environment;
 use Umbrella\AdminBundle\Entity\BaseNotification;
 
 abstract class BaseNotificationProvider implements NotificationProviderInterface
 {
+    protected ?Environment $twig = null;
     protected ?DateTimeFormatter $timeFormatter = null;
 
-    final public function setDateTimeFormatter(DateTimeFormatter $timeFormatter): void
+    public function setTwig(Environment $twig): void
+    {
+        $this->twig = $twig;
+    }
+
+    public function setTimeFormatter(DateTimeFormatter $timeFormatter): void
     {
         $this->timeFormatter = $timeFormatter;
     }
@@ -17,7 +24,7 @@ abstract class BaseNotificationProvider implements NotificationProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function view(BaseNotification $notification): NotificationView
+    public function render(BaseNotification $notification): string
     {
         if (null === $this->timeFormatter) {
             $date = $notification->createdAt->format('d/m/Y H:i');
@@ -26,7 +33,7 @@ abstract class BaseNotificationProvider implements NotificationProviderInterface
         }
 
         $data = [
-            'bg-icon' => $notification->bgIcon,
+            'bg_icon' => $notification->bgIcon,
             'icon' => $notification->icon,
             'title' => $notification->title,
             'text' => $notification->text,
@@ -34,14 +41,6 @@ abstract class BaseNotificationProvider implements NotificationProviderInterface
             'date' => $date
         ];
 
-        return new NotificationView($data, '#notification-umbrella-tpl');
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function emptyView(): NotificationView
-    {
-        return new NotificationView([], '#notification-umbrella-empty-tpl');
+        return $this->twig->render('@UmbrellaAdmin/Notification/notification.html.twig', $data);
     }
 }

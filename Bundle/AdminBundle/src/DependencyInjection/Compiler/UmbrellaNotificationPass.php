@@ -28,8 +28,12 @@ class UmbrellaNotificationPass implements CompilerPassInterface
             throw new LogicException(sprintf('Service "%s" must extends interface "%s"', $d->getClass(), NotificationProviderInterface::class));
         }
 
-        if (isset(class_parents($d->getClass())[BaseNotificationProvider::class]) && $container->has(DateTimeFormatter::class)) {
-            $d->addMethodCall('setDateTimeFormatter', [$container->findDefinition(DateTimeFormatter::class)]);
+        if (isset(class_parents($d->getClass())[BaseNotificationProvider::class])) {
+            if ($container->has(DateTimeFormatter::class)) {
+                $d->addMethodCall('setTimeFormatter', [$container->findDefinition(DateTimeFormatter::class)]);
+            }
+
+            $d->addMethodCall('setTwig', [$container->findDefinition('twig')]);
         }
     }
 }

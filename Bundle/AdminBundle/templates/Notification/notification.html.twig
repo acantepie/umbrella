@@ -1,0 +1,22 @@
+{% apply spaceless %}
+{% if url %}
+    <a href="{{ url }}" class="dropdown-item notify-item">
+{% else %}
+    <div class="dropdown-item notify-item">
+{% endif %}
+    <div class="notify-icon {{ bg_icon | default('bg-info') }}">
+        <i class="{{ icon | default('mdi mdi-bell') }}"></i>
+    </div>
+    <div class="notify-details">
+        <b>{{- title -}}</b>
+        <small class="text-muted">{{ date }}</small>
+        {% if text %}
+        <small>{{ text }}</small>
+        {% endif %}
+    </div>
+{% if not url %}
+    </div>
+{% else %}
+    </a>
+{% endif %}
+{% endapply %}
