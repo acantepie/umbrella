@@ -1,10 +1,8 @@
-import ErrorHandler from './ErrorHandler';
-
 export default class JsResponseHandler {
 
     constructor() {
         this.actionRegistry = {};
-        this.errorHandler = new ErrorHandler();
+        this.errorHandler = null;
     }
 
     // Actions registry
@@ -28,13 +26,13 @@ export default class JsResponseHandler {
 
     // ErrorHandler
 
-    setErrorHandler(obj) {
-        if (obj instanceof ErrorHandler) {
-            this.errorHandler = obj;
+    setErrorHandler(callback) {
+        if (typeof(callback) === 'function') {
+            this.errorHandler = callback;
             return;
         }
 
-        console.error(`Can't set ${obj} as error handler, obj must extends ErrorHandler class`);
+        console.error(`Can't set ${callback} as error handler, callback must be a function`);
     }
 
     // Handle jsResponse
@@ -67,6 +65,8 @@ export default class JsResponseHandler {
 
     error(requestObject, error, errorThrown)
     {
-        this.errorHandler.handle(requestObject, error, errorThrown);
+        if (null !== this.errorHandler) {
+            this.errorHandler(requestObject, error, errorThrown);
+        }
     }
 }

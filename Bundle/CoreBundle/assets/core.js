@@ -50,10 +50,10 @@ customElements.define('password-togglable', PasswordTogglable, {extends: 'div'})
 
 // --- JsResponseHandler
 import JsResponseHandler from './jsresponse/JsResponseHandler';
-import registerActions from './jsresponse/Actions'
+import configureHandler from './jsresponse/Configure'
 
 const jsResponseHandler = new JsResponseHandler();
-registerActions(jsResponseHandler);
+configureHandler(jsResponseHandler);
 
 window.umbrella.jsResponseHandler = jsResponseHandler
 

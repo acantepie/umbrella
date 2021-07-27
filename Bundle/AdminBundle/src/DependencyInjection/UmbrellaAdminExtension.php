@@ -48,6 +48,11 @@ class UmbrellaAdminExtension extends Extension
     private function enableNotification(ContainerBuilder $container, array $config)
     {
         $provider = $config['provider'];
+
+        if (empty($provider)) {
+            throw new \InvalidArgumentException('You must specify a provider if "umbrela_admin.notification" was enabled.');
+        }
+
         $container->setAlias(NotificationProviderInterface::class, $provider);
     }
 }

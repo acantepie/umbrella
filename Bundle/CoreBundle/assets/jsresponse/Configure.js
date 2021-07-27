@@ -1,4 +1,4 @@
-export default function registerActions(handler) {
+export default function configureHandler(handler) {
     handler.registerAction('show_toast', (params) => {
         umbrella.Toast.show(params['type'], params['text'], params['title'], params['options']);
     });
@@ -69,4 +69,20 @@ export default function registerActions(handler) {
 
         link.click()
     });
+
+    handler.setErrorHandler((requestObject, error, errorThrown) => {
+        if (requestObject.status === 401) {
+            umbrella.Toast.warning('401 - ' + umbrella.Translator.trans('unauthorized_error'));
+
+        } else if (requestObject.status === 403) {
+            umbrella.Toast.warning('403 - ' + umbrella.Translator.trans('forbidden_error'));
+
+        } else if (requestObject.status === 404) {
+            umbrella.Toast.warning('404 - ' + umbrella.Translator.trans('notfound_error'));
+
+        } else {
+            umbrella.Toast.error(umbrella.Translator.trans('other_error'));
+        }
+    })
+
 }

@@ -6,10 +6,11 @@ const TRANS = {
         },
         'cancel': 'Cancel',
         'confirm': 'Confirm',
-        'disconnected_error': 'You are disconnected. Refresh page to login',
-        'loading_data_error': 'Unable to load data',
-        'unable_to_contact_server': 'Unable to contact server',
-        'error_occured' : 'An error occured.'
+        'unauthorized_error': 'You are disconnected. Refresh page to login',
+        'forbidden_error': 'You are not allowed to perform this action',
+        'notfound_error': 'Unable to contact server',
+        'other_error' : 'An error occured',
+        'loading_data_error': 'Unable to load data'
     },
 
     fr: {
@@ -19,10 +20,11 @@ const TRANS = {
         },
         'cancel': 'Annuler',
         'confirm': 'Confirmer',
-        'disconnected_error': 'Vous n\'etes plus connecté. Veuillez rafraichir la page pour vous authentifier',
-        'loading_data_error': 'Impossible de charger les données',
-        'unable_to_contact_server': 'Impossible de contacter le serveur',
-        'error_occured' : 'Une erreur est survenue.'
+        'unauthorized_error': 'Vous n\'etes plus connecté. Veuillez rafraichir la page pour vous authentifier',
+        'forbidden_error': 'You are not allowed to perform this action',
+        'notfound_error': 'Impossible de contacter le serveur',
+        'other_error': 'Une erreur est survenue',
+        'loading_data_error': 'Impossible de charger les données'
     },
 }
 
