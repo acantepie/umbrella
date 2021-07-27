@@ -39,11 +39,13 @@ class UmbrellaCollectionType extends AbstractType
                 }
             }, 50);
 
-            $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use (&$orders, $options) {
+            $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use (&$orders, $options) {
                 $propertyAccessor = PropertyAccess::createPropertyAccessor();
-                foreach ($event->getData() as $name => $item) {
+                $data = $event->getData();
+                foreach ($data as $name => &$item) {
                     $propertyAccessor->setValue($item, $options['sortable_property_path'], $orders[$name]);
                 }
+                $event->setData($data);
             });
         }
     }
