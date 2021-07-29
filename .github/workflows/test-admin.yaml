@@ -1,4 +1,4 @@
-name: "Tests - Linux"
+name: "[AdminBundle] Tests - Linux"
 
 on: [ push ]
 

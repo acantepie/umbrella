@@ -1,4 +1,4 @@
-name: "Tests - Linux"
+name: "[CoreBundle] Tests - Linux"
 
 on: [ push ]
 
