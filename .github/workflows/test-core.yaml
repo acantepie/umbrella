@@ -4,7 +4,10 @@ on: [ push ]
 
 env:
   fail-fast: true
-  working-directory: ./Bundle/CoreBundle
+
+defaults:
+  run:
+    working-directory: ./Bundle/CoreBundle
 
 jobs:
   tests:
