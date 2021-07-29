@@ -34,6 +34,8 @@ jobs:
         run: |
           composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
           vendor/bin/simple-phpunit install
+          rm -Rf vendor/umbrella2/corebundle
+          ln -s ../../../CoreBundle vendor/umbrella2/corebundle
       - name: 'Run tests'
         env:
           SYMFONY_DEPRECATIONS_HELPER: 'max[indirect]=10&max[total]=27'
