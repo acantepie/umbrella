@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.3/phpunit.xsd"
+        backupGlobals="false"
+        colors="true"
+        bootstrap="./vendor/autoload.php"
+>
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <ini name="intl.default_locale" value="en" />
+        <ini name="intl.error_level" value="0" />
+        <ini name="memory_limit" value="-1" />
+
+        <server name="APP_ENV" value="test" force="true" />
+        <server name="SHELL_VERBOSITY" value="-1" />
+        <server name="KERNEL_CLASS" value="Umbrella\CoreBundle\Tests\TestApp\Kernel" />
+
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
+    </php>
+
+    <testsuites>
+        <testsuite name="UmbrellaAdmin test suite">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

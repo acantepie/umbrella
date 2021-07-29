@@ -1,0 +1,2 @@
+parameters:
+  kernel.secret: 1234

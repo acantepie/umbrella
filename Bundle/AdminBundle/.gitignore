@@ -1,0 +1,8 @@
+###> composer ###
+vendor/
+composer.lock
+
+###> phpunit ###
+phpunit.xml
+.phpunit.result.cache
+tests/TestApp/var/

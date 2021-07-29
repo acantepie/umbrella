@@ -12,7 +12,6 @@ use Umbrella\CoreBundle\DataTable\DataTableFactory;
 use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
-use Umbrella\CoreBundle\Toast\Toast;
 
 abstract class BaseController extends AbstractController
 {

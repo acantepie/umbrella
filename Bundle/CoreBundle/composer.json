@@ -15,26 +15,29 @@
         }
     ],
     "require": {
-        "ext-json": "*",
         "php": ">=7.4",
+        "ext-json": "*",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/orm": "^2.8",
         "symfony/asset": "^5.3",
-        "symfony/console": "^5.3",
         "symfony/config": "^5.3",
+        "symfony/console": "^5.3",
         "symfony/dependency-injection": "^5.3",
         "symfony/event-dispatcher": "^5.3",
         "symfony/form": "^5.3",
-        "symfony/framework-bundle": "^5.3",
         "symfony/http-foundation": "^5.3",
         "symfony/http-kernel": "^5.3",
+        "symfony/options-resolver": "^5.3",
         "symfony/property-access": "^5.3",
         "symfony/routing": "^5.3",
         "symfony/translation": "^5.3",
-        "symfony/options-resolver": "^5.3",
         "symfony/twig-bundle": "^5.3",
         "symfony/validator": "^5.3",
         "symfony/yaml": "^5.3"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": "^5.3",
+        "symfony/phpunit-bridge": "^5.3"
     },
     "suggest": {
         "symfony/monolog-bundle": "Symfony logger, used on Indexer for example."
@@ -45,6 +48,12 @@
     "autoload": {
         "psr-4": {
             "Umbrella\\CoreBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Umbrella\\CoreBundle\\Tests\\": "tests/",
+            "Umbrella\\CoreBundle\\Tests\\TestApp\\": "tests/TestApp/src/"
         }
     }
 }

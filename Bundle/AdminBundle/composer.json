@@ -50,5 +50,14 @@
         "psr-4": {
             "Umbrella\\AdminBundle\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Umbrella\\AdminBundle\\Tests\\": "tests/",
+            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "tests/TestApp/src/"
+        }
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^5.3"
     }
 }

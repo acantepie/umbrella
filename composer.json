@@ -1,25 +1,6 @@
 {
     "name": "acantepie/umbrella",
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.0",
-        "phpunit/phpunit": "^9.5",
-        "symfony/test-pack": "^1.0",
-        "symfony/phpunit-bridge": "^5.3",
-        "symfony/var-dumper": "^5.3"
-    },
-    "autoload": {
-        "psr-4": {
-            "Umbrella\\AdminBundle\\": [
-                "Bundle/AdminBundle/",
-                "Bundle/AdminBundle/src"
-            ],
-            "Umbrella\\CoreBundle\\": [
-                "Bundle/CoreBundle/",
-                "Bundle/CoreBundle/src"
-            ]
-        },
-        "exclude-from-classmap": [
-            "**/Tests/"
-        ]
+        "friendsofphp/php-cs-fixer": "^3.0"
     }
 }
