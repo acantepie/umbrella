@@ -15,6 +15,13 @@
 
 </div>
 
+<div align="center">
+
+![test core workflow](https://github.com/acantepie/umbrella/actions/workflows/test-core.yaml/badge.svg)
+![test admin workflow](https://github.com/acantepie/umbrella/actions/workflows/test-admin.yaml/badge.svg)
+
+</div>
+
 <p align="center">
     <a href="https://umbrella-corp.dev"><b>Demo website</b></a> •
     <a href="https://github.com/acantepie/umbrella-admin-demo"><b>Demo repository</b></a>
