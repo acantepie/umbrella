@@ -40,6 +40,11 @@
         "umbrella2/corebundle": "*",
         "symfony/maker-bundle": "^1.21"
     },
+    "require-dev": {
+        "symfony/browser-kit": "^5.3",
+        "symfony/css-selector": "^5.3",
+        "symfony/phpunit-bridge": "^5.3"
+    },
     "suggest": {
         "knplabs/knp-time-bundle": "Display pretty time on notification"
     },
@@ -56,8 +61,5 @@
             "Umbrella\\AdminBundle\\Tests\\": "tests/",
             "Umbrella\\AdminBundle\\Tests\\TestApp\\": "tests/TestApp/src/"
         }
-    },
-    "require-dev": {
-        "symfony/phpunit-bridge": "^5.3"
     }
 }

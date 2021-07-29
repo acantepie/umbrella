@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Umbrella\AdminBundle\Tests\TestApp\:
+    resource: '../src/*'
+    exclude:
+      - '../src/Entity'
+      - '../src/Kernel.php'
+      - '../src/TestContainerPass.php'
+
+  Umbrella\AdminBundle\Tests\TestApp\Controller\:
+    resource: '../src/Controller/'
+    tags: ['controller.service_arguments']

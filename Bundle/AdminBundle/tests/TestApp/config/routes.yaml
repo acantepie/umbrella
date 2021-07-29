@@ -1,0 +1,4 @@
+app_:
+  resource: "../src/Controller/"
+  type: annotation
+  prefix: /

@@ -12,7 +12,7 @@ use Umbrella\CoreBundle\Utils\HtmlUtils;
 
 class ColumnTest extends KernelTestCase
 {
-    private ?DataTableBuilerHelper $factory;
+    private ?DataTableBuilerHelper $factory = null;
 
     protected function setUp(): void
     {
