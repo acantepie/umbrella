@@ -12,7 +12,7 @@ class DefaultController extends BaseController
 {
 
     /**
-     * @Route("/")
+     * @Route("/", name="test.home")
      */
     public function index()
     {
