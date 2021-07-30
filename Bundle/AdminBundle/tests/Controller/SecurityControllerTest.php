@@ -26,7 +26,7 @@ class SecurityControllerTest extends WebTestCase
 
 
         // am i logged
-        $tkStorage = $this->getContainer()->get('security.token_storage');
+        $tkStorage = $this->getContainer()->get('security.untracked_token_storage');
 
         $this->assertNotNull($tkStorage->getToken());
         $this->assertInstanceOf(AdminUser::class, $tkStorage->getToken()->getUser());

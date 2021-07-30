@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
-use Umbrella\AdminBundle\DataTable\DataTableBuilerHelper;
 
 class Kernel extends BaseKernel
 {

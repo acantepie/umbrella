@@ -37,6 +37,4 @@ jobs:
           rm -Rf vendor/umbrella2/corebundle
           ln -s ../../../CoreBundle vendor/umbrella2/corebundle
       - name: 'Run tests'
-        env:
-          SYMFONY_DEPRECATIONS_HELPER: 'max[indirect]=10&max[total]=27'
         run: vendor/bin/simple-phpunit -v
