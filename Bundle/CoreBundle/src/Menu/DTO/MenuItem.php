@@ -46,7 +46,7 @@ class MenuItem implements \Countable, \IteratorAggregate
     {
         $this->menu = $menu;
         $this->name = $name;
-        $this->label = Utils::humanize($name);
+        $this->label = $name;
     }
 
     public function getId(): string
