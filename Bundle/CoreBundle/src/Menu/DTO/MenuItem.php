@@ -49,7 +49,12 @@ class MenuItem implements \Countable, \IteratorAggregate
         $this->label = Utils::humanize($name);
     }
 
-    public function getId(): string
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getCssId(): string
     {
         return sprintf('menu-item-%s-%d', u($this->name)->snake(), $this->getLevel());
     }
@@ -62,6 +67,13 @@ class MenuItem implements \Countable, \IteratorAggregate
     public function getParent(): ?self
     {
         return $this->parent;
+    }
+
+    public function setParent(?MenuItem $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
     }
 
     public function isRoot(): bool
@@ -83,6 +95,24 @@ class MenuItem implements \Countable, \IteratorAggregate
     {
         $child->parent = $this;
         $this->children[$child->name] = $child;
+
+        return $this;
+    }
+
+    public function hasChild(string $name): bool
+    {
+        return isset($this->children[$name]);
+    }
+
+    public function getChild(string $name): self
+    {
+        return $this->children[$name];
+    }
+
+    public function removeChild(string $name): self
+    {
+        $this->children[$name]->setParent(null);
+        unset($this->children[$name]);
 
         return $this;
     }
@@ -172,7 +202,7 @@ class MenuItem implements \Countable, \IteratorAggregate
         return $this->matchingRoutes;
     }
 
-    public function addMatchingRoute(string $route, array $routeParams): self
+    public function addMatchingRoute(string $route, array $routeParams = []): self
     {
         $this->matchingRoutes[$route] = $routeParams;
 

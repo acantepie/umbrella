@@ -16,7 +16,7 @@
 
 {% block menu_item %}
     {% set level = item.level %}
-    {% set id = item.id %}
+    {% set id = item.cssId %}
     {% set isTopLevel = level == 2 %}
 
     {% if item.isVisible() %}
