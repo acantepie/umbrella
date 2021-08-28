@@ -16,7 +16,7 @@
             {{- block('icon') }}
             {{- block('text') }}
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu {{ menu_class }}" aria-labelledby="dropdownMenuButton">
             {%- for child in widget -%}
                 {{ child.addClass('dropdown-item') }}
                 {{ render_widget(child) }}

@@ -18,6 +18,8 @@ class ButtonDropdownType extends WidgetType
 
         $view->vars['attr']['type'] = 'button';
         $view->vars['attr']['data-bs-toggle'] = 'dropdown';
+
+        $view->vars['menu_class'] = $options['menu_class'];
     }
 
     public function buildWidget(WidgetBuilder $builder, array $options)
@@ -45,6 +47,11 @@ class ButtonDropdownType extends WidgetType
             ->define('dropdown-icon')
             ->default(true)
             ->allowedTypes('bool');
+
+        $resolver
+            ->define('menu_class')
+            ->default(null)
+            ->allowedTypes('null', 'string');
     }
 
     public function getBlockPrefix(): string
