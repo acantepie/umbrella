@@ -24,55 +24,44 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     use TimestampTrait;
 
     /**
-     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @SearchableField
      */
-    public $firstname;
+    public ?string $firstname = null;
 
     /**
-     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
      * @SearchableField
      */
-    public $lastname;
+    public ?string $lastname = null;
 
     /**
-     * @var string|null
      * @ORM\Column(type="string")
      */
-    public $password;
+    public ?string $password = null;
 
     /**
      * Used only by form.
-     *
-     * @var string|null
      */
-    public $plainPassword;
+    public ?string $plainPassword = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string", length=60, unique=true)
-     *
      * @SearchableField
      */
-    public $email;
+    public ?string $email = null;
 
     /**
      * Random string sent to the user email address to verify it.
      *
-     * @var string|null
      * @ORM\Column(type="string", length=180, unique=true, nullable=true)
      */
-    public $confirmationToken;
+    public ?string $confirmationToken = null;
 
     /**
-     * @var \DateTime|null
      * @ORM\Column(type="datetime", nullable=true)
      */
-    public $passwordRequestedAt;
+    public ?\DateTime $passwordRequestedAt = null;
 
     public function getFullName(): string
     {

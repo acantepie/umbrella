@@ -10,16 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
 trait TimestampTrait
 {
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=false)
      */
-    public $createdAt;
+    public ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=false)
      */
-    public $updatedAt;
+    public ?\DateTimeInterface $updatedAt = null;
 
     /**
      * @ORM\PrePersist

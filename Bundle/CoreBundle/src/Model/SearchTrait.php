@@ -9,5 +9,5 @@ trait SearchTrait
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    public $search;
+    public ?string $search = null;
 }

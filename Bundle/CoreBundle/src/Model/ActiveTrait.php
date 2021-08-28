@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait ActiveTrait
 {
     /**
-     * @var bool
      * @ORM\Column(name="active", type="boolean", options={"default": TRUE})
      */
-    public $active = true;
+    public bool $active = true;
 }

@@ -4,6 +4,7 @@ namespace <?= $namespace ?>;
 
 use <?= $repository->getFullName() ?>;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Umbrella\CoreBundle\Model\IdTrait;
@@ -20,20 +21,18 @@ class <?= $class_name ?> implements NestedTreeEntityInterface
     use NestedTreeEntityTrait;
 
     /**
-     * @var <?= $class_name ?>|null
      * @Gedmo\TreeRoot
      * @ORM\ManyToOne(targetEntity="<?= $class_name ?>")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
-    public $root;
+    public ?<?= $class_name ?> $root = null;
 
     /**
-     * @var <?= $class_name ?>|null
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="<?= $class_name ?>", inversedBy="children")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
-    public $parent;
+    public ?<?= $class_name ?> $parent = null;
 
     /**
      * @var <?= $class_name ?>[]|ArrayCollection
@@ -41,7 +40,7 @@ class <?= $class_name ?> implements NestedTreeEntityInterface
      * @ORM\OneToMany(targetEntity="<?= $class_name ?>", mappedBy="parent", cascade={"persist"})
      * @ORM\OrderBy({"left": "ASC"})
      */
-    public $children;
+    public Collection $children;
 
     /**
      * <?= $class_name ?> constructor.

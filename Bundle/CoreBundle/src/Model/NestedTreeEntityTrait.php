@@ -13,29 +13,23 @@ trait NestedTreeEntityTrait
      * @Gedmo\TreeLevel
      * @ORM\Column(type="integer")
      */
-    public $level;
+    public ?int $level = null;
 
     /**
      * @Gedmo\TreeLeft
      * @ORM\Column(type="integer", name="`left`")
      */
-    public $left;
+    public ?int $left = null;
 
     /**
      * @Gedmo\TreeRight
      * @ORM\Column(type="integer", name="`right`")
      */
-    public $right;
+    public ?int $right = null;
 
-    /**
-     * @var bool
-     */
-    public $firstChild = false;
+    public bool $firstChild = false;
 
-    /**
-     * @var bool
-     */
-    public $lastChild = false;
+    public bool $lastChild = false;
 
     /**
      * {@inheritdoc}

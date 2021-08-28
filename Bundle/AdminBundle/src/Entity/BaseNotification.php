@@ -13,40 +13,34 @@ class BaseNotification
     use IdTrait;
 
     /**
-     * @var \DateTimeInterface
      * @ORM\Column(type="datetime", nullable=false)
      */
-    public $createdAt;
+    public \DateTime $createdAt;
 
     /**
-     * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    public $bgIcon;
+    public ?string $bgIcon = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    public $icon;
+    public ?string $icon = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    public $title;
+    public ?string $title = null;
 
     /**
-     * @var string
      * @ORM\Column(type="text", nullable=true)
      */
-    public $text;
+    public ?string $text = null;
 
     /**
-     * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    public $url;
+    public ?string $url = null;
 
     /**
      * User BaseNotification.

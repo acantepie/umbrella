@@ -10,8 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait OrderTrait
 {
     /**
-     * @var int
      * @ORM\Column(name="`order`", type="integer", nullable=false, options={"default": 0})
      */
-    public $order = 0;
+    public int $order = 0;
 }
