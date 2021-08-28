@@ -3,30 +3,13 @@
 namespace Umbrella\AdminBundle\Maker;
 
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
-use Symfony\Bundle\MakerBundle\DependencyBuilder;
-use Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper;
 use Symfony\Bundle\MakerBundle\Generator;
-use Symfony\Bundle\MakerBundle\InputConfiguration;
-use Symfony\Bundle\MakerBundle\Maker\AbstractMaker;
 use Symfony\Bundle\MakerBundle\Str;
-use Symfony\Bundle\MakerBundle\Validator;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Console\Question\Question;
 
-class MakeTree extends AbstractMaker
+class MakeTree extends MakeTable
 {
-    private DoctrineHelper $doctrineHelper;
-    private string $baseTemplateName = __DIR__ . '/../../skeleton/';
-
-    public function __construct(DoctrineHelper $doctrineHelper)
-    {
-        $this->doctrineHelper = $doctrineHelper;
-    }
-
     public static function getCommandName(): string
     {
         return 'make:tree';
@@ -37,45 +20,23 @@ class MakeTree extends AbstractMaker
         return 'Create an admin tree view';
     }
 
-    public function configureCommand(Command $command, InputConfiguration $inputConfig)
-    {
-        $command
-            ->addArgument('entity_name', InputArgument::OPTIONAL, sprintf('Class name of the entity to create (e.g. <fg=yellow>%s</>)', Str::asClassName(Str::getRandomTerm())));
-    }
-
-    public function configureDependencies(DependencyBuilder $dependencies)
-    {
-    }
-
-    public function interact(InputInterface $input, ConsoleStyle $io, Command $command)
-    {
-        if ($input->getArgument('entity_name')) {
-            return;
-        }
-
-        $argument = $command->getDefinition()->getArgument('entity_name');
-        $question = $this->createEntityClassQuestion($argument->getDescription());
-        $value = $io->askQuestion($question);
-
-        $input->setArgument('entity_name', $value);
-    }
-
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
     {
         $controllerNamespace = $this->askControllerNamespace($io);
+        $entityNamespace = $this->askEntityNamespace($io);
 
         $editOnModal = $io->askQuestion(new ConfirmationQuestion('Edit entity on a modal', true));
         $createTemplate = $io->askQuestion(new ConfirmationQuestion('Create twig template', true));
 
         // class details
-        $entity = $generator->createClassNameDetails($input->getArgument('entity_name'), 'Entity\\');
-        $repository = $generator->createClassNameDetails($entity->getShortName(), 'Repository\\', 'Repository');
-        $form = $generator->createClassNameDetails($entity->getShortName(), 'Form\\', 'Type');
-        $table = $generator->createClassNameDetails($entity->getShortName(), 'DataTable\\', 'TableType', );
+        $entity = $generator->createClassNameDetails($entityNamespace . $input->getArgument('entity_name'), 'Entity\\');
+        $repository = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'Repository\\', 'Repository');
+        $form = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'Form\\', 'Type');
+        $table = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'DataTable\\', 'TableType', );
         $controller = $generator->createClassNameDetails($controllerNamespace . $entity->getShortName(), 'Controller\\', 'Controller');
 
         $routePath = Str::asRoutePath($controller->getRelativeNameWithoutSuffix());
-        $routeName = 'app_' . Str::asRouteName($controller->getRelativeNameWithoutSuffix());
+        $routeName = $this->asRouteName($controller);
 
         if ($createTemplate) {
             $indexTemplateName = Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/index.html.twig';
@@ -111,6 +72,7 @@ class MakeTree extends AbstractMaker
             'route_name' => $routeName,
             'route_path' => $routePath,
             'entity' => $entity,
+            'repository' => $repository,
             'table' => $table,
             'form' => $form,
             'index_template_name' => $indexTemplateName,
@@ -130,36 +92,5 @@ class MakeTree extends AbstractMaker
         $this->writeSuccessMessage($io);
 
         $io->text(sprintf('Next: Check your new CRUD by going to <fg=yellow>/admin%s/</>', $routePath));
-    }
-
-    private function createEntityClassQuestion(string $questionText): Question
-    {
-        $question = new Question($questionText);
-        $question->setValidator([Validator::class, 'notBlank']);
-        $question->setAutocompleterValues($this->doctrineHelper->getEntitiesForAutocomplete());
-
-        return $question;
-    }
-
-    private function askControllerNamespace(ConsoleStyle $io): ?string
-    {
-        $question = new ChoiceQuestion('Namespace of your your Controller', [
-            'admin', 'none', 'other'
-        ], 0);
-
-        $answer = $io->askQuestion($question);
-
-        if ('admin' === $answer) {
-            return 'Admin\\';
-        }
-
-        if ('other' === $answer) {
-            $question = new Question('Specify');
-            $question->setValidator([Validator::class, 'notBlank']);
-            $answer = $io->askQuestion($question);
-            return rtrim($answer, '\\') . '\\';
-        }
-
-        return null;
     }
 }

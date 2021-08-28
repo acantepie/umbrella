@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 use function Symfony\Component\Translation\t;
+<?php if ($tree_view) { ?>
+use <?= $repository->getFullName() ?>;
+<?php } ?>
 
 /**
 * @Route("<?= $route_path ?>")
@@ -35,12 +38,12 @@ class <?= $class_name ?> extends BaseController
     /**
      * @Route(path="/edit/{id}", requirements={"id"="\d+"})
      */
-    public function edit(Request $request, ?int $id = null)
+    public function edit(<?php if ($tree_view) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>Request $request, ?int $id = null)
     {
         if ($id === null) {
             $entity = new <?= $entity->getShortName() ?>();
 <?php if ($tree_view) { ?>
-            $entity->parent = $this->getRepository(<?= $entity->getShortName() ?>::class)->findRoot(true);
+            $entity->parent = $repository->findRoot(true);
 <?php } ?>
         } else {
             $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
@@ -83,9 +86,8 @@ class <?= $class_name ?> extends BaseController
     /**
      * @Route("/move/{id}/{direction}", requirements={"id": "\d+"})
      */
-    public function move(int $id, string $direction)
+    public function move(<?php if ($tree_view) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>int $id, string $direction)
     {
-        $repository = $this->getRepository(<?= $entity->getShortName() ?>::class);
         $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
 
         if ('up' === $direction) {

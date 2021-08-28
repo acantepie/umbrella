@@ -9,6 +9,7 @@ use Symfony\Bundle\MakerBundle\Generator;
 use Symfony\Bundle\MakerBundle\InputConfiguration;
 use Symfony\Bundle\MakerBundle\Maker\AbstractMaker;
 use Symfony\Bundle\MakerBundle\Str;
+use Symfony\Bundle\MakerBundle\Util\ClassNameDetails;
 use Symfony\Bundle\MakerBundle\Validator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -19,8 +20,8 @@ use Symfony\Component\Console\Question\Question;
 
 class MakeTable extends AbstractMaker
 {
-    private DoctrineHelper $doctrineHelper;
-    private string $baseTemplateName = __DIR__ . '/../../skeleton/';
+    protected DoctrineHelper $doctrineHelper;
+    protected string $baseTemplateName = __DIR__ . '/../../skeleton/';
 
     public function __construct(DoctrineHelper $doctrineHelper)
     {
@@ -63,19 +64,21 @@ class MakeTable extends AbstractMaker
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
     {
         $controllerNamespace = $this->askControllerNamespace($io);
+        $entityNamespace = $this->askEntityNamespace($io);
 
         $entitySearchable = $io->askQuestion(new ConfirmationQuestion('Add the ability to search your entity with text', true));
         $editOnModal = $io->askQuestion(new ConfirmationQuestion('Edit entity on a modal', true));
         $createTemplate = $io->askQuestion(new ConfirmationQuestion('Create twig template', true));
 
         // class details
-        $entity = $generator->createClassNameDetails($input->getArgument('entity_name'), 'Entity\\');
-        $form = $generator->createClassNameDetails($entity->getShortName(), 'Form\\', 'Type');
-        $table = $generator->createClassNameDetails($entity->getShortName(), 'DataTable\\', 'TableType', );
+        $entity = $generator->createClassNameDetails($entityNamespace . $input->getArgument('entity_name'), 'Entity\\');
+        $repository = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'Repository\\', 'Repository');
+        $form = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'Form\\', 'Type');
+        $table = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'DataTable\\', 'TableType', );
         $controller = $generator->createClassNameDetails($controllerNamespace . $entity->getShortName(), 'Controller\\', 'Controller');
 
         $routePath = Str::asRoutePath($controller->getRelativeNameWithoutSuffix());
-        $routeName = 'app_' . Str::asRouteName($controller->getRelativeNameWithoutSuffix());
+        $routeName = $this->asRouteName($controller);
 
         if ($createTemplate) {
             $indexTemplateName = Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/index.html.twig';
@@ -94,7 +97,14 @@ class MakeTable extends AbstractMaker
 
         if (!class_exists($entity->getFullName())) {
             $generator->generateClass($entity->getFullName(), $this->baseTemplateName . 'Entity.tpl.php', [
-                'entity_searchable' => $entitySearchable
+                'entity_searchable' => $entitySearchable,
+                'repository' => $repository
+            ]);
+        }
+
+        if (!class_exists($repository->getFullName())) {
+            $generator->generateClass($repository->getFullName(), $this->baseTemplateName . 'EntityRepository.tpl.php', [
+                'entity' => $entity
             ]);
         }
 
@@ -115,6 +125,7 @@ class MakeTable extends AbstractMaker
             'route_name' => $routeName,
             'route_path' => $routePath,
             'entity' => $entity,
+            'repository' => $repository,
             'table' => $table,
             'form' => $form,
             'index_template_name' => $indexTemplateName,
@@ -136,7 +147,7 @@ class MakeTable extends AbstractMaker
         $io->text(sprintf('Next: Check your new CRUD by going to <fg=yellow>/admin%s/</>', $routePath));
     }
 
-    private function createEntityClassQuestion(string $questionText): Question
+    protected function createEntityClassQuestion(string $questionText): Question
     {
         $question = new Question($questionText);
         $question->setValidator([Validator::class, 'notBlank']);
@@ -145,25 +156,56 @@ class MakeTable extends AbstractMaker
         return $question;
     }
 
-    private function askControllerNamespace(ConsoleStyle $io): ?string
+    protected function askControllerNamespace(ConsoleStyle $io): ?string
     {
-        $question = new ChoiceQuestion('Namespace of your your Controller', [
-            'admin', 'none', 'other'
+        $question = new ChoiceQuestion('Sub namespace of your your Controller', [
+            'Admin\\', 'none', 'other'
         ], 0);
 
         $answer = $io->askQuestion($question);
 
-        if ('admin' === $answer) {
-            return 'Admin\\';
+        if ('none' === $answer) {
+            return null;
         }
 
         if ('other' === $answer) {
-            $question = new Question('Specify');
+            $question = new Question('Specify - e.g. <fg=yellow>Admin\Foo</>');
+            $question->setValidator([Validator::class, 'notBlank']);
+            $answer = $io->askQuestion($question);
+            return rtrim($answer, '\\') . '\\';
+        }
+
+        return $answer;
+    }
+
+    protected function askEntityNamespace(ConsoleStyle $io): ?string
+    {
+        $question = new ChoiceQuestion('Sub namespace of your your Entity', [
+            'none', 'other'
+        ], 0);
+
+        $answer = $io->askQuestion($question);
+
+        if ('other' === $answer) {
+            $question = new Question('Specify - e.g. <fg=yellow>Admin\Foo</>');
             $question->setValidator([Validator::class, 'notBlank']);
             $answer = $io->askQuestion($question);
             return rtrim($answer, '\\') . '\\';
         }
 
         return null;
+    }
+
+    // Hack : symfony fail to generate route name
+    protected function asRouteName(ClassNameDetails $controller): string
+    {
+        // App\Foo\Bar\Controller\BazController => App\Foo\Bar\Baz
+        $s = str_replace('Controller\\' . $controller->getRelativeName(), '', $controller->getFullName()) . $controller->getRelativeNameWithoutSuffix();
+
+        // App\Foo\Bar\Baz => App_Foo_Bar_Baz
+        $s = str_replace('\\', '_', $s);
+
+        // App\Foo\Bar\Baz => app_foo_bar_baz
+        return strtolower($s);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace <?= $namespace ?>;
 
+use <?= $repository->getFullName() ?>;
 use Doctrine\ORM\Mapping as ORM;
 use Umbrella\CoreBundle\Model\IdTrait;
 <?php if ($entity_searchable) { ?>
@@ -10,7 +11,7 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 <?php } ?>
 
 /**
-* @ORM\Entity
+* @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
 <?php if ($entity_searchable) { ?>
 * @ORM\HasLifecycleCallbacks
 * @Searchable
