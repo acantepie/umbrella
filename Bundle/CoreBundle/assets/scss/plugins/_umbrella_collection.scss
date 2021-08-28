@@ -9,8 +9,14 @@ umbrella-collection {
       border: 0;
     }
 
-    tr td {
+    .drag-handle {
       vertical-align: middle;
+    }
+
+    .table-action {
+      vertical-align: middle;
+      text-align: center;
+      width: 50px;
     }
   }
 
