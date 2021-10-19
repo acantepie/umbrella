@@ -12,6 +12,7 @@ use Umbrella\AdminBundle\Form\UserType;
 use Umbrella\AdminBundle\Security\UserChecker;
 use Umbrella\AdminBundle\Services\UserMailer;
 use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\Form\DataTransformer\RoleToNumbersTransformer;
 
 return static function (ContainerConfigurator $configurator): void {
 
@@ -20,7 +21,7 @@ return static function (ContainerConfigurator $configurator): void {
     $services->defaults()
         ->private()
         ->autowire(true)
-        ->autoconfigure(false);
+        ->autoconfigure(true);
 
     $services->set(CreateAdminUserCommand::class)
         ->tag('console.command');
@@ -39,6 +40,7 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('umbrella.datatable.type');
 
     $services->set(UserManager::class);
+    $services->set(RoleToNumbersTransformer::class);
     $services->set(UserMailer::class);
 
     $services->set(UserPasswordConfirmType::class)
