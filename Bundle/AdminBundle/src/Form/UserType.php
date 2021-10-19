@@ -6,21 +6,27 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Form\PasswordTogglableType;
+use Umbrella\AdminBundle\Entity\Role;
+
+use Umbrella\AdminBundle\Form\DataTransformer\RoleToNumbersTransformer;
 
 class UserType extends AbstractType
 {
     private UmbrellaAdminConfiguration $config;
+    private $transformer;
 
     /**
      * UserType constructor.
      */
-    public function __construct(UmbrellaAdminConfiguration $config)
+    public function __construct(RoleToNumbersTransformer $transformer,UmbrellaAdminConfiguration $config)
     {
         $this->config = $config;
+        $this->transformer = $transformer;
     }
 
     /**
@@ -48,6 +54,19 @@ class UserType extends AbstractType
             'label' => 'label.email',
             'translation_domain' => 'UmbrellaAdmin'
         ]);
+
+        $builder->add(
+                'roles',
+                EntityType::class,
+                [
+                    'class' => Role::class,
+                    'label' => 'label.roles',
+                    'choice_label' => 'name',
+                    'expanded' => true,
+                    'multiple' => true,
+                ]
+            );
+        $builder->get('roles')->addModelTransformer($this->transformer);
 
         $params = [
             'label' => 'label.password',
