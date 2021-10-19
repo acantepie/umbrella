@@ -3,6 +3,7 @@
 namespace Umbrella\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -134,6 +135,53 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
             $this->password,
             $this->email
             ) = unserialize($serialized);
+    }
+
+    /**
+     * @var ArrayCollection|null
+     *
+     * @ORM\ManyToMany(targetEntity="Umbrella\AdminBundle\Entity\Role", cascade={"persist"})
+     * @ORM\JoinTable(name="user_role",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="roles_id", referencedColumnName="id")}
+     * )
+     */
+    private $roles;
+
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        $roles = [];
+        /**
+         * @var int  $index
+         * @var Role $role
+         */
+        foreach ($this->roles->toArray() as $index => $role) {
+            $roles[$index] = $role->getName();
+        }
+
+        return $roles;
+    }
+
+    /**
+     * @param Role $role
+     *
+     * @return User
+     */
+    public function addRole(Role $role): User
+    {
+        if (!$this->roles->contains($role)) {
+            $this->roles->add($role);
+        }
+
+        return $this;
     }
 
     // UserInterface implementation
