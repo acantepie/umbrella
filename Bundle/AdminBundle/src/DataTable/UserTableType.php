@@ -8,8 +8,10 @@ use Umbrella\AdminBundle\DataTable\Column\UserNameColumnType;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
+use Umbrella\CoreBundle\DataTable\Column\ManyColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\WidgetColumnType;
+use Symfony\Component\Form\CallbackTransformer;
 use Umbrella\CoreBundle\DataTable\DataTableBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\Form\SearchType;
@@ -49,6 +51,11 @@ class UserTableType extends DataTableType
         ]);
         $builder->add('createdAt', DateColumnType::class, [
             'label' => 'label.created_at',
+            'translation_domain' => 'UmbrellaAdmin'
+        ]);
+
+        $builder->add('roles', ManyColumnType::class, [
+            'label' => 'label.roles',
             'translation_domain' => 'UmbrellaAdmin'
         ]);
         $builder->add('active', BooleanColumnType::class, [
