@@ -203,6 +203,20 @@ Run following command to create a new admin user:
 php bin/console create:admin_user
 ```
 
+Adding Roles To Users
+
+```php
+php bin/console doctrine:schema:update --force
+```
+
+```sql
+INSERT INTO `role` (`id`, `name`) VALUES
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_USER'),
+(3, 'ROLE_LOGIN'),
+(4, 'ROLE_ALLOWED_TO_SWITCH');
+```
+
 # Create CRUD with maker
 ```bash
 php bin/console make:table # Table view
