@@ -37,16 +37,21 @@ umbrella-toolbar[theme=default] {
 
   }
 
+  @include media-breakpoint-up(xl) {
+    .toolbar-item-container {
+      .toolbar-item-separator {
+        margin-right: auto;
+      }
+    }
+  }
+
   @include media-breakpoint-up(md) {
     .toolbar-item-container {
       display: flex;
+      flex-wrap: wrap;
 
       .toolbar-item-filter {
         min-width: 180px;
-      }
-
-      .toolbar-item-separator {
-        margin-right: auto;
       }
 
       .toolbar-item {
