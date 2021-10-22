@@ -1,78 +1,155 @@
 import 'select2/dist/js/select2.full';
 import 'select2/dist/js/i18n/fr';
-import mustache from 'mustache';
+import mustache from 'mustache'
 
 export default class select2 extends HTMLSelectElement {
+
     constructor() {
-        super();
-        this.render()
+        super()
+
+        mustache.tags = ['[[', ']]']
+
+        this.$el = $(this)
+        this.reset = this.reset.bind(this)
     }
 
-    _getOptions() {
-        const formOptions = JSON.parse(this.getAttribute('data-options'))
+    connectedCallback() {
+        const options = JSON.parse(this.dataset.options)
+        let select2_options = options['select2'] || {}
+        select2_options['language'] = umbrella.LANG
 
-        let select2Options = {
-            language: umbrella.LANG,
-            placeholder: formOptions['placeholder'],
-            allowClear: formOptions['allow_clear'],
-            minimumInputLength: formOptions['min_search_length'],
-        }
-
-        if (formOptions['dropdown_class']) {
-            select2Options['dropdownCssClass'] = formOptions['dropdown_class']
-        }
-
-        // ajax loading
-        if (formOptions['autocomplete_url']) {
-            select2Options['ajax'] = {
-                url: formOptions['autocomplete_url'],
+        // --- Build options --- //
+        if (options['autocomplete_url']) {
+            select2_options['ajax'] = {
+                url: options['autocomplete_url'],
                 dataType: 'json',
                 delay: 250,
+                cache: true,
                 data: function (params) {
-                    return {'query': params.term, 'page': params.page};
+                    return {'q': params.term, 'page': params.page || 1}
                 },
-                cache: true
+                processResults: (data, params) => {
+                    let response = {
+                        results: []
+                    };
+
+                    params.page = params.page || 1
+
+                    if (Array.isArray(data)) {
+                        response.results = data;
+
+                    } else if (typeof data === 'object') {
+
+                        if ('results' in data) {
+                            response.results = data.results
+                        } else {
+                            console.error('[Select2.js] Invalid response format : ', data)
+                            return response
+                        }
+
+                        if ('more' in data) {
+                            response.pagination = {more: data.more}
+                        }
+
+                    } else {
+                        console.error('[Select2.js] Invalid response format : ', data)
+                    }
+
+                    return response;
+                }
             }
         }
 
-        // template renderer
-        let template = null;
+        let template = null
 
-        if (formOptions['template_selector']) {
-            const templateEl = document.querySelector(formOptions['template_selector'])
+        if (options['template_selector']) {
+            const templateEl = document.querySelector(options['template_selector'])
             if (templateEl) {
                 template = templateEl.innerHTML
             } else {
-                console.error('[Select2.js] No template found with selector ' + formOptions['template_selector']);
+                console.error('[Select2.js] No template found with selector ' + options['template_selector'])
             }
-        } else if (formOptions['template']) {
-            template = formOptions['template']
+        } else if (options['template']) {
+            template = options['template']
         }
 
         if (template) {
-            mustache.tags = [ '[[', ']]' ];
-
-            select2Options['templateResult'] = (state) => {
+            select2_options['templateResult'] = (state) => {
                 if (!state.id) {
-                    return state.text;
+                    return state.text
                 }
 
-                let data = state;
+                let data = state
 
                 // add data retrieve from vanilla option element
                 if (state.element) {
-                    const exposedData = $(state.element).data() || {};
+                    const exposedData = JSON.parse(state.element.dataset.json) || {}
                     data = {...exposedData, ...data}
                 }
 
-                return $('<span>' + mustache.render(template, data) + '</span>');
-            };
+                return $('<span>' + mustache.render(template, data) + '</span>')
+            }
         }
 
-        return select2Options;
+
+        // --- Init select2 --- //
+        this.$el.select2(select2_options)
+
+        // --- Custom event --- //
+        // Hack - reset to default value if form is resseted
+        this.closest('form').addEventListener('reset', this.reset)
     }
 
-    render() {
-        $(this).select2(this._getOptions());
+
+    selectValue(val) {
+        this.$el.val(val)
+        this.update()
+    }
+
+    selectAll() {
+        this.each((option) => {
+            option.selected = true
+        })
+        this.update()
+    }
+
+    unselectAll() {
+        this.each((option) => {
+            option.selected = false
+        })
+        this.update()
+    }
+
+    each(fn) {
+        for (let option of this.options) {
+            fn(option)
+        }
+    }
+
+    getSelectedValue() {
+        return this.$el.val()
+    }
+
+    getSelectedData() {
+        return this.$el.select2('data')
+    }
+
+    update() {
+        this.$el.trigger('change.select2')
+    }
+
+    reset() {
+        this.$el.find('option').prop('selected', function () {
+            return this.defaultSelected
+        })
+        this.$el.trigger('change.select2')
+    }
+
+    open() {
+        this.$el.select2('open')
+    }
+
+    close() {
+        this.$el.select2('close')
     }
 }

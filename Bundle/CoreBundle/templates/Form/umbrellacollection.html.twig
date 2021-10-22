@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
             {% endif %}
-            <tbody>
+            <tbody class="js-item-container">
                 {% for entry_form in form %}
                     {{ block('umbrellacollection_item_widget') }}
                 {% endfor %}
@@ -67,7 +67,7 @@
 
 {% block umbrellacollection_item_widget %}
 {% apply spaceless %}
-    <tr class="js-row" data-idx="{{ entry_form.vars.name }}">
+    <tr class="js-item" data-idx="{{ entry_form.vars.name }}">
 
         {% if form.vars.sortable %}
             <td class="js-drag-handle drag-handle">
@@ -88,7 +88,7 @@
 
         {% if form.vars.allow_delete %}
             <td class="table-action">
-                <a class="js-del-row action-icon" href="#">
+                <a class="js-del-item action-icon" href="#">
                     <i class="mdi mdi-delete"></i>
                 </a>
             </td>

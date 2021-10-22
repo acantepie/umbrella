@@ -10,25 +10,27 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormRegistryInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AutocompleteType extends AbstractType implements DataMapperInterface, EventSubscriberInterface
 {
-    private const IGNORED_OPTIONS = ['allow_clear', 'placeholder', 'route', 'route_params', 'min_search_length', 'template', 'template_selector', 'dropdown_class'];
-
     private RouterInterface $router;
     private TranslatorInterface $translator;
+    private FormRegistryInterface $formRegistry;
 
     /**
      * AutocompleteType constructor.
      */
-    public function __construct(RouterInterface $router, TranslatorInterface $translator)
+    public function __construct(RouterInterface $router, TranslatorInterface $translator, FormRegistryInterface $formRegistry)
     {
         $this->router = $router;
         $this->translator = $translator;
+        $this->formRegistry = $formRegistry;
     }
 
     /**
@@ -47,24 +49,30 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['attr']['is'] = 'umbrella-select2';
+        $view->vars['attr']['data-options'] = json_encode($this->buildJsOptions($view, $form, $options));
+    }
 
-        $dataOptions['autocomplete_url'] = $this->router->generate($options['route'], $options['route_params']);
-        $dataOptions['allow_clear'] = !$options['required'] ? true : $options['allow_clear'];
+    protected function buildJsOptions(FormView $view, FormInterface $form, array $options): array
+    {
+        // select2 Options
+        $jsSelect2Options = $options['select2_options'];
 
-        if (null === $options['placeholder'] || false === $options['placeholder']) {
-            $dataOptions['placeholder'] = $dataOptions['allow_clear'] ? '' : null;
-        } else {
-            $dataOptions['placeholder'] = empty($options['placeholder']) || false === $options['translation_domain']
-                ? $options['placeholder']
-                : $this->translator->trans($options['placeholder'], [], $options['translation_domain']);
-        }
+        $jsSelect2Options['placeholder'] = empty($options['placeholder']) || false === $options['translation_domain']
+            ? ($options['placeholder'] ? $options['placeholder'] : '') // always set a placeholder
+            : $this->translator->trans($options['placeholder'], [], $options['translation_domain']);
 
-        $dataOptions['min_search_length'] = $options['min_search_length'];
-        $dataOptions['template'] = $options['template'];
-        $dataOptions['template_selector'] = $options['template_selector'];
-        $dataOptions['dropdown_class'] = $options['dropdown_class'];
+        $jsSelect2Options['allowClear'] = true !== $options['required']; // allow clear if not required
+        $jsSelect2Options['minimumInputLength'] = $options['min_search_length'];
+        $jsSelect2Options['width'] = $options['width'];
 
-        $view->vars['attr']['data-options'] = json_encode($dataOptions);
+        // js Options
+        $jsOptions = [];
+        $jsOptions['template_selector'] = $options['template_selector'];
+        $jsOptions['template'] = $options['template'];
+        $jsOptions['autocomplete_url'] = $this->router->generate($options['route'], $options['route_params']);
+        $jsOptions['select2'] = $jsSelect2Options;
+
+        return $jsOptions;
     }
 
     /**
@@ -77,12 +85,12 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
             ->setDefault('error_bubbling', false);
 
         $resolver
-            ->setDefault('allow_clear', true)
-            ->setAllowedTypes('allow_clear', 'boolean');
-
-        $resolver
             ->setDefault('min_search_length', 1)
             ->setAllowedTypes('min_search_length', 'int');
+
+        $resolver
+            ->setDefault('width', '100%')
+            ->setAllowedTypes('width', ['null', 'string']);
 
         $resolver
             ->setDefault('placeholder', null)
@@ -92,25 +100,29 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
             ->setRequired('class')
             ->setAllowedTypes('class', 'string');
 
+        $resolver->setNormalizer('data_class', function (Options $options) {
+            return null;
+        });
+
         $resolver
             ->setRequired('route')
             ->setAllowedTypes('route', 'string');
 
         $resolver
             ->setDefault('route_params', [])
-            ->setAllowedTypes('route_params', ['array']);
-
-        $resolver
-            ->setDefault('template', null)
-            ->setAllowedTypes('template', ['string', 'null']);
+            ->setAllowedTypes('route_params', 'array');
 
         $resolver
             ->setDefault('template_selector', null)
-            ->setAllowedTypes('template_selector', ['string', 'null']);
+            ->setAllowedTypes('template_selector', ['null', 'string']);
 
         $resolver
-            ->setDefault('dropdown_class', null)
-            ->setAllowedTypes('dropdown_class', ['string', 'null']);
+            ->setDefault('template', null)
+            ->setAllowedTypes('template', ['null', 'string']);
+
+        $resolver
+            ->setDefault('select2_options', [])
+            ->setAllowedTypes('select2_options', 'array');
     }
 
     /**
@@ -126,19 +138,20 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function mapDataToForms($data, $forms)
+    public function mapDataToForms($viewData, $forms)
     {
+        /** @var FormInterface $form */
         $form = current(iterator_to_array($forms, false));
-        $form->setData($data);
+        $form->setData($viewData);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function mapFormsToData($forms, &$data)
+    public function mapFormsToData($forms, &$viewData)
     {
         $form = current(iterator_to_array($forms, false));
-        $data = $form->getData();
+        $viewData = $form->getData();
     }
 
     // EventSubscriberInterface impl
@@ -162,10 +175,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $options = $form->getConfig()->getOptions();
         $options['compound'] = false;
         $options['choices'] = is_iterable($data) ? $data : [$data];
+        $options = $this->filterOptions($options, EntityType::class);
 
-        foreach (self::IGNORED_OPTIONS as $name) {
-            unset($options[$name]);
-        }
         $form->add('autocomplete', EntityType::class, $options);
     }
 
@@ -187,5 +198,24 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         unset($options['em'], $options['loader'], $options['empty_data'], $options['choice_list']);
 
         $form->add('autocomplete', EntityType::class, $options);
+    }
+
+    // Remove all options no defined on given $type
+    private function filterOptions(array $options, string $type): array
+    {
+        $definedOptions = $this->formRegistry
+            ->getType($type)
+            ->getOptionsResolver()
+            ->getDefinedOptions();
+
+        $definedOptions = array_flip($definedOptions);
+
+        foreach ($options as $name => $value) {
+            if (!isset($definedOptions[$name])) {
+                unset($options[$name]);
+            }
+        }
+
+        return $options;
     }
 }

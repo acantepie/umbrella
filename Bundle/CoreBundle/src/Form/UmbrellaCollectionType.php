@@ -29,13 +29,13 @@ class UmbrellaCollectionType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['show_head'] = $options['show_head'];
-        $view->vars['sortable'] = $options['sortable'];
+        $view->vars['sortable'] = null !== $options['sort_by'];
         $view->vars['max_length'] = $options['max_length'];
 
         if ($options['allow_add']) {
             if (null == $options['add_btn_template']) {
                 $h = '<div>';
-                $h .= '<a class="js-add-row btn btn-light btn-sm" href="#">';
+                $h .= '<a class="js-add-item btn btn-light btn-sm" href="#">';
                 $h .= '<i class="mdi mdi-plus mr-1"></i>';
                 $h .= $this->translator->trans('Add item');
                 $h .= '</a>';
@@ -51,23 +51,30 @@ class UmbrellaCollectionType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if ($options['sortable']) {
+        if ($options['sort_by']) {
             $orders = [];
 
             $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use (&$orders) {
-                $i = 0;
-                foreach ($event->getData() as $name => $_) {
-                    $orders[$name] = ++$i;
+                $data = $event->getData();
+
+                if (\is_iterable($data)) {
+                    $i = 0;
+                    foreach ($event->getData() as $name => $_) {
+                        $orders[$name] = ++$i;
+                    }
                 }
             }, 50);
 
             $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use (&$orders, $options) {
-                $propertyAccessor = PropertyAccess::createPropertyAccessor();
                 $data = $event->getData();
-                foreach ($data as $name => &$item) {
-                    $propertyAccessor->setValue($item, $options['sortable_property_path'], $orders[$name]);
+
+                if (\is_iterable($data)) {
+                    $propertyAccessor = PropertyAccess::createPropertyAccessor();
+                    foreach ($data as $name => &$item) {
+                        $propertyAccessor->setValue($item, $options['sort_by'], $orders[$name]);
+                    }
+                    $event->setData($data);
                 }
-                $event->setData($data);
             });
         }
     }
@@ -93,12 +100,8 @@ class UmbrellaCollectionType extends AbstractType
             ->setAllowedTypes('max_length', ['int', 'null']);
 
         $resolver
-            ->setDefault('sortable', false)
-            ->setAllowedTypes('sortable', 'boolean');
-
-        $resolver
-            ->setDefault('sortable_property_path', 'order')
-            ->setAllowedTypes('sortable_property_path', ['string']);
+            ->setDefault('sort_by', null)
+            ->setAllowedTypes('sort_by', ['null', 'string']);
 
         $resolver
             ->setDefault('add_btn_template', null)
