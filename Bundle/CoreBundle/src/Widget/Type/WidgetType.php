@@ -61,13 +61,11 @@ class WidgetType
     {
         $normalizer = function (Options $options, $value) {
             if (null === $value) {
-                return $value;
+                return null;
             }
 
             if (\is_string($value)) {
-                $value = trim($value);
-
-                return $value ?? null;
+                return trim($value);
             }
 
             $a = \array_filter(\array_map('trim', $value));

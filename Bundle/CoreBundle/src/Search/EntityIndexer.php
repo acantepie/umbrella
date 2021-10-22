@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Mapping\MappingException;
 use Psr\Log\LoggerInterface;
 use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
+use Umbrella\CoreBundle\Utils\Utils;
 
 class EntityIndexer
 {
@@ -102,16 +103,24 @@ class EntityIndexer
 
         $searches = [];
         foreach ($this->annotationReader->getSearchableProperties($entityClass) as $property => $annotation) {
-            $searches[] = (string) $entity->{$property};
+            $searches[] = $this->stringify($entity->{$property});
         }
 
         foreach ($this->annotationReader->getSearchableMethods($entityClass) as $method => $annotation) {
-            $searches[] = (string) call_user_func([$entity, $method]);
+            $searches[] = $this->stringify(call_user_func([$entity, $method]));
         }
+
+        $searches = array_filter($searches);
+        $searches = array_unique($searches);
 
         $search = implode(' ', $searches);
         $entity->{$searchable->getSearchField()} = $search;
 
         return true;
+    }
+
+    private function stringify($value): string
+    {
+        return !\is_bool($value) && Utils::is_stringable($value) ? trim($value) : '';
     }
 }

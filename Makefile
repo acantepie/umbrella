@@ -20,3 +20,11 @@ fix-js: ## Fix files with eslint
 	$(YARN) lint-fix
 
 fix-all: fix-php fix-js ## Fix all files
+
+analyse-core: ## php analyser
+	Bundle/CoreBundle/vendor/bin/phpstan analyse -c Bundle/CoreBundle/phpstan.neon
+	Bundle/CoreBundle/vendor/bin/psalm -c Bundle/CoreBundle/psalm.xml
+
+analyse-admin:
+	Bundle/AdminBundle/vendor/bin/phpstan analyse -c Bundle/AdminBundle/phpstan.neon
+	Bundle/AdminBundle/vendor/bin/psalm -c Bundle/AdminBundle/psalm.xml

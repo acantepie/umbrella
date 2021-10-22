@@ -130,7 +130,7 @@ class DataTable
         return $this;
     }
 
-    public function handleParamaters(array $parameters): self
+    public function handleParameters(array $parameters): self
     {
         $this->response = null;
 

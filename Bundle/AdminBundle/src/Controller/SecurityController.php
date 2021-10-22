@@ -64,7 +64,7 @@ class SecurityController extends BaseController
     {
         // form submitted
         if ($request->isMethod('POST')) {
-            $email = $request->request->get('email');
+            $email = (string) $request->request->get('email');
             $user = $this->userManager->findUserByEmail($email);
 
             if (null !== $user) {

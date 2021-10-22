@@ -29,10 +29,7 @@ class DataTableExtension extends AbstractExtension
             ]),
             new TwigFunction('render_toolbar', [$this->renderer, 'renderToolbar'], [
                 'is_safe' => ['html'],
-            ]),
-            new TwigFunction('render_action', [$this->renderer, 'renderAction'], [
-                'is_safe' => ['html'],
-            ]),
+            ])
         ];
     }
 }

@@ -4,6 +4,7 @@
 namespace Umbrella\CoreBundle\Tests\DataTable;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
@@ -97,4 +98,50 @@ class ColumnTest extends KernelTestCase
         $obj->date = 'foo';
         $this->assertEquals('foo', $c->render($obj));
     }
+
+    public function testBooleanColumn()
+    {
+        // lax comparison
+        $obj = new \stdClass();
+        $c = $this->factory->creatColumn('bool', BooleanColumnType::class);
+
+        $values = [
+            false => 'no',
+            null => 'no',
+            0 => 'no',
+            'foo' => 'yes',
+            true => 'yes',
+            1 => 'yes'
+        ];
+
+        foreach ($values as $value => $expected) {
+            $obj->bool = $value;
+            $this->assertStringContainsStringIgnoringCase($expected, $c->render($obj), 'Tested value : ' . var_export($value, true));
+        }
+
+        // strict comparison
+        $obj = new \stdClass();
+        $c = $this->factory->creatColumn('bool', BooleanColumnType::class, [
+            'strict_comparison' => true
+        ]);
+
+        $values = [
+            false => 'no',
+            null => '',
+            0 => '',
+            'foo' => '',
+            true => 'yes',
+            1 => ''
+        ];
+
+        foreach ($values as $value => $expected) {
+            $obj->bool = $value;
+            if ($expected === '') {
+                $this->assertEquals('', $c->render($obj), 'Tested value : ' . var_export($value, true));
+            } else {
+                $this->assertStringContainsStringIgnoringCase($expected, $c->render($obj), 'Tested value : ' . var_export($value, true));
+            }
+        }
+    }
+
 }

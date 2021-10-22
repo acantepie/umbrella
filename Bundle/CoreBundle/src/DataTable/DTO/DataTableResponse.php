@@ -6,12 +6,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DataTableResponse extends JsonResponse
 {
-    public static function createError(string $error): DataTableResponse
+    public static function createError(string $error): self
     {
         return new self(['error' => $error], self::HTTP_INTERNAL_SERVER_ERROR);
     }
 
-    public static function createSuccess(array $rowViews = [], int $count, string $draw)
+    public static function createSuccess(array $rowViews, int $count, int $draw): self
     {
         return new self([
             'draw' => $draw,

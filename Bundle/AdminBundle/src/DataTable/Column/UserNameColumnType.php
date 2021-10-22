@@ -12,16 +12,16 @@ class UserNameColumnType extends PropertyColumnType
     /**
      * {@inheritdoc}
      */
-    public function render($user, array $options): string
+    public function render($rowData, array $options): string
     {
-        if (!$user instanceof BaseAdminUser) {
+        if (!$rowData instanceof BaseAdminUser) {
             throw new \LogicException(sprintf('UserNameColumnType works only with "%s" entity.', BaseAdminUser::class));
         }
 
         return sprintf(
             '<strong>%s</strong><div class="text-muted">%s</div>',
-            HtmlUtils::escape($user->getFullName()),
-            HtmlUtils::escape($user->email)
+            HtmlUtils::escape($rowData->getFullName()),
+            HtmlUtils::escape($rowData->email)
         );
     }
 

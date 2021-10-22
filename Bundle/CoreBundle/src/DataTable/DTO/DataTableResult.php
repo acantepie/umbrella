@@ -14,7 +14,15 @@ class DataTableResult
     public function __construct(iterable $data = [], ?int $count = null)
     {
         $this->data = $data;
-        $this->count = null === $count ? count($data) : $count;
+
+        if (null === $count) {
+            if (!\is_countable($data)) {
+                throw new \InvalidArgumentException('You must precise count argument if data is not countable');
+            }
+            $this->count = count($data);
+        } else {
+            $this->count = $count;
+        }
     }
 
     public function getData(): iterable

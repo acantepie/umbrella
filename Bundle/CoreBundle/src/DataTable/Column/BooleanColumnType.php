@@ -27,23 +27,17 @@ class BooleanColumnType extends PropertyColumnType
             return '';
         }
 
-        switch ($value) {
-            case true:
-                return sprintf(
-                    '<span class="badge bg-success"><i class="%s"></i> %s</span>',
-                    $options['yes_icon'],
-                    $this->translator->trans($options['yes_value'])
-                );
-
-            case false:
-                return sprintf(
-                    '<span class="badge bg-danger"><i class="%s"></i> %s</span>',
-                    $options['no_icon'],
-                    $this->translator->trans($options['no_value'])
-                );
-            default:
-                return '';
-        }
+        return $value
+            ? sprintf(
+                '<span class="badge badge-outline-success"><i class="%s"></i> %s</span>',
+                $options['yes_icon'],
+                $this->translator->trans($options['yes_value'])
+            )
+            : sprintf(
+                '<span class="badge badge-outline-danger"><i class="%s"></i> %s</span>',
+                $options['no_icon'],
+                $this->translator->trans($options['no_value'])
+            );
     }
 
     /**

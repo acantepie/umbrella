@@ -36,8 +36,11 @@
         "symfony/yaml": "^5.3"
     },
     "require-dev": {
+        "phpstan/phpstan-symfony": "^0.12.44",
+        "psalm/plugin-symfony": "^3.0",
         "symfony/framework-bundle": "^5.3",
-        "symfony/phpunit-bridge": "^5.3"
+        "symfony/phpunit-bridge": "^5.3",
+        "vimeo/psalm": "^4.10"
     },
     "suggest": {
         "symfony/monolog-bundle": "Symfony logger, used on Indexer for example."

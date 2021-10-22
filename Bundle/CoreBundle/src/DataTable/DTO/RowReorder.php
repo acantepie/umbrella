@@ -32,13 +32,10 @@ class RowReorder
 
     public static function createFromRequest(Request $request, string $key = 'changes'): self
     {
-        $changes = $request->query->get($key);
-
-        if (!\is_array($changes)) {
-            throw new \InvalidArgumentException(sprintf('Can\'t initialize row reorder from request - argument "%s" must be an array.', $key));
-        }
+        $changes = $request->query->all($key);
 
         $rowChanges = [];
+        /** @var array $change */
         foreach ($changes as $change) {
             $rowChanges[] = new RowChange($change['id'], $change['old'], $change['new']);
         }

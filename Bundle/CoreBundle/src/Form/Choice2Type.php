@@ -90,7 +90,6 @@ class Choice2Type extends AbstractType
         return $json;
     }
 
-
     protected function buildJsOptions(FormView $view, FormInterface $form, array $options): array
     {
         // select2 Options
@@ -113,7 +112,6 @@ class Choice2Type extends AbstractType
         return $jsOptions;
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -126,7 +124,6 @@ class Choice2Type extends AbstractType
         $resolver
             ->setDefault('width', '100%')
             ->setAllowedTypes('width', ['null', 'string']);
-
 
         $resolver
             ->setDefault('template', null)
@@ -144,17 +141,14 @@ class Choice2Type extends AbstractType
             ->setDefault('expose', null)
             ->setAllowedTypes('expose', ['null', 'callable']);
 
-
         $resolver
             ->setDefault('select2_options', [])
             ->setAllowedTypes('select2_options', ['array']);
 
-
         $resolver
             ->setNormalizer('placeholder', function (Options $options, $placeholder) { // erase ChoiceType normalizer
-            return $placeholder;
-        });
-
+                return $placeholder;
+            });
     }
 
     /**
