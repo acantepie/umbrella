@@ -12,9 +12,17 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UmbrellaCollectionType extends AbstractType
 {
+    private TranslatorInterface $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -23,6 +31,20 @@ class UmbrellaCollectionType extends AbstractType
         $view->vars['show_head'] = $options['show_head'];
         $view->vars['sortable'] = $options['sortable'];
         $view->vars['max_length'] = $options['max_length'];
+
+        if ($options['allow_add']) {
+            if (null == $options['add_btn_template']) {
+                $h = '<div>';
+                $h .= '<a class="js-add-row btn btn-light btn-sm" href="#">';
+                $h .= '<i class="mdi mdi-plus mr-1"></i>';
+                $h .= $this->translator->trans('Add item');
+                $h .= '</a>';
+                $h .= '</div>';
+                $view->vars['add_btn_template'] = $h;
+            } else {
+                $view->vars['add_btn_template'] = $options['add_btn_template'];
+            }
+        }
 
         $view->vars['collection_compound'] = false;
     }
@@ -77,6 +99,10 @@ class UmbrellaCollectionType extends AbstractType
         $resolver
             ->setDefault('sortable_property_path', 'order')
             ->setAllowedTypes('sortable_property_path', ['string']);
+
+        $resolver
+            ->setDefault('add_btn_template', null)
+            ->setAllowedTypes('add_btn_template', ['null', 'string']);
     }
 
     /**

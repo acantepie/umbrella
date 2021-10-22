@@ -48,12 +48,8 @@
             </tbody>
         </table>
 
-        {% if form.vars.allow_add %}
-            <div>
-                <a class="js-add-row btn btn-light btn-sm" href="#">
-                    <i class="mdi mdi-plus me-1"></i> {{ 'Add item' | trans }}
-                </a>
-            </div>
+        {% if form.vars.add_btn_template %}
+            {{ form.vars.add_btn_template | raw }}
         {% endif %}
 
     </umbrella-collection>
