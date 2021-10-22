@@ -32,7 +32,6 @@ class RowReorder
 
     public static function createFromRequest(Request $request, string $key = 'changes'): self
     {
-        /** @var mixed $changes */
         $changes = $request->query->get($key);
 
         if (!\is_array($changes)) {
