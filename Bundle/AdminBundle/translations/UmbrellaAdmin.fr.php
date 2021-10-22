@@ -5,7 +5,7 @@ return [
         'sign_in' => 'Merci de vous authentifier pour accéder au service.',
         'forget_password' => 'Mot de passe oublié ?',
         'reset_password_error' => 'Ce lien a éxpiré.',
-        'reset_password_error_cause1' => 'Cela fait fait plus de 24 heures que vous avez demandé à cet que votre mot de passe soit réinitialisé. Veuillez faire une nouvelle demande de <a href="%url%" class="text-primary">réinitialisation de mot de passe</a>.',
+        'reset_password_error_cause1' => 'Cela fait fait plus de 24 heures que vous avez demandé à ce que votre mot de passe soit réinitialisé. Veuillez faire une nouvelle demande de <a href="%url%" class="text-primary">réinitialisation de mot de passe</a>.',
         'reset_password_error_cause2' => 'Si vous avez effectué plusieurs demande, seul l\'email de réinitialisation envoyé en dernier sera valide.',
         'forget_password_explanation' => 'Saisissez l\'adresse email associée à votre compte. Nous enverrons la procédure de récupération de votre mot de passe sur votre messagerie.',
         'back_login_markup' => 'Revenir à <b>l\'écran de connexion</b>',

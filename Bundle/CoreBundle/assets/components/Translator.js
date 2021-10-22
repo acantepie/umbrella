@@ -15,13 +15,13 @@ const TRANS = {
 
     fr: {
         'row_selected': {
-            '1' : '%c% élément sélectionnée. <a href data-tag="dt:unselectall">Effacer la sélection</a>',
-            '_': '%c% éléments sélectionnées. <a href data-tag="dt:unselectall">Effacer la sélection</a>',
+            '1' : '%c% élément sélectionné. <a href data-tag="dt:unselectall">Effacer la sélection</a>',
+            '_': '%c% éléments sélectionnés. <a href data-tag="dt:unselectall">Effacer la sélection</a>',
         },
         'cancel': 'Annuler',
         'confirm': 'Confirmer',
-        'unauthorized_error': 'Vous n\'etes plus connecté. Veuillez rafraichir la page pour vous authentifier',
-        'forbidden_error': 'You are not allowed to perform this action',
+        'unauthorized_error': 'Vous n\'êtes plus connecté. Veuillez rafraichir la page pour vous authentifier',
+        'forbidden_error': 'Vous n\'êtes pas autorisé à effectuer cette action',
         'notfound_error': 'Impossible de contacter le serveur',
         'other_error': 'Une erreur est survenue',
         'loading_data_error': 'Impossible de charger les données'
