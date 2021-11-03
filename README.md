@@ -112,7 +112,7 @@ Et voila.
 
 
 ### Manager admin user with doctrine
-Create user entity with maker :
+Create user entity class with maker :
 ```bash
 php bin/console make:admin_user
 ```
