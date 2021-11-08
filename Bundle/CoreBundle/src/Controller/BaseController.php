@@ -127,4 +127,10 @@ abstract class BaseController extends AbstractController
         }
     }
 
+    protected function throwAccessDeniedExceptionIfFalse($target, string $message = ''): void
+    {
+        if (false === $target) {
+            throw $this->createAccessDeniedException($message);
+        }
+    }
 }
