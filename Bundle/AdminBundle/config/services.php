@@ -44,6 +44,5 @@ return static function (ContainerConfigurator $configurator): void {
         ->bind('$doctrineHelper', service('maker.doctrine_helper'))
         ->tag('maker.command');
     $services->set(MakeNotification::class)
-        ->bind('$doctrineHelper', service('maker.doctrine_helper'))
         ->tag('maker.command');
 };

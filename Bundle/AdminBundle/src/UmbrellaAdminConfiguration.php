@@ -12,7 +12,7 @@ class UmbrellaAdminConfiguration
     /**
      * UmbrellaAdminConfiguration constructor.
      */
-    public function __construct(array $config = [], LogoutUrlGenerator $logoutUrlGenerator)
+    public function __construct(array $config, LogoutUrlGenerator $logoutUrlGenerator)
     {
         $this->config = $config;
         $this->logoutUrlGenerator = $logoutUrlGenerator;

@@ -3,15 +3,15 @@
 
 namespace Umbrella\CoreBundle\Tests\DataTable;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableBuilerHelper;
+use Umbrella\CoreBundle\Tests\Functional\AppTestCase;
 use Umbrella\CoreBundle\Utils\HtmlUtils;
 
-class ColumnTest extends KernelTestCase
+class ColumnTest extends AppTestCase
 {
     private ?DataTableBuilerHelper $factory = null;
 

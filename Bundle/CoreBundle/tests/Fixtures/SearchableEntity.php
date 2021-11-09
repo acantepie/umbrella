@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\CoreBundle\Tests\Search\Mock;
+namespace Umbrella\CoreBundle\Tests\Fixtures;
 
 use Umbrella\CoreBundle\Search\Annotation\Searchable;
 use Umbrella\CoreBundle\Search\Annotation\SearchableField;

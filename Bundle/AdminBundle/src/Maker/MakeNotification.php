@@ -4,7 +4,6 @@ namespace Umbrella\AdminBundle\Maker;
 
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
 use Symfony\Bundle\MakerBundle\DependencyBuilder;
-use Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper;
 use Symfony\Bundle\MakerBundle\Generator;
 use Symfony\Bundle\MakerBundle\InputConfiguration;
 use Symfony\Bundle\MakerBundle\Maker\AbstractMaker;
@@ -13,13 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 
 class MakeNotification extends AbstractMaker
 {
-    private DoctrineHelper $doctrineHelper;
     private string $baseTemplateName = __DIR__ . '/../../skeleton/';
-
-    public function __construct(DoctrineHelper $doctrineHelper)
-    {
-        $this->doctrineHelper = $doctrineHelper;
-    }
 
     public static function getCommandName(): string
     {

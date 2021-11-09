@@ -5,10 +5,6 @@ on: [ push ]
 env:
   fail-fast: true
 
-defaults:
-  run:
-    working-directory: ./Bundle/AdminBundle
-
 jobs:
   tests:
     name: "PHP ${{ matrix.php-version }}"
@@ -34,7 +30,5 @@ jobs:
         run: |
           composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
           vendor/bin/simple-phpunit install
-          rm -Rf vendor/umbrella2/corebundle
-          ln -s ../../../CoreBundle vendor/umbrella2/corebundle
       - name: 'Run tests'
         run: vendor/bin/simple-phpunit -v

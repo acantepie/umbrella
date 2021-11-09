@@ -12,3 +12,6 @@ composer.lock
 
 ###> Linter ###
 .php-cs-fixer.cache
+
+###> phpunit ###
+.phpunit.result.cache

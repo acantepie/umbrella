@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\CoreBundle\Tests\Search\Mock;
+namespace Umbrella\CoreBundle\Tests\Fixtures;
 
 class StringableObject
 {

@@ -2,14 +2,16 @@
 
 namespace Umbrella\AdminBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Umbrella\AdminBundle\Tests\Functional\AppTestCase;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends AppTestCase
 {
     public function test()
     {
         $client = static::createClient();
+        static::loadFixtures();
+
         $client->request('GET', '/');
 
         $appName = $this->getContainer()->get(UmbrellaAdminConfiguration::class)->appName();

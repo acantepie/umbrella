@@ -5,7 +5,8 @@ includes:
 parameters:
     level: 5
     paths:
-        - src/
+        - Bundle/AdminBundle/src
+        - Bundle/CoreBundle/src
     checkUninitializedProperties: true
     checkAlwaysTrueCheckTypeFunctionCall: true
     checkAlwaysTrueInstanceof: true

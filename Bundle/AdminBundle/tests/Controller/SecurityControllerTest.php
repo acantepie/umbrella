@@ -2,14 +2,16 @@
 
 namespace Umbrella\AdminBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Umbrella\AdminBundle\Tests\Functional\AppTestCase;
 use Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser;
 
-class SecurityControllerTest extends WebTestCase
+class SecurityControllerTest extends AppTestCase
 {
     public function testLogin()
     {
         $client = static::createClient();
+        static::loadFixtures();
+
         $crawler = $client->request('GET', '/login');
 
         // login page
@@ -41,6 +43,8 @@ class SecurityControllerTest extends WebTestCase
     public function testInvalidCredentialsLogin()
     {
         $client = static::createClient();
+        static::loadFixtures();
+
         $crawler = $client->request('GET', '/login');
 
 
@@ -59,6 +63,8 @@ class SecurityControllerTest extends WebTestCase
     public function testDisabledAccountLogin()
     {
         $client = static::createClient();
+        static::loadFixtures();
+
         $crawler = $client->request('GET', '/login');
 
 

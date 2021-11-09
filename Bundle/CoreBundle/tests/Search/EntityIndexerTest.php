@@ -2,12 +2,12 @@
 
 namespace Umbrella\CoreBundle\Tests\Search;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Umbrella\CoreBundle\Search\EntityIndexer;
-use Umbrella\CoreBundle\Tests\Search\Mock\SearchableEntity;
-use Umbrella\CoreBundle\Tests\Search\Mock\StringableObject;
+use Umbrella\CoreBundle\Tests\Functional\AppTestCase;
+use Umbrella\CoreBundle\Tests\Fixtures\SearchableEntity;
+use Umbrella\CoreBundle\Tests\Fixtures\StringableObject;
 
-class EntityIndexerTest extends KernelTestCase
+class EntityIndexerTest extends AppTestCase
 {
     private ?EntityIndexer $indexer = null;
 

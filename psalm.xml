@@ -7,20 +7,24 @@
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="src"/>
+        <directory name="Bundle/*/src"/>
         <ignoreFiles>
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
+
     <plugins>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
     </plugins>
+
     <issueHandlers>
         <ImplicitToStringCast errorLevel="info"/>
-        <InvalidArrayOffset>
+
+        <!-- Use internal method for Umbrella Maker -->
+        <InternalMethod>
             <errorLevel type="suppress">
-                <file name="src/Utils/Utils.php"/>
+                <referencedMethod name="Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper::getEntitiesForAutocomplete"/>
             </errorLevel>
-        </InvalidArrayOffset>
+        </InternalMethod>
     </issueHandlers>
 </psalm>

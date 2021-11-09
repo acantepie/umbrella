@@ -36,11 +36,8 @@
         "symfony/yaml": "^5.3"
     },
     "require-dev": {
-        "phpstan/phpstan-symfony": "^1.0",
-        "psalm/plugin-symfony": "^3.0",
         "symfony/framework-bundle": "^5.3",
-        "symfony/phpunit-bridge": "^5.3",
-        "vimeo/psalm": "^4.10"
+        "symfony/phpunit-bridge": "^5.3"
     },
     "suggest": {
         "symfony/monolog-bundle": "Symfony logger, used on Indexer for example."
@@ -56,7 +53,7 @@
     "autoload-dev": {
         "psr-4": {
             "Umbrella\\CoreBundle\\Tests\\": "tests/",
-            "Umbrella\\CoreBundle\\Tests\\TestApp\\": "tests/TestApp/src/"
+            "Umbrella\\CoreBundle\\Tests\\TestApp\\": "tests/Functional/app/src/"
         }
     }
 }

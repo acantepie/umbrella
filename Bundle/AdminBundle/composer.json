@@ -42,12 +42,9 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "phpstan/phpstan-symfony": "^0.12.44",
-        "psalm/plugin-symfony": "^3.0",
         "symfony/browser-kit": "^5.3",
         "symfony/css-selector": "^5.3",
-        "symfony/phpunit-bridge": "^5.3",
-        "vimeo/psalm": "^4.10"
+        "symfony/phpunit-bridge": "^5.3"
     },
     "suggest": {
         "knplabs/knp-time-bundle": "Display pretty time on notification"
@@ -63,7 +60,7 @@
     "autoload-dev": {
         "psr-4": {
             "Umbrella\\AdminBundle\\Tests\\": "tests/",
-            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "tests/TestApp/src/"
+            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "tests/Functional/app/src/"
         }
     }
 }

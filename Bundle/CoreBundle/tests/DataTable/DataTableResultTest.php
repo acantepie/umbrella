@@ -2,10 +2,10 @@
 
 namespace Umbrella\CoreBundle\Tests\DataTable;
 
-use PHPUnit\Framework\TestCase;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
+use Umbrella\CoreBundle\Tests\Functional\AppTestCase;
 
-class DataTableResultTest extends TestCase
+class DataTableResultTest extends AppTestCase
 {
     public function testCount()
     {
