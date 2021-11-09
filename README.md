@@ -17,8 +17,7 @@
 
 <div align="center">
 
-![test core workflow](https://github.com/acantepie/umbrella/actions/workflows/test-core.yaml/badge.svg)
-![test admin workflow](https://github.com/acantepie/umbrella/actions/workflows/test-admin.yaml/badge.svg)
+![test umbrella workflow](https://github.com/acantepie/umbrella/actions/workflows/test.yaml/badge.svg)
 
 </div>
 
