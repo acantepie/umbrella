@@ -1,9 +1,6 @@
 name: Static analysis - phpstan
 
 on:
-  push:
-    paths:
-      - '**.php'
   pull_request:
     paths:
       - '**.php'
