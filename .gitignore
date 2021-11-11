@@ -4,7 +4,6 @@
 ###> node modules ###
 yarn.lock
 /node_modules
-Bundle/node_modules
 
 ###> composer ###
 /vendor/

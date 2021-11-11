@@ -45,11 +45,11 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('label_class')
                     ->defaultValue('col-sm-2')
-                    ->info('Default label class form horizontal bootstrap layout.')
+                    ->info('Default label class for horizontal bootstrap layout.')
                     ->end()
                 ->scalarNode('group_class')
                     ->defaultValue('col-sm-10')
-                    ->info('Default group class form horizontal bootstrap layout.')
+                    ->info('Default group class for horizontal bootstrap layout.')
                     ->end();
     }
 
