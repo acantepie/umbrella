@@ -2,6 +2,8 @@ name: split
 
 on:
   push:
+    paths:
+      - 'Bundle/**'
 
 env:
   INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
