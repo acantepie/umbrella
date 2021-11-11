@@ -1,5 +1,7 @@
 name: Suggest an idea for this project
 description: Suggest an idea for this project
+labels: [Feature]
+
 body:
   - type: textarea
     id: description
