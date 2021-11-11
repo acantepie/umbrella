@@ -33,7 +33,7 @@
 
 Any contributions / suggestions are welcome. You can read [this guide](CONTRIBUTING.md) for more information.
 
-# Create a new project with Umbrella
+## Create a new project with Umbrella
 First, make sure you <a href="https://nodejs.org/en/download/">install Node.js</a>, <a href="https://yarnpkg.com/getting-started/install">Yarn package manager</a>, php7.4 and also <a href="https://getcomposer.org/download/">composer</a>.
 
 - `composer create-project umbrella2/skeleton my_project`
@@ -50,7 +50,7 @@ Serve:
 - `php -S localhost:8000 -t public/`
 - Browse http://localhost:8000/admin and hint **umbrella** / **umbrella** to login.
 
-# Install umbrella on your symfony project
+## Install umbrella on your symfony project
 ```bash
 composer require umbrella2/adminbundle
 ```
@@ -204,13 +204,13 @@ Run following command to create a new admin user:
 php bin/console create:admin_user
 ```
 
-# Create CRUD with maker
+### Create CRUD with maker
 ```bash
 php bin/console make:table # Table view
 php bin/console make:tree # Tree view
 ```
 
-# Documentation
+## Documentation
 
 A good way to learn how to use components is to look at [umbrella-admin-demo](https://github.com/acantepie/umbrella-admin-demo) code.
 
@@ -228,6 +228,6 @@ A good way to learn how to use components is to look at [umbrella-admin-demo](ht
 - ⚡ Customize user managment
 - ⚡ Enable Notification system
 
-# License
+## License
 
 This software is published under the [MIT License](LICENSE.md)
