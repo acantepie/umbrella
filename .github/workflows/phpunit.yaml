@@ -2,7 +2,13 @@ name: PHPUnit
 
 on:
   push:
+    paths:
+      - 'Bundle/**'
+      - 'composer.json'
   pull_request:
+    paths:
+      - 'Bundle/**'
+      - 'composer.json'
 
 env:
   fail-fast: true
