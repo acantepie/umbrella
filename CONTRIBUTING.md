@@ -14,11 +14,11 @@ Before your first contribution, make sure you'll meet these requirements:
 
 Proposing New Features
 ----------------------
-[Propose a new feature][propose-feature]
+[Create a feature request][propose-feature]
 
 Reporting Bugs
 --------------
-[Create a new issue][create-issue] (If the bug hasn't been reported yet).
+[Create an issue][create-issue] (If the bug hasn't been reported yet).
 
 Sending Pull Requests
 ---------------------
@@ -26,7 +26,7 @@ This project follows the same contribution workflow used by the Symfony project.
 First you must clone the repository, then create a feature branch and finally,
 submit a pull request via GitHub.
 
-To check your code you can :
+To check your code before submit you can :
  - run phpunit  ```vendor/bin/simple-phpunit```
  - run php code analyser `/vendor/bin/phpstan`, `/vendor/bin/psalm`
 
