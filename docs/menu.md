@@ -21,9 +21,7 @@ class AdminMenu extends BaseAdminMenu
             ->add('My app')
                 // Sub level entry
                 ->add('Home')
-                    // css class of icon, can be :
-                    //  unicons class https://iconscout.com/unicons/explore/line
-                    //  or material design icons class https://pictogrammers.github.io/@mdi/font/5.4.55/
+                    // css class of icon
                     ->icon('uil-home')
                     // Route of menu entry
                     ->route('admin_home');
@@ -38,9 +36,9 @@ umbrella_admin:
   menu: App\Menu\AdminMenu
 ```
 
-Check out documentation on [demo website](https://umbrella-corp.dev/admin/menu) for further information.
+Check out documentation on [online demo](https://umbrella-corp.dev/admin/menu) for further information.
 
 ### Next step
 [>> Manage admin user with doctrine](manage_user_with_doctrine.md)
 
-[<< Back to documentation](README.md)
+[<< Back to documentation](/docs)

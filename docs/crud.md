@@ -5,4 +5,4 @@ php bin/console make:table # Table view
 php bin/console make:tree # Tree view
 ```
 
-[<< Back to documentation](README.md)
+[<< Back to documentation](/docs)

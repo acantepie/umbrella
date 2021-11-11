@@ -31,9 +31,8 @@
 </p>
 
 ## Introduction
-- [Documentation](docs/README.md) - How to install and use Umbrella
-- [Demo app repository](https://github.com/acantepie/umbrella-admin-demo) - Github repo of demo application 
-- [Demo app website](https://umbrella-corp.dev) - Website of demo application.
+- [Documentation](/docs) - How to install and use Umbrella
+- [Online demo](https://umbrella-corp.dev) - Online demo application using Umbrella ([github repo](https://github.com/acantepie/umbrella-admin-demo)).
 
 ## Contributing
 Want to contribute ? Check out the [contributing guidelines](CONTRIBUTING.md) to get involved.

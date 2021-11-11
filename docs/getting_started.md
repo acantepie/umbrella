@@ -36,4 +36,4 @@ composer require umbrella2/adminbundle
 
 [get-composer]: https://getcomposer.org/
 
-[<< Back to documentation](README.md)
+[<< Back to documentation](/docs)

@@ -30,4 +30,4 @@ When create an Admin controller, extending `BaseController` is optional. This Cl
 ### Next step 
 [>> Add entry on menu](menu.md)
 
-[<< Back to documentation](README.md)
+[<< Back to documentation](/docs)

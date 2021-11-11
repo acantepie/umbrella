@@ -93,4 +93,4 @@ php bin/console create:admin_user
 ### Next step
 [>> Create a CRUD](crud.md)
 
-[<< Back to documentation](README.md)
+[<< Back to documentation](/docs)

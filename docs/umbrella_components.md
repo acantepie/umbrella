@@ -9,6 +9,6 @@ Components available :
 - ⚡ Tabs
 - ⚡ Searchable entity
 
-Check out documentation on [demo website](https://umbrella-corp.dev/admin) for further information.
+Check out documentation on [online demo](https://umbrella-corp.dev/admin) for further information.
 
-[<< Back to documentation](README.md)
+[<< Back to documentation](/docs)
