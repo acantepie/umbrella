@@ -1,0 +1,34 @@
+name:  Bug Report
+description: Create a report for this project
+labels: [Bug]
+
+body:
+  - type: input
+    id: affected-umbrella-versions
+    attributes:
+      label: Umbrella version affected
+      placeholder: x.y
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Explain what you wanted to do and the wrong result you got.
+    validations:
+      required: true
+
+  - type: textarea
+    id: how-to-reproduce
+    attributes:
+      label: How to reproduce
+      description: Steps to reproduce this error and also, the php version used.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: "Optional: any other context about the problem: log messages, screenshots, etc."
