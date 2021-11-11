@@ -43,3 +43,4 @@ Further information
 [umbrella-issues]: https://github.com/acantepie/umbrella/labels/Bug
 [create-issue]: https://github.com/acantepie/umbrella/issues/new?assignees=&labels=Bug&template=1_Bug_report.yaml
 [propose-feature]: https://github.com/acantepie/umbrella/issues/new?assignees=&labels=Feature&template=2_Feature_request.yaml
+[sf-contribution]: http://symfony.com/doc/current/contributing/documentation/overview.html#your-first-documentation-contribution

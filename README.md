@@ -31,6 +31,10 @@
     <br/><br/>
 </p>
 
+
+# How contribute
+Any contributions / suggestions are welcome. You can read [this guide](CONTRIBUTING.md) for more information.
+
 # Create a new project with Umbrella
 First, make sure you <a href="https://nodejs.org/en/download/">install Node.js</a>, <a href="https://yarnpkg.com/getting-started/install">Yarn package manager</a>, php7.4 and also <a href="https://getcomposer.org/download/">composer</a>.
 
@@ -225,6 +229,3 @@ A good way to learn how to use components is to look at [umbrella-admin-demo](ht
 ### Admin
 - ⚡ Customize user managment
 - ⚡ Enable Notification system
-
-# Contributors
-Any help, suggestions or contributions are welcome.
