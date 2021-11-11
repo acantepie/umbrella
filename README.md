@@ -31,7 +31,8 @@
     <br/><br/>
 </p>
 
-Any contributions / suggestions are welcome. You can read [this guide](CONTRIBUTING.md) for more information.
+## Contributing
+Want to contribute ? Check out the [contributing guidelines](CONTRIBUTING.md) to get involved.
 
 ## Create a new project with Umbrella
 First, make sure you <a href="https://nodejs.org/en/download/">install Node.js</a>, <a href="https://yarnpkg.com/getting-started/install">Yarn package manager</a>, php7.4 and also <a href="https://getcomposer.org/download/">composer</a>.
