@@ -31,8 +31,6 @@
     <br/><br/>
 </p>
 
-
-# How contribute
 Any contributions / suggestions are welcome. You can read [this guide](CONTRIBUTING.md) for more information.
 
 # Create a new project with Umbrella
