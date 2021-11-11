@@ -2,9 +2,8 @@
 
 ## Technical requirements
 - PHP 7.4 or higher
-- [composer][get-composer]
 - PHP extensions: `json`, `zip`
-
+- [composer][get-composer]
 
 ## Create a new project with Umbrella
 
@@ -34,6 +33,6 @@ composer require umbrella2/adminbundle
 3. [Manage admin user with doctrine](manage_user_with_doctrine.md)
 4. [Create your first CRUD](crud.md)
 
-[get-composer]: https://getcomposer.org/
-
 [<< Back to documentation](/docs)
+
+[get-composer]: https://getcomposer.org/
