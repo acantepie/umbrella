@@ -227,3 +227,7 @@ A good way to learn how to use components is to look at [umbrella-admin-demo](ht
 ### Admin
 - ⚡ Customize user managment
 - ⚡ Enable Notification system
+
+# License
+
+This software is published under the [MIT License](LICENSE.md)
