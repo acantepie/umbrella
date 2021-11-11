@@ -1,13 +1,14 @@
 name: split
 
-on: [ push ]
+on:
+  push:
 
 env:
   INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout

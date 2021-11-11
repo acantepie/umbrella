@@ -1,14 +1,20 @@
 name: "Linter: Js"
 
-on: [ push, pull_request ]
+on:
+  push:
+    paths:
+      - '**.js'
+  pull_request:
+    paths:
+      - '**.js'
 
 env:
   fail-fast: true
 
 jobs:
-  eslinter:
-    runs-on: ubuntu-latest
-    name: eslint
+  eslint:
+    runs-on: ubuntu-20.04
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

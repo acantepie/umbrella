@@ -1,18 +1,24 @@
 name: "Linter: PHP"
 
-on: [ push, pull_request ]
+on:
+  push:
+    paths:
+      - '**.php'
+  pull_request:
+    paths:
+      - '**.php'
 
 env:
   fail-fast: true
 
 jobs:
   php-cs-fixer:
-    name: PHP-CS-Fixer
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+
     steps:
       - uses: actions/checkout@v2
-      # see https://github.com/OskarStark/php-cs-fixer-ga
+
       - name: PHP-CS-Fixer
         uses: docker://oskarstark/php-cs-fixer-ga
         with:
-          args: --diff --dry-run
+          args: --dry-run

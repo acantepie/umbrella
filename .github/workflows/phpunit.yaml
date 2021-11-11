@@ -1,28 +1,31 @@
-name: "Tests - Linux"
+name: PHPUnit
 
-on: [ push ]
+on:
+  push:
+  pull_request:
 
 env:
   fail-fast: true
 
 jobs:
-  tests:
-    name: "PHP ${{ matrix.php-version }}"
-    runs-on: 'ubuntu-latest'
+  phpunit:
+    name: "phpunit - php ${{ matrix.php-version }}"
+    runs-on: ubuntu-20.04
     continue-on-error: false
+
     strategy:
       matrix:
         php-version: ['7.4', '8.0']
+
     steps:
       - name: 'Checkout code'
-        uses: actions/checkout@v2.3.3
+        uses: actions/checkout@v2
 
       - name: 'Install PHP with extensions'
-        uses: shivammathur/setup-php@2.7.0
+        uses: shivammathur/setup-php@2
         with:
           coverage: none
           php-version: ${{ matrix.php-version }}
-          tools: composer:v2
           extensions: mbstring, intl, pdo, pdo_sqlite, sqlite3
           ini-values: date.timezone=UTC
 
@@ -30,5 +33,6 @@ jobs:
         run: |
           composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
           vendor/bin/simple-phpunit install
+
       - name: 'Run tests'
         run: vendor/bin/simple-phpunit -v
