@@ -17,7 +17,7 @@
 
 <div align="center">
 
-![test umbrella workflow](https://github.com/acantepie/umbrella/actions/workflows/test.yaml/badge.svg)
+![test umbrella workflow](https://github.com/acantepie/umbrella/actions/workflows/phpunit.yaml/badge.svg)
 
 </div>
 
