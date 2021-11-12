@@ -15,15 +15,8 @@ class IndexEntityCommand extends Command
 
     private EntityIndexer $indexer;
 
-    /**
-     * @var SymfonyStyle
-     */
-    private $io;
-
-    /**
-     * @var string
-     */
-    private $entityClass;
+    private ?SymfonyStyle $io = null;
+    private ?string $entityClass = null;
 
     /**
      * IndexEntityCommand constructor.

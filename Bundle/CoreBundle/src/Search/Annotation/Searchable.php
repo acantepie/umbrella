@@ -10,10 +10,7 @@ use Doctrine\Common\Annotations\Annotation\Target;
  */
 class Searchable
 {
-    /**
-     * @var string
-     */
-    private $searchField = 'search';
+    private string $searchField = 'search';
 
     /**
      * Searchable constructor.
