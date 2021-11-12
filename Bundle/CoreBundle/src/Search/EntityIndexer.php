@@ -2,6 +2,7 @@
 
 namespace Umbrella\CoreBundle\Search;
 
+use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Mapping\MappingException;
 use Psr\Log\LoggerInterface;
@@ -92,7 +93,7 @@ class EntityIndexer
 
     public function indexEntity(object $entity): bool
     {
-        $entityClass = get_class($entity);
+        $entityClass = ClassUtils::getClass($entity);
 
         $searchable = $this->annotationReader->getSearchable($entityClass);
 
