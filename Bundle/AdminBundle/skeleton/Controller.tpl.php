@@ -9,12 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 use function Symfony\Component\Translation\t;
-<?php if ($tree_view) { ?>
+<?php if ($tree_table) { ?>
 use <?= $repository->getFullName() ?>;
 <?php } ?>
 
 /**
-* @Route("<?= $route_path ?>")
+* @Route("<?= $route['base_path'] ?>")
 */
 class <?= $class_name ?> extends BaseController
 {
@@ -30,7 +30,7 @@ class <?= $class_name ?> extends BaseController
             return $table->getCallbackResponse();
         }
 
-        return $this->render('<?= $index_template_name ?>', [
+        return $this->render('<?= $index_template ?>', [
             'table' => $table
         ]);
     }
@@ -38,11 +38,11 @@ class <?= $class_name ?> extends BaseController
     /**
      * @Route(path="/edit/{id}", requirements={"id"="\d+"})
      */
-    public function edit(<?php if ($tree_view) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>Request $request, ?int $id = null)
+    public function edit(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>Request $request, ?int $id = null)
     {
         if ($id === null) {
             $entity = new <?= $entity->getShortName() ?>();
-<?php if ($tree_view) { ?>
+<?php if ($tree_table) { ?>
             $entity->parent = $repository->findRoot(true);
 <?php } ?>
         } else {
@@ -55,38 +55,38 @@ class <?= $class_name ?> extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->persistAndFlush($entity);
 
-<?php if ($edit_on_modal) { ?>
+<?php if ('modal' === $edit_view_type) { ?>
             return $this->js()
                 ->closeModal()
                 ->reloadTable()
                 ->toastSuccess(t('Item updated'));
 <?php } else { ?>
             $this->toastSuccess(t('Item updated'));
-            return $this->redirectToRoute('<?= $route_name ?>_edit', [
+            return $this->redirectToRoute('<?= $route['name_prefix'] ?>_edit', [
                 'id' => $entity->id
             ]);
 <?php } ?>
         }
 
-<?php if ($edit_on_modal) { ?>
+<?php if ('modal' === $edit_view_type) { ?>
         return $this->js()
-            ->modal('<?= $edit_template_name ?>', [
+            ->modal('<?= $edit_template ?>', [
                 'form' => $form->createView(),
                 'entity' => $entity,
             ]);
 <?php } else { ?>
-        return $this->render('<?= $edit_template_name ?>', [
+        return $this->render('<?= $edit_template ?>', [
             'form' => $form->createView(),
             'entity' => $entity,
         ]);
 <?php } ?>
     }
 
-<?php if ($tree_view) { ?>
+<?php if ($tree_table) { ?>
     /**
      * @Route("/move/{id}/{direction}", requirements={"id": "\d+"})
      */
-    public function move(<?php if ($tree_view) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>int $id, string $direction)
+    public function move(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>int $id, string $direction)
     {
         $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
 

@@ -3,94 +3,110 @@
 namespace Umbrella\AdminBundle\Maker;
 
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
+use Symfony\Bundle\MakerBundle\DependencyBuilder;
 use Symfony\Bundle\MakerBundle\Generator;
+use Symfony\Bundle\MakerBundle\InputConfiguration;
+use Symfony\Bundle\MakerBundle\Maker\AbstractMaker;
 use Symfony\Bundle\MakerBundle\Str;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 
-class MakeTree extends MakeTable
+class MakeTree extends AbstractMaker
 {
+    private const NAME = 'make:tree';
+    private const DESCRIPTION = 'Creates CRUD with Tree DataTable view';
+
+    private MakeHelper $helper;
+
+    public function __construct(MakeHelper $helper)
+    {
+        $this->helper = $helper;
+    }
+
     public static function getCommandName(): string
     {
-        return 'make:tree';
+        return self::NAME;
     }
 
     public static function getCommandDescription(): string
     {
-        return 'Create an admin tree view';
+        return self::DESCRIPTION;
+    }
+
+    public function configureCommand(Command $command, InputConfiguration $inputConfig)
+    {
+    }
+
+    public function configureDependencies(DependencyBuilder $dependencies)
+    {
+    }
+
+    public function interact(InputInterface $input, ConsoleStyle $io, Command $command)
+    {
     }
 
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
     {
-        $controllerNamespace = $this->askControllerNamespace($io);
-        $entityNamespace = $this->askEntityNamespace($io);
-
-        $editOnModal = $io->askQuestion(new ConfirmationQuestion('Edit entity on a modal', true));
-        $createTemplate = $io->askQuestion(new ConfirmationQuestion('Create twig template', true));
+        $entityClass = $this->helper->askEntityClass($io);
+        $controllerClass = $this->helper->askControllerClass($io, $entityClass);
+        $editViewType = $this->helper->askEditViewTypeClass($io);
 
         // class details
-        $entity = $generator->createClassNameDetails($entityNamespace . $input->getArgument('entity_name'), 'Entity\\');
-        $repository = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'Repository\\', 'Repository');
-        $form = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'Form\\', 'Type');
-        $table = $generator->createClassNameDetails($entityNamespace . $entity->getShortName(), 'DataTable\\', 'TableType', );
-        $controller = $generator->createClassNameDetails($controllerNamespace . $entity->getShortName(), 'Controller\\', 'Controller');
+        $entity = $generator->createClassNameDetails($entityClass, 'Entity\\');
+        $repository = $generator->createClassNameDetails($entityClass, 'Repository\\', 'Repository');
+        $form = $generator->createClassNameDetails($entityClass, 'Form\\', 'Type');
+        $table = $generator->createClassNameDetails($entityClass, 'DataTable\\', 'TableType');
+        $controller = $generator->createClassNameDetails($controllerClass, 'Controller\\', 'Controller');
 
-        $routePath = Str::asRoutePath($controller->getRelativeNameWithoutSuffix());
-        $routeName = $this->asRouteName($controller);
-
-        if ($createTemplate) {
-            $indexTemplateName = Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/index.html.twig';
-            $editTemplateName = Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/edit.html.twig';
-        } else {
-            $indexTemplateName = '@UmbrellaAdmin/DataTable/index.html.twig';
-
-            if ($editOnModal) {
-                $editTemplateName = '@UmbrellaAdmin/edit_modal.html.twig';
-            } else {
-                $editTemplateName = '@UmbrellaAdmin/edit.html.twig';
-            }
-        }
+        $vars = [
+            'entity' => $entity,
+            'entity_searchable' => false,
+            'repository' => $repository,
+            'form' => $form,
+            'table' => $table,
+            'tree_table' => true,
+            'controller' => $controller,
+            'route' => $this->helper->getRouteConfig($controller),
+            'index_template' => '@UmbrellaAdmin/DataTable/index.html.twig',
+            'edit_view_type' => $editViewType,
+            'edit_template' => Str::asFilePath($controller->getRelativeNameWithoutSuffix()) . '/edit.html.twig'
+        ];
 
         // add operation
-        $generator->generateClass($entity->getFullName(), $this->baseTemplateName . 'NestedEntity.tpl.php', [
-            'repository' => $repository
-        ]);
-        $generator->generateClass($repository->getFullName(), $this->baseTemplateName . 'NestedRepository.tpl.php', [
-            'entity' => $entity
-        ]);
-        $generator->generateClass($form->getFullName(), $this->baseTemplateName . 'NestedFormType.tpl.php', [
-            'entity' => $entity
-        ]);
-
-        $generator->generateClass($table->getFullName(), $this->baseTemplateName . 'NestedTableType.tpl.php', [
-            'route_name' => $routeName,
-            'entity' => $entity,
-            'edit_on_modal' => $editOnModal
-        ]);
-
-        $generator->generateClass($controller->getFullName(), $this->baseTemplateName . 'Controller.tpl.php', [
-            'route_name' => $routeName,
-            'route_path' => $routePath,
-            'entity' => $entity,
-            'repository' => $repository,
-            'table' => $table,
-            'form' => $form,
-            'index_template_name' => $indexTemplateName,
-            'edit_template_name' => $editTemplateName,
-            'edit_on_modal' => $editOnModal,
-            'tree_view' => true
-        ]);
-
-        if ($createTemplate) {
-            $generator->generateTemplate($editTemplateName, $this->baseTemplateName . 'template_edit.tpl.php', [
-                'edit_on_modal' => $editOnModal
-            ]);
-            $generator->generateTemplate($indexTemplateName, $this->baseTemplateName . 'template_index.tpl.php');
-        }
+        $generator->generateClass(
+            $entity->getFullName(),
+            $this->helper->template('NestedEntity.tpl.php'),
+            $vars
+        );
+        $generator->generateClass(
+            $repository->getFullName(),
+            $this->helper->template('NestedRepository.tpl.php'),
+            $vars
+        );
+        $generator->generateClass(
+            $form->getFullName(),
+            $this->helper->template('NestedFormType.tpl.php'),
+            $vars
+        );
+        $generator->generateClass(
+            $table->getFullName(),
+            $this->helper->template('NestedTableType.tpl.php'),
+            $vars
+        );
+        $generator->generateClass(
+            $controller->getFullName(),
+            $this->helper->template('Controller.tpl.php'),
+            $vars
+        );
+        $templateName = MakeHelper::VIEW_MODAL === $editViewType ? 'template_edit_modal.tpl.php' : 'template_edit.tpl.php';
+        $generator->generateTemplate(
+            $vars['edit_template'],
+            $this->helper->template($templateName),
+            $vars
+        );
 
         $generator->writeChanges();
         $this->writeSuccessMessage($io);
-
-        $io->text(sprintf('Next: Check your new CRUD by going to <fg=yellow>/admin%s/</>', $routePath));
     }
 }

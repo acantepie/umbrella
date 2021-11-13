@@ -134,10 +134,6 @@ class Choice2Type extends AbstractType
             ->setAllowedTypes('template_selector', ['string', 'null']);
 
         $resolver
-            ->setDefault('dropdown_class', null)
-            ->setAllowedTypes('dropdown_class', ['string', 'null']);
-
-        $resolver
             ->setDefault('expose', null)
             ->setAllowedTypes('expose', ['null', 'callable']);
 

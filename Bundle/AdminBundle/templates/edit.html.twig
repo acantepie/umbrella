@@ -1,21 +1,19 @@
 {% extends "@UmbrellaAdmin/layout.html.twig" %}
 
+{% do admin_breadcrumb().add(entity.id ? ('Edit' | trans) : ('Add' | trans)) %}
+
 {% block content %}
-    {{ umbrella_form_theme(form) }}
-    <form enctype="multipart/form-data" method="POST">
-
-        <div class="d-flex mb-3">
-            <span class="ms-auto"></span>
-            <button type="submit" class="btn btn-primary">
-                <i class="mdi mdi-check"></i> {{ 'action.save' | trans }}
-            </button>
-        </div>
-
-        <div class="card">
-            <div class="card-body">
+    <div class="card">
+        <div class="card-body">
+            {{ umbrella_form_theme(form) }}
+            {{ form_start(form) }}
                 {{ form_errors(form) }}
                 {{ form_rest(form) }}
-            </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="mdi mdi-check"></i> {{ 'Save' | trans }}
+                </button>
+            {{ form_end(form) }}
         </div>
-    </form>
+    </div>
 {% endblock %}

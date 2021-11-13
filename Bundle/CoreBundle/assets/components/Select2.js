@@ -82,8 +82,8 @@ export default class select2 extends HTMLSelectElement {
                 let data = state
 
                 // add data retrieve from vanilla option element
-                if (state.element) {
-                    const exposedData = JSON.parse(state.element.dataset.json) || {}
+                if (state.element && state.element.dataset.json) {
+                    const exposedData = JSON.parse(state.element.dataset.json)
                     data = {...exposedData, ...data}
                 }
 

@@ -49,7 +49,6 @@ return [
         'sign_out' => 'Logout',
         'reset_your_password' => 'Reset your password',
         'check_your_email' => 'Check your emails',
-        'save' => 'Save'
     ],
 
     'alert' => [

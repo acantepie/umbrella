@@ -19,12 +19,5 @@
 
     <issueHandlers>
         <ImplicitToStringCast errorLevel="info"/>
-
-        <!-- Use internal method for Umbrella Maker -->
-        <InternalMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper::getEntitiesForAutocomplete"/>
-            </errorLevel>
-        </InternalMethod>
     </issueHandlers>
 </psalm>

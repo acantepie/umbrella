@@ -1,8 +1,11 @@
 # Create CRUD with Umbrella maker
 
 ```bash
-php bin/console make:table # Table view
-php bin/console make:tree # Tree view
+# Create a CRUD with Entity / Form / Controller and a DataTable view
+php bin/console make:table
+
+# Create a CRUD with Entity / Form / Controller and a DataTable tree view
+php bin/console make:tree
 ```
 
 [<< Back to documentation](/docs)

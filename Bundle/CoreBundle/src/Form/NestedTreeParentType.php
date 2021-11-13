@@ -51,7 +51,7 @@ class NestedTreeParentType extends AbstractType
     /**
      * @return NestedTreeEntityInterface[]
      */
-    private function getChoices(string $entityClass, NestedTreeEntityInterface $currentNode = null)
+    private function getChoices(string $entityClass, NestedTreeEntityInterface $currentNode = null): array
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select('e');

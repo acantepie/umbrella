@@ -6,6 +6,7 @@ use Umbrella\AdminBundle\Maker\MakeAdminUser;
 use Umbrella\AdminBundle\Maker\MakeNotification;
 use Umbrella\AdminBundle\Maker\MakeTable;
 use Umbrella\AdminBundle\Maker\MakeTree;
+use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 use Umbrella\AdminBundle\Menu\BaseAdminMenu;
 use Umbrella\AdminBundle\Security\AuthenticationEntryPoint;
 use Umbrella\AdminBundle\Twig\AdminExtension;
@@ -34,14 +35,12 @@ return static function (ContainerConfigurator $configurator): void {
         ->bind('$logoutUrlGenerator', service('security.logout_url_generator'));
 
     // Maker
+    $services->set(MakeHelper::class);
     $services->set(MakeTable::class)
-        ->bind('$doctrineHelper', service('maker.doctrine_helper'))
         ->tag('maker.command');
     $services->set(MakeTree::class)
-        ->bind('$doctrineHelper', service('maker.doctrine_helper'))
         ->tag('maker.command');
     $services->set(MakeAdminUser::class)
-        ->bind('$doctrineHelper', service('maker.doctrine_helper'))
         ->tag('maker.command');
     $services->set(MakeNotification::class)
         ->tag('maker.command');

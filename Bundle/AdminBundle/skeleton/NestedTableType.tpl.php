@@ -18,8 +18,8 @@ class <?= $class_name ?> extends DataTableType
     public function buildTable(DataTableBuilder $builder, array $options)
     {
         $builder->addWidget('add', AddLinkType::class, [
-            'route' => '<?= $route_name ?>_edit',
-<?php if ($edit_on_modal) { ?>
+            'route' => '<?= $route['name_prefix'] ?>_edit',
+<?php if ('modal' === $edit_view_type) { ?>
             'xhr' => true
 <?php } ?>
         ]);
@@ -29,22 +29,22 @@ class <?= $class_name ?> extends DataTableType
             'build' => function (WidgetBuilder $builder, <?= $entity->getShortName() ?> $e) {
 
                $builder->add('move', RowMoveLinkType::class, [
-                    'route' => '<?= $route_name ?>_move',
+                    'route' => '<?= $route['name_prefix'] ?>_move',
                     'route_params' => ['id' => $e->id],
                     'disable_moveup' => $e->isFirstChild(),
                     'disable_movedown' => $e->isLastChild()
                 ]);
 
                 $builder->add('edit', RowEditLinkType::class, [
-                    'route' => '<?= $route_name ?>_edit',
+                    'route' => '<?= $route['name_prefix'] ?>_edit',
                     'route_params' => ['id' => $e->id],
-<?php if ($edit_on_modal) { ?>
+<?php if ('modal' === $edit_view_type) { ?>
                     'xhr' => true
 <?php } ?>
                 ]);
 
                 $builder->add('delete', RowDeleteLinkType::class, [
-                    'route' => '<?= $route_name ?>_delete',
+                    'route' => '<?= $route['name_prefix'] ?>_delete',
                     'route_params' => ['id' => $e->id]
                 ]);
             }

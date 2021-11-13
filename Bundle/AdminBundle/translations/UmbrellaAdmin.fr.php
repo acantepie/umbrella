@@ -49,7 +49,6 @@ return [
         'sign_out' => 'Se déconnecter',
         'reset_your_password' => 'Réinitialiser votre mot de passe',
         'check_your_email' => 'Vérifier vos emails',
-        'save' => 'Sauvegarder'
     ],
 
     'alert' => [

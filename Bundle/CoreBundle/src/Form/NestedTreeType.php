@@ -15,16 +15,16 @@ class NestedTreeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefault('dropdown_class', 'select2-tree-dropdown')
+            ->setDefault('select2_options', [
+                'dropdownCssClass' => 'select2-tree-dropdown'
+            ])
             ->setDefault('query_builder', function (EntityRepository $er) {
                 return $er->createQueryBuilder('e')
                     ->orderBy('e.left', 'ASC');
             })
-            ->setDefault('choice_attr', function ($entity) {
+            ->setDefault('expose', function ($entity) {
                 if (is_a($entity, NestedTreeEntityInterface::class)) {
-                    return [
-                        'data-lvl' => $entity->getLevel(),
-                    ];
+                    return ['lvl' => $entity->getLevel()];
                 }
             })
             ->setDefault('template', '<span data-lvl="[[ lvl ]]" class="select2-tree-option"> <span class="value">[[ text ]]</span></span>');
