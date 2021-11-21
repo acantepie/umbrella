@@ -5,34 +5,22 @@
 - PHP extensions: `json`, `mbstring`, `xml`
 - [composer][get-composer]
 
-## Create a new project with Umbrella
+If you plan to use Umbrella on a new project, [create a new Symfony app first][new-sf-app] 
+using following command : `composer create-project symfony/skeleton my_project_name`
 
-- `composer create-project umbrella2/skeleton my_project`
-- `cd my_project/`
+## Install Umbrella
 
-Configure your database:
-
-- Edit the `DATABASE_URL` env var in the `.env` file to use your database credentials.,
-- `php bin/console doctrine:database:create`
-- `php bin/console doctrine:schema:create`
-
-Serve:
-
-- `php -S localhost:8000 -t public/`
-- Browse http://localhost:8000/admin and hint **umbrella** / **umbrella** to login.
-
-## Install umbrella on an existing Symfony project
-
+On your project directory :
 ```bash
 composer require umbrella2/adminbundle
 ```
 
 ## Next steps
-1. [Create your first admin controller](controller.md)
-2. [Add entry on menu](menu.md)
-3. [Manage admin user with doctrine](manage_user_with_doctrine.md)
-4. [Create your first CRUD](crud.md)
+1. [Create Admin home](home.md)
+2. [Manage admin user with doctrine](manage_user_with_doctrine.md)
+3. [Create your first CRUD](crud.md)
 
 [<< Back to documentation](/docs)
 
 [get-composer]: https://getcomposer.org/
+[new-sf-app]: https://symfony.com/doc/current/setup.html#creating-symfony-applications

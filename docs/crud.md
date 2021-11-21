@@ -2,10 +2,10 @@
 
 ```bash
 # Create a CRUD with Entity / Form / Controller and a DataTable view
-php bin/console make:table
+php bin/console make:admin:table
 
 # Create a CRUD with Entity / Form / Controller and a DataTable tree view
-php bin/console make:tree
+php bin/console make:admin:tree
 ```
 
 [<< Back to documentation](/docs)

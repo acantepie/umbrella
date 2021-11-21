@@ -13,7 +13,7 @@ use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 
 class MakeNotification extends AbstractMaker
 {
-    private const NAME = 'make:admin_notification';
+    private const NAME = 'make:admin:notification';
     private const DESCRIPTION = 'Crate admin notification provider';
 
     private MakeHelper $helper;

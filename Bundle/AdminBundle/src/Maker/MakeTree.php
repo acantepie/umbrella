@@ -14,7 +14,7 @@ use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 
 class MakeTree extends AbstractMaker
 {
-    private const NAME = 'make:tree';
+    private const NAME = 'make:admin:tree';
     private const DESCRIPTION = 'Creates CRUD with Tree DataTable view';
 
     private MakeHelper $helper;
@@ -49,7 +49,7 @@ class MakeTree extends AbstractMaker
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $entityClass = $this->helper->askEntityClass($io);
-        $controllerClass = $this->helper->askControllerClass($io, $entityClass);
+        $controllerClass = $this->helper->askControllerClass($io, $this->helper->getDefaultControllerClassFromEntityClass($entityClass));
         $editViewType = $this->helper->askEditViewTypeClass($io);
 
         // class details

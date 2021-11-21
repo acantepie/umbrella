@@ -53,7 +53,7 @@ git tag $VERSION
 git push origin --tags
 
 # Tag Components
-for REMOTE in umbrella-adminbundle umbrella-corebundle umbrella-skeleton
+for REMOTE in umbrella-adminbundle umbrella-corebundle
 do
     echo ""
     echo ""

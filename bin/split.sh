@@ -26,8 +26,6 @@ function remote()
 
 remote adminbundle umbrella-adminbundle
 remote corebundle umbrella-corebundle
-remote skeleton umbrella-skeleton
 
 split 'Bundle/AdminBundle' adminbundle
 split 'Bundle/CoreBundle' corebundle
-split 'Skeleton' skeleton
