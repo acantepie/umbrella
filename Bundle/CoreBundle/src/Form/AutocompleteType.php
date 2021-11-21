@@ -102,9 +102,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
             ->setRequired('class')
             ->setAllowedTypes('class', 'string');
 
-        $resolver->setNormalizer('data_class', function (Options $options) {
-            return null;
-        });
+        $resolver->setNormalizer('data_class', fn(Options $options) => null);
 
         $resolver
             ->setRequired('route')

@@ -22,9 +22,7 @@ class DataTableType
             ->setDefined('class')
             ->setAllowedTypes('class', 'string')
 
-            ->setDefault('paging', function (Options $options) {
-                return !$options['tree'];
-            })
+            ->setDefault('paging', fn(Options $options) => !$options['tree'])
             ->setAllowedTypes('paging', 'bool')
 
             ->setDefault('length_change', false)
@@ -42,9 +40,7 @@ class DataTableType
             ->setDefault('poll_interval', null)
             ->setAllowedTypes('poll_interval', ['int', 'null'])
 
-            ->setDefault('orderable', function (Options $options) {
-                return !$options['tree'];
-            })
+            ->setDefault('orderable', fn(Options $options) => !$options['tree'])
             ->setAllowedTypes('orderable', 'bool')
 
             ->setDefault('tree', false)
@@ -67,9 +63,7 @@ class DataTableType
             ->setAllowedTypes('rowreorder_url', ['string', 'null']);
 
         $resolver
-            ->setDefault('toolbar_form_name', function (Options $options) {
-                return sprintf('%s_tbf', $options['id']);
-            })
+            ->setDefault('toolbar_form_name', fn(Options $options) => sprintf('%s_tbf', $options['id']))
             ->setAllowedTypes('toolbar_form_name', 'string')
 
             ->setDefault('toolbar_form_options', [

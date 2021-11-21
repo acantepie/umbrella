@@ -45,15 +45,11 @@ class PropertyColumnType extends ColumnType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefault('property_path', function (Options $options) {
-                return $options['id'];
-            })
+            ->setDefault('property_path', fn(Options $options) => $options['id'])
             ->setAllowedTypes('property_path', 'string')
 
             ->setDefault('order', null)
 
-            ->setDefault('order_by', function (Options $options) {
-                return $options['property_path'];
-            });
+            ->setDefault('order_by', fn(Options $options) => $options['property_path']);
     }
 }

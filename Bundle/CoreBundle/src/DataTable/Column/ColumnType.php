@@ -15,9 +15,7 @@ class ColumnType
             ->setRequired('id')
             ->setAllowedTypes('id', 'string')
 
-            ->setDefault('label', function (Options $options) {
-                return Utils::humanize($options['id']);
-            })
+            ->setDefault('label', fn(Options $options) => Utils::humanize($options['id']))
             ->setAllowedTypes('label', ['null', 'string'])
 
             ->setDefault('translation_domain', null)
@@ -37,18 +35,14 @@ class ColumnType
 
             ->setDefault('render', null)
             ->setAllowedTypes('render', ['null', 'callable'])
-            ->setNormalizer('render', function (Options $options, $value) {
-                return $options['render_html'] ?? $value;
-            })
+            ->setNormalizer('render', fn(Options $options, $value) => $options['render_html'] ?? $value)
 
             ->setDefault('render_html', null)
             ->setAllowedTypes('render_html', ['null', 'callable'])
 
             ->setDefault('is_safe_html', true)
             ->setAllowedTypes('is_safe_html', 'bool')
-            ->setNormalizer('is_safe_html', function (Options $options, $value) {
-                return $options['render_html'] ? true : $value;
-            });
+            ->setNormalizer('is_safe_html', fn(Options $options, $value) => $options['render_html'] ? true : $value);
     }
 
     public function render($rowData, array $options): string

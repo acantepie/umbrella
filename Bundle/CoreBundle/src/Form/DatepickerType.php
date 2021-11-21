@@ -78,9 +78,7 @@ class DatepickerType extends AbstractType
             ->setDefault('allow_input', true)
             ->setAllowedTypes('allow_input', 'bool')
 
-            ->setDefault('format', function (Options $options) {
-                return $options['enable_time'] ? 'd/m/Y H:i' : 'd/m/Y';
-            })
+            ->setDefault('format', fn(Options $options) => $options['enable_time'] ? 'd/m/Y H:i' : 'd/m/Y')
             ->setAllowedTypes('format', 'string');
     }
 

@@ -20,10 +20,8 @@ class NestedTreeType extends AbstractType
             ->setDefault('select2_options', [
                 'dropdownCssClass' => 'select2-tree-dropdown'
             ])
-            ->setDefault('query_builder', function (EntityRepository $er) {
-                return $er->createQueryBuilder('e')
-                    ->orderBy('e.left', 'ASC');
-            })
+            ->setDefault('query_builder', fn(EntityRepository $er) => $er->createQueryBuilder('e')
+                ->orderBy('e.left', 'ASC'))
             ->setDefault('expose', function ($entity) {
                 if (is_a($entity, NestedTreeEntityInterface::class)) {
                     return ['lvl' => $entity->getLevel()];

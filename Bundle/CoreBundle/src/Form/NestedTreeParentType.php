@@ -45,9 +45,7 @@ class NestedTreeParentType extends AbstractType
             ->setDefault('current_node', null)
             ->setAllowedTypes('current_node', ['null', NestedTreeEntityInterface::class])
 
-            ->setNormalizer('choices', function (Options $options, $value) {
-                return $this->getChoices($options['class'], $options['current_node']);
-            });
+            ->setNormalizer('choices', fn(Options $options, $value) => $this->getChoices($options['class'], $options['current_node']));
     }
 
     /**
@@ -67,9 +65,7 @@ class NestedTreeParentType extends AbstractType
         }
 
         // exclude all child of currentNode
-        return array_filter($nodes, function (NestedTreeEntityInterface $node) use ($currentNode) {
-            return !$node->isChildOf($currentNode);
-        });
+        return array_filter($nodes, fn(NestedTreeEntityInterface $node) => !$node->isChildOf($currentNode));
     }
 
     /**

@@ -144,9 +144,7 @@ class Choice2Type extends AbstractType
             ->setAllowedTypes('select2_options', ['array']);
 
         $resolver
-            ->setNormalizer('placeholder', function (Options $options, $placeholder) { // erase ChoiceType normalizer
-                return $placeholder;
-            });
+            ->setNormalizer('placeholder', fn(Options $options, $placeholder) => $placeholder);
     }
 
     /**
