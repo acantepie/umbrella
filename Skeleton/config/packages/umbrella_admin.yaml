@@ -1,5 +1,0 @@
-umbrella_admin:
-  app_name: "My App"
-  menu: App\Menu\AdminMenu
-  user:
-    class: App\Entity\AdminUser

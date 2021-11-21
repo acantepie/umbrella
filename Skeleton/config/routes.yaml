@@ -1,4 +1,0 @@
-admin_:
-  resource: "../src/Controller/Admin"
-  type: annotation
-  prefix: /admin
