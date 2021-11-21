@@ -35,10 +35,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->addEventSubscriber($this)
@@ -47,13 +45,11 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['is'] = 'umbrella-select2';
-        $view->vars['attr']['data-options'] = json_encode($this->buildJsOptions($view, $form, $options));
+        $view->vars['attr']['data-options'] = json_encode($this->buildJsOptions($view, $form, $options), JSON_THROW_ON_ERROR);
     }
 
     protected function buildJsOptions(FormView $view, FormInterface $form, array $options): array
@@ -134,19 +130,16 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'umbrella_autocomplete';
     }
 
     // DataMapperInterface impl
-
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function mapDataToForms($viewData, $forms)
+    public function mapDataToForms($viewData, $forms): void
     {
         /** @var FormInterface $form */
         $form = current(iterator_to_array($forms, false));
@@ -155,10 +148,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function mapFormsToData($forms, &$viewData)
+    public function mapFormsToData($forms, &$viewData): void
     {
         $form = current(iterator_to_array($forms, false));
         $viewData = $form->getData();
@@ -169,7 +160,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',

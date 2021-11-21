@@ -23,10 +23,7 @@ class NestedTreeParentType extends AbstractType
         $this->em = $em;
     }
 
-    /**
-     * @return void
-     */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         if (null !== $options['current_node']) {
             foreach ($view->vars['choices'] as &$choice) {

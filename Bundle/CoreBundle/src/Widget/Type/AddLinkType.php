@@ -6,10 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddLinkType extends LinkType
 {
-    /**
-     * @return void
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

@@ -21,7 +21,7 @@ class MenuExtension extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('menu_render', [$this->resolver, 'render'], ['is_safe' => ['html']]),

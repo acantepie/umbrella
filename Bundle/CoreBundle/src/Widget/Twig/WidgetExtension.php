@@ -18,7 +18,7 @@ class WidgetExtension extends AbstractExtension
         $this->renderer = $renderer;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('render_widget', [$this->renderer, 'render'], ['is_safe' => ['html']])

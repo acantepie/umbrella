@@ -7,10 +7,7 @@ use Umbrella\CoreBundle\Menu\DTO\Menu;
 
 abstract class MenuType
 {
-    /**
-     * @return void
-     */
-    public function buildMenu(MenuBuilder $builder)
+    public function buildMenu(MenuBuilder $builder): void
     {
     }
 

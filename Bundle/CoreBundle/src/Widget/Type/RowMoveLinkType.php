@@ -7,10 +7,7 @@ use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
 class RowMoveLinkType extends WidgetType
 {
-    /**
-     * @return void
-     */
-    public function buildWidget(WidgetBuilder $builder, array $options)
+    public function buildWidget(WidgetBuilder $builder, array $options): void
     {
         $upParams = $options['route_params'];
         $upParams['direction'] = 'up';
@@ -45,10 +42,7 @@ class RowMoveLinkType extends WidgetType
         ]);
     }
 
-    /**
-     * @return void
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

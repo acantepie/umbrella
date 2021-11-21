@@ -25,10 +25,8 @@ class UmbrellaCollectionType extends AbstractType
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['show_head'] = $options['show_head'];
         $view->vars['sortable'] = null !== $options['sort_by'];
@@ -51,10 +49,7 @@ class UmbrellaCollectionType extends AbstractType
         $view->vars['collection_compound'] = false;
     }
 
-    /**
-     * @return void
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if ($options['sort_by']) {
             $orders = [];
@@ -86,10 +81,8 @@ class UmbrellaCollectionType extends AbstractType
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('allow_add', true)
@@ -126,7 +119,7 @@ class UmbrellaCollectionType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'umbrellacollection';
     }

@@ -22,10 +22,7 @@ class Searchable
         }
     }
 
-    /**
-     * @return string
-     */
-    public function getSearchField()
+    public function getSearchField(): string
     {
         return $this->searchField;
     }

@@ -20,10 +20,7 @@ class ButtonType extends WidgetType
         $this->router = $router;
     }
 
-    /**
-     * @return void
-     */
-    public function buildView(WidgetView $view, array $options)
+    public function buildView(WidgetView $view, array $options): void
     {
         parent::buildView($view, $options);
         $view->element = 'button';
@@ -42,10 +39,7 @@ class ButtonType extends WidgetType
         $view->vars['attr']['class'] .= ' btn';
     }
 
-    /**
-     * @return void
-     */
-    public function buildWidget(WidgetBuilder $builder, array $options)
+    public function buildWidget(WidgetBuilder $builder, array $options): void
     {
     }
 

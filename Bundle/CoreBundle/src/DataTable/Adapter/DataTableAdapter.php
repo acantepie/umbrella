@@ -8,10 +8,7 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
 abstract class DataTableAdapter
 {
-    /**
-     * @return void
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
     }
 

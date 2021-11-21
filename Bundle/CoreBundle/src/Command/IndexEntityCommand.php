@@ -29,10 +29,8 @@ class IndexEntityCommand extends Command
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName(self::CMD_NAME);
         $this->addArgument('entityClass', InputArgument::OPTIONAL, 'Entity class to index');
@@ -40,10 +38,8 @@ class IndexEntityCommand extends Command
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
         $output->setVerbosity(OutputInterface::VERBOSITY_VERY_VERBOSE);
@@ -53,7 +49,7 @@ class IndexEntityCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ($this->entityClass) {
             if (!$this->indexer->isSearchable($this->entityClass)) {

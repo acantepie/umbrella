@@ -27,7 +27,7 @@ class Kernel extends BaseKernel implements CompilerPassInterface
         parent::__construct($environment, $debug);
     }
 
-    protected function build(ContainerBuilder $container)
+    protected function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass($this);
     }
@@ -73,7 +73,7 @@ class Kernel extends BaseKernel implements CompilerPassInterface
     }
 
     // CompilerPassInterface impl
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         foreach ($container->getDefinitions() as $id => $definition) {
             if (in_array($id, self::SERVICES, true)) {

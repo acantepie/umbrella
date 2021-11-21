@@ -24,7 +24,7 @@ class WidgetView implements \IteratorAggregate, \Countable
         }
     }
 
-    public function getIterator(): iterable
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->children);
     }

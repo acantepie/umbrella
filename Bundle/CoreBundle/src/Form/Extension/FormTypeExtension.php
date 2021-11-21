@@ -25,10 +25,7 @@ class FormTypeExtension extends AbstractTypeExtension
         $this->defaultGroupClass = $defaultGroupClass;
     }
 
-    /**
-     * @return void
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $this->setView($view, $form, 'label_class', $this->defaultLabelClass);
         $this->setView($view, $form, 'group_class', $this->defaultGroupClass);
@@ -36,10 +33,7 @@ class FormTypeExtension extends AbstractTypeExtension
         $view->vars['input_suffix'] = $options['input_suffix'];
     }
 
-    /**
-     * @return void
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->setAttribute($builder, $options, 'label_class');
         $this->setAttribute($builder, $options, 'group_class');

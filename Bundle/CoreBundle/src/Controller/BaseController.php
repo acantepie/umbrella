@@ -17,7 +17,7 @@ abstract class BaseController extends AbstractController
 {
     public const BAG_TOAST = 'toast';
 
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
         return parent::getSubscribedServices() + [
                 DataTableFactory::class => DataTableFactory::class,
@@ -62,7 +62,7 @@ abstract class BaseController extends AbstractController
     /**
      * @return object|null
      */
-    protected function findOrNotFound(string $className, $id)
+    protected function findOrNotFound(string $className, $id): ?object
     {
         $e = $this->em()->find($className, $id);
         $this->throwNotFoundExceptionIfNull($e);

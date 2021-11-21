@@ -11,10 +11,7 @@ class DragHandleColumnType extends ColumnType
         return '<i class="mdi mdi-drag"></i>';
     }
 
-    /**
-     * @return void
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('label', null)

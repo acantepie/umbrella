@@ -8,10 +8,7 @@ use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
 class ButtonGroupType extends WidgetType
 {
-    /**
-     * @return void
-     */
-    public function buildView(WidgetView $view, array $options)
+    public function buildView(WidgetView $view, array $options): void
     {
         parent::buildView($view, $options);
         $view->element = 'div';
@@ -20,20 +17,14 @@ class ButtonGroupType extends WidgetType
         $view->vars['icon'] = false;
     }
 
-    /**
-     * @return void
-     */
-    public function buildWidget(WidgetBuilder $builder, array $options)
+    public function buildWidget(WidgetBuilder $builder, array $options): void
     {
         if ($options['build']) {
             call_user_func($options['build'], $builder, $options);
         }
     }
 
-    /**
-     * @return void
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

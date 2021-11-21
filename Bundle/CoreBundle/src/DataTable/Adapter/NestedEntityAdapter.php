@@ -21,10 +21,7 @@ class NestedEntityAdapter extends DataTableAdapter implements DoctrineAdapterInt
         $this->em = $em;
     }
 
-    /**
-     * @return void
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

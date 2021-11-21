@@ -41,7 +41,7 @@ class DataTableRenderer
         $vars['attr'] = [
             'id' => $options['id'],
             'class' => 'umbrella-datatable-container',
-            'data-options' => json_encode($this->getJsOptions($dataTable)),
+            'data-options' => json_encode($this->getJsOptions($dataTable), JSON_THROW_ON_ERROR),
         ];
         $vars['table_attr'] = [
             'class' => $options['class'] .= ' datatable'

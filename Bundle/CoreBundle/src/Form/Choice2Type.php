@@ -25,13 +25,11 @@ class Choice2Type extends AbstractType
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['is'] = 'umbrella-select2';
-        $view->vars['attr']['data-options'] = json_encode($this->buildJsOptions($view, $form, $options));
+        $view->vars['attr']['data-options'] = json_encode($this->buildJsOptions($view, $form, $options), JSON_THROW_ON_ERROR);
 
         // never expand
         $view->vars['expanded'] = false;
@@ -54,10 +52,8 @@ class Choice2Type extends AbstractType
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         if (is_callable($options['expose'])) {
             foreach ($view->vars['choices'] as &$choice) {
@@ -85,7 +81,7 @@ class Choice2Type extends AbstractType
             throw new \UnexpectedValueException(sprintf('Expected array or JsonSerializable data returned by option[\'expose\'], have %s', gettype($data)));
         }
 
-        $json = json_encode($data);
+        $json = json_encode($data, JSON_THROW_ON_ERROR);
 
         if (false === $json) {
             throw new \JsonException('Unable serialize data returned by option[\'expose\']');

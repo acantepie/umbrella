@@ -15,10 +15,8 @@ class DatepickerType extends AbstractType
 {
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['is'] = 'umbrella-datepicker';
         $view->vars['attr']['autocomplete'] = 'off';
@@ -31,7 +29,7 @@ class DatepickerType extends AbstractType
             'maxDate' => $this->toDate($options['max'], $options['format'])
         ];
 
-        $view->vars['attr']['data-options'] = json_encode($jsOptions);
+        $view->vars['attr']['data-options'] = json_encode($jsOptions, JSON_THROW_ON_ERROR);
 
         parent::buildView($view, $form, $options);
     }

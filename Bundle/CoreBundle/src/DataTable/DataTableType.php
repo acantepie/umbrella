@@ -87,17 +87,11 @@ class DataTableType
             ->setDefault('toolbar_form_data', null);
     }
 
-    /**
-     * @return void
-     */
-    public function buildTable(DataTableBuilder $builder, array $options)
+    public function buildTable(DataTableBuilder $builder, array $options): void
     {
     }
 
-    /**
-     * @return void
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
     }
 }

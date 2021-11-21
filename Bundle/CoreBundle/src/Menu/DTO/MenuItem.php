@@ -158,7 +158,7 @@ class MenuItem implements \Countable, \IteratorAggregate
         return !empty($this->badgeLabel);
     }
 
-    public function setBadge(string $badgeLabel, ?string $badgeClass = null): MenuItem
+    public function setBadge(string $badgeLabel, ?string $badgeClass = null): self
     {
         $this->badgeLabel = $badgeLabel;
         $this->badgeClass = $badgeClass;
@@ -255,7 +255,7 @@ class MenuItem implements \Countable, \IteratorAggregate
     /**
      * {@inheritdoc}
      */
-    public function getIterator(): iterable
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->children);
     }
@@ -263,7 +263,7 @@ class MenuItem implements \Countable, \IteratorAggregate
     /**
      * {@inheritdoc}
      */
-    public function count()
+    public function count(): int
     {
         return count($this->children);
     }
