@@ -7,7 +7,6 @@ on:
 
 env:
   INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-  INPUT_GITHUB_USER: ${{ secrets.GITHUB_USER }}
 
 jobs:
   build:

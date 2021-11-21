@@ -36,10 +36,8 @@ class NestedTreeParentType extends AbstractType
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('current_node', null)

@@ -52,10 +52,8 @@ class ManyColumnType extends ColumnType
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
         $resolver

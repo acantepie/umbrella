@@ -77,10 +77,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('multiple', false)

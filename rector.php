@@ -19,12 +19,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     // Define what rule sets will be applied
     $containerConfigurator->import(SetList::PHP_74);
 
-
-
     // get services (needed for register a single rule)
     $services = $containerConfigurator->services();
 
     // register a single rule
-//    $services->set(\Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector::class);
+    $services->set(\Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector::class);
+    $services->set(\PhpCsFixer\Fixer\FunctionNotation\PhpdocToParamTypeFixer::class);
+    $services->set(\PHPStan\Type\Symfony\ParameterDynamicReturnTypeExtension::class);
 //     $services->set(TypehintR::class);
 };
