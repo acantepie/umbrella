@@ -18,7 +18,7 @@
             {% if compound and show_head %}
                 <thead>
                     <tr>
-                        {% if form.vars.sortable %}
+                        {% if not form.vars.disabled and form.vars.sortable %}
                             <th></th>
                         {% endif %}
 
@@ -37,7 +37,9 @@
                                 </th>
                             {% endif %}
                         {% endfor %}
-                        <th></th>
+                        {% if not form.vars.disabled %}
+                            <th></th> {# column action #}
+                        {% endif %}
                     </tr>
                 </thead>
             {% endif %}
@@ -48,7 +50,7 @@
             </tbody>
         </table>
 
-        {% if form.vars.add_btn_template %}
+        {% if not form.vars.disabled and form.vars.add_btn_template is defined and form.vars.add_btn_template %}
             {{ form.vars.add_btn_template | raw }}
         {% endif %}
 
@@ -69,7 +71,7 @@
 {% apply spaceless %}
     <tr class="js-item" data-idx="{{ entry_form.vars.name }}">
 
-        {% if form.vars.sortable %}
+        {% if not form.vars.disabled and form.vars.sortable %}
             <td class="js-drag-handle drag-handle">
                 <i class="mdi mdi-menu text-primary" aria-hidden="true"></i>
             </td>
@@ -86,7 +88,7 @@
             {{ block('umbrellacollection_item_col') }}
         {% endif %}
 
-        {% if form.vars.allow_delete %}
+        {% if not form.vars.disabled and form.vars.allow_delete %}
             <td class="table-action">
                 <a class="js-del-item action-icon" href="#">
                     <i class="mdi mdi-delete"></i>
