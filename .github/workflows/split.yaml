@@ -9,8 +9,9 @@ env:
   INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
-  build:
+  split:
     runs-on: ubuntu-20.04
+    if: ${{ github.repository == 'acantepie/umbrella' }}
 
     steps:
       - name: Checkout
