@@ -35,6 +35,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -45,6 +47,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
@@ -77,6 +81,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -137,6 +143,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function mapDataToForms($viewData, $forms)
     {
@@ -147,6 +155,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function mapFormsToData($forms, &$viewData)
     {
@@ -167,7 +177,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         ];
     }
 
-    public function preSetData(FormEvent $event)
+    public function preSetData(FormEvent $event): void
     {
         $form = $event->getForm();
         $data = $event->getData() ?: [];
@@ -180,7 +190,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $form->add('autocomplete', EntityType::class, $options);
     }
 
-    public function preSubmit(FormEvent $event)
+    public function preSubmit(FormEvent $event): void
     {
         $data = $event->getData();
         $form = $event->getForm();

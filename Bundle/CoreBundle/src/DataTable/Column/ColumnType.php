@@ -56,6 +56,9 @@ class ColumnType
         return (string) $rowData;
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
     }

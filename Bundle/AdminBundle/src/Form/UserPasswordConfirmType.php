@@ -21,6 +21,9 @@ class UserPasswordConfirmType extends AbstractType
         $this->config = $config;
     }
 
+    /**
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('plainPassword', RepeatedType::class, [
@@ -39,6 +42,8 @@ class UserPasswordConfirmType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {

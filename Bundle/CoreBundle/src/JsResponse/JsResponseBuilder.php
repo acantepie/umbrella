@@ -71,7 +71,7 @@ class JsResponseBuilder implements \Countable
 
     // Misc
 
-    public function download(string $content, string $filename = null)
+    public function download(string $content, string $filename = null): self
     {
         return $this->add(self::DOWNLOAD, [
             'content' => $content,
@@ -96,7 +96,7 @@ class JsResponseBuilder implements \Countable
         return $this->toast('info', $text, $title);
     }
 
-    public function toastSuccess($text, $title = null): self
+    public function toastSuccess(TranslatableMessage $text, $title = null): self
     {
         return $this->toast('success', $text, $title);
     }
@@ -170,7 +170,10 @@ class JsResponseBuilder implements \Countable
         ]);
     }
 
-    public function modal($template, array $context = []): self
+    /**
+     * @psalm-param '@UmbrellaAdmin/User/edit.html.twig' $template
+     */
+    public function modal(string $template, array $context = []): self
     {
         return $this->modalHtml($this->twig->render($template, $context));
     }
@@ -182,7 +185,7 @@ class JsResponseBuilder implements \Countable
 
     // Web Components actions
 
-    public function callWebComponent($selector, string $method, ...$methodParams): self
+    public function callWebComponent(string $selector, string $method, array ...$methodParams): self
     {
         return $this->add(self::CALL_WEBCOMPONENT, [
             'selector' => $selector,

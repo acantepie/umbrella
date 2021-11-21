@@ -13,7 +13,7 @@ class WidgetRegistry
      */
     protected array $types = [];
 
-    public function registerType(string $name, WidgetType $type)
+    public function registerType(string $name, WidgetType $type): void
     {
         $this->types[$name] = $type;
     }

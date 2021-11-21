@@ -25,6 +25,9 @@ class FormTypeExtension extends AbstractTypeExtension
         $this->defaultGroupClass = $defaultGroupClass;
     }
 
+    /**
+     * @return void
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $this->setView($view, $form, 'label_class', $this->defaultLabelClass);
@@ -33,12 +36,18 @@ class FormTypeExtension extends AbstractTypeExtension
         $view->vars['input_suffix'] = $options['input_suffix'];
     }
 
+    /**
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $this->setAttribute($builder, $options, 'label_class');
         $this->setAttribute($builder, $options, 'group_class');
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
@@ -85,14 +94,14 @@ class FormTypeExtension extends AbstractTypeExtension
 
     /* Helper */
 
-    protected function setAttribute(FormBuilderInterface $builder, array $options, string $optionName)
+    protected function setAttribute(FormBuilderInterface $builder, array $options, string $optionName): void
     {
         if (isset($options[$optionName])) {
             $builder->setAttribute($optionName, $options[$optionName]);
         }
     }
 
-    protected function setView(FormView $view, FormInterface $form, string $attributeName, $defaultValue)
+    protected function setView(FormView $view, FormInterface $form, string $attributeName, ?string $defaultValue): void
     {
         if ($form->getConfig()->hasAttribute($attributeName)) { // if attribute is defined -> set it to view
             $view->vars[$attributeName] = $form->getConfig()->getAttribute($attributeName);

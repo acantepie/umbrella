@@ -103,7 +103,7 @@ abstract class BaseController extends AbstractController
         $this->toast('info', $text, $title);
     }
 
-    protected function toastSuccess($text, $title = null): void
+    protected function toastSuccess(TranslatableMessage $text, $title = null): void
     {
         $this->toast('success', $text, $title);
     }
@@ -120,7 +120,10 @@ abstract class BaseController extends AbstractController
 
     // Exception helper
 
-    protected function throwNotFoundExceptionIfNull($target, string $message = 'Not Found'): void
+    /**
+     * @param null|object $target
+     */
+    protected function throwNotFoundExceptionIfNull(?object $target, string $message = 'Not Found'): void
     {
         if (null === $target) {
             throw $this->createNotFoundException($message);

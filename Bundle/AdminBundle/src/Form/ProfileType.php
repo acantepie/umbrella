@@ -22,6 +22,9 @@ class ProfileType extends AbstractType
         $this->config = $config;
     }
 
+    /**
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('firstname', TextType::class, [
@@ -47,6 +50,9 @@ class ProfileType extends AbstractType
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

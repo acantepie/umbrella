@@ -63,7 +63,7 @@ class Utils
         return round($bytes, $precision) . ' ' . $units[$pow];
     }
 
-    public static function array_merge_recursive()
+    public static function array_merge_recursive(): array
     {
         $args = func_get_args();
 

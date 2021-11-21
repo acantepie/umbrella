@@ -9,6 +9,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChoiceTypeExtension extends AbstractTypeExtension
 {
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('choices_as_values', false);

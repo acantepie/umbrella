@@ -26,7 +26,7 @@ class DataTableState
         $this->dataTable = $dataTable;
     }
 
-    public function applyParameters(array $parameters)
+    public function applyParameters(array $parameters): void
     {
         $this->draw = (int) ($parameters['draw'] ?? $this->draw);
         $this->isCallback = true;

@@ -35,7 +35,7 @@ class UserManager
         return $user;
     }
 
-    public function find($id): ?BaseAdminUser
+    public function find(int $id): ?BaseAdminUser
     {
         return $this->createQb()
             ->where('e.id = :id')

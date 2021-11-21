@@ -14,6 +14,8 @@ class UmbrellaComponentPass implements CompilerPassInterface
 {
     /**
      * You can modify the container here before it is dumped to PHP code.
+     *
+     * @return void
      */
     public function process(ContainerBuilder $container)
     {
@@ -30,7 +32,7 @@ class UmbrellaComponentPass implements CompilerPassInterface
         $this->addToRegistry($container, $registry, MenuRegistry::TAG_VISITOR, 'registerVisitor');
     }
 
-    private function addToRegistry(ContainerBuilder $container, Definition $registry, string $tag, string $method)
+    private function addToRegistry(ContainerBuilder $container, Definition $registry, string $tag, string $method): void
     {
         $taggedServices = $container->findTaggedServiceIds($tag);
 

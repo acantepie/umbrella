@@ -50,7 +50,7 @@ class CkeditorConfiguration
     /**
      * Load default configs
      */
-    private function resolveConfig(array $bundleConfig)
+    private function resolveConfig(array $bundleConfig): void
     {
         $this->asset = $bundleConfig['asset'];
 

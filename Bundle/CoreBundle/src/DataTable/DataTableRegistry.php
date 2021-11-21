@@ -31,7 +31,7 @@ class DataTableRegistry
 
     // DataTable Type
 
-    public function registerType(string $name, DataTableType $type)
+    public function registerType(string $name, DataTableType $type): void
     {
         $this->types[$name] = $type;
     }
@@ -47,7 +47,7 @@ class DataTableRegistry
 
     // Column Type
 
-    public function registerColumnType(string $name, ColumnType $columnType)
+    public function registerColumnType(string $name, ColumnType $columnType): void
     {
         $this->columnTypes[$name] = $columnType;
     }
@@ -63,7 +63,7 @@ class DataTableRegistry
 
     // Adaptater (type)
 
-    public function registerAdapter(string $name, DataTableAdapter $adapter)
+    public function registerAdapter(string $name, DataTableAdapter $adapter): void
     {
         $this->adapters[$name] = $adapter;
     }

@@ -38,6 +38,8 @@ class WidgetColumnType extends ColumnType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {

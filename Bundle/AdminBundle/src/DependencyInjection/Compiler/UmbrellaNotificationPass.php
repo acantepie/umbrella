@@ -14,6 +14,8 @@ class UmbrellaNotificationPass implements CompilerPassInterface
 {
     /**
      * You can modify the container here before it is dumped to PHP code.
+     *
+     * @return void
      */
     public function process(ContainerBuilder $container)
     {

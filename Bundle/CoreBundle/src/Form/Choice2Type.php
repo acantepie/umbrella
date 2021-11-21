@@ -25,6 +25,8 @@ class Choice2Type extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -52,6 +54,8 @@ class Choice2Type extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
@@ -114,6 +118,8 @@ class Choice2Type extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {

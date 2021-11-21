@@ -8,6 +8,9 @@ use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
 class ButtonGroupType extends WidgetType
 {
+    /**
+     * @return void
+     */
     public function buildView(WidgetView $view, array $options)
     {
         parent::buildView($view, $options);
@@ -17,6 +20,9 @@ class ButtonGroupType extends WidgetType
         $view->vars['icon'] = false;
     }
 
+    /**
+     * @return void
+     */
     public function buildWidget(WidgetBuilder $builder, array $options)
     {
         if ($options['build']) {
@@ -24,6 +30,9 @@ class ButtonGroupType extends WidgetType
         }
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);

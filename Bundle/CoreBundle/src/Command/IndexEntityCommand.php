@@ -29,6 +29,8 @@ class IndexEntityCommand extends Command
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     protected function configure()
     {
@@ -38,6 +40,8 @@ class IndexEntityCommand extends Command
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {

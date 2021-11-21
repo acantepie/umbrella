@@ -73,7 +73,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
         return $this->confirmationToken;
     }
 
-    public function setConfirmationToken(?string $confirmationToken)
+    public function setConfirmationToken(?string $confirmationToken): void
     {
         $this->confirmationToken = $confirmationToken;
 
@@ -138,7 +138,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     // UserInterface implementation
 
-    public function setPassword(?string $password)
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
         $this->passwordRequestedAt = null;
@@ -166,6 +166,8 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function eraseCredentials()
     {

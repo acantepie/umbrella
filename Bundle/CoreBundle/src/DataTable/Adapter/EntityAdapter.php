@@ -23,6 +23,9 @@ class EntityAdapter extends DataTableAdapter implements DoctrineAdapterInterface
         $this->em = $em;
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);

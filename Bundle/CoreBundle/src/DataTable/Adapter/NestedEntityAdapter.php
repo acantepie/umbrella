@@ -21,6 +21,9 @@ class NestedEntityAdapter extends DataTableAdapter implements DoctrineAdapterInt
         $this->em = $em;
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
@@ -55,7 +58,7 @@ class NestedEntityAdapter extends DataTableAdapter implements DoctrineAdapterInt
     /**
      * @param NestedTreeEntityInterface[] $entities
      */
-    private function initMetadata(iterable $entities)
+    private function initMetadata(iterable $entities): void
     {
         $currentLvl = -1;
         $lastChildren = [];

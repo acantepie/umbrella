@@ -36,6 +36,8 @@ class BaseAdminMenu extends MenuType
 
     /**
      * {@inheritDoc}
+     *
+     * @return void
      */
     public function buildMenu(MenuBuilder $builder)
     {

@@ -25,6 +25,8 @@ class UmbrellaCollectionType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -49,6 +51,9 @@ class UmbrellaCollectionType extends AbstractType
         $view->vars['collection_compound'] = false;
     }
 
+    /**
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($options['sort_by']) {
@@ -81,6 +86,8 @@ class UmbrellaCollectionType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -24,6 +24,8 @@ class CkeditorType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
@@ -33,6 +35,8 @@ class CkeditorType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -49,6 +53,8 @@ class CkeditorType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {

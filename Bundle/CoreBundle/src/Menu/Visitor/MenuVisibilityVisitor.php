@@ -13,6 +13,9 @@ class MenuVisibilityVisitor implements MenuVisitor
         $this->resolveVisible($menu->getRoot());
     }
 
+    /**
+     * @return void
+     */
     private function resolveVisible(MenuItem $item)
     {
         if (!$item->isVisible()) {

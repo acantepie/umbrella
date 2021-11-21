@@ -12,6 +12,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchType extends AbstractType implements DataTransformerInterface
 {
+    /**
+     * @return void
+     */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['attr']['data-toolbar-type'] = 'search';
@@ -20,6 +23,8 @@ class SearchType extends AbstractType implements DataTransformerInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -31,6 +36,9 @@ class SearchType extends AbstractType implements DataTransformerInterface
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer($this);

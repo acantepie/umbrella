@@ -24,6 +24,8 @@ class CreateAdminUserCommand extends Command
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {

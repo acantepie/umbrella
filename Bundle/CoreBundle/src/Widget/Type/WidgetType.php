@@ -9,6 +9,9 @@ use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
 class WidgetType
 {
+    /**
+     * @return void
+     */
     public function buildView(WidgetView $view, array $options)
     {
         $view->vars['attr'] = $options['attr'];
@@ -48,6 +51,9 @@ class WidgetType
         // hack (used only by DataTable)
     }
 
+    /**
+     * @return void
+     */
     public function buildWidget(WidgetBuilder $builder, array $options)
     {
     }
@@ -57,9 +63,12 @@ class WidgetType
         return 'base';
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $normalizer = function (Options $options, $value) {
+        $normalizer = function (Options $options, $value): ?string {
             if (null === $value) {
                 return null;
             }

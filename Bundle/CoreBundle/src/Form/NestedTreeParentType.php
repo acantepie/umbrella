@@ -23,6 +23,9 @@ class NestedTreeParentType extends AbstractType
         $this->em = $em;
     }
 
+    /**
+     * @return void
+     */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         if (null !== $options['current_node']) {
@@ -36,6 +39,8 @@ class NestedTreeParentType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {

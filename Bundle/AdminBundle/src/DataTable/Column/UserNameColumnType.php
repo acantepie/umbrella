@@ -27,6 +27,8 @@ class UserNameColumnType extends PropertyColumnType
 
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {

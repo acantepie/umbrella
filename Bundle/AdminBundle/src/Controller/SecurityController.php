@@ -33,9 +33,9 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/login", name="umbrella_admin_login")
+     * @Route ("/login", name="umbrella_admin_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils, Request $request)
+    public function login(AuthenticationUtils $authenticationUtils, Request $request): \Symfony\Component\HttpFoundation\Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -50,7 +50,9 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/logout", name="umbrella_admin_logout", methods={"GET"})
+     * @Route ("/logout", name="umbrella_admin_logout", methods={"GET"})
+     *
+     * @return never
      */
     public function logout()
     {
@@ -58,9 +60,9 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/password_request")
+     * @Route ("/password_request")
      */
-    public function passwordRequest(UserMailer $userMailer, Request $request)
+    public function passwordRequest(UserMailer $userMailer, Request $request): \Symfony\Component\HttpFoundation\Response
     {
         // form submitted
         if ($request->isMethod('POST')) {
@@ -84,9 +86,9 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/password_request_success")
+     * @Route ("/password_request_success")
      */
-    public function passwordRequestSuccess(Request $request)
+    public function passwordRequestSuccess(Request $request): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('@UmbrellaAdmin/Security/password_request_success.html.twig', [
             'email' => $request->query->get('email'),
@@ -94,9 +96,9 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/password_reset/{token}")
+     * @Route ("/password_reset/{token}")
      */
-    public function passwordReset(Request $request, string $token)
+    public function passwordReset(Request $request, string $token): \Symfony\Component\HttpFoundation\Response
     {
         $user = $this->userManager->findUserByConfirmationToken($token);
 

@@ -33,18 +33,30 @@ class MakeAdminUser extends AbstractMaker
         return self::DESCRIPTION;
     }
 
+    /**
+     * @return void
+     */
     public function configureCommand(Command $command, InputConfiguration $inputConfig)
     {
     }
 
+    /**
+     * @return void
+     */
     public function configureDependencies(DependencyBuilder $dependencies)
     {
     }
 
+    /**
+     * @return void
+     */
     public function interact(InputInterface $input, ConsoleStyle $io, Command $command)
     {
     }
 
+    /**
+     * @return void
+     */
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
     {
         $entityClass = $this->helper->askEntityClass($io);

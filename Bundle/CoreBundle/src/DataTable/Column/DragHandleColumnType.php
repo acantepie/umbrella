@@ -11,6 +11,9 @@ class DragHandleColumnType extends ColumnType
         return '<i class="mdi mdi-drag"></i>';
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver

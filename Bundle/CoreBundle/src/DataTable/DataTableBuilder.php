@@ -61,7 +61,7 @@ class DataTableBuilder
         );
     }
 
-    private function resolveOptions(array $options)
+    private function resolveOptions(array $options): void
     {
         $resolver = new OptionsResolver();
 
@@ -101,7 +101,10 @@ class DataTableBuilder
 
     // Toolbar Api
 
-    public function addFilter($child, string $type = null, array $options = []): self
+    /**
+     * @psalm-param 'search' $child
+     */
+    public function addFilter(string $child, string $type = null, array $options = []): self
     {
         $this->formBuilder->add($child, $type, $options);
 
@@ -120,7 +123,10 @@ class DataTableBuilder
         return $this->formBuilder->has($name);
     }
 
-    public function addWidget($child, string $type = null, array $options = []): self
+    /**
+     * @psalm-param 'add' $child
+     */
+    public function addWidget(string $child, string $type = null, array $options = []): self
     {
         $this->widgetBuilder->add($child, $type, $options);
 
@@ -165,7 +171,10 @@ class DataTableBuilder
 
     // Adapter Api
 
-    public function useAdapter($type, array $options = []): self
+    /**
+     * @psalm-param Adapter\EntityAdapter::class|Adapter\NestedEntityAdapter::class $type
+     */
+    public function useAdapter(string $type, array $options = []): self
     {
         if (!is_callable($type) && !is_string($type)) {
             throw new \InvalidArgumentException('Invalid apadater type');
@@ -184,7 +193,12 @@ class DataTableBuilder
         return $this;
     }
 
-    public function useEntityAdapter($options = []): self
+    /**
+     * @param (\Closure|string)[] $options
+     *
+     * @psalm-param array{class?: string, query?: \Closure(\Doctrine\ORM\QueryBuilder, mixed):void} $options
+     */
+    public function useEntityAdapter(array $options = []): self
     {
         if (!is_string($options) && !is_array($options)) {
             throw new \InvalidArgumentException('Options must be of an array or string');

@@ -18,6 +18,8 @@ class UmbrellaAdminExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     *
+     * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -45,7 +47,7 @@ class UmbrellaAdminExtension extends Extension
             ->setArgument(0, $config);
     }
 
-    private function enableNotification(ContainerBuilder $container, array $config)
+    private function enableNotification(ContainerBuilder $container, array $config): void
     {
         $provider = $config['provider'];
 

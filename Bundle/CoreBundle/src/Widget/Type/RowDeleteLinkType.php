@@ -6,6 +6,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RowDeleteLinkType extends RowLinkType
 {
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);

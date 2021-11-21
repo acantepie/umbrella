@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    private function addFormSection(ArrayNodeDefinition $rootNode)
+    private function addFormSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode->children()
             ->arrayNode('form')->addDefaultsIfNotSet()
@@ -53,7 +53,7 @@ class Configuration implements ConfigurationInterface
                     ->end();
     }
 
-    private function addWidgetSection(ArrayNodeDefinition $rootNode)
+    private function addWidgetSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode->children()
             ->arrayNode('widget')->addDefaultsIfNotSet()
@@ -64,7 +64,7 @@ class Configuration implements ConfigurationInterface
                     ->end();
     }
 
-    private function ckeditorSection(ArrayNodeDefinition $rootNode)
+    private function ckeditorSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode->children()
             ->arrayNode('ckeditor')->addDefaultsIfNotSet()
@@ -87,7 +87,7 @@ class Configuration implements ConfigurationInterface
                     ->end();
     }
 
-    private function datatableSection(ArrayNodeDefinition $rootNode)
+    private function datatableSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode->children()
             ->arrayNode('datatable')->addDefaultsIfNotSet()

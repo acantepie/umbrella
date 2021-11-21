@@ -8,6 +8,9 @@ use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
 class ButtonDropdownType extends WidgetType
 {
+    /**
+     * @return void
+     */
     public function buildView(WidgetView $view, array $options)
     {
         parent::buildView($view, $options);
@@ -22,6 +25,9 @@ class ButtonDropdownType extends WidgetType
         $view->vars['menu_class'] = $options['menu_class'];
     }
 
+    /**
+     * @return void
+     */
     public function buildWidget(WidgetBuilder $builder, array $options)
     {
         if ($options['build']) {
@@ -29,6 +35,9 @@ class ButtonDropdownType extends WidgetType
         }
     }
 
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);

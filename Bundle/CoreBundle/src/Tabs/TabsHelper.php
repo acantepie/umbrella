@@ -35,7 +35,7 @@ class TabsHelper
         $this->configPath = $configPath;
     }
 
-    private function initialize()
+    private function initialize(): void
     {
         if (!$this->_initialized) {
             $this->_initialized = true;
@@ -52,7 +52,7 @@ class TabsHelper
         }
     }
 
-    public function navConfig(string $configName = self::DEFAULT_CONFIG, array $config = [])
+    public function navConfig(string $configName = self::DEFAULT_CONFIG, array $config = []): void
     {
         $this->initialize();
 

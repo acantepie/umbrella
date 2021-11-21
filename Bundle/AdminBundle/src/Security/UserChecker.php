@@ -14,6 +14,8 @@ class UserChecker implements UserCheckerInterface
      * Checks the user account before authentication.
      *
      * @throws AccountStatusException
+     *
+     * @return void
      */
     public function checkPreAuth(UserInterface $user)
     {
@@ -30,6 +32,8 @@ class UserChecker implements UserCheckerInterface
      * Checks the user account after authentication.
      *
      * @throws AccountStatusException
+     *
+     * @return void
      */
     public function checkPostAuth(UserInterface $user)
     {
