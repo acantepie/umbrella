@@ -5,6 +5,7 @@
     },
     "require-dev": {
         "ext-json": "*",
+        "ext-pdo_sqlite": "*",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/orm": "^2.8",
