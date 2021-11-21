@@ -1,7 +1,7 @@
 # Manager admin user with doctrine
 Create user entity class with maker :
 ```bash
-php bin/console make:admin_user
+php bin/console make:admin:user
 ```
 Enable admin CRUD and security controller :
 ```yaml
@@ -29,10 +29,6 @@ public function buildMenu(MenuBuilder $builder)
 {
     $builder->root()
         ->add('My app')
-            ->add('Home')
-                ->icon('uil-home')
-                ->route('admin_home')
-                ->end()
             ->add('Users')
                 ->icon('uil-user')
                 ->route('umbrella_admin_user_index');

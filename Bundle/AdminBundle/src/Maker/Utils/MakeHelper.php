@@ -22,13 +22,15 @@ class MakeHelper
     private string $rootNamespace;
     private string $entityNamespace;
     private string $baseTemplatePath;
+    private string $rootDirectory;
 
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $doctrine, string $rootDirectory)
     {
         $this->doctrine = $doctrine;
         $this->rootNamespace = trim(self::ROOT_NAMESPACE, '\\');
         $this->entityNamespace = $this->rootNamespace . '\\Entity';
         $this->baseTemplatePath = __DIR__ . '/../../../skeleton/';
+        $this->rootDirectory = $rootDirectory;
     }
 
     /**
@@ -44,11 +46,18 @@ class MakeHelper
     }
 
     /**
+     * Get default Controller class from Entity class
+     */
+    public function getDefaultControllerClassFromEntityClass(string $entityClass): string
+    {
+        return 'Admin\\' . Str::asClassName(sprintf('%s Controller', $entityClass));
+    }
+
+    /**
      * Ask for controller class
      */
-    public function askControllerClass(ConsoleStyle $io, string $entityClass): string
+    public function askControllerClass(ConsoleStyle $io, string $defaultControllerClass): string
     {
-        $defaultControllerClass = 'Admin\\' . Str::asClassName(sprintf('%s Controller', $entityClass));
         $question = new Question('Class name of the controller to create', $defaultControllerClass);
         $question->setValidator([MakeValidator::class, 'notBlank']);
 
@@ -78,10 +87,10 @@ class MakeHelper
         return $this->baseTemplatePath . DIRECTORY_SEPARATOR . ltrim($name, DIRECTORY_SEPARATOR);
     }
 
-    public function getRouteConfig(ClassNameDetails $controller): array
+    public function getRouteConfig(ClassNameDetails $controller, ?string $basePath = null): array
     {
         return [
-            'base_path' => Str::asRoutePath($controller->getRelativeNameWithoutSuffix()),
+            'base_path' => $basePath ?? Str::asRoutePath($controller->getRelativeNameWithoutSuffix()),
             'name_prefix' => $this->asRouteName($controller)
         ];
     }
@@ -116,5 +125,29 @@ class MakeHelper
         sort($entities);
 
         return $entities;
+    }
+
+    private function absolutizePath(string $path): string
+    {
+        return sprintf('%s/%s', $this->rootDirectory, $path);
+    }
+
+    public function fileExists(string $path): bool
+    {
+        return file_exists($this->absolutizePath($path));
+    }
+
+    public function getFileContents(string $path): string
+    {
+        if (!$this->fileExists($path)) {
+            throw new \InvalidArgumentException(sprintf('Cannot find file "%s"', $path));
+        }
+
+        return file_get_contents($this->absolutizePath($path));
+    }
+
+    public function writeFileContents(string $path, string $content): void
+    {
+        file_put_contents($this->absolutizePath($path), $content);
     }
 }

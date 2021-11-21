@@ -14,7 +14,7 @@ use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 
 class MakeTable extends AbstractMaker
 {
-    private const NAME = 'make:table';
+    private const NAME = 'make:admin:table';
     private const DESCRIPTION = 'Creates CRUD with DataTable view';
 
     private MakeHelper $helper;
@@ -50,7 +50,7 @@ class MakeTable extends AbstractMaker
     {
         $entityClass = $this->helper->askEntityClass($io);
         $entitySearchable = $this->helper->askEntitySearchable($io);
-        $controllerClass = $this->helper->askControllerClass($io, $entityClass);
+        $controllerClass = $this->helper->askControllerClass($io, $this->helper->getDefaultControllerClassFromEntityClass($entityClass));
         $editViewType = $this->helper->askEditViewTypeClass($io);
 
         // class details
