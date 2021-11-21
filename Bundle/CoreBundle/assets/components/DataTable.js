@@ -18,7 +18,7 @@ export default class DataTable extends HTMLElement {
         this.toolbar = this.querySelector('umbrella-toolbar');
         this.timer = null;
 
-        this.selectedIds = new Set([]); // selection mode if selectedIds > 0
+        this.selectedRows = new Map(); // selection mode if selectedRows > 0
 
         this.reload = this.reload.bind(this)
         this._handleData = this._handleData.bind(this)
@@ -150,7 +150,7 @@ export default class DataTable extends HTMLElement {
         if (this.isSelectionMode()) {
             this.$tableBody.find('tr[data-id]').each((i, e) => {
                 const $row = $(e);
-                if (this.selectedIds.has($row.data('id'))) {
+                if (this.selectedRows.has($row.data('id'))) {
                     this.selectRow($row)
                 }
             })
@@ -269,7 +269,7 @@ export default class DataTable extends HTMLElement {
         let data = {}
 
         if (this.isSelectionMode()) {
-            data['ids'] = [...this.selectedIds]
+            data['ids'] = [...this.getSelectedIds()]
             data['mode'] = 'selection'
         } else {
             data = this.table.ajax.params()
@@ -288,7 +288,7 @@ export default class DataTable extends HTMLElement {
 
     _renderMode() {
         if (this.isSelectionMode()) {
-            this.toolbar.setAlert(umbrella.Translator.trans('row_selected', {'%c%': this.selectedIds.size}));
+            this.toolbar.setAlert(umbrella.Translator.trans('row_selected', {'%c%': this.selectedRows.size}));
             this.toolbar.setMode('selection')
         } else {
             this.toolbar.setAlert('')
@@ -310,7 +310,7 @@ export default class DataTable extends HTMLElement {
     }
 
     isSelectionMode() {
-        return this.selectedIds.size > 0
+        return this.selectedRows.size > 0
     }
 
     selectPage(renderMode = true) {
@@ -331,29 +331,42 @@ export default class DataTable extends HTMLElement {
 
     unselectAll(renderMode = true) {
         this.unselectPage(false)
-        this.selectedIds.clear()
+        this.selectedRows.clear()
 
         if (renderMode) this._renderMode()
     }
 
     toggleRowSelection($row, renderMode = true) {
-        this.selectedIds.has($row.data('id'))
+        this.selectedRows.has($row.data('id'))
             ? this.unselectRow($row, renderMode)
             : this.selectRow($row, renderMode)
     }
 
     selectRow($row, renderMode = true) {
-        this.selectedIds.add($row.data('id'))
+        const $input = $row.find('.row-selector input');
+        const rowId = $row.data('id');
+
+        if ('radio' === $input.attr('type')) {
+            this.selectedRows.forEach(e => {
+                if (e.row) {
+                    e.row.classList.remove('selected')
+                }
+            })
+            this.selectedRows.clear()
+        }
+
+        this.selectedRows.set(rowId, {row: $row[0]})
+
         $row.addClass('selected')
-        $row.find('.row-selector input[type=checkbox]').prop('checked', true)
+        $input.prop('checked', true)
 
         if (renderMode) this._renderMode()
     }
 
     unselectRow($row, renderMode = true) {
-        this.selectedIds.delete($row.data('id'))
+        this.selectedRows.delete($row.data('id'))
         $row.removeClass('selected')
-        $row.find('.row-selector input[type=checkbox]').prop('checked', false)
+        $row.find('.row-selector input').prop('checked', false)
 
         if (renderMode) this._renderMode()
     }
@@ -364,7 +377,7 @@ export default class DataTable extends HTMLElement {
         if ($row.length) {
             this.unselectRow($row, true)
         } else {
-            this.selectedIds.delete(id)
+            this.selectedRows.delete(id)
             this._renderMode()
         }
     }
@@ -375,7 +388,7 @@ export default class DataTable extends HTMLElement {
         if ($row.length) {
             this.selectRow($row, true)
         } else {
-            this.selectedIds.add(id)
+            this.selectedRows.set(id)
             this._renderMode()
         }
     }
@@ -397,6 +410,14 @@ export default class DataTable extends HTMLElement {
             row.child(details).show();
             $row.addClass('shown');
         }
+    }
+
+    getSelectedIds() {
+        return Array.from(this.selectedRows.keys())
+    }
+
+    getSelectedRows() {
+        return this.selectedRows
     }
 
 }
