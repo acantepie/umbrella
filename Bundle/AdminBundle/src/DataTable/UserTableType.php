@@ -35,7 +35,7 @@ class UserTableType extends DataTableType
      *
      * @return void
      */
-    public function buildTable(DataTableBuilder $builder, array $options)
+    public function buildTable(DataTableBuilder $builder, array $options): void
     {
         $builder->addFilter('search', SearchType::class);
         $builder->addWidget('add', AddLinkType::class, [
@@ -87,7 +87,7 @@ class UserTableType extends DataTableType
     /**
      * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('translation_domain', 'UmbrellaAdmin');
     }

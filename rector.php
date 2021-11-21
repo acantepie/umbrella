@@ -10,7 +10,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     // get parameters
     $parameters = $containerConfigurator->parameters();
     $parameters->set(Option::PATHS, [
-        __DIR__ . '/Bundle/CoreBundle/src/'
+        __DIR__ . '/Bundle/CoreBundle/src/',
+        __DIR__ . '/Bundle/AdminBundle/src/'
     ]);
     $parameters->set(Option::PHP_VERSION_FEATURES,  \Rector\Core\ValueObject\PhpVersion::PHP_74);
 

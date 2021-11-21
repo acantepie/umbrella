@@ -54,7 +54,7 @@ class SecurityController extends BaseController
      *
      * @return never
      */
-    public function logout()
+    public function logout(): void
     {
         throw new \LogicException();
     }

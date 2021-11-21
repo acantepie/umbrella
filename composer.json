@@ -52,7 +52,7 @@
 
             "Umbrella\\CoreBundle\\": "Bundle/CoreBundle/src",
             "Umbrella\\CoreBundle\\Tests\\": "Bundle/CoreBundle/tests/",
-            "Umbrella\\CoreBundle\\Tests\\TestApp\\": "Bundle/CoreBundle/tests/Functional/app/src/"
+            "Umbrella\\CoreBundle\\Tests\\TestApp\\": "Bundle/CoreBundle/tests/FunctioUmbrella\\AdminBundle\\DataTable\\UserTableTypenal/app/src/"
         }
     }
 }

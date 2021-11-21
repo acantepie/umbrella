@@ -16,7 +16,7 @@ class Breadcrumb implements \IteratorAggregate, \Countable
         $this->items = $items;
     }
 
-    public function add($data): Breadcrumb
+    public function add($data): self
     {
         if ($data instanceof BreadcrumbItem) {
             $this->items[] = $data;
@@ -27,7 +27,7 @@ class Breadcrumb implements \IteratorAggregate, \Countable
         return $this;
     }
 
-    public function clear(): Breadcrumb
+    public function clear(): self
     {
         $this->items = [];
 
@@ -44,13 +44,13 @@ class Breadcrumb implements \IteratorAggregate, \Countable
         return $this->icon;
     }
 
-    public function setIcon(?string $icon): Breadcrumb
+    public function setIcon(?string $icon): self
     {
         $this->icon = $icon;
         return $this;
     }
 
-    public function getIterator(): iterable
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->items);
     }

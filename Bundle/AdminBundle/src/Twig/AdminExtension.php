@@ -33,7 +33,7 @@ class AdminExtension extends AbstractExtension implements GlobalsInterface
         ];
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
              new TwigFunction('admin_breadcrumb', [$this, 'breadcrumb'])

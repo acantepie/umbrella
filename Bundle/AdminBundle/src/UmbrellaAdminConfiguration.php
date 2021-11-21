@@ -39,7 +39,7 @@ class UmbrellaAdminConfiguration
 
     // Security
 
-    public function logoutPath(): ?string
+    public function logoutPath(): string
     {
         return $this->logoutUrlGenerator->getLogoutPath();
     }

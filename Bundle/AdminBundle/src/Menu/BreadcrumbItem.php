@@ -32,7 +32,7 @@ class BreadcrumbItem
         return $this->label;
     }
 
-    public function setLabel(string $label): BreadcrumbItem
+    public function setLabel(string $label): self
     {
         $this->label = $label;
         return $this;
@@ -43,7 +43,7 @@ class BreadcrumbItem
         return $this->translationDomain;
     }
 
-    public function setTranslationDomain(?string $translationDomain): BreadcrumbItem
+    public function setTranslationDomain(?string $translationDomain): self
     {
         $this->translationDomain = $translationDomain;
         return $this;

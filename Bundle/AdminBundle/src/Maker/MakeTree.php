@@ -34,31 +34,19 @@ class MakeTree extends AbstractMaker
         return self::DESCRIPTION;
     }
 
-    /**
-     * @return void
-     */
-    public function configureCommand(Command $command, InputConfiguration $inputConfig)
+    public function configureCommand(Command $command, InputConfiguration $inputConfig): void
     {
     }
 
-    /**
-     * @return void
-     */
-    public function configureDependencies(DependencyBuilder $dependencies)
+    public function configureDependencies(DependencyBuilder $dependencies): void
     {
     }
 
-    /**
-     * @return void
-     */
-    public function interact(InputInterface $input, ConsoleStyle $io, Command $command)
+    public function interact(InputInterface $input, ConsoleStyle $io, Command $command): void
     {
     }
 
-    /**
-     * @return void
-     */
-    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
+    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $entityClass = $this->helper->askEntityClass($io);
         $controllerClass = $this->helper->askControllerClass($io, $entityClass);

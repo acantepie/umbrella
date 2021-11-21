@@ -33,24 +33,15 @@ class MakeNotification extends AbstractMaker
         return self::DESCRIPTION;
     }
 
-    /**
-     * @return void
-     */
-    public function configureCommand(Command $command, InputConfiguration $inputConfig)
+    public function configureCommand(Command $command, InputConfiguration $inputConfig): void
     {
     }
 
-    /**
-     * @return void
-     */
-    public function configureDependencies(DependencyBuilder $dependencies)
+    public function configureDependencies(DependencyBuilder $dependencies): void
     {
     }
 
-    /**
-     * @return void
-     */
-    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
+    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $entity = $generator->createClassNameDetails('AdminNotification', 'Entity\\');
         $repository = $generator->createClassNameDetails($entity->getShortName(), 'Repository\\', 'Repository');

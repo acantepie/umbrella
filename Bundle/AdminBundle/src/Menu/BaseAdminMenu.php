@@ -39,7 +39,7 @@ class BaseAdminMenu extends MenuType
      *
      * @return void
      */
-    public function buildMenu(MenuBuilder $builder)
+    public function buildMenu(MenuBuilder $builder): void
     {
     }
 
