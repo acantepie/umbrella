@@ -22,14 +22,14 @@ class CoreExtension extends AbstractExtension
         $this->bootstrapLayout = $bootstrapLayout;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('umbrella_form_theme', [$this, 'applyFormTheme'])
         ];
     }
 
-    public function getTests()
+    public function getTests(): array
     {
         return [
             new TwigTest('instanceof', [$this, 'isInstanceof']),

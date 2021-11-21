@@ -10,7 +10,7 @@ class CkeditorExtension extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('render_ckeditor_js', [$this, 'renderJs'], ['is_safe' => ['html']]),
