@@ -1,18 +1,6 @@
 <?php
 
 return [
-    'security_page' => [
-        'sign_in' => 'Merci de vous authentifier pour accéder au service.',
-        'forget_password' => 'Mot de passe oublié ?',
-        'reset_password_error' => 'Ce lien a éxpiré.',
-        'reset_password_error_cause1' => 'Cela fait fait plus de 24 heures que vous avez demandé à ce que votre mot de passe soit réinitialisé. Veuillez faire une nouvelle demande de <a href="%url%" class="text-primary">réinitialisation de mot de passe</a>.',
-        'reset_password_error_cause2' => 'Si vous avez effectué plusieurs demande, seul l\'email de réinitialisation envoyé en dernier sera valide.',
-        'forget_password_explanation' => 'Saisissez l\'adresse email associée à votre compte. Nous enverrons la procédure de récupération de votre mot de passe sur votre messagerie.',
-        'back_login_markup' => 'Revenir à <b>l\'écran de connexion</b>',
-        'back_login' => 'Revenir à l\'écran de connexion',
-        'request_password_success' => 'Un email a été envoyé à <b>%email%</b>. Vérifier votre boite mail et suivez les instructions',
-    ],
-
     'notification' => [
         'empty' => 'Vous n\'avez aucune notification.',
     ],
@@ -24,31 +12,62 @@ return [
         'edit' => 'Modifier un utilisateur'
     ],
 
+    'login' => [
+        'title' => 'Se connecter',
+        'text' => 'Merci de vous authentifier pour accéder au service.',
+        'forget_password' => 'Mot de passe oublié ?',
+        'sign_in' => 'Se connecter',
+    ],
+
+    'password_resetting' => [
+        'request' => [
+            'title' => 'Réinitialiser votre mot de passe',
+            'text' => 'Saisissez l\'adresse email associée à votre compte. Nous enverrons la procédure de récupération de votre mot de passe sur votre messagerie.',
+            'submit' => 'Réinitialiser',
+        ],
+        'error' => [
+            'title' => 'Ce lien a éxpiré.',
+            'cause1' => 'Cela fait fait plus de 24 heures que vous avez demandé à ce que votre mot de passe soit réinitialisé. Veuillez faire une nouvelle demande de <a href="%url%" class="text-primary">réinitialisation de mot de passe</a>.',
+            'cause2' =>  'Si vous avez effectué plusieurs demande, seul l\'email de réinitialisation envoyé en dernier sera valide.',
+        ],
+        'success' => [
+            'title' => 'Vérifier vos emails',
+            'text' => 'Un email a été envoyé à <b>%email%</b>. Vérifier votre boite mail et suivez les instructions',
+        ],
+        'reset' => 'Réinitialiser votre mot de passe',
+        'back_login_markup' => 'Revenir à <b>l\'écran de connexion</b>',
+        'back_login' => 'Revenir à l\'écran de connexion',
+        'email' => [
+            'subject' => 'Changer votre mot de passe',
+            'body' => <<<EMAIL
+<p>Bonjour,</p>
+<p>Une demande de réinitialisation du mot de passe de <b>%name%</b> a été effectuée sur le back-office %app_name%.</p>
+<p>Cliquez <a href="%reset_url%">ici</a> pour définir votre nouveau mot de passe.</p>
+<p>Si vous n'êtes pas à l'origine de la demande vous pouvez ignorer cet e-mail.</p>
+<p>Cordialement</p>
+EMAIL
+        ]
+    ],
+
     'label' => [
         'notifications' => 'Notifications',
         'active' => 'Actif',
         'firstname' => 'Prénom',
         'lastname' => 'Nom',
         'welcome' => 'Bienvenue',
-        'username' => 'Identifiant',
         'password' => 'Mot de passe',
-        'password_not_set_if_empty' => 'Laissez vide pour conserver le mot de passe actuel',
-        'enter_your_username' => 'Saisissez votre identifiant',
         'enter_your_password' => 'Saisissez votre mot de passe',
+        'enter_your_new_password' => 'Saisissez votre nouveau mot de passe',
+        'password_not_set_if_empty' => 'Laissez vide pour conserver le mot de passe actuel',
         'email' => 'Email',
-        'your_email' => 'Votre email',
+        'enter_your_email' => 'Saissiez votre email',
         'newpassword' => 'Nouveau mot de passe',
-        'password_confirm' => 'Confirmer votre mot de passe',
+        'password_confirm' => 'Confirmer',
+        'confirm_your_new_password' => 'Confirmer votre nouveau mot de passe',
         'my_account' => 'Mon compte',
         'name' => 'Nom',
         'created_at' => 'Crée le',
-    ],
-
-    'action' => [
-        'sign_in' => 'Se connecter',
         'sign_out' => 'Se déconnecter',
-        'reset_your_password' => 'Réinitialiser votre mot de passe',
-        'check_your_email' => 'Vérifier vos emails',
     ],
 
     'alert' => [
