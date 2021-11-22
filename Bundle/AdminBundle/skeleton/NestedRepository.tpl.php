@@ -1,26 +1,26 @@
-<?= "<?php\n"; ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $entity->getFullName() ?>;
+use <?php echo $entity->getFullName(); ?>;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
 /**
- * @method <?= $entity->getShortName() ?>|null find($id, $lockMode = null, $lockVersion = null)
- * @method <?= $entity->getShortName() ?>|null findOneBy(array $criteria, array $orderBy = null)
- * @method <?= $entity->getShortName() ?>[]    findAll()
- * @method <?= $entity->getShortName() ?>[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method <?php echo $entity->getShortName(); ?>|null find($id, $lockMode = null, $lockVersion = null)
+ * @method <?php echo $entity->getShortName(); ?>|null findOneBy(array $criteria, array $orderBy = null)
+ * @method <?php echo $entity->getShortName(); ?>[]    findAll()
+ * @method <?php echo $entity->getShortName(); ?>[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class <?= $class_name ?> extends NestedTreeRepository
+class <?php echo $class_name; ?> extends NestedTreeRepository
 {
 
     public function __construct(EntityManagerInterface $manager)
     {
-        parent::__construct($manager, $manager->getClassMetadata(<?= $entity->getShortName() ?>::class));
+        parent::__construct($manager, $manager->getClassMetadata(<?php echo $entity->getShortName(); ?>::class));
     }
 
-    public function findRoot(bool $create = false): ?<?= $entity->getShortName() . "\n" ?>
+    public function findRoot(bool $create = false): ?<?php echo $entity->getShortName() . "\n"; ?>
     {
         $root = $this->getRootNodesQueryBuilder()
             ->setMaxResults(1)
@@ -28,7 +28,7 @@ class <?= $class_name ?> extends NestedTreeRepository
             ->getOneOrNullResult();
 
         if (null === $root && $create) {
-            $root = new <?= $entity->getShortName() ?>();
+            $root = new <?php echo $entity->getShortName(); ?>();
             $this->_em->persist($root);
             $this->_em->flush();
         }

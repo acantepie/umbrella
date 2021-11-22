@@ -1,14 +1,14 @@
-<?= "<?php\n" ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 
 /**
- * @Route("<?= $route['base_path'] ?>")
+ * @Route("<?php echo $route['base_path']; ?>")
  */
-class <?= $class_name ?> extends BaseController
+class <?php echo $class_name; ?> extends BaseController
 {
 
     /**
@@ -16,7 +16,7 @@ class <?= $class_name ?> extends BaseController
      */
     public function index()
     {
-        return $this->render('<?= $template ?>');
+        return $this->render('<?php echo $template; ?>');
     }
 
 }

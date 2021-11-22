@@ -25,7 +25,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route ("")
+     * @Route("")
      */
     public function index(Request $request): \Symfony\Component\HttpFoundation\Response
     {
@@ -42,7 +42,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route ("/edit/{id}", requirements={"id": "\d+"})
+     * @Route("/edit/{id}", requirements={"id": "\d+"})
      */
     public function edit(UserManager $manager, Request $request, ?int $id = null): \Umbrella\CoreBundle\JsResponse\JsResponseBuilder
     {
@@ -76,7 +76,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route ("/delete/{id}", requirements={"id": "\d+"})
+     * @Route("/delete/{id}", requirements={"id": "\d+"})
      */
     public function delete(UserManager $manager, Request $request, int $id): \Umbrella\CoreBundle\JsResponse\JsResponseBuilder
     {

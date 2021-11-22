@@ -1,19 +1,19 @@
-<?= "<?php\n"; ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $entity->getFullName() ?>;
+use <?php echo $entity->getFullName(); ?>;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\Form\NestedTreeParentType;
 
-class <?= $class_name ?> extends AbstractType
+class <?php echo $class_name; ?> extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('parent', NestedTreeParentType::class, [
-            'class' => <?= $entity->getShortName() ?>::class,
+            'class' => <?php echo $entity->getShortName(); ?>::class,
             'current_node' => $builder->getData(),
         ]);
     }
@@ -21,7 +21,7 @@ class <?= $class_name ?> extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => <?= $entity->getShortName() ?>::class,
+            'data_class' => <?php echo $entity->getShortName(); ?>::class,
         ]);
     }
 }

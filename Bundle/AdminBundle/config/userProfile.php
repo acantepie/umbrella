@@ -6,7 +6,6 @@ use Umbrella\AdminBundle\Controller\ProfileController;
 use Umbrella\AdminBundle\Form\ProfileType;
 
 return static function (ContainerConfigurator $configurator): void {
-
     $services = $configurator->services();
 
     $services->defaults()

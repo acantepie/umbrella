@@ -22,7 +22,7 @@ class ChoiceTypeExtension extends AbstractTypeExtension
                 return $value;
             }
 
-            return fn($choice) => (string) $choice;
+            return fn ($choice) => (string) $choice;
         });
     }
 

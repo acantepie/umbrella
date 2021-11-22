@@ -57,7 +57,7 @@ class JsResponseBuilder implements \Countable
 
     public function getResponse(): JsResponse
     {
-        uasort($this->messages, fn(JsMessage $a, JsMessage $b) => $a->compare($b));
+        uasort($this->messages, fn (JsMessage $a, JsMessage $b) => $a->compare($b));
 
         return new JsResponse($this->messages);
     }

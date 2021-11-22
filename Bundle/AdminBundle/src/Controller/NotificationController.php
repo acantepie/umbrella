@@ -13,7 +13,7 @@ use Umbrella\CoreBundle\Controller\BaseController;
 class NotificationController extends BaseController
 {
     /**
-     * @Route ("")
+     * @Route("")
      */
     public function list(NotificationProviderInterface $provider): JsonResponse
     {

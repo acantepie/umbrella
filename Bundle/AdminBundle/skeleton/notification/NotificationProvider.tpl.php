@@ -1,12 +1,12 @@
-<?= "<?php\n"; ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $entity->getFullName() ?>;
+use <?php echo $entity->getFullName(); ?>;
 use Doctrine\ORM\EntityManagerInterface;
 use Umbrella\AdminBundle\Notification\BaseNotificationProvider;
 
-class <?= $class_name ?> extends BaseNotificationProvider
+class <?php echo $class_name; ?> extends BaseNotificationProvider
 {
     private EntityManagerInterface $em;
 
@@ -19,7 +19,7 @@ class <?= $class_name ?> extends BaseNotificationProvider
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select('e');
-        $qb->from(<?= $entity->getShortName() ?>::class, 'e');
+        $qb->from(<?php echo $entity->getShortName(); ?>::class, 'e');
         $qb->orderBy('e.createdAt', 'DESC');
         $qb->setMaxResults(10);
 

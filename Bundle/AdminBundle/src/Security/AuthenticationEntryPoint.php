@@ -39,7 +39,7 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
      * @param Request                 $request       The request that resulted in an AuthenticationException
      * @param AuthenticationException $authException The exception that started the authentication process
      */
-    public function start(Request $request, AuthenticationException $authException = null): \Symfony\Component\HttpFoundation\Response
+    public function start(Request $request, AuthenticationException $authException = null): Response
     {
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse('', 401);

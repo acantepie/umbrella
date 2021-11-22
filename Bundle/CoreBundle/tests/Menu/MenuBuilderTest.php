@@ -7,7 +7,6 @@ use Umbrella\CoreBundle\Menu\Builder\MenuBuilder;
 
 class MenuBuilderTest extends TestCase
 {
-
     public function testTreeBuild()
     {
         $builder = new MenuBuilder();
@@ -20,7 +19,6 @@ class MenuBuilderTest extends TestCase
                     ->end()
                 ->end()
             ->add('bar');
-
 
         // check it !
         $m = $builder->getMenu();
@@ -49,7 +47,6 @@ class MenuBuilderTest extends TestCase
         $m = $builder->getMenu();
         $this->assertEquals($m->getRoot()->getChild('foo'), $m->getCurrent());
 
-
         // Last item setted current is the current one
         $builder = new MenuBuilder();
         $builder->root()
@@ -62,7 +59,4 @@ class MenuBuilderTest extends TestCase
         $m = $builder->getMenu();
         $this->assertEquals($m->getRoot()->getChild('bar'), $m->getCurrent());
     }
-
-
-
 }

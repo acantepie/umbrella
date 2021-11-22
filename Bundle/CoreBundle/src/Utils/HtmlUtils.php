@@ -18,10 +18,8 @@ class HtmlUtils
      * @see Twig\Extension\EscaperExtension
      *
      * @return mixed|string
-     *
-     * @param null|string $string
      */
-    public static function escape(?string $string, string $strategy = 'html', string $charset = 'UTF-8')
+    public static function escape($string, string $strategy = 'html', string $charset = 'UTF-8')
     {
         if (!\is_string($string)) {
             if (\is_object($string) && method_exists($string, '__toString')) {

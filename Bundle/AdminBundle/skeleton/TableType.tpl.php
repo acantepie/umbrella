@@ -1,8 +1,8 @@
-<?= "<?php\n"; ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $entity->getFullName() ?>;
+use <?php echo $entity->getFullName(); ?>;
 <?php if ($entity_searchable) { ?>
 use Doctrine\ORM\QueryBuilder;
 use Umbrella\CoreBundle\Form\SearchType;
@@ -15,7 +15,7 @@ use Umbrella\CoreBundle\Widget\Type\RowDeleteLinkType;
 use Umbrella\CoreBundle\Widget\Type\RowEditLinkType;
 use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
-class <?= $class_name ?> extends DataTableType
+class <?php echo $class_name; ?> extends DataTableType
 {
     public function buildTable(DataTableBuilder $builder, array $options)
     {
@@ -23,7 +23,7 @@ class <?= $class_name ?> extends DataTableType
         $builder->addFilter('search', SearchType::class);
 <?php } ?>
         $builder->addWidget('add', AddLinkType::class, [
-            'route' => '<?= $route['name_prefix'] ?>_edit',
+            'route' => '<?php echo $route['name_prefix']; ?>_edit',
 <?php if ('modal' === $edit_view_type) { ?>
             'xhr' => true
 <?php } ?>
@@ -31,9 +31,9 @@ class <?= $class_name ?> extends DataTableType
 
         $builder->add('id');
         $builder->add('links', WidgetColumnType::class, [
-            'build' => function (WidgetBuilder $builder, <?= $entity->getShortName() ?> $e) {
+            'build' => function (WidgetBuilder $builder, <?php echo $entity->getShortName(); ?> $e) {
                 $builder->add('edit', RowEditLinkType::class, [
-                    'route' => '<?= $route['name_prefix'] ?>_edit',
+                    'route' => '<?php echo $route['name_prefix']; ?>_edit',
                     'route_params' => ['id' => $e->id],
 <?php if ('modal' === $edit_view_type) { ?>
                     'xhr' => true
@@ -41,14 +41,14 @@ class <?= $class_name ?> extends DataTableType
                 ]);
 
                 $builder->add('delete', RowDeleteLinkType::class, [
-                    'route' => '<?= $route['name_prefix'] ?>_delete',
+                    'route' => '<?php echo $route['name_prefix']; ?>_delete',
                     'route_params' => ['id' => $e->id]
                 ]);
             }
         ]);
 
         $builder->useEntityAdapter([
-            'class' => <?= $entity->getShortName() ?>::class,
+            'class' => <?php echo $entity->getShortName(); ?>::class,
 <?php if ($entity_searchable) { ?>
             'query' => function(QueryBuilder $qb, array $formData) {
                 if (isset($formData['search'])) {

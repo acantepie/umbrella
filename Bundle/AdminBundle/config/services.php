@@ -14,7 +14,6 @@ use Umbrella\AdminBundle\Twig\AdminExtension;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 return static function (ContainerConfigurator $configurator): void {
-
     $services = $configurator->services();
 
     $services->defaults()

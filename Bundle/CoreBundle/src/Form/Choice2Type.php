@@ -83,9 +83,9 @@ class Choice2Type extends AbstractType
 
         $json = json_encode($data, JSON_THROW_ON_ERROR);
 
-        if (false === $json) {
-            throw new \JsonException('Unable serialize data returned by option[\'expose\']');
-        }
+//        if (false === $json) {
+//            throw new \JsonException('Unable serialize data returned by option[\'expose\']');
+//        }
 
         return $json;
     }
@@ -142,7 +142,7 @@ class Choice2Type extends AbstractType
             ->setAllowedTypes('select2_options', ['array']);
 
         $resolver
-            ->setNormalizer('placeholder', fn(Options $options, $placeholder) => $placeholder);
+            ->setNormalizer('placeholder', fn (Options $options, $placeholder) => $placeholder);
     }
 
     /**

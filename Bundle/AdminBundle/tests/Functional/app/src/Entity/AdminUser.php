@@ -15,10 +15,8 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
  */
 class AdminUser extends BaseAdminUser
 {
-
     public function getRoles()
     {
         return ['ROLE_ADMIN'];
     }
-
 }

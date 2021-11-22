@@ -1,20 +1,20 @@
-<?= "<?php\n" ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $repository->getFullName() ?>;
+use <?php echo $repository->getFullName(); ?>;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\CoreBundle\Search\Annotation\Searchable;
 
 /**
- * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
+ * @ORM\Entity(repositoryClass=<?php echo $repository->getShortName(); ?>::class)
  * @ORM\HasLifecycleCallbacks
  * @Searchable
  * @UniqueEntity("email")
 */
-class <?= $class_name ?> extends BaseAdminUser
+class <?php echo $class_name; ?> extends BaseAdminUser
 {
     /**
      * {@inheritdoc}

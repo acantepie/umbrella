@@ -3,9 +3,9 @@
 namespace Umbrella\CoreBundle\Tests\Search;
 
 use Umbrella\CoreBundle\Search\EntityIndexer;
-use Umbrella\CoreBundle\Tests\Functional\AppTestCase;
 use Umbrella\CoreBundle\Tests\Fixtures\SearchableEntity;
 use Umbrella\CoreBundle\Tests\Fixtures\StringableObject;
+use Umbrella\CoreBundle\Tests\Functional\AppTestCase;
 
 class EntityIndexerTest extends AppTestCase
 {
@@ -49,11 +49,11 @@ class EntityIndexerTest extends AppTestCase
                 'expected' => ''
             ],
             [
-                'values' =>  [new StringableObject('foo'), new StringableObject('bar ')],
+                'values' => [new StringableObject('foo'), new StringableObject('bar ')],
                 'expected' => 'foo bar'
             ],
             [
-                'values' =>  ['foo', 'foo'],
+                'values' => ['foo', 'foo'],
                 'expected' => 'foo'
             ]
         ];
@@ -65,5 +65,4 @@ class EntityIndexerTest extends AppTestCase
             $this->assertEquals($row['expected'], $e->search);
         }
     }
-
 }

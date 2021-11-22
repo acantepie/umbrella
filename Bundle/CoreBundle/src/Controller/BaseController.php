@@ -59,9 +59,6 @@ abstract class BaseController extends AbstractController
         $this->em()->flush();
     }
 
-    /**
-     * @return object|null
-     */
     protected function findOrNotFound(string $className, $id): ?object
     {
         $e = $this->em()->find($className, $id);
@@ -120,9 +117,6 @@ abstract class BaseController extends AbstractController
 
     // Exception helper
 
-    /**
-     * @param null|object $target
-     */
     protected function throwNotFoundExceptionIfNull(?object $target, string $message = 'Not Found'): void
     {
         if (null === $target) {

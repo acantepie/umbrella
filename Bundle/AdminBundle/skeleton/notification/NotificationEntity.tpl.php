@@ -1,15 +1,15 @@
-<?= "<?php\n" ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $repository->getFullName() ?>;
+use <?php echo $repository->getFullName(); ?>;
 use Doctrine\ORM\Mapping as ORM;
 use Umbrella\AdminBundle\Entity\BaseNotification;
 
 /**
-* @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
+* @ORM\Entity(repositoryClass=<?php echo $repository->getShortName(); ?>::class)
 */
-class <?= $class_name ?> extends BaseNotification
+class <?php echo $class_name; ?> extends BaseNotification
 {
 //    /**
 //     * @var ArrayCollection|AdminUser[]

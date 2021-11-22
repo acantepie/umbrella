@@ -1,8 +1,8 @@
-<?= "<?php\n"; ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $repository->getFullName() ?>;
+use <?php echo $repository->getFullName(); ?>;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,37 +13,37 @@ use Umbrella\CoreBundle\Model\NestedTreeEntityTrait;
 
 /**
  * @Gedmo\Tree(type="nested")
- * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
+ * @ORM\Entity(repositoryClass=<?php echo $repository->getShortName(); ?>::class)
  */
-class <?= $class_name ?> implements NestedTreeEntityInterface
+class <?php echo $class_name; ?> implements NestedTreeEntityInterface
 {
     use IdTrait;
     use NestedTreeEntityTrait;
 
     /**
      * @Gedmo\TreeRoot
-     * @ORM\ManyToOne(targetEntity="<?= $class_name ?>")
+     * @ORM\ManyToOne(targetEntity="<?php echo $class_name; ?>")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
-    public ?<?= $class_name ?> $root = null;
+    public ?<?php echo $class_name; ?> $root = null;
 
     /**
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="<?= $class_name ?>", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="<?php echo $class_name; ?>", inversedBy="children")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
-    public ?<?= $class_name ?> $parent = null;
+    public ?<?php echo $class_name; ?> $parent = null;
 
     /**
-     * @var <?= $class_name ?>[]|ArrayCollection
+     * @var <?php echo $class_name; ?>[]|ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="<?= $class_name ?>", mappedBy="parent", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="<?php echo $class_name; ?>", mappedBy="parent", cascade={"persist"})
      * @ORM\OrderBy({"left": "ASC"})
      */
     public Collection $children;
 
     /**
-     * <?= $class_name ?> constructor.
+     * <?php echo $class_name; ?> constructor.
      */
     public function __construct()
     {

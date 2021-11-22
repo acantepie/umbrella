@@ -8,7 +8,6 @@ use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 
 class MenuDTOTest extends TestCase
 {
-
     public function testChildManipulation()
     {
         $menu = new Menu();
@@ -53,5 +52,4 @@ class MenuDTOTest extends TestCase
         $item->removeMatchingRoute('bar');
         $this->assertEqualsCanonicalizing([], \array_keys($item->getMatchingRoutes()));
     }
-
 }

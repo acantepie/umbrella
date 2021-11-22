@@ -10,7 +10,6 @@ use Umbrella\CoreBundle\Controller\BaseController;
  */
 class DefaultController extends BaseController
 {
-
     /**
      * @Route("/", name="test.home")
      */
@@ -18,5 +17,4 @@ class DefaultController extends BaseController
     {
         return $this->render('@UmbrellaAdmin/layout.html.twig');
     }
-
 }

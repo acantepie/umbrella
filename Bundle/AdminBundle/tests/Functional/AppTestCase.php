@@ -56,7 +56,6 @@ class AppTestCase extends WebTestCase
     public static function setUpBeforeClass(): void
     {
         static::deleteTmpDir();
-
     }
 
     public static function tearDownAfterClass(): void

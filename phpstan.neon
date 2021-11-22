@@ -11,4 +11,5 @@ parameters:
     checkAlwaysTrueCheckTypeFunctionCall: true
     checkAlwaysTrueInstanceof: true
     checkAlwaysTrueStrictComparison: true
+    treatPhpDocTypesAsCertain: false
     checkInternalClassCaseSensitivity: true

@@ -32,8 +32,6 @@ class UserTableType extends DataTableType
 
     /**
      * {@inheritdoc}
-     *
-     * @return void
      */
     public function buildTable(DataTableBuilder $builder, array $options): void
     {
@@ -84,9 +82,6 @@ class UserTableType extends DataTableType
         ]);
     }
 
-    /**
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('translation_domain', 'UmbrellaAdmin');

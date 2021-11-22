@@ -37,7 +37,6 @@ use Umbrella\CoreBundle\Widget\WidgetRegistry;
 use Umbrella\CoreBundle\Widget\WidgetRenderer;
 
 return static function (ContainerConfigurator $configurator): void {
-
     $services = $configurator->services();
 
     $services->defaults()
@@ -60,7 +59,6 @@ return static function (ContainerConfigurator $configurator): void {
     $services->set(JsResponseBuilder::class);
     $services->set(JsResponseViewListener::class)
         ->tag('kernel.event_subscriber');
-
 
     // -- Widget -- //
 
@@ -129,5 +127,4 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('form.type_extension', [
             'extended_type' => ChoiceType::class
         ]);
-
 };

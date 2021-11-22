@@ -14,7 +14,6 @@ use Umbrella\AdminBundle\Services\UserMailer;
 use Umbrella\AdminBundle\Services\UserManager;
 
 return static function (ContainerConfigurator $configurator): void {
-
     $services = $configurator->services();
 
     $services->defaults()
@@ -45,5 +44,4 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('form.type');
     $services->set(UserType::class)
         ->tag('form.type');
-
 };

@@ -74,7 +74,7 @@ class DataTableBuilder
             ->setDefault('id', Utils::type_class_to_id(get_class($this->type)))
             ->setDefault('page_length', $config->pageLength())
             ->setDefault('dom', $config->dom())
-            ->setDefault('class', fn(Options $options) => $options['tree'] ? $config->treeClass() : $config->tableClass());
+            ->setDefault('class', fn (Options $options) => $options['tree'] ? $config->treeClass() : $config->tableClass());
 
         // Configure options from TableType
         $this->type->configureOptions($resolver);
@@ -174,9 +174,9 @@ class DataTableBuilder
      */
     public function useAdapter(string $type, array $options = []): self
     {
-        if (!is_callable($type) && !is_string($type)) {
-            throw new \InvalidArgumentException('Invalid apadater type');
-        }
+//        if (!is_callable($type) && !is_string($type)) {
+//            throw new \InvalidArgumentException('Invalid apadater type');
+//        }
 
         if (is_callable($type)) {
             $options = ['callable' => $type];
@@ -196,7 +196,7 @@ class DataTableBuilder
      *
      * @psalm-param array{class?: string, query?: \Closure(\Doctrine\ORM\QueryBuilder, mixed):void} $options
      */
-    public function useEntityAdapter(array $options = []): self
+    public function useEntityAdapter($options = []): self
     {
         if (!is_string($options) && !is_array($options)) {
             throw new \InvalidArgumentException('Options must be of an array or string');

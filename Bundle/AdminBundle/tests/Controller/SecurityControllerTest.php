@@ -26,7 +26,6 @@ class SecurityControllerTest extends AppTestCase
         $client->submit($form);
         $client->followRedirect();
 
-
         // am i logged
         $tkStorage = $this->getContainer()->get('security.untracked_token_storage');
 
@@ -47,7 +46,6 @@ class SecurityControllerTest extends AppTestCase
 
         $crawler = $client->request('GET', '/login');
 
-
         // login success
         $form = $crawler->selectButton('Se connecter')
             ->form([
@@ -66,7 +64,6 @@ class SecurityControllerTest extends AppTestCase
         static::loadFixtures();
 
         $crawler = $client->request('GET', '/login');
-
 
         // login success
         $form = $crawler->selectButton('Se connecter')

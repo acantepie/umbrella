@@ -31,7 +31,7 @@ class ProfileController extends BaseController
     }
 
     /**
-     * @Route ("")
+     * @Route("")
      */
     public function index(Request $request): \Symfony\Component\HttpFoundation\Response
     {

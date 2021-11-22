@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Umbrella\CoreBundle\Tests\DataTable;
 
 use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
@@ -30,25 +29,23 @@ class ColumnTest extends AppTestCase
 
         // test render option
         $c = $this->factory->creatColumn('foo', ColumnType::class, [
-            'render' => function($obj) {
+            'render' => function ($obj) {
                 return $obj->foo;
             }
         ]);
         $this->assertEquals(HtmlUtils::escape($obj->foo), $c->render($obj));
 
-
         // test render_html option
         $c = $this->factory->creatColumn('foo', ColumnType::class, [
-            'render_html' => function($obj) {
+            'render_html' => function ($obj) {
                 return $obj->foo;
             }
         ]);
         $this->assertEquals($obj->foo, $c->render($obj));
 
-
         // test is_safe_html option
         $c = $this->factory->creatColumn('foo', ColumnType::class, [
-            'render' => function($obj) {
+            'render' => function ($obj) {
                 return $obj->foo;
             },
             'is_safe_html' => true
@@ -70,12 +67,14 @@ class ColumnTest extends AppTestCase
         try {
             $c->render($obj);
             $this->fail('Call render using an invalid property path must fail.');
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         try {
             $c->render(null);
             $this->fail('Call render with invalid data must fail.');
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
     }
 
     public function testDateColumn()
@@ -136,12 +135,11 @@ class ColumnTest extends AppTestCase
 
         foreach ($values as $value => $expected) {
             $obj->bool = $value;
-            if ($expected === '') {
+            if ('' === $expected) {
                 $this->assertEquals('', $c->render($obj), 'Tested value : ' . var_export($value, true));
             } else {
                 $this->assertStringContainsStringIgnoringCase($expected, $c->render($obj), 'Tested value : ' . var_export($value, true));
             }
         }
     }
-
 }

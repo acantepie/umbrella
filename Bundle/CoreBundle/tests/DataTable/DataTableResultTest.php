@@ -24,7 +24,6 @@ class DataTableResultTest extends AppTestCase
 
         $r = new DataTableResult($this->getData(), 3);
         $this->assertEquals(3, $r->getCount());
-
     }
 
     private function getData(): iterable
@@ -33,6 +32,4 @@ class DataTableResultTest extends AppTestCase
         yield 2;
         yield 3;
     }
-
-
 }

@@ -4,12 +4,8 @@ namespace Umbrella\CoreBundle\Tests\Fixtures;
 
 class StringableObject
 {
-
     private string $text;
 
-    /**
-     * @param string $text
-     */
     public function __construct(string $text)
     {
         $this->text = $text;
@@ -19,5 +15,4 @@ class StringableObject
     {
         return $this->text;
     }
-
 }

@@ -1,6 +1,6 @@
-<?= "<?php\n"; ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
 use Umbrella\AdminBundle\Menu\BaseAdminMenu;
 use Umbrella\CoreBundle\Menu\Builder\MenuBuilder;
@@ -14,7 +14,7 @@ class AdminMenu extends BaseAdminMenu
             ->add('Admin')
                 ->add('Home')
                     ->icon('mdi mdi-home')
-                    ->route('<?= $route['name_prefix'] ?>_index');
+                    ->route('<?php echo $route['name_prefix']; ?>_index');
     }
 
 }

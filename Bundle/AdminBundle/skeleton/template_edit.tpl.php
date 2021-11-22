@@ -12,7 +12,7 @@
                 {{ form_rest(form) }}
 
                 <div>
-                    <a href="{{ path('<?= $route['name_prefix'] ?>_index') }}" class="btn btn-link">
+                    <a href="{{ path('<?php echo $route['name_prefix']; ?>_index') }}" class="btn btn-link">
                         <i class="mdi mdi-chevron-left"></i> Back
                     </a>
                     <button type="submit" class="btn btn-primary">

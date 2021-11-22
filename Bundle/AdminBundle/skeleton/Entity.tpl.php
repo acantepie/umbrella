@@ -1,8 +1,8 @@
-<?= "<?php\n" ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $repository->getFullName() ?>;
+use <?php echo $repository->getFullName(); ?>;
 use Doctrine\ORM\Mapping as ORM;
 use Umbrella\CoreBundle\Model\IdTrait;
 <?php if ($entity_searchable) { ?>
@@ -11,13 +11,13 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 <?php } ?>
 
 /**
-* @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
+* @ORM\Entity(repositoryClass=<?php echo $repository->getShortName(); ?>::class)
 <?php if ($entity_searchable) { ?>
 * @ORM\HasLifecycleCallbacks
 * @Searchable
 <?php } ?>
 */
-class <?= $class_name."\n" ?>
+class <?php echo $class_name . "\n"; ?>
 {
     use IdTrait;
 <?php if ($entity_searchable) { ?>

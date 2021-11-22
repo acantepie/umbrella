@@ -1,36 +1,36 @@
-<?= "<?php\n" ?>
+<?php echo "<?php\n"; ?>
 
-namespace <?= $namespace ?>;
+namespace <?php echo $namespace; ?>;
 
-use <?= $table->getFullName() ?>;
-use <?= $entity->getFullName() ?>;
-use <?= $form->getFullName() ?>;
+use <?php echo $table->getFullName(); ?>;
+use <?php echo $entity->getFullName(); ?>;
+use <?php echo $form->getFullName(); ?>;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 use function Symfony\Component\Translation\t;
 <?php if ($tree_table) { ?>
-use <?= $repository->getFullName() ?>;
+use <?php echo $repository->getFullName(); ?>;
 <?php } ?>
 
 /**
-* @Route("<?= $route['base_path'] ?>")
+* @Route("<?php echo $route['base_path']; ?>")
 */
-class <?= $class_name ?> extends BaseController
+class <?php echo $class_name; ?> extends BaseController
 {
     /**
      * @Route
      */
     public function index(Request $request)
     {
-        $table = $this->createTable(<?= $table->getShortName() ?>::class);
+        $table = $this->createTable(<?php echo $table->getShortName(); ?>::class);
         $table->handleRequest($request);
 
         if ($table->isCallback()) {
             return $table->getCallbackResponse();
         }
 
-        return $this->render('<?= $index_template ?>', [
+        return $this->render('<?php echo $index_template; ?>', [
             'table' => $table
         ]);
     }
@@ -38,18 +38,18 @@ class <?= $class_name ?> extends BaseController
     /**
      * @Route(path="/edit/{id}", requirements={"id"="\d+"})
      */
-    public function edit(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>Request $request, ?int $id = null)
+    public function edit(<?php if ($tree_table) { ?><?php echo $repository->getShortName(); ?> $repository, <?php } ?>Request $request, ?int $id = null)
     {
         if ($id === null) {
-            $entity = new <?= $entity->getShortName() ?>();
+            $entity = new <?php echo $entity->getShortName(); ?>();
 <?php if ($tree_table) { ?>
             $entity->parent = $repository->findRoot(true);
 <?php } ?>
         } else {
-            $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
+            $entity = $this->findOrNotFound(<?php echo $entity->getShortName(); ?>::class, $id);
         }
 
-        $form = $this->createForm(<?= $form->getShortName() ?>::class, $entity);
+        $form = $this->createForm(<?php echo $form->getShortName(); ?>::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -62,7 +62,7 @@ class <?= $class_name ?> extends BaseController
                 ->toastSuccess(t('Item updated'));
 <?php } else { ?>
             $this->toastSuccess(t('Item updated'));
-            return $this->redirectToRoute('<?= $route['name_prefix'] ?>_edit', [
+            return $this->redirectToRoute('<?php echo $route['name_prefix']; ?>_edit', [
                 'id' => $entity->id
             ]);
 <?php } ?>
@@ -70,12 +70,12 @@ class <?= $class_name ?> extends BaseController
 
 <?php if ('modal' === $edit_view_type) { ?>
         return $this->js()
-            ->modal('<?= $edit_template ?>', [
+            ->modal('<?php echo $edit_template; ?>', [
                 'form' => $form->createView(),
                 'entity' => $entity,
             ]);
 <?php } else { ?>
-        return $this->render('<?= $edit_template ?>', [
+        return $this->render('<?php echo $edit_template; ?>', [
             'form' => $form->createView(),
             'entity' => $entity,
         ]);
@@ -86,9 +86,9 @@ class <?= $class_name ?> extends BaseController
     /**
      * @Route("/move/{id}/{direction}", requirements={"id": "\d+"})
      */
-    public function move(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>int $id, string $direction)
+    public function move(<?php if ($tree_table) { ?><?php echo $repository->getShortName(); ?> $repository, <?php } ?>int $id, string $direction)
     {
-        $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
+        $entity = $this->findOrNotFound(<?php echo $entity->getShortName(); ?>::class, $id);
 
         if ('up' === $direction) {
             $repository->moveUp($entity);
@@ -106,7 +106,7 @@ class <?= $class_name ?> extends BaseController
      */
     public function delete(int $id)
     {
-        $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
+        $entity = $this->findOrNotFound(<?php echo $entity->getShortName(); ?>::class, $id);
         $this->removeAndFlush($entity);
 
         return $this->js()
