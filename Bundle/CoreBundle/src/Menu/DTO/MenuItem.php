@@ -263,7 +263,7 @@ class MenuItem implements \Countable, \IteratorAggregate
     /**
      * {@inheritdoc}
      */
-    public function count()
+    public function count(): int
     {
         return count($this->children);
     }

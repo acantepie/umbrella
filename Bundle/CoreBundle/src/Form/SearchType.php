@@ -36,12 +36,12 @@ class SearchType extends AbstractType implements DataTransformerInterface
         $builder->addModelTransformer($this);
     }
 
-    public function transform($value)
+    public function transform($value): mixed
     {
         return $value;
     }
 
-    public function reverseTransform($value)
+    public function reverseTransform($value): mixed
     {
         if (!\is_string($value)) {
             return null;
@@ -55,7 +55,7 @@ class SearchType extends AbstractType implements DataTransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(): string
     {
         return TextType::class;
     }

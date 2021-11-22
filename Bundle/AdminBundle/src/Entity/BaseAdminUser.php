@@ -93,7 +93,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     /**
      * {@inheritdoc}
      */
-    public function isEqualTo(UserInterface $user)
+    public function isEqualTo(UserInterface $user): bool
     {
         if (!$user instanceof self) {
             return false;
