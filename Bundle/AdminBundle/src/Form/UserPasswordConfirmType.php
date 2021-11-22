@@ -27,10 +27,16 @@ class UserPasswordConfirmType extends AbstractType
             'type' => PasswordTogglableType::class,
             'translation_domain' => 'UmbrellaAdmin',
             'first_options' => [
-                'label' => 'label.newpassword'
+                'label' => 'label.newpassword',
+                'attr' => [
+                    'placeholder' => 'label.enter_your_new_password'
+                ]
             ],
             'second_options' => [
-                'label' => 'label.password_confirm'
+                'label' => 'label.password_confirm',
+                'attr' => [
+                    'placeholder' => 'label.confirm_your_new_password'
+                ]
             ],
             'required' => true,
             'invalid_message' => 'error.password_mismatch',
