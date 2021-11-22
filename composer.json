@@ -4,6 +4,7 @@
         "php": ">=7.4"
     },
     "require-dev": {
+        "ext-intl": "*",
         "ext-json": "*",
         "ext-pdo_sqlite": "*",
         "doctrine/doctrine-bundle": "^2.0",
