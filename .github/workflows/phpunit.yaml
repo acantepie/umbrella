@@ -18,8 +18,41 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ['7.4', '8.0']
-      fail-fast: false
+        php-version:
+          - "7.4"
+          - "8.0"
+        deps:
+          - "normal"
+        symfony-require:
+          - ""
+        symfony-deprecations-helper:
+          - ""
+        include:
+
+          # Test against stable Symfony 5.3
+          - symfony-require: "5.3.*"
+            php-version: "7.4"
+            deps: "normal"
+
+          # Test against latest Symfony 5.4 dev on 8.0
+          - symfony-require: "5.4.*"
+            php-version: "8.0"
+            deps: "dev"
+
+          - symfony-require: "5.4.*"
+            php-version: "7.4"
+            deps: "beta"
+
+          - symfony-require: "6.0.*"
+            php-version: "8.0"
+            deps: "dev"
+
+          # Test bleeding edge
+          - php-version: "8.1"
+            deps: "dev"
+            symfony-deprecations-helper: "weak"
+
+      fail-fast: true
 
     steps:
       - name: 'Checkout code'
