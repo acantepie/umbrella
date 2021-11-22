@@ -15,6 +15,9 @@ jobs:
     name: "phpunit - php ${{ matrix.php-version }}"
     runs-on: ubuntu-20.04
     continue-on-error: false
+    env:
+      SYMFONY_REQUIRE: ${{matrix.symfony-require}}
+      SYMFONY_DEPRECATIONS_HELPER: ${{matrix.symfony-deprecations-helper}}
 
     strategy:
       matrix:
@@ -66,10 +69,32 @@ jobs:
           extensions: mbstring, intl, pdo, pdo_sqlite, sqlite3
           ini-values: date.timezone=UTC
 
-      - name: 'Install project dependencies'
-        run: |
-          composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
-          vendor/bin/simple-phpunit install
+#      - name: 'Install project dependencies'
+#        run: |
+#          composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
+#          vendor/bin/simple-phpunit install
+
+      - name: "Cache dependencies installed with composer"
+        uses: "actions/cache@v2"
+        with:
+          path: "~/.composer/cache"
+          key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
+          restore-keys: "php-${{ matrix.php-version }}-composer-locked-"
+
+      - name: "Install stable dependencies with composer"
+        run: "composer update --no-interaction --prefer-dist --prefer-stable"
+        if: "${{ matrix.deps == 'normal' }}"
+
+      - name: "Install dev dependencies with composer"
+        run: "composer update --no-interaction --prefer-dist"
+        if: "${{ matrix.deps == 'dev' }}"
+
+      - name: "Install lowest possible dependencies with composer"
+        run: "composer update --no-interaction --prefer-dist --prefer-stable --prefer-lowest"
+        if: "${{ matrix.deps == 'low' }}"
+
+      - name: "Run PHPUnit"
+        run: "vendor/bin/simple-phpunit install"
 
       - name: 'Run tests'
         run: vendor/bin/simple-phpunit -v
