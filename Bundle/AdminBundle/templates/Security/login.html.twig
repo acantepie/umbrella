@@ -9,8 +9,8 @@
         <div class="card-body p-4">
 
             <div class="text-center w-75 m-auto">
-                <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{{  'action.sign_in' | trans }}</h4>
-                <p class="text-muted mb-4">{{ 'security_page.sign_in' | trans | raw }}</p>
+                <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{{  'login.title' | trans }}</h4>
+                <p class="text-muted mb-4">{{ 'login.text' | trans | raw }}</p>
             </div>
 
             {% if error %}
@@ -22,21 +22,21 @@
             <form action="{{ path(constant('Umbrella\\AdminBundle\\Controller\\SecurityController::LOGIN_ROUTE')) }}" method="post">
 
                 <div class="mb-3">
-                    <label for="username" class="form-label">{{ 'label.username' | trans }}</label>
+                    <label for="username" class="form-label">{{ 'label.email' | trans }}</label>
                     <input
                             class="form-control"
                             type="text"
                             id="username"
                             required="required"
                             name="_username"
-                            placeholder="{{ 'label.enter_your_username' | trans }}"
+                            placeholder="{{ 'label.enter_your_email' | trans }}"
                             value="{{ last_username }}"
                             autofocus />
                 </div>
 
                 <div class="mb-3">
                     <a href="{{ path('umbrella_admin_security_passwordrequest') }}" class="text-muted float-end">
-                        <small>{{ 'security_page.forget_password' | trans }}</small>
+                        <small>{{ 'login.forget_password' | trans }}</small>
                     </a>
                     <label for="password" class="form-label">{{ 'label.password' | trans }}</label>
                     <div is="password-togglable">
@@ -55,7 +55,7 @@
 
                 <div class="text-center">
                     <button class="btn btn-primary" type="submit">
-                        <i class="mdi mdi-login me-1"></i> {{ 'action.sign_in' | trans }}
+                        <i class="mdi mdi-login me-1"></i> {{ 'login.sign_in' | trans }}
                     </button>
                 </div>
 
