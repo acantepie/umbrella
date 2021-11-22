@@ -24,7 +24,7 @@ class PropertyColumnType extends ColumnType
      */
     public function render($rowData, array $options): string
     {
-        return $this->renderProperty($this->accessor->getValue($rowData, $options['property_path']), $options);
+        return $rowData ? $this->renderProperty($this->accessor->getValue($rowData, $options['property_path']), $options): '';
     }
 
     /**
