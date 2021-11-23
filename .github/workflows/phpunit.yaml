@@ -69,11 +69,10 @@ jobs:
           extensions: mbstring, intl, pdo, pdo_sqlite, sqlite3
           ini-values: date.timezone=UTC
 
-      - name: 'Install project dependencies'
+      - name: 'Install phpunit'
         run: |
           composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
           vendor/bin/simple-phpunit install
-
 
       - name: "Cache dependencies installed with composer"
         uses: "actions/cache@v2"
