@@ -189,5 +189,4 @@ abstract class BaseAdminUser implements EquatableInterface, UserInterface, Passw
             $this->email
             ) = $data;
     }
-
 }
