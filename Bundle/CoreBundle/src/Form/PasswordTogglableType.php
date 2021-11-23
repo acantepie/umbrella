@@ -10,7 +10,7 @@ class PasswordTogglableType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function getParent()
+    public function getParent(): string
     {
         return PasswordType::class;
     }
