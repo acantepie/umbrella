@@ -194,7 +194,7 @@ class DataTableBuilder
     /**
      * @param (\Closure|string)[] $options
      *
-     * @psalm-param array{class?: string, query?: \Closure(\Doctrine\ORM\QueryBuilder, mixed):void} $options
+     * @psalm-param string|array{class?: string, query?: \Closure(\Doctrine\ORM\QueryBuilder, mixed):void} $options
      */
     public function useEntityAdapter($options = []): self
     {
