@@ -16,7 +16,7 @@ use Umbrella\CoreBundle\Search\Annotation\SearchableField;
  * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks
  */
-abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface, PasswordAuthenticatedUserInterface
+abstract class BaseAdminUser implements EquatableInterface, UserInterface, PasswordAuthenticatedUserInterface
 {
     use ActiveTrait;
     use IdTrait;
@@ -110,32 +110,6 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
         return true;
     }
 
-    // Serializable implementation
-
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize()
-    {
-        return serialize([
-            $this->id,
-            $this->password,
-            $this->email,
-        ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->password,
-            $this->email
-            ) = unserialize($serialized);
-    }
-
     // UserInterface implementation
 
     public function setPassword(?string $password)
@@ -197,4 +171,23 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     {
         return $this->getUserIdentifier();
     }
+
+    public function __serialize(): array
+    {
+        return [
+            $this->id,
+            $this->password,
+            $this->email,
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        list(
+            $this->id,
+            $this->password,
+            $this->email
+            ) = $data;
+    }
+
 }
