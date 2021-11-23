@@ -25,7 +25,6 @@ jobs:
         php-version:
           - "7.4"
           - "8.0"
-          - "8.1"
         deps:
           - "normal"
         symfony-require:
@@ -70,19 +69,19 @@ jobs:
           extensions: mbstring, intl, pdo, pdo_sqlite, sqlite3
           ini-values: date.timezone=UTC
 
-#      - name: 'Install project dependencies'
-#        run: |
-#          composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
-#          vendor/bin/simple-phpunit install
+      - name: 'Install project dependencies'
+        run: |
+          composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
+          vendor/bin/simple-phpunit install
 
 
-#      - name: "Cache dependencies installed with composer"
-#        uses: "actions/cache@v2"
-#        with:
-#          path: "~/.composer/cache"
-#          key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
-#          restore-keys: "php-${{ matrix.php-version }}-composer-locked-"
-#
+      - name: "Cache dependencies installed with composer"
+        uses: "actions/cache@v2"
+        with:
+          path: "~/.composer/cache"
+          key: "php-${{ matrix.php-version }}-composer-locked-${{ hashFiles('composer.lock') }}"
+          restore-keys: "php-${{ matrix.php-version }}-composer-locked-"
+
       - name: "Install stable dependencies with composer"
         run: "composer update --no-interaction --prefer-dist --prefer-stable"
         if: "${{ matrix.deps == 'normal' }}"
