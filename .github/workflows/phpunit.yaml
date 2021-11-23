@@ -5,6 +5,7 @@ on:
     paths:
       - 'Bundle/**'
       - 'composer.json'
+      - '.github/**'
   pull_request:
     paths:
       - 'Bundle/**'
@@ -24,6 +25,7 @@ jobs:
         php-version:
           - "7.4"
           - "8.0"
+          - "8.1"
         deps:
           - "normal"
         symfony-require:
