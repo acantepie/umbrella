@@ -5,7 +5,7 @@
     },
     "require-dev": {
         "ext-json": "*",
-        "doctrine/doctrine-bundle": "^2.0",
+        "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/orm": "^2.8",
         "friendsofphp/php-cs-fixer": "^3.0",

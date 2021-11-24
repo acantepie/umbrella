@@ -44,7 +44,10 @@ class SearchType extends AbstractType implements DataTransformerInterface
         return $value;
     }
 
-    public function reverseTransform($value): ?string
+    /**
+     * @return mixed
+     */
+    public function reverseTransform($value)
     {
         if (!\is_string($value)) {
             return null;

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Umbrella\AdminBundle\Tests\TestApp\Kernel;
@@ -38,7 +39,7 @@ class AppTestCase extends WebTestCase
         $application = new Application(static::$kernel);
         $application->setAutoExit(false);
 
-        $consoleOutput = new ConsoleOutput($quiet ? ConsoleOutput::VERBOSITY_QUIET : ConsoleOutput::VERBOSITY_NORMAL);
+        $consoleOutput = new ConsoleOutput($quiet ? OutputInterface::VERBOSITY_QUIET : OutputInterface::VERBOSITY_NORMAL);
 
         $input = new ArrayInput(['command' => 'doctrine:database:drop', '--no-interaction' => true, '--force' => true]);
         $application->run($input, $consoleOutput);
