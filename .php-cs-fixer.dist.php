@@ -11,7 +11,7 @@ return $config
         '@DoctrineAnnotation' => true,
         'phpdoc_summary' => false,
         'no_unneeded_final_method' => false,
-        'no_superfluous_phpdoc_tags' => true,
+        'no_superfluous_phpdoc_tags' => false,
         'concat_space' => ['spacing' => 'one'],
         'phpdoc_to_comment' => false,
         'array_syntax' => ['syntax' => 'short'],
