@@ -39,7 +39,7 @@ jobs:
         env:
           SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
         run: |
-          composer config minimum-stability dev
+          composer config minimum-stability RC
           composer update --no-interaction --prefer-dist --optimize-autoloader --no-progress
           vendor/bin/simple-phpunit install
 
