@@ -49,7 +49,7 @@ class IndexEntityCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ($this->entityClass) {
             if (!$this->indexer->isSearchable($this->entityClass)) {

@@ -63,7 +63,7 @@ class MenuCurrentVisitor implements MenuVisitor
         }
 
         foreach ($item->getMatchingRoutes() as $route => $params) {
-            if ($currentRoute === $route && $this->paramsAreInrequest($params, $request)) {
+            if ($currentRoute === $route && $this->paramsAreInRequest($params, $request)) {
                 return true;
             }
         }
@@ -71,7 +71,7 @@ class MenuCurrentVisitor implements MenuVisitor
         return false;
     }
 
-    private function paramsAreInrequest(array $params, Request $request)
+    private function paramsAreInRequest(array $params, Request $request): bool
     {
         foreach ($params as $key => $value) {
             if ($request->get($key) != $value) {
@@ -85,7 +85,7 @@ class MenuCurrentVisitor implements MenuVisitor
     /**
      * Flag all items as active from current through ancestors
      */
-    private function resolveActive(Menu $menu)
+    private function resolveActive(Menu $menu): void
     {
         $item = $menu->getCurrent();
 

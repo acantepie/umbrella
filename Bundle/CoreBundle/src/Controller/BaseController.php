@@ -17,7 +17,7 @@ abstract class BaseController extends AbstractController
 {
     public const BAG_TOAST = 'toast';
 
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
         return parent::getSubscribedServices() + [
                 DataTableFactory::class => DataTableFactory::class,

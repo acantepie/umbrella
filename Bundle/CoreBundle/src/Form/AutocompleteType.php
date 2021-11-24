@@ -128,7 +128,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'umbrella_autocomplete';
     }
@@ -159,7 +159,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',

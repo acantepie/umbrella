@@ -71,7 +71,7 @@ class JsResponseBuilder implements \Countable
 
     // Misc
 
-    public function download(string $content, string $filename = null)
+    public function download(string $content, string $filename = null): self
     {
         return $this->add(self::DOWNLOAD, [
             'content' => $content,

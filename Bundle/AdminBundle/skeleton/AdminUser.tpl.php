@@ -19,7 +19,7 @@ class <?= $class_name ?> extends BaseAdminUser
     /**
      * {@inheritdoc}
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         return ['ROLE_ADMIN'];
     }

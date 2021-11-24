@@ -128,7 +128,7 @@ class TabsHelper
                 return 1 === $this->_navItemCount;
 
             case 'current_route':
-                $currentRoute = $this->requestStack->getMainRequest()->get('_route');
+                $currentRoute = $this->requestStack->getMainRequest()->attributes->get('_route');
 
                 return $navItemConfig['route'] === $currentRoute;
 

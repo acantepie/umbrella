@@ -55,7 +55,7 @@ class SearchType extends AbstractType implements DataTransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(): ?string
     {
         return TextType::class;
     }

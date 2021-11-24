@@ -93,7 +93,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     /**
      * {@inheritdoc}
      */
-    public function isEqualTo(UserInterface $user)
+    public function isEqualTo(UserInterface $user): bool
     {
         if (!$user instanceof self) {
             return false;
@@ -115,7 +115,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     /**
      * {@inheritdoc}
      */
-    public function serialize()
+    public function serialize(): string
     {
         return serialize([
             $this->id,
@@ -183,7 +183,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     /*
      * Keep for backward compatibility with Symfony 5.3
      */
-    final public function getUsername()
+    final public function getUsername(): string
     {
         return $this->getUserIdentifier();
     }
