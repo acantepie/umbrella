@@ -1,0 +1,47 @@
+name: PHPUnit - Upcoming Symfony versions
+
+on:
+  push:
+    paths:
+      - 'Bundle/**'
+      - 'composer.json'
+  pull_request:
+    paths:
+      - 'Bundle/**'
+      - 'composer.json'
+      - '.github/workflows/phpunit_upcoming_symfony.yaml'
+
+jobs:
+  phpunit:
+    name: "phpunit - php ${{ matrix.php-version }} / symfony ${{ matrix.symfony-version }}"
+    runs-on: ubuntu-20.04
+    continue-on-error: false
+
+    strategy:
+      matrix:
+        php-version: ['7.4', '8.0']
+        symfony-version: ['5.4', '6.0']
+      fail-fast: false
+
+    steps:
+      - name: 'Checkout code'
+        uses: actions/checkout@v2
+
+      - name: 'Install PHP with extensions'
+        uses: shivammathur/setup-php@v2
+        with:
+          coverage: none
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, intl, pdo, pdo_sqlite, sqlite3
+          ini-values: date.timezone=UTC
+
+      - name: 'Install project dependencies'
+        env:
+          SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
+        run: |
+          composer config minimum-stability dev
+          composer update --no-interaction --prefer-dist --optimize-autoloader --no-progress
+          vendor/bin/simple-phpunit install
+
+      - name: 'Run tests'
+        run: vendor/bin/simple-phpunit -v

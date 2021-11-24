@@ -53,7 +53,5 @@
             "Umbrella\\CoreBundle\\Tests\\": "Bundle/CoreBundle/tests/",
             "Umbrella\\CoreBundle\\Tests\\TestApp\\": "Bundle/CoreBundle/tests/Functional/app/src/"
         }
-    },
-    "prefer-stable": false,
-    "minimum-stability": "RC"
+    }
 }

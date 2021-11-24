@@ -1,4 +1,4 @@
-name: PHPUnit
+name: PHPUnit - Maintained Symfony versions
 
 on:
   push:
@@ -9,16 +9,18 @@ on:
     paths:
       - 'Bundle/**'
       - 'composer.json'
+      - '.github/workflows/phpunit_maintained_symfony.yaml'
 
 jobs:
   phpunit:
-    name: "phpunit - php ${{ matrix.php-version }}"
+    name: "phpunit - php ${{ matrix.php-version }} / symfony ${{ matrix.symfony-version }}"
     runs-on: ubuntu-20.04
     continue-on-error: false
 
     strategy:
       matrix:
         php-version: ['7.4', '8.0']
+        symfony-version: ['5.3']
       fail-fast: false
 
     steps:
@@ -34,8 +36,10 @@ jobs:
           ini-values: date.timezone=UTC
 
       - name: 'Install project dependencies'
+        env:
+          SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
         run: |
-          composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable
+          composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable --no-progress
           vendor/bin/simple-phpunit install
 
       - name: 'Run tests'
