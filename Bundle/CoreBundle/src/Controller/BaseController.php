@@ -4,6 +4,7 @@ namespace Umbrella\CoreBundle\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -19,16 +20,17 @@ abstract class BaseController extends AbstractController
 
     public static function getSubscribedServices(): array
     {
-        return parent::getSubscribedServices() + [
-                DataTableFactory::class => DataTableFactory::class,
-                JsResponseBuilder::class => JsResponseBuilder::class,
-                'translator' => TranslatorInterface::class,
-            ];
+        return array_merge(parent::getSubscribedServices(), [
+            DataTableFactory::class => DataTableFactory::class,
+            JsResponseBuilder::class => JsResponseBuilder::class,
+            'doctrine' => ManagerRegistry::class,
+            'translator' => TranslatorInterface::class,
+        ]);
     }
 
     protected function trans(?string $id, array $parameters = [], string $domain = null, string $locale = null): string
     {
-        return $this->get('translator')->trans($id, $parameters, $domain, $locale);
+        return $this->container->get('translator')->trans($id, $parameters, $domain, $locale);
     }
 
     protected function getRepository(string $className, ?string $managerName = null): EntityRepository
@@ -42,7 +44,7 @@ abstract class BaseController extends AbstractController
     protected function em(?string $name = null): EntityManagerInterface
     {
         /** @var EntityManagerInterface $em */
-        $em = $this->getDoctrine()->getManager($name);
+        $em = $this->container->get('doctrine')->getManager($name);
 
         return $em;
     }
@@ -72,19 +74,19 @@ abstract class BaseController extends AbstractController
 
     protected function js(): JsResponseBuilder
     {
-        return $this->get(JsResponseBuilder::class);
+        return $this->container->get(JsResponseBuilder::class);
     }
 
     // DataTable Api
 
     protected function createTable(string $type, array $options = []): DataTable
     {
-        return $this->get(DataTableFactory::class)->create($type, $options);
+        return $this->container->get(DataTableFactory::class)->create($type, $options);
     }
 
     protected function createTableBuilder(array $options = []): DataTableBuilder
     {
-        return $this->get(DataTableFactory::class)->createBuilder(DataTableType::class, $options);
+        return $this->container->get(DataTableFactory::class)->createBuilder(DataTableType::class, $options);
     }
 
     // Toast Api
@@ -93,8 +95,8 @@ abstract class BaseController extends AbstractController
     {
         $this->addFlash(self::BAG_TOAST, [
             'type' => $type,
-            'text' => $text instanceof TranslatableMessage ? $text->trans($this->get('translator')) : $text,
-            'title' => $title instanceof TranslatableMessage ? $title->trans($this->get('translator')) : $title,
+            'text' => $text instanceof TranslatableMessage ? $text->trans($this->container->get('translator')) : $text,
+            'title' => $title instanceof TranslatableMessage ? $title->trans($this->container->get('translator')) : $title,
         ]);
     }
 
