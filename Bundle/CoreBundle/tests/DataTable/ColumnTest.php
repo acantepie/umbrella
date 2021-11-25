@@ -70,12 +70,12 @@ class ColumnTest extends AppTestCase
         try {
             $c->render($obj);
             $this->fail('Call render using an invalid property path must fail.');
-        } catch (\Exception $e) {}
+        } catch (\Throwable $e) {}
 
         try {
             $c->render(null);
             $this->fail('Call render with invalid data must fail.');
-        } catch (\Exception $e) {}
+        } catch (\Throwable $e) {}
     }
 
     public function testDateColumn()

@@ -19,7 +19,7 @@ class DataTableResultTest extends AppTestCase
             $r = new DataTableResult($this->getData());
             $this->assertEquals(3, $r->getCount());
             $this->fail('Must throw an exception, not countable');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
         }
 
         $r = new DataTableResult($this->getData(), 3);

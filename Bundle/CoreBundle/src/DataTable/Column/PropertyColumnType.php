@@ -24,12 +24,14 @@ class PropertyColumnType extends ColumnType
      */
     public function render($rowData, array $options): string
     {
+        // FIXME symfony accessor only supports array|object
+        if (!\is_array($rowData) && !\is_object($rowData)) {
+            throw new \InvalidArgumentException('Argument "$rowData" of PropertyColumnType::render() supports only type "string" or "array".');
+        }
+
         return $this->renderProperty($this->accessor->getValue($rowData, $options['property_path']), $options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function renderProperty($value, array $options): string
     {
         return (string) $value;
