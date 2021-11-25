@@ -53,8 +53,6 @@ class Column
             $value = $this->type->render($rowData, $this->options);
         }
 
-        $value = $this->options['is_safe_html'] ? $value : HtmlUtils::escape($value);
-
-        return $value;
+        return $this->options['is_safe_html'] ? $value : HtmlUtils::escape($value);
     }
 }
