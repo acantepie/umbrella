@@ -31,6 +31,7 @@ class FormTypeExtension extends AbstractTypeExtension
         $this->setView($view, $form, 'group_class', $this->defaultGroupClass);
         $view->vars['input_prefix'] = $options['input_prefix'];
         $view->vars['input_suffix'] = $options['input_suffix'];
+        $view->vars['input_addon_container_class'] = $options['input_addon_container_class'];
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -47,6 +48,9 @@ class FormTypeExtension extends AbstractTypeExtension
 
             ->setDefault('group_class', null)
             ->setAllowedTypes('group_class', ['string', 'null'])
+
+            ->setDefault('input_addon_container_class', 'input-group')
+            ->setAllowedTypes('input_addon_container_class', 'string')
 
             ->setDefault('input_prefix', null)
             ->setAllowedTypes('input_prefix', ['null', 'string'])
