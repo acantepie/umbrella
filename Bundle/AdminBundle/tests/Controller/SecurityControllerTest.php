@@ -37,7 +37,7 @@ class SecurityControllerTest extends AppTestCase
         $u = $tkStorage->getToken()->getUser();
 
         // I see my name on page ?
-        $this->assertSelectorTextContains('.account-user-name', $u->getFullName());
+        $this->assertSelectorTextContains('div', $u->getFullName());
     }
 
     public function testInvalidCredentialsLogin()

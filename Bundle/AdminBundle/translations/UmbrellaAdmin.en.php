@@ -34,8 +34,8 @@ return [
             'text' => 'An email was sent to <b>%email%</b>. Check your mailbox and follow instructions given.'
         ],
         'reset' => 'Reset your password',
-        'back_login_markup' => 'back to <b>Log In</b>',
-        'back_login' => 'back to Log In',
+        'back_login_link' => 'Forget it, <a href="%url%">send me back</a> to the sign in screen.',
+        'back_login' => 'Back to sign in screen',
         'email' => [
             'subject' => 'Update your password',
             'body' => <<<EMAIL

@@ -1,11 +1,11 @@
 {
   "entrypoints": {
     "admin": {
-      "css": [
-        "/bundles/umbrellaadmin/admin.css?403139f24865462277ec"
-      ],
       "js": [
-        "/bundles/umbrellaadmin/admin.js?75f5c799b8ff8087345c"
+        "/bundles/umbrellaadmin/admin.js?17d75ac331324e340945"
+      ],
+      "css": [
+        "/bundles/umbrellaadmin/admin.css?7ddf70124cf08dcc153b"
       ]
     }
   }

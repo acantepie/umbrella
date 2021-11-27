@@ -22,7 +22,7 @@ class UmbrellaAdminConfiguration
 
     public function containerClass(): string
     {
-        return 'container-lg';
+        return $this->config['container_class'];
     }
 
     public function appName(): ?string

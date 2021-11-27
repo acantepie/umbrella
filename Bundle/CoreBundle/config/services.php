@@ -28,8 +28,6 @@ use Umbrella\CoreBundle\Menu\Visitor\MenuVisibilityVisitor;
 use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
 use Umbrella\CoreBundle\Search\EntityIndexer;
 use Umbrella\CoreBundle\Search\SearchableEntitySubscriber;
-use Umbrella\CoreBundle\Tabs\TabsExtension;
-use Umbrella\CoreBundle\Tabs\TabsHelper;
 use Umbrella\CoreBundle\Twig\CoreExtension;
 use Umbrella\CoreBundle\Widget\Twig\WidgetExtension;
 use Umbrella\CoreBundle\Widget\WidgetFactory;
@@ -96,12 +94,6 @@ return static function (ContainerConfigurator $configurator): void {
     // -- Ckeditor -- //
     $services->set(CkeditorConfiguration::class);
     $services->set(CkeditorExtension::class)
-        ->tag('twig.extension');
-
-    // -- Tabs -- //
-    $services->set(TabsHelper::class)
-        ->bind('$configPath', __DIR__ . '/../src/Tabs/config.yaml');
-    $services->set(TabsExtension::class)
         ->tag('twig.extension');
 
     // -- Search -- //

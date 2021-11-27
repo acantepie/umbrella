@@ -36,7 +36,7 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('form')->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('layout')
-                    ->defaultValue('horizontal')
+                    ->defaultValue('default')
                     ->info('Layout of bootstrap : default or horizontal.')
                     ->validate()
                         ->ifNotInArray(['default', 'horizontal'])

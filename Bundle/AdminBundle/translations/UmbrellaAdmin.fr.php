@@ -34,7 +34,7 @@ return [
             'text' => 'Un email a été envoyé à <b>%email%</b>. Vérifier votre boite mail et suivez les instructions',
         ],
         'reset' => 'Réinitialiser votre mot de passe',
-        'back_login_link' => 'Forget it, <a href="%url%">send me back</a> to the sign in screen.',
+        'back_login_link' => 'Oublions ça, <a href="%url%">revenir</a> à l\'écran de connexion.',
         'back_login' => 'Revenir à l\'écran de connexion',
         'email' => [
             'subject' => 'Changer votre mot de passe',

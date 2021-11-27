@@ -1,0 +1,3 @@
+- Remplacer select2 => TomSelect
+- Notifications
+- Search on menu
