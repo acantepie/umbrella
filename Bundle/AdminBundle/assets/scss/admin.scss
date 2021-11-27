@@ -1,82 +1,16 @@
-//Core files
-@import "./node_modules/bootstrap/scss/functions";
-@import "./node_modules/bootstrap/scss/variables";
-@import "config/variables";
-@import "config/custom-variables";
-@import "umbrella/variables";
-@import "./node_modules/bootstrap/scss/bootstrap";
+@import "config/config";
+@import "vendor/bootstrap";
+@import "vendor/tabler";
 
-
-// Structure
-@import "structure/general";
-@import "structure/left-menu";
-@import "structure/topbar";
-@import "structure/page-head";
-//@import "structure/footer";
-
+@import "components/menu";
+@import "components/breadcrumb";
+@import "components/cards";
+@import "components/modals";
 
 // Icons
 @import '~@iconscout/unicons/css/animation.css';
 @import '~@iconscout/unicons/css/before.css';
 @import '~@iconscout/unicons/css/line.css';
 
-//Components
-@import "components/mixins";
-@import "components/accordions";
-@import "components/avatar";
-@import "components/breadcrumb";
-@import "components/buttons";
-@import "components/badge";
-@import "components/card";
-@import "components/custom-forms";
-@import "components/dropdown";
-//@import "components/docs";
-@import "components/forms";
-@import "components/modal";
-@import "components/nav";
-@import "components/pagination";
-@import "components/popover";
-//@import "components/print";
-@import "components/progress";
-@import "components/reboot";
-//@import "components/ribbons";
-@import "components/switch";
-@import "components/tables";
-@import "components/type";
-@import "components/utilities";
-//@import "components/widgets";
-//@import "components/social";
-//@import "components/steps";
-//@import "components/preloader";
-//@import "components/hero";
-
-
-//Pages
-@import "pages/authentication";
-//@import "pages/components-demo";
-//@import "pages/error";
-//@import "pages/faq";
-//@import "pages/maintenance";
-//@import "pages/tasks";
-//@import "pages/email";
-//@import "pages/timeline";
-
-
 // Vendors
 @import "~umbrella_core/scss/core";
-
-
-// Plugins
-@import "plugins/datatable";
-@import "plugins/dragula";
-@import "plugins/select2";
-@import "plugins/simplebar";
-
-// Umbrella
-@import "umbrella/misc";
-@import "umbrella/form";
-@import "umbrella/breadcrumb";
-@import "umbrella/leftside-menu";
-@import "umbrella/left-menu";
-@import "umbrella/select2";
-@import "umbrella/security-page";

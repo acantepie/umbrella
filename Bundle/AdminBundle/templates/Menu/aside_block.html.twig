@@ -1,0 +1,95 @@
+{% block nav_items %}
+    <ul class="navbar-nav pt-lg-3">
+        {% for item in menu.root %}
+            {{ block('nav_item') }}
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block nav_item %}
+    {% if item.isVisible() %}
+        <li class="nav-item {{ item.hasChildren() ? 'dropdown' }} {{ item.isActive() ? 'active' }}">
+            {% if item.hasChildren() %}
+                <a class="nav-link" href="#{{ item.cssId }}" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="{{ item.isActive() ? 'true' : 'false' }}">
+                    {{ block('item_icon') }}
+                    {{ block('item_title') }}
+                    {{ block('item_badge') }}
+                </a>
+                <div class="dropdown-menu {{ item.isActive() ? 'show' }}" id="{{ item.cssId }}">
+                    <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-column">
+                            {% for item in item %}
+                                {{ block('nav_item_dropdown') }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <a class="nav-link {{ item.isActive() ? 'active' }}" {{ block('item_href') }}>
+                    {{ block('item_icon') }}
+                    {{ block('item_title') }}
+                    {{ block('item_badge') }}
+                </a>
+            {% endif %}
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block nav_item_dropdown %}
+    {% if item.isVisible() %}
+        {% if item.hasChildren() %}
+            <div class="dropend">
+                <a class="dropdown-item dropdown-toggle" href="#{{ item.cssId }}" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                    {{ block('item_icon') }}
+                    {{ block('item_title') }}
+                    {{ block('item_badge') }}
+                </a>
+                <div class="dropdown-menu {{ item.isActive() ? 'show' }}" id="{{ item.cssId }}">
+                    {% for item in item %}
+                        {{ block('nav_item_dropdown') }}
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+        <a class="dropdown-item {{ item.isActive() ? 'active' }}" {{ block('item_href') }}>
+            {{ block('item_icon') }}
+            {{ block('item_title') }}
+            {{ block('item_badge') }}
+        </a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{%- block item_title -%}
+    <span class="nav-link-title">
+        {% if item.translationDomain %}
+            {{ item.label | trans([], item.translationDomain) }}
+        {% else %}
+            {{ item.label }}
+        {% endif %}
+    </span>
+{%- endblock -%}
+
+{%- block item_icon -%}
+    {% if item.icon %}
+        <span class="nav-link-icon d-md-none d-lg-inline-block">
+            <i class="{{ item.icon }}"></i>
+        </span>
+    {% endif %}
+{%- endblock -%}
+
+{%- block item_badge -%}
+    {% if item.badge %}
+        <span class="badge ms-auto {{ item.badgeClass ?? 'bg-primary' }}">{{ item.badgeLabel }}</span>
+    {% endif %}
+{%- endblock -%}
+
+{%- block item_href -%}
+    {% if item.route %}
+        href="{{ path(item.route, item.routeParams) }}"
+    {% else %}
+        href="#"
+    {% endif %}
+{%- endblock -%}
+
+

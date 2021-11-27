@@ -29,7 +29,7 @@ class AdminExtension extends AbstractExtension implements GlobalsInterface
     public function getGlobals(): array
     {
         return [
-            'uac' => $this->configuration
+            'admin' => $this->configuration
         ];
     }
 

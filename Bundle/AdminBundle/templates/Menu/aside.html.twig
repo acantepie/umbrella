@@ -1,0 +1,18 @@
+{% use "@UmbrellaAdmin/Menu/aside_block.html.twig" %}
+
+<aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {% include "@UmbrellaAdmin/Menu/head.html.twig" %}
+
+        {% block aside_items_container %}
+            <div class="navbar-collapse collapse" id="navbar-menu">
+                {{ block('nav_items') }}
+            </div>
+        {% endblock %}
+
+    </div>
+</aside>

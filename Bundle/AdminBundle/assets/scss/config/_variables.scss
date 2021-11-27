@@ -22,15 +22,15 @@ $black:    #000 !default;
 // fusv-disable
 // scss-docs-start gray-colors-map
 $grays: (
-  "100": $gray-100,
-  "200": $gray-200,
-  "300": $gray-300,
-  "400": $gray-400,
-  "500": $gray-500,
-  "600": $gray-600,
-  "700": $gray-700,
-  "800": $gray-800,
-  "900": $gray-900
+        "100": $gray-100,
+        "200": $gray-200,
+        "300": $gray-300,
+        "400": $gray-400,
+        "500": $gray-500,
+        "600": $gray-600,
+        "700": $gray-700,
+        "800": $gray-800,
+        "900": $gray-900
 );
 // scss-docs-end gray-colors-map
 // fusv-enable
@@ -50,19 +50,19 @@ $cyan:       #44badc;
 
 // scss-docs-start colors-map
 $colors: (
-  "blue":       $blue,
-  "indigo":     $indigo,
-  "purple":     $purple,
-  "pink":       $pink,
-  "red":        $red,
-  "orange":     $orange,
-  "yellow":     $yellow,
-  "green":      $green,
-  "teal":       $teal,
-  "cyan":       $cyan,
-  "white":      $white,
-  "gray":       $gray-600,
-  "gray-dark":  $gray-800
+        "blue":       $blue,
+        "indigo":     $indigo,
+        "purple":     $purple,
+        "pink":       $pink,
+        "red":        $red,
+        "orange":     $orange,
+        "yellow":     $yellow,
+        "green":      $green,
+        "teal":       $teal,
+        "cyan":       $cyan,
+        "white":      $white,
+        "gray":       $gray-600,
+        "gray-dark":  $gray-800
 );
 // scss-docs-end colors-map
 
@@ -74,19 +74,19 @@ $info:          $cyan;
 $warning:       $yellow;
 $danger:        $red;
 $light:         $gray-200;
-$dark:          $gray-900;
+$dark:          #313a46;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "success":    $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark
+        "primary":    $primary,
+        "secondary":  $secondary,
+        "success":    $success,
+        "info":       $info,
+        "warning":    $warning,
+        "danger":     $danger,
+        "light":      $light,
+        "dark":       $dark
 );
 // scss-docs-end theme-colors-map
 
@@ -202,11 +202,11 @@ $cyan-900: shade-color($cyan, 80%);
 
 // Characters which are escaped by the escape-svg function
 $escaped-characters: (
-  ("<", "%3c"),
-  (">", "%3e"),
-  ("#", "%23"),
-  ("(", "%28"),
-  (")", "%29"),
+                ("<", "%3c"),
+                (">", "%3e"),
+                ("#", "%23"),
+                ("(", "%28"),
+                (")", "%29"),
 );
 
 // Options
@@ -249,12 +249,12 @@ $gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0));
 // scss-docs-start spacer-variables-maps
 $spacer: 1.5rem;
 $spacers: (
-  0: 0,
-  1: $spacer / 4,
-  2: $spacer / 2,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
+        0: 0,
+        1: $spacer / 4,
+        2: $spacer / 2,
+        3: $spacer,
+        4: $spacer * 1.5,
+        5: $spacer * 3,
 );
 
 $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
@@ -266,9 +266,9 @@ $negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
 
 // scss-docs-start position-map
 $position-values: (
-  0: 0,
-  50: 50%,
-  100: 100%
+        0: 0,
+        50: 50%,
+        100: 100%
 );
 // scss-docs-end position-map
 
@@ -276,7 +276,7 @@ $position-values: (
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   #fafbfe;
+$body-bg:                   #f3f4f7;
 $body-color:                shade-color($gray-700,10%);
 $body-text-align:           null;
 
@@ -308,12 +308,12 @@ $paragraph-margin-bottom:   1rem;
 
 // scss-docs-start grid-breakpoints
 $grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px
 );
 // scss-docs-end grid-breakpoints
 
@@ -327,11 +327,11 @@ $grid-breakpoints: (
 
 // scss-docs-start container-max-widths
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1320px
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1320px
 );
 // scss-docs-end container-max-widths
 
@@ -360,12 +360,12 @@ $container-padding-x: $grid-gutter-width / 2;
 // scss-docs-start border-variables
 $border-width:                1px;
 $border-widths: (
-  0: 0,
-  1: 1px,
-  2: 2px,
-  3: 3px,
-  4: 4px,
-  5: 5px
+        0: 0,
+        1: 1px,
+        2: 2px,
+        3: 3px,
+        4: 4px,
+        5: 5px
 );
 
 $border-color:                $gray-300;
@@ -403,10 +403,10 @@ $transition-collapse:         height .35s ease;
 // stylelint-disable function-disallowed-list
 // scss-docs-start aspect-ratios
 $aspect-ratios: (
-  "1x1": 100%,
-  "4x3": calc(3 / 4 * 100%),
-  "16x9": calc(9 / 16 * 100%),
-  "21x9": calc(9 / 21 * 100%)
+        "1x1": 100%,
+        "4x3": calc(3 / 4 * 100%),
+        "16x9": calc(9 / 16 * 100%),
+        "21x9": calc(9 / 21 * 100%)
 );
 // scss-docs-end aspect-ratios
 // stylelint-enable function-disallowed-list
@@ -452,12 +452,12 @@ $h6-font-size:                0.75rem;
 
 // scss-docs-start font-sizes
 $font-sizes: (
-  1: $h1-font-size,
-  2: $h2-font-size,
-  3: $h3-font-size,
-  4: $h4-font-size,
-  5: $h5-font-size,
-  6: $h6-font-size
+        1: $h1-font-size,
+        2: $h2-font-size,
+        3: $h3-font-size,
+        4: $h4-font-size,
+        5: $h5-font-size,
+        6: $h6-font-size
 );
 // scss-docs-end font-sizes
 
@@ -472,12 +472,12 @@ $headings-color:              null;
 
 // scss-docs-start display-headings
 $display-font-sizes: (
-  1: 5rem,
-  2: 4.5rem,
-  3: 4rem,
-  4: 3.5rem,
-  5: 3rem,
-  6: 2.5rem
+        1: 5rem,
+        2: 4.5rem,
+        3: 4rem,
+        4: 3.5rem,
+        5: 3rem,
+        6: 2.5rem
 );
 
 $display-font-weight: 300;
@@ -566,14 +566,14 @@ $table-bg-scale:              -80%;
 
 // scss-docs-start table-loop
 $table-variants: (
-  "primary":    shift-color($primary, $table-bg-scale),
-  "secondary":  shift-color($secondary, $table-bg-scale),
-  "success":    shift-color($success, $table-bg-scale),
-  "info":       shift-color($info, $table-bg-scale),
-  "warning":    shift-color($warning, $table-bg-scale),
-  "danger":     shift-color($danger, $table-bg-scale),
-  "light":      $light,
-  "dark":       $dark,
+        "primary":    shift-color($primary, $table-bg-scale),
+        "secondary":  shift-color($secondary, $table-bg-scale),
+        "success":    shift-color($success, $table-bg-scale),
+        "info":       shift-color($info, $table-bg-scale),
+        "warning":    shift-color($warning, $table-bg-scale),
+        "danger":     shift-color($danger, $table-bg-scale),
+        "light":      $light,
+        "dark":       $dark,
 );
 // scss-docs-end table-loop
 
@@ -668,7 +668,7 @@ $form-text-color:                       $text-muted;
 
 // scss-docs-start form-label-variables
 $form-label-margin-bottom:              .5rem;
-$form-label-font-size:                  null;
+$form-label-font-size:                  inherit;
 $form-label-font-style:                 null;
 $form-label-font-weight:                null;
 $form-label-color:                      null;
@@ -878,14 +878,14 @@ $form-feedback-icon-invalid:        url("data:image/svg+xml,<svg xmlns='http://w
 
 // scss-docs-start form-validation-states
 $form-validation-states: (
-  "valid": (
-    "color": $form-feedback-valid-color,
-    "icon": $form-feedback-icon-valid
-  ),
-  "invalid": (
-    "color": $form-feedback-invalid-color,
-    "icon": $form-feedback-icon-invalid
-  )
+        "valid": (
+                "color": $form-feedback-valid-color,
+                "icon": $form-feedback-icon-valid
+        ),
+        "invalid": (
+                "color": $form-feedback-invalid-color,
+                "icon": $form-feedback-icon-invalid
+        )
 );
 // scss-docs-end form-validation-states
 
@@ -1358,7 +1358,7 @@ $breadcrumb-margin-bottom:          1rem;
 $breadcrumb-bg:                     transparent;
 $breadcrumb-divider-color:          $gray-400;
 $breadcrumb-active-color:           $gray-500;
-$breadcrumb-divider:                quote("\F0142");
+$breadcrumb-divider:                quote("/");
 $breadcrumb-divider-flipped:        $breadcrumb-divider;
 $breadcrumb-border-radius:          null;
 // scss-docs-end breadcrumb-variables

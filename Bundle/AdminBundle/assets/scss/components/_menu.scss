@@ -1,0 +1,38 @@
+aside.navbar {
+
+  &.navbar-dark {
+    .dropdown-menu {
+      .dropdown-item:hover, .dropdown-item:focus {
+        background-color: $dark;
+        color: $white;
+      }
+
+      .dropdown-item.active {
+        background-color: inherit;
+        color: $white;
+      }
+    }
+  }
+
+  .dropdown-item {
+    font-size: 0.95em;
+  }
+
+  .nav-link[data-bs-toggle="dropdown"] {
+
+    &[aria-expanded="true"]::after {
+      transform: rotate(90deg);
+    }
+
+    &::after {
+      content: "\f0142";
+      font-family: Material Design Icons;
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+      transition: transform .15s;
+      margin-left: auto;
+    }
+
+  }
+
+}

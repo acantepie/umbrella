@@ -13,8 +13,7 @@ return [
     ],
 
     'login' => [
-        'title' => 'Se connecter',
-        'text' => 'Merci de vous authentifier pour accéder au service.',
+        'title' => 'Se connecter à votre compte',
         'forget_password' => 'Mot de passe oublié ?',
         'sign_in' => 'Se connecter',
     ],
@@ -35,7 +34,7 @@ return [
             'text' => 'Un email a été envoyé à <b>%email%</b>. Vérifier votre boite mail et suivez les instructions',
         ],
         'reset' => 'Réinitialiser votre mot de passe',
-        'back_login_markup' => 'Revenir à <b>l\'écran de connexion</b>',
+        'back_login_link' => 'Forget it, <a href="%url%">send me back</a> to the sign in screen.',
         'back_login' => 'Revenir à l\'écran de connexion',
         'email' => [
             'subject' => 'Changer votre mot de passe',

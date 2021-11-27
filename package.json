@@ -8,6 +8,7 @@
     "@mdi/font": "^6.4.95",
     "@popperjs/core": "^2.10.2",
     "@symfony/webpack-encore": "^1.6.1",
+    "@tabler/core": "^1.0.0-beta4",
     "bootstrap": "^5.1.3",
     "datatables.net": "^1.11.3",
     "datatables.net-bs4": "^1.11.3",

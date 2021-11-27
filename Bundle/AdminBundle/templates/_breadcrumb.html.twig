@@ -2,23 +2,19 @@
 
 {% if breadcrumb | length > 0 %}
     <div class="umbrella-breadcrumb">
-        <i class="{{ breadcrumb.icon ?? 'uil-angle-right' }}"></i>
-        <ol data-count="{{ breadcrumb | length }}">
+        <i class="{{ breadcrumb.icon ?? 'uil-angle-right' }} me-2"></i>
+        <ol class="breadcrumb" data-count="{{ breadcrumb | length }}">
             {% for item in breadcrumb %}
-                {# hide top level entry if breadcrumb | length > 1 #}
-                {% set isHidden = loop.first and breadcrumb | length > 1 %}
-                {% if not isHidden %}
-                    {% set label = item.translationDomain ? (item.label | trans([], item.translationDomain)) : item.label %}
+                {% set label = item.translationDomain ? (item.label | trans([], item.translationDomain)) : item.label %}
 
-                    {% if loop.last %}
-                        <li class="active">{{ label }}</li>
-                    {% elseif item.route %}
-                        <li>
-                            <a href="{{ path(item.route, item.routeParams) }}">{{ label }}</a>
-                        </li>
-                    {% else %}
-                        <li>{{ label }}</li>
-                    {% endif %}
+                {% if loop.last %}
+                    <li class="breadcrumb-item active">{{ label }}</li>
+                {% elseif item.route %}
+                    <li class="breadcrumb-item">
+                        <a href="{{ path(item.route, item.routeParams) }}">{{ label }}</a>
+                    </li>
+                {% else %}
+                    <li class="breadcrumb-item">{{ label }}</li>
                 {% endif %}
             {% endfor %}
         </ol>

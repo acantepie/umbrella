@@ -27,10 +27,7 @@ class BaseAdminMenu extends MenuType
         return [
             'logo_route' => null,
             'logo' => $this->configuration->appLogo(),
-            'logo_sm' => $this->configuration->appLogo(),
-            'title' => $this->configuration->appName(),
-            'title_sm' => substr($this->configuration->appName(), 0, 2),
-            'searchable' => true
+            'title' => $this->configuration->appName()
         ];
     }
 
@@ -46,7 +43,7 @@ class BaseAdminMenu extends MenuType
      */
     public function renderMenu(Menu $menu, array $options): string
     {
-        return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
+        return $this->twig->render('@UmbrellaAdmin/Menu/aside.html.twig', [
             'menu' => $menu,
             'options' => array_merge($this->defaultOptions(), $options),
         ]);

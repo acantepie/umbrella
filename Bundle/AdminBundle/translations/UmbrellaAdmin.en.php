@@ -13,8 +13,7 @@ return [
     ],
 
     'login' => [
-        'title' => 'Login',
-        'text' => 'Login to access the service.',
+        'title' => 'Login to your account',
         'forget_password' => 'Forgot your password ?',
         'sign_in' => 'Sign in',
     ],

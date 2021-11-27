@@ -49,10 +49,8 @@ export default class Notification extends HTMLLIElement {
 
         if (response.notifications) {
             for (const n of response.notifications) {
-                console.log(n)
                 list.innerHTML += n.html
             }
-            return
         }
     }
 
