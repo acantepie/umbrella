@@ -1,0 +1,39 @@
+.notification-widget {
+  > a {
+    font-size: 1.3rem;
+    position: relative;
+
+    .badge {
+      position: absolute;
+    }
+  }
+
+  .notification-dropdown {
+    min-width: 350px;
+
+    a.notification-item {
+      text-decoration: none;
+
+      &:hover, &:focus {
+        color: $dropdown-link-hover-color;
+        @include gradient-bg($dropdown-link-hover-bg);
+      }
+    }
+
+    .notification-item {
+      display: flex;
+      align-items: center;
+
+      .notification-icon {
+        flex: none;
+        height: 36px;
+        width: 36px;
+        line-height: 36px;
+        text-align: center;
+        margin-right: 10px;
+        border-radius: 50%;
+        color: $white;
+      }
+    }
+  }
+}

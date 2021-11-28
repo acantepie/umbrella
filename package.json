@@ -11,9 +11,9 @@
     "@tabler/core": "^1.0.0-beta4",
     "bootstrap": "^5.1.3",
     "datatables.net": "^1.11.3",
-    "datatables.net-bs4": "^1.11.3",
+    "datatables.net-bs5": "^1.11.3",
     "datatables.net-rowreorder": "^1.2.8",
-    "datatables.net-rowreorder-bs4": "^1.2.8",
+    "datatables.net-rowreorder-bs5": "^1.2.8",
     "dragula": "^3.7.3",
     "eslint": "^8.2.0",
     "file-loader": "^6.2.0",
@@ -24,7 +24,6 @@
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "select2": "^4.0.13",
-    "simplebar": "^5.3.6",
     "toastify-js": "^1.11.2"
   },
   "scripts": {

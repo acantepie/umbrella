@@ -15,7 +15,7 @@
                     {{ block('item_title') }}
                     {{ block('item_badge') }}
                 </a>
-                <div class="dropdown-menu {{ item.isActive() ? 'show' }}" id="{{ item.cssId }}">
+                <div class="dropdown-menu collapse {{ item.isActive() ? 'show' }}" id="{{ item.cssId }}">
                     <div class="dropdown-menu-columns">
                         <div class="dropdown-menu-column">
                             {% for item in item %}

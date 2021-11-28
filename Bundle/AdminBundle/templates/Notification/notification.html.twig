@@ -1,22 +1,22 @@
-{% apply spaceless %}
 {% if url %}
-    <a href="{{ url }}" class="dropdown-item notify-item">
-{% else %}
-    <div class="dropdown-item notify-item">
-{% endif %}
-    <div class="notify-icon {{ bg_icon | default('bg-info') }}">
-        <i class="{{ icon | default('mdi mdi-bell') }}"></i>
-    </div>
-    <div class="notify-details">
-        <b>{{- title -}}</b>
-        <small class="text-muted">{{ date }}</small>
-        {% if text %}
-        <small>{{ text }}</small>
-        {% endif %}
-    </div>
-{% if not url %}
-    </div>
-{% else %}
+    <a href="{{ url }}" class="list-group-item notification-item">
+        {{ _self.notication_inner(_context) }}
     </a>
+{% else %}
+    <div class="list-group-item notification-item">
+        {{ _self.notication_inner(_context) }}
+    </div>
 {% endif %}
-{% endapply %}
+
+{% macro notication_inner(ctx) %}
+    <div class="notification-icon {{ ctx.bg_icon | default('bg-info') }}">
+        <i class="{{ ctx.icon | default('mdi mdi-bell') }}"></i>
+    </div>
+    <div class="notification-content">
+        <div class="text-body d-block">{{- ctx.title -}}</div>
+        {% if ctx.text %}
+            <small class="text-body d-block">{{ ctx.text }}</small>
+        {% endif %}
+        <small class="text-muted d-block">{{ ctx.date }}</small>
+    </div>
+{% endmacro %}

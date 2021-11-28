@@ -28,7 +28,7 @@ window.umbrella = {
 // --- DataTable.js
 import 'datatables.net';
 
-import 'datatables.net-bs4';
+import 'datatables.net-bs5';
 import 'datatables.net-rowreorder';
 import 'jquery-treetable'
 

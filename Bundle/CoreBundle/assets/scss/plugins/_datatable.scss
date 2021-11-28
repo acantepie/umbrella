@@ -8,18 +8,20 @@ table.dataTable {
     .sorting_asc_disabled,
     .sorting_desc_disabled{
       &:before {
-        right: 0.5rem;
-        content: "\F035D";
-        font-family: "Material Design Icons";
+        content: "\f0360";
+        font-family: Material Design Icons;
         font-size: 1rem;
-        top: 10px;
+        left: auto;
+        right: 0.5rem;
+        top: 12px;
       }
       &:after {
-        right: 0.5em;
-        content: "\F0360";
-        font-family: "Material Design Icons";
-        top: 4px;
+        content: "\f035d";
+        font-family: Material Design Icons;
         font-size: 1rem;
+        left: auto;
+        right: 0.5em;
+        top: 18px;
       }
     }
   }

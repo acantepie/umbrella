@@ -28,9 +28,9 @@ class CheckBoxColumnType extends ColumnType
     private function labelTemplate(): string
     {
         return '<div class="dropdown">'
-            . '<button class="btn btn-link btn-sm p-0 w-100" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+            . '<a class="btn btn-link btn-sm p-0 w-100" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
             . '<i class="mdi mdi-dots-vertical"></i>'
-            . '</button>'
+            . '</a>'
             . '<div class="dropdown-menu">'
             . '<a class="dropdown-item" href data-tag="dt:selectpage">' . $this->translator->trans('All') . '</a>'
             . '<a class="dropdown-item" href data-tag="dt:unselectpage">' . $this->translator->trans('None') . '</a>'

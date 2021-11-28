@@ -1,4 +1,4 @@
-export default class Notification extends HTMLLIElement {
+export default class Notification extends HTMLDivElement {
 
     constructor() {
         super()
@@ -39,7 +39,7 @@ export default class Notification extends HTMLLIElement {
      * Render list of notifications
      */
     _renderList(response) {
-        const list = this.querySelector('.js-notification-list .simplebar-content')
+        const list = this.querySelector('.notification-items')
         list.innerHTML = ''
 
         if (response.html) {
