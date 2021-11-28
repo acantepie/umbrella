@@ -1,2 +1,4 @@
-- Remplacer select2 => TomSelect
+- Remplacer select2 => TomSelect:
+  - pading
+  - nested Tree type
 - Search on menu
