@@ -4,7 +4,7 @@ namespace Umbrella\CoreBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class Entity2Type extends Choice2Type
+class UmbrellaEntityType extends UmbrellaChoiceType
 {
     /**
      * {@inheritdoc}

@@ -27,7 +27,7 @@ class SecurityControllerTest extends AppTestCase
         $client->followRedirect();
 
 
-        // am i logged
+        // am i logged ?
         $tkStorage = $this->getContainer()->get('security.untracked_token_storage');
 
         $this->assertNotNull($tkStorage->getToken());

@@ -38,14 +38,14 @@ customElements.define('umbrella-toolbar', Toolbar);
 customElements.define('umbrella-datatable', DataTable);
 
 // --- Forms
-import Select2 from './components/Select2';
+import UmbrellaSelect from './components/UmbrellaSelect';
 import UmbrellaCollection from './components/UmbrellaCollection';
 import DatePicker from './components/DatePicker';
 import PasswordTogglable from './components/PasswordTogglable';
 
 customElements.define('umbrella-datepicker', DatePicker, {extends: 'input'});
 customElements.define('umbrella-collection', UmbrellaCollection);
-customElements.define('umbrella-select2', Select2, {extends: 'select'});
+customElements.define('umbrella-select', UmbrellaSelect, {extends: 'select'});
 customElements.define('password-togglable', PasswordTogglable, {extends: 'div'});
 
 // --- JsResponseHandler

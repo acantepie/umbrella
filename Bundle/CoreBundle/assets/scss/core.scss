@@ -8,6 +8,9 @@
 // Toastify
 @import "~toastify-js/src/toastify.css";
 
+// TomSelect
+@import "~tom-select/dist/scss/tom-select.bootstrap5";
+
 // FlatPickr
 @import "~flatpickr";
 
@@ -16,12 +19,11 @@
 @import '~datatables.net-rowreorder-bs5/css/rowReorder.bootstrap5.css';
 @import "~jquery-treetable/css/jquery.treetable.css";
 
-// Other
+// Dragula
 @import "~dragula/dist/dragula.css"; // plugin for drag&drop
 
 // Plugins
 @import "./plugins/flatpickr.scss";
-@import "./plugins/select2.scss";
 @import "./plugins/datatable.scss";
 @import "./plugins/umbrella_collection.scss";
 @import "./plugins/umbrella_toolbar.scss";
@@ -30,3 +32,4 @@
 @import "./plugins/form.scss";
 @import "./plugins/vichfile.scss";
 @import "./plugins/table.scss";
+@import "./plugins/tomselect.scss";

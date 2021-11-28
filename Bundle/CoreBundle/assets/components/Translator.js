@@ -10,7 +10,8 @@ const TRANS = {
         'forbidden_error': 'You are not allowed to perform this action',
         'notfound_error': 'Unable to contact server',
         'other_error' : 'An error occured',
-        'loading_data_error': 'Unable to load data'
+        'loading_data_error': 'Unable to load data',
+        'no_results': 'No results found'
     },
 
     fr: {
@@ -24,7 +25,8 @@ const TRANS = {
         'forbidden_error': 'Vous n\'êtes pas autorisé à effectuer cette action',
         'notfound_error': 'Impossible de contacter le serveur',
         'other_error': 'Une erreur est survenue',
-        'loading_data_error': 'Impossible de charger les données'
+        'loading_data_error': 'Impossible de charger les données',
+        'no_results': 'Aucun résultat trouvé'
     },
 }
 

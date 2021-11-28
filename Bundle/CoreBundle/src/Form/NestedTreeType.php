@@ -35,6 +35,6 @@ class NestedTreeType extends AbstractType
      */
     public function getParent(): ?string
     {
-        return Entity2Type::class;
+        return UmbrellaEntityType::class;
     }
 }
