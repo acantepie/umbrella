@@ -16,13 +16,9 @@
                     {{ block('item_badge') }}
                 </a>
                 <div class="dropdown-menu collapse {{ item.isActive() ? 'show' }}" id="{{ item.cssId }}">
-                    <div class="dropdown-menu-columns">
-                        <div class="dropdown-menu-column">
-                            {% for item in item %}
-                                {{ block('nav_item_dropdown') }}
-                            {% endfor %}
-                        </div>
-                    </div>
+                    {% for item in item %}
+                        {{ block('nav_item_dropdown') }}
+                    {% endfor %}
                 </div>
             {% else %}
                 <a class="nav-link {{ item.isActive() ? 'active' }}" {{ block('item_href') }}>
@@ -39,7 +35,7 @@
     {% if item.isVisible() %}
         {% if item.hasChildren() %}
             <div class="dropend">
-                <a class="dropdown-item dropdown-toggle" href="#{{ item.cssId }}" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                <a class="dropdown-item" href="#{{ item.cssId }}" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="{{ item.isActive() ? 'true' : 'false' }}">
                     {{ block('item_icon') }}
                     {{ block('item_title') }}
                     {{ block('item_badge') }}

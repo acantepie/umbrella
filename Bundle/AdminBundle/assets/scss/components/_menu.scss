@@ -18,7 +18,7 @@ aside.navbar {
     font-size: 0.95em;
   }
 
-  .nav-link[data-bs-toggle="dropdown"] {
+  [data-bs-toggle="dropdown"] {
 
     &[aria-expanded="true"]::after {
       transform: rotate(90deg);
@@ -34,5 +34,12 @@ aside.navbar {
     }
 
   }
+}
 
+
+@include media-breakpoint-down(lg) {
+  .navbar-expand-lg .navbar-collapse .navbar-nav {
+    margin-left: calc(-1 * var(--tlbr-gutter-x, 12px));
+    margin-right: calc(-1 * var(--tlbr-gutter-x, 12px));
+  }
 }
