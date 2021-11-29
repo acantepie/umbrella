@@ -940,7 +940,7 @@ $navbar-padding-x:                  null;
 
 $navbar-nav-link-padding-x:         .5rem;
 
-$navbar-brand-font-size:            $font-size-lg;
+$navbar-brand-font-size:            1.5rem;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height:                   $font-size-base * $line-height-base + $nav-link-padding-y * 2;
 $navbar-brand-height:               $navbar-brand-font-size * $line-height-base;
