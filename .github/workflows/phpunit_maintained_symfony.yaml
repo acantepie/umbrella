@@ -43,4 +43,6 @@ jobs:
           vendor/bin/simple-phpunit install
 
       - name: 'Run tests'
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: 'max[indirect]=5'
         run: vendor/bin/simple-phpunit -v
