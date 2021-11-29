@@ -40,31 +40,35 @@ class AdminExtension extends AbstractExtension implements GlobalsInterface
         ];
     }
 
-    public function breadcrumb(): Breadcrumb
+    public function breadcrumb(bool $initializeWithMenu = true): Breadcrumb
     {
         if (null === $this->breadcrumb) {
-            $menu = $this->menuResolver->resolve($this->configuration->menuName());
+            if ($initializeWithMenu) {
+                $menu = $this->menuResolver->resolve($this->configuration->menuName());
 
-            $bcItems = [];
-            $bcIcon = null;
-            $menuItem = $menu->getCurrent();
+                $bcItems = [];
+                $bcIcon = null;
+                $menuItem = $menu->getCurrent();
 
-            while (null !== $menuItem && !$menuItem->isRoot()) {
-                $bcItem = new BreadcrumbItem();
-                $bcItem->setLabel($menuItem->getLabel());
-                $bcItem->setRoute($menuItem->getRoute(), $menuItem->getRouteParams());
-                $bcItem->setTranslationDomain($menuItem->getTranslationDomain());
+                while (null !== $menuItem && !$menuItem->isRoot()) {
+                    $bcItem = new BreadcrumbItem();
+                    $bcItem->setLabel($menuItem->getLabel());
+                    $bcItem->setRoute($menuItem->getRoute(), $menuItem->getRouteParams());
+                    $bcItem->setTranslationDomain($menuItem->getTranslationDomain());
 
-                if (null === $bcIcon) {
-                    $bcIcon = $menuItem->getIcon();
+                    if (null === $bcIcon) {
+                        $bcIcon = $menuItem->getIcon();
+                    }
+
+                    $bcItems[] = $bcItem;
+                    $menuItem = $menuItem->getParent();
                 }
 
-                $bcItems[] = $bcItem;
-                $menuItem = $menuItem->getParent();
+                $this->breadcrumb = new Breadcrumb(array_reverse($bcItems));
+                $this->breadcrumb->setIcon($bcIcon);
+            } else {
+                $this->breadcrumb = new Breadcrumb();
             }
-
-            $this->breadcrumb = new Breadcrumb(array_reverse($bcItems));
-            $this->breadcrumb->setIcon($bcIcon);
         }
 
         return $this->breadcrumb;
