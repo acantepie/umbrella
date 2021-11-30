@@ -1,11 +1,13 @@
 import TomSelect from 'tom-select';
 import mustache from 'mustache';
+import {min} from '@popperjs/core/lib/utils/math';
 
 export default class UmbrellaSelect extends HTMLSelectElement {
 
     constructor() {
         super()
         this.template = null
+        this.loadUrl = null
 
         mustache.tags = ['[[', ']]']
     }
@@ -15,13 +17,25 @@ export default class UmbrellaSelect extends HTMLSelectElement {
         this._loadTemplateOption()
 
         let tomSelectOptions = this.selectOptions['tom'];
+        tomSelectOptions['plugins'] = []
         tomSelectOptions['render'] = {
             'option': this._renderOption.bind(this),
-            'no_results': this._renderNoResults.bind(this)
+            'no_results': this._renderNoResults.bind(this),
+
         }
 
         if (this.selectOptions['load_url']) {
-            tomSelectOptions['load'] = this._loadRemoteData.bind(this)
+
+            // enable virtual scroll - FIXME not working plugins seems bugged
+            if (this.selectOptions['page_length'] > 0) {
+                tomSelectOptions['plugins'].push('virtual_scroll')
+                tomSelectOptions['firstUrl'] = (query) => this._getUrl(query, 1)
+                tomSelectOptions['load'] = this._loadNext.bind(this)
+                tomSelectOptions['maxOptions'] = this.selectOptions['page_length']
+
+            } else {
+                tomSelectOptions['load'] = this._load.bind(this)
+            }
         }
 
         this.tomSelect = new TomSelect(this, tomSelectOptions)
@@ -55,17 +69,39 @@ export default class UmbrellaSelect extends HTMLSelectElement {
         return '<div class="no-results">' + umbrella.Translator.trans('no_results') + '</div>';
     }
 
-    _loadRemoteData(query, callback) {
+    _load(query, callback) {
+        fetch(this._getUrl(query))
+            .then(response => response.json())
+            .then(json => callback(json))
+            .catch(()=> callback());
+    }
 
-        $.ajax({
-            url: this.selectOptions['load_url'],
-            data: {
-                q: query
-            },
-            success: (data) => {
-                callback(data)
-            }
-        })
+    _loadNext(query, callback) {
+        const url = this.tomSelect.getUrl(query);
+
+        const currentPage = Math.max(parseInt(new URL(url).searchParams.get('p')), 1)
+
+        fetch(url)
+            .then(response => response.json())
+            .then(json => {
+                // if result returned are equals to page === length => there is an other page
+                if (json.length === this.selectOptions['page_length']) {
+                    this.tomSelect.setNextUrl(query, this._getUrl(query, currentPage + 1))
+                }
+                callback(json);
+            }).catch(()=> callback());
+    }
+
+    _getUrl(query, page = null) {
+        const url = new URL(this.selectOptions['load_url'])
+
+        url.searchParams.set('q', query)
+
+        if (null !== page) {
+            url.searchParams.set('p', page)
+        }
+
+        return url.toString();
     }
 
     // Api

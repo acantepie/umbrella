@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormRegistryInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 
@@ -49,7 +50,8 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $jsOptions = $this->configurator->getJsOptions($options);
-        $jsOptions['load_url'] = $this->router->generate($options['route'], $options['route_params']);
+        $jsOptions['load_url'] = $this->router->generate($options['route'], $options['route_params'], UrlGeneratorInterface::ABSOLUTE_URL);
+//        $jsOptions['page_length'] = $options['page_length'];
 
         $view->vars['compound'] = false; // avoid scary <legend> tag when render form ...
         $view->vars['attr']['is'] = 'umbrella-select';
@@ -86,6 +88,12 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $resolver
             ->setDefault('route_params', [])
             ->setAllowedTypes('route_params', 'array');
+        /*
+                $resolver
+                    ->setDefault('page_length', null)
+                    ->setAllowedTypes('page_length', ['null', 'int'])
+                    ->setAllowedValues('page_length', Validation::createIsValidCallable(new GreaterThanOrEqual(10)));
+        */
     }
 
     /**
