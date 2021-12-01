@@ -2,6 +2,10 @@
   display: flex;
   align-items: center;
 
+  .breadcrumb-item.active {
+    font-weight: $font-weight-bold;
+  }
+
   > i {
     display: flex;
     justify-content: center;

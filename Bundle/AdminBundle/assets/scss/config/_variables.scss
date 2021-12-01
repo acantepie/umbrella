@@ -465,7 +465,7 @@ $font-sizes: (
 $headings-margin-bottom:      $spacer;
 $headings-font-family:        null;
 $headings-font-style:         null;
-$headings-font-weight:        400;
+$headings-font-weight:        $font-weight-bold;
 $headings-line-height:        1.1;
 $headings-color:              null;
 // scss-docs-end headings-variables
@@ -670,7 +670,7 @@ $form-text-color:                       $text-muted;
 $form-label-margin-bottom:              .5rem;
 $form-label-font-size:                  inherit;
 $form-label-font-style:                 null;
-$form-label-font-weight:                null;
+$form-label-font-weight:                $font-weight-bold;
 $form-label-color:                      null;
 // scss-docs-end form-label-variables
 
@@ -1082,7 +1082,7 @@ $card-inner-border-radius:          subtract($card-border-radius, $card-border-w
 $card-cap-padding-y:                $card-spacer-y / 2;
 $card-cap-padding-x:                $card-spacer-x;
 $card-cap-bg:                       $white;
-$card-cap-color:                    null;
+$card-cap-color:                    $body-color;
 $card-height:                       null;
 $card-color:                        null;
 $card-bg:                           $white;
@@ -1356,8 +1356,8 @@ $breadcrumb-padding-x:              0;
 $breadcrumb-item-padding-x:         .5rem;
 $breadcrumb-margin-bottom:          1rem;
 $breadcrumb-bg:                     transparent;
-$breadcrumb-divider-color:          $gray-400;
-$breadcrumb-active-color:           $gray-500;
+$breadcrumb-divider-color:          $gray-500;
+$breadcrumb-active-color:           $body-color;
 $breadcrumb-divider:                quote("/");
 $breadcrumb-divider-flipped:        $breadcrumb-divider;
 $breadcrumb-border-radius:          null;
