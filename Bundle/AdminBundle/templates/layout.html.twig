@@ -26,17 +26,17 @@
                     {{ menu_render(admin.menuName()) }}
                 {% endblock %}
 
-                <div class="page-wrapper">
+                <div class="main">
                     {% block topbar %}
                         {% include "@UmbrellaAdmin/_topbar.html.twig" %}
                     {% endblock %}
 
-                    <div class="page-body">
+                    <main class="content">
                         <div class="{{ admin.containerClass }}">
                             {% block content %}
                             {% endblock %}
                         </div>
-                    </div>
+                    </main>
                 </div>
             </div>
 

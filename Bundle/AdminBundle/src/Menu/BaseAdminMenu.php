@@ -43,7 +43,7 @@ class BaseAdminMenu extends MenuType
      */
     public function renderMenu(Menu $menu, array $options): string
     {
-        return $this->twig->render('@UmbrellaAdmin/Menu/aside.html.twig', [
+        return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
             'menu' => $menu,
             'options' => array_merge($this->defaultOptions(), $options),
         ]);

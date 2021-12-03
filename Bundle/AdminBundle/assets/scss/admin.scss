@@ -1,13 +1,90 @@
-@import "config/config";
-@import "vendor/bootstrap";
-@import "vendor/tabler";
+/*!
+ * AdminKit v3.0.2 (https://adminkit.io/)
+ * Copyright 2021 Paul Laros
+ * Copyright 2021 AdminKit
+ * Licensed under MIT (https://github.com/adminkit/adminkit/blob/master/LICENSE)
+ */
 
-@import "components/menu";
+// Variables
+@import "variables/app";
+
+// Bootstrap
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+// Components
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/accordion";
+@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/toasts";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/spinners";
+@import "~bootstrap/scss/offcanvas";
+@import "~bootstrap/scss/placeholders";
+@import "~bootstrap/scss/helpers";
+@import "~bootstrap/scss/utilities/api";
+
+// Theme mixins
+@import "mixins/button";
+
+// Theme components
+@import "components/avatar";
+@import "components/buttons";
+@import "components/card";
+@import "components/chart";
+@import "components/content";
+@import "components/dropdown";
+@import "components/feather";
+@import "components/footer";
+@import "components/hamburger";
+@import "components/list-group";
+@import "components/main";
+@import "components/navbar";
+@import "components/reboot";
+@import "components/sidebar";
+@import "components/sizing";
+@import "components/stat";
+@import "components/tables";
+@import "components/type";
+@import "components/wrapper";
 @import "components/breadcrumb";
-@import "components/cards";
-@import "components/modals";
 @import "components/form_icons";
 @import "components/notification";
+
+// Theme utilities
+@import "utilities/cursors";
+
+// 3rd party plugins
+@import "~simplebar/dist/simplebar";
+//@import "~flatpickr/dist/flatpickr";
+
+// 3rd party plugin styles
+@import "vendor/flatpickr";
+@import "vendor/simplebar";
 
 // Icons
 @import '~@iconscout/unicons/css/animation.css';

@@ -1,19 +1,43 @@
-<div class="nav-item notification-widget dropdown d-none d-md-flex me-3" is="umbrella-notification"
+{#<div class="nav-item notification-widget dropdown d-none d-md-flex me-3" is="umbrella-notification"#}
+{#    data-poll-interval="{{ admin.notificationPollInterval() }}"#}
+{#    data-refresh-url="{{ path('umbrella_admin_notification_list') }}">#}
+
+{#    <a href="#notifications" class="" data-bs-toggle="dropdown">#}
+{#        <i class="mdi mdi-bell-outline"></i>#}
+{#        <span class="badge bg-red"></span>#}
+{#    </a>#}
+
+{#    <div class="notification-dropdown dropdown-menu dropdown-menu-end dropdown-menu-card" id="notifications">#}
+{#        <div class="card">#}
+{#            <div class="card-header">#}
+{#                <h5 class="card-title">{{ 'label.notifications' | trans({}, 'UmbrellaAdmin') }}</h5>#}
+{#            </div>#}
+{#            <div class="list-group list-group-flush notification-items">#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+<li class="nav-item dropdown"
+    is="umbrella-notification"
     data-poll-interval="{{ admin.notificationPollInterval() }}"
     data-refresh-url="{{ path('umbrella_admin_notification_list') }}">
 
-    <a href="#notifications" class="" data-bs-toggle="dropdown">
-        <i class="mdi mdi-bell-outline"></i>
-        <span class="badge bg-red"></span>
+    <a class="nav-icon dropdown-toggle" href="#" data-bs-toggle="dropdown">
+        <div class="position-relative">
+            <i class="mdi mdi-bell-outline"></i>
+{#            <span class="indicator">4</span>#}
+        </div>
     </a>
 
-    <div class="notification-dropdown dropdown-menu dropdown-menu-end dropdown-menu-card" id="notifications">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">{{ 'label.notifications' | trans({}, 'UmbrellaAdmin') }}</h5>
-            </div>
-            <div class="list-group list-group-flush notification-items">
-            </div>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0">
+        <div class="dropdown-menu-header">
+            {{ 'label.notifications' | trans({}, 'UmbrellaAdmin') }}
         </div>
+        <div class="list-group notification-items">
+        </div>
+{#        <div class="dropdown-menu-footer">#}
+{#            <a href="#" class="text-muted">Show all notifications</a>#}
+{#        </div>#}
     </div>
-</div>
+</li>

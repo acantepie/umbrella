@@ -1,4 +1,4 @@
-export default class Notification extends HTMLDivElement {
+export default class Notification extends HTMLLIElement {
 
     constructor() {
         super()
@@ -9,7 +9,7 @@ export default class Notification extends HTMLDivElement {
     }
 
     connectedCallback() {
-        $(this).on('shown.bs.dropdown', () => {
+        this.addEventListener('shown.bs.dropdown', () => {
             this._refresh(this.pollInterval >= 1) // refresh only if pollInterval is 1s or more
         })
     }

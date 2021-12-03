@@ -1,0 +1,57 @@
+{% block sidebar_item %}
+    {% if item.isVisible() %}
+        {% if item.level == 1 and not item.hasLink and not item.hasChildren() %}
+            <li class="sidebar-header">
+                {{ block('item_label') }}
+            </li>
+        {% else %}
+            <li class="sidebar-item {{ item.isActive() ? 'active' }}">
+                {% if item.hasChildren() %}
+                    <a data-bs-target="#{{ item.cssId }}" data-bs-toggle="collapse" class="sidebar-link" aria-expanded="{{ item.isActive() ? 'true' : 'false' }}">
+                        {{ block('item_icon') }}
+                        <span class="align-middle">{{ block('item_label') }}</span>
+                        {{ block('item_badge') }}
+                    </a>
+                    <ul id="{{ item.cssId }}" class="sidebar-dropdown mb-0 list-unstyled collapse {{ item.isActive() ? 'show' }}">
+                        {% for item in item.children  %}
+                            {{ block('sidebar_item') }}
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <a class="sidebar-link" href="{{ block('item_link') }}">
+                        {% if item.level <= 1 %}
+                            {{ block('item_icon') }}
+                        {% endif %}
+                        <span class="align-middle">{{ block('item_label') }}</span>
+                        {{ block('item_badge') }}
+                    </a>
+                {% endif %}
+            </li>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+
+{%- block item_icon -%}
+    {% if item.icon %}
+        <i class="{{ item.icon }}"></i>
+    {% endif %}
+{%- endblock -%}
+
+{%- block item_label -%}
+    {% if item.translationDomain %}
+        {{ item.label | trans([], item.translationDomain) }}
+    {% else %}
+        {{ item.label }}
+    {% endif %}
+{%- endblock -%}
+
+{%- block item_badge -%}
+    {% if item.badge %}
+        <span class="sidebar-badge badge {{ item.badgeClass ?? 'bg-primary' }}">{{ item.badgeLabel }}</span>
+    {% endif %}
+{%- endblock -%}
+
+{%- block item_link -%}
+    {{ item.hasLink ? path(item.route, item.routeParams) : '#' }}
+{%- endblock -%}

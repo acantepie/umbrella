@@ -1,12 +1,8 @@
-.umbrella-breadcrumb {
+.breadcrumb {
   display: flex;
   align-items: center;
 
-  .breadcrumb-item.active {
-    font-weight: $font-weight-bold;
-  }
-
-  > i {
+  .breadcrumb-icon i {
     display: flex;
     justify-content: center;
     align-items: center;

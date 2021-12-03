@@ -1,0 +1,16 @@
+{% use "@UmbrellaAdmin/Menu/sidebar_block.html.twig" %}
+
+<nav id="sidebar" class="sidebar" is="umbrella-sidebar">
+    <div class="sidebar-content">
+
+        {% include "@UmbrellaAdmin/Menu/head.html.twig" %}
+
+        {% block items_container %}
+            <div class="sidebar-nav">
+                {% for item in menu.root %}
+                    {{ block('sidebar_item') }}
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+</nav>

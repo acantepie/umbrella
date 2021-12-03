@@ -3,44 +3,44 @@
 
 {% trans_default_domain 'UmbrellaAdmin' %}
 {% if isUser %}
-    <div class="nav-item dropdown">
-        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown">
-            <span class="avatar avatar-sm rounded">
-                <i class="uil-user fs-4"></i>
-            </span>
-            <div class="d-none d-xl-block ps-2">
+    <li class="nav-item dropdown">
+        <a href="#" class="dropdown-toggle nav-link p-0 d-flex align-items-center" data-bs-toggle="dropdown">
+            <div class="d-inline-block nav-icon">
+                <i class="uil uil-user"></i>
+            </div>
+            <div class="d-none d-xl-inline-block">
                 {% if isAdminUser %}
                     <div>{{ app.user.getFullName() }}</div>
-                    <div class="mt-1 small text-muted">{{ app.user.email }}</div>
+                    <div class="small text-muted">{{ app.user.email }}</div>
                 {% else %}
                     <div>{{ app.user.userIdentifier }}</div>
-                    <div class="mt-1 small text-muted">{{ '-' }}</div>
+                    <div class="small text-muted">{{ '-' }}</div>
                 {% endif %}
             </div>
         </a>
-        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+        <div class="dropdown-menu dropdown-menu-end">
             {% if isAdminUser and admin.userProfileEnable() %}
                 <a href="{{ path(admin.userProfileRoute()) }}" class="dropdown-item">
-                    <i class="mdi mdi-account-circle me-1"></i>
+                    <i class="mdi mdi-account-outline me-1"></i>
                     <span>{{ 'label.my_account' | trans }}</span>
                 </a>
+                <div class="dropdown-divider"></div>
             {% endif %}
             <a href="{{ admin.logoutPath() }}" class="dropdown-item">
-                <i class="mdi mdi-logout me-1"></i>
                 <span>{{ 'label.sign_out' | trans }}</span>
             </a>
         </div>
-    </div>
+    </li>
 {% else %}
-    <div class="nav-item">
-        <span class="nav-link d-flex lh-1 text-reset p-0">
-            <span class="avatar avatar-sm rounded">
-                <i class="uil-user fs-4"></i>
-            </span>
-            <div class="d-none d-xl-block ps-2">
-                <div>{{ 'user.anonymous' | trans }}</div>
-                <div class="mt-1 small text-muted">{{ 'user.unauthenticated' | trans }}</div>
+    <li class="nav-item">
+        <div class="nav-link p-0 d-flex align-items-center">
+            <div class="d-inline-block nav-icon">
+                <i class="uil uil-user"></i>
             </div>
-        </span>
-    </div>
+            <div class="d-none d-xl-inline-block">
+                <div>{{ 'user.anonymous' | trans }}</div>
+                <div class="small text-muted">{{ 'user.unauthenticated' | trans }}</div>
+            </div>
+        </div>
+    </li>
 {% endif %}

@@ -1,9 +1,12 @@
 {% set breadcrumb = admin_breadcrumb() %}
 
 {% if breadcrumb | length > 0 %}
-    <div class="umbrella-breadcrumb">
-        <i class="{{ breadcrumb.icon ?? 'uil-angle-right' }} me-2"></i>
-        <ol class="breadcrumb" data-count="{{ breadcrumb | length }}">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-icon">
+                <i class="{{ breadcrumb.icon ?? 'uil-angle-right' }} me-2"></i>
+            </li>
+
             {% for item in breadcrumb %}
                 {% set label = item.translationDomain ? (item.label | trans([], item.translationDomain)) : item.label %}
 
@@ -18,5 +21,5 @@
                 {% endif %}
             {% endfor %}
         </ol>
-    </div>
+    </nav>
 {% endif %}
