@@ -28,7 +28,7 @@ class <?= $class_name ?> extends DataTableType
         $builder->add('links', WidgetColumnType::class, [
             'build' => function (WidgetBuilder $builder, <?= $entity->getShortName() ?> $e) {
 
-               $builder->add('move', RowMoveLinkType::class, [
+                $builder->add('move', RowMoveLinkType::class, [
                     'route' => '<?= $route['name_prefix'] ?>_move',
                     'route_params' => ['id' => $e->id]
                 ]);
