@@ -27,7 +27,7 @@ class NestedTreeType extends AbstractType
                     return ['lvl' => $entity->getLevel()];
                 }
             })
-            ->setDefault('template', '<span data-lvl="[[ lvl ]]" class="select2-tree-option"> <span class="value">[[ text ]]</span></span>');
+            ->setDefault('template', '<div data-lvl="[[ lvl ]]" class="tree-item"> [[ text ]]</div>');
     }
 
     /**

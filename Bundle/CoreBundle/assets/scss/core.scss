@@ -3,7 +3,7 @@
 // @import "~bootstrap/scss/bootstrap";
 
 // Icon pack
-@import '~@mdi/font/scss/materialdesignicons.scss';
+@import '~@mdi/font/scss/materialdesignicons';
 
 // Toastify
 @import "~toastify-js/src/toastify.css";
@@ -23,13 +23,13 @@
 @import "~dragula/dist/dragula.css"; // plugin for drag&drop
 
 // Plugins
-@import "./plugins/flatpickr.scss";
-@import "./plugins/datatable.scss";
-@import "./plugins/umbrella_collection.scss";
-@import "./plugins/umbrella_toolbar.scss";
-@import "./plugins/link.scss";
-@import "./plugins/toast.scss";
-@import "./plugins/form.scss";
-@import "./plugins/vichfile.scss";
-@import "./plugins/table.scss";
-@import "./plugins/tomselect.scss";
+@import "./plugins/flatpickr";
+@import "./plugins/datatable";
+@import "./plugins/umbrella_collection";
+@import "./plugins/umbrella_toolbar";
+@import "./plugins/link";
+@import "./plugins/toast";
+@import "./plugins/form";
+@import "./plugins/vichfile";
+@import "./plugins/table";
+@import "./plugins/umbrella_select";

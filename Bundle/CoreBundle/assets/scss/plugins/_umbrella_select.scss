@@ -1,0 +1,36 @@
+.ts-control {
+  min-height: initial;
+}
+
+.ts-dropdown .optgroup-header {
+  font-weight: $font-weight-bolder;
+}
+
+.ts-dropdown {
+
+  .tree-item {
+    font-weight: bold;
+
+    @for $i from 1 through 10 {
+      &[data-lvl="#{$i}"] {
+        margin-left: 20px*$i;
+      }
+    }
+
+    &:not([data-lvl="0"]) {
+      &:before {
+        position: relative;
+        top: -0.3em;
+        height: 1em;
+        width: 12px;
+        color: white;
+        border-bottom: 1px solid rgb(100, 100, 100);
+        border-left: 1px solid rgb(100, 100, 100);
+        content: "";
+        display: inline-block;
+        left: -7px;
+      }
+
+    }
+  }
+}
