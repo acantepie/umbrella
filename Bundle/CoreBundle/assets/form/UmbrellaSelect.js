@@ -1,6 +1,5 @@
 import TomSelect from 'tom-select';
 import mustache from 'mustache';
-import {min} from '@popperjs/core/lib/utils/math';
 
 export default class UmbrellaSelect extends HTMLSelectElement {
 
@@ -39,6 +38,12 @@ export default class UmbrellaSelect extends HTMLSelectElement {
         }
 
         this.tomSelect = new TomSelect(this, tomSelectOptions)
+
+        // hack reset
+        const form = this.closest('form')
+        if (form) {
+            form.addEventListener('reset', () => this.tomSelect.clear())
+        }
     }
 
     _loadTemplateOption() {

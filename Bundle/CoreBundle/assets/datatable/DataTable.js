@@ -1,5 +1,9 @@
+import 'datatables.net';
+import 'datatables.net-bs5';
+import 'datatables.net-rowreorder';
+import 'jquery-treetable'
+
 import AjaxUtils from '../utils/AjaxUtils';
-import BindUtils from '../utils/BindUtils'
 
 import i18n from './DataTable.i18n.js';
 
@@ -11,7 +15,6 @@ export default class DataTable extends HTMLElement {
 
         this.$table = this.$view.find('table.datatable');
         this.$tableBody = this.$table.find('tbody');
-        this.$selectionInfo = null
 
         this.options = this.$view.data('options');
         this.table = null;
@@ -42,7 +45,7 @@ export default class DataTable extends HTMLElement {
         }
 
         // row select
-        this.$tableBody.on('click', '.row-selector', (e) => {
+        this.$tableBody.on('click', '.select-handle', (e) => {
             this.toggleRowSelection($(e.currentTarget).closest('tr[data-id]'));
         })
 
@@ -103,7 +106,9 @@ export default class DataTable extends HTMLElement {
     }
 
     _drawCallback() {
-        BindUtils.enableTooltip(this.$tableBody[0])
+        this.$tableBody.find('[data-bs-toggle=tooltip]').each((i, e) => {
+            new bootstrap.Tooltip(e)
+        })
 
         this._drawTree();
         this._drawSelection();
@@ -315,7 +320,10 @@ export default class DataTable extends HTMLElement {
 
     selectPage(renderMode = true) {
         this.$tableBody.find('tr[data-id]').each((i, e) => {
-            this.selectRow($(e), false)
+            const $e = $(e)
+            if ($e.find('.select-handle').length > 0) {
+                this.selectRow($e, false)
+            }
         })
 
         if (renderMode) this._renderMode()
@@ -323,7 +331,10 @@ export default class DataTable extends HTMLElement {
 
     unselectPage(renderMode = true) {
         this.$tableBody.find('tr[data-id]').each((i, e) => {
-            this.unselectRow($(e), false)
+            const $e = $(e)
+            if ($e.find('.select-handle').length > 0) {
+                this.unselectRow($e, false)
+            }
         })
 
         if (renderMode) this._renderMode()
@@ -343,7 +354,7 @@ export default class DataTable extends HTMLElement {
     }
 
     selectRow($row, renderMode = true) {
-        const $input = $row.find('.row-selector input');
+        const $input = $row.find('.select-handle input');
         const rowId = $row.data('id');
 
         if ('radio' === $input.attr('type')) {
@@ -366,7 +377,7 @@ export default class DataTable extends HTMLElement {
     unselectRow($row, renderMode = true) {
         this.selectedRows.delete($row.data('id'))
         $row.removeClass('selected')
-        $row.find('.row-selector input').prop('checked', false)
+        $row.find('.select-handle input').prop('checked', false)
 
         if (renderMode) this._renderMode()
     }

@@ -11,7 +11,7 @@ class RadioColumnType extends ColumnType
      */
     public function render($rowData, array $options): string
     {
-        return sprintf('<input class="form-check-input" type="radio" name="%s">', $options['radio_name']);
+        return sprintf('<input class="form-check-input select-handle" type="radio" name="%s">', $options['radio_name']);
     }
 
     /**
@@ -24,7 +24,7 @@ class RadioColumnType extends ColumnType
         $resolver
             ->setDefault('radio_name', md5(uniqid('', true)))
             ->setDefault('order', false)
-            ->setDefault('class', 'text-center row-selector')
+            ->setDefault('class', 'text-center')
             ->setDefault('label', null)
             ->setDefault('translation_domain', null)
             ->setDefault('width', '80px')

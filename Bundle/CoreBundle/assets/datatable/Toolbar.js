@@ -16,15 +16,15 @@ export default class Toolbar extends HTMLElement {
     }
 
     connectedCallback() {
-        const $form = $(this.form)
+        this.form.querySelectorAll('select, input[type=checkbox], input[type=radio]').forEach(e => {
+            e.addEventListener('change', () => this._triggerChange(100))
+        })
 
-        $form.on('change', 'select, input[type=checkbox], input[type=radio]', () => {
-            this._triggerChange(100);
-        });
-
-        $form.on('change paste input', 'input[type=search], input[type=text]', () => {
-            this._triggerChange(200);
-        });
+        this.form.querySelectorAll('input[type=search], input[type=text]').forEach(e => {
+            e.addEventListener('change', () => this._triggerChange(200))
+            e.addEventListener('paste', () => this._triggerChange(200))
+            e.addEventListener('input', () => this._triggerChange(200))
+        })
     }
 
     // Avoid spam change event
@@ -47,11 +47,18 @@ export default class Toolbar extends HTMLElement {
     }
 
     setMode(mode) {
-        this.setAttribute('data-mode', mode)
+        this.dataset.mode = mode
+    }
+
+    getMode() {
+        return this.dataset.mode || 'default'
     }
 
     setAlert(html) {
-        this.querySelector('.toolbar-alert').innerHTML = html
+        const alert = this.querySelector('.toolbar-alert')
+        if (alert) {
+            alert.innerHTML = html
+        }
     }
 
     getData() {

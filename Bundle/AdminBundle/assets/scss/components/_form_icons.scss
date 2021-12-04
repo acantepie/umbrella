@@ -25,7 +25,10 @@ Icon input
   justify-content: center;
   min-width: 2.5rem;
   color: $text-muted;
-  pointer-events: none;
+
+  &:not(a) {
+    pointer-events: none;
+  }
   font-size: 1.2em;
 
   &:last-child {

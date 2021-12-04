@@ -1,6 +1,3 @@
-// --- Jquery
-import './jquery/JQuery';
-
 // --- Bootstrap
 import {Tooltip as bsTooltip, Modal as bsModal, Popover as bsPopover} from 'bootstrap';
 window.bootstrap = {
@@ -10,10 +7,10 @@ window.bootstrap = {
 }
 
 // --- Umbrella
-import Translator from './components/Translator';
-import Spinner from './components/Spinner'
-import ConfirmModal from './components/ConfirmModal'
-import Toast from './components/Toast'
+import Translator from './translator/Translator';
+import Spinner from './ui/Spinner'
+import ConfirmModal from './ui/ConfirmModal'
+import Toast from './ui/Toast'
 
 const LANG = document.querySelector('html').getAttribute('lang')
 
@@ -26,22 +23,16 @@ window.umbrella = {
 }
 
 // --- DataTable.js
-import 'datatables.net';
-
-import 'datatables.net-bs5';
-import 'datatables.net-rowreorder';
-import 'jquery-treetable'
-
-import Toolbar from './components/Toolbar';
-import DataTable from './components/DataTable';
+import Toolbar from './datatable/Toolbar';
+import DataTable from './datatable/DataTable';
 customElements.define('umbrella-toolbar', Toolbar);
 customElements.define('umbrella-datatable', DataTable);
 
 // --- Forms
-import UmbrellaSelect from './components/UmbrellaSelect';
-import UmbrellaCollection from './components/UmbrellaCollection';
-import DatePicker from './components/DatePicker';
-import PasswordTogglable from './components/PasswordTogglable';
+import UmbrellaSelect from './form/UmbrellaSelect';
+import UmbrellaCollection from './form/UmbrellaCollection';
+import DatePicker from './form/DatePicker';
+import PasswordTogglable from './form/PasswordTogglable';
 
 customElements.define('umbrella-datepicker', DatePicker, {extends: 'input'});
 customElements.define('umbrella-collection', UmbrellaCollection);

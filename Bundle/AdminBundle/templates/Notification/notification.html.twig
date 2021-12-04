@@ -11,8 +11,8 @@
 {% macro notication_inner(ctx) %}
     <div class="row g-0 align-items-center">
         <div class="col-2">
-            <div class="notification-icon bg-{{ ctx.icon_color | default('primary') }}">
-                <i class="{{ ctx.icon | default('mdi mdi-bell') }}"></i>
+            <div class="notification-icon text-{{ ctx.icon_color | default('primary') }}">
+                <i class="{{ ctx.icon | default('mdi mdi-bell-outline') }}"></i>
             </div>
         </div>
         <div class="col-10">

@@ -1,4 +1,4 @@
-import SimpleBar from "simplebar";
+import SimpleBar from 'simplebar';
 
 export default class Sidebar extends HTMLElement {
 
@@ -19,15 +19,15 @@ export default class Sidebar extends HTMLElement {
             const simpleBar = new SimpleBar(this.sidebarContent);
 
             /* Recalculate simplebar on sidebar dropdown toggle */
-            const sidebarDropdowns = this.sidebarContent.querySelectorAll(".js-sidebar [data-bs-parent]");
+            const sidebarDropdowns = this.sidebarContent.querySelectorAll('.js-sidebar [data-bs-parent]');
 
             sidebarDropdowns.forEach(link => {
 
-                link.addEventListener("shown.bs.collapse", () => {
+                link.addEventListener('shown.bs.collapse', () => {
                     simpleBar.recalculate();
                 });
 
-                link.addEventListener("hidden.bs.collapse", () => {
+                link.addEventListener('hidden.bs.collapse', () => {
                     simpleBar.recalculate();
                 });
             });
@@ -36,11 +36,11 @@ export default class Sidebar extends HTMLElement {
 
     initializeSidebarCollapse() {
         if (this.sidebarContent && this.sidebarToggle) {
-            this.sidebarToggle.addEventListener("click", () => {
-                this.classList.toggle("collapsed");
+            this.sidebarToggle.addEventListener('click', () => {
+                this.classList.toggle('collapsed');
 
-                this.addEventListener("transitionend", () => {
-                    window.dispatchEvent(new Event("resize"));
+                this.addEventListener('transitionend', () => {
+                    window.dispatchEvent(new Event('resize'));
                 });
             });
         }

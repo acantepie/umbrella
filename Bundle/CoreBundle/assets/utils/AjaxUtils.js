@@ -30,7 +30,7 @@ export default class AjaxUtils {
         options['complete'] = () => {
 
             if ('xhr_id' in options && options['xhr_id']) {
-                AjaxUtils.xhrPendingRegistryIds = $.grep(AjaxUtils.xhrPendingRegistryIds, (id) => {
+                AjaxUtils.xhrPendingRegistryIds = AjaxUtils.xhrPendingRegistryIds.filter(id => {
                     return id !== options['xhr_id'];
                 });
             }

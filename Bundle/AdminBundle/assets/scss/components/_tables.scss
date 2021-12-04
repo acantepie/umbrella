@@ -8,6 +8,24 @@
 	}
 }
 
-.table > tbody > tr > td {
+.table.table-centered > tbody > tr > td {
 	vertical-align: middle;
+}
+
+.table > :not(:first-child) {
+	border-top: $table-border-width solid $table-group-separator-color;
+}
+
+@each $color, $value in $theme-colors {
+	.table tr.row-border-#{$color} {
+		> td, > th {
+			border-color: $value;
+		}
+	}
+}
+
+.table tr.selected  {
+	>td, > th {
+		border-color: $primary;
+	}
 }

@@ -37,7 +37,7 @@ class Configuration implements ConfigurationInterface
                     ->info('Path of logo')
                     ->end()
                 ->scalarNode('container_class')
-                    ->defaultValue('container-xl')
+                    ->defaultValue('container-fluid')
                     ->info('Bootstrap container class : container, container-sm, container-fluid, ...')
                     ->validate()
                         ->ifNotInArray(['container', 'container-sm', 'container-md', 'container-lg', 'container-xl', 'container-xxl', 'container-fluid'])

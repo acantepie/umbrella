@@ -22,7 +22,7 @@ class CheckBoxColumnType extends ColumnType
      */
     public function render($rowData, array $options): string
     {
-        return '<input class="form-check-input" type="checkbox">';
+        return '<div class="select-handle"><input class="form-check-input" type="checkbox"></div>';
     }
 
     private function labelTemplate(): string
@@ -46,7 +46,7 @@ class CheckBoxColumnType extends ColumnType
 
         $resolver
             ->setDefault('order', false)
-            ->setDefault('class', 'text-center row-selector')
+            ->setDefault('class', 'text-center')
             ->setDefault('label', $this->labelTemplate())
             ->setDefault('translation_domain', null)
             ->setDefault('width', '80px')

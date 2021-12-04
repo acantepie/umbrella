@@ -2,6 +2,8 @@ const path = require('path');
 const Encore = require('@symfony/webpack-encore');
 
 Encore
+    .autoProvidejQuery()
+
     .setOutputPath('./Bundle/AdminBundle/public/')
     .setPublicPath('/bundles/umbrellaadmin/')
     .setManifestKeyPrefix('bundles/umbrellaadmin')

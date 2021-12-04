@@ -24,7 +24,7 @@
 // Sidebar links
 .sidebar-link,
 a.sidebar-link {
-  display: block;
+  display: flex;
   padding: $sidebar-link-padding;
   font-weight: $sidebar-link-font-weight;
   transition: background .1s ease-in-out;
@@ -40,6 +40,7 @@ a.sidebar-link {
   i,
   svg {
     margin-right: .75rem;
+    font-size: 1.1rem;
     color: $sidebar-link-icon-color;
   }
 }

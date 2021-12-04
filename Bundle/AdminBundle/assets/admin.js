@@ -1,4 +1,3 @@
-// App
 import './scss/admin.scss'
 import 'umbrella_core/core';
 

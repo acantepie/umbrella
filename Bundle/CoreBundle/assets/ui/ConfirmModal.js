@@ -11,7 +11,7 @@ class ConfirmModal {
         '<button type="button" class="btn btn-success btn-confirm">__confirm__</button></div></div></div></div>';
 
     constructor() {
-        this.$modal = null
+        this.modal = null
     }
 
     show(options = {}) {
@@ -31,32 +31,31 @@ class ConfirmModal {
         html = html.replace('__cancel__', options['cancel_text']);
         html = html.replace('__confirm__', options['confirm_text']);
 
-        this.$modal = $(html);
+        const template = document.createElement('div')
+        template.innerHTML = html
 
-        this.$modal.on('keypress', (e) => {
+        const modalElement = template.firstChild
+        modalElement.addEventListener('hidden.bs.modal', modalElement.remove)
+        modalElement.addEventListener('keypress', (e) => {
             if (e.which === 13) {
                 options['confirm']();
                 this.hide();
             }
-        });
-        this.$modal.on('click', '.btn-confirm', (e) => {
+        })
+        modalElement.querySelector('.btn-confirm').addEventListener('click', (e) => {
             options['confirm']();
             this.hide();
-        });
+        })
+        document.body.appendChild(modalElement)
 
-        this.$modal.on('hidden.bs.modal', this.remove);
-
-        this.$modal.modal('show');
+        this.modal = new bootstrap.Modal(modalElement)
+        this.modal.show();
     }
 
     hide() {
-        if (this.$modal) {
-            this.$modal.modal('hide');
+        if (this.modal) {
+            this.modal.hide();
         }
-    }
-
-    remove() {
-        $('#confirm-modal').remove();
     }
 }
 

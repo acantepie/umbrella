@@ -13,7 +13,7 @@ table.dataTable {
         font-size: 1rem;
         left: auto;
         right: 0.5rem;
-        top: 12px;
+        top: 8px;
       }
       &:after {
         content: "\f035d";
@@ -21,7 +21,7 @@ table.dataTable {
         font-size: 1rem;
         left: auto;
         right: 0.5em;
-        top: 18px;
+        top: 14px;
       }
     }
   }
@@ -48,12 +48,8 @@ table.dataTable {
 
 
   // row selector
-  .row-selector {
+  .select-handle, .select-handle * {
     cursor: pointer;
-
-    * {
-      cursor: pointer;
-    }
   }
 
   .drag-handle {

@@ -1,12 +1,10 @@
 [is=umbrella-notification]{
+
+  .list-group-item {
+    padding: 0.75rem 1.25rem;
+  }
   .notification-icon {
-    flex: none;
-    height: 36px;
-    width: 36px;
-    line-height: 36px;
-    text-align: center;
-    margin-right: 10px;
-    border-radius: 50%;
-    color: $white;
+    font-size: 1.5em;
+
   }
 }

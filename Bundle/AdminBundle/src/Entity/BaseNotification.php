@@ -76,7 +76,7 @@ class BaseNotification
 
     public function errorIcon(): self
     {
-        $this->icon = 'mdi mdi-exclamation-thick';
+        $this->icon = 'mdi mdi-alert-circle-outline';
         $this->iconColor = 'danger';
 
         return $this;
