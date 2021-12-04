@@ -7,7 +7,6 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
-use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
 class NestedEntityAdapter extends DataTableAdapter implements DoctrineAdapterInterface
 {
@@ -33,10 +32,7 @@ class NestedEntityAdapter extends DataTableAdapter implements DoctrineAdapterInt
             ->setAllowedTypes('query_alias', 'string')
 
             ->setDefault('query', null)
-            ->setAllowedTypes('query', ['callable', 'null'])
-
-            ->setDefault('init_metadata', true)
-            ->setAllowedTypes('init_metadata', 'bool');
+            ->setAllowedTypes('query', ['callable', 'null']);
     }
 
     public function getResult(DataTableState $state, array $options): DataTableResult
@@ -45,36 +41,7 @@ class NestedEntityAdapter extends DataTableAdapter implements DoctrineAdapterInt
             ->getQuery()
             ->getResult();
 
-        if ($options['init_metadata']) {
-            $this->initMetadata($data);
-        }
-
         return new DataTableResult($data);
-    }
-
-    /**
-     * @param NestedTreeEntityInterface[] $entities
-     */
-    private function initMetadata(iterable $entities)
-    {
-        $currentLvl = -1;
-        $lastChildren = [];
-
-        foreach ($entities as $entity) {
-            if ($entity->getLevel() > $currentLvl) {
-                $entity->setFirstChild(true);
-            }
-
-            $currentLvl = $entity->getLevel();
-
-            if (null !== $entity->getParent()) {
-                $lastChildren[$entity->getParent()->getId()] = $entity;
-            }
-        }
-
-        foreach ($lastChildren as $child) {
-            $child->setLastChild(true);
-        }
     }
 
     public function getQueryBuilder(DataTableState $state, array $options): QueryBuilder

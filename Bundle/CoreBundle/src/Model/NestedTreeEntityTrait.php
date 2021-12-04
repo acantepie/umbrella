@@ -27,10 +27,6 @@ trait NestedTreeEntityTrait
      */
     public ?int $right = null;
 
-    public bool $firstChild = false;
-
-    public bool $lastChild = false;
-
     /**
      * {@inheritdoc}
      */
@@ -95,37 +91,5 @@ trait NestedTreeEntityTrait
         }
 
         return $this->getParent()->isChildOf($node);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isFirstChild(): bool
-    {
-        return $this->firstChild;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setFirstChild(bool $firstChild)
-    {
-        $this->firstChild = $firstChild;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isLastChild(): bool
-    {
-        return $this->lastChild;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setLastChild(bool $lastChild)
-    {
-        $this->lastChild = $lastChild;
     }
 }

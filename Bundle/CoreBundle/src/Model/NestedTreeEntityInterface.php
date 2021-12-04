@@ -19,12 +19,4 @@ interface NestedTreeEntityInterface
     public function getChildren(): ArrayCollection;
 
     public function isChildOf(NestedTreeEntityInterface $node): bool;
-
-    public function isFirstChild(): bool;
-
-    public function setFirstChild(bool $firstChild);
-
-    public function isLastChild(): bool;
-
-    public function setLastChild(bool $lastChild);
 }

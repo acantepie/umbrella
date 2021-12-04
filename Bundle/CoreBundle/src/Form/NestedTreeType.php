@@ -15,9 +15,6 @@ class NestedTreeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefault('select2_options', [
-                'dropdownCssClass' => 'select2-tree-dropdown'
-            ])
             ->setDefault('query_builder', function (EntityRepository $er) {
                 return $er->createQueryBuilder('e')
                     ->orderBy('e.left', 'ASC');

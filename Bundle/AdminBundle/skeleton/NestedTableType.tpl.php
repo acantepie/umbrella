@@ -30,9 +30,7 @@ class <?= $class_name ?> extends DataTableType
 
                $builder->add('move', RowMoveLinkType::class, [
                     'route' => '<?= $route['name_prefix'] ?>_move',
-                    'route_params' => ['id' => $e->id],
-                    'disable_moveup' => $e->isFirstChild(),
-                    'disable_movedown' => $e->isLastChild()
+                    'route_params' => ['id' => $e->id]
                 ]);
 
                 $builder->add('edit', RowEditLinkType::class, [

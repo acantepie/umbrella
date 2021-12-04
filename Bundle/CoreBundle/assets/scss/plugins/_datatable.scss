@@ -53,11 +53,14 @@ table.dataTable {
   }
 
   .drag-handle {
-    font-size: 24px;
     text-align: center;
     cursor: move;
     padding: $table-cell-padding-y-sm $table-cell-padding-x;
-    color: $primary;
+
+    i {
+      font-size: 24px;
+      color: $primary;
+    }
   }
 
   .row-details-handle i.mdi::before {
