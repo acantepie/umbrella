@@ -74,12 +74,25 @@ class MenuCurrentVisitor implements MenuVisitor
     private function paramsAreInRequest(array $params, Request $request): bool
     {
         foreach ($params as $key => $value) {
-            if ($request->get($key) != $value) {
+            if ($this->searchParamsOneRequest($request, $key) != $value) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    private function searchParamsOneRequest(Request $request, string $key)
+    {
+        if ($request->attributes->has($key)) {
+            return $request->attributes->all()[$key];
+        }
+
+        if ($request->query->has($key)) {
+            return $request->query->all()[$key];
+        }
+
+        return null;
     }
 
     /**
