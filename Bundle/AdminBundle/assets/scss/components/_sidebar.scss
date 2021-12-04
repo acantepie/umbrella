@@ -25,6 +25,7 @@
 .sidebar-link,
 a.sidebar-link {
   display: flex;
+  align-items: center;
   padding: $sidebar-link-padding;
   font-weight: $sidebar-link-font-weight;
   transition: background .1s ease-in-out;
