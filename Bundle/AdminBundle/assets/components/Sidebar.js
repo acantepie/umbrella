@@ -19,7 +19,7 @@ export default class Sidebar extends HTMLElement {
             const simpleBar = new SimpleBar(this.sidebarContent);
 
             /* Recalculate simplebar on sidebar dropdown toggle */
-            const sidebarDropdowns = this.sidebarContent.querySelectorAll('.js-sidebar [data-bs-parent]');
+            const sidebarDropdowns = this.sidebarContent.querySelectorAll('[data-bs-parent]');
 
             sidebarDropdowns.forEach(link => {
 
