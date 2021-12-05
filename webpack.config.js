@@ -21,13 +21,6 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
 
-    .copyFiles([
-        {
-            from: './Bundle/AdminBundle/assets/images',
-            to: 'images/[path][name].[ext]'
-        }
-    ])
-
     // add hash after file name
     .configureFilenames({
         js: '[name].js?[chunkhash]',
