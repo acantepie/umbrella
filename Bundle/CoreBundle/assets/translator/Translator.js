@@ -28,6 +28,19 @@ const TRANS = {
         'loading_data_error': 'Impossible de charger les données',
         'no_results': 'Aucun résultat trouvé'
     },
+
+    ru: {
+        'row_selected': {
+            '_': '%c% выбрано. <a href data-tag="dt:unselectall">Сбросить</a>'
+        },
+        'cancel': 'Отменить',
+        'confirm': 'Подтвердить',
+        'unauthorized_error': 'Вы отключены, обновите страницу',
+        'forbidden_error': 'У Вас нет прав на выполнение этого действия',
+        'notfound_error': 'Не удаётся подключиться к серверу',
+        'other_error' : 'Произошла ошибка',
+        'loading_data_error': 'Не удаётся загрузить данные'
+    }
 }
 
 

@@ -31,5 +31,33 @@ export default {
 
     en: {
         'sZeroRecords': 'No result found - <a href data-tag="dt:reset">reset filters</a>',
-    }
+    },
+
+    ru: {
+        'sEmptyTable': 'Нет данных',
+        'sInfo': 'Показаны строки с _START_ по _END_ из _TOTAL_',
+        'sInfoEmpty': '',
+        'sInfoFiltered': '(отфильтровано из _MAX_)',
+        'sInfoThousandsf': ',',
+        'sLengthMenu': 'Показать _MENU_ строк',
+        'sLoadingRecords': 'Загружается...',
+        'sProcessing': 'Выполняется...',
+        'sSearch': 'Поиск:',
+        'sZeroRecords': 'Ничего не найдено - <a href data-tag="dt:reset">сбросить фильтры</a>',
+        'oPaginate': {
+            'sFirst': 'Первая',
+            'sLast': 'Последняя',
+            'sNext': 'Следующая',
+            'sPrevious': 'Предыдущая'
+        },
+        'oAria': {
+            'sSortAscending': ': отсортировать по возрастанию',
+            'sSortDescending': ': отсортировать по убыванию'
+        },
+        'select': {
+            'rows': {
+                '_': '%d выбрано'
+            }
+        }
+    },
 }

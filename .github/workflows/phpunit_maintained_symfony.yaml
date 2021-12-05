@@ -1,4 +1,4 @@
-name: PHPUnit - Maintained Symfony versions
+name: PHPUnit
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         php-version: ['7.4', '8.0']
-        symfony-version: ['5.3', '5.4']
+        symfony-version: ['5.4']
       fail-fast: false
 
     steps:
@@ -43,4 +43,6 @@ jobs:
           vendor/bin/simple-phpunit install
 
       - name: 'Run tests'
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: 'max[indirect]=5'
         run: vendor/bin/simple-phpunit -v
