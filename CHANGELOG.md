@@ -12,3 +12,4 @@ CHANGELOG
 * Add ColumnType `RadioColumnType` (same as `CheckboxColumnType` but with radio button)
 * Rewrite some javascript components using `JQuery` on vanilla Js
 * Fix all deprections on `Symfony` 5.4 (i.e. type mathod returning non-`void` type)
+* DataTable : option `class` replaced by `table-class`, add options `class` and `toolbar_class` to specify css class of widget and table
