@@ -11,14 +11,9 @@
 Further resources related to this Framework:
 
 - [Demo app website](https://umbrella-corp.dev)
-- Sass libraries :
+- Theme :
   - [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-  - [Tabler.io](https://tabler.io/)
+  - [AdminKit](https://adminkit.io/)
 - Icon libraries :
   - [unicons](https://iconscout.com/unicons/explore/line)
   - [material design icons](https://pictogrammers.github.io/@mdi/font/5.4.55/)
-- Main Javascript tools : 
-  - [DataTables](https://datatables.net/)
-  - [Tom Select](https://tom-select.js.org/)
-  - [Toastify](https://apvarun.github.io/toastify-js/)
-  - [flatpickr](https://flatpickr.js.org/) (datepicker, datetimepicker)
