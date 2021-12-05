@@ -12,6 +12,6 @@ class RowShowLinkType extends RowLinkType
 
         $resolver
             ->setDefault('title', 'Show')
-            ->setDefault('icon', 'mdi mdi-eye');
+            ->setDefault('icon', 'mdi mdi-eye-outline');
     }
 }

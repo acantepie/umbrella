@@ -12,6 +12,6 @@ class RowEditLinkType extends RowLinkType
 
         $resolver
             ->setDefault('title', 'Edit')
-            ->setDefault('icon', 'mdi mdi-pencil');
+            ->setDefault('icon', 'mdi mdi-square-edit-outline');
     }
 }

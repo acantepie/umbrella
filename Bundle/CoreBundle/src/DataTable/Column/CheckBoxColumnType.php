@@ -28,7 +28,7 @@ class CheckBoxColumnType extends ColumnType
     private function labelTemplate(): string
     {
         return '<div class="dropdown">'
-            . '<a class="btn btn-link btn-sm p-0 w-100" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+            . '<a class="d-block w-100 text-reset" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
             . '<i class="mdi mdi-dots-vertical"></i>'
             . '</a>'
             . '<div class="dropdown-menu">'

@@ -5,7 +5,6 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Umbrella\AdminBundle\Command\CreateAdminUserCommand;
 use Umbrella\AdminBundle\Controller\SecurityController;
 use Umbrella\AdminBundle\Controller\UserController;
-use Umbrella\AdminBundle\DataTable\Column\UserNameColumnType;
 use Umbrella\AdminBundle\DataTable\UserTableType;
 use Umbrella\AdminBundle\Form\UserPasswordConfirmType;
 use Umbrella\AdminBundle\Form\UserType;
@@ -33,8 +32,6 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('container.service_subscriber');
 
     $services->set(UserChecker::class);
-    $services->set(UserNameColumnType::class)
-        ->tag('umbrella.datatable.columntype');
     $services->set(UserTableType::class)
         ->tag('umbrella.datatable.type');
 

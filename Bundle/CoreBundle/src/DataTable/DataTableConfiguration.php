@@ -29,13 +29,23 @@ class DataTableConfiguration
         return $this->config['dom'];
     }
 
-    public function treeClass(): string
+    public function class(): ?string
     {
-        return $this->config['tree_class'];
+        return $this->config['class'];
     }
 
-    public function tableClass(): string
+    public function tableTreeClass(): ?string
+    {
+        return $this->config['table_tree_class'];
+    }
+
+    public function tableClass(): ?string
     {
         return $this->config['table_class'];
+    }
+
+    public function toolbarClass(): ?string
+    {
+        return $this->config['toolbar_class'];
     }
 }

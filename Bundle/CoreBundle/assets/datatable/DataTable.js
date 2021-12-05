@@ -13,7 +13,7 @@ export default class DataTable extends HTMLElement {
         super();
         this.$view = $(this);
 
-        this.$table = this.$view.find('table.datatable');
+        this.$table = this.$view.find('.js-datatable');
         this.$tableBody = this.$table.find('tbody');
 
         this.options = this.$view.data('options');

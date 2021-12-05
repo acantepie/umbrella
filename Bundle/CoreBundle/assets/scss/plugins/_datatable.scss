@@ -1,76 +1,103 @@
-table.dataTable {
+// datatable
+umbrella-datatable {
+  display: block;
+}
 
-  // Change icons view
-  thead {
-    .sorting,
-    .sorting_asc,
-    .sorting_desc,
-    .sorting_asc_disabled,
-    .sorting_desc_disabled{
-      &:before {
-        content: "\f0360";
-        font-family: Material Design Icons;
-        font-size: 1rem;
-        left: auto;
-        right: 0.5rem;
-        top: 8px;
-      }
-      &:after {
-        content: "\f035d";
-        font-family: Material Design Icons;
-        font-size: 1rem;
-        left: auto;
-        right: 0.5em;
-        top: 14px;
-      }
+.card-datatable {
+  padding-bottom: $card-spacer-y;
+  padding-top: $card-spacer-y;
+
+  umbrella-datatable {
+    umbrella-toolbar {
+      padding-right: $card-spacer-x;
+      padding-left: $card-spacer-x;
+    }
+
+    .table-footer {
+      padding-right: $card-spacer-x;
+      padding-left: $card-spacer-x;
     }
   }
+}
 
-  // tree
-  tr.branch {
+umbrella-datatable.default-theme {
 
-    &.collapsed .indenter a i.mdi::before {
-      content: "\F0142";
+  table.dataTable {
+    width: 100% !important;
+
+    // Change icons view
+    thead .sorting {
+      &::after {
+        content: "\F04BA";
+        font-family: Material Design Icons;
+        font-size: 1rem;
+      }
+
+      &::before {
+        content: '';
+      }
+
+      &.sorting_asc::after {
+        content: "\F0045";
+        opacity: 1;
+      }
+
+      &.sorting_desc::after {
+        content: "\F005D";
+        opacity: 1;
+      }
+
     }
 
-    .indenter a i.mdi::before {
-      content: "\F0140";
+    // tree
+    tr.branch {
+
+      &.collapsed .indenter a i.mdi::before {
+        content: "\F0142";
+      }
+
+      .indenter a i.mdi::before {
+        content: "\F0140";
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+
+      .indenter {
+        background-image: none;
+        margin-right: 10px;
+
+      }
+    }
+
+
+    // row selector
+    .select-handle, .select-handle * {
+      cursor: pointer;
+    }
+
+    .drag-handle {
+      text-align: center;
+      cursor: move;
+      padding: $table-cell-padding-y-sm $table-cell-padding-x;
+
+      i {
+        font-size: 24px;
+        color: $primary;
+      }
+    }
+
+    .row-details-handle i.mdi::before {
+      content: "\F0142";
       font-weight: bold;
       font-size: 1.2em;
     }
 
-    .indenter {
-      background-image: none;
-      margin-right: 10px;
-
+    tr.shown .row-details-handle i.mdi::before {
+      content: "\F0140";
     }
+
   }
-
-
-  // row selector
-  .select-handle, .select-handle * {
-    cursor: pointer;
-  }
-
-  .drag-handle {
-    text-align: center;
-    cursor: move;
-    padding: $table-cell-padding-y-sm $table-cell-padding-x;
-
-    i {
-      font-size: 24px;
-      color: $primary;
-    }
-  }
-
-  .row-details-handle i.mdi::before {
-    content: "\F0142";
-    font-weight: bold;
-    font-size: 1.2em;
-  }
-
-  tr.shown .row-details-handle i.mdi::before {
-    content: "\F0140";
-  }
-
 }
+
+// toolbar
+

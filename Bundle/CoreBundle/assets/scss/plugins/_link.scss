@@ -1,15 +1,20 @@
 .table-link {
-  color: $gray-600;
-  font-size: 1.2rem;
+  color: inherit;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
   display: inline-block;
-  padding: 0 3px;
+  padding-right: .2rem;
+  opacity: 0.8;
+
+  &:hover, &:active {
+    opacity: 1;
+    color: inherit;
+  }
 
   &.disabled {
     opacity: 0.4;
     pointer-events: none;
   }
 
-  &:hover {
-    color: $gray-700;
-  }
+
 }
