@@ -1,4 +1,5 @@
 .main {
+  margin-left: $sidebar-width;
   display: flex;
   width: 100%;
   min-width: 0;
@@ -8,4 +9,26 @@
   flex-direction: column;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+
+// Normal state
+body.sidebar-collapsed {
+  .main {
+    margin-left: 0;
+  }
+}
+
+// Workaround for IE bug, more info:
+// https://stackoverflow.com/a/25850649
+
+// Reverted state
+@media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
+  .main {
+    margin-left: 0;
+  }
+
+  body.sidebar-collapsed .main {
+    margin-left: $sidebar-width;
+  }
 }

@@ -1,9 +1,59 @@
+// --- State "sidebar-collapsed"
+
+// Normal state
+body.sidebar-collapsed {
+  .sidebar {
+    margin-left: -$sidebar-width;
+  }
+}
+
+// Workaround for IE bug, more info:
+// https://stackoverflow.com/a/25850649
+
+// Reverted state
+@media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
+
+  .sidebar {
+    // Sidebar default state (on mobile)
+    margin-left: -$sidebar-width;
+  }
+
+  // Sidebar collapsed state (on mobile)
+  body.sidebar-collapsed .sidebar {
+    margin-left: 0;
+  }
+}
+
+// --- Search sidebar
+.sidebar .sidebar-search {
+  padding: $sidebar-link-padding;
+  display: flex;
+  align-items: center;
+  background: rgba($primary,0.1);
+
+  i {
+    margin-right: .75rem;
+    font-size: 1.1rem;
+    color: $sidebar-link-icon-active-color;
+  }
+
+  input, input:focus {
+    color: $sidebar-link-active-color;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+// --- Vanilla sidebar
 .sidebar {
   min-width: $sidebar-width;
   max-width: $sidebar-width;
   transition: $sidebar-transition;
   direction: ltr;
   background: $sidebar-bg;
+  position: fixed;
 }
 
 .sidebar-content {
@@ -99,24 +149,6 @@ a.sidebar-link {
   display: flex;
 }
 
-.sidebar {
-  &.collapsed {
-    margin-left: -$sidebar-width;
-  }
-
-  // Workaround for IE bug, more info:
-  // https://stackoverflow.com/a/25850649
-  @media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
-
-    // Sidebar default state (on mobile)
-    margin-left: -$sidebar-width;
-
-    // Sidebar collapsed state (on mobile)
-    &.collapsed {
-      margin-left: 0;
-    }
-  }
-}
 
 .sidebar-toggle {
   margin-right: $spacer;

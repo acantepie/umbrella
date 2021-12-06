@@ -5,6 +5,13 @@
 
         {% include "@UmbrellaAdmin/Menu/head.html.twig" %}
 
+        {% if options.searchable %}
+            <div class="sidebar-search">
+                <i class="mdi mdi-magnify"></i>
+                <input type="text" placeholder="Search ..." class="form-control" autofocus>
+            </div>
+        {% endif %}
+
         {% block items_container %}
             <div class="sidebar-nav">
                 {% for item in menu.root %}

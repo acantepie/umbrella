@@ -5,7 +5,7 @@
                 {{ block('item_label') }}
             </li>
         {% else %}
-            <li class="sidebar-item {{ item.isActive() ? 'active' }}">
+            <li class="sidebar-item {{ item.isActive() ? 'active' }}" data-search="{{ block('item_search') }}">
                 {% if item.hasChildren() %}
                     <a data-bs-target="#{{ item.cssId }}" data-bs-toggle="collapse" class="sidebar-link" aria-expanded="{{ item.isActive() ? 'true' : 'false' }}">
                         {{ block('item_icon') }}
@@ -39,11 +39,15 @@
 {%- endblock -%}
 
 {%- block item_label -%}
-    {% if item.translationDomain %}
-        {{ item.label | trans([], item.translationDomain) }}
-    {% else %}
-        {{ item.label }}
-    {% endif %}
+    {%- if item.translationDomain -%}
+        {{- item.label | trans([], item.translationDomain) -}}
+    {%- else %}
+        {{- item.label -}}
+    {%- endif -%}
+{%- endblock -%}
+
+{%- block item_search -%}
+    {{- block('item_label') -}}
 {%- endblock -%}
 
 {%- block item_badge -%}
