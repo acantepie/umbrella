@@ -11,10 +11,9 @@ class AdminMenu extends BaseAdminMenu
     public function buildMenu(MenuBuilder $builder)
     {
         $builder->root()
-            ->add('Admin')
-                ->add('Home')
-                    ->icon('mdi mdi-home')
-                    ->route('<?= $route['name_prefix'] ?>_index');
+            ->add('Home')
+                ->icon('mdi mdi-home')
+                ->route('<?= $route['name_prefix'] ?>_index');
     }
 
 }

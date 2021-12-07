@@ -28,10 +28,9 @@ Add entry on menu :
 public function buildMenu(MenuBuilder $builder)
 {
     $builder->root()
-        ->add('My app')
-            ->add('Users')
-                ->icon('uil-user')
-                ->route('umbrella_admin_user_index');
+        ->add('Users')
+            ->icon('uil-user')
+            ->route('umbrella_admin_user_index');
 
 }
 ```
@@ -65,7 +64,7 @@ security:
             form_login:
                 login_path: umbrella_admin_login
                 check_path: umbrella_admin_login
-                default_target_path: app_admin_default_index
+                default_target_path: app_admin_home_index # !! Depends on your configuration
                 enable_csrf: true
             logout:
                 path: umbrella_admin_logout
