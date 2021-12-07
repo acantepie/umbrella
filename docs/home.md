@@ -60,14 +60,12 @@ class AdminMenu extends BaseAdminMenu
     public function buildMenu(MenuBuilder $builder)
     {
         $builder->root()
-            // Top level entry
-            ->add('Admin')
-                // Sub level entry
-                ->add('Home')
-                    // css class of icon
-                    ->icon('uil-home')
-                    // Route of menu entry
-                    ->route('app_admin_home_index');
+            // Create a new entry
+            ->add('Home')
+                // css class of icon
+                ->icon('uil-home')
+                // Route of menu entry
+                ->route('app_admin_home_index');
     }
 
 }
