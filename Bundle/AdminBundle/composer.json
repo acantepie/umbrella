@@ -40,6 +40,9 @@
         "umbrella2/corebundle": "*",
         "symfony/maker-bundle": "^1.21"
     },
+    "conflict": {
+        "umbrella2/corebundle": "<4.0"
+    },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "symfony/browser-kit": "^5.4|^6.0",
