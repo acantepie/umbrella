@@ -4,10 +4,11 @@ namespace Umbrella\AdminBundle\DataTable;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\AdminBundle\DataTable\Column\UserNameColumnType;
+use Symfony\Component\Routing\RouterInterface;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
+use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\WidgetColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableBuilder;
@@ -21,13 +22,15 @@ use Umbrella\CoreBundle\Widget\WidgetBuilder;
 class UserTableType extends DataTableType
 {
     private UmbrellaAdminConfiguration $config;
+    private RouterInterface $router;
 
     /**
      * UserTableType constructor.
      */
-    public function __construct(UmbrellaAdminConfiguration $config)
+    public function __construct(UmbrellaAdminConfiguration $config, RouterInterface $router)
     {
         $this->config = $config;
+        $this->router = $router;
     }
 
     /**
@@ -43,10 +46,20 @@ class UserTableType extends DataTableType
             'translation_domain' => 'UmbrellaAdmin'
         ]);
 
-        $builder->add('name', UserNameColumnType::class, [
-            'label' => 'label.name',
+        $builder->add('name', ColumnType::class, [
+            'render_html' => function (BaseAdminUser $user) {
+                return sprintf(
+                    '<a href data-xhr="%s">%s</a>',
+                    $this->router->generate('umbrella_admin_user_edit', ['id' => $user->id]),
+                    $user->getFullName()
+                );
+            },
+            'order' => 'ASC',
+            'order_by' => ['firstname', 'lastname'],
             'translation_domain' => 'UmbrellaAdmin'
         ]);
+
+        $builder->add('email');
         $builder->add('createdAt', DateColumnType::class, [
             'label' => 'label.created_at',
             'translation_domain' => 'UmbrellaAdmin'

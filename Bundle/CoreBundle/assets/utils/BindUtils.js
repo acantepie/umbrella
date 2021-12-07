@@ -1,11 +1,9 @@
 import AjaxUtils from './AjaxUtils';
-import Utils from './Utils';
 
-export default class BindUtils
-{
+export default class BindUtils {
+
     static enableToast(selector = '[data-toggle=toast]') {
-        var els = document.querySelectorAll(selector)
-        els.forEach((el) => {
+        document.querySelectorAll(selector).forEach((el) => {
             umbrella.Toast.show(
                 el.getAttribute('data-type'),
                 el.getAttribute('data-text'),
@@ -14,15 +12,9 @@ export default class BindUtils
         })
     }
 
-    static enableTooltip(container = null, selector = '[data-bs-toggle=tooltip]') {
-        container = container || document
-
-        var els = document.querySelectorAll(selector)
-        els.forEach((el) => {
-            new bootstrap.Tooltip(el, {
-                container: 'body',
-                trigger: el.getAttribute('data-bs-trigger') || 'hover focus'
-            })
+    static enableTooltip(selector = '[data-bs-toggle=tooltip]') {
+        document.querySelectorAll(selector).forEach((el) => {
+            new bootstrap.Tooltip(el)
         })
     }
 
@@ -41,17 +33,17 @@ export default class BindUtils
     }
 
     static enableXhrForm() {
-        $('body').on('submit', 'form[data-xhr]', (e) => {
-            e.preventDefault();
-            const $e = $(e.currentTarget);
+        $('body').on('submit', 'form[data-xhr]', (form) => {
+            form.preventDefault();
+            const $form = $(form.currentTarget);
 
             AjaxUtils.request({
-                url: $e.data('xhr'),
-                xhr_id: $e.data('xhr-id') || null,
-                confirm: $e.data('confirm') || false,
-                spinner: $e.data('spinner') || false,
-                method: $e.attr('method') || 'post',
-                data: Utils.create_formdata_with_files(e.currentTarget),
+                url: $form.data('xhr'),
+                xhr_id: $form.data('xhr-id') || null,
+                confirm: $form.data('confirm') || false,
+                spinner: $form.data('spinner') || false,
+                method: $form.attr('method') || 'post',
+                data: new FormData(form.currentTarget),
             })
         });
     }

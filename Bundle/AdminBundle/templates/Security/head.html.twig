@@ -1,7 +1,7 @@
-<div class="card-header pt-3 pb-3 text-center bg-primary">
-    {% if uac.appLogo() %}
-        <img src="{{ asset(uac.appLogo()) }}">
+<div class="text-center mb-4">
+    {% if admin.appLogo() %}
+        <img src="{{ asset(admin.appLogo()) }}" height="36" alt="{{ admin.appName() }}">
     {% else %}
-        <h4>{{ uac.appName() }}</h4>
+        <h1>{{ admin.appName() }}</h1>
     {% endif %}
 </div>

@@ -1,33 +1,20 @@
 {% extends '@UmbrellaAdmin/layout.html.twig' %}
 
 {% trans_default_domain 'UmbrellaAdmin' %}
-{% block topbar %}
-    {% embed "@UmbrellaAdmin/_topbar.html.twig" %}
-        {% block breadcrumb %}
-            <div class="umbrella-breadcrumb">
-                <i class="uil-user"></i>
-                <ol data-count="1">
-                    <li class="active">{{ 'label.my_account' | trans({}, 'UmbrellaAdmin') }}</li>
-                </ol>
-            </div>
-        {% endblock %}
-    {% endembed %}
-{% endblock %}
+
+{% do admin_breadcrumb(false)
+    .setIcon('uil-user')
+    .add('label.my_account' | trans({}, 'UmbrellaAdmin')) %}
 
 {% block content %}
     {{ umbrella_form_theme(settings_form) }}
-
-    <div class="container-md">
-
-        <form method="post" enctype="multipart/form-data">
-            <div class="card card-body">
-                {{ form_rest(settings_form) }}
-                <button type="submit" class="btn btn-primary">
-                    <i class="mdi mdi-check me-1"></i>
-                    {{ 'Save' | trans }}
-                </button>
-            </div>
-        </form>
-
-    </div>
+    <form method="post">
+        <div class="card card-body">
+            {{ form_rest(settings_form) }}
+            <button type="submit" class="btn btn-primary d-inline">
+                <i class="mdi mdi-check me-1"></i>
+                {{ 'Save' | trans }}
+            </button>
+        </div>
+    </form>
 {% endblock %}

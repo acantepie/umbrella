@@ -14,23 +14,24 @@ use Symfony\Component\Form\FormRegistryInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 
 class AutocompleteType extends AbstractType implements DataMapperInterface, EventSubscriberInterface
 {
     private RouterInterface $router;
-    private TranslatorInterface $translator;
     private FormRegistryInterface $formRegistry;
+    private UmbrellaSelectConfigurator $configurator;
 
     /**
      * AutocompleteType constructor.
      */
-    public function __construct(RouterInterface $router, TranslatorInterface $translator, FormRegistryInterface $formRegistry)
+    public function __construct(RouterInterface $router, FormRegistryInterface $formRegistry, UmbrellaSelectConfigurator $configurator)
     {
         $this->router = $router;
-        $this->translator = $translator;
         $this->formRegistry = $formRegistry;
+        $this->configurator = $configurator;
     }
 
     /**
@@ -48,31 +49,13 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['attr']['is'] = 'umbrella-select2';
-        $view->vars['attr']['data-options'] = json_encode($this->buildJsOptions($view, $form, $options));
-    }
+        $jsOptions = $this->configurator->getJsOptions($options);
+        $jsOptions['load_url'] = $this->router->generate($options['route'], $options['route_params'], UrlGeneratorInterface::ABSOLUTE_URL);
+//        $jsOptions['page_length'] = $options['page_length'];
 
-    protected function buildJsOptions(FormView $view, FormInterface $form, array $options): array
-    {
-        // select2 Options
-        $jsSelect2Options = $options['select2_options'];
-
-        $jsSelect2Options['placeholder'] = empty($options['placeholder']) || false === $options['translation_domain']
-            ? ($options['placeholder'] ? $options['placeholder'] : '') // always set a placeholder
-            : $this->translator->trans($options['placeholder'], [], $options['translation_domain']);
-
-        $jsSelect2Options['allowClear'] = true !== $options['required']; // allow clear if not required
-        $jsSelect2Options['minimumInputLength'] = $options['min_search_length'];
-        $jsSelect2Options['width'] = $options['width'];
-
-        // js Options
-        $jsOptions = [];
-        $jsOptions['template_selector'] = $options['template_selector'];
-        $jsOptions['template'] = $options['template'];
-        $jsOptions['autocomplete_url'] = $this->router->generate($options['route'], $options['route_params']);
-        $jsOptions['select2'] = $jsSelect2Options;
-
-        return $jsOptions;
+        $view->vars['compound'] = false; // avoid scary <legend> tag when render form ...
+        $view->vars['attr']['is'] = 'umbrella-select';
+        $view->vars['attr']['data-options'] = json_encode($jsOptions);
     }
 
     /**
@@ -80,17 +63,15 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $this->configurator->configureOptions($resolver);
+
+        $resolver
+            ->setDefault('error_bubbling', false)
+            ->setNormalizer('data_class', fn (Options $options) => null);
+
         $resolver
             ->setDefault('multiple', false)
-            ->setDefault('error_bubbling', false);
-
-        $resolver
-            ->setDefault('min_search_length', 1)
-            ->setAllowedTypes('min_search_length', 'int');
-
-        $resolver
-            ->setDefault('width', '100%')
-            ->setAllowedTypes('width', ['null', 'string']);
+            ->setAllowedTypes('multiple', 'bool');
 
         $resolver
             ->setDefault('placeholder', null)
@@ -100,10 +81,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
             ->setRequired('class')
             ->setAllowedTypes('class', 'string');
 
-        $resolver->setNormalizer('data_class', function (Options $options) {
-            return null;
-        });
-
         $resolver
             ->setRequired('route')
             ->setAllowedTypes('route', 'string');
@@ -111,18 +88,12 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $resolver
             ->setDefault('route_params', [])
             ->setAllowedTypes('route_params', 'array');
-
-        $resolver
-            ->setDefault('template_selector', null)
-            ->setAllowedTypes('template_selector', ['null', 'string']);
-
-        $resolver
-            ->setDefault('template', null)
-            ->setAllowedTypes('template', ['null', 'string']);
-
-        $resolver
-            ->setDefault('select2_options', [])
-            ->setAllowedTypes('select2_options', 'array');
+        /*
+                $resolver
+                    ->setDefault('page_length', null)
+                    ->setAllowedTypes('page_length', ['null', 'int'])
+                    ->setAllowedValues('page_length', Validation::createIsValidCallable(new GreaterThanOrEqual(10)));
+        */
     }
 
     /**

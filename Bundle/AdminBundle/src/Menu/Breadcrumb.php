@@ -44,7 +44,7 @@ class Breadcrumb implements \IteratorAggregate, \Countable
         return $this->icon;
     }
 
-    public function setIcon(?string $icon): Breadcrumb
+    public function setIcon(?string $icon): self
     {
         $this->icon = $icon;
         return $this;

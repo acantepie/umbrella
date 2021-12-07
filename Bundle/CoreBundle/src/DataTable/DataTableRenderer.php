@@ -40,11 +40,11 @@ class DataTableRenderer
         $vars['id'] = $options['id'];
         $vars['attr'] = [
             'id' => $options['id'],
-            'class' => 'umbrella-datatable-container',
+            'class' => $options['class'],
             'data-options' => json_encode($this->getJsOptions($dataTable)),
         ];
         $vars['table_attr'] = [
-            'class' => $options['class'] .= ' datatable'
+            'class' => $options['table_class'] .= ' table js-datatable'
         ];
         $vars['columns'] = array_map(function (Column $c) {
             return $this->columnView($c);
@@ -142,6 +142,9 @@ class DataTableRenderer
         $vars['template'] = $options['toolbar_template'];
         $vars['form'] = $toolbar->getForm()->createView();
         $vars['widget'] = $toolbar->getWidget()->createView();
+        $vars['attr'] = [
+            'class' => $options['toolbar_class']
+        ];
 
         return $vars;
     }

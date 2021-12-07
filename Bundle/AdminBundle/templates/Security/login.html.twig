@@ -1,17 +1,14 @@
 {% extends '@UmbrellaAdmin/Security/layout.html.twig' %}
 
 {% trans_default_domain 'UmbrellaAdmin' %}
+
 {% block content %}
-    <div class="card">
+    {% include '@UmbrellaAdmin/Security/head.html.twig' %}
 
-        {% include '@UmbrellaAdmin/Security/head.html.twig' %}
+    <div class="card p-3">
+        <div class="card-body">
 
-        <div class="card-body p-4">
-
-            <div class="text-center w-75 m-auto">
-                <h4 class="text-dark-50 text-center mt-0 font-weight-bold">{{  'login.title' | trans }}</h4>
-                <p class="text-muted mb-4">{{ 'login.text' | trans | raw }}</p>
-            </div>
+            <h4 class="card-title text-center mb-4">{{  'login.title' | trans }}</h4>
 
             {% if error %}
                 <div class="alert alert-warning text-center">
@@ -34,8 +31,8 @@
                             autofocus />
                 </div>
 
-                <div class="mb-3">
-                    <a href="{{ path('umbrella_admin_security_passwordrequest') }}" class="text-muted float-end">
+                <div class="mb-4">
+                    <a href="{{ path('umbrella_admin_security_passwordrequest') }}" class="float-end">
                         <small>{{ 'login.forget_password' | trans }}</small>
                     </a>
                     <label for="password" class="form-label">{{ 'label.password' | trans }}</label>
@@ -53,11 +50,9 @@
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                <div class="text-center">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="mdi mdi-login me-1"></i> {{ 'login.sign_in' | trans }}
-                    </button>
-                </div>
+                <button class="btn btn-primary w-100" type="submit">
+                    {{ 'login.sign_in' | trans }}
+                </button>
 
             </form>
         </div>

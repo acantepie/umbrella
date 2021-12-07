@@ -1,38 +1,31 @@
-// 
-// tables.scss
-//
-
-//Table centered (Custom)
-.table-centered {
-    th, td {
-        vertical-align: middle !important;
-    }
-}
-
-
-// Custom table components (Custom)
 .table {
-    .table-user {
-        img {
-            height: 30px;
-            width: 30px;
-        }
-    }
-    .action-icon {
-        color: $gray-600;
-        font-size: 1.2rem;
-        display: inline-block;
-        padding: 0 3px;
-
-        &:hover {
-            color: $gray-700;
-        }
-    }
+	thead, tbody, tfoot, tr, td, th {
+		border-color: $table-border-color;
+	}
+	
+	> :not(:last-child) > :last-child > * {
+		border-color: $table-border-color;
+	}
 }
 
-// Tables fluid
-.table-nowrap {
-    th, td {
-      white-space: nowrap;
-    }
+.table.table-centered > tbody > tr > td {
+	vertical-align: middle;
+}
+
+.table > :not(:first-child) {
+	border-top: $table-border-width solid $table-group-separator-color;
+}
+
+@each $color, $value in $theme-colors {
+	.table tr.row-border-#{$color} {
+		> td, > th {
+			border-color: $value;
+		}
+	}
+}
+
+.table tr.selected  {
+	>td, > th {
+		border-color: $primary;
+	}
 }

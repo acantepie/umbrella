@@ -20,6 +20,11 @@ class UmbrellaAdminConfiguration
 
     // Theme
 
+    public function containerClass(): string
+    {
+        return $this->config['container_class'];
+    }
+
     public function appName(): ?string
     {
         return $this->config['app_name'];

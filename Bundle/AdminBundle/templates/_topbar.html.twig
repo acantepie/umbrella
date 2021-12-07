@@ -1,19 +1,41 @@
-<div class="navbar-custom">
-    <ul class="list-unstyled topbar-menu float-end mb-0">
-        {% if uac.notificationEnable() %}
-            {% include "@UmbrellaAdmin/Notification/widget.html.twig" %}
-        {% endif %}
+{#<header class="navbar navbar-expand-md navbar-light sticky-top d-print-none">#}
+{#    <div class="{{ admin.containerClass }}">#}
+{#        <div>#}
+{#            {% include "@UmbrellaAdmin/_breadcrumb.html.twig" %}#}
+{#        </div>#}
+{#        <div class="navbar-nav flex-row order-md-last">#}
+{#            {% if admin.notificationEnable() %}#}
+{#                {% include "@UmbrellaAdmin/Notification/widget.html.twig" %}#}
+{#            {% endif %}#}
+{#            {% include '@UmbrellaAdmin/_userinfo.html.twig' %}#}
+{#        </div>#}
+{#    </div>#}
+{#</header>#}
 
-        {% block userinfo %}
-            {% include "@UmbrellaAdmin/_userinfo.html.twig" %}
-        {% endblock %}
-    </ul>
 
-    <button class="button-menu-mobile open-left disable-btn">
-        <i class="mdi mdi-menu"></i>
-    </button>
+<nav class="navbar navbar-expand navbar-light navbar-bg sticky-top">
 
-    {% block breadcrumb %}
+    <a class="sidebar-toggle js-sidebar-toggle">
+        <i class="hamburger align-self-center"></i>
+    </a>
+
+    <div class="{{ admin.containerClass }}">
+
         {% include "@UmbrellaAdmin/_breadcrumb.html.twig" %}
-    {% endblock %}
-</div>
+
+        <div class="navbar-collapse collapse">
+
+            <ul class="navbar-nav navbar-align">
+                {% if admin.notificationEnable() %}
+                    {% include "@UmbrellaAdmin/Notification/widget.html.twig" %}
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-icon js-fullscreen d-none d-lg-block" href="#" is="umbrella-fullscreen-toggler">
+                        <i class="uil uil-focus"></i>
+                    </a>
+                </li>
+                {% include '@UmbrellaAdmin/_userinfo.html.twig' %}
+            </ul>
+        </div>
+    </div>
+</nav>

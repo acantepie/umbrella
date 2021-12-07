@@ -33,7 +33,7 @@ abstract class BaseNotificationProvider implements NotificationProviderInterface
         }
 
         $data = [
-            'bg_icon' => $notification->bgIcon,
+            'icon_color' => $notification->iconColor,
             'icon' => $notification->icon,
             'title' => $notification->title,
             'text' => $notification->text,

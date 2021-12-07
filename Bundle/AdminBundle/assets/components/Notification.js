@@ -9,7 +9,7 @@ export default class Notification extends HTMLLIElement {
     }
 
     connectedCallback() {
-        $(this).on('shown.bs.dropdown', () => {
+        this.addEventListener('shown.bs.dropdown', () => {
             this._refresh(this.pollInterval >= 1) // refresh only if pollInterval is 1s or more
         })
     }
@@ -39,7 +39,7 @@ export default class Notification extends HTMLLIElement {
      * Render list of notifications
      */
     _renderList(response) {
-        const list = this.querySelector('.js-notification-list .simplebar-content')
+        const list = this.querySelector('.notification-items')
         list.innerHTML = ''
 
         if (response.html) {
@@ -49,10 +49,8 @@ export default class Notification extends HTMLLIElement {
 
         if (response.notifications) {
             for (const n of response.notifications) {
-                console.log(n)
                 list.innerHTML += n.html
             }
-            return
         }
     }
 

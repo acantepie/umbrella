@@ -1,27 +1,23 @@
 {% use "@UmbrellaAdmin/Menu/sidebar_block.html.twig" %}
 
-<div class="leftside-menu {{ options.searchable ? 'has-search' }}" is="umbrella-menu">
+<nav id="sidebar" class="sidebar" is="umbrella-sidebar">
+    <div class="sidebar-content">
 
-    {% block head %}
-        {% include '@UmbrellaAdmin/Menu/head.html.twig' %}
-    {% endblock %}
+        {% include "@UmbrellaAdmin/Menu/head.html.twig" %}
 
-    {% if options.searchable %}
-        <div class="input-group menu-search d-lg-block d-none">
-            <div>
-                <input type="text" class="form-control menu-search-input" placeholder="{{ 'Search ...' | trans }}" autofocus>
+        {% if options.searchable %}
+            <div class="sidebar-search">
                 <i class="mdi mdi-magnify"></i>
+                <input type="text" placeholder="Search ..." class="form-control" autofocus>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
 
-
-    {% block sidemenu %}
-        <div class="h-100" id="left-side-menu-container" data-simplebar>
-            <ul class="side-nav">
-                {{ block('menu_widget') }}
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-    {% endblock %}
-</div>
+        {% block items_container %}
+            <div class="sidebar-nav">
+                {% for item in menu.root %}
+                    {{ block('sidebar_item') }}
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+</nav>

@@ -25,6 +25,8 @@ class SearchType extends AbstractType implements DataTransformerInterface
     {
         $resolver->setDefaults([
             'required' => false,
+            'input_addon_container_class' => 'input-icon',
+            'input_prefix' => '<span class="input-icon-addon"><i class="mdi mdi-magnify"></i></span>',
             'attr' => [
                 'placeholder' => 'Search ...',
             ],

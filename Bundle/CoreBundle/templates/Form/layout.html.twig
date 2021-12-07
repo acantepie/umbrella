@@ -8,7 +8,7 @@
 
 {% block form_widget_simple -%}
     {% if input_prefix or input_suffix %}
-        <div class="input-group">
+        <div class="{{ input_addon_container_class }}">
             {% if input_prefix %}
                 {{ input_prefix | raw }}
             {% endif %}

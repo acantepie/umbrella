@@ -6,7 +6,6 @@ Components available :
 - ⚡ DataTable
 - ⚡ FormType : Choice2Type, Entity2Type, CkeditorType, DatePickerType, AutoCompleteType
 - ⚡ Js response
-- ⚡ Tabs
 - ⚡ Searchable entity
 
 Check out documentation on [online demo](https://umbrella-corp.dev/admin) for further information.

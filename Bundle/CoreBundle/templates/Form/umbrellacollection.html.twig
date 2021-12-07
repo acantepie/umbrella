@@ -13,7 +13,7 @@
 
     <umbrella-collection {{ block('widget_container_attributes') }}>
 
-        <table class="table table-sm mb-2">
+        <table class="table table-md mb-2">
 
             {% if compound and show_head %}
                 <thead>
@@ -73,7 +73,7 @@
 
         {% if not form.vars.disabled and form.vars.sortable %}
             <td class="js-drag-handle drag-handle">
-                <i class="mdi mdi-menu text-primary" aria-hidden="true"></i>
+                <i class="mdi mdi-menu fs-4 text-primary" aria-hidden="true"></i>
             </td>
         {% endif %}
 
@@ -91,7 +91,7 @@
         {% if not form.vars.disabled and form.vars.allow_delete %}
             <td class="table-action">
                 <a class="js-del-item action-icon" href="#">
-                    <i class="mdi mdi-delete"></i>
+                    <i class="mdi mdi-delete-outline fs-4"></i>
                 </a>
             </td>
         {% endif %}

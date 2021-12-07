@@ -22,15 +22,15 @@ class CheckBoxColumnType extends ColumnType
      */
     public function render($rowData, array $options): string
     {
-        return '<input class="form-check-input" type="checkbox">';
+        return '<div class="select-handle"><input class="form-check-input" type="checkbox"></div>';
     }
 
     private function labelTemplate(): string
     {
         return '<div class="dropdown">'
-            . '<button class="btn btn-sm p-0 w-100" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+            . '<a class="d-block w-100 text-reset" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
             . '<i class="mdi mdi-dots-vertical"></i>'
-            . '</button>'
+            . '</a>'
             . '<div class="dropdown-menu">'
             . '<a class="dropdown-item" href data-tag="dt:selectpage">' . $this->translator->trans('All') . '</a>'
             . '<a class="dropdown-item" href data-tag="dt:unselectpage">' . $this->translator->trans('None') . '</a>'
@@ -46,7 +46,7 @@ class CheckBoxColumnType extends ColumnType
 
         $resolver
             ->setDefault('order', false)
-            ->setDefault('class', 'text-center row-selector')
+            ->setDefault('class', 'text-center')
             ->setDefault('label', $this->labelTemplate())
             ->setDefault('translation_domain', null)
             ->setDefault('width', '80px')

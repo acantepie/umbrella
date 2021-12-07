@@ -1,15 +1,12 @@
-// App
 import './scss/admin.scss'
-
-import  'umbrella_core/core';
-import 'simplebar'
+import 'umbrella_core/core';
 
 // components
 import Notification from './components/Notification';
-import Menu from './components/Menu';
-import Layout from './Layout';
-
 customElements.define('umbrella-notification', Notification, {extends: 'li'});
-customElements.define('umbrella-menu', Menu, {extends: 'div'});
 
-Layout.init();
+import Sidebar from './components/Sidebar';
+customElements.define('umbrella-sidebar', Sidebar, {extends: 'nav'});
+
+import FullScreenToggler from './components/FullScreenToggler';
+customElements.define('umbrella-fullscreen-toggler', FullScreenToggler, {extends: 'a'});
