@@ -23,6 +23,7 @@ return static function (ContainerConfigurator $configurator): void {
         ->autoconfigure(false);
 
     $services->set(CreateAdminUserCommand::class)
+        ->public()
         ->tag('console.command');
 
     $services->set(SecurityController::class)
