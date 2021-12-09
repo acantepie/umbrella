@@ -6,7 +6,7 @@
 - [composer][get-composer]
 
 If you plan to use Umbrella on a new project, [create a new Symfony app first][new-sf-app] 
-using following command : `composer create-project symfony/skeleton my_project_name`
+using following command : `composer create-project symfony/website-skeleton my_project_name`
 
 ## Install Umbrella
 

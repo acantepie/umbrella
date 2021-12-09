@@ -2,6 +2,8 @@ const path = require('path');
 const Encore = require('@symfony/webpack-encore');
 
 Encore
+    .autoProvidejQuery()
+
     .setOutputPath('./Bundle/AdminBundle/public/')
     .setPublicPath('/bundles/umbrellaadmin/')
     .setManifestKeyPrefix('bundles/umbrellaadmin')
@@ -18,23 +20,6 @@ Encore
 
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
-
-    .configureBabel((config) => {
-        config.plugins.push('@babel/plugin-proposal-class-properties');
-    })
-
-    // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
-    })
-
-    .copyFiles([
-        {
-            from: './Bundle/AdminBundle/assets/images',
-            to: 'images/[path][name].[ext]'
-        }
-    ])
 
     // add hash after file name
     .configureFilenames({

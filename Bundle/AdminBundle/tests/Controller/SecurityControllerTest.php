@@ -27,7 +27,7 @@ class SecurityControllerTest extends AppTestCase
         $client->followRedirect();
 
 
-        // am i logged
+        // am i logged ?
         $tkStorage = $this->getContainer()->get('security.untracked_token_storage');
 
         $this->assertNotNull($tkStorage->getToken());
@@ -37,7 +37,7 @@ class SecurityControllerTest extends AppTestCase
         $u = $tkStorage->getToken()->getUser();
 
         // I see my name on page ?
-        $this->assertSelectorTextContains('.account-user-name', $u->getFullName());
+        $this->assertSelectorTextContains('div', $u->getFullName());
     }
 
     public function testInvalidCredentialsLogin()

@@ -27,10 +27,8 @@ class BaseAdminMenu extends MenuType
         return [
             'logo_route' => null,
             'logo' => $this->configuration->appLogo(),
-            'logo_sm' => $this->configuration->appLogo(),
             'title' => $this->configuration->appName(),
-            'title_sm' => substr($this->configuration->appName(), 0, 2),
-            'searchable' => true
+            'searchable' => false
         ];
     }
 

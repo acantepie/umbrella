@@ -4,26 +4,32 @@ export default function configureHandler(handler) {
     });
 
     handler.registerAction('show_modal', (params) => {
-        let $modal = $(params.value);
-        let $opened_modal = $('.js-umbrella-modal.show');
 
-        if ($opened_modal.length) {
-            $opened_modal.html($modal.find('.modal-dialog'));
+        // create modal template
+        const template = document.createElement('div')
+        template.innerHTML = params.value.trim()
 
-        } else {
-            $modal.on('hidden.bs.modal', (e) => {
-                $(e.target).data('bs.modal', null);
-                $(e.target).remove();
-            });
+        let modalElement = document.getElementById('umbrella-modal')
 
-            $modal.modal('show');
+        if (modalElement) { // if modal exist => updated if from template
+            modalElement.innerHTML = template.firstChild.innerHTML
+
+        } else { // if modal not exist => create it
+            modalElement = template.firstChild
+            modalElement.addEventListener('hidden.bs.modal', modalElement.remove)
+            document.body.appendChild(modalElement)
+            const modal = new bootstrap.Modal(modalElement)
+            modal.show()
         }
     });
 
     handler.registerAction('close_modal', (params) => {
-        let $opened_modal = $('.js-umbrella-modal.show');
-        if ($opened_modal.length) {
-            $opened_modal.modal('hide');
+        const modalElement = document.getElementById('umbrella-modal')
+        if (modalElement) {
+            const modal = bootstrap.Modal.getInstance(modalElement)
+            if (modal) {
+                modal.hide()
+            }
         }
     });
 
@@ -40,12 +46,15 @@ export default function configureHandler(handler) {
     });
 
     handler.registerAction('update', (params) => {
-        const $view = $(params.selector);
-        $view.html(params.value);
+        document.querySelectorAll(params.selector).forEach((e) => {
+            e.innerHTML = params.value.trim()
+        })
     });
 
     handler.registerAction('remove', (params) => {
-        $(params.selector).remove();
+        document.querySelectorAll(params.selector).forEach((e) => {
+            e.remove()
+        })
     });
 
     handler.registerAction('call_webcomponent', (params) => {

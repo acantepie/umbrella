@@ -82,7 +82,7 @@ class EntityAdapter extends DataTableAdapter implements DoctrineAdapterInterface
             ->from($options['class'], $options['query_alias']);
 
         if (is_callable($options['query'])) {
-            call_user_func($options['query'], $qb, $formData);
+            $options['query']($qb, $formData);
         }
 
         // pagination

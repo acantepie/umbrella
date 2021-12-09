@@ -1,92 +1,71 @@
-// 
-// dropdown.scss
-//
+.navbar-nav .dropdown-menu {
+  box-shadow: $box-shadow;
+}
+
+.dropdown .dropdown-menu.show {
+  animation-name: dropdownAnimation;
+  animation-duration: .25s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes dropdownAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.dropdown-toggle:after {
+  border: solid;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 2px;
+  transform: rotate(45deg);
+}
+
+.dropdown-item {
+  transition: $transition-appearance-fast;
+}
 
 .dropdown-menu {
-    box-shadow: $box-shadow;
+  top: auto;
 }
 
-.dropdown-menu-animated {
-    &.dropdown-menu-end[style] {
-        left: auto!important;
-        right: 0!important;
-    }
+.dropdown-menu-lg {
+  min-width: $dropdown-min-width*2;
 }
 
-// Dropdown Animated (Custom)
-.dropdown-menu-animated {
-    animation-name: DropDownSlide;
-    animation-duration: .3s;
-    animation-fill-mode: both;
-    position: absolute;
-    margin: 0;
-    z-index: 1000;
-    
-    &.show {
-        top: 100%!important;
-    }
+.dropdown .list-group .list-group-item {
+  border-width: 0;
+  border-bottom-width: 1px;
+  margin-bottom: 0;
 
-    i {
-        display: inline-block;
-    }
-    
-    &.dropdown-menu[data-popper-placement^=right],
-    &.dropdown-menu[data-popper-placement^=top],
-    &.dropdown-menu[data-popper-placement^=left]{
-        top: auto !important;
-        animation: none !important;
-    }
+  &:first-child,
+  &:last-child {
+    border-radius: 0;
+  }
+
+  &:hover {
+    background: $gray-100;
+  }
 }
 
-@keyframes DropDownSlide {
-    100% {
-        transform: translateY(0)
-    }
-    0% {
-        transform: translateY(10px)
-    }
+.dropdown-menu-header {
+  padding: $spacer*0.75;
+  text-align: center;
+  font-weight: $font-weight-bold;
+  border-bottom: 1px solid $gray-300;
 }
 
-
-// Dropdown Large (Custom)
-@media (min-width: 600px) {
-    .dropdown-lg {
-        width: $dropdown-lg-width;
-    }
-}
-
-// Dropdown with Icons
-.dropdown-icon-item {
-    display: block;
-    border-radius: 3px;
-    line-height: 34px;
-    text-align: center;
-    padding: 15px 0 9px;
-    display: block;
-    border: 1px solid transparent;
-    color: $dropdown-link-color;
-
-    img {
-        height: 24px;
-    }
-
-    span {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    &:hover {
-        background-color: $dropdown-link-hover-bg;
-        color: $dropdown-link-hover-color;
-    }
-}
-
-
-// Dropdown arrow hide
-.arrow-none {
-    &:after {
-        display: none;
-    }
+.dropdown-menu-footer {
+  padding: $spacer*0.5;
+  text-align: center;
+  display: block;
+  font-size: $font-size-sm;
 }

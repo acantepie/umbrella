@@ -13,6 +13,7 @@ on:
 
 jobs:
   phpunit:
+    if: ${{ false }} # Disabled this job
     name: "phpunit - php ${{ matrix.php-version }} / symfony ${{ matrix.symfony-version }}"
     runs-on: ubuntu-20.04
     continue-on-error: false
@@ -20,7 +21,7 @@ jobs:
     strategy:
       matrix:
         php-version: ['7.4', '8.0']
-        symfony-version: ['5.4']
+        symfony-version: ['6.0']
       fail-fast: false
 
     steps:

@@ -18,6 +18,7 @@ use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\DataTable\Twig\DataTableExtension;
 use Umbrella\CoreBundle\Form\Extension\ChoiceTypeExtension;
 use Umbrella\CoreBundle\Form\Extension\FormTypeExtension;
+use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
 use Umbrella\CoreBundle\JsResponse\JsResponseViewListener;
 use Umbrella\CoreBundle\Menu\MenuRegistry;
@@ -28,8 +29,6 @@ use Umbrella\CoreBundle\Menu\Visitor\MenuVisibilityVisitor;
 use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
 use Umbrella\CoreBundle\Search\EntityIndexer;
 use Umbrella\CoreBundle\Search\SearchableEntitySubscriber;
-use Umbrella\CoreBundle\Tabs\TabsExtension;
-use Umbrella\CoreBundle\Tabs\TabsHelper;
 use Umbrella\CoreBundle\Twig\CoreExtension;
 use Umbrella\CoreBundle\Widget\Twig\WidgetExtension;
 use Umbrella\CoreBundle\Widget\WidgetFactory;
@@ -98,12 +97,6 @@ return static function (ContainerConfigurator $configurator): void {
     $services->set(CkeditorExtension::class)
         ->tag('twig.extension');
 
-    // -- Tabs -- //
-    $services->set(TabsHelper::class)
-        ->bind('$configPath', __DIR__ . '/../src/Tabs/config.yaml');
-    $services->set(TabsExtension::class)
-        ->tag('twig.extension');
-
     // -- Search -- //
     $services->set(IndexEntityCommand::class)
         ->tag('console.command');
@@ -118,7 +111,9 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('twig.extension');
 
     // -- Form -- //
+    $services->set(UmbrellaSelectConfigurator::class);
     $services->load('Umbrella\\CoreBundle\\Form\\', '../src/Form/*')
+        ->exclude('../src/Form/UmbrellaSelect')
         ->tag('form.type');
 
     $services->set(FormTypeExtension::class)

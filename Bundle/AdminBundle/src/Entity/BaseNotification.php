@@ -20,7 +20,7 @@ class BaseNotification
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    public ?string $bgIcon = null;
+    public ?string $iconColor = null;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -53,7 +53,7 @@ class BaseNotification
     public function waitingIcon(): self
     {
         $this->icon = 'mdi mdi-clock-outline';
-        $this->bgIcon = 'bg-secondary';
+        $this->iconColor = 'secondary';
 
         return $this;
     }
@@ -61,7 +61,7 @@ class BaseNotification
     public function runningIcon(): self
     {
         $this->icon = 'mdi mdi-spin mdi-loading';
-        $this->bgIcon = 'bg-primary';
+        $this->iconColor = 'primary';
 
         return $this;
     }
@@ -69,15 +69,15 @@ class BaseNotification
     public function successIcon(): self
     {
         $this->icon = 'mdi mdi-check';
-        $this->bgIcon = 'bg-success';
+        $this->iconColor = 'success';
 
         return $this;
     }
 
     public function errorIcon(): self
     {
-        $this->icon = 'mdi mdi-exclamation-thick';
-        $this->bgIcon = 'bg-danger';
+        $this->icon = 'mdi mdi-alert-circle-outline';
+        $this->iconColor = 'danger';
 
         return $this;
     }

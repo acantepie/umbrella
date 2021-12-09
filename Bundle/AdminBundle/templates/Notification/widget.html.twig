@@ -1,30 +1,43 @@
-<li class="dropdown notification-list" is="umbrella-notification"
-    data-poll-interval="{{ uac.notificationPollInterval() }}"
+{#<div class="nav-item notification-widget dropdown d-none d-md-flex me-3" is="umbrella-notification"#}
+{#    data-poll-interval="{{ admin.notificationPollInterval() }}"#}
+{#    data-refresh-url="{{ path('umbrella_admin_notification_list') }}">#}
+
+{#    <a href="#notifications" class="" data-bs-toggle="dropdown">#}
+{#        <i class="mdi mdi-bell-outline"></i>#}
+{#        <span class="badge bg-red"></span>#}
+{#    </a>#}
+
+{#    <div class="notification-dropdown dropdown-menu dropdown-menu-end dropdown-menu-card" id="notifications">#}
+{#        <div class="card">#}
+{#            <div class="card-header">#}
+{#                <h5 class="card-title">{{ 'label.notifications' | trans({}, 'UmbrellaAdmin') }}</h5>#}
+{#            </div>#}
+{#            <div class="list-group list-group-flush notification-items">#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+<li class="nav-item dropdown"
+    is="umbrella-notification"
+    data-poll-interval="{{ admin.notificationPollInterval() }}"
     data-refresh-url="{{ path('umbrella_admin_notification_list') }}">
 
-    <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-        <i class="mdi mdi-bell-outline noti-icon"></i>
-        <span class="noti-icon-badge"></span>
+    <a class="nav-icon dropdown-toggle" href="#" data-bs-toggle="dropdown">
+        <div class="position-relative">
+            <i class="mdi mdi-bell-outline"></i>
+{#            <span class="indicator">4</span>#}
+        </div>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
-
-        <div class="dropdown-item noti-title">
-            <h5 class="m-0">
-{#                <span class="float-end">#}
-{#                    <a href="javascript: void(0);" class="text-dark">#}
-{#                        <small>Clear All</small>#}
-{#                    </a>#}
-{#                </span>#}
-                {{ 'label.notifications' | trans({}, 'UmbrellaAdmin') }}
-            </h5>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0">
+        <div class="dropdown-menu-header">
+            {{ 'label.notifications' | trans({}, 'UmbrellaAdmin') }}
         </div>
-
-        <div data-simplebar class="js-notification-list" style="max-height: 350px">
+        <div class="list-group notification-items">
         </div>
-
-{#        <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">#}
-{#            View All#}
-{#        </a>#}
+{#        <div class="dropdown-menu-footer">#}
+{#            <a href="#" class="text-muted">Show all notifications</a>#}
+{#        </div>#}
     </div>
 </li>

@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>{{ uac.appName() }}</title>
+    <title>{{ admin.appName() }}</title>
 
     {% block baseHref %}
         {% if app.request is not null %}
@@ -314,10 +314,10 @@
                                 <table border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td class="content-block">
-                                            {% if null != uac.appLogo() %}
-                                                <img class="logo-img" src="{{ asset(uac.appLogo()) }}" width="50" style="max-width: 50px">
+                                            {% if null != admin.appLogo() %}
+                                                <img class="logo-img" src="{{ asset(admin.appLogo()) }}" width="50" style="max-width: 50px">
                                             {% endif %}
-                                            <h1>{{ uac.appName() }}</h1>
+                                            <h1>{{ admin.appName() }}</h1>
                                         </td>
                                     </tr>
                                 </table>
@@ -347,9 +347,9 @@
                                     <tr>
                                         <td class="content-block">
                                             {% if app.request is not null %}
-                                                <span class="apple-link">{{ uac.appName() ~ ' - ' ~  app.request.host }}</span>
+                                                <span class="apple-link">{{ admin.appName() ~ ' - ' ~  app.request.host }}</span>
                                             {% else %}
-                                                <span class="apple-link">{{ uac.appName() }}</span>
+                                                <span class="apple-link">{{ admin.appName() }}</span>
                                             {% endif %}
                                         </td>
                                     </tr>

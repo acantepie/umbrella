@@ -175,6 +175,11 @@ class MenuItem implements \Countable, \IteratorAggregate
         return $this->badgeClass;
     }
 
+    public function hasLink(): bool
+    {
+        return !empty($this->route);
+    }
+
     public function getRoute(): ?string
     {
         return $this->route;

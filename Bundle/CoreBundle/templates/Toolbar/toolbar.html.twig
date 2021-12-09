@@ -1,4 +1,11 @@
-<umbrella-toolbar theme="default">
+{% macro attributes(attr) -%}
+    {%- for attrname, attrvalue in attr -%}
+        {{- " " -}}
+        {{- attrname }}="{{ attrvalue }}"
+    {%- endfor -%}
+{%- endmacro -%}
+
+<umbrella-toolbar {{ _self.attributes(attr) }}>
     {{ umbrella_form_theme(form) }}
     <form class="toolbar-item-container">
         {%- for child in form -%}

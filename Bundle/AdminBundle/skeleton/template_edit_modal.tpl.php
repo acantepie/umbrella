@@ -2,5 +2,5 @@
 {% extends "@UmbrellaCore/Modal/form.html.twig" %}
 
 {% block modal_title %}
-    <h4 class="modal-title">{{ entity.id ? ('Edit' | trans) : ('Add' | trans) }}</h4>
+    <h5 class="modal-title">{{ entity.id ? ('Edit' | trans) : ('Add' | trans) }}</h5>
 {% endblock %}

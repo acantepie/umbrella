@@ -19,8 +19,11 @@ class DataTableType
             ->setRequired('id')
             ->setAllowedTypes('id', 'string')
 
-            ->setDefined('class')
-            ->setAllowedTypes('class', 'string')
+            ->setDefault('class', null)
+            ->setAllowedTypes('class', ['null', 'string'])
+
+            ->setDefault('table_class', null)
+            ->setAllowedTypes('table_class', ['null', 'string'])
 
             ->setDefault('paging', function (Options $options) {
                 return !$options['tree'];
@@ -67,6 +70,9 @@ class DataTableType
             ->setAllowedTypes('rowreorder_url', ['string', 'null']);
 
         $resolver
+            ->setDefault('toolbar_class', null)
+            ->setAllowedTypes('toolbar_class', ['string', 'null'])
+
             ->setDefault('toolbar_form_name', function (Options $options) {
                 return sprintf('%s_tbf', $options['id']);
             })

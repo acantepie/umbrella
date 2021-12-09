@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ app.request.locale }}">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="//unpkg.com/@ungap/custom-elements"></script>
 
         {% block title %}
-            <title>{{ uac.appName() }}</title>
+            <title>{{ admin.appName() }}</title>
         {% endblock %}
 
         {% block stylesheets %}
@@ -16,26 +18,25 @@
 
     </head>
 
-    <body data-leftbar-theme="dark" class="env-{{ app.environment }} {% block body_class %}{% endblock %}">
+    <body class="env-{{ app.environment }} {% block body_class %}{% endblock %}">
         {% block body %}
 
             <div class="wrapper">
                 {% block sidebar %}
-                    {{ menu_render(uac.menuName()) }}
+                    {{ menu_render(admin.menuName()) }}
                 {% endblock %}
 
-                <div class="content-page">
-                    <div class="content">
+                <div class="main">
+                    {% block topbar %}
+                        {% include "@UmbrellaAdmin/_topbar.html.twig" %}
+                    {% endblock %}
 
-                        {% block topbar %}
-                            {% include "@UmbrellaAdmin/_topbar.html.twig" %}
-                        {% endblock %}
-
-                        <div class="container-fluid mt-3">
+                    <main class="content">
+                        <div class="{{ admin.containerClass }}">
                             {% block content %}
                             {% endblock %}
                         </div>
-                    </div>
+                    </main>
                 </div>
             </div>
 
