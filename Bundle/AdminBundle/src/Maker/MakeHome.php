@@ -11,12 +11,11 @@ use Symfony\Bundle\MakerBundle\Str;
 use Symfony\Bundle\MakerBundle\Util\YamlSourceManipulator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 
 class MakeHome extends AbstractMaker
 {
-    private const UMBRELLA_ADMIN_CONFIG_KEY = 'umbrella_admin';
-
     private const NAME = 'make:admin:home';
     private const DESCRIPTION = 'Create admin home';
 
@@ -79,26 +78,26 @@ class MakeHome extends AbstractMaker
             $vars
         );
 
-        $this->updateMenuConfig($menu->getFullName());
-
         $generator->writeChanges();
+        $this->updateMenuConfig($io, $menu->getFullName());
         $this->writeSuccessMessage($io);
     }
 
-    private function updateMenuConfig(string $menuClass): void
+    private function updateMenuConfig(SymfonyStyle $io, string $menuClass): void
     {
         $configPath = 'config/packages/umbrella_admin.yaml';
 
         $configContent = $this->helper->fileExists($configPath)
             ? $this->helper->getFileContents($configPath)
-            : self::UMBRELLA_ADMIN_CONFIG_KEY . ':';
+            : 'umbrella_admin:';
 
         $manipulator = new YamlSourceManipulator($configContent);
         $data = $manipulator->getData();
-        $data[self::UMBRELLA_ADMIN_CONFIG_KEY]['app_name'] = 'Admin';
-        $data[self::UMBRELLA_ADMIN_CONFIG_KEY]['menu'] = $menuClass;
+        $data['umbrella_admin']['app_name'] = 'Admin';
+        $data['umbrella_admin']['menu'] = $menuClass;
         $manipulator->setData($data);
 
         $this->helper->writeFileContents($configPath, $manipulator->getContents());
+        $io->writeln(sprintf(' <fg=yellow>updated</>: %s', $configPath));
     }
 }

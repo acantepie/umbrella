@@ -36,9 +36,14 @@ class MakeHelper
     /**
      * Ask for entity class
      */
-    public function askEntityClass(ConsoleStyle $io): string
+    public function askEntityClass(ConsoleStyle $io, ?string $default = null): string
     {
-        $question = new Question(sprintf('Class name of the entity to create (e.g. <fg=yellow>%s</>)', Str::asClassName(Str::getRandomTerm())));
+        if (null === $default) {
+            $question = new Question(sprintf('Class name of the entity to create (e.g. <fg=yellow>%s</>)', Str::asClassName(Str::getRandomTerm())));
+        } else {
+            $question = new Question('Class name of the entity to create', $default);
+        }
+
         $question->setAutocompleterValues($this->getEntitiesForAutocomplete());
         $question->setValidator([MakeValidator::class, 'notBlank']);
 
