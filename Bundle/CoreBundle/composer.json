@@ -17,8 +17,8 @@
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
-        "doctrine/doctrine-bundle": "^2.4",
-        "doctrine/orm": "^2.8",
+        "doctrine/doctrine-bundle": "^2.5",
+        "doctrine/orm": "^2.10",
         "symfony/asset": "^5.4|^6.0",
         "symfony/config": "^5.4|^6.0",
         "symfony/console": "^5.4|^6.0",
