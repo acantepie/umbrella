@@ -5,9 +5,9 @@
     },
     "require-dev": {
         "ext-json": "*",
-        "doctrine/doctrine-bundle": "^2.4",
+        "doctrine/doctrine-bundle": "^2.5",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "doctrine/orm": "^2.8",
+        "doctrine/orm": "^2.10",
         "friendsofphp/php-cs-fixer": "^3.0",
         "knplabs/knp-time-bundle": "^1.17",
         "phpstan/phpstan": "^1.1",
