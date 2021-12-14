@@ -9,7 +9,6 @@ use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableBuilerHelper;
 use Umbrella\CoreBundle\Tests\Functional\AppTestCase;
-use Umbrella\CoreBundle\Utils\HtmlUtils;
 
 class ColumnTest extends AppTestCase
 {
@@ -34,7 +33,7 @@ class ColumnTest extends AppTestCase
                 return $obj->foo;
             }
         ]);
-        $this->assertEquals(HtmlUtils::escape($obj->foo), $c->render($obj));
+        $this->assertEquals(\htmlspecialchars($obj->foo), $c->render($obj));
 
 
         // test render_html option

@@ -51,7 +51,7 @@ class UserTableType extends DataTableType
                 return sprintf(
                     '<a href data-xhr="%s">%s</a>',
                     $this->router->generate('umbrella_admin_user_edit', ['id' => $user->id]),
-                    $user->getFullName()
+                    \htmlspecialchars($user->getFullName())
                 );
             },
             'order' => 'ASC',

@@ -3,7 +3,6 @@
 namespace Umbrella\CoreBundle\DataTable\Column;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\CoreBundle\Utils\HtmlUtils;
 
 class DetailsHandleColumnType extends ColumnType
 {
@@ -20,9 +19,9 @@ class DetailsHandleColumnType extends ColumnType
             : $options['expanded'];
 
         return sprintf(
-            '<a href data-tag="dt:details" data-init-state="%s" row-details="%s" class="row-details-handle"><i class="mdi"></i></a>',
+            '<a href data-tag="dt:details" data-init-state="%s" class="row-details-handle"><i class="mdi"></i> <template>%s</template></a>',
             $expanded ? 'expanded' : 'collapsed',
-            HtmlUtils::escape($details, 'html_attr')
+            $details
         );
     }
 

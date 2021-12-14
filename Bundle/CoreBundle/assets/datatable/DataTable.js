@@ -405,7 +405,7 @@ export default class DataTable extends HTMLElement {
     }
 
     toggleRowDetails($e) {
-        const details = $e.attr('row-details');
+        const details = $e.find('template').html();
 
         if (!details) {
             return;

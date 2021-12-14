@@ -3,7 +3,6 @@
 namespace Umbrella\CoreBundle\DataTable\DTO;
 
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
-use Umbrella\CoreBundle\Utils\HtmlUtils;
 
 class Column
 {
@@ -53,6 +52,6 @@ class Column
             $value = $this->type->render($rowData, $this->options);
         }
 
-        return $this->options['is_safe_html'] ? $value : HtmlUtils::escape($value);
+        return $this->options['is_safe_html'] ? $value : \htmlspecialchars($value);
     }
 }
