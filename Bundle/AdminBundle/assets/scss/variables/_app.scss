@@ -312,8 +312,11 @@ $badge-padding-x: .45em !default;
 $main-box-shadow: inset .75rem 0px 1.5rem 0px rgba($black, 0.075);
 
 // Content
-$content-padding-desktop: 3rem 3rem 1.5rem !default;
-$content-padding-mobile: 1.5rem 1.5rem .75rem !default;
+$content-padding-desktop: 1rem 1rem .5rem !default;
+$content-padding-mobile: .5rem .5rem .25rem !default;
+
+//$content-padding-desktop: 3rem 3rem 1.5rem !default;
+//$content-padding-mobile: 1.5rem 1.5rem .75rem !default;
 
 // Datetimepicker
 $bs-datetimepicker-active-bg: $primary !default;

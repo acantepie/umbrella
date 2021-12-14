@@ -30,6 +30,7 @@ customElements.define('umbrella-datatable', DataTable);
 
 // --- Forms
 import UmbrellaSelect from './form/UmbrellaSelect';
+import UmbrellaTag from './form/UmbrellaTag';
 import UmbrellaCollection from './form/UmbrellaCollection';
 import DatePicker from './form/DatePicker';
 import PasswordTogglable from './form/PasswordTogglable';
@@ -37,6 +38,7 @@ import PasswordTogglable from './form/PasswordTogglable';
 customElements.define('umbrella-datepicker', DatePicker, {extends: 'input'});
 customElements.define('umbrella-collection', UmbrellaCollection);
 customElements.define('umbrella-select', UmbrellaSelect, {extends: 'select'});
+customElements.define('umbrella-tag', UmbrellaTag, {extends: 'select'});
 customElements.define('password-togglable', PasswordTogglable, {extends: 'div'});
 
 // --- JsResponseHandler
