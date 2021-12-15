@@ -40,6 +40,7 @@ The super class `BaseController` provides some helper to use Umbrella Components
 
 ### Twig view
 ```twig
+{# templates/admin/home/index.html.twig #}
 {% extends "@UmbrellaAdmin/layout.html.twig" %}
 ```
 All your admin view must extend `@UmbrellaAdmin/layout.html.twig`.
