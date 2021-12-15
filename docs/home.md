@@ -1,4 +1,4 @@
-# Create your first admin view
+# Create your first admin page
 
 Run the following command to generate the basic structure :
 ```bash
