@@ -1,7 +1,7 @@
 # Umbrella documentation
 
 - [Getting started](getting_started.md)
-  - [Create Admin page](home.md)
+  - [Create your first page](home.md)
   - [Manage admin user with doctrine](manage_user_with_doctrine.md)
   - [Create your first CRUD](crud.md)
 - [Components](umbrella_components.md)
