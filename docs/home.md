@@ -1,12 +1,12 @@
-# Create an admin home view
+# Create your first admin view
 
+Run the following command to generate the basic structure :
 ```bash
 php bin/console make:admin:home
 ```
+Files generated are :
 
-This command will generate following files :
-
-### Symfony Controller 
+#### Controller 
 ```php
 // src/Controller/Admin/HomeController.php
 <?php
@@ -38,14 +38,14 @@ There's no need to define an explicit name for this route. Symfony autogenerates
 The super class `BaseController` provides some helper to use Umbrella Components (`DataTable`, `JsResponse` ...), this is not mandatory to extend it.
 
 
-### Twig view
+#### Twig template
 ```twig
 {# templates/admin/home/index.html.twig #}
 {% extends "@UmbrellaAdmin/layout.html.twig" %}
 ```
 All your admin view must extend `@UmbrellaAdmin/layout.html.twig`.
 
-### Admin Menu 
+#### Admin Menu 
 ```php
 // src/Menu/AdminMenu.php
 <?php
