@@ -41,7 +41,7 @@
         "symfony/maker-bundle": "^1.21"
     },
     "conflict": {
-        "umbrella2/corebundle": "<4.0"
+        "umbrella2/corebundle": "<4.3"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
