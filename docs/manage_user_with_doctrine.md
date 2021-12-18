@@ -46,7 +46,7 @@ admin_userprofile_:
 Add entry on menu :
 ```php
 // src/Menu/AdminMenu.php
-public function buildMenu(MenuBuilder $builder)
+public function buildMenu(MenuBuilder $builder, array $options)
 {
     $builder->root()
         ->add('Users')
