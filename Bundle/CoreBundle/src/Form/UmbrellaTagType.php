@@ -12,7 +12,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UmbrellaTagType extends AbstractType implements DataTransformerInterface
 {
-
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['attr']['is'] = 'umbrella-tag';

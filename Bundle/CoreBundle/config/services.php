@@ -22,7 +22,7 @@ use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
 use Umbrella\CoreBundle\JsResponse\JsResponseViewListener;
 use Umbrella\CoreBundle\Menu\MenuRegistry;
-use Umbrella\CoreBundle\Menu\MenuResolver;
+use Umbrella\CoreBundle\Menu\MenuProvider;
 use Umbrella\CoreBundle\Menu\Twig\MenuExtension;
 use Umbrella\CoreBundle\Menu\Visitor\MenuCurrentVisitor;
 use Umbrella\CoreBundle\Menu\Visitor\MenuVisibilityVisitor;
@@ -46,7 +46,7 @@ return static function (ContainerConfigurator $configurator): void {
 
     // -- Menu -- //
     $services->set(MenuRegistry::class);
-    $services->set(MenuResolver::class);
+    $services->set(MenuProvider::class);
     $services->set(MenuVisibilityVisitor::class)
         ->tag('umbrella.menu.visitor');
     $services->set(MenuCurrentVisitor::class)

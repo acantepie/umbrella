@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\AdminBundle\Menu;
+namespace Umbrella\CoreBundle\Menu\DTO;
 
 class BreadcrumbItem
 {

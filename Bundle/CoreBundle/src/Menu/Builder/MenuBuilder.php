@@ -15,9 +15,9 @@ class MenuBuilder
     /**
      * MenuBuilder constructor.
      */
-    public function __construct()
+    public function __construct(string $name)
     {
-        $this->menu = new Menu();
+        $this->menu = new Menu($name);
         $this->rootBuilder = new MenuItemBuilder($this->menu->getRoot());
     }
 

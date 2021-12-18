@@ -11,7 +11,7 @@ class MenuDTOTest extends TestCase
 
     public function testChildManipulation()
     {
-        $menu = new Menu();
+        $menu = new Menu('test');
 
         // add
         $item = new MenuItem($menu, 'foo');
@@ -33,7 +33,7 @@ class MenuDTOTest extends TestCase
 
     public function testMatchingRoute()
     {
-        $menu = new Menu();
+        $menu = new Menu('test');
 
         $item = new MenuItem($menu, 'foo');
         $this->assertEqualsCanonicalizing([], \array_keys($item->getMatchingRoutes()));

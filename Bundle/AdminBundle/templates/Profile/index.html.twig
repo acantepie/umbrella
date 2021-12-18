@@ -2,9 +2,14 @@
 
 {% trans_default_domain 'UmbrellaAdmin' %}
 
-{% do admin_breadcrumb(false)
-    .setIcon('uil-user')
-    .add('label.my_account' | trans({}, 'UmbrellaAdmin')) %}
+{% block breadcrumb %}
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-icon">
+            <i class="uil-layers me-2"></i>
+        </li>
+        <li class="breadcrumb-item active">{{ 'label.my_account' | trans  }}</li>
+    </ol>
+{% endblock %}
 
 {% block content %}
     {{ umbrella_form_theme(settings_form) }}

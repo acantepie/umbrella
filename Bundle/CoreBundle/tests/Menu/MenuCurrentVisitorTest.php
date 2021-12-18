@@ -16,7 +16,7 @@ class MenuCurrentVisitorTest extends TestCase
 
     protected function setUp(): void
     {
-        $menu = new Menu();
+        $menu = new Menu('test');
 
         $one = new MenuItem($menu, 'one');
         $one->setRoute('_one_', ['id' => 1, 'q' => 'one']);

@@ -1,7 +1,11 @@
 {# Instead of creating template for edition, you can render "@UmbrellaAdmin/edit.html.twig" on controller #}
 {% extends "@UmbrellaAdmin/layout.html.twig" %}
 
-{% do admin_breadcrumb().add(entity.id ? ('Edit' | trans) : ('Add' | trans)) %}
+{% block breadcrumb %}
+    {% set admin_breadcrumb = get_breadcrumb(admin_menu, {}, (entity.id ? 'Edit' : 'Add') | trans) %}
+    {{ render_breadcrumb(admin_breadcrumb) }}
+{% endblock %}
+
 
 {% block content %}
     <div class="card">

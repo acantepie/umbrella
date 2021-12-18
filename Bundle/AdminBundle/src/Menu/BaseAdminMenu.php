@@ -5,6 +5,7 @@ namespace Umbrella\AdminBundle\Menu;
 use Twig\Environment;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Menu\Builder\MenuBuilder;
+use Umbrella\CoreBundle\Menu\DTO\Breadcrumb;
 use Umbrella\CoreBundle\Menu\DTO\Menu;
 use Umbrella\CoreBundle\Menu\MenuType;
 
@@ -22,20 +23,10 @@ class BaseAdminMenu extends MenuType
         $this->configuration = $configuration;
     }
 
-    public function defaultOptions(): array
-    {
-        return [
-            'logo_route' => null,
-            'logo' => $this->configuration->appLogo(),
-            'title' => $this->configuration->appName(),
-            'searchable' => false
-        ];
-    }
-
     /**
      * {@inheritDoc}
      */
-    public function buildMenu(MenuBuilder $builder)
+    public function buildMenu(MenuBuilder $builder, array $options)
     {
     }
 
@@ -44,9 +35,26 @@ class BaseAdminMenu extends MenuType
      */
     public function renderMenu(Menu $menu, array $options): string
     {
+        $options = array_merge([
+            'logo_route' => null,
+            'logo' => $this->configuration->appLogo(),
+            'title' => $this->configuration->appName(),
+            'searchable' => false
+        ], $options);
+
         return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
             'menu' => $menu,
-            'options' => array_merge($this->defaultOptions(), $options),
+            'options' => $options
+        ]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function renderBreadcrumb(Breadcrumb $breadcrumb, array $options): string
+    {
+        return $this->twig->render('@UmbrellaAdmin/Menu/breadcrumb.html.twig', [
+            'breadcrumb' => $breadcrumb
         ]);
     }
 }

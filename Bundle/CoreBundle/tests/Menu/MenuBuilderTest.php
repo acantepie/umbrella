@@ -10,7 +10,7 @@ class MenuBuilderTest extends TestCase
 
     public function testTreeBuild()
     {
-        $builder = new MenuBuilder();
+        $builder = new MenuBuilder('test');
 
         $builder->root()
             ->add('foo')
@@ -38,11 +38,11 @@ class MenuBuilderTest extends TestCase
 
     public function testCurrent()
     {
-        $builder = new MenuBuilder();
+        $builder = new MenuBuilder('test');
         $m = $builder->getMenu();
         $this->assertNull($m->getCurrent());
 
-        $builder = new MenuBuilder();
+        $builder = new MenuBuilder('test');
         $builder->root()
             ->add('foo')
             ->current(true);
@@ -51,7 +51,7 @@ class MenuBuilderTest extends TestCase
 
 
         // Last item setted current is the current one
-        $builder = new MenuBuilder();
+        $builder = new MenuBuilder('test');
         $builder->root()
             ->add('foo')
                 ->current(true)
