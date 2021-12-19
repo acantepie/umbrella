@@ -63,12 +63,12 @@ class UmbrellaTagType extends AbstractType implements DataTransformerInterface
             ->setAllowedValues('multiple', true);
     }
 
-    public function transform($value)
+    public function transform($value): array
     {
         return \is_array($value) ? $value : [];
     }
 
-    public function reverseTransform($value)
+    public function reverseTransform($value): array
     {
         return \is_array($value) ? $value : [];
     }
