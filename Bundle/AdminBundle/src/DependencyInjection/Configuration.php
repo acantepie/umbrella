@@ -10,6 +10,8 @@ use Umbrella\AdminBundle\DataTable\UserTableType;
 use Umbrella\AdminBundle\Form\ProfileType;
 use Umbrella\AdminBundle\Form\UserType;
 use Umbrella\AdminBundle\Menu\BaseAdminMenu;
+use Umbrella\AdminBundle\Services\UserMailer;
+use Umbrella\AdminBundle\Services\UserManager;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -60,6 +62,14 @@ class Configuration implements ConfigurationInterface
         $u = $rootNode->children()
             ->arrayNode('user')->addDefaultsIfNotSet()->canBeEnabled()
             ->children();
+
+        $u->scalarNode('manager')
+            ->info('The class name of UserManager service.')
+            ->defaultValue(UserManager::class);
+
+        $u->scalarNode('mailer')
+            ->info('The class name of UserMailer service.')
+            ->defaultValue(UserMailer::class);
 
         $u->scalarNode('class')
             ->info('Entity class of Admin user.')

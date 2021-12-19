@@ -1,6 +1,21 @@
 CHANGELOG
 =========
 
+4.x
+---
+ * Add alias `UserMailerInterface` and `UserManagerInterface`  to allowing services `UserMailer` and `UserManager`to be overriden.
+
+4.3
+---
+* Rework `Menu` component to use context options on build and render.
+
+4.2
+---
+* Remove `HTMLUtils`.
+
+4.1
+---
+
 4.0
 ---
 

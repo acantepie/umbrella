@@ -7,8 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Form\UserPasswordConfirmType;
-use Umbrella\AdminBundle\Services\UserMailer;
-use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\Services\UserMailerInterface;
+use Umbrella\AdminBundle\Services\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Controller\BaseController;
 
@@ -20,13 +20,13 @@ class SecurityController extends BaseController
     public const LOGIN_ROUTE = 'umbrella_admin_login';
     public const LOGOUT_ROUTE = 'umbrella_admin_logout';
 
-    protected UserManager $userManager;
+    protected UserManagerInterface $userManager;
     protected UmbrellaAdminConfiguration $config;
 
     /**
      * SecurityController constructor.
      */
-    public function __construct(UserManager $userManager, UmbrellaAdminConfiguration $config)
+    public function __construct(UserManagerInterface $userManager, UmbrellaAdminConfiguration $config)
     {
         $this->userManager = $userManager;
         $this->config = $config;
@@ -35,7 +35,7 @@ class SecurityController extends BaseController
     /**
      * @Route("/login", name="umbrella_admin_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils, Request $request)
+    public function login(AuthenticationUtils $authenticationUtils)
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -60,15 +60,16 @@ class SecurityController extends BaseController
     /**
      * @Route("/password_request")
      */
-    public function passwordRequest(UserMailer $userMailer, Request $request)
+    public function passwordRequest(UserMailerInterface $userMailer, Request $request)
     {
         // form submitted
         if ($request->isMethod('POST')) {
             $email = (string) $request->request->get('email');
-            $user = $this->userManager->findUserByEmail($email);
+            $user = $this->userManager->findOneByEmail($email);
 
             if (null !== $user) {
-                $user->setConfirmationToken(rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '='));
+                $user->generateConfirmationToken();
+                $user->passwordRequestedAt = new \DateTime('NOW');
                 $this->userManager->update($user);
                 $userMailer->sendPasswordRequest($user);
             }
@@ -98,7 +99,7 @@ class SecurityController extends BaseController
      */
     public function passwordReset(Request $request, string $token)
     {
-        $user = $this->userManager->findUserByConfirmationToken($token);
+        $user = $this->userManager->findOneByConfirmationToken($token);
 
         if (null === $user || !$user->isPasswordRequestNonExpired($this->config->userPasswordRequestTtl())) {
             return $this->render('@UmbrellaAdmin/Security/password_reset_error.html.twig');

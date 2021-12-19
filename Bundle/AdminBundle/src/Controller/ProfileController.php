@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
-use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\Services\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Controller\BaseController;
 
@@ -18,13 +18,13 @@ class ProfileController extends BaseController
 {
     public const PROFILE_ROUTE = 'umbrella_admin_profile_index';
 
-    protected UserManager $userManager;
+    protected UserManagerInterface $userManager;
     protected UmbrellaAdminConfiguration $config;
 
     /**
      * ProfileController constructor.
      */
-    public function __construct(UserManager $userManager, UmbrellaAdminConfiguration $config)
+    public function __construct(UserManagerInterface $userManager, UmbrellaAdminConfiguration $config)
     {
         $this->userManager = $userManager;
         $this->config = $config;

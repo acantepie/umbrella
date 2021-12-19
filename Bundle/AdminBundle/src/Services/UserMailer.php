@@ -12,7 +12,7 @@ use Twig\Environment;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
-class UserMailer
+class UserMailer implements UserMailerInterface
 {
     protected Environment $twig;
     protected RouterInterface $router;
@@ -41,7 +41,7 @@ class UserMailer
             ->to($user->email)
             ->html($this->twig->render('@UmbrellaAdmin/Mail/password_request.html.twig', [
                 'user' => $user,
-                'reset_url' => $this->router->generate('umbrella_admin_security_passwordreset', ['token' => $user->getConfirmationToken()], UrlGeneratorInterface::ABSOLUTE_URL),
+                'reset_url' => $this->router->generate('umbrella_admin_security_passwordreset', ['token' => $user->confirmationToken], UrlGeneratorInterface::ABSOLUTE_URL),
             ]));
 
         $this->mailer->send($email);

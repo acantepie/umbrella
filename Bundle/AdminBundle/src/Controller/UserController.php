@@ -5,7 +5,7 @@ namespace Umbrella\AdminBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\Translation\t;
-use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\Services\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Controller\BaseController;
 
@@ -44,10 +44,10 @@ class UserController extends BaseController
     /**
      * @Route("/edit/{id}", requirements={"id": "\d+"})
      */
-    public function edit(UserManager $manager, Request $request, ?int $id = null)
+    public function edit(UserManagerInterface $manager, Request $request, ?int $id = null)
     {
         if (null === $id) {
-            $entity = $manager->createUser();
+            $entity = $manager->create();
         } else {
             $entity = $manager->find($id);
             $this->throwNotFoundExceptionIfNull($entity);
@@ -78,11 +78,11 @@ class UserController extends BaseController
     /**
      * @Route("/delete/{id}", requirements={"id": "\d+"})
      */
-    public function delete(UserManager $manager, Request $request, int $id)
+    public function delete(UserManagerInterface $manager, int $id)
     {
         $entity = $manager->find($id);
         $this->throwNotFoundExceptionIfNull($entity);
-        $manager->remove($entity);
+        $manager->delete($entity);
 
         return $this->js()
             ->closeModal()

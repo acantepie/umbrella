@@ -7,6 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Umbrella\AdminBundle\Notification\NotificationProviderInterface;
+use Umbrella\AdminBundle\Services\UserMailerInterface;
+use Umbrella\AdminBundle\Services\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**
@@ -29,6 +31,8 @@ class UmbrellaAdminExtension extends Extension
 
         if ($config['user']['enabled']) {
             $loader->load('user.php');
+            $container->setAlias(UserManagerInterface::class, $config['user']['manager']);
+            $container->setAlias(UserMailerInterface::class, $config['user']['mailer']);
             $container->setParameter('umbrella_admin.user.class', $config['user']['class']);
 
             if ($config['user']['profile']['enabled']) {

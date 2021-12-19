@@ -68,18 +68,9 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
         return sprintf('%s %s', $this->firstname, $this->lastname);
     }
 
-    public function getConfirmationToken(): ?string
+    public function generateConfirmationToken(): void
     {
-        return $this->confirmationToken;
-    }
-
-    public function setConfirmationToken(?string $confirmationToken)
-    {
-        $this->confirmationToken = $confirmationToken;
-
-        if (null !== $confirmationToken) {
-            $this->passwordRequestedAt = new \DateTime();
-        }
+        $this->confirmationToken = rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
     }
 
     public function isPasswordRequestNonExpired(int $ttl): bool
@@ -193,7 +184,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     /**
      * {@inheritdoc}
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getUserIdentifier();
     }
