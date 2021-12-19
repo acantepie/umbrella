@@ -14,6 +14,9 @@ class BaseAdminMenu extends MenuType
     protected Environment $twig;
     protected UmbrellaAdminConfiguration $configuration;
 
+    protected array $defaultRenderOptions;
+    protected array $defaultBreadcrumbRenderOptions;
+
     /**
      * BaseAdminMenu constructor.
      */
@@ -21,6 +24,17 @@ class BaseAdminMenu extends MenuType
     {
         $this->twig = $twig;
         $this->configuration = $configuration;
+        $this->defaultRenderOptions = [
+            'logo_route' => null,
+            'logo' => $this->configuration->appLogo(),
+            'title' => $this->configuration->appName(),
+            'searchable' => false,
+            'template' => '@UmbrellaAdmin/Menu/sidebar.html.twig'
+        ];
+
+        $this->defaultBreadcrumbRenderOptions = [
+            'template' => '@UmbrellaAdmin/Menu/breadcrumb.html.twig'
+        ];
     }
 
     /**
@@ -35,14 +49,9 @@ class BaseAdminMenu extends MenuType
      */
     public function renderMenu(Menu $menu, array $options): string
     {
-        $options = array_merge([
-            'logo_route' => null,
-            'logo' => $this->configuration->appLogo(),
-            'title' => $this->configuration->appName(),
-            'searchable' => false
-        ], $options);
+        $options = array_merge($this->defaultRenderOptions, $options);
 
-        return $this->twig->render('@UmbrellaAdmin/Menu/sidebar.html.twig', [
+        return $this->twig->render($options['template'], [
             'menu' => $menu,
             'options' => $options
         ]);
@@ -53,8 +62,11 @@ class BaseAdminMenu extends MenuType
      */
     public function renderBreadcrumb(Breadcrumb $breadcrumb, array $options): string
     {
-        return $this->twig->render('@UmbrellaAdmin/Menu/breadcrumb.html.twig', [
-            'breadcrumb' => $breadcrumb
+        $options = array_merge($this->defaultBreadcrumbRenderOptions, $options);
+
+        return $this->twig->render($options['template'], [
+            'breadcrumb' => $breadcrumb,
+            'options' => $options
         ]);
     }
 }
