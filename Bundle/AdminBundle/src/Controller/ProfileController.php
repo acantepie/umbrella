@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
-use Umbrella\AdminBundle\Services\UserManagerInterface;
+use Umbrella\AdminBundle\Service\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Controller\BaseController;
 

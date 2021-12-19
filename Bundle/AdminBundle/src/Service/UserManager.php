@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\AdminBundle\Services;
+namespace Umbrella\AdminBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;

@@ -5,7 +5,7 @@ namespace Umbrella\AdminBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\Translation\t;
-use Umbrella\AdminBundle\Services\UserManagerInterface;
+use Umbrella\AdminBundle\Service\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Controller\BaseController;
 

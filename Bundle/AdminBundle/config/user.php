@@ -9,8 +9,8 @@ use Umbrella\AdminBundle\DataTable\UserTableType;
 use Umbrella\AdminBundle\Form\UserPasswordConfirmType;
 use Umbrella\AdminBundle\Form\UserType;
 use Umbrella\AdminBundle\Security\UserChecker;
-use Umbrella\AdminBundle\Services\UserMailer;
-use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\Service\UserMailer;
+use Umbrella\AdminBundle\Service\UserManager;
 
 return static function (ContainerConfigurator $configurator): void {
 

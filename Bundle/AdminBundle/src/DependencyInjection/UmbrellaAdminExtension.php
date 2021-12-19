@@ -7,8 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Umbrella\AdminBundle\Notification\NotificationProviderInterface;
-use Umbrella\AdminBundle\Services\UserMailerInterface;
-use Umbrella\AdminBundle\Services\UserManagerInterface;
+use Umbrella\AdminBundle\Service\UserMailerInterface;
+use Umbrella\AdminBundle\Service\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 /**

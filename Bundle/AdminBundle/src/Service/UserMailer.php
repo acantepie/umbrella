@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\AdminBundle\Services;
+namespace Umbrella\AdminBundle\Service;
 
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;

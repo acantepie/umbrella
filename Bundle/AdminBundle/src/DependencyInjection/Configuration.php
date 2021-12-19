@@ -10,8 +10,8 @@ use Umbrella\AdminBundle\DataTable\UserTableType;
 use Umbrella\AdminBundle\Form\ProfileType;
 use Umbrella\AdminBundle\Form\UserType;
 use Umbrella\AdminBundle\Menu\BaseAdminMenu;
-use Umbrella\AdminBundle\Services\UserMailer;
-use Umbrella\AdminBundle\Services\UserManager;
+use Umbrella\AdminBundle\Service\UserMailer;
+use Umbrella\AdminBundle\Service\UserManager;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
