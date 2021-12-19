@@ -5,16 +5,15 @@ export default function configureHandler(handler) {
 
     handler.registerAction('show_modal', (params) => {
 
-        // create modal template
         const template = document.createElement('div')
         template.innerHTML = params.value.trim()
+        template.firstChild.id = 'umbrella-modal'
 
         let modalElement = document.getElementById('umbrella-modal')
 
-        if (modalElement) { // if modal exist => updated if from template
+        if (modalElement) {
             modalElement.innerHTML = template.firstChild.innerHTML
-
-        } else { // if modal not exist => create it
+        } else {
             modalElement = template.firstChild
             modalElement.addEventListener('hidden.bs.modal', modalElement.remove)
             document.body.appendChild(modalElement)
@@ -29,6 +28,35 @@ export default function configureHandler(handler) {
             const modal = bootstrap.Modal.getInstance(modalElement)
             if (modal) {
                 modal.hide()
+            }
+        }
+    });
+
+    handler.registerAction('show_offcanvas', (params) => {
+
+        const template = document.createElement('div')
+        template.innerHTML = params.value.trim()
+        template.firstChild.id = 'umbrella-offcanvas'
+
+        let offcanvasElement = document.getElementById('umbrella-offcanvas')
+
+        if (offcanvasElement) {
+            offcanvasElement.innerHTML = template.firstChild.innerHTML
+        } else {
+            offcanvasElement = template.firstChild
+            offcanvasElement.addEventListener('hidden.bs.offcanvas', offcanvasElement.remove)
+            document.body.appendChild(offcanvasElement)
+            const offcanvas = new bootstrap.Offcanvas(offcanvasElement)
+            offcanvas.show()
+        }
+    });
+
+    handler.registerAction('close_offcanvas', (params) => {
+        const offcanvasElement = document.getElementById('umbrella-offcanvas')
+        if (offcanvasElement) {
+            const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement)
+            if (offcanvas) {
+                offcanvas.hide()
             }
         }
     });

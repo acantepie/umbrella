@@ -1,28 +1,33 @@
-<div class="modal fade" role="dialog" id="umbrella-modal">
-    <div class="modal-dialog {% block modal_class %}modal-lg{% endblock %}">
+<div class="modal fade" role="dialog">
+    <div class="modal-dialog {% block modal_class %}{{ class | default('modal-lg') }}{% endblock %}">
         <div class="modal-content">
+            {% block modal_wrapper %}
 
-            {% block modal_header %}
-                <div class="modal-header {% block modal_header_class %}bg-light{% endblock %}">
-                    {% block modal_title %}
-                        <h5 class="modal-title">{{ title | default('') }}</h5>
-                    {% endblock %}
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-            {% endblock %}
+                {% block modal_header %}
+                    <div class="modal-header {% block modal_header_class %}{{ header_class | default('bg-light') }}{% endblock %}">
+                        {% block modal_title %}
+                            <h5 class="modal-title">{{ title | default('') }}</h5>
+                        {% endblock %}
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                {% endblock %}
 
-            {% block modal_body %}
-                <div class="modal-body {% block modal_body_class %}{% endblock %}">
-                    {% block modal_content %}
-                    {% endblock %}
-                </div>
-                <div class="modal-footer">
-                    {% block modal_footer %}
+                {% block modal_body %}
+                    <div class="modal-body {% block modal_body_class %}{{ body_class | default('') }}{% endblock %}">
+                        {% block modal_content %}
+                            {{ content | default('') | raw }}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+
+                {% block modal_footer %}
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-light ms-auto" data-bs-dismiss="modal">
                             <i class="mdi mdi-close me-1"></i> {{ 'Close' | trans }}
                         </button>
-                    {% endblock %}
-                </div>
+                    </div>
+                {% endblock %}
+
             {% endblock %}
         </div>
     </div>

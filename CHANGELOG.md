@@ -4,6 +4,8 @@ CHANGELOG
 4.x
 ---
  * Add alias `UserMailerInterface` and `UserManagerInterface`  to allowing services `UserMailer` and `UserManager`to be overriden.
+ * Add `template` options for Menu and Breadcrumb
+ * Add `Offcanvas`
 
 4.3
 ---

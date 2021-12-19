@@ -1,8 +1,9 @@
 // --- Bootstrap
-import {Tooltip as bsTooltip, Modal as bsModal, Popover as bsPopover} from 'bootstrap';
+import {Tooltip as bsTooltip, Modal as bsModal, Offcanvas as bsOffcanvas, Popover as bsPopover} from 'bootstrap';
 window.bootstrap = {
     Tooltip : bsTooltip,
     Modal: bsModal,
+    Offcanvas: bsOffcanvas,
     Popover: bsPopover
 }
 

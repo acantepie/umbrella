@@ -1,0 +1,18 @@
+<div class="offcanvas {% block offcanvas_class %}{{ class | default('offcanvas-start') }}{% endblock %}" tabindex="-1">
+    {% block offcanvas_header %}
+        <div class="offcanvas-header {% block offcanvas_header_class %}{{ header_class | default('bg-light') }}{% endblock %}">
+            {% block offcanvas_title %}
+                <h5 class="offcanvas-title">{{ title | default('') }}</h5>
+            {% endblock %}
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+    {% endblock %}
+
+    {% block offcanvas_body %}
+        <div class="offcanvas-body">
+            {% block offcanvas_content %}
+                {{ content | default('') | raw }}
+            {% endblock %}
+        </div>
+    {% endblock %}
+</div>

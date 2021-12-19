@@ -21,6 +21,9 @@ class JsResponseBuilder implements \Countable
     public const SHOW_MODAL = 'show_modal';
     public const CLOSE_MODAL = 'close_modal';
 
+    public const SHOW_OFFCANVAS = 'show_offcanvas';
+    public const CLOSE_OFFCANVAS = 'close_offcanvas';
+
     public const CALL_WEBCOMPONENT = 'call_webcomponent';
 
     public const DOWNLOAD = 'download';
@@ -178,6 +181,25 @@ class JsResponseBuilder implements \Countable
     public function closeModal(): self
     {
         return $this->add(self::CLOSE_MODAL);
+    }
+
+    // Offcanvas actions
+
+    public function offcanvasHtml(string $html): self
+    {
+        return $this->add(self::SHOW_OFFCANVAS, [
+            'value' => $html,
+        ]);
+    }
+
+    public function offcanvas($template, array $context = []): self
+    {
+        return $this->offcanvasHtml($this->twig->render($template, $context));
+    }
+
+    public function closeOffcanvas(): self
+    {
+        return $this->add(self::CLOSE_OFFCANVAS);
     }
 
     // Web Components actions
