@@ -1,74 +1,56 @@
 {% block umbrellacollection_widget %}
-{% apply spaceless %}
-
     {% set attr = attr|merge({
         'data-index': form | length,
         'data-sortable' : form.vars.sortable ? 'true' : 'false',
         'data-prototype': block('umbrellacollection_prototype_widget'),
-        'data-prototype-name' : prototype is defined ? prototype.vars.name : null,
+        'data-prototype-name' : prototype.vars.name,
         'data-max-length' : form.vars.max_length
     }) %}
 
-    {% set compound = prototype is defined and prototype.vars.compound  %}
-
     <umbrella-collection {{ block('widget_container_attributes') }}>
-
-        <table class="table table-md mb-2">
-
-            {% if compound and show_head %}
-                <thead>
+        <div class="table-responsive">
+            <table class="table table-md mb-2">
+                {# never show head if entry_type is not compound (most of time label was not initialized) #}
+                {% if not headless and prototype.vars.compound %}
+                    <thead>
                     <tr>
                         {% if not form.vars.disabled and form.vars.sortable %}
-                            <th></th>
+                            <td></td>
                         {% endif %}
 
-                        {% for col_form in prototype %}
-                            {% set cv = col_form.vars %}
-
-                            {% if 'hidden' not in cv.block_prefixes %}
-                                <th class="{{ cv.required ? 'required' }}">
-                                    {%- if cv.label is empty -%}
-                                        <span>{{- cv.name | humanize -}}</span>
-                                    {%- elseif cv.translation_domain is same as(false) -%}
-                                        <span>{{- cv.label -}}</span>
-                                    {%- else -%}
-                                        <span>{{- cv.label | trans(cv.label_translation_parameters, cv.translation_domain) -}}</span>
-                                    {%- endif -%}
-                                </th>
-                            {% endif %}
+                        {% for item_form in prototype %}
+                            {{ block('umbrellacollection_item_label') }}
                         {% endfor %}
-                        {% if not form.vars.disabled %}
-                            <th></th> {# column action #}
+
+                        {% if not form.vars.disabled and form.vars.allow_delete %}
+                            <td></td>
                         {% endif %}
                     </tr>
-                </thead>
-            {% endif %}
-            <tbody class="js-item-container">
+                    </thead>
+                {% endif %}
+                <tbody class="js-item-container">
                 {% for entry_form in form %}
-                    {{ block('umbrellacollection_item_widget') }}
+                    {{ block('umbrellacollection_entry') }}
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
 
         {% if not form.vars.disabled and form.vars.add_btn_template is defined and form.vars.add_btn_template %}
             {{ form.vars.add_btn_template | raw }}
         {% endif %}
 
     </umbrella-collection>
-{% endapply %}
 {% endblock %}
 
 {% block umbrellacollection_prototype_widget %}
 {% apply spaceless %}
-    {% if prototype is defined %}
-        {%  set entry_form = prototype %}
-        {{ block('umbrellacollection_item_widget') }}
-    {% endif %}
+    {%  set entry_form = prototype %}
+    {{ block('umbrellacollection_entry') }}
 {% endapply %}
 {% endblock %}
 
-{% block umbrellacollection_item_widget %}
-{% apply spaceless %}
+{% block umbrellacollection_entry %}
     <tr class="js-item" data-idx="{{ entry_form.vars.name }}">
 
         {% if not form.vars.disabled and form.vars.sortable %}
@@ -77,15 +59,13 @@
             </td>
         {% endif %}
 
-        {% set compound = entry_form.vars.compound %}
-
-        {% if compound %}
-            {% for col_form in entry_form %}
-                {{ block('umbrellacollection_item_col') }}
+        {% if entry_form.vars.compound %}
+            {% for item_form in entry_form %}
+                {{ block('umbrellacollection_item') }}
             {% endfor %}
         {% else %}
-            {% set col_form = entry_form %}
-            {{ block('umbrellacollection_item_col') }}
+            {% set item_form = entry_form %}
+            {{ block('umbrellacollection_item') }}
         {% endif %}
 
         {% if not form.vars.disabled and form.vars.allow_delete %}
@@ -96,16 +76,54 @@
             </td>
         {% endif %}
     </tr>
-{% endapply %}
 {% endblock %}
 
-{% block umbrellacollection_item_col %}
-    {% if 'hidden' in col_form.vars.block_prefixes %}
-        {{ form_widget(col_form) }}
-    {% else %}
-        <td >
-            {{ form_widget(col_form) }}
-            {{ form_errors(col_form) }}
-        </td>
-    {% endif %}
+{% block umbrellacollection_item %}
+    <td>
+        {{ form_widget(item_form) }}
+        {{ form_errors(item_form) }}
+    </td>
 {% endblock %}
+
+{%- block umbrellacollection_item_label -%}
+{% apply spaceless %}
+    {% set label = item_form.vars.label %}
+    {% set label_format = item_form.vars.label_format %}
+    {% set label_html = item_form.vars.label_html %}
+    {% set label_translation_parameters = item_form.vars.label_translation_parameters %}
+    {% set required = item_form.vars.required %}
+    {% set id = item_form.vars.id %}
+
+    {% set name = item_form.vars.name %}
+    {% set translation_domain = item_form.vars.translation_domain %}
+
+    {% if label is not same as(false) -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+
+        <td class="collection-label {{ required ? 'required' }}">
+            {%- if translation_domain is same as(false) -%}
+                {%- if label_html is same as(false) -%}
+                    {{- label -}}
+                {%- else -%}
+                    {{- label|raw -}}
+                {%- endif -%}
+            {%- else -%}
+                {%- if label_html is same as(false) -%}
+                    {{- label|trans(label_translation_parameters, translation_domain) -}}
+                {%- else -%}
+                    {{- label|trans(label_translation_parameters, translation_domain)|raw -}}
+                {%- endif -%}
+            {%- endif -%}
+        </td>
+    {%- endif -%}
+{% endapply %}
+{%- endblock -%}

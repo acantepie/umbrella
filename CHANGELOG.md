@@ -6,7 +6,8 @@ CHANGELOG
  * Add alias `UserMailerInterface` and `UserManagerInterface`  to allowing services `UserMailer` and `UserManager`to be overriden.
  * Add `template` options for Menu and Breadcrumb
  * Add `Offcanvas`
-
+ * Fix `UmbrellaCollectionType` : missing prototype if allow_add was false, invalid header if entry_type was not compound. Replace `show_head` by `headless` option.
+ 
 4.3
 ---
 * Rework `Menu` component to use context options on build and render.

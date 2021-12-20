@@ -19,10 +19,12 @@ export default class UmbrellaCollection extends HTMLElement {
     connectedCallback() {
         this._updateAddAction();
 
-        this.addAction.addEventListener('click', e => {
-            e.preventDefault();
-            this.addRow();
-        })
+        if (this.addAction) {
+            this.addAction.addEventListener('click', e => {
+                e.preventDefault();
+                this.addRow();
+            })
+        }
 
         this.deleteActions.forEach(e => e.addEventListener('click', e => {
             e.preventDefault();

@@ -1,6 +1,8 @@
 umbrella-collection {
+  display: block;
+
   table.table {
-    th.required:after {
+    .collection-label.required:after {
       content: " *";
       color: $danger;
     }

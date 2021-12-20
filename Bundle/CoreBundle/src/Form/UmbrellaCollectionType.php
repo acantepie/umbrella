@@ -28,7 +28,7 @@ class UmbrellaCollectionType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['show_head'] = $options['show_head'];
+        $view->vars['headless'] = $options['headless'];
         $view->vars['sortable'] = null !== $options['sort_by'];
         $view->vars['max_length'] = $options['max_length'];
 
@@ -51,6 +51,25 @@ class UmbrellaCollectionType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        // Hack - always set a prototype even if not initialized on CollectionType
+        // This is useful to get label on table header
+
+        if (!$builder->hasAttribute('prototype')) {
+            // Code below is copied from CollectionType
+            $prototypeOptions = array_replace([
+                'required' => $options['required'],
+                'label' => $options['prototype_name'].'label__',
+            ], $options['entry_options']);
+
+            if (null !== $options['prototype_data']) {
+                $prototypeOptions['data'] = $options['prototype_data'];
+            }
+
+            $prototype = $builder->create($options['prototype_name'], $options['entry_type'], $prototypeOptions);
+            $builder->setAttribute('prototype', $prototype->getForm());
+        }
+
+
         if ($options['sort_by']) {
             $orders = [];
 
@@ -92,8 +111,8 @@ class UmbrellaCollectionType extends AbstractType
             ->setDefault('error_bubbling', false);
 
         $resolver
-            ->setDefault('show_head', true)
-            ->setAllowedTypes('show_head', 'boolean');
+            ->setDefault('headless', false)
+            ->setAllowedTypes('headless', 'boolean');
 
         $resolver
             ->setDefault('max_length', null)
