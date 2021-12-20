@@ -58,7 +58,7 @@ class UmbrellaCollectionType extends AbstractType
             // Code below is copied from CollectionType
             $prototypeOptions = array_replace([
                 'required' => $options['required'],
-                'label' => $options['prototype_name'].'label__',
+                'label' => $options['prototype_name'] . 'label__',
             ], $options['entry_options']);
 
             if (null !== $options['prototype_data']) {
@@ -68,7 +68,6 @@ class UmbrellaCollectionType extends AbstractType
             $prototype = $builder->create($options['prototype_name'], $options['entry_type'], $prototypeOptions);
             $builder->setAttribute('prototype', $prototype->getForm());
         }
-
 
         if ($options['sort_by']) {
             $orders = [];
