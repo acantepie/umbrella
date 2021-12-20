@@ -46,14 +46,19 @@ export default class Sidebar extends HTMLElement {
 
     initializeSidebarCollapse() {
         if (this.sidebarNav && this.sidebarToggle) {
-            this.sidebarToggle.addEventListener('click', () => {
-                document.body.classList.toggle('sidebar-collapsed');
-
-                this.addEventListener('transitionend', () => {
-                    window.dispatchEvent(new Event('resize'));
-                });
-            });
+            this.sidebarToggle.addEventListener('click', this.toggle.bind(this))
         }
+    }
+
+    toggle() {
+        document.body.classList.toggle('sidebar-collapsed');
+
+        const transitionendListener = () => {
+            window.dispatchEvent(new Event('resize'))
+            this.removeEventListener('transitionend', transitionendListener)
+        }
+
+        this.addEventListener('transitionend', transitionendListener);
     }
 
     search(search) {
