@@ -3,9 +3,19 @@ Create user entity class with maker :
 ```bash
 php bin/console make:admin:user
 ```
+Entity generated use [Timestampable extension](https://github.com/doctrine-extensions/DoctrineExtensions/blob/main/doc/timestampable.md) from DoctrineExtensions bundle.
+Activate this extension :
+```yaml
+# config/packages/stof_doctrine_extensions
+stof_doctrine_extensions:
+  orm:
+    default:
+      timestampable: true
+```
 
 Configure firewall :
 ```yaml
+# config/packages/security.yaml
 security:
     firewalls:
         admin:
@@ -33,7 +43,7 @@ security:
 Register security and user routes :
 
 ```yaml
-# app/config/routes.yaml
+# config/routes.yaml
 admin_user_:
   resource: "@UmbrellaAdminBundle/config/routes/user.yaml"
   prefix: /admin
