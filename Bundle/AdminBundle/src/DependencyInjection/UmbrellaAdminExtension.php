@@ -4,6 +4,7 @@ namespace Umbrella\AdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Umbrella\AdminBundle\Notification\NotificationProviderInterface;
@@ -16,7 +17,7 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class UmbrellaAdminExtension extends Extension
+class UmbrellaAdminExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -58,5 +59,27 @@ class UmbrellaAdminExtension extends Extension
         }
 
         $container->setAlias(NotificationProviderInterface::class, $provider);
+    }
+
+    public function prepend(ContainerBuilder $container)
+    {
+        // enable timestampable if possible
+        $configs = $container->getExtensionConfig($this->getAlias());
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
+        if ($config['user']['enabled']) {
+            $bundles = $container->getParameter('kernel.bundles');
+
+            if (isset($bundles['StofDoctrineExtensionsBundle']) && $container->hasExtension('stof_doctrine_extensions')) {
+                $config = [
+                    'orm' => [
+                        'default' => [
+                            'timestampable' => true
+                        ]
+                    ]
+                ];
+                $container->prependExtensionConfig('stof_doctrine_extensions', $config);
+            }
+        }
     }
 }

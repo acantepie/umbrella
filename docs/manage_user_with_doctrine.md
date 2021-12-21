@@ -3,15 +3,6 @@ Create user entity class with maker :
 ```bash
 php bin/console make:admin:user
 ```
-Entity generated use [Timestampable extension](https://github.com/doctrine-extensions/DoctrineExtensions/blob/main/doc/timestampable.md) from DoctrineExtensions bundle.
-Activate this extension :
-```yaml
-# config/packages/stof_doctrine_extensions
-stof_doctrine_extensions:
-  orm:
-    default:
-      timestampable: true
-```
 
 Configure firewall :
 ```yaml
