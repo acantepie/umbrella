@@ -33,6 +33,7 @@ class IndexEntityCommand extends Command
     protected function configure()
     {
         $this->setName(self::CMD_NAME);
+        $this->setDescription('Reindex @searchable entity.');
         $this->addArgument('entityClass', InputArgument::OPTIONAL, 'Entity class to index');
     }
 
