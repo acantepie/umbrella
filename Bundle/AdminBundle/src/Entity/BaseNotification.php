@@ -17,9 +17,10 @@ class BaseNotification
     public ?int $id = null;
 
     /**
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=false)
      */
-    public \DateTime $createdAt;
+    public \DateTimeInterface $createdAt;
 
     /**
      * @ORM\Column(type="string", nullable=true)
