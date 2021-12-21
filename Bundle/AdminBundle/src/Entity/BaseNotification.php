@@ -3,14 +3,18 @@
 namespace Umbrella\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Umbrella\CoreBundle\Model\IdTrait;
 
 /**
  * @ORM\MappedSuperclass
  */
 class BaseNotification
 {
-    use IdTrait;
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    public ?int $id = null;
 
     /**
      * @ORM\Column(type="datetime", nullable=false)

@@ -38,7 +38,8 @@
         "symfony/twig-bundle": "^5.4|^6.0",
         "symfony/yaml": "^5.4|^6.0",
         "umbrella2/corebundle": "*",
-        "symfony/maker-bundle": "^1.21"
+        "symfony/maker-bundle": "^1.21",
+        "stof/doctrine-extensions-bundle": "^1.7"
     },
     "conflict": {
         "umbrella2/corebundle": "<4.3"

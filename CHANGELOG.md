@@ -7,7 +7,11 @@ CHANGELOG
  * Add `template` options for Menu and Breadcrumb
  * Add `Offcanvas`
  * Fix `UmbrellaCollectionType` : missing prototype if allow_add was false, invalid header if entry_type was not compound. Replace `show_head` by `headless` option.
- 
+ * Prepare doctrine XML mapping on bundle :
+   * Remove `TimestampTrait`, `OrderTrait`, `ActiveTrait`
+   * Use `Gedmo\Timestambable` to handle timestamp on `User`
+   * Remove Doctrine trait on Base entity
+
 4.3
 ---
 * Rework `Menu` component to use context options on build and render.

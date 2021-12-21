@@ -9,7 +9,6 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 
 /**
  * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
  * @Searchable
  * @UniqueEntity("email")
  */

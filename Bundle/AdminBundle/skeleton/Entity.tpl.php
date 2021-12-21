@@ -13,7 +13,6 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 /**
 * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
 <?php if ($entity_searchable) { ?>
-* @ORM\HasLifecycleCallbacks
 * @Searchable
 <?php } ?>
 */

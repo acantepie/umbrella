@@ -3,25 +3,47 @@
 namespace Umbrella\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Umbrella\CoreBundle\Model\ActiveTrait;
-use Umbrella\CoreBundle\Model\IdTrait;
-use Umbrella\CoreBundle\Model\SearchTrait;
-use Umbrella\CoreBundle\Model\TimestampTrait;
 use Umbrella\CoreBundle\Search\Annotation\SearchableField;
 
 /**
  * @ORM\MappedSuperclass
- * @ORM\HasLifecycleCallbacks
  */
 abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface, PasswordAuthenticatedUserInterface
 {
-    use ActiveTrait;
-    use IdTrait;
-    use SearchTrait;
-    use TimestampTrait;
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    public ?int $id = null;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    public ?string $search = null;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    public ?\DateTimeInterface $createdAt = null;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    public ?\DateTimeInterface $updatedAt = null;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    public bool $active = true;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -59,9 +81,10 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     public ?string $confirmationToken = null;
 
     /**
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    public ?\DateTime $passwordRequestedAt = null;
+    public ?\DateTimeInterface $passwordRequestedAt = null;
 
     public function getFullName(): string
     {

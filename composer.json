@@ -38,7 +38,8 @@
         "symfony/twig-bundle": "^5.4",
         "symfony/validator": "^5.4",
         "symfony/yaml": "^5.4",
-        "vimeo/psalm": "^4.12"
+        "vimeo/psalm": "^4.12",
+        "stof/doctrine-extensions-bundle": "^1.7"
     },
     "config": {
         "sort-packages": true

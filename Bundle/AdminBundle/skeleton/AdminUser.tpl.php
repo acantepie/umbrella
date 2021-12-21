@@ -10,7 +10,6 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 
 /**
  * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
- * @ORM\HasLifecycleCallbacks
  * @Searchable
  * @UniqueEntity("email")
 */
