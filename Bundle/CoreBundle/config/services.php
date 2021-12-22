@@ -16,7 +16,6 @@ use Umbrella\CoreBundle\DataTable\DataTableRegistry;
 use Umbrella\CoreBundle\DataTable\DataTableRenderer;
 use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\DataTable\Twig\DataTableExtension;
-use Umbrella\CoreBundle\Form\Extension\ChoiceTypeExtension;
 use Umbrella\CoreBundle\Form\Extension\FormTypeExtension;
 use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
@@ -120,9 +119,4 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('form.type_extension', [
             'extended_type' => FormType::class
         ]);
-    $services->set(ChoiceTypeExtension::class)
-        ->tag('form.type_extension', [
-            'extended_type' => ChoiceType::class
-        ]);
-
 };
