@@ -18,7 +18,24 @@ use Umbrella\CoreBundle\Model\NestedTreeEntityTrait;
 class <?= $class_name ?> implements NestedTreeEntityInterface
 {
     use IdTrait;
-    use NestedTreeEntityTrait;
+
+    /**
+    * @Gedmo\TreeLevel
+    * @ORM\Column(type="integer")
+    */
+    public ?int $level = null;
+
+    /**
+    * @Gedmo\TreeLeft
+    * @ORM\Column(type="integer", name="`left`")
+    */
+    public ?int $left = null;
+
+    /**
+    * @Gedmo\TreeRight
+    * @ORM\Column(type="integer", name="`right`")
+    */
+    public ?int $right = null;
 
     /**
      * @Gedmo\TreeRoot
@@ -48,6 +65,56 @@ class <?= $class_name ?> implements NestedTreeEntityInterface
     public function __construct()
     {
         $this->children = new ArrayCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLevel(): int
+    {
+        return $this->level;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent(): ?NestedTreeEntityInterface
+    {
+        return $this->parent;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getChildren(): Collection
+    {
+        return $this->children;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addChild(NestedTreeEntityInterface $child)
+    {
+        $child->parent = $this;
+        $this->children->add($child);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeChild(NestedTreeEntityInterface $child)
+    {
+        $child->parent = null;
+        $this->children->removeElement($child);
     }
 
     /**

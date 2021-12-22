@@ -66,8 +66,24 @@ class NestedTreeParentType extends AbstractType
 
         // exclude all child of currentNode
         return array_filter($nodes, function (NestedTreeEntityInterface $node) use ($currentNode) {
-            return !$node->isChildOf($currentNode);
+            return !$this->isChildOf($node, $currentNode);
         });
+    }
+
+    /**
+     * Is $a a child of $b ?
+     */
+    private function isChildOf(NestedTreeEntityInterface $a, NestedTreeEntityInterface $b): bool
+    {
+        if ($a->getLevel() <= $b->getLevel() || null === $a->getParent()) {
+            return false;
+        }
+
+        if ($a->getParent() === $b) {
+            return true;
+        }
+
+        return $this->isChildOf($a->getParent(), $b);
     }
 
     /**

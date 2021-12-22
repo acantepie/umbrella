@@ -2,7 +2,7 @@
 
 namespace Umbrella\CoreBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 interface NestedTreeEntityInterface
 {
@@ -12,11 +12,9 @@ interface NestedTreeEntityInterface
 
     public function getParent(): ?NestedTreeEntityInterface;
 
-    public function addChild(NestedTreeEntityInterface $node);
+    public function addChild(NestedTreeEntityInterface $child);
 
-    public function removeChild(NestedTreeEntityInterface $node);
+    public function removeChild(NestedTreeEntityInterface $child);
 
-    public function getChildren(): ArrayCollection;
-
-    public function isChildOf(NestedTreeEntityInterface $node): bool;
+    public function getChildren(): Collection;
 }

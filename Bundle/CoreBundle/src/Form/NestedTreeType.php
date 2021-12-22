@@ -22,9 +22,12 @@ class NestedTreeType extends AbstractType
             ->setDefault('expose', function ($entity) {
                 if (is_a($entity, NestedTreeEntityInterface::class)) {
                     return ['lvl' => $entity->getLevel()];
+                } else {
+                    return [];
                 }
             })
-            ->setDefault('template', '<div data-lvl="[[ lvl ]]" class="tree-item"> [[ text ]]</div>');
+            ->setDefault('template', '<div data-lvl="[[ lvl ]]" class="tree-item"> [[ text ]]</div>')
+            ->setDefault('hide_selected', false);
     }
 
     /**
