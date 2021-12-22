@@ -12,6 +12,8 @@ interface NestedTreeEntityInterface
 
     public function getParent(): ?NestedTreeEntityInterface;
 
+    public function setParent(?NestedTreeEntityInterface $parent);
+
     public function addChild(NestedTreeEntityInterface $child);
 
     public function removeChild(NestedTreeEntityInterface $child);

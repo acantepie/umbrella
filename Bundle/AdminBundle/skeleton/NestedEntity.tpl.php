@@ -67,24 +67,18 @@ class <?= $class_name ?> implements NestedTreeEntityInterface
         $this->children = new ArrayCollection();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLevel(): int
     {
         return $this->level;
     }
 
     /**
-     * {@inheritdoc}
+     * @return ?<?= $class_name . "\n" ?>
      */
     public function getParent(): ?NestedTreeEntityInterface
     {
@@ -92,7 +86,15 @@ class <?= $class_name ?> implements NestedTreeEntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param ?<?= $class_name ?> $parent
+     */
+    public function setParent(?NestedTreeEntityInterface $parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * @return <?= $class_name ?>[]|ArrayCollection
      */
     public function getChildren(): Collection
     {
@@ -100,20 +102,20 @@ class <?= $class_name ?> implements NestedTreeEntityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param <?= $class_name ?> $child
      */
     public function addChild(NestedTreeEntityInterface $child)
     {
-        $child->parent = $this;
+        $child->setParent($this);
         $this->children->add($child);
     }
 
     /**
-     * {@inheritdoc}
+     * @param <?= $class_name ?> $child
      */
     public function removeChild(NestedTreeEntityInterface $child)
     {
-        $child->parent = null;
+        $child->setParent(null);
         $this->children->removeElement($child);
     }
 
