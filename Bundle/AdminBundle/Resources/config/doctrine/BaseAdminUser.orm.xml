@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <mapped-superclass name="Umbrella\AdminBundle\Entity\BaseAdminUser">
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="search" type="text" nullable="true" />
+        <field name="createdAt" type="datetime">
+            <gedmo:timestampable on="create"/>
+        </field>
+        <field name="updatedAt" type="datetime">
+            <gedmo:timestampable on="update"/>
+        </field>
+        <field name="active" type="boolean"/>
+        <field name="firstname" type="string" length="255" nullable="true"/>
+        <field name="lastname" type="string" length="255" nullable="true"/>
+        <field name="password" type="string" />
+        <field name="email" type="string" length="60" unique="true"/>
+        <field name="confirmationToken" type="string" length="180" unique="true" nullable="true"/>
+        <field name="passwordRequestedAt" type="datetime" nullable="true"/>
+    </mapped-superclass>
+
+</doctrine-mapping>

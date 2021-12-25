@@ -2,87 +2,58 @@
 
 namespace Umbrella\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Umbrella\CoreBundle\Search\Annotation\SearchableField;
 
-/**
- * @ORM\MappedSuperclass
- */
 abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
     public ?int $id = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
     public ?string $search = null;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="create")
+     * @var ?\DateTime
      */
     public ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime")
-     * @Gedmo\Timestampable(on="update")
+     * @var ?\DateTime
      */
     public ?\DateTimeInterface $updatedAt = null;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
     public bool $active = true;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      * @SearchableField
      */
     public ?string $firstname = null;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      * @SearchableField
      */
     public ?string $lastname = null;
 
-    /**
-     * @ORM\Column(type="string")
-     */
     public ?string $password = null;
 
     /**
-     * Used only by form.
+     * Used only by form
      */
     public ?string $plainPassword = null;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
      * @SearchableField
      */
     public ?string $email = null;
 
     /**
      * Random string sent to the user email address to verify it.
-     *
-     * @ORM\Column(type="string", length=180, unique=true, nullable=true)
      */
     public ?string $confirmationToken = null;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var ?\DateTime
      */
     public ?\DateTimeInterface $passwordRequestedAt = null;
 

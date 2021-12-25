@@ -2,54 +2,25 @@
 
 namespace Umbrella\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\MappedSuperclass
- */
 class BaseNotification
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
     public ?int $id = null;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=false)
      */
     public \DateTimeInterface $createdAt;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
     public ?string $iconColor = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
     public ?string $icon = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
     public ?string $title = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
     public ?string $text = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
     public ?string $url = null;
 
-    /**
-     * User BaseNotification.
-     */
     public function __construct()
     {
         $this->createdAt = new \DateTime('NOW');
