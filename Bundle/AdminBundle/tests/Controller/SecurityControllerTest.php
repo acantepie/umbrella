@@ -2,7 +2,7 @@
 
 namespace Umbrella\AdminBundle\Tests\Controller;
 
-use Umbrella\AdminBundle\Tests\Functional\AppTestCase;
+use Umbrella\AdminBundle\Tests\TestApplication\AppTestCase;
 use Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser;
 
 class SecurityControllerTest extends AppTestCase

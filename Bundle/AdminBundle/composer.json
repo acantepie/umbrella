@@ -64,7 +64,7 @@
     "autoload-dev": {
         "psr-4": {
             "Umbrella\\AdminBundle\\Tests\\": "tests/",
-            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "tests/Functional/app/src/"
+            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "tests/TestApplication/app/src/"
         }
     }
 }

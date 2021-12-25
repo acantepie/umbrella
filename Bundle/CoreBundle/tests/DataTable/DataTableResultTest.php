@@ -3,7 +3,7 @@
 namespace Umbrella\CoreBundle\Tests\DataTable;
 
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
-use Umbrella\CoreBundle\Tests\Functional\AppTestCase;
+use Umbrella\CoreBundle\Tests\TestApplication\AppTestCase;
 
 class DataTableResultTest extends AppTestCase
 {

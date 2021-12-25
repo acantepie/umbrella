@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\CoreBundle\Tests\Functional;
+namespace Umbrella\CoreBundle\Tests\TestApplication;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
