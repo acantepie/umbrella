@@ -3,6 +3,9 @@ CHANGELOG
 
 4.x
 ---
+
+4.4
+---
  * Add alias `UserMailerInterface` and `UserManagerInterface`  to allowing services `UserMailer` and `UserManager`to be overriden.
  * Add `template` options for Menu and Breadcrumb
  * Add `Offcanvas`
@@ -11,6 +14,7 @@ CHANGELOG
    * Remove `TimestampTrait`, `OrderTrait`, `ActiveTrait`, `NestedTreeEntityTrait`
    * Use `Gedmo\Timestambable` to handle timestamp on `User`
  * Remove `ChoiceTypeExtension` => option `choices_as_values` was removed on `ChoiceType`
+ * Use XML mapping instead of annotation mapping for doctrine
 
 4.3
 ---
