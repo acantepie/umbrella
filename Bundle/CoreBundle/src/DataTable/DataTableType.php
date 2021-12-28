@@ -19,6 +19,9 @@ class DataTableType
             ->setRequired('id')
             ->setAllowedTypes('id', 'string')
 
+            ->setDefault('method', 'POST')
+            ->setAllowedValues('method', ['POST', 'GET'])
+
             ->setDefault('class', null)
             ->setAllowedTypes('class', ['null', 'string'])
 
@@ -83,7 +86,6 @@ class DataTableType
                 'csrf_protection' => false,
                 'label' => false,
                 'required' => false,
-                'method' => 'GET',
             ])
             ->setAllowedTypes('toolbar_form_options', 'array')
 

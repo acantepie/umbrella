@@ -67,6 +67,7 @@ class DataTableRenderer
         $jsOptions['bFilter'] = false;
         $jsOptions['ajax'] = [
             'url' => $options['load_url'],
+            'method' => $options['method']
         ];
 
         if ($options['paging']) {

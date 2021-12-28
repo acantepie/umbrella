@@ -16,8 +16,6 @@ class DataTableState
 
     protected array $formData = [];
 
-    protected bool $isCallback = false;
-
     /**
      * DataTableState constructor.
      */
@@ -29,8 +27,6 @@ class DataTableState
     public function applyParameters(array $parameters)
     {
         $this->draw = (int) ($parameters['draw'] ?? $this->draw);
-        $this->isCallback = true;
-
         $this->start = (int) ($parameters['start'] ?? $this->start);
         $this->length = (int) ($parameters['length'] ?? $this->length);
 
@@ -107,10 +103,5 @@ class DataTableState
         $this->formData = $formData;
 
         return $this;
-    }
-
-    public function isCallback(): bool
-    {
-        return $this->isCallback;
     }
 }

@@ -32,6 +32,8 @@ class DataTable
 
     protected ?DataTableResponse $response = null;
 
+    protected bool $callback = false;
+
     /**
      * DataTable constructor.
      */
@@ -112,20 +114,30 @@ class DataTable
 
     public function handleRequest(Request $httpRequest): self
     {
+        $this->callback = false;
         $this->response = null;
 
-        $isCallback = $httpRequest->isXmlHttpRequest()
-            && $httpRequest->isMethod('GET')
-            && $httpRequest->query->has('_dtid')
-            && $httpRequest->query->get('_dtid') == $this->getId();
-
-        if ($isCallback) {
-            $this->state = new DataTableState($this);
-            $this->state->applyParameters($httpRequest->query->all());
-
-            $this->toolbar->handleRequest($httpRequest);
-            $this->state->setFormData($this->toolbar->getFormData());
+        // Invalid method
+        if (!$httpRequest->isMethod($this->options['method'])) {
+            return $this;
         }
+
+        $data = 'POST' === $this->options['method']
+            ? $httpRequest->request->all()
+            : $httpRequest->query->all();
+
+        // Invalid or missing datatable id
+        if (!isset($data['_dtid']) || $data['_dtid'] != $this->getId()) {
+            return $this;
+        }
+
+        // Valid callback => update state
+        $this->callback = true;
+        $this->state = new DataTableState($this);
+        $this->state->applyParameters($data);
+
+        $this->toolbar->handleRequest($httpRequest);
+        $this->state->setFormData($this->toolbar->getFormData());
 
         return $this;
     }
@@ -144,7 +156,7 @@ class DataTable
 
     public function isCallback(): bool
     {
-        return $this->state->isCallback();
+        return $this->callback;
     }
 
     public function getCallbackResponse(): DataTableResponse

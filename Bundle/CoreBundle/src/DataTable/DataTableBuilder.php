@@ -59,6 +59,8 @@ class DataTableBuilder
             $this->options['toolbar_form_data'],
             $this->options['toolbar_form_options']
         );
+
+        $this->formBuilder->setMethod($this->options['method']);
     }
 
     private function resolveOptions(array $options)
