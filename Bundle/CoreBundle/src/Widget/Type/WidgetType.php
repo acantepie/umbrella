@@ -13,18 +13,6 @@ class WidgetType
     {
         $view->vars['attr'] = $options['attr'];
 
-        // for dataTable
-        if ($options['tag']) {
-            $view->vars['attr']['data-tag'] = $options['tag'];
-        }
-        $view->vars['tag'] = $options['tag'];
-
-        if ($options['mode']) {
-            $view->vars['attr']['data-mode'] = $options['mode'];
-        }
-        $view->vars['mode'] = $options['mode'];
-        // end
-
         if ($options['class']) {
             if (isset($view->vars['attr']['class'])) {
                 $view->vars['attr']['class'] .= ' ' . $options['class'];
@@ -72,20 +60,6 @@ class WidgetType
 
             return count($a) > 0 ? implode(' ', $a) : null;
         };
-
-        // for dataTable
-        $resolver
-            ->define('tag')
-            ->default(null)
-            ->allowedTypes('string', 'array', 'null')
-            ->normalize($normalizer);
-
-        $resolver
-            ->define('mode')
-            ->default(null)
-            ->allowedTypes('string', 'array', 'null')
-            ->normalize($normalizer);
-        // end
 
         $resolver
             ->define('title')

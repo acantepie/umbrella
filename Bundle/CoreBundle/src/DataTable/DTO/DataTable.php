@@ -60,20 +60,6 @@ class DataTable
         return $this->options['id'];
     }
 
-    public function setLoadUrl(string $url): self
-    {
-        $this->options['load_url'] = $url;
-
-        return $this;
-    }
-
-    public function setRowReorderUrl(string $url): self
-    {
-        $this->options['rowreorder_url'] = $url;
-
-        return $this;
-    }
-
     public function getToolbar(): Toolbar
     {
         return $this->toolbar;

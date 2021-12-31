@@ -26,9 +26,6 @@ class DataTableExtension extends AbstractExtension
         return [
             new TwigFunction('render_table', [$this->renderer, 'render'], [
                 'is_safe' => ['html'],
-            ]),
-            new TwigFunction('render_toolbar', [$this->renderer, 'renderToolbar'], [
-                'is_safe' => ['html'],
             ])
         ];
     }

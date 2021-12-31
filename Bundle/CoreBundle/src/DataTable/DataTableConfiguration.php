@@ -43,9 +43,4 @@ class DataTableConfiguration
     {
         return $this->config['table_class'];
     }
-
-    public function toolbarClass(): ?string
-    {
-        return $this->config['toolbar_class'];
-    }
 }

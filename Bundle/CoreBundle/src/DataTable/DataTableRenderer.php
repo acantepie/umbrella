@@ -2,22 +2,23 @@
 
 namespace Umbrella\CoreBundle\DataTable;
 
+use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
 use Umbrella\CoreBundle\DataTable\DTO\DataTable;
-use Umbrella\CoreBundle\DataTable\DTO\Toolbar;
 
-// FIXME use View Object ?
 class DataTableRenderer
 {
     protected Environment $twig;
+    protected RouterInterface $router;
 
     /**
      * DataTableRenderer constructor.
      */
-    public function __construct(Environment $twig)
+    public function __construct(Environment $twig, RouterInterface $router)
     {
         $this->twig = $twig;
+        $this->router = $router;
     }
 
     public function render(DataTable $table): string
@@ -25,17 +26,16 @@ class DataTableRenderer
         return $this->twig->render($table->getOption('template'), $this->view($table));
     }
 
-    public function renderToolbar(Toolbar $toolbar): string
-    {
-        return $this->twig->render($toolbar->getOption('toolbar_template'), $this->toolbarView($toolbar));
-    }
-
     protected function view(DataTable $dataTable): array
     {
         $options = $dataTable->getOptions();
 
         $vars = [];
-        $vars['toolbar'] = $dataTable->getToolbar();
+        $vars['toolbar'] = [
+            'template' => $options['toolbar_template'],
+            'form' => $dataTable->getToolbar()->getForm()->createView(),
+            'widget' => $dataTable->getToolbar()->getWidget()->createView()
+        ];
         $vars['template'] = $options['template'];
         $vars['id'] = $options['id'];
         $vars['attr'] = [
@@ -60,15 +60,24 @@ class DataTableRenderer
         // js options
         $jsOptions = [];
 
-        $jsOptions['tree'] = $options['tree'];
-        $jsOptions['tree_state'] = $options['tree_state'];
+        if ($options['tree']) {
+            $jsOptions['tree'] = [
+                'expanded' => $options['tree_expanded']
+            ];
+        }
 
         $jsOptions['serverSide'] = true;
         $jsOptions['bFilter'] = false;
         $jsOptions['ajax'] = [
-            'url' => $options['load_url'],
+            'url' => $options['load_route'] ? $this->router->generate($options['load_route'], $options['load_route_params']) : null,
             'method' => $options['method']
         ];
+
+        if (false !== $options['select']) {
+            $jsOptions['select'] = [
+                'multiple' => DataTableType::SELECT_MULTIPLE === $options['select']
+            ];
+        }
 
         if ($options['paging']) {
             $jsOptions['lengthChange'] = $options['length_change'];
@@ -82,10 +91,10 @@ class DataTableRenderer
             $jsOptions['scrollY'] = $options['scroll_y'];
         }
 
-        if ($options['rowreorder_url']) {
+        if ($options['rowreorder_route']) {
             $jsOptions['rowReorder'] = [
                 'update' => false,
-                'url' => $options['rowreorder_url'],
+                'url' => $this->router->generate($options['rowreorder_route'], $options['rowreorder_route_params'])
             ];
         }
 
@@ -133,20 +142,5 @@ class DataTableRenderer
             'orderable' => $column->isOrderable(),
             'className' => $column->getOption('class'),
         ];
-    }
-
-    protected function toolbarView(Toolbar $toolbar): array
-    {
-        $options = $toolbar->getOptions();
-
-        $vars = [];
-        $vars['template'] = $options['toolbar_template'];
-        $vars['form'] = $toolbar->getForm()->createView();
-        $vars['widget'] = $toolbar->getWidget()->createView();
-        $vars['attr'] = [
-            'class' => $options['toolbar_class']
-        ];
-
-        return $vars;
     }
 }

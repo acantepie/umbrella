@@ -21,7 +21,8 @@ class ColumnType
             ->setAllowedTypes('label', ['null', 'string'])
 
             ->setDefault('translation_domain', null)
-            ->setAllowedTypes('translation_domain', ['null', 'string'])
+            ->setAllowedTypes('translation_domain', ['null', 'string', 'bool'])
+            ->setNormalizer('translation_domain', fn (Options $options, $value) => true === $value ? null : $value)
 
             ->setDefault('order', false)
             ->setAllowedValues('order', [false, null, 'ASC', 'DESC'])

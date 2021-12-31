@@ -1,8 +1,8 @@
 const TRANS = {
     en: {
         'row_selected': {
-            '1' : '%c% item selected. <a href data-tag="dt:unselectall">Clear selection</a>',
-            '_': '%c% items selected. <a href data-tag="dt:unselectall">Clear selection</a>'
+            '1' : '%c% row selected. <a href class="unselectall-handler">Clear selection</a>',
+            '_': '%c% rows selected. <a href class="unselectall-handler">Clear selection</a>'
         },
         'cancel': 'Cancel',
         'confirm': 'Confirm',
@@ -16,8 +16,8 @@ const TRANS = {
 
     fr: {
         'row_selected': {
-            '1' : '%c% élément sélectionné. <a href data-tag="dt:unselectall">Effacer la sélection</a>',
-            '_': '%c% éléments sélectionnés. <a href data-tag="dt:unselectall">Effacer la sélection</a>',
+            '1' : '%c% ligne sélectionnée. <a href class="unselectall-handler">Effacer la sélection</a>',
+            '_': '%c% lignes sélectionnées. <a href class="unselectall-handler">Effacer la sélection</a>',
         },
         'cancel': 'Annuler',
         'confirm': 'Confirmer',
@@ -31,7 +31,7 @@ const TRANS = {
 
     ru: {
         'row_selected': {
-            '_': '%c% выбрано. <a href data-tag="dt:unselectall">Сбросить</a>'
+            '_': '%c% выбрано. <a href class="unselectall-handler">Сбросить</a>'
         },
         'cancel': 'Отменить',
         'confirm': 'Подтвердить',

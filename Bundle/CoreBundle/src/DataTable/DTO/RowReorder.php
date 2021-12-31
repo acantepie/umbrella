@@ -10,12 +10,12 @@ class RowReorder
     /**
      * @var RowChange[] (mapped by id)
      */
-    protected array $rowChanges;
+    protected array $rowChanges = [];
 
     /**
      * @var RowChange[] (mapped by old position)
      */
-    protected array $rowChangesByOldPosition;
+    protected array $rowChangesByOldPosition = [];
 
     /**
      * RowReorder constructor.
@@ -32,7 +32,7 @@ class RowReorder
 
     public static function createFromRequest(Request $request, string $key = 'changes'): self
     {
-        $changes = $request->query->all($key);
+        $changes = $request->request->all($key);
 
         $rowChanges = [];
         /** @var array $change */

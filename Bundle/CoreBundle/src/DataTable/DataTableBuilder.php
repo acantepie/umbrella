@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter;
 use Umbrella\CoreBundle\DataTable\Adapter\EntityAdapter;
 use Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapter;
+use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
 use Umbrella\CoreBundle\DataTable\DTO\DataTable;
@@ -27,11 +28,7 @@ class DataTableBuilder
 
     protected array $columnsData = [];
 
-    protected ?array $adaptaterData = null;
-
-    protected ?string $loadUrl = null;
-
-    protected ?string $rowReorderUrl = null;
+    protected ?array $adapterData = null;
 
     protected RowModifier $rowModifier;
 
@@ -77,8 +74,7 @@ class DataTableBuilder
             ->setDefault('page_length', $config->pageLength())
             ->setDefault('dom', $config->dom())
             ->setDefault('class', $config->class())
-            ->setDefault('table_class', fn (Options $options) => $options['tree'] ? $config->tableTreeClass() : $config->tableClass())
-            ->setDefault('toolbar_class', $config->toolbarClass());
+            ->setDefault('table_class', fn (Options $options) => $options['tree'] ? $config->tableTreeClass() : $config->tableClass());
 
         // Configure options from TableType
         $this->type->configureOptions($resolver);
@@ -89,14 +85,16 @@ class DataTableBuilder
 
     public function setLoadUrl(string $route, array $params = []): self
     {
-        $this->loadUrl = $this->helper->generateUrl($route, $params);
+        $this->options['load_route'] = $route;
+        $this->options['load_route_params'] = $params;
 
         return $this;
     }
 
     public function setRowReorderUrl(string $route, array $params = []): self
     {
-        $this->rowReorderUrl = $this->helper->generateUrl($route, $params);
+        $this->options['rowreorder_route'] = $route;
+        $this->options['rowreorder_route_params'] = $params;
 
         return $this;
     }
@@ -178,7 +176,7 @@ class DataTableBuilder
             $type = CallableAdapter::class;
         }
 
-        $this->adaptaterData = [
+        $this->adapterData = [
             'type' => $type,
             'options' => $options
         ];
@@ -206,7 +204,7 @@ class DataTableBuilder
 
     public function clearAdapter(): self
     {
-        $this->adaptaterData = null;
+        $this->adapterData = null;
 
         return $this;
     }
@@ -241,22 +239,69 @@ class DataTableBuilder
         return $this;
     }
 
+    public function setRowSelectable($rowSelectable): self
+    {
+        $this->rowModifier->setSelectable($rowSelectable);
+
+        return $this;
+    }
+
+    private function createSelectColumn(): Column
+    {
+        return $this->helper->creatColumn('__select__', ColumnType::class, [
+            'label' => DataTableType::SELECT_MULTIPLE === $this->options['select']
+                ? '<div class="select-handle"><input class="form-check-input" type="checkbox"></div>' : null,
+            'render' => function ($rowData) {
+                if ($this->rowModifier->isSelectable($rowData)) {
+                    return DataTableType::SELECT_MULTIPLE === $this->options['select']
+                        ? '<div class="select-handle"><input class="form-check-input" type="checkbox"></div>'
+                        : '<div class="select-handle"><input class="form-check-input" type="radio"></div>';
+                } else {
+                    return '';
+                }
+            },
+            'is_safe_html' => true,
+            'class' => 'py-0',
+            'width' => '60px'
+        ]);
+    }
+
+    private function createDragColumn(): Column
+    {
+        return $this->helper->creatColumn('__drag__', ColumnType::class, [
+            'label' => null,
+            'render' => fn () => '<div class="drag-handle"><i class="mdi mdi-drag"></i></div>',
+            'is_safe_html' => true,
+            'class' => 'py-0',
+            'width' => '60px'
+        ]);
+    }
+
     public function getTable(): DataTable
     {
         $this->type->buildTable($this, $this->options);
 
         // resolve column
         $columns = [];
+
+        if (false !== $this->options['select']) {
+            $columns[] = $this->createSelectColumn();
+        }
+
+        if (null !== $this->options['rowreorder_route']) {
+            $columns[] = $this->createDragColumn();
+        }
+
         foreach ($this->columnsData as $name => $columnData) {
             $columns[] = $this->helper->creatColumn($name, $columnData['type'], $columnData['options']);
         }
 
         // resolve adapter
-        if (null === $this->adaptaterData) {
+        if (null === $this->adapterData) {
             throw new \InvalidArgumentException('You must configure an adapter.');
         }
 
-        [$adapterType, $resolvedAdapterOptions] = $this->helper->createAdapter($this->adaptaterData['type'], $this->adaptaterData['options']);
+        [$adapterType, $resolvedAdapterOptions] = $this->helper->createAdapter($this->adapterData['type'], $this->adapterData['options']);
 
         $toolbar = new Toolbar(
             $this->formBuilder->getForm(),
@@ -264,7 +309,7 @@ class DataTableBuilder
             $this->options
         );
 
-        $dataTable = new DataTable(
+        return new DataTable(
             $toolbar,
             $columns,
             $adapterType,
@@ -272,15 +317,5 @@ class DataTableBuilder
             $resolvedAdapterOptions,
             $this->options
         );
-
-        if (null !== $this->loadUrl) {
-            $dataTable->setLoadUrl($this->loadUrl);
-        }
-
-        if (null !== $this->rowReorderUrl) {
-            $dataTable->setRowReorderUrl($this->rowReorderUrl);
-        }
-
-        return $dataTable;
     }
 }

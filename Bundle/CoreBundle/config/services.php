@@ -2,7 +2,6 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 use Umbrella\CoreBundle\Ckeditor\CkeditorExtension;
@@ -76,20 +75,20 @@ return static function (ContainerConfigurator $configurator): void {
     $services->set(DataTableRegistry::class);
     $services->set(DataTableRenderer::class);
     $services->set(DataTableType::class)
-        ->tag('umbrella.datatable.type');
+        ->tag(DataTableRegistry::TAG_TYPE);
 
     $services->set(DataTableExtension::class)
         ->tag('twig.extension');
 
     $services->set(CallableAdapter::class)
-        ->tag('umbrella.datatable.adapter');
+        ->tag(DataTableRegistry::TAG_ADAPTER);
     $services->set(EntityAdapter::class)
-        ->tag('umbrella.datatable.adapter');
+        ->tag(DataTableRegistry::TAG_ADAPTER);
     $services->set(NestedEntityAdapter::class)
-        ->tag('umbrella.datatable.adapter');
+        ->tag(DataTableRegistry::TAG_ADAPTER);
 
     $services->load('Umbrella\\CoreBundle\\DataTable\\Column\\', '../src/DataTable/Column/*')
-        ->tag('umbrella.datatable.columntype');
+        ->tag(DataTableRegistry::TAG_COLUMN_TYPE);
 
     // -- Ckeditor -- //
     $services->set(CkeditorConfiguration::class);

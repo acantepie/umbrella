@@ -1,0 +1,165 @@
+// datatable
+umbrella-datatable {
+  display: block;
+}
+
+.card-datatable {
+  padding-bottom: $card-spacer-y;
+  padding-top: $card-spacer-y;
+
+  umbrella-datatable {
+    .inline-toolbar {
+      padding-right: $card-spacer-x;
+      padding-left: $card-spacer-x;
+    }
+
+    .table-footer {
+      padding-right: $card-spacer-x;
+      padding-left: $card-spacer-x;
+    }
+  }
+}
+
+.modal-datatable {
+  padding-bottom: $modal-inner-padding;
+  padding-top: $modal-inner-padding;
+
+  umbrella-datatable {
+    .inline-toolbar {
+      padding-right: $modal-inner-padding;
+      padding-left: $modal-inner-padding;
+    }
+
+    .table-footer {
+      padding-right: $modal-inner-padding;
+      padding-left: $modal-inner-padding;
+    }
+  }
+}
+
+umbrella-datatable {
+
+  table.dataTable {
+    width: 100% !important;
+
+    // Change icons view
+    thead .sorting {
+      &::after {
+        content: "\F04BA";
+        font-family: Material Design Icons;
+        font-size: 1rem;
+      }
+
+      &::before {
+        content: '';
+      }
+
+      &.sorting_asc::after {
+        content: "\F0045";
+        opacity: 1;
+      }
+
+      &.sorting_desc::after {
+        content: "\F005D";
+        opacity: 1;
+      }
+
+    }
+  }
+}
+
+table.dataTable {
+
+  // tree
+  tr.branch {
+
+    &.expanded .indenter a i.mdi::before {
+      transform: rotate(90deg);
+    }
+
+    .indenter a i.mdi::before {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .indenter {
+      background-image: none;
+      margin-right: 10px;
+    }
+  }
+
+  .drag-handle, .details-handle, .select-handle {
+    text-align: center;
+    padding-bottom: 0;
+    padding-top: 0;
+    cursor: pointer;
+  }
+
+  .details-handle {
+    i.mdi::before {
+      color: $primary;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  }
+
+  .drag-handle {
+    cursor: move;
+    i.mdi::before {
+      color: $primary;
+      font-size: 1.4em;
+    }
+  }
+
+  .details-handle[aria-expanded=true] i:before {
+    transform: rotate(90deg);
+  }
+}
+
+.inline-toolbar {
+
+  .toolbar-item {
+    margin-bottom: 1rem;
+  }
+
+  .toolbar-filter .form-check {
+    padding-top: 7px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    .content-end {
+      margin-left: auto;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    .toolbar-content {
+      display: flex;
+    }
+
+    .content-start, .content-end {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-item {
+      margin-right: 0.5rem;
+    }
+
+    .content-end .toolbar-item:last-child {
+      margin-right: 0;
+    }
+
+    .toolbar-filter {
+      min-width: 180px;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .toolbar-item {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+}
+

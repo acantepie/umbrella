@@ -38,7 +38,7 @@ class ButtonDropdownType extends WidgetType
 
         $resolver
             ->define('build')
-            ->default('callable');
+            ->allowedTypes('null', 'callable');
 
         $resolver
             ->setDefault('class', 'btn-light');

@@ -6,8 +6,6 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Routing\RouterInterface;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
 use Umbrella\CoreBundle\Widget\Type\WidgetType;
@@ -19,18 +17,16 @@ class DataTableBuilerHelper
     private DataTableRegistry $registry;
     private WidgetFactory $widgetFactory;
     private FormFactoryInterface $formFactory;
-    private RouterInterface $router;
     private DataTableConfiguration $config;
 
     /**
      * DataTableBuilerHelper constructor.
      */
-    public function __construct(DataTableRegistry $registry, WidgetFactory $widgetFactory, FormFactoryInterface $formFactory, RouterInterface $router, DataTableConfiguration $config)
+    public function __construct(DataTableRegistry $registry, WidgetFactory $widgetFactory, FormFactoryInterface $formFactory, DataTableConfiguration $config)
     {
         $this->registry = $registry;
         $this->widgetFactory = $widgetFactory;
         $this->formFactory = $formFactory;
-        $this->router = $router;
         $this->config = $config;
     }
 
@@ -76,10 +72,5 @@ class DataTableBuilerHelper
         $resolvedAdapterOptions = $resolver->resolve($options);
 
         return [$adapterType, $resolvedAdapterOptions];
-    }
-
-    public function generateUrl(string $name, array $parameters = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): string
-    {
-        return $this->router->generate($name, $parameters, $referenceType);
     }
 }

@@ -30,6 +30,6 @@ class ButtonGroupType extends WidgetType
 
         $resolver
             ->define('build')
-            ->default('callable');
+            ->allowedTypes('null', 'callable');
     }
 }

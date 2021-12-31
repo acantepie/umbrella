@@ -1,0 +1,27 @@
+<div class="inline-toolbar">
+
+    <div class="toolbar-content">
+        {%- if toolbar.form | length > 0 -%}
+            <form data-submit="auto" class="content-start">
+                {{ umbrella_form_theme(toolbar.form) }}
+                {%- for child in toolbar.form -%}
+                    <div class="toolbar-filter toolbar-item">
+                        {{- form_widget(child) -}}
+                    </div>
+                {%- endfor -%}
+            </form>
+        {%- endif -%}
+
+        <div class="content-end">
+            {%- for child in toolbar.widget -%}
+                <div class="toolbar-widget toolbar-item">
+                    {{- render_widget(child) -}}
+                </div>
+            {%- endfor -%}
+        </div>
+    </div>
+
+    <div class="select-content" hidden>
+
+    </div>
+</div>

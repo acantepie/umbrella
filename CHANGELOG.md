@@ -1,9 +1,19 @@
 CHANGELOG
 =========
 
-4.x
+5.x
 ---
-
+ * DataTable :
+   * Remove `load_url` option, use `load_route` and `load_route_params` option instead
+   * Remove `rowreorder_url` option, use `rowreorder_route` and `rowreorder_route_params` option instead
+   * Remove `toolbar_class` option, use `toolbar_template` to override class of toolbar template instead
+   * Rename `DetailsHandleColumnType` column  by `DetailsColumnType`
+   * Remove `CheckboxColumnType` column and `RadioColumnType` column, use `select` option instead (can be `multi`, `single` or `false`). Set option `select` will automatically add an internal column with checkbox or radio. 
+   * Add `setRowSelectable` method for builder to determine if a row can be selected or not.
+   * Remove `DragHandleColumnType` column, set option `rowreorder_route` or use method `setRowReorderUrl` of builder will automatically add an internal `drag` column.
+   * Remove `tree_expanded` option, use `tree_expanded` option instead (can be `true` or `false`)
+ * Fix : prevent open multiple confirm modal
+   
 4.4
 ---
  * Add alias `UserMailerInterface` and `UserManagerInterface`  to allowing services `UserMailer` and `UserManager`to be overriden.

@@ -4,7 +4,7 @@ namespace Umbrella\CoreBundle\DataTable\Column;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DetailsHandleColumnType extends ColumnType
+class DetailsColumnType extends ColumnType
 {
     public function render($rowData, array $options): string
     {
@@ -19,8 +19,8 @@ class DetailsHandleColumnType extends ColumnType
             : $options['expanded'];
 
         return sprintf(
-            '<a href data-tag="dt:details" data-init-state="%s" class="row-details-handle"><i class="mdi"></i> <template>%s</template></a>',
-            $expanded ? 'expanded' : 'collapsed',
+            '<div aria-expanded="%s" class="details-handle"><i class="mdi mdi-chevron-right"></i> <template>%s</template></div>',
+            $expanded ? 'true' : 'false',
             $details
         );
     }
@@ -31,6 +31,8 @@ class DetailsHandleColumnType extends ColumnType
 
         $resolver
             ->setDefault('label', null)
+            ->setDefault('class', 'py-0')
+            ->setDefault('width', '60px')
 
             ->setRequired('render_details')
             ->setAllowedTypes('render_details', 'callable')

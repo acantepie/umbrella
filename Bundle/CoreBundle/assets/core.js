@@ -24,10 +24,8 @@ window.umbrella = {
 }
 
 // --- DataTable.js
-import Toolbar from './datatable/Toolbar';
-import DataTable from './datatable/DataTable';
-customElements.define('umbrella-toolbar', Toolbar);
-customElements.define('umbrella-datatable', DataTable);
+import UmbrellaDataTable from './datatable/UmbrellaDataTable';
+customElements.define('umbrella-datatable', UmbrellaDataTable);
 
 // --- Forms
 import UmbrellaSelect from './form/UmbrellaSelect';

@@ -30,6 +30,11 @@ class RowModifier
      */
     protected $attr = [];
 
+    /**
+     * @var callable|bool
+     */
+    protected $selectable = true;
+
     protected bool $isTree = false;
 
     protected array $computedIds = [];
@@ -54,7 +59,7 @@ class RowModifier
     public function setId($id): self
     {
         if (!is_string($id) && !is_callable($id)) {
-            throw new \InvalidArgumentException('RowId must be an property path or a callback');
+            throw new \InvalidArgumentException('RowId must be a property path or a callback');
         }
 
         $this->id = $id;
@@ -65,7 +70,7 @@ class RowModifier
     public function setParentId($parentId): self
     {
         if (!is_string($parentId) && !is_callable($parentId)) {
-            throw new \InvalidArgumentException('RowParentId must be an property path or a callback');
+            throw new \InvalidArgumentException('RowParentId must be a property path or a callback');
         }
 
         $this->parentId = $parentId;
@@ -95,6 +100,22 @@ class RowModifier
         return $this;
     }
 
+    public function setSelectable($selectable): self
+    {
+        if (!is_bool($selectable) && !is_callable($selectable)) {
+            throw new \InvalidArgumentException('RowSelectable must be a boolean or a callback');
+        }
+
+        $this->selectable = $selectable;
+
+        return $this;
+    }
+
+    public function isSelectable($data): bool
+    {
+        return true === $this->selectable || is_callable($this->selectable) && true === call_user_func($this->selectable, $data);
+    }
+
     public function modify(RowView $view, $data): void
     {
         $id = is_callable($this->id)
@@ -102,6 +123,7 @@ class RowModifier
             : (string) $this->accessor->getValue($data, $this->id);
 
         $this->computedIds[] = $id;
+        $view->id = $id;
         $view->attr['data-id'] = $id;
 
         if (null !== $this->class) {
@@ -122,6 +144,10 @@ class RowModifier
             $view->attr = array_merge($view->attr, $this->attr);
         }
 
+        if ($this->isSelectable($data)) {
+            $view->class .= ' row-selectable';
+        }
+
         if ($this->isTree) {
             $view->attr['data-tt-id'] = $id;
 
@@ -129,7 +155,7 @@ class RowModifier
                 ? (string) call_user_func($this->parentId, $data)
                 : (string) $this->accessor->getValue($data, $this->parentId);
 
-            if (in_array($parentId, $this->computedIds)) { // Avoid attach row to unexisting parent id (else treegrid wont work)
+            if (in_array($parentId, $this->computedIds)) { // Avoid attach row to an unexisting parent id (else treegrid won't work)
                 $view->attr['data-tt-parent-id'] = $parentId;
             }
         }

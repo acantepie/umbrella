@@ -5,16 +5,27 @@ class ConfirmModal {
     static template = '<div class="modal confirm-modal fade" tabindex="-1" id="confirm-modal">' +
         '<div class="modal-dialog modal-dialog-centered" role="document">' +
         '<div class="modal-content">' +
+        '<div class="modal-icon"><i class="uil-comment-exclamation"></i></div>' +
         '<div class="modal-body">__text__</div>' +
         '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-danger btn-cancel" data-bs-dismiss="modal">__cancel__</button>' +
-        '<button type="button" class="btn btn-success btn-confirm">__confirm__</button></div></div></div></div>';
+        '<button type="button" class="btn btn-danger btn-cancel" data-bs-dismiss="modal"><i class="mdi mdi-close me-1"></i> __cancel__</button>' +
+        '<button type="button" class="btn btn-success btn-confirm"><i class="mdi mdi-check me-1"></i> __confirm__</button></div></div></div></div>';
 
     constructor() {
         this.modal = null
     }
 
     show(options = {}) {
+
+        // test if a confirm modal is shown
+        if ('show' === document.body.getAttribute('data-confirm-modal')) {
+            console.warn('Action prevented, a confirm modal is already opened.');
+            return;
+        }
+
+        // Flag confirm modal as shown
+        document.body.setAttribute('data-confirm-modal', 'show')
+
 
         const defaultOptions = {
             text: '',
@@ -35,7 +46,10 @@ class ConfirmModal {
         template.innerHTML = html
 
         const modalElement = template.firstChild
-        modalElement.addEventListener('hidden.bs.modal', modalElement.remove)
+        modalElement.addEventListener('hidden.bs.modal', (e) => {
+            document.body.removeAttribute('data-confirm-modal')
+            modalElement.remove()
+        })
         modalElement.addEventListener('keypress', (e) => {
             if (e.which === 13) {
                 options['confirm']();
