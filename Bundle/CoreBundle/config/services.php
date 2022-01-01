@@ -5,6 +5,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 use Umbrella\CoreBundle\Ckeditor\CkeditorExtension;
 use Umbrella\CoreBundle\Command\IndexEntityCommand;
+use Umbrella\CoreBundle\DataTable\ActionRenderer;
 use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter;
 use Umbrella\CoreBundle\DataTable\Adapter\EntityAdapter;
 use Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapter;
@@ -71,6 +72,7 @@ return static function (ContainerConfigurator $configurator): void {
     $services->set(DataTableFactory::class);
     $services->set(DataTableRegistry::class);
     $services->set(DataTableRenderer::class);
+    $services->set(ActionRenderer::class);
     $services->set(DataTableType::class)
         ->tag(DataTableRegistry::TAG_TYPE);
 
@@ -86,6 +88,9 @@ return static function (ContainerConfigurator $configurator): void {
 
     $services->load('Umbrella\\CoreBundle\\DataTable\\Column\\', '../src/DataTable/Column/*')
         ->tag(DataTableRegistry::TAG_COLUMN_TYPE);
+
+    $services->load('Umbrella\\CoreBundle\\DataTable\\Action\\', '../src/DataTable/Action/*')
+        ->tag(DataTableRegistry::TAG_ACTION_TYPE);
 
     // -- Ckeditor -- //
     $services->set(CkeditorConfiguration::class);

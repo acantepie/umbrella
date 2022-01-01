@@ -1,0 +1,14 @@
+{% use "@UmbrellaCore/DataTable/Action/helper.html.twig" %}
+
+<a {{ block('attributes') }}>
+    {{ block('icon') }}
+    {%- if text is not empty -%}
+        <span>
+            {%- if translation_domain is not same as(false) -%}
+                {{- text | trans({}, translation_domain) -}}
+            {%- else -%}
+                {{- text -}}
+            {%- endif -%}
+        </span>
+    {%- endif -%}
+</a>

@@ -4,7 +4,9 @@ namespace Umbrella\CoreBundle\DataTable;
 
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Umbrella\CoreBundle\DataTable\Action\ActionType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
+use Umbrella\CoreBundle\DataTable\DTO\Action;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
 use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 use Umbrella\CoreBundle\Widget\WidgetFactory;
@@ -45,9 +47,29 @@ class DataTableFactory
         $resolver->setDefault('name', $name);
 
         $columnType->configureOptions($resolver);
-        $columnResolvedOptions = $resolver->resolve($options);
+        $resolvedOptions = $resolver->resolve($options);
 
-        return new Column($columnType, $columnResolvedOptions);
+        return new Column($columnType, $resolvedOptions);
+    }
+
+    public function createColumnActionBuilder(): ColumnActionBuilder
+    {
+        return new ColumnActionBuilder($this);
+    }
+
+    public function createAction(string $name, string $type = ActionType::class, array $options = []): Action
+    {
+        $actionType = $this->registry->getActionType($type);
+
+        $resolver = new OptionsResolver();
+        ActionType::defaultConfigureOptions($resolver);
+
+        $resolver->setDefault('name', $name);
+
+        $actionType->configureOptions($resolver);
+        $resolvedOptions = $resolver->resolve($options);
+
+        return new Action($actionType, $resolvedOptions);
     }
 
     public function createAdapter(string $type, array $options = []): array

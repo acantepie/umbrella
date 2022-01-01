@@ -20,6 +20,7 @@ class UmbrellaComponentPass implements CompilerPassInterface
         $registry = $container->getDefinition(DataTableRegistry::class);
         $this->addToRegistry($container, $registry, DataTableRegistry::TAG_TYPE, 'registerType');
         $this->addToRegistry($container, $registry, DataTableRegistry::TAG_COLUMN_TYPE, 'registerColumnType');
+        $this->addToRegistry($container, $registry, DataTableRegistry::TAG_ACTION_TYPE, 'registerActionType');
         $this->addToRegistry($container, $registry, DataTableRegistry::TAG_ADAPTER, 'registerAdapter');
 
         $registry = $container->getDefinition(WidgetRegistry::class);

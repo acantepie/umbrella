@@ -6,17 +6,15 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Routing\RouterInterface;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
+use Umbrella\CoreBundle\DataTable\Column\ActionColumnType;
 use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
-use Umbrella\CoreBundle\DataTable\Column\WidgetColumnType;
+use Umbrella\CoreBundle\DataTable\ColumnActionBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\Form\SearchType;
 use Umbrella\CoreBundle\Widget\Type\AddLinkType;
-use Umbrella\CoreBundle\Widget\Type\RowDeleteLinkType;
-use Umbrella\CoreBundle\Widget\Type\RowEditLinkType;
-use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
 class UserTableType extends DataTableType
 {
@@ -57,7 +55,6 @@ class UserTableType extends DataTableType
             'order_by' => ['firstname', 'lastname'],
             'translation_domain' => 'UmbrellaAdmin'
         ]);
-
         $builder->add('email');
         $builder->add('createdAt', DateColumnType::class, [
             'label' => 'label.created_at',
@@ -67,16 +64,14 @@ class UserTableType extends DataTableType
             'label' => 'label.active',
             'translation_domain' => 'UmbrellaAdmin'
         ]);
-
-        $builder->add('links', WidgetColumnType::class, [
-            'build' => function (WidgetBuilder $builder, BaseAdminUser $e) {
-                $builder->add('add', RowEditLinkType::class, [
+        $builder->add('__action__', ActionColumnType::class, [
+            'build' => function (ColumnActionBuilder $builder, BaseAdminUser $e) {
+                $builder->editLink([
                     'route' => 'umbrella_admin_user_edit',
                     'route_params' => ['id' => $e->id],
                     'xhr' => true
                 ]);
-
-                $builder->add('delete', RowDeleteLinkType::class, [
+                $builder->deleteLink([
                     'route' => 'umbrella_admin_user_delete',
                     'route_params' => ['id' => $e->id]
                 ]);

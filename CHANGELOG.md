@@ -13,6 +13,9 @@ CHANGELOG
    * Remove `DragHandleColumnType` column, set option `rowreorder_route` or use method `setRowReorderUrl` of builder will automatically add an internal `drag` column.
    * Remove `ManyColumnType` (doesn't working).
    * Remove `tree_expanded` option, use `tree_expanded` option instead (can be `true` or `false`)
+   * Remove `WidgetColumnType`, use `ActionColumnType` instead
+ * Widget :
+   * Remove component
  * Fix 
    * prevent open multiple confirm modal
    

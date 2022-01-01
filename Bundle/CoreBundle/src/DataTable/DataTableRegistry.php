@@ -2,6 +2,7 @@
 
 namespace Umbrella\CoreBundle\DataTable;
 
+use Umbrella\CoreBundle\DataTable\Action\ActionType;
 use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 
@@ -12,6 +13,7 @@ class DataTableRegistry
 {
     public const TAG_TYPE = 'umbrella.datatable.type';
     public const TAG_COLUMN_TYPE = 'umbrella.datatable.columntype';
+    public const TAG_ACTION_TYPE = 'umbrella.datatable.actiontype';
     public const TAG_ADAPTER = 'umbrella.datatable.adapter';
 
     /**
@@ -23,6 +25,11 @@ class DataTableRegistry
      * @var ColumnType[]
      */
     protected array $columnTypes = [];
+
+    /**
+     * @var ActionType[]
+     */
+    protected array $actionTypes = [];
 
     /**
      * @var DataTableAdapter[]
@@ -59,6 +66,22 @@ class DataTableRegistry
         }
 
         return $this->columnTypes[$name];
+    }
+
+    // Action Type
+
+    public function registerActionType(string $name, ActionType $actionType)
+    {
+        $this->actionTypes[$name] = $actionType;
+    }
+
+    public function getActionType(string $name): ActionType
+    {
+        if (!isset($this->actionTypes[$name])) {
+            throw new \InvalidArgumentException(sprintf('Action "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+        }
+
+        return $this->actionTypes[$name];
     }
 
     // Adaptater (type)

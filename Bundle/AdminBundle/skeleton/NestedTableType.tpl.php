@@ -4,14 +4,11 @@ namespace <?= $namespace ?>;
 
 use <?= $entity->getFullName() ?>;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\CoreBundle\DataTable\Column\WidgetColumnType;
+use Umbrella\CoreBundle\DataTable\Column\ActionColumnType;
+use Umbrella\CoreBundle\DataTable\ColumnActionBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\Widget\Type\AddLinkType;
-use Umbrella\CoreBundle\Widget\Type\RowDeleteLinkType;
-use Umbrella\CoreBundle\Widget\Type\RowEditLinkType;
-use Umbrella\CoreBundle\Widget\Type\RowMoveLinkType;
-use Umbrella\CoreBundle\Widget\WidgetBuilder;
 
 class <?= $class_name ?> extends DataTableType
 {
@@ -25,23 +22,20 @@ class <?= $class_name ?> extends DataTableType
         ]);
 
         $builder->add('id');
-        $builder->add('links', WidgetColumnType::class, [
-            'build' => function (WidgetBuilder $builder, <?= $entity->getShortName() ?> $e) {
-
-                $builder->add('move', RowMoveLinkType::class, [
+        $builder->add('__action__', ActionColumnType::class, [
+            'build' => function (ColumnActionBuilder $builder, <?= $entity->getShortName() ?> $e) {
+                $builder->moveLinks([
                     'route' => '<?= $route['name_prefix'] ?>_move',
                     'route_params' => ['id' => $e->id]
                 ]);
-
-                $builder->add('edit', RowEditLinkType::class, [
+                $builder->editLink([
                     'route' => '<?= $route['name_prefix'] ?>_edit',
                     'route_params' => ['id' => $e->id],
 <?php if ('modal' === $edit_view_type) { ?>
                     'xhr' => true
 <?php } ?>
                 ]);
-
-                $builder->add('delete', RowDeleteLinkType::class, [
+                $builder->deleteLink([
                     'route' => '<?= $route['name_prefix'] ?>_delete',
                     'route_params' => ['id' => $e->id]
                 ]);

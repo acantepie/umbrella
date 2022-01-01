@@ -23,37 +23,10 @@ class DataTableRenderer
 
     public function render(DataTable $table): string
     {
-        return $this->twig->render($table->getOption('template'), $this->view($table));
+        return $this->twig->render($table->getOption('template'), $this->createView($table));
     }
 
-    protected function view(DataTable $dataTable): array
-    {
-        $options = $dataTable->getOptions();
-
-        $vars = [];
-        $vars['toolbar'] = [
-            'template' => $options['toolbar_template'],
-            'form' => $dataTable->getToolbar()->getForm()->createView(),
-            'widget' => $dataTable->getToolbar()->getWidget()->createView()
-        ];
-        $vars['template'] = $options['template'];
-        $vars['id'] = $options['id'];
-        $vars['attr'] = [
-            'id' => $options['id'],
-            'class' => $options['class'],
-            'data-options' => json_encode($this->getJsOptions($dataTable)),
-        ];
-        $vars['table_attr'] = [
-            'class' => $options['table_class'] .= ' table js-datatable'
-        ];
-        $vars['columns'] = array_map(function (Column $c) {
-            return $this->columnView($c);
-        }, $dataTable->getColumns());
-
-        return $vars;
-    }
-
-    protected function getJsOptions(DataTable $dataTable): array
+    protected function createView(DataTable $dataTable): array
     {
         $options = $dataTable->getOptions();
 
@@ -114,13 +87,36 @@ class DataTableRenderer
                 ];
             }
 
-            $jsOptions['columns'][] = $this->getColumnJsOptions($column);
+            $jsOptions['columns'][] = [
+                'orderable' => $column->isOrderable(),
+                'className' => $column->getOption('class'),
+            ];
         }
 
-        return $jsOptions;
+        $vars = [];
+        $vars['toolbar'] = [
+            'template' => $options['toolbar_template'],
+            'form' => $dataTable->getToolbar()->getForm()->createView(),
+            'widget' => $dataTable->getToolbar()->getWidget()->createView()
+        ];
+        $vars['template'] = $options['template'];
+        $vars['id'] = $options['id'];
+        $vars['attr'] = [
+            'id' => $options['id'],
+            'class' => $options['class'],
+            'data-options' => json_encode($jsOptions),
+        ];
+        $vars['table_attr'] = [
+            'class' => $options['table_class'] .= ' table js-datatable'
+        ];
+        $vars['columns'] = array_map(function (Column $c) {
+            return $this->createColumnView($c);
+        }, $dataTable->getColumns());
+
+        return $vars;
     }
 
-    protected function columnView(Column $column): array
+    protected function createColumnView(Column $column): array
     {
         $options = $column->getOptions();
 
@@ -134,13 +130,5 @@ class DataTableRenderer
         $vars['translation_domain'] = $options['translation_domain'];
 
         return $vars;
-    }
-
-    protected function getColumnJsOptions(Column $column): array
-    {
-        return [
-            'orderable' => $column->isOrderable(),
-            'className' => $column->getOption('class'),
-        ];
     }
 }
