@@ -4,18 +4,18 @@ namespace Umbrella\CoreBundle\DataTable\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+use Umbrella\CoreBundle\DataTable\ActionRenderer;
 use Umbrella\CoreBundle\DataTable\DataTableRenderer;
 
 class DataTableExtension extends AbstractExtension
 {
     protected DataTableRenderer $renderer;
+    protected ActionRenderer $actionRenderer;
 
-    /**
-     * DataTableTwigExtension constructor.
-     */
-    public function __construct(DataTableRenderer $renderer)
+    public function __construct(DataTableRenderer $renderer, ActionRenderer $actionRenderer)
     {
         $this->renderer = $renderer;
+        $this->actionRenderer = $actionRenderer;
     }
 
     /**
@@ -25,6 +25,9 @@ class DataTableExtension extends AbstractExtension
     {
         return [
             new TwigFunction('render_table', [$this->renderer, 'render'], [
+                'is_safe' => ['html'],
+            ]),
+            new TwigFunction('render_action', [$this->actionRenderer, 'renderAction'], [
                 'is_safe' => ['html'],
             ])
         ];

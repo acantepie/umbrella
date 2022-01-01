@@ -23,7 +23,6 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
 
         $this->addFormSection($rootNode);
-        $this->addWidgetSection($rootNode);
         $this->ckeditorSection($rootNode);
         $this->datatableSection($rootNode);
 
@@ -50,17 +49,6 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('group_class')
                     ->defaultValue('col-sm-10')
                     ->info('Default group class for horizontal bootstrap layout.')
-                    ->end();
-    }
-
-    private function addWidgetSection(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode->children()
-            ->arrayNode('widget')->addDefaultsIfNotSet()
-            ->children()
-                ->scalarNode('template')
-                    ->defaultValue('@UmbrellaCore/Widget/widget.html.twig')
-                    ->info('Twig template used to render Widget Type.')
                     ->end();
     }
 

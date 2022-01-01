@@ -4,17 +4,17 @@ namespace <?= $namespace ?>;
 
 use <?= $entity->getFullName() ?>;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Umbrella\CoreBundle\DataTable\Action\AddLinkType;
 use Umbrella\CoreBundle\DataTable\Column\ActionColumnType;
 use Umbrella\CoreBundle\DataTable\ColumnActionBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableType;
-use Umbrella\CoreBundle\Widget\Type\AddLinkType;
 
 class <?= $class_name ?> extends DataTableType
 {
     public function buildTable(DataTableBuilder $builder, array $options)
     {
-        $builder->addWidget('add', AddLinkType::class, [
+        $builder->addAction('add', AddLinkType::class, [
             'route' => '<?= $route['name_prefix'] ?>_edit',
 <?php if ('modal' === $edit_view_type) { ?>
             'xhr' => true

@@ -4,18 +4,18 @@
         {%- if toolbar.form | length > 0 -%}
             <form data-submit="auto" class="content-start">
                 {{ umbrella_form_theme(toolbar.form) }}
-                {%- for child in toolbar.form -%}
+                {%- for form in toolbar.form -%}
                     <div class="toolbar-filter toolbar-item">
-                        {{- form_widget(child) -}}
+                        {{- form_widget(form) -}}
                     </div>
                 {%- endfor -%}
             </form>
         {%- endif -%}
 
         <div class="content-end">
-            {%- for child in toolbar.widget -%}
+            {%- for action in toolbar.actions -%}
                 <div class="toolbar-widget toolbar-item">
-                    {{- render_widget(child) -}}
+                    {{- render_action(action) -}}
                 </div>
             {%- endfor -%}
         </div>

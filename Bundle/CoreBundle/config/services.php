@@ -27,10 +27,6 @@ use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
 use Umbrella\CoreBundle\Search\EntityIndexer;
 use Umbrella\CoreBundle\Search\SearchableEntitySubscriber;
 use Umbrella\CoreBundle\Twig\CoreExtension;
-use Umbrella\CoreBundle\Widget\Twig\WidgetExtension;
-use Umbrella\CoreBundle\Widget\WidgetFactory;
-use Umbrella\CoreBundle\Widget\WidgetRegistry;
-use Umbrella\CoreBundle\Widget\WidgetRenderer;
 
 return static function (ContainerConfigurator $configurator): void {
 
@@ -56,17 +52,6 @@ return static function (ContainerConfigurator $configurator): void {
     $services->set(JsResponseBuilder::class);
     $services->set(JsResponseViewListener::class)
         ->tag('kernel.event_subscriber');
-
-
-    // -- Widget -- //
-
-    $services->set(WidgetFactory::class);
-    $services->set(WidgetRegistry::class);
-    $services->set(WidgetRenderer::class);
-    $services->set(WidgetExtension::class)
-        ->tag('twig.extension');
-    $services->load('Umbrella\\CoreBundle\\Widget\\Type\\', '../src/Widget/Type/*')
-        ->tag('umbrella.widget.type');
 
     // -- DataTable -- //
     $services->set(DataTableFactory::class);

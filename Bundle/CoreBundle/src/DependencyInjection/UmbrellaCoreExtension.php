@@ -17,9 +17,6 @@ use Umbrella\CoreBundle\Menu\MenuRegistry;
 use Umbrella\CoreBundle\Menu\MenuType;
 use Umbrella\CoreBundle\Menu\Visitor\MenuVisitor;
 use Umbrella\CoreBundle\Twig\CoreExtension;
-use Umbrella\CoreBundle\Widget\Type\WidgetType;
-use Umbrella\CoreBundle\Widget\WidgetRegistry;
-use Umbrella\CoreBundle\Widget\WidgetRenderer;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -48,10 +45,6 @@ class UmbrellaCoreExtension extends Extension
             ->setArgument(0, $config['datatable']);
 
         $container
-            ->getDefinition(WidgetRenderer::class)
-            ->setArgument(0, $config['widget']['template']);
-
-        $container
             ->getDefinition(FormTypeExtension::class)
             ->setArgument(0, $config['form']['label_class'])
             ->setArgument(1, $config['form']['group_class']);
@@ -63,7 +56,6 @@ class UmbrellaCoreExtension extends Extension
         $container->registerForAutoconfiguration(DataTableType::class)->addTag(DataTableRegistry::TAG_TYPE);
         $container->registerForAutoconfiguration(ColumnType::class)->addTag(DataTableRegistry::TAG_COLUMN_TYPE);
         $container->registerForAutoconfiguration(DataTableAdapter::class)->addTag(DataTableRegistry::TAG_ADAPTER);
-        $container->registerForAutoconfiguration(WidgetType::class)->addTag(WidgetRegistry::TAG_TYPE);
 
         $container->registerForAutoconfiguration(MenuType::class)->addTag(MenuRegistry::TAG_TYPE);
         $container->registerForAutoconfiguration(MenuVisitor::class)->addTag(MenuRegistry::TAG_VISITOR);

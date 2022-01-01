@@ -9,20 +9,17 @@ use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\DTO\Action;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
 use Umbrella\CoreBundle\DataTable\DTO\DataTable;
-use Umbrella\CoreBundle\Widget\WidgetFactory;
 
 class DataTableFactory
 {
     protected DataTableRegistry $registry;
 
-    protected WidgetFactory $widgetFactory;
     protected FormFactoryInterface $formFactory;
     protected DataTableConfiguration $config;
 
-    public function __construct(DataTableRegistry $registry, WidgetFactory $widgetFactory, FormFactoryInterface $formFactory, DataTableConfiguration $config)
+    public function __construct(DataTableRegistry $registry, FormFactoryInterface $formFactory, DataTableConfiguration $config)
     {
         $this->registry = $registry;
-        $this->widgetFactory = $widgetFactory;
         $this->formFactory = $formFactory;
         $this->config = $config;
     }
@@ -34,7 +31,7 @@ class DataTableFactory
 
     public function createBuilder(string $type, array $options = []): DataTableBuilder
     {
-        return new DataTableBuilder($this, $this->widgetFactory, $this->formFactory, $this->config, $this->registry->getType($type), $options);
+        return new DataTableBuilder($this, $this->formFactory, $this->config, $this->registry->getType($type), $options);
     }
 
     public function createColumn(string $name, string $type = ColumnType::class, array $options = []): Column

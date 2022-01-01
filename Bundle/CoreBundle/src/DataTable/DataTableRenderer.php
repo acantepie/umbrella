@@ -97,7 +97,7 @@ class DataTableRenderer
         $vars['toolbar'] = [
             'template' => $options['toolbar_template'],
             'form' => $dataTable->getToolbar()->getForm()->createView(),
-            'widget' => $dataTable->getToolbar()->getWidget()->createView()
+            'actions' => $dataTable->getToolbar()->getActions()
         ];
         $vars['template'] = $options['template'];
         $vars['id'] = $options['id'];

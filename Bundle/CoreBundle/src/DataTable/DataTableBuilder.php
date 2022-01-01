@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Umbrella\CoreBundle\DataTable\Action\ActionType;
 use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter;
 use Umbrella\CoreBundle\DataTable\Adapter\EntityAdapter;
 use Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapter;
@@ -17,9 +18,6 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 use Umbrella\CoreBundle\DataTable\DTO\RowModifier;
 use Umbrella\CoreBundle\DataTable\DTO\Toolbar;
 use Umbrella\CoreBundle\Utils\Utils;
-use Umbrella\CoreBundle\Widget\Type\WidgetType;
-use Umbrella\CoreBundle\Widget\WidgetBuilder;
-use Umbrella\CoreBundle\Widget\WidgetFactory;
 
 class DataTableBuilder
 {
@@ -29,9 +27,8 @@ class DataTableBuilder
     protected RowModifier $rowModifier;
     protected array $options = [];
 
-    protected WidgetBuilder $widgetBuilder;
     protected FormBuilderInterface $filterBuilder;
-
+    protected array $actionsData = [];
     protected array $columnsData = [];
 
     protected ?array $adapterData = null;
@@ -41,7 +38,6 @@ class DataTableBuilder
      */
     public function __construct(
         DataTableFactory $factory,
-        WidgetFactory $widgetFactory,
         FormFactoryInterface $formFactory,
         DataTableConfiguration $config,
         DataTableType $type,
@@ -53,7 +49,6 @@ class DataTableBuilder
         $this->rowModifier = new RowModifier();
         $this->resolveOptions($options);
 
-        $this->widgetBuilder = $widgetFactory->createBuilder(WidgetType::class);
         $this->filterBuilder = $formFactory->createNamedBuilder(
             $this->options['toolbar_form_name'],
             FormType::class,
@@ -98,7 +93,7 @@ class DataTableBuilder
         return $this;
     }
 
-    // Toolbar Api
+    // Filter Api
 
     public function addFilter($child, string $type = null, array $options = []): self
     {
@@ -114,28 +109,33 @@ class DataTableBuilder
         return $this;
     }
 
+    // Action Api
+
     public function hasFilter(string $name): bool
     {
         return $this->filterBuilder->has($name);
     }
 
-    public function addWidget($child, string $type = null, array $options = []): self
+    public function addAction(string $name, string $type = ActionType::class, array $options = []): self
     {
-        $this->widgetBuilder->add($child, $type, $options);
+        $this->actionsData[$name] = [
+            'type' => $type,
+            'options' => $options
+        ];
 
         return $this;
     }
 
-    public function removeWidget(string $name): self
+    public function removeAction(string $name): self
     {
-        $this->widgetBuilder->remove($name);
+        unset($this->actionsData[$name]);
 
         return $this;
     }
 
-    public function hasWidget(string $name): bool
+    public function hasAction(string $name): bool
     {
-        return $this->widgetBuilder->has($name);
+        return isset($this->actionsData[$name]);
     }
 
     // Column Api
@@ -300,9 +300,15 @@ class DataTableBuilder
 
         [$adapterType, $resolvedAdapterOptions] = $this->factory->createAdapter($this->adapterData['type'], $this->adapterData['options']);
 
+        // resolve actions
+        $resolvedActions = [];
+        foreach ($this->actionsData as $name => $actionData) {
+            $resolvedActions[] = $this->factory->createAction($name, $actionData['type'], $actionData['options']);
+        }
+
         $toolbar = new Toolbar(
             $this->filterBuilder->getForm(),
-            $this->widgetBuilder->getWidget(),
+            $resolvedActions,
             $this->options
         );
 

@@ -4,13 +4,15 @@ namespace Umbrella\CoreBundle\DataTable\DTO;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Umbrella\CoreBundle\Widget\DTO\Widget;
 
 class Toolbar
 {
     protected FormInterface $form;
 
-    protected Widget $widget;
+    /**
+     * @var Action[]
+     */
+    protected array $actions;
 
     protected array $options;
 
@@ -19,10 +21,10 @@ class Toolbar
     /**
      * Toolbar constructor.
      */
-    public function __construct(FormInterface $form, Widget $widget, array $options)
+    public function __construct(FormInterface $form, array $actions, array $options)
     {
         $this->form = $form;
-        $this->widget = $widget;
+        $this->actions = $actions;
         $this->options = $options;
     }
 
@@ -31,9 +33,9 @@ class Toolbar
         return $this->form;
     }
 
-    public function getWidget(): Widget
+    public function getActions(): array
     {
-        return $this->widget;
+        return $this->actions;
     }
 
     public function getOptions(): array

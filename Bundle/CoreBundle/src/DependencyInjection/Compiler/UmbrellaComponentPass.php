@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
 use Umbrella\CoreBundle\Menu\MenuRegistry;
-use Umbrella\CoreBundle\Widget\WidgetRegistry;
 
 class UmbrellaComponentPass implements CompilerPassInterface
 {
@@ -22,9 +21,6 @@ class UmbrellaComponentPass implements CompilerPassInterface
         $this->addToRegistry($container, $registry, DataTableRegistry::TAG_COLUMN_TYPE, 'registerColumnType');
         $this->addToRegistry($container, $registry, DataTableRegistry::TAG_ACTION_TYPE, 'registerActionType');
         $this->addToRegistry($container, $registry, DataTableRegistry::TAG_ADAPTER, 'registerAdapter');
-
-        $registry = $container->getDefinition(WidgetRegistry::class);
-        $this->addToRegistry($container, $registry, WidgetRegistry::TAG_TYPE, 'registerType');
 
         $registry = $container->getDefinition(MenuRegistry::class);
         $this->addToRegistry($container, $registry, MenuRegistry::TAG_TYPE, 'registerType');
