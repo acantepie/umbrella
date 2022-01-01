@@ -9,21 +9,14 @@ use Umbrella\CoreBundle\Widget\WidgetRenderer;
 class WidgetColumnType extends ColumnType
 {
     protected WidgetFactory $factory;
-
     protected WidgetRenderer $renderer;
 
-    /**
-     * WidgetColumnType constructor.
-     */
     public function __construct(WidgetFactory $factory, WidgetRenderer $renderer)
     {
         $this->factory = $factory;
         $this->renderer = $renderer;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function render($rowData, array $options): string
     {
         if ($options['build']) {
@@ -36,20 +29,21 @@ class WidgetColumnType extends ColumnType
         return '';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function isSafeHtml(): bool
+    {
+        return true;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefault('build', null)
-            ->setAllowedTypes('build', ['null', 'callable'])
-
             ->setDefault('class', 'text-end')
-            ->setDefault('label', '')
+            ->setDefault('label', null);
 
-            ->setDefault('is_safe_html', true);
+        $resolver
+            ->setDefault('build', null)
+            ->setAllowedTypes('build', ['null', 'callable']);
     }
 }

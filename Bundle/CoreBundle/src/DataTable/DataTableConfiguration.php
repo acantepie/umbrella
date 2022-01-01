@@ -14,11 +14,6 @@ class DataTableConfiguration
         $this->config = $config;
     }
 
-    public function isSafeHtml(): bool
-    {
-        return $this->config['is_safe_html'];
-    }
-
     public function pageLength(): int
     {
         return $this->config['page_length'];

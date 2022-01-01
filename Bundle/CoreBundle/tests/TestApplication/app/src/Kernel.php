@@ -8,14 +8,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
-use Umbrella\CoreBundle\DataTable\DataTableBuilerHelper;
+use Umbrella\CoreBundle\DataTable\DataTableFactory;
 
 class Kernel extends BaseKernel implements CompilerPassInterface
 {
     use MicroKernelTrait;
 
     private const SERVICES = [
-        DataTableBuilerHelper::class
+        DataTableFactory::class
     ];
     private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 

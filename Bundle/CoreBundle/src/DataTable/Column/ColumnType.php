@@ -8,55 +8,65 @@ use Umbrella\CoreBundle\Utils\Utils;
 
 class ColumnType
 {
-    // FIXME : statically called to avoid to have add parent::configureOptions() on all inherit Type class
-    final public static function __configureOptions(OptionsResolver $resolver)
+    final public static function defaultConfigureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setRequired('id')
-            ->setAllowedTypes('id', 'string')
+            ->setRequired('name')
+            ->setAllowedTypes('name', 'string');
 
-            ->setDefault('label', function (Options $options) {
-                return Utils::humanize($options['id']);
-            })
-            ->setAllowedTypes('label', ['null', 'string'])
+        $resolver
+            ->setDefault('label', fn (Options $options) => Utils::humanize($options['name']))
+            ->setAllowedTypes('label', ['null', 'string']);
 
+        $resolver
             ->setDefault('translation_domain', null)
             ->setAllowedTypes('translation_domain', ['null', 'string', 'bool'])
-            ->setNormalizer('translation_domain', fn (Options $options, $value) => true === $value ? null : $value)
+            ->setNormalizer('translation_domain', fn (Options $options, $value) => true === $value ? null : $value);
 
+        $resolver
             ->setDefault('order', false)
-            ->setAllowedValues('order', [false, null, 'ASC', 'DESC'])
+            ->setAllowedValues('order', [false, null, 'ASC', 'DESC']);
 
+        $resolver
             ->setDefault('order_by', null)
-            ->setAllowedTypes('order_by', ['null', 'string', 'array'])
+            ->setAllowedTypes('order_by', ['null', 'string', 'array']);
 
+        $resolver
             ->setDefault('class', null)
-            ->setAllowedTypes('class', ['null', 'string'])
+            ->setAllowedTypes('class', ['null', 'string']);
 
+        $resolver
             ->setDefault('width', null)
-            ->setAllowedTypes('width', ['null', 'string'])
+            ->setAllowedTypes('width', ['null', 'string']);
 
+        $resolver
             ->setDefault('render', null)
-            ->setAllowedTypes('render', ['null', 'callable'])
-            ->setNormalizer('render', function (Options $options, $value) {
-                return $options['render_html'] ?? $value;
-            })
+            ->setAllowedTypes('render', ['null', 'callable']);
 
+        $resolver
             ->setDefault('render_html', null)
-            ->setAllowedTypes('render_html', ['null', 'callable'])
-
-            ->setDefault('is_safe_html', true)
-            ->setAllowedTypes('is_safe_html', 'bool')
-            ->setNormalizer('is_safe_html', function (Options $options, $value) {
-                return $options['render_html'] ? true : $value;
-            });
+            ->setAllowedTypes('render_html', ['null', 'callable']);
     }
 
+    /**
+     * Render the content of column
+     */
     public function render($rowData, array $options): string
     {
         return (string) $rowData;
     }
 
+    /**
+     * Is false, the content of column will be escaped to avoid be rendered as HTML
+     */
+    public function isSafeHtml(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Configures the options for this type.
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
     }

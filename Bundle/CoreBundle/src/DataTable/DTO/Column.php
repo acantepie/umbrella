@@ -48,10 +48,17 @@ class Column
     {
         if (is_callable($this->options['render'])) {
             $value = (string) call_user_func($this->options['render'], $rowData, $this->options);
+            $value = htmlspecialchars($value);
+        } elseif (is_callable($this->options['render_html'])) {
+            $value = (string) call_user_func($this->options['render_html'], $rowData, $this->options);
         } else {
             $value = $this->type->render($rowData, $this->options);
+
+            if (!$this->type->isSafeHtml()) {
+                $value = htmlspecialchars($value);
+            }
         }
 
-        return $this->options['is_safe_html'] ? $value : \htmlspecialchars($value);
+        return $value;
     }
 }

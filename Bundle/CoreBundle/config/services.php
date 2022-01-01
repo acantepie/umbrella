@@ -2,14 +2,12 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 use Umbrella\CoreBundle\Ckeditor\CkeditorExtension;
 use Umbrella\CoreBundle\Command\IndexEntityCommand;
 use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter;
 use Umbrella\CoreBundle\DataTable\Adapter\EntityAdapter;
 use Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapter;
-use Umbrella\CoreBundle\DataTable\DataTableBuilerHelper;
 use Umbrella\CoreBundle\DataTable\DataTableFactory;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
 use Umbrella\CoreBundle\DataTable\DataTableRenderer;
@@ -70,7 +68,6 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('umbrella.widget.type');
 
     // -- DataTable -- //
-    $services->set(DataTableBuilerHelper::class);
     $services->set(DataTableFactory::class);
     $services->set(DataTableRegistry::class);
     $services->set(DataTableRenderer::class);
@@ -115,7 +112,5 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('form.type');
 
     $services->set(FormTypeExtension::class)
-        ->tag('form.type_extension', [
-            'extended_type' => FormType::class
-        ]);
+        ->tag('form.type_extension');
 };

@@ -7,28 +7,28 @@ use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
-use Umbrella\CoreBundle\DataTable\DataTableBuilerHelper;
+use Umbrella\CoreBundle\DataTable\DataTableFactory;
 use Umbrella\CoreBundle\Tests\TestApplication\AppTestCase;
 
 class ColumnTest extends AppTestCase
 {
-    private ?DataTableBuilerHelper $factory = null;
+    private ?DataTableFactory $factory = null;
 
     protected function setUp(): void
     {
-        $this->factory = $this->getContainer()->get(DataTableBuilerHelper::class);
+        $this->factory = $this->getContainer()->get(DataTableFactory::class);
     }
 
     public function testColumn()
     {
-        $c = $this->factory->creatColumn('foo');
+        $c = $this->factory->createColumn('foo');
         $this->assertEmpty('', $c->render(null));
 
         $obj = new \stdClass();
         $obj->foo = '<b>hello</b>';
 
         // test render option
-        $c = $this->factory->creatColumn('foo', ColumnType::class, [
+        $c = $this->factory->createColumn('foo', ColumnType::class, [
             'render' => function($obj) {
                 return $obj->foo;
             }
@@ -37,20 +37,10 @@ class ColumnTest extends AppTestCase
 
 
         // test render_html option
-        $c = $this->factory->creatColumn('foo', ColumnType::class, [
+        $c = $this->factory->createColumn('foo', ColumnType::class, [
             'render_html' => function($obj) {
                 return $obj->foo;
             }
-        ]);
-        $this->assertEquals($obj->foo, $c->render($obj));
-
-
-        // test is_safe_html option
-        $c = $this->factory->creatColumn('foo', ColumnType::class, [
-            'render' => function($obj) {
-                return $obj->foo;
-            },
-            'is_safe_html' => true
         ]);
         $this->assertEquals($obj->foo, $c->render($obj));
     }
@@ -61,11 +51,11 @@ class ColumnTest extends AppTestCase
         $obj->foo = 'foo';
 
         // test render option
-        $c = $this->factory->creatColumn('foo', PropertyColumnType::class);
+        $c = $this->factory->createColumn('foo', PropertyColumnType::class);
         $this->assertEquals($obj->foo, $c->render($obj));
         $this->assertEquals('foo', $c->getOption('property_path'));
 
-        $c = $this->factory->creatColumn('bar', PropertyColumnType::class);
+        $c = $this->factory->createColumn('bar', PropertyColumnType::class);
         try {
             $c->render($obj);
             $this->fail('Call render using an invalid property path must fail.');
@@ -84,7 +74,7 @@ class ColumnTest extends AppTestCase
 
         $format = 'dmY His';
 
-        $c = $this->factory->creatColumn('date', DateColumnType::class, [
+        $c = $this->factory->createColumn('date', DateColumnType::class, [
             'format' => $format
         ]);
         $this->assertEquals($obj->date->format($format), $c->render($obj));
@@ -102,7 +92,7 @@ class ColumnTest extends AppTestCase
     {
         // lax comparison
         $obj = new \stdClass();
-        $c = $this->factory->creatColumn('bool', BooleanColumnType::class);
+        $c = $this->factory->createColumn('bool', BooleanColumnType::class);
 
         $values = [
             false => 'no',
@@ -120,7 +110,7 @@ class ColumnTest extends AppTestCase
 
         // strict comparison
         $obj = new \stdClass();
-        $c = $this->factory->creatColumn('bool', BooleanColumnType::class, [
+        $c = $this->factory->createColumn('bool', BooleanColumnType::class, [
             'strict_comparison' => true
         ]);
 

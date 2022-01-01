@@ -4,6 +4,7 @@ namespace Umbrella\CoreBundle\DataTable;
 
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter;
@@ -16,65 +17,63 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 use Umbrella\CoreBundle\DataTable\DTO\RowModifier;
 use Umbrella\CoreBundle\DataTable\DTO\Toolbar;
 use Umbrella\CoreBundle\Utils\Utils;
+use Umbrella\CoreBundle\Widget\Type\WidgetType;
 use Umbrella\CoreBundle\Widget\WidgetBuilder;
+use Umbrella\CoreBundle\Widget\WidgetFactory;
 
 class DataTableBuilder
 {
-    protected DataTableBuilerHelper $helper;
-
+    protected DataTableFactory $factory;
+    protected DataTableConfiguration $config;
     protected DataTableType $type;
-
+    protected RowModifier $rowModifier;
     protected array $options = [];
+
+    protected WidgetBuilder $widgetBuilder;
+    protected FormBuilderInterface $filterBuilder;
 
     protected array $columnsData = [];
 
     protected ?array $adapterData = null;
 
-    protected RowModifier $rowModifier;
-
-    protected WidgetBuilder $widgetBuilder;
-    protected FormBuilderInterface $formBuilder;
-
     /**
      * DataTableBuilder constructor.
      */
     public function __construct(
-        DataTableBuilerHelper $helper,
+        DataTableFactory $factory,
+        WidgetFactory $widgetFactory,
+        FormFactoryInterface $formFactory,
+        DataTableConfiguration $config,
         DataTableType $type,
         array $options = []
     ) {
-        $this->helper = $helper;
+        $this->factory = $factory;
+        $this->config = $config;
         $this->type = $type;
         $this->rowModifier = new RowModifier();
-
         $this->resolveOptions($options);
 
-        $this->widgetBuilder = $this->helper->createWidgetBuilder();
-        $this->formBuilder = $this->helper->createNamedFormBuilder(
+        $this->widgetBuilder = $widgetFactory->createBuilder(WidgetType::class);
+        $this->filterBuilder = $formFactory->createNamedBuilder(
             $this->options['toolbar_form_name'],
             FormType::class,
             $this->options['toolbar_form_data'],
-            $this->options['toolbar_form_options']
+            array_merge($this->options['toolbar_form_options'], ['method' => $this->options['method']])
         );
-
-        $this->formBuilder->setMethod($this->options['method']);
     }
 
     private function resolveOptions(array $options)
     {
         $resolver = new OptionsResolver();
-
-        // Configure options from base TableType
-        DataTableType::__configureOptions($resolver);
+        DataTableType::defaultConfigureOptions($resolver);
 
         // Configure options from bundle config
-        $config = $this->helper->getConfig();
         $resolver
             ->setDefault('id', Utils::type_class_to_id(get_class($this->type)))
-            ->setDefault('page_length', $config->pageLength())
-            ->setDefault('dom', $config->dom())
-            ->setDefault('class', $config->class())
-            ->setDefault('table_class', fn (Options $options) => $options['tree'] ? $config->tableTreeClass() : $config->tableClass());
+            ->setDefault('page_length', $this->config->pageLength())
+            ->setDefault('dom', $this->config->dom())
+            ->setDefault('class', $this->config->class())
+            ->setDefault('table_class', fn (Options $options) => $options['tree'] ? $this->config->tableTreeClass() : $this->config->tableClass());
 
         // Configure options from TableType
         $this->type->configureOptions($resolver);
@@ -103,21 +102,21 @@ class DataTableBuilder
 
     public function addFilter($child, string $type = null, array $options = []): self
     {
-        $this->formBuilder->add($child, $type, $options);
+        $this->filterBuilder->add($child, $type, $options);
 
         return $this;
     }
 
     public function removeFilter(string $name): self
     {
-        $this->formBuilder->remove($name);
+        $this->filterBuilder->remove($name);
 
         return $this;
     }
 
     public function hasFilter(string $name): bool
     {
-        return $this->formBuilder->has($name);
+        return $this->filterBuilder->has($name);
     }
 
     public function addWidget($child, string $type = null, array $options = []): self
@@ -248,10 +247,10 @@ class DataTableBuilder
 
     private function createSelectColumn(): Column
     {
-        return $this->helper->creatColumn('__select__', ColumnType::class, [
+        return $this->factory->createColumn('__select__', ColumnType::class, [
             'label' => DataTableType::SELECT_MULTIPLE === $this->options['select']
                 ? '<div class="select-handle"><input class="form-check-input" type="checkbox"></div>' : null,
-            'render' => function ($rowData) {
+            'render_html' => function ($rowData) {
                 if ($this->rowModifier->isSelectable($rowData)) {
                     return DataTableType::SELECT_MULTIPLE === $this->options['select']
                         ? '<div class="select-handle"><input class="form-check-input" type="checkbox"></div>'
@@ -260,7 +259,6 @@ class DataTableBuilder
                     return '';
                 }
             },
-            'is_safe_html' => true,
             'class' => 'py-0',
             'width' => '60px'
         ]);
@@ -268,10 +266,9 @@ class DataTableBuilder
 
     private function createDragColumn(): Column
     {
-        return $this->helper->creatColumn('__drag__', ColumnType::class, [
+        return $this->factory->createColumn('__drag__', ColumnType::class, [
             'label' => null,
-            'render' => fn () => '<div class="drag-handle"><i class="mdi mdi-drag"></i></div>',
-            'is_safe_html' => true,
+            'render_html' => fn () => '<div class="drag-handle"><i class="mdi mdi-drag"></i></div>',
             'class' => 'py-0',
             'width' => '60px'
         ]);
@@ -293,7 +290,7 @@ class DataTableBuilder
         }
 
         foreach ($this->columnsData as $name => $columnData) {
-            $columns[] = $this->helper->creatColumn($name, $columnData['type'], $columnData['options']);
+            $columns[] = $this->factory->createColumn($name, $columnData['type'], $columnData['options']);
         }
 
         // resolve adapter
@@ -301,10 +298,10 @@ class DataTableBuilder
             throw new \InvalidArgumentException('You must configure an adapter.');
         }
 
-        [$adapterType, $resolvedAdapterOptions] = $this->helper->createAdapter($this->adapterData['type'], $this->adapterData['options']);
+        [$adapterType, $resolvedAdapterOptions] = $this->factory->createAdapter($this->adapterData['type'], $this->adapterData['options']);
 
         $toolbar = new Toolbar(
-            $this->formBuilder->getForm(),
+            $this->filterBuilder->getForm(),
             $this->widgetBuilder->getWidget(),
             $this->options
         );

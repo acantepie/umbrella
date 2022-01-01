@@ -9,27 +9,14 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class PropertyColumnType extends ColumnType
 {
-    protected PropertyAccessorInterface $accessor;
-
-    /**
-     * PropertyColumn constructor.
-     */
-    public function __construct()
-    {
-        $this->accessor = PropertyAccess::createPropertyAccessor();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function render($rowData, array $options): string
     {
-        // FIXME symfony accessor only supports array|object
+        // Symfony accessor only supports array|object
         if (!\is_array($rowData) && !\is_object($rowData)) {
             throw new \InvalidArgumentException('Argument "$rowData" of PropertyColumnType::render() supports only type "string" or "array".');
         }
 
-        return $this->renderProperty($this->accessor->getValue($rowData, $options['property_path']), $options);
+        return $this->renderProperty($options['property_accessor']->getValue($rowData, $options['property_path']), $options);
     }
 
     public function renderProperty($value, array $options): string
@@ -37,23 +24,20 @@ class PropertyColumnType extends ColumnType
         return (string) $value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        parent::configureOptions($resolver);
+        $resolver
+            ->setDefault('property_accessor', PropertyAccess::createPropertyAccessor())
+            ->setAllowedTypes('property_accessor', PropertyAccessorInterface::class);
 
         $resolver
-            ->setDefault('property_path', function (Options $options) {
-                return $options['id'];
-            })
-            ->setAllowedTypes('property_path', 'string')
+            ->setDefault('property_path', fn (Options $options) => $options['name']);
 
+        $resolver
+            ->setAllowedTypes('property_path', 'string');
+
+        $resolver
             ->setDefault('order', null)
-
-            ->setDefault('order_by', function (Options $options) {
-                return $options['property_path'];
-            });
+            ->setDefault('order_by', fn (Options $options) => $options['property_path']);
     }
 }

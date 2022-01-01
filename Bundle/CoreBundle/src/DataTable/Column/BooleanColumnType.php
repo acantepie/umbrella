@@ -9,18 +9,11 @@ class BooleanColumnType extends PropertyColumnType
 {
     protected TranslatorInterface $translator;
 
-    /**
-     * EnableColumnType constructor.
-     */
     public function __construct(TranslatorInterface $translator)
     {
-        parent::__construct();
         $this->translator = $translator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function renderProperty($value, array $options): string
     {
         if ($options['strict_comparison'] && !is_bool($value)) {
@@ -40,9 +33,11 @@ class BooleanColumnType extends PropertyColumnType
             );
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function isSafeHtml(): bool
+    {
+        return true;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
@@ -61,8 +56,6 @@ class BooleanColumnType extends PropertyColumnType
             ->setAllowedTypes('yes_icon', 'string')
 
             ->setDefault('no_icon', 'mdi mdi-cancel me-1')
-            ->setAllowedTypes('no_icon', 'string')
-
-            ->setDefault('is_safe_html', true);
+            ->setAllowedTypes('no_icon', 'string');
     }
 }

@@ -11,8 +11,10 @@ CHANGELOG
    * Remove `CheckboxColumnType` column and `RadioColumnType` column, use `select` option instead (can be `multi`, `single` or `false`). Set option `select` will automatically add an internal column with checkbox or radio. 
    * Add `setRowSelectable` method for builder to determine if a row can be selected or not.
    * Remove `DragHandleColumnType` column, set option `rowreorder_route` or use method `setRowReorderUrl` of builder will automatically add an internal `drag` column.
+   * Remove `ManyColumnType` (doesn't working).
    * Remove `tree_expanded` option, use `tree_expanded` option instead (can be `true` or `false`)
- * Fix : prevent open multiple confirm modal
+ * Fix 
+   * prevent open multiple confirm modal
    
 4.4
 ---

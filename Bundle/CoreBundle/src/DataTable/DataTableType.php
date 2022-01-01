@@ -10,8 +10,7 @@ class DataTableType
     public const SELECT_MULTIPLE = 'multi';
     public const SELECT_SINGLE = 'single';
 
-    // FIXME : statically called to avoid to have add parent::configureOptions() on all inherit Type class
-    final public static function __configureOptions(OptionsResolver $resolver)
+    final public static function defaultConfigureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setRequired('id')

@@ -6,17 +6,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DateColumnType extends PropertyColumnType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function renderProperty($value, array $options): string
     {
         return $value instanceof \DateTimeInterface ? $value->format($options['format']) : (string) $value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);

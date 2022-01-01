@@ -25,6 +25,11 @@ class DetailsColumnType extends ColumnType
         );
     }
 
+    public function isSafeHtml(): bool
+    {
+        return true;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
@@ -32,14 +37,14 @@ class DetailsColumnType extends ColumnType
         $resolver
             ->setDefault('label', null)
             ->setDefault('class', 'py-0')
-            ->setDefault('width', '60px')
+            ->setDefault('width', '60px');
 
+        $resolver
             ->setRequired('render_details')
-            ->setAllowedTypes('render_details', 'callable')
+            ->setAllowedTypes('render_details', 'callable');
 
+        $resolver
             ->setDefault('expanded', false)
-            ->setAllowedTypes('expanded', ['boolean', 'callable'])
-
-            ->setDefault('is_safe_html', true);
+            ->setAllowedTypes('expanded', ['boolean', 'callable']);
     }
 }
