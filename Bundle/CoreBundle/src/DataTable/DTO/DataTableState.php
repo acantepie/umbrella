@@ -33,7 +33,7 @@ class DataTableState
         if (isset($parameters['order'])) {
             foreach ($parameters['order'] as $orderData) {
                 // invalid dir
-                if (!\in_array($orderData['dir'], [DataTable::SORT_ASCENDING, DataTable::SORT_DESCENDING])) {
+                if (!\in_array($orderData['dir'], ['ASC', 'DESC'])) {
                     continue;
                 }
 

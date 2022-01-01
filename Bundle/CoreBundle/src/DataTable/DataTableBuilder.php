@@ -8,9 +8,9 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\Action\ActionType;
-use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter;
-use Umbrella\CoreBundle\DataTable\Adapter\EntityAdapter;
-use Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapter;
+use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapterType;
+use Umbrella\CoreBundle\DataTable\Adapter\EntityAdapterType;
+use Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapterType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
@@ -172,7 +172,7 @@ class DataTableBuilder
 
         if (is_callable($type)) {
             $options = ['callable' => $type];
-            $type = CallableAdapter::class;
+            $type = CallableAdapterType::class;
         }
 
         $this->adapterData = [
@@ -189,7 +189,7 @@ class DataTableBuilder
             throw new \InvalidArgumentException('Options must be of an array or string');
         }
 
-        return $this->useAdapter(EntityAdapter::class, is_string($options) ? ['class' => $options] : $options);
+        return $this->useAdapter(EntityAdapterType::class, is_string($options) ? ['class' => $options] : $options);
     }
 
     public function useNestedEntityAdapter($options = []): self
@@ -198,7 +198,7 @@ class DataTableBuilder
             throw new \InvalidArgumentException('Options must be of an array or string');
         }
 
-        return $this->useAdapter(NestedEntityAdapter::class, is_string($options) ? ['class' => $options] : $options);
+        return $this->useAdapter(NestedEntityAdapterType::class, is_string($options) ? ['class' => $options] : $options);
     }
 
     public function clearAdapter(): self
@@ -298,7 +298,7 @@ class DataTableBuilder
             throw new \InvalidArgumentException('You must configure an adapter.');
         }
 
-        [$adapterType, $resolvedAdapterOptions] = $this->factory->createAdapter($this->adapterData['type'], $this->adapterData['options']);
+        $adapter = $this->factory->createAdapter($this->adapterData['type'], $this->adapterData['options']);
 
         // resolve actions
         $resolvedActions = [];
@@ -315,9 +315,8 @@ class DataTableBuilder
         return new DataTable(
             $toolbar,
             $columns,
-            $adapterType,
+            $adapter,
             $this->rowModifier,
-            $resolvedAdapterOptions,
             $this->options
         );
     }

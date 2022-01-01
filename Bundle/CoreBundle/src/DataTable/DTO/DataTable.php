@@ -4,15 +4,10 @@ namespace Umbrella\CoreBundle\DataTable\DTO;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\Request;
-use Umbrella\CoreBundle\DataTable\Adapter\AdapterException;
-use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
-use Umbrella\CoreBundle\DataTable\Adapter\DoctrineAdapterInterface;
+use Umbrella\CoreBundle\DataTable\AdapterException;
 
 class DataTable
 {
-    public const SORT_ASCENDING = 'asc';
-    public const SORT_DESCENDING = 'desc';
-
     protected Toolbar $toolbar;
 
     /**
@@ -20,11 +15,9 @@ class DataTable
      */
     protected array $columns;
 
-    protected DataTableAdapter $adapter;
+    protected Adapter $adapter;
 
     protected RowModifier $rowModifier;
-
-    protected array $adapterOptions;
 
     protected array $options;
 
@@ -40,16 +33,14 @@ class DataTable
     public function __construct(
         Toolbar $toolbar,
         array $columns,
-        DataTableAdapter $adapter,
+        Adapter $adapter,
         RowModifier $rowModifier,
-        array $adapterOptions,
         array $options
     ) {
         $this->toolbar = $toolbar;
         $this->columns = $columns;
         $this->adapter = $adapter;
         $this->rowModifier = $rowModifier->setIsTree($options['tree']);
-        $this->adapterOptions = $adapterOptions;
         $this->options = $options;
 
         $this->state = new DataTableState($this);
@@ -179,15 +170,11 @@ class DataTable
 
     public function getAdapterResult(): DataTableResult
     {
-        return $this->adapter->getResult($this->state, $this->adapterOptions);
+        return $this->adapter->getResult($this->state);
     }
 
     public function getAdapterQueryBuilder(): QueryBuilder
     {
-        if ($this->adapter instanceof DoctrineAdapterInterface) {
-            return $this->adapter->getQueryBuilder($this->state, $this->adapterOptions);
-        }
-
-        throw new \LogicException('You must use a DoctrineAdapter if you want to retrieve a query builder.');
+        return $this->adapter->getQueryBuilder($this->state);
     }
 }

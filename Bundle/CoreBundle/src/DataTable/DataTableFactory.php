@@ -7,6 +7,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\Action\ActionType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\DTO\Action;
+use Umbrella\CoreBundle\DataTable\DTO\Adapter;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
 use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 
@@ -69,15 +70,14 @@ class DataTableFactory
         return new Action($actionType, $resolvedOptions);
     }
 
-    public function createAdapter(string $type, array $options = []): array
+    public function createAdapter(string $type, array $options = []): Adapter
     {
-        $adapterType = $this->registry->getAdapter($type);
+        $adapterType = $this->registry->getAdapterType($type);
 
-        // new Adapter() ....
         $resolver = new OptionsResolver();
         $adapterType->configureOptions($resolver);
         $resolvedAdapterOptions = $resolver->resolve($options);
 
-        return [$adapterType, $resolvedAdapterOptions];
+        return new Adapter($adapterType, $resolvedAdapterOptions);
     }
 }

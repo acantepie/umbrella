@@ -3,7 +3,7 @@
 namespace Umbrella\CoreBundle\DataTable;
 
 use Umbrella\CoreBundle\DataTable\Action\ActionType;
-use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
+use Umbrella\CoreBundle\DataTable\Adapter\AdapterType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 
 /**
@@ -14,7 +14,7 @@ class DataTableRegistry
     public const TAG_TYPE = 'umbrella.datatable.type';
     public const TAG_COLUMN_TYPE = 'umbrella.datatable.columntype';
     public const TAG_ACTION_TYPE = 'umbrella.datatable.actiontype';
-    public const TAG_ADAPTER = 'umbrella.datatable.adapter';
+    public const TAG_ADAPTER_TYPE = 'umbrella.datatable.adaptertype';
 
     /**
      * @var DataTableType[]
@@ -32,9 +32,9 @@ class DataTableRegistry
     protected array $actionTypes = [];
 
     /**
-     * @var DataTableAdapter[]
+     * @var AdapterType[]
      */
-    protected array $adapters = [];
+    protected array $adaptersType = [];
 
     // DataTable Type
 
@@ -46,7 +46,7 @@ class DataTableRegistry
     public function getType(string $name): DataTableType
     {
         if (!isset($this->types[$name])) {
-            throw new \InvalidArgumentException(sprintf('Table "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(sprintf('DataTableType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->types[$name];
@@ -54,15 +54,15 @@ class DataTableRegistry
 
     // Column Type
 
-    public function registerColumnType(string $name, ColumnType $columnType)
+    public function registerColumnType(string $name, ColumnType $type)
     {
-        $this->columnTypes[$name] = $columnType;
+        $this->columnTypes[$name] = $type;
     }
 
     public function getColumnType(string $name): ColumnType
     {
         if (!isset($this->columnTypes[$name])) {
-            throw new \InvalidArgumentException(sprintf('Column "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(sprintf('ColumnType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->columnTypes[$name];
@@ -70,33 +70,33 @@ class DataTableRegistry
 
     // Action Type
 
-    public function registerActionType(string $name, ActionType $actionType)
+    public function registerActionType(string $name, ActionType $type)
     {
-        $this->actionTypes[$name] = $actionType;
+        $this->actionTypes[$name] = $type;
     }
 
     public function getActionType(string $name): ActionType
     {
         if (!isset($this->actionTypes[$name])) {
-            throw new \InvalidArgumentException(sprintf('Action "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(sprintf('ActionType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->actionTypes[$name];
     }
 
-    // Adaptater (type)
+    // Adapter Type
 
-    public function registerAdapter(string $name, DataTableAdapter $adapter)
+    public function registerAdapterType(string $name, AdapterType $type)
     {
-        $this->adapters[$name] = $adapter;
+        $this->adaptersType[$name] = $type;
     }
 
-    public function getAdapter(string $name): DataTableAdapter
+    public function getAdapterType(string $name): AdapterType
     {
-        if (!isset($this->adapters[$name])) {
-            throw new \InvalidArgumentException(sprintf('Adapter "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+        if (!isset($this->adaptersType[$name])) {
+            throw new \InvalidArgumentException(sprintf('AdapterType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
-        return $this->adapters[$name];
+        return $this->adaptersType[$name];
     }
 }

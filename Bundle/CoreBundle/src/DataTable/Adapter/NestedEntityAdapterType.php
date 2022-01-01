@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
-class NestedEntityAdapter extends DataTableAdapter implements DoctrineAdapterInterface
+class NestedEntityAdapterType extends AdapterType implements DoctrineAdapterType
 {
     protected EntityManagerInterface $em;
 

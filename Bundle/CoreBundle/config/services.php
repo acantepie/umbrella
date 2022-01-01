@@ -6,9 +6,6 @@ use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 use Umbrella\CoreBundle\Ckeditor\CkeditorExtension;
 use Umbrella\CoreBundle\Command\IndexEntityCommand;
 use Umbrella\CoreBundle\DataTable\ActionRenderer;
-use Umbrella\CoreBundle\DataTable\Adapter\CallableAdapter;
-use Umbrella\CoreBundle\DataTable\Adapter\EntityAdapter;
-use Umbrella\CoreBundle\DataTable\Adapter\NestedEntityAdapter;
 use Umbrella\CoreBundle\DataTable\DataTableFactory;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
 use Umbrella\CoreBundle\DataTable\DataTableRenderer;
@@ -64,12 +61,8 @@ return static function (ContainerConfigurator $configurator): void {
     $services->set(DataTableExtension::class)
         ->tag('twig.extension');
 
-    $services->set(CallableAdapter::class)
-        ->tag(DataTableRegistry::TAG_ADAPTER);
-    $services->set(EntityAdapter::class)
-        ->tag(DataTableRegistry::TAG_ADAPTER);
-    $services->set(NestedEntityAdapter::class)
-        ->tag(DataTableRegistry::TAG_ADAPTER);
+    $services->load('Umbrella\\CoreBundle\\DataTable\\Adapter\\', '../src/DataTable/Adapter/*')
+        ->tag(DataTableRegistry::TAG_ADAPTER_TYPE);
 
     $services->load('Umbrella\\CoreBundle\\DataTable\\Column\\', '../src/DataTable/Column/*')
         ->tag(DataTableRegistry::TAG_COLUMN_TYPE);

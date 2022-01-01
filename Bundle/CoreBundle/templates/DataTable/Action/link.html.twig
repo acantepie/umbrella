@@ -7,7 +7,7 @@
             {%- if translation_domain is not same as(false) -%}
                 {{- text | trans({}, translation_domain) -}}
             {%- else -%}
-                {{- text -}}
+                {{- text | humanize -}}
             {%- endif -%}
         </span>
     {%- endif -%}

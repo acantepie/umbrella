@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\CoreBundle\DataTable\Adapter;
+namespace Umbrella\CoreBundle\DataTable;
 
 class AdapterException extends \Exception
 {

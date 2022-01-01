@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
-use Umbrella\CoreBundle\DataTable\Adapter\DataTableAdapter;
+use Umbrella\CoreBundle\DataTable\Adapter\AdapterType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableConfiguration;
 use Umbrella\CoreBundle\DataTable\DataTableRegistry;
@@ -55,7 +55,7 @@ class UmbrellaCoreExtension extends Extension
 
         $container->registerForAutoconfiguration(DataTableType::class)->addTag(DataTableRegistry::TAG_TYPE);
         $container->registerForAutoconfiguration(ColumnType::class)->addTag(DataTableRegistry::TAG_COLUMN_TYPE);
-        $container->registerForAutoconfiguration(DataTableAdapter::class)->addTag(DataTableRegistry::TAG_ADAPTER);
+        $container->registerForAutoconfiguration(AdapterType::class)->addTag(DataTableRegistry::TAG_ADAPTER_TYPE);
 
         $container->registerForAutoconfiguration(MenuType::class)->addTag(MenuRegistry::TAG_TYPE);
         $container->registerForAutoconfiguration(MenuVisitor::class)->addTag(MenuRegistry::TAG_VISITOR);

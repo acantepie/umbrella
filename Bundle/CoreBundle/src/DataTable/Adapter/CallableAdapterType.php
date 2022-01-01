@@ -6,7 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
-class CallableAdapter extends DataTableAdapter
+class CallableAdapterType extends AdapterType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
