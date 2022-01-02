@@ -225,6 +225,11 @@ class JsResponseBuilder implements \Countable
         return $this->callWebComponent($this->toSelector($ids, 'umbrella-datatable'), $method, $methodParams);
     }
 
+    public function clearSelectionTable($ids = null): self
+    {
+        return $this->callTable($ids, 'unselectAll');
+    }
+
     // utils
 
     private function toSelector($ids, string $name): string

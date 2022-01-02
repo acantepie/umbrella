@@ -1,27 +1,34 @@
-<div class="inline-toolbar">
+<div class="toolbar inline-toolbar">
 
-    <div class="toolbar-content">
+    <div class="toolbar-row">
         {%- if toolbar.form | length > 0 -%}
-            <form data-submit="auto" class="content-start">
+            <form data-submit="auto" class="toolbar-filters">
                 {{ umbrella_form_theme(toolbar.form) }}
                 {%- for form in toolbar.form -%}
-                    <div class="toolbar-filter toolbar-item">
+                    <div class="toolbar-filter">
                         {{- form_widget(form) -}}
                     </div>
                 {%- endfor -%}
             </form>
         {%- endif -%}
 
-        <div class="content-end">
+        <div class="toolbar-actions ms-md-auto">
             {%- for action in toolbar.actions -%}
-                <div class="toolbar-widget toolbar-item">
+                <div class="toolbar-action">
                     {{- render_action(action) -}}
                 </div>
             {%- endfor -%}
         </div>
     </div>
 
-    <div class="select-content" hidden>
-
+    <div class="toolbar-row js-bulk-widget toolbar-bulk-row bg-light" hidden>
+        <div class="toolbar-info js-select-info"></div>
+        <div class="toolbar-actions ms-4">
+            {%- for action in toolbar.bulkActions -%}
+                <div class="toolbar-action">
+                    {{- render_action(action) -}}
+                </div>
+            {%- endfor -%}
+        </div>
     </div>
 </div>

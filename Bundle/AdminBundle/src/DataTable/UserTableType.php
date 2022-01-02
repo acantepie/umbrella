@@ -6,7 +6,7 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Routing\RouterInterface;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
-use Umbrella\CoreBundle\DataTable\Action\AddLinkType;
+use Umbrella\CoreBundle\DataTable\Action\ButtonAddActionType;
 use Umbrella\CoreBundle\DataTable\Column\ActionColumnType;
 use Umbrella\CoreBundle\DataTable\Column\BooleanColumnType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
@@ -36,8 +36,9 @@ class UserTableType extends DataTableType
     public function buildTable(DataTableBuilder $builder, array $options)
     {
         $builder->addFilter('search', SearchType::class);
-        $builder->addAction('user.add', AddLinkType::class, [
+        $builder->addAction('add', ButtonAddActionType::class, [
             'route' => 'umbrella_admin_user_edit',
+            'text' => 'user.add',
             'xhr' => true,
             'translation_domain' => 'UmbrellaAdmin'
         ]);

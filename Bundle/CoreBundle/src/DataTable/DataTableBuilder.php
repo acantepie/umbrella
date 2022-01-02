@@ -29,6 +29,8 @@ class DataTableBuilder
 
     protected FormBuilderInterface $filterBuilder;
     protected array $actionsData = [];
+    protected array $bulkActionsData = [];
+
     protected array $columnsData = [];
 
     protected ?array $adapterData = null;
@@ -109,12 +111,12 @@ class DataTableBuilder
         return $this;
     }
 
-    // Action Api
-
     public function hasFilter(string $name): bool
     {
         return $this->filterBuilder->has($name);
     }
+
+    // Action Api
 
     public function addAction(string $name, string $type = ActionType::class, array $options = []): self
     {
@@ -136,6 +138,32 @@ class DataTableBuilder
     public function hasAction(string $name): bool
     {
         return isset($this->actionsData[$name]);
+    }
+
+    // Bulk Action Api
+
+    public function addBulkAction(string $name, string $type = ActionType::class, array $options = []): self
+    {
+        $options['bulk'] = true;
+
+        $this->bulkActionsData[$name] = [
+            'type' => $type,
+            'options' => $options
+        ];
+
+        return $this;
+    }
+
+    public function removeBulkAction(string $name): self
+    {
+        unset($this->bulkActionsData[$name]);
+
+        return $this;
+    }
+
+    public function hasBulkAction(string $name): bool
+    {
+        return isset($this->bulkActionsData[$name]);
     }
 
     // Column Api
@@ -306,9 +334,15 @@ class DataTableBuilder
             $resolvedActions[] = $this->factory->createAction($name, $actionData['type'], $actionData['options']);
         }
 
+        $resolvedBulkActions = [];
+        foreach ($this->bulkActionsData as $name => $bulkActionData) {
+            $resolvedBulkActions[] = $this->factory->createAction($name, $bulkActionData['type'], $bulkActionData['options']);
+        }
+
         $toolbar = new Toolbar(
             $this->filterBuilder->getForm(),
             $resolvedActions,
+            $resolvedBulkActions,
             $this->options
         );
 

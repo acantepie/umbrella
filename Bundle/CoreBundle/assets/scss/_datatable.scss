@@ -116,50 +116,51 @@ table.dataTable {
   }
 }
 
-.inline-toolbar {
+.toolbar.inline-toolbar {
 
-  .toolbar-item {
-    margin-bottom: 1rem;
+  .toolbar-filter, .toolbar-action {
+    margin-bottom: .5rem;
   }
 
-  .toolbar-filter .form-check {
-    padding-top: 7px;
-  }
+  .toolbar-bulk-row {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
-  @include media-breakpoint-up(xl) {
-    .content-end {
-      margin-left: auto;
+    .toolbar-filter, .toolbar-action {
+      margin-top: .5rem;
     }
   }
 
   @include media-breakpoint-up(md) {
-    .toolbar-content {
+
+    .toolbar-row {
       display: flex;
     }
 
-    .content-start, .content-end {
+    .toolbar-filters {
       display: flex;
       flex-wrap: wrap;
+
+      .toolbar-filter:not(:last-child) {
+        margin-right: .5rem;
+      }
+
     }
 
-    .toolbar-item {
-      margin-right: 0.5rem;
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      .toolbar-action:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+
     }
 
-    .content-end .toolbar-item:last-child {
-      margin-right: 0;
-    }
-
-    .toolbar-filter {
-      min-width: 180px;
-    }
   }
 
-  @include media-breakpoint-down(md) {
-    .toolbar-item {
-      margin-bottom: 0.5rem;
-    }
-  }
 
 }
 

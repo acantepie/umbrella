@@ -12,6 +12,10 @@ abstract class ActionType
         $resolver
             ->setRequired('name')
             ->setAllowedTypes('name', 'string');
+
+        $resolver
+            ->setDefault('bulk', false)
+            ->setAllowedTypes('bulk', 'boolean');
     }
 
     /**

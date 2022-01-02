@@ -14,6 +14,11 @@ class Toolbar
      */
     protected array $actions;
 
+    /**
+     * @var Action[]
+     */
+    protected array $bulkActions;
+
     protected array $options;
 
     protected array $formData = [];
@@ -21,10 +26,11 @@ class Toolbar
     /**
      * Toolbar constructor.
      */
-    public function __construct(FormInterface $form, array $actions, array $options)
+    public function __construct(FormInterface $form, array $actions, array $bulkActions, array $options)
     {
         $this->form = $form;
         $this->actions = $actions;
+        $this->bulkActions = $bulkActions;
         $this->options = $options;
     }
 
@@ -36,6 +42,11 @@ class Toolbar
     public function getActions(): array
     {
         return $this->actions;
+    }
+
+    public function getBulkActions(): array
+    {
+        return $this->bulkActions;
     }
 
     public function getOptions(): array

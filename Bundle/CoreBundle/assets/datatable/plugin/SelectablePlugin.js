@@ -1,3 +1,5 @@
+import AjaxUtils from '../../utils/AjaxUtils';
+
 export default class SelectablePlugin {
 
     constructor(options = {}) {
@@ -51,6 +53,17 @@ export default class SelectablePlugin {
 
         })
 
+        // bulk action
+        umbrellaDatatable.querySelectorAll('[data-bulk]').forEach(bulkAction => {
+            bulkAction.addEventListener('click', (e) => {
+                e.preventDefault()
+                AjaxUtils.requestWithElement(bulkAction, {
+                    url: bulkAction.dataset.bulk,
+                    data: {ids : this.getSelectedIds()}
+                })
+            })
+        })
+
         // register api
         this.umbrellaDatatable.selectRow = this.selectRow.bind(this)
         this.umbrellaDatatable.unselectRow = this.unselectRow.bind(this)
@@ -96,24 +109,24 @@ export default class SelectablePlugin {
             }
         }
 
-        this.__updateContent()
+        this.__updateBulkAction()
     }
 
-    __updateContent() {
-        const content = this.umbrellaDatatable.querySelector('.select-content')
-        if (null === content) {
+    __updateBulkAction() {
+        const widget = this.umbrellaDatatable.querySelector('.js-bulk-widget')
+        if (null === widget) {
             return
         }
 
         if (0 === this.selectedIds.size) {
-            content.hidden = true
+            widget.hidden = true
             return
         }
 
-        content.hidden = false
-        content.innerHTML = '<div class="p-2 bg-light">' + umbrella.Translator.trans('row_selected', {'%c%': this.selectedIds.size}) + '</div>'
+        widget.hidden = false
+        widget.querySelector('.js-select-info').innerHTML = umbrella.Translator.trans('row_selected', {'%c%': this.selectedIds.size})
 
-        const handler = content.querySelector('.unselectall-handler')
+        const handler = widget.querySelector('.unselectall-handler')
         if (handler) {
             handler.addEventListener('click', (e) => {
                 e.preventDefault()

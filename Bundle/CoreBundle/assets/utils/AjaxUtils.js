@@ -2,6 +2,41 @@ export default class AjaxUtils {
 
     static xhrPendingRegistryIds = [];
 
+    static requestWithElement(element, options = {}) {
+        const defaultOptions = {}
+
+        if (!(element instanceof Element)) {
+            throw new Error('Expected Element type for argument "element"');
+        }
+
+        if (element.dataset.xhr) {
+            defaultOptions['url'] = element.dataset.xhr
+        }
+
+        if (element.dataset.xhrId) {
+            defaultOptions['xhr_id'] = element.dataset.xhrId
+        }
+
+        if (element.dataset.confirm) {
+            defaultOptions['confirm'] = element.dataset.confirm
+        }
+
+        if (element.dataset.spinner && 'false' !== element.dataset.spinner) {
+            defaultOptions['spinner'] = true
+        }
+
+        if (element.dataset.method) {
+            defaultOptions['method'] = element.dataset.method
+        }
+
+        if (element.tagName.toLowerCase() === 'form') {
+            defaultOptions['method'] = element.method || 'get'
+            defaultOptions['data'] = new FormData(element)
+        }
+
+        return AjaxUtils.request({...defaultOptions, ...options})
+    }
+
     static request(options = {}) {
         if ('xhr_id' in options && options['xhr_id']) {
             if (AjaxUtils.xhrPendingRegistryIds.includes(options['xhr_id'])) {
@@ -17,7 +52,7 @@ export default class AjaxUtils {
             options['processData'] = false;
         }
 
-        if ('spinner' in options && false !== options['spinner']) {
+        if ('spinner' in options && true === options['spinner']) {
             umbrella.Spinner.show({text: options['spinner']});
         }
 

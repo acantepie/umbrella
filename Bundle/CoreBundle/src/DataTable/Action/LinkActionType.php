@@ -19,32 +19,30 @@ class LinkActionType extends ActionType
     public function render(Environment $twig, array $options): string
     {
         $vars = [];
+        $vars['attr']['href'] = '';
 
         $url = $options['route'] ? $this->router->generate($options['route'], $options['route_params']) : (string) $options['url'];
 
-        if ($options['xhr']) {
-            $vars['attr']['href'] = '';
+        if ($options['bulk']) {
+            $vars['attr']['data-bulk'] = $url;
+        } elseif ($options['xhr']) {
             $vars['attr']['data-xhr'] = $url;
-
-            if ($options['spinner']) {
-                $vars['attr']['data-spinner'] = 'true';
-            }
-
-            if (!empty($options['confirm'])) {
-                $vars['attr']['data-confirm'] = $options['confirm'];
-            }
         } else {
             $vars['attr']['href'] = $url;
             $vars['attr']['target'] = $options['target'];
         }
 
         if ($options['title']) {
-            $vars['attr']['href'] = $url;
-        }
-
-        if ($options['title']) {
             $vars['attr']['title'] = $options['title'];
             $vars['attr']['data-bs-toggle'] = 'tooltip';
+        }
+
+        if ($options['spinner']) {
+            $vars['attr']['data-spinner'] = 'true';
+        }
+
+        if (!empty($options['confirm'])) {
+            $vars['attr']['data-confirm'] = $options['confirm'];
         }
 
         $vars['attr']['class'] = $options['class'];

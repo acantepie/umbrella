@@ -7,7 +7,7 @@ use <?= $entity->getFullName() ?>;
 use Doctrine\ORM\QueryBuilder;
 use Umbrella\CoreBundle\Form\SearchType;
 <?php } ?>
-use Umbrella\CoreBundle\DataTable\Action\AddLinkType;
+use Umbrella\CoreBundle\DataTable\Action\ButtonAddActionType;
 use Umbrella\CoreBundle\DataTable\Column\ActionColumnType;
 use Umbrella\CoreBundle\DataTable\ColumnActionBuilder;
 use Umbrella\CoreBundle\DataTable\DataTableBuilder;
@@ -20,7 +20,7 @@ class <?= $class_name ?> extends DataTableType
 <?php if ($entity_searchable) { ?>
         $builder->addFilter('search', SearchType::class);
 <?php } ?>
-        $builder->addAction('add', AddLinkType::class, [
+        $builder->addAction('add', ButtonAddActionType::class, [
             'route' => '<?= $route['name_prefix'] ?>_edit',
 <?php if ('modal' === $edit_view_type) { ?>
             'xhr' => true

@@ -24,7 +24,7 @@ class UmbrellaSelectConfigurator
             });
 
         $resolver
-            ->setDefault('hide_selected', true)
+            ->setDefault('hide_selected', false)
             ->setAllowedTypes('hide_selected', 'bool');
 
         $resolver
