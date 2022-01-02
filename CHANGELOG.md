@@ -14,6 +14,7 @@ CHANGELOG
    * Remove `ManyColumnType` (doesn't working).
    * Remove `tree_expanded` option, use `tree_expanded` option instead (can be `true` or `false`)
    * Remove `WidgetColumnType`, use `ActionColumnType` instead
+   * Remove `RowReorder` plugin (useless behaviour)
    * Add suffix `Type` to adapter type class.
  * Widget :
    * Remove component
