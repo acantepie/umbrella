@@ -5,19 +5,17 @@ CHANGELOG
 ---
  * DataTable :
    * Remove `load_url` option, use `load_route` and `load_route_params` option instead
-   * Remove `rowreorder_url` option, use `rowreorder_route` and `rowreorder_route_params` option instead
    * Remove `toolbar_class` option, use `toolbar_template` to override class of toolbar template instead
    * Rename `DetailsHandleColumnType` column  by `DetailsColumnType`
    * Remove `CheckboxColumnType` column and `RadioColumnType` column, use `select` option instead (can be `multi`, `single` or `false`). Set option `select` will automatically add an internal column with checkbox or radio. 
    * Add `setRowSelectable` method for builder to determine if a row can be selected or not.
-   * Remove `DragHandleColumnType` column, set option `rowreorder_route` or use method `setRowReorderUrl` of builder will automatically add an internal `drag` column.
-   * Remove `ManyColumnType` (doesn't working).
+   * Remove `ManyColumnType` column (hard to use / customize).
    * Remove `tree_expanded` option, use `tree_expanded` option instead (can be `true` or `false`)
-   * Remove `WidgetColumnType`, use `ActionColumnType` instead
-   * Remove `RowReorder` plugin (useless behaviour)
+   * Remove `DragHandleColumnType`, `RowReorder` helper, `rowreorder_route` and `rowreorder_route_params` options and remove `rowReorder` js datatable plugin.
    * Add suffix `Type` to adapter type class.
- * Widget :
-   * Remove component
+ * Remove Widget component => Replaced by lightweight but more configurable `Datatable\Action` component:
+   * Method `addWidget` / `removeWidget` / `hasWidget` doesn't exist anymore on Datatable builder. Use `addAction` /  `removeAction` / `hasAction` instead
+   * Remove `WidgetColumnType` column, use `ActionColumnType` column instead.
  * Fix 
    * prevent open multiple confirm modal
    
