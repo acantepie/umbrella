@@ -64,13 +64,6 @@ class DataTableRenderer
             $jsOptions['scrollY'] = $options['scroll_y'];
         }
 
-        if ($options['rowreorder_route']) {
-            $jsOptions['rowReorder'] = [
-                'update' => false,
-                'url' => $this->router->generate($options['rowreorder_route'], $options['rowreorder_route_params'])
-            ];
-        }
-
         $jsOptions['poll_interval'] = $options['poll_interval'];
         $jsOptions['dom'] = $options['dom'];
         $jsOptions['ordering'] = $options['orderable'];

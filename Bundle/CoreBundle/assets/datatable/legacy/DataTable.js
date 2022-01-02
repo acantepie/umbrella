@@ -1,6 +1,5 @@
 import 'datatables.net';
 import 'datatables.net-bs5';
-import 'datatables.net-rowreorder';
 import 'jquery-treetable'
 
 import AjaxUtils from '../utils/AjaxUtils';
@@ -28,7 +27,6 @@ export default class DataTable extends HTMLElement {
         this._handleError = this._handleError.bind(this)
         this._preDrawCallback = this._preDrawCallback.bind(this)
         this._drawCallback = this._drawCallback.bind(this)
-        this._rowReorder = this._rowReorder.bind(this)
 
         this._buildOptions();
     }
@@ -38,11 +36,6 @@ export default class DataTable extends HTMLElement {
         this._startAutoReload(this.options['poll_interval']);
 
         this.toolbar.addEventListener('tb:change', this.reload)
-
-        // row re-order
-        if (this.options['rowReorder']) {
-            this.table.on('row-reorder', this._rowReorder);
-        }
 
         // row select
         this.$tableBody.on('click', '.select-handle', (e) => {
@@ -190,30 +183,6 @@ export default class DataTable extends HTMLElement {
         this.pollInterval = null;
         if (this.timer) {
             clearTimeout(this.timer);
-        }
-    }
-
-    // ----- Row reorder ----- //
-
-    _rowReorder(e, details, edit) {
-
-        let changes = [];
-        for (let i = 0, ien = details.length; i < ien; i++) {
-            changes.push({
-                id: details[i].node.getAttribute('data-id'),
-                new: details[i].newPosition,
-                old: details[i].oldPosition
-            });
-        }
-
-        if (changes.length > 0) {
-            AjaxUtils.get({
-                xhr_id: 'tb-order',
-                url: this.options['rowReorder']['url'],
-                data: {
-                    'changes': changes
-                }
-            });
         }
     }
 

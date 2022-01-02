@@ -1,12 +1,10 @@
-import Utils from 'umbrella_core/utils/Utils';
+import Utils from '../utils/Utils';
 import DataTable from 'datatables.net';
 import 'datatables.net-bs5';
 
 import i18n from './DataTable.i18n.js';
-import 'datatables.net-rowreorder';
 
 import SelectablePlugin from './plugin/SelectablePlugin';
-import RowReorderPlugin from './plugin/RowReorderPlugin';
 import RowDetailsPlugin from './plugin/RowDetailsPlugin';
 import TreePlugin from './plugin/TreePlugin';
 
@@ -43,10 +41,6 @@ export default class UmbrellaDataTable extends HTMLElement {
         // Plugins
         if (this.options['select']) {
             this.registerPlugin(new SelectablePlugin(this.options['select']))
-        }
-
-        if (this.options['rowReorder']) {
-            this.registerPlugin(new RowReorderPlugin(this.options['rowReorder']))
         }
 
         if (this.options['tree']) {

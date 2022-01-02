@@ -87,14 +87,6 @@ class DataTableBuilder
         return $this;
     }
 
-    public function setRowReorderUrl(string $route, array $params = []): self
-    {
-        $this->options['rowreorder_route'] = $route;
-        $this->options['rowreorder_route_params'] = $params;
-
-        return $this;
-    }
-
     // Filter Api
 
     public function addFilter($child, string $type = null, array $options = []): self
@@ -292,16 +284,6 @@ class DataTableBuilder
         ]);
     }
 
-    private function createDragColumn(): Column
-    {
-        return $this->factory->createColumn('__drag__', ColumnType::class, [
-            'label' => null,
-            'render_html' => fn () => '<div class="drag-handle"><i class="mdi mdi-drag"></i></div>',
-            'class' => 'py-0',
-            'width' => '60px'
-        ]);
-    }
-
     public function getTable(): DataTable
     {
         $this->type->buildTable($this, $this->options);
@@ -311,10 +293,6 @@ class DataTableBuilder
 
         if (false !== $this->options['select']) {
             $columns[] = $this->createSelectColumn();
-        }
-
-        if (null !== $this->options['rowreorder_route']) {
-            $columns[] = $this->createDragColumn();
         }
 
         foreach ($this->columnsData as $name => $columnData) {

@@ -88,7 +88,7 @@ table.dataTable {
     }
   }
 
-  .drag-handle, .details-handle, .select-handle {
+  .details-handle, .select-handle {
     text-align: center;
     padding-bottom: 0;
     padding-top: 0;
@@ -100,14 +100,6 @@ table.dataTable {
       color: $primary;
       font-weight: bold;
       font-size: 1.2em;
-    }
-  }
-
-  .drag-handle {
-    cursor: move;
-    i.mdi::before {
-      color: $primary;
-      font-size: 1.4em;
     }
   }
 

@@ -74,13 +74,6 @@ class DataTableType
             ->setAllowedTypes('load_route_params', 'array');
 
         $resolver
-            ->setDefault('rowreorder_route', null)
-            ->setAllowedTypes('rowreorder_route', ['string', 'null'])
-
-            ->setDefault('rowreorder_route_params', [])
-            ->setAllowedTypes('rowreorder_route_params', 'array');
-
-        $resolver
             ->setDefault('toolbar_form_name', function (Options $options) {
                 return sprintf('%s_tbf', $options['id']);
             })
