@@ -23,8 +23,9 @@ class LinkActionType extends ActionType
 
         $url = $options['route'] ? $this->router->generate($options['route'], $options['route_params']) : (string) $options['url'];
 
-        if ($options['bulk']) {
-            $vars['attr']['data-bulk'] = $url;
+        if ($options['send_state']) {
+            $vars['attr']['data-dt-xhr'] = $url;
+            $vars['attr']['data-send-state'] = true;
         } elseif ($options['xhr']) {
             $vars['attr']['data-xhr'] = $url;
         } else {

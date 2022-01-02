@@ -23,10 +23,6 @@ class DataTable
 
     protected DataTableState $state;
 
-    protected ?DataTableResponse $response = null;
-
-    protected bool $callback = false;
-
     /**
      * DataTable constructor.
      */
@@ -89,61 +85,27 @@ class DataTable
         return $this->state;
     }
 
-    public function handleRequest(Request $httpRequest): self
+    public function handleRequest(Request $request): self
     {
-        $this->callback = false;
-        $this->response = null;
-
-        // Invalid method
-        if (!$httpRequest->isMethod($this->options['method'])) {
-            return $this;
-        }
-
-        $data = 'POST' === $this->options['method']
-            ? $httpRequest->request->all()
-            : $httpRequest->query->all();
-
-        // Invalid or missing datatable id
-        if (!isset($data['_dtid']) || $data['_dtid'] != $this->getId()) {
-            return $this;
-        }
-
-        // Valid callback => update state
-        $this->callback = true;
-        $this->state = new DataTableState($this);
-        $this->state->applyParameters($data);
-
-        $this->toolbar->handleRequest($httpRequest);
-        $this->state->setFormData($this->toolbar->getFormData());
-
+        $this->state->update($request);
         return $this;
     }
 
-    public function handleParameters(array $parameters): self
+    public function submit(array $data): self
     {
-        $this->response = null;
-
-        $this->state = new DataTableState($this);
-        $this->state->applyParameters($parameters);
-        $this->toolbar->submitData($parameters);
-        $this->state->setFormData($this->toolbar->getFormData());
-
+        $this->state->updateFromArray($data);
         return $this;
     }
 
     public function isCallback(): bool
     {
-        return $this->callback;
+        return $this->state->isCallback();
     }
 
     public function getCallbackResponse(): DataTableResponse
     {
         if (!$this->isCallback()) {
             throw new \RuntimeException('Unable to get callback response, request is not valid');
-        }
-
-        if (null !== $this->response) {
-            return $this->response;
         }
 
         try {

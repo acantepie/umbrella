@@ -53,17 +53,6 @@ export default class SelectablePlugin {
 
         })
 
-        // bulk action
-        umbrellaDatatable.querySelectorAll('[data-bulk]').forEach(bulkAction => {
-            bulkAction.addEventListener('click', (e) => {
-                e.preventDefault()
-                AjaxUtils.requestWithElement(bulkAction, {
-                    url: bulkAction.dataset.bulk,
-                    data: {ids : this.getSelectedIds()}
-                })
-            })
-        })
-
         // register api
         this.umbrellaDatatable.selectRow = this.selectRow.bind(this)
         this.umbrellaDatatable.unselectRow = this.unselectRow.bind(this)
@@ -71,6 +60,13 @@ export default class SelectablePlugin {
         this.umbrellaDatatable.unselectPage = this.unselectPage.bind(this)
         this.umbrellaDatatable.unselectAll = this.unselectAll.bind(this)
         this.umbrellaDatatable.getSelectedIds = this.getSelectedIds.bind(this)
+
+        // override api
+        this.umbrellaDatatable.getState = () => {
+            let state =  this.umbrellaDatatable.datatable.ajax.params()
+            state['ids'] = this.getSelectedIds()
+            return state
+        }
     }
 
     __updateState() {

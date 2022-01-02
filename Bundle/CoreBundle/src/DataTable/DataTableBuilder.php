@@ -136,8 +136,7 @@ class DataTableBuilder
 
     public function addBulkAction(string $name, string $type = ActionType::class, array $options = []): self
     {
-        $options['bulk'] = true;
-
+        $options['send_state'] = true;
         $this->bulkActionsData[$name] = [
             'type' => $type,
             'options' => $options

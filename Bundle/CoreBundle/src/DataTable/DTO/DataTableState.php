@@ -2,6 +2,8 @@
 
 namespace Umbrella\CoreBundle\DataTable\DTO;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class DataTableState
 {
     protected DataTable $dataTable;
@@ -16,6 +18,8 @@ class DataTableState
 
     protected array $formData = [];
 
+    protected bool $callback = false;
+
     /**
      * DataTableState constructor.
      */
@@ -24,16 +28,57 @@ class DataTableState
         $this->dataTable = $dataTable;
     }
 
-    public function applyParameters(array $parameters)
+    public function update(Request $request): bool
     {
-        $this->draw = (int) ($parameters['draw'] ?? $this->draw);
-        $this->start = (int) ($parameters['start'] ?? $this->start);
-        $this->length = (int) ($parameters['length'] ?? $this->length);
+        $this->reset();
 
-        if (isset($parameters['order'])) {
-            foreach ($parameters['order'] as $orderData) {
+        // Invalid method => don't update state
+        $acceptedMethod = $this->dataTable->getOption('method');
+        if (!$request->isMethod($acceptedMethod)) {
+            return false;
+        }
+
+        $data = $request->isMethod(Request::METHOD_POST)
+            ? $request->request->all()
+            : $request->query->all();
+
+        // Invalid or missing datatable id => don't update state
+        if (!isset($data['_dtid']) || $data['_dtid'] != $this->dataTable->getId()) {
+            return false;
+        }
+
+        // Valid callback => update state
+        $this->callback = true;
+
+        // Update dt state
+        $this->updateDatatableState($data);
+
+        // Update form state
+        $this->dataTable->getToolbar()->handleRequest($request);
+        $this->formData = $this->dataTable->getToolbar()->getFormData();
+
+        return true;
+    }
+
+    public function updateFromArray(array $data)
+    {
+        $this->reset();
+        $this->updateDatatableState($data);
+
+        $this->dataTable->getToolbar()->submitData($data);
+        $this->formData = $this->dataTable->getToolbar()->getFormData();
+    }
+
+    private function updateDatatableState(array $data)
+    {
+        $this->draw = (int) ($data['draw'] ?? $this->draw);
+        $this->start = (int) ($data['start'] ?? $this->start);
+        $this->length = (int) ($data['length'] ?? $this->length);
+
+        if (isset($data['order'])) {
+            foreach ($data['order'] as $orderData) {
                 // invalid dir
-                if (!\in_array($orderData['dir'], ['ASC', 'DESC'])) {
+                if (!\in_array(strtoupper($orderData['dir']), ['ASC', 'DESC'])) {
                     continue;
                 }
 
@@ -49,9 +94,19 @@ class DataTableState
                     continue;
                 }
 
-                $this->addOrderBy($c, $orderData['dir']);
+                $this->orderBy[] = [$c, $orderData['dir']];
             }
         }
+    }
+
+    private function reset()
+    {
+        $this->draw = 0;
+        $this->start = 0;
+        $this->length = -1;
+        $this->orderBy = [];
+        $this->formData = [];
+        $this->callback = false;
     }
 
     public function getDataTable(): DataTable
@@ -64,13 +119,6 @@ class DataTableState
         return $this->draw;
     }
 
-    public function setDraw(int $draw): self
-    {
-        $this->draw = $draw;
-
-        return $this;
-    }
-
     public function getStart(): int
     {
         return $this->start;
@@ -79,13 +127,6 @@ class DataTableState
     public function getLength(): int
     {
         return $this->length;
-    }
-
-    public function addOrderBy(Column $column, string $direction): self
-    {
-        $this->orderBy[] = [$column, $direction];
-
-        return $this;
     }
 
     public function getOrderBy(): array
@@ -98,10 +139,8 @@ class DataTableState
         return $this->formData;
     }
 
-    public function setFormData(array $formData): self
+    public function isCallback(): bool
     {
-        $this->formData = $formData;
-
-        return $this;
+        return $this->callback;
     }
 }

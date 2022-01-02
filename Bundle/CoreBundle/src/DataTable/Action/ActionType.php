@@ -13,9 +13,10 @@ abstract class ActionType
             ->setRequired('name')
             ->setAllowedTypes('name', 'string');
 
+        // If setted to true state of datatable will be sent on request
         $resolver
-            ->setDefault('bulk', false)
-            ->setAllowedTypes('bulk', 'boolean');
+            ->setDefault('send_state', false)
+            ->setAllowedTypes('send_state', 'bool');
     }
 
     /**

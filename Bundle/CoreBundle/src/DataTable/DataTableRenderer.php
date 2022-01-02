@@ -64,7 +64,6 @@ class DataTableRenderer
             $jsOptions['scrollY'] = $options['scroll_y'];
         }
 
-        $jsOptions['poll_interval'] = $options['poll_interval'];
         $jsOptions['dom'] = $options['dom'];
         $jsOptions['ordering'] = $options['orderable'];
 

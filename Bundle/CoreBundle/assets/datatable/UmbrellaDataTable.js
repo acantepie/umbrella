@@ -7,8 +7,8 @@ import i18n from './DataTable.i18n.js';
 import SelectablePlugin from './plugin/SelectablePlugin';
 import RowDetailsPlugin from './plugin/RowDetailsPlugin';
 import TreePlugin from './plugin/TreePlugin';
+import AjaxUtils from '../utils/AjaxUtils';
 
-// TODO : polling - bulk action
 export default class UmbrellaDataTable extends HTMLElement {
 
     constructor() {
@@ -36,6 +36,7 @@ export default class UmbrellaDataTable extends HTMLElement {
         this.options['drawCallback'] = this._drawCallback.bind(this)
 
         this.datatable = new DataTable(this.table, this.options)
+        this._bindActions()
         this._bindForm()
 
         // Plugins
@@ -53,6 +54,21 @@ export default class UmbrellaDataTable extends HTMLElement {
     disconnectedCallback() {
         this.datatable.destroy()
         clearTimeout(this.reloadTimer)
+    }
+
+    _bindActions() {
+
+        this.querySelectorAll('[data-send-state][data-dt-xhr]').forEach(stateAction => {
+            stateAction.addEventListener('click', e => {
+                e.preventDefault()
+                AjaxUtils.requestWithElement(stateAction, {
+                    url: stateAction.dataset.dtXhr,
+                    data: {
+                        state: this.getState()
+                    }
+                })
+            })
+        })
     }
 
     _bindForm() {
@@ -79,10 +95,6 @@ export default class UmbrellaDataTable extends HTMLElement {
         }
     }
 
-    _bindAction() {
-
-    }
-
     _ajaxData(data) {
         // avoid send useless data
         delete data['columns'];
@@ -98,7 +110,6 @@ export default class UmbrellaDataTable extends HTMLElement {
 
         return data;
     }
-
     _ajaxError(requestObject, error, errorThrown) {
         if (requestObject.status === 401) {
             this.error(umbrella.Translator.trans('disconnected_error'))
@@ -114,6 +125,10 @@ export default class UmbrellaDataTable extends HTMLElement {
     }
 
     // --- Api --- //
+
+    getState() {
+        return this.datatable.ajax.params()
+    }
 
     registerPlugin(plugin) {
         plugin.configure(this)

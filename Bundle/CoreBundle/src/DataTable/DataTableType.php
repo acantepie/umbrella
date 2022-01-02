@@ -17,7 +17,7 @@ class DataTableType
             ->setAllowedTypes('id', 'string')
 
             ->setDefault('method', 'POST')
-            ->setAllowedValues('method', ['POST', 'GET'])
+            ->setAllowedValues('method', ['POST', 'GET', 'post', 'get'])
 
             ->setDefault('class', null)
             ->setAllowedTypes('class', ['null', 'string'])
@@ -44,9 +44,6 @@ class DataTableType
 
             ->setDefault('scroll_y', null)
             ->setAllowedTypes('scroll_y', ['int', 'null'])
-
-            ->setDefault('poll_interval', null)
-            ->setAllowedTypes('poll_interval', ['int', 'null'])
 
             ->setDefault('orderable', function (Options $options) {
                 return !$options['tree'];
