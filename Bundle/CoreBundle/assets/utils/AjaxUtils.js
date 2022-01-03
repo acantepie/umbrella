@@ -85,8 +85,6 @@ export default class AjaxUtils {
                 'confirm': () => $.ajax(options)
             });
         } else {
-
-            console.log(options)
             return $.ajax(options);
         }
 

@@ -61,7 +61,6 @@ export default class UmbrellaDataTable extends HTMLElement {
         this.querySelectorAll('[data-send-state][data-dt-xhr]').forEach(stateAction => {
             stateAction.addEventListener('click', e => {
                 e.preventDefault()
-                // FIXME : state can't be exported as query parameters (it will fail)
                 AjaxUtils.requestWithElement(stateAction, {
                     url: stateAction.dataset.dtXhr,
                     data: {

@@ -55,10 +55,10 @@ class DataTableActionState implements \Serializable
 
     public function totalCount(): int
     {
-        return $this->data['count']['total'] ??  0;
+        return $this->data['count']['total'] ?? 0;
     }
 
-    public function selectedCount() : int
+    public function selectedCount(): int
     {
         return $this->data['count']['selected'] ?? 0;
     }
@@ -72,6 +72,4 @@ class DataTableActionState implements \Serializable
     {
         $this->data = \unserialize($data);
     }
-
-
 }

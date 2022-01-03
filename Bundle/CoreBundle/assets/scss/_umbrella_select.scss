@@ -1,5 +1,7 @@
 .ts-control {
   min-height: initial;
+  // avoid overlab right background dropdown svg
+  padding-right: 2rem;
 }
 
 .ts-dropdown .optgroup-header {

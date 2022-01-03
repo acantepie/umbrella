@@ -93,6 +93,10 @@ table.dataTable {
     padding-bottom: 0;
     padding-top: 0;
     cursor: pointer;
+
+    * {
+      cursor: pointer;
+    }
   }
 
   .details-handle {
