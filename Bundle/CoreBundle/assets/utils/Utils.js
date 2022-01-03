@@ -9,6 +9,11 @@ export default class Utils {
 
     // https://stackoverflow.com/questions/41431322/how-to-convert-formdata-html5-object-to-json
     static objectify_formdata(formData) {
+
+        if (!formData instanceof FormData) {
+            throw new Error('Expected a FormData object')
+        }
+
         let object = {};
         formData.forEach((value, key) => {
             // Reflect.has in favor of: object.hasOwnProperty(key)

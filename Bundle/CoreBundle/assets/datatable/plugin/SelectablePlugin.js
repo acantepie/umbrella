@@ -63,8 +63,9 @@ export default class SelectablePlugin {
 
         // override api
         this.umbrellaDatatable.getState = () => {
-            let state =  this.umbrellaDatatable.datatable.ajax.params()
+            let state =  this.umbrellaDatatable._getCurrentState()
             state['ids'] = this.getSelectedIds()
+            state['count']['selected'] = state['ids'].length
             return state
         }
     }

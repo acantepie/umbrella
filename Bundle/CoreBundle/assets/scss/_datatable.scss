@@ -120,6 +120,10 @@ table.dataTable {
     padding-left: 1rem;
     padding-right: 1rem;
 
+    .toolbar-info {
+      line-height: 2.2rem;
+    }
+
     .toolbar-filter, .toolbar-action {
       margin-top: .5rem;
     }

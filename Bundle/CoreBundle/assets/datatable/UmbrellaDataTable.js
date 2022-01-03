@@ -61,6 +61,7 @@ export default class UmbrellaDataTable extends HTMLElement {
         this.querySelectorAll('[data-send-state][data-dt-xhr]').forEach(stateAction => {
             stateAction.addEventListener('click', e => {
                 e.preventDefault()
+                // FIXME : state can't be exported as query parameters (it will fail)
                 AjaxUtils.requestWithElement(stateAction, {
                     url: stateAction.dataset.dtXhr,
                     data: {
@@ -124,10 +125,19 @@ export default class UmbrellaDataTable extends HTMLElement {
         this.tbody.querySelectorAll('[data-bs-toggle=tooltip]').forEach(e => new bootstrap.Tooltip(e))
     }
 
+    _getCurrentState() {
+        let state = this.datatable.ajax.params()
+        state['count'] = {
+            'page' : this.datatable.rows().count(),
+            'total' : this.datatable.page.info().recordsTotal,
+        }
+        return state
+    }
+
     // --- Api --- //
 
     getState() {
-        return this.datatable.ajax.params()
+        return this._getCurrentState()
     }
 
     registerPlugin(plugin) {
