@@ -2,6 +2,7 @@
 
 namespace Umbrella\CoreBundle\DataTable;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
@@ -11,14 +12,16 @@ class DataTableRenderer
 {
     protected Environment $twig;
     protected RouterInterface $router;
+    protected RequestStack $requestStack;
 
     /**
      * DataTableRenderer constructor.
      */
-    public function __construct(Environment $twig, RouterInterface $router)
+    public function __construct(Environment $twig, RouterInterface $router, RequestStack $requestStack)
     {
         $this->twig = $twig;
         $this->router = $router;
+        $this->requestStack = $requestStack;
     }
 
     public function render(DataTable $table): string
@@ -39,10 +42,19 @@ class DataTableRenderer
             ];
         }
 
+        // load url
+        if ($options['load_route']) {
+            $loadUrl = $this->router->generate($options['load_route'], $options['load_route_params']);
+        } elseif ($this->requestStack->getMainRequest()) {
+            $loadUrl = $this->requestStack->getMainRequest()->getRequestUri();
+        } else {
+            $loadUrl = null;
+        }
+
         $jsOptions['serverSide'] = true;
         $jsOptions['bFilter'] = false;
         $jsOptions['ajax'] = [
-            'url' => $options['load_route'] ? $this->router->generate($options['load_route'], $options['load_route_params']) : null,
+            'url' => $loadUrl,
             'method' => $options['method']
         ];
 

@@ -1,9 +1,9 @@
 {% extends "@UmbrellaCore/Modal/default.html.twig" %}
 
 {% block modal_wrapper %}
-    <form enctype="multipart/form-data" method="post" data-xhr="{{ action | default(app.request.uri) }}">
+    {{ form_start(form, {attr: {'action' : null, 'data-xhr' : action | default(app.request.uri) }}) }}
         {{ parent() }}
-    </form>
+    {{ form_end(form) }}
 {% endblock %}
 
 {% block modal_content %}
