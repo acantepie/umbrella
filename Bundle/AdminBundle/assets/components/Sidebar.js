@@ -26,6 +26,9 @@ export default class Sidebar extends HTMLElement {
     initializeSimplebar() {
 
         if (this.sidebarNav) {
+            // fix invalid sidenav height
+            this.sidebarNav.style.minHeight = `calc(100% - ${this.sidebarNav.offsetTop}px)`;
+
             const simpleBar = new SimpleBar(this.sidebarNav);
 
             /* Recalculate simplebar on sidebar dropdown toggle */
