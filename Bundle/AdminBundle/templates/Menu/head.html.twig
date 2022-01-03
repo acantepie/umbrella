@@ -1,6 +1,6 @@
 {% set tag = options.logo_route ? 'a' : 'div' %}
 
-<{{ tag }} {% if options.logo_route %}href="{{ path(options.logo_route) }}"{% endif %} class="sidebar-brand mx-auto">
+<{{ tag }} {% if options.logo_route %}href="{{ path(options.logo_route) }}"{% endif %} class="sidebar-brand">
         {% if options.logo %}
             <img src="{{ asset(options.logo ) }}" width="110" height="32" alt="{{ options.title }}" class="navbar-brand-image">
         {% else %}
