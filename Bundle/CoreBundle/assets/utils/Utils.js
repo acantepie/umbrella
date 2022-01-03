@@ -21,7 +21,7 @@ export default class Utils {
 
         const obj = Array.from(formData.entries())
             .reduce((data, [field, value]) => {
-                let [_, prefix, keys] = field.match(/^([^[]+)((?:\[[^]]*\])*)/);
+                let [_, prefix, keys] = field.match(/^([^[]+)((?:\[[^\]]*\])*)/);
 
                 if (keys) {
                     keys = Array.from(keys.matchAll(/\[([^\]]*)\]/g), m => m[1]);
@@ -30,6 +30,7 @@ export default class Utils {
                 data[prefix] = value;
                 return data;
             }, {});
+
         return obj
     }
 

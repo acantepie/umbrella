@@ -13,7 +13,8 @@
         <script src="//unpkg.com/@ungap/custom-elements"></script>
 
         {% block title %}
-            <title>{{ admin.appName() }}</title>
+            {% set menu_page_title = get_page_title_from_menu(admin_menu) %}
+            <title>{{ (menu_page_title ? menu_page_title ~ ' | ') ~ admin.appName() }}</title>
         {% endblock %}
 
         {% block stylesheets %}

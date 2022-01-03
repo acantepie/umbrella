@@ -2,13 +2,17 @@
 
 {% trans_default_domain 'UmbrellaAdmin' %}
 
+{% block title %}
+    <title>{{ 'login.title' | trans }} | {{ admin.appName() }}</title>
+{% endblock %}
+
 {% block content %}
     {% include '@UmbrellaAdmin/Security/head.html.twig' %}
 
     <div class="card p-3">
         <div class="card-body">
 
-            <h4 class="card-title text-center mb-4">{{  'login.title' | trans }}</h4>
+            <h4 class="card-title text-center mb-4">{{ 'login.title' | trans }}</h4>
 
             {% if error %}
                 <div class="alert alert-warning text-center">

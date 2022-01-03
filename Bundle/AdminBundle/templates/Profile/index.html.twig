@@ -2,6 +2,10 @@
 
 {% trans_default_domain 'UmbrellaAdmin' %}
 
+{% block title %}
+    <title>{{ 'label.my_account' | trans  }} | {{ admin.appName() }}</title>
+{% endblock %}
+
 {% block breadcrumb %}
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-icon">
