@@ -18,7 +18,11 @@ CHANGELOG
    * Remove `WidgetColumnType` column, use `ActionColumnType` column instead.
  * Fix 
    * prevent open multiple confirm modal
-   
+ * Routing : Replace route annotation on vendor by config file (bundle best practice)
+   * To load admin routes, you have to import:
+     * `@UmbrellaAdminBundle/config/routes/profile.php` instead of `@UmbrellaAdminBundle/config/routes/user_profile.yaml`
+     * `@UmbrellaAdminBundle/config/routes/user.php` + `@UmbrellaAdminBundle/config/routes/security.php` instead of `@UmbrellaAdminBundle/config/routes/user.yaml`
+     * `@UmbrellaAdminBundle/config/routes/notification.php` instead of `@UmbrellaAdminBundle/config/routes/notification.yaml`
 4.4
 ---
  * Add alias `UserMailerInterface` and `UserManagerInterface`  to allowing services `UserMailer` and `UserManager`to be overriden.
