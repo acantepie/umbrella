@@ -35,13 +35,22 @@ Register security and user routes :
 
 ```yaml
 # config/routes.yaml
-admin_user_:
-  resource: "@UmbrellaAdminBundle/config/routes/user.yaml"
+
+# User Profile
+umbrella_admin_profile_:
+  resource: "@UmbrellaAdminBundle/config/routes/profile.php"
   prefix: /admin
 
-admin_userprofile_:
-  resource: "@UmbrellaAdminBundle/config/routes/user_profile.yaml"
+# User CRUD
+umbrella_admin_user_:
+  resource: "@UmbrellaAdminBundle/config/routes/user.php"
   prefix: /admin
+
+# Security (login, logout, password resetting)
+umbrella_admin_security_:
+  resource: "@UmbrellaAdminBundle/config/routes/security.php"
+  prefix: /admin
+
 ```
 
 Add entry on menu :

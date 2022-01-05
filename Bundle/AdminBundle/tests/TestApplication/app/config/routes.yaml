@@ -3,10 +3,14 @@ app_:
   type: annotation
   prefix: /
 
-admin_user_:
-  resource: "@UmbrellaAdminBundle/config/routes/user.yaml"
+admin_security_:
+  resource: "@UmbrellaAdminBundle/config/routes/security.php"
   prefix: /
 
-admin_userprofile_:
-  resource: "@UmbrellaAdminBundle/config/routes/user_profile.yaml"
+admin_user_:
+  resource: "@UmbrellaAdminBundle/config/routes/user.php"
+  prefix: /
+
+admin_profile_:
+  resource: "@UmbrellaAdminBundle/config/routes/profile.php"
   prefix: /

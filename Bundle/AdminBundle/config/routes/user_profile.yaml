@@ -1,3 +1,0 @@
-umbrella_admin_profile_:
-  resource: "../../src/Controller/ProfileController.php"
-  type: annotation

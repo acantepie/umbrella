@@ -3,15 +3,11 @@
 namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Service\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Controller\BaseController;
 
-/**
- * @Route("/user")
- */
 class UserController extends BaseController
 {
     private UmbrellaAdminConfiguration $config;
@@ -24,9 +20,6 @@ class UserController extends BaseController
         $this->config = $config;
     }
 
-    /**
-     * @Route("")
-     */
     public function index(Request $request)
     {
         $table = $this->createTable($this->config->userTable());
@@ -41,9 +34,6 @@ class UserController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/edit/{id}", requirements={"id": "\d+"})
-     */
     public function edit(UserManagerInterface $manager, Request $request, ?int $id = null)
     {
         if (null === $id) {
@@ -75,9 +65,6 @@ class UserController extends BaseController
             ]);
     }
 
-    /**
-     * @Route("/delete/{id}", requirements={"id": "\d+"})
-     */
     public function delete(UserManagerInterface $manager, int $id)
     {
         $entity = $manager->find($id);

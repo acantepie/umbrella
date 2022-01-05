@@ -17,7 +17,7 @@
 
 {% block content %}
     {{ umbrella_form_theme(settings_form) }}
-    {{ form_start(form) }}
+    {{ form_start(settings_form) }}
         <div class="card card-body">
             {{ form_rest(settings_form) }}
             <button type="submit" class="btn btn-primary d-inline">
@@ -25,5 +25,5 @@
                 {{ 'Save' | trans }}
             </button>
         </div>
-    {{ form_end(form) }}
+    {{ form_end(settings_form) }}
 {% endblock %}

@@ -3,7 +3,6 @@
 namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Form\UserPasswordConfirmType;
@@ -12,9 +11,6 @@ use Umbrella\AdminBundle\Service\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Controller\BaseController;
 
-/**
- * @Route("/")
- */
 class SecurityController extends BaseController
 {
     public const LOGIN_ROUTE = 'umbrella_admin_login';
@@ -32,9 +28,6 @@ class SecurityController extends BaseController
         $this->config = $config;
     }
 
-    /**
-     * @Route("/login", name="umbrella_admin_login")
-     */
     public function login(AuthenticationUtils $authenticationUtils)
     {
         // get the login error if there is one
@@ -49,17 +42,11 @@ class SecurityController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/logout", name="umbrella_admin_logout", methods={"GET"})
-     */
     public function logout()
     {
         throw new \LogicException();
     }
 
-    /**
-     * @Route("/password_request")
-     */
     public function passwordRequest(UserMailerInterface $userMailer, Request $request)
     {
         // form submitted
@@ -84,9 +71,6 @@ class SecurityController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/password_request_success")
-     */
     public function passwordRequestSuccess(Request $request)
     {
         return $this->render('@UmbrellaAdmin/Security/password_request_success.html.twig', [
@@ -94,9 +78,6 @@ class SecurityController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/password_reset/{token}")
-     */
     public function passwordReset(Request $request, string $token)
     {
         $user = $this->userManager->findOneByConfirmationToken($token);

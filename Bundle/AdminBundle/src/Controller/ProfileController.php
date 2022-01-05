@@ -4,16 +4,12 @@ namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\Translation\t;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\Service\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 use Umbrella\CoreBundle\Controller\BaseController;
 
-/**
- * @Route("/profile")
- */
 class ProfileController extends BaseController
 {
     public const PROFILE_ROUTE = 'umbrella_admin_profile_index';
@@ -30,9 +26,6 @@ class ProfileController extends BaseController
         $this->config = $config;
     }
 
-    /**
-     * @Route("")
-     */
     public function index(Request $request)
     {
         $user = $this->getUser();
