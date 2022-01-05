@@ -10,9 +10,11 @@ CHANGELOG
    * Remove `CheckboxColumnType` column and `RadioColumnType` column, use `select` option instead (can be `multi`, `single` or `false`). Set option `select` will automatically add an internal column with checkbox or radio. 
    * Add `setRowSelectable` method for builder to determine if a row can be selected or not.
    * Remove `ManyColumnType` column (hard to use / customize).
-   * Remove `tree_expanded` option, use `tree_expanded` option instead (can be `true` or `false`)
-   * Remove `DragHandleColumnType`, `RowReorder` helper, `rowreorder_route` and `rowreorder_route_params` options and remove `rowReorder` js datatable plugin.
+   * Remove `tree_state` option, use `tree_expanded` option instead (can be `true` or `false`)
    * Add suffix `Type` to adapter type class.
+   * Add `DataTableActionState` utils, to retrieve datatable state from an action (i.e : filter used, rows selected, columns order, ...)
+ * DataTable (removed feature) :
+   * Remove `DragHandleColumnType`, `RowReorder` helper, `rowreorder_route` and `rowreorder_route_params` options and remove `rowReorder` js datatable plugin.
  * Remove Widget component => Replaced by lightweight but more configurable `Datatable\Action` component:
    * Method `addWidget` / `removeWidget` / `hasWidget` doesn't exist anymore on Datatable builder. Use `addAction` /  `removeAction` / `hasAction` instead
    * Remove `WidgetColumnType` column, use `ActionColumnType` column instead.
