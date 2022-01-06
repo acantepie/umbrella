@@ -76,6 +76,7 @@ class DataTableRenderer
             $jsOptions['scrollY'] = $options['scroll_y'];
         }
 
+        $jsOptions['stripeClasses'] = $options['stripe_class'];
         $jsOptions['dom'] = $options['dom'];
         $jsOptions['ordering'] = $options['orderable'];
 
@@ -108,11 +109,11 @@ class DataTableRenderer
         $vars['id'] = $options['id'];
         $vars['attr'] = [
             'id' => $options['id'],
-            'class' => $options['class'],
+            'class' => $options['container_class'],
             'data-options' => json_encode($jsOptions),
         ];
         $vars['table_attr'] = [
-            'class' => $options['table_class'] .= ' table js-datatable'
+            'class' => $options['class'] .= ' table js-datatable'
         ];
         $vars['columns'] = array_map(function (Column $c) {
             return $this->createColumnView($c);

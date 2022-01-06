@@ -13,6 +13,9 @@ CHANGELOG
    * Remove `tree_state` option, use `tree_expanded` option instead (can be `true` or `false`)
    * Add suffix `Type` to adapter type class.
    * Add `DataTableActionState` utils, to retrieve datatable state from an action (i.e : filter used, rows selected, columns order, ...)
+   * option `table_class` replaced by `class` (revert)
+   * option `class` replaced by `container_class` (revert)
+   * Add option `stripe_class` to define stripe class of rows (ex : odd, even). Class `table-striped` is not used any more by default (cause glitch if datatable has extra rows).
  * DataTable (removed feature) :
    * Remove `DragHandleColumnType`, `RowReorder` helper, `rowreorder_route` and `rowreorder_route_params` options and remove `rowReorder` js datatable plugin.
  * Remove Widget component => Replaced by lightweight but more configurable `Datatable\Action` component:

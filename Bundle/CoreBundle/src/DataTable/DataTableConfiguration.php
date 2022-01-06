@@ -24,18 +24,13 @@ class DataTableConfiguration
         return $this->config['dom'];
     }
 
+    public function containerClass(): ?string
+    {
+        return $this->config['container_class'];
+    }
+
     public function class(): ?string
     {
         return $this->config['class'];
-    }
-
-    public function tableTreeClass(): ?string
-    {
-        return $this->config['table_tree_class'];
-    }
-
-    public function tableClass(): ?string
-    {
-        return $this->config['table_class'];
     }
 }

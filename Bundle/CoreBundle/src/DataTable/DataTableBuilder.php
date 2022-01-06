@@ -69,8 +69,8 @@ class DataTableBuilder
             ->setDefault('id', Utils::type_class_to_id(get_class($this->type)))
             ->setDefault('page_length', $this->config->pageLength())
             ->setDefault('dom', $this->config->dom())
-            ->setDefault('class', $this->config->class())
-            ->setDefault('table_class', fn (Options $options) => $options['tree'] ? $this->config->tableTreeClass() : $this->config->tableClass());
+            ->setDefault('container_class', $this->config->containerClass())
+            ->setDefault('class', $this->config->class());
 
         // Configure options from TableType
         $this->type->configureOptions($resolver);

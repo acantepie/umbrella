@@ -19,11 +19,14 @@ class DataTableType
             ->setDefault('method', 'POST')
             ->setAllowedValues('method', ['POST', 'GET', 'post', 'get'])
 
+            ->setDefault('container_class', null)
+            ->setAllowedTypes('container_class', ['null', 'string'])
+
             ->setDefault('class', null)
             ->setAllowedTypes('class', ['null', 'string'])
 
-            ->setDefault('table_class', null)
-            ->setAllowedTypes('table_class', ['null', 'string'])
+            ->setDefault('stripe_class', fn(Options $options) => $options['tree'] ? [] : ['odd', 'even'])
+            ->setAllowedTypes('stripe_class', ['array'])
 
             ->setDefault('select', false)
             ->setAllowedValues('select', [false, self::SELECT_MULTIPLE, self::SELECT_SINGLE])

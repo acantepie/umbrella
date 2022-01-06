@@ -42,6 +42,11 @@ umbrella-datatable {
   table.dataTable {
     width: 100% !important;
 
+    > tbody > tr.odd > * {
+      --#{$variable-prefix}table-accent-bg: var(--#{$variable-prefix}table-striped-bg);
+      color: var(--#{$variable-prefix}table-striped-color);
+    }
+
     // Change icons view
     thead .sorting {
       &::after {
