@@ -29,6 +29,10 @@ class MenuItem implements \Countable, \IteratorAggregate
     protected ?string $badgeLabel = null;
     protected ?string $badgeClass = null;
 
+    protected ?string $target = null;
+
+    protected ?string $url = null;
+
     protected ?string $route = null;
 
     protected array $routeParams = [];
@@ -177,7 +181,29 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     public function hasLink(): bool
     {
-        return !empty($this->route);
+        return !empty($this->route) || !empty($this->url);
+    }
+
+    public function getTarget(): ?string
+    {
+        return $this->target;
+    }
+
+    public function setTarget(?string $target): self
+    {
+        $this->target = $target;
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): self
+    {
+        $this->url = $url;
+        return $this;
     }
 
     public function getRoute(): ?string

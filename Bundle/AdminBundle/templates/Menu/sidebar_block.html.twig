@@ -18,7 +18,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <a class="sidebar-link" href="{{ block('item_link') }}">
+                    <a class="sidebar-link" href="{{ block('item_link') }}" {%- if item.target -%}target="{{- item.target -}}"{%- endif -%}>
                         {% if item.level <= 1 %}
                             {{ block('item_icon') }}
                         {% endif %}
@@ -57,5 +57,11 @@
 {%- endblock -%}
 
 {%- block item_link -%}
-    {{ item.hasLink ? path(item.route, item.routeParams) : '#' }}
+    {%- if item.hasLink -%}
+        {%- if item.route -%}
+            {{- path(item.route, item.routeParams) -}}
+        {%- elseif item.url -%}
+            {{- item.url -}}
+        {%- endif -%}
+    {%- endif -%}
 {%- endblock -%}

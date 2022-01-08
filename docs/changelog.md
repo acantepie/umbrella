@@ -3,6 +3,8 @@ CHANGELOG
 
 5.x
 ---
+ * Menu :
+   * Add `url()` and `target()` methods on MenuBuilder
  * DataTable :
    * Remove `load_url` option, use `load_route` and `load_route_params` option instead
    * Remove `toolbar_class` option, use `toolbar_template` to override class of toolbar template instead

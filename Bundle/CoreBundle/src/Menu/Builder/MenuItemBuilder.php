@@ -52,6 +52,18 @@ class MenuItemBuilder
         return $this;
     }
 
+    public function target(?string $target): MenuItemBuilder
+    {
+        $this->item->setTarget($target);
+        return $this;
+    }
+
+    public function url(?string $url): MenuItemBuilder
+    {
+        $this->item->setUrl($url);
+        return $this;
+    }
+
     public function route(string $route, array $routeParams = []): MenuItemBuilder
     {
         $this->item->setRoute($route, $routeParams);
@@ -65,7 +77,7 @@ class MenuItemBuilder
         return $this;
     }
 
-    public function icon(string $icon): MenuItemBuilder
+    public function icon(?string $icon): MenuItemBuilder
     {
         $this->item->setIcon($icon);
 
