@@ -4,4 +4,5 @@
     - [Create your first page](getting-started/create_home)
     - [Manage admin user with doctrine](getting-started/manage_user_with_doctrine)
     - [Create your first CRUD](getting-started/crud)
-- [Components](umbrella_components)
+- [Contributing](contributing)
+- [Changelog](changelog)

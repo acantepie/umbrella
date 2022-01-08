@@ -1,10 +1,8 @@
-<h1 align="center" style="border-bottom: none">
+<h1 style="text-align: center">
     ☂ Umbrella framework
 </h1>
 
-<p align="center">
-    Easiest way to create beautiful administration backends with Symfony.
-</p>
+> Easiest way to create beautiful administration backends with Symfony.
 
 # Introduction
 
@@ -21,3 +19,6 @@ Further resources related to this Framework:
 - Icon libraries :
     - [unicons](https://iconscout.com/unicons/explore/line)
     - [material design icons](https://pictogrammers.github.io/@mdi/font/5.4.55/)
+
+## Donate
+Support Adrien, and become [a sponsor](https://github.com/sponsors/acantepie)

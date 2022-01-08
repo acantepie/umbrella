@@ -35,10 +35,10 @@
 - [Online demo](https://umbrella-corp.dev) - Online demo application using Umbrella ([github repo](https://github.com/acantepie/umbrella-admin-demo)).
 
 ## Upgrade to a major version (4.x to 5.x for example)
-Read [Changelog](CHANGELOG.md)
+Read [Changelog](https://acantepie.github.io/umbrella/#/changelog)
 
 ## Contributing
-Want to contribute ? Check out the [contributing guidelines](CONTRIBUTING.md) to get involved.
+Want to contribute ? Check out the [contributing guidelines](https://acantepie.github.io/umbrella/#/contributing) to get involved.
 
 ## License
 This software is published under the [MIT License](LICENSE.md)
