@@ -6,7 +6,7 @@ php bin/console make:admin:home
 ```
 Files generated are :
 
-## Controller
+#### Controller
 ```php
 // src/Controller/Admin/HomeController.php
 <?php
@@ -38,14 +38,14 @@ There's no need to define an explicit name for this route. Symfony autogenerates
 The super class `BaseController` provides some helper to use Umbrella Components (`DataTable`, `JsResponse` ...), this is not mandatory to extend it.
 
 
-## Twig template
+#### Twig template
 ```twig
 {# templates/admin/home/index.html.twig #}
 {% extends "@UmbrellaAdmin/layout.html.twig" %}
 ```
 All your admin view must extend `@UmbrellaAdmin/layout.html.twig`.
 
-## Admin Menu
+#### Admin Menu
 ```php
 // src/Menu/AdminMenu.php
 <?php

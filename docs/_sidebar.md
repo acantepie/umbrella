@@ -4,5 +4,7 @@
     - [Create your first page](getting-started/create_home)
     - [Manage admin user with doctrine](getting-started/manage_user_with_doctrine)
     - [Create your first CRUD](getting-started/crud)
+- DataTable
+  - [Quick Start](/datatable/quick_start)
 - [Contributing](contributing)
 - [Changelog](changelog)
