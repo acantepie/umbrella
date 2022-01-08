@@ -74,8 +74,3 @@ Run following command to create a new admin user:
 ```bash
 php bin/console create:admin_user
 ```
-
-### Next step
-[>> Create a CRUD](crud.md)
-
-[<< Back to documentation](/docs)

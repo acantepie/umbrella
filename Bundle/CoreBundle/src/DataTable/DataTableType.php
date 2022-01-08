@@ -25,7 +25,7 @@ class DataTableType
             ->setDefault('class', null)
             ->setAllowedTypes('class', ['null', 'string'])
 
-            ->setDefault('stripe_class', fn(Options $options) => $options['tree'] ? [] : ['odd', 'even'])
+            ->setDefault('stripe_class', fn (Options $options) => $options['tree'] ? [] : ['odd', 'even'])
             ->setAllowedTypes('stripe_class', ['array'])
 
             ->setDefault('select', false)

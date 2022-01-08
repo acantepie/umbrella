@@ -1,5 +1,4 @@
 # Umbrella Components
-A good way to learn how to use components is to look at [umbrella-admin-demo](https://github.com/acantepie/umbrella-admin-demo) code.
 
 Components available :
 - ⚡ Menu, Breadcrumb
@@ -8,6 +7,4 @@ Components available :
 - ⚡ Js response
 - ⚡ Searchable entity
 
-Check out documentation on [online demo](https://umbrella-corp.dev/admin) for further information.
-
-[<< Back to documentation](/docs)
+Check out [online demo](https://umbrella-corp.dev/admin) for more examples.

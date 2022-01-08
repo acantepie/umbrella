@@ -34,7 +34,7 @@
 - [Documentation](/docs) - How to install and use Umbrella
 - [Online demo](https://umbrella-corp.dev) - Online demo application using Umbrella ([github repo](https://github.com/acantepie/umbrella-admin-demo)).
 
-## Migrate from Umbrella version 3.x to 4.x
+## Upgrade to a major version (4.x to 5.x for example)
 Read [Changelog](CHANGELOG.md)
 
 ## Contributing
