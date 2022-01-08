@@ -6,5 +6,8 @@
     - [Create your first CRUD](getting-started/crud)
 - DataTable
   - [Quick Start](/datatable/quick_start)
+- Configuration
+  - [CoreBundle](config/umbrella_core)
+  - [AdminBundle](config/umbrella_admin)
 - [Contributing](contributing)
 - [Changelog](changelog)

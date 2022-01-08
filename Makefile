@@ -23,7 +23,12 @@ analyse: ## Run php analyser
 test: ## Run php unit
 	$(PHPUNIT)
 
+check: fix-all analyse test
+
 doc: ## Serve docsify
 	yarn docsify serve docs
+
+doc-update-config: ## Update config-ref of documentation
+	bin/update-doc-config
 
 
