@@ -31,7 +31,7 @@
 </p>
 
 ## Introduction
-- [Documentation](/docs) - How to install and use Umbrella
+- [Documentation](https://acantepie.github.io/umbrella/) - How to install and use Umbrella
 - [Online demo](https://umbrella-corp.dev) - Online demo application using Umbrella ([github repo](https://github.com/acantepie/umbrella-admin-demo)).
 
 ## Upgrade to a major version (4.x to 5.x for example)

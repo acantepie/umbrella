@@ -22,3 +22,8 @@ analyse: ## Run php analyser
 
 test: ## Run php unit
 	$(PHPUNIT)
+
+doc: ## Serve docsify
+	yarn docsify serve docs
+
+
