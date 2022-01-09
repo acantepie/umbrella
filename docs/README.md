@@ -1,4 +1,4 @@
-<h1 style="text-align: center">
+<h1 align="center" style="border-bottom: none">
     <img src="./umbrella.svg" width="25" height="25" alt="Umbrella logo"/> Umbrella framework
 </h1>
 
