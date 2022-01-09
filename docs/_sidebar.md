@@ -1,13 +1,19 @@
-- [Introduction](README.md)
-- Getting Started
+- **Overview**
+    - [Introduction](/README)
+    - [Contributing](contributing)
+    - [Changelog](changelog)
+- **Getting Started**
     - [Quick Start](/getting-started/quick_start)
     - [Create your first page](getting-started/create_home)
     - [Manage admin user with doctrine](getting-started/manage_user_with_doctrine)
     - [Create your first CRUD](getting-started/crud)
-- DataTable
-  - [Quick Start](/datatable/quick_start)
-- Configuration
-  - [CoreBundle](config/umbrella_core)
-  - [AdminBundle](config/umbrella_admin)
-- [Contributing](contributing)
-- [Changelog](changelog)
+- **Components**
+    - Menu
+        - [Quick Start](/component/menu/quick_start)
+        - [Build Admin Menu](/component/menu/admin_menu)
+        - [Current item strategy](/component/menu/current_strategy)
+    - [Notifications](/component/notification)
+- **Configuration**
+    - [CoreBundle](config/umbrella_core)
+    - [AdminBundle](config/umbrella_admin)
+

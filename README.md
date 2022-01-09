@@ -1,6 +1,7 @@
-<h1 align="center" style="border-bottom: none">
-    ☂ Umbrella framework
+<h1 style="text-align: center">
+    <img src="./docs/umbrella.svg" width="25" height="25" alt="Umbrella logo"/> Umbrella framework
 </h1>
+
 
 <p align="center">
     Easiest way to create beautiful administration backends with Symfony.

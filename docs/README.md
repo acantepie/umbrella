@@ -1,17 +1,15 @@
 <h1 style="text-align: center">
-    <span style="color:#0969da">☂</span> Umbrella framework
+    <img src="./umbrella.svg" width="25" height="25" alt="Umbrella logo"/> Umbrella framework
 </h1>
 
 > Easiest way to create beautiful administration backends with Symfony.
-
-# Introduction
 
 [Umbrella](https://github.com/acantepie/umbrella) is a framework based on [Symfony](https://symfony.com/) and divided into 2 bundles :
 
 - The CoreBundle, it contains a set of components used to compose Admin page and CRUD (DataTable, FormType, Menu, ...)
 - The AdminBundle, it contains the layout of Admin based on bootstrap5 and free version of AdminKit
 
-## Resources
+## Resources  <!-- {docsify-ignore} -->
 
 Further resources related to this Framework:
 
@@ -29,5 +27,5 @@ Further resources related to this Framework:
   - [Flatpickr](https://flatpickr.js.org/) : Lightweight js datetime picker
   - [Dragula](https://bevacqua.github.io/dragula/) : Drag & Drop js library.
 
-## Donate
+## Support  <!-- {docsify-ignore} -->
 Support Adrien, and become [a sponsor](https://github.com/sponsors/acantepie)
