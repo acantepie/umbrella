@@ -13,6 +13,8 @@
         - [Build Admin Menu](/component/menu/admin_menu)
         - [Current item strategy](/component/menu/current_strategy)
     - [Notifications](/component/notification)
+    - Form
+        - [Theme](component/form/theme)
 - **Configuration**
     - [CoreBundle](config/umbrella_core)
     - [AdminBundle](config/umbrella_admin)
