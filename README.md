@@ -9,7 +9,7 @@
 
 <div align="center">
 
-[![Symfony version](https://img.shields.io/badge/Symfony-5.4-red?style=for-the-badge)](https://symfony.com/)
+[![Symfony version](https://img.shields.io/badge/Symfony->=5.4-red?style=for-the-badge)](https://symfony.com/)
 [![PHP version](https://img.shields.io/packagist/php-v/umbrella2/corebundle?style=for-the-badge)](https://www.php.net/)
 [![Bootstrap version](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge)](https://getbootstrap.com/)
 
@@ -36,8 +36,12 @@
 - [Documentation](https://acantepie.github.io/umbrella/) - How to install and use Umbrella
 - [Online demo](https://umbrella-corp.dev) - Online demo application using Umbrella ([github repo](https://github.com/acantepie/umbrella-admin-demo)).
 
-## Upgrade to a major version (4.x to 5.x for example)
-Read [Changelog](https://acantepie.github.io/umbrella/#/changelog)
+## Version 5.0 was released !
+ - DataTable reworked
+ - New documentation (in progress)
+ - Demo website updated (in progress)
+
+More information on [Changelog](https://acantepie.github.io/umbrella/#/changelog)
 
 ## Contributing
 Want to contribute ? Check out the [contributing guidelines](https://acantepie.github.io/umbrella/#/contributing) to get involved.

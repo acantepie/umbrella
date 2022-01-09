@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-5.x
+5.0
 ---
  * Menu :
    * Add `url()` and `target()` methods on MenuBuilder
