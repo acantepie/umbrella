@@ -13,14 +13,11 @@ use function Symfony\Component\Translation\t;
 use <?= $repository->getFullName() ?>;
 <?php } ?>
 
-/**
- * @Route("<?= $route['base_path'] ?>")
- */
+#[Route('<?= $route['base_path'] ?>')]
 class <?= $class_name ?> extends BaseController
 {
-    /**
-     * @Route
-     */
+
+    #[Route('')]
     public function index(Request $request)
     {
         $table = $this->createTable(<?= $table->getShortName() ?>::class);
@@ -35,9 +32,7 @@ class <?= $class_name ?> extends BaseController
         ]);
     }
 
-    /**
-     * @Route(path="/edit/{id}", requirements={"id"="\d+"})
-     */
+    #[Route('/edit/{id}', requirements: ['id' => '\d+'])]
     public function edit(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>Request $request, ?int $id = null)
     {
         if ($id === null) {
@@ -83,9 +78,7 @@ class <?= $class_name ?> extends BaseController
     }
 
 <?php if ($tree_table) { ?>
-    /**
-     * @Route("/move/{id}/{direction}", requirements={"id": "\d+"})
-     */
+    #[Route('/move/{id}/{direction}', requirements: ['id' => '\d+'])]
     public function move(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>int $id, string $direction)
     {
         $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
@@ -101,9 +94,7 @@ class <?= $class_name ?> extends BaseController
     }
 <?php } ?>
 
-    /**
-     * @Route(path="/delete/{id}", requirements={"id"="\d+"})
-     */
+    #[Route('/delete/{id}', requirements: ['id' => '\d+'])]
     public function delete(int $id)
     {
         $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);

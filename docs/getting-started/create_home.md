@@ -16,15 +16,11 @@ namespace App\Controller\Admin;
 use Symfony\Component\Routing\Annotation\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 
-/**
- * @Route("/admin")
- */
+#[Route('/admin')]
 class HomeController extends BaseController
 {
 
-    /**
-     * @Route("")
-     */
+    #[Route('')]
     public function index()
     {
         return $this->render('admin/home/index.html.twig');
