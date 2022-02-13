@@ -8,9 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\CoreBundle\Search\Annotation\Searchable;
 
-/**
- * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
- */
+#[ORM\Entity(repositoryClass: <?= $repository->getShortName() ?>::class)]
 #[UniqueEntity('email')]
 #[Searchable]
 class <?= $class_name ?> extends BaseAdminUser

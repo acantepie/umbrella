@@ -6,21 +6,16 @@ use <?= $repository->getFullName() ?>;
 use Doctrine\ORM\Mapping as ORM;
 use Umbrella\AdminBundle\Entity\BaseNotification;
 
-/**
- * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
- */
+#[ORM\Entity(repositoryClass: <?= $repository->getShortName() ?>::class)]
 class <?= $class_name ?> extends BaseNotification
 {
 //    /**
 //     * @var ArrayCollection|AdminUser[]
-//     *
-//     * @ORM\ManyToMany(targetEntity="AdminUser")
-//     * @ORM\JoinTable(
-//     *     joinColumns={@ORM\JoinColumn(onDelete="CASCADE")},
-//     *     inverseJoinColumns={@ORM\JoinColumn(onDelete="CASCADE")}
-//     * )
 //     */
-//    public $users;
+//    #[ORM\ManyToMany(targetEntity: AdminUser::class)]
+//    #[ORM\JoinColumn(onDelete: 'CASCADE')]
+//    #[ORM\InverseJoinColumn(onDelete: 'CASCADE')]
+//    public Collection $users;
 //
 //    public function __construct()
 //    {

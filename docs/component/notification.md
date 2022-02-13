@@ -30,3 +30,5 @@ $notification->title = 'Hello';
 $em->persist($notification);
 $em->flush();
 ```
+
+> :warning: If your entity isn't found by doctrine, make sure you have enabled [doctrine attributes](https://symfony.com/bundles/DoctrineBundle/current/configuration.html#mapping-configuration) (mapping type must be **attribute**)
