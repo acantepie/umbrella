@@ -25,7 +25,15 @@ class Column
 
     public function getOrderBy(): array
     {
-        return null === $this->options['order_by'] ? [] : (array) $this->options['order_by'];
+        if (\is_string($this->options['order_by'])) {
+            return [$this->options['order_by']];
+        }
+
+        if (\is_array($this->options['order_by'])) {
+            return $this->options['order_by'];
+        }
+
+        return [];
     }
 
     public function getOptions(): array

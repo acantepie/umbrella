@@ -81,7 +81,7 @@ class DataTableRenderer
             if ($column->isOrderable()) {
                 $jsOptions['order'][] = [
                     $name,
-                    strtolower($column->getDefaultOrder()),
+                    strtolower((string) $column->getDefaultOrder()),
                 ];
             }
 
