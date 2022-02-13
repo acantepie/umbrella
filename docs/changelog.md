@@ -1,12 +1,13 @@
 CHANGELOG
 =========
 
-Next version
+6.0
 ---
  * Drop support for php 7.4
  * Drop support for symfony 5.4
  * Replace @Searchable and @SearchableField annotation by php8 attribute
  * Replace @Route annotation on Maker by php8 attribute
+ * Use doctrine attribute
 
 5.0
 ---
