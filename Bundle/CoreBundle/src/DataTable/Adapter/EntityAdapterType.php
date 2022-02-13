@@ -89,17 +89,22 @@ class EntityAdapterType extends AdapterType implements DoctrineAdapterType
         }
 
         // order by
-        foreach ($state->getOrderBy() as [$column, $direction]) {
-            foreach ($column->getOrderBy() as $path) {
-                // if path is not a sub property path, prefix it by alias
-                if (!str_contains($path, '.')) {
-                    $path = sprintf('%s.%s', $options['query_alias'], $path);
-                }
-
-                $qb->addOrderBy($path, strtoupper($direction));
-            }
+        foreach ($state->getOrderBy() as $orderData) {
+            $this->addOrderByClosure($qb, $orderData['order_by'], $orderData['direction'], $options);
         }
 
         return $qb;
+    }
+
+    private function addOrderByClosure(QueryBuilder $qb, array $orderBy, string $direction, array $options): void
+    {
+        foreach ($orderBy as $dqlPath) {
+            // if path is not a sub property path, prefix it by alias
+            if (!str_contains($dqlPath, '.')) {
+                $dqlPath = sprintf('%s.%s', $options['query_alias'], $dqlPath);
+            }
+
+            $qb->addOrderBy($dqlPath, strtoupper($direction));
+        }
     }
 }

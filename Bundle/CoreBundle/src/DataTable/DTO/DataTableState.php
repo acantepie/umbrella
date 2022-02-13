@@ -91,7 +91,10 @@ class DataTableState
                     continue;
                 }
 
-                $this->orderBy[] = [$c, $orderData['dir']];
+                $this->orderBy[] = [
+                    'order_by' => $c->getOrderBy(),
+                    'direction' => $orderData['dir']
+                ];
             }
         }
     }
