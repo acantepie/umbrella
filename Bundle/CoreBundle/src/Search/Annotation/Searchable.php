@@ -2,24 +2,14 @@
 
 namespace Umbrella\CoreBundle\Search\Annotation;
 
-use Doctrine\Common\Annotations\Annotation\Target;
-
-/**
- * @Annotation
- * @Target("CLASS")
- */
+#[\Attribute(\Attribute::TARGET_CLASS)]
 class Searchable
 {
-    private string $searchField = 'search';
-
     /**
      * Searchable constructor.
      */
-    public function __construct(array $options)
+    public function __construct(private string $searchField = 'search')
     {
-        if (isset($options['searchField'])) {
-            $this->searchField = $options['searchField'];
-        }
     }
 
     public function getSearchField(): string

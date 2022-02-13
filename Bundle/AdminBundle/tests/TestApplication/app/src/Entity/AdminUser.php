@@ -9,9 +9,9 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 
 /**
  * @ORM\Entity
- * @Searchable
  * @UniqueEntity("email")
  */
+#[Searchable]
 class AdminUser extends BaseAdminUser
 {
 

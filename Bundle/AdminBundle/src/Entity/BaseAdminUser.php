@@ -25,14 +25,10 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     public bool $active = true;
 
-    /**
-     * @SearchableField
-     */
+    #[SearchableField]
     public ?string $firstname = null;
 
-    /**
-     * @SearchableField
-     */
+    #[SearchableField]
     public ?string $lastname = null;
 
     public ?string $password = null;
@@ -42,9 +38,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
      */
     public ?string $plainPassword = null;
 
-    /**
-     * @SearchableField
-     */
+    #[SearchableField]
     public ?string $email = null;
 
     /**

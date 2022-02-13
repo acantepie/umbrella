@@ -20,7 +20,6 @@ use Umbrella\CoreBundle\Menu\MenuProvider;
 use Umbrella\CoreBundle\Menu\Twig\MenuExtension;
 use Umbrella\CoreBundle\Menu\Visitor\MenuCurrentVisitor;
 use Umbrella\CoreBundle\Menu\Visitor\MenuVisibilityVisitor;
-use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
 use Umbrella\CoreBundle\Search\EntityIndexer;
 use Umbrella\CoreBundle\Search\SearchableEntitySubscriber;
 use Umbrella\CoreBundle\Twig\CoreExtension;
@@ -78,7 +77,6 @@ return static function (ContainerConfigurator $configurator): void {
     // -- Search -- //
     $services->set(IndexEntityCommand::class)
         ->tag('console.command');
-    $services->set(SearchableAnnotationReader::class);
     $services->set(EntityIndexer::class);
     $services->set(SearchableEntitySubscriber::class)
         ->tag('doctrine.event_subscriber');

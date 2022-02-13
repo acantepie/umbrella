@@ -2,12 +2,7 @@
 
 namespace Umbrella\CoreBundle\Search\Annotation;
 
-use Doctrine\Common\Annotations\Annotation\Target;
-
-/**
- * @Annotation
- * @Target({"METHOD", "PROPERTY"})
- */
+#[\Attribute(\Attribute::TARGET_METHOD | \Attribute::TARGET_PROPERTY)]
 class SearchableField
 {
 }

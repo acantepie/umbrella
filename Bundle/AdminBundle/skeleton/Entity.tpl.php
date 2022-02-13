@@ -12,10 +12,10 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 
 /**
 * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
-<?php if ($entity_searchable) { ?>
-* @Searchable
-<?php } ?>
 */
+<?php if ($entity_searchable) { ?>
+#[Searchable]
+<?php } ?>
 class <?= $class_name."\n" ?>
 {
     use IdTrait;

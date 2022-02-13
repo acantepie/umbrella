@@ -50,13 +50,13 @@ class IndexEntityCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ($this->entityClass) {
-            if (!$this->indexer->isSearchable($this->entityClass)) {
+            if (!$this->indexer->isIndexable($this->entityClass)) {
                 $this->io->error(sprintf('Entity class %s is not indexable', $this->entityClass));
 
                 return self::FAILURE;
             }
 
-            $this->indexer->indexAllOfClass($this->entityClass);
+            $this->indexer->indexAllEntitiesOfClass($this->entityClass);
 
             return self::SUCCESS;
         }

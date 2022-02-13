@@ -6,18 +6,22 @@ use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Mapping\MappingException;
 use Psr\Log\LoggerInterface;
-use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
 
 class EntityIndexer
 {
     /**
+     * @var SearchableClass[]
+     */
+    private array $searchableCollection = [];
+
+    /**
      * EntityIndexer constructor.
      */
-    public function __construct(private EntityManagerInterface $em, private SearchableAnnotationReader $annotationReader, private ?LoggerInterface $logger = null)
+    public function __construct(private EntityManagerInterface $em, private ?LoggerInterface $logger = null)
     {
     }
 
-    public function isSearchable(string $class): bool
+    public function isIndexable(string $class): bool
     {
         try {
             $md = $this->em->getClassMetadata($class);
@@ -29,40 +33,41 @@ class EntityIndexer
             return false;
         }
 
-        if (!$this->isSearchableEntityClass($class)) {
+        try {
+            $this->getSearchableClass(new \ReflectionClass($class));
+            return true;
+        } catch (UnsupportedClassException) {
             return false;
         }
-
-        return true;
-    }
-
-    public function isSearchableEntityClass(string $entityClass): bool
-    {
-        return null !== $this->annotationReader->getSearchable($entityClass);
     }
 
     public function indexAll(int $batchSize = 2000): void
     {
         $entitiesClass = $this->em->getConfiguration()->getMetadataDriverImpl()->getAllClassNames();
         foreach ($entitiesClass as $entityClass) {
-            if ($this->isSearchable($entityClass)) {
-                $this->indexAllOfClass($entityClass, $batchSize);
-            }
+            $this->indexAllEntitiesOfClass($entityClass, $batchSize);
         }
     }
 
-    public function indexAllOfClass(string $entityClass, int $batchSize = 2000): void
+    public function indexAllEntitiesOfClass(string $class, int $batchSize = 2000): void
     {
         $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
 
-        if ($this->logger) {
-            $this->logger->info(sprintf('>> Index %s', $entityClass));
+        try {
+            $searchableClass = $this->getSearchableClass($class);
+        } catch (UnsupportedClassException) {
+            return;
         }
-        $query = $this->em->createQuery(sprintf('SELECT e FROM %s e', $entityClass));
+
+        if ($this->logger) {
+            $this->logger->info(sprintf('>> Index %s', $searchableClass->getEntityClass()));
+        }
+
+        $query = $this->em->createQuery(sprintf('SELECT e FROM %s e', $searchableClass->getEntityClass()));
 
         $i = 1;
         foreach ($query->toIterable() as $entity) {
-            $this->indexEntity($entity);
+            $searchableClass->update($entity);
 
             if (0 === ($i % $batchSize)) {
                 $this->em->flush();
@@ -85,45 +90,21 @@ class EntityIndexer
 
     public function indexEntity(object $entity): bool
     {
-        $entityClass = ClassUtils::getClass($entity);
-
-        $searchable = $this->annotationReader->getSearchable($entityClass);
-
-        // Entity doesn't have annotation Searchable
-        if (null === $searchable) {
+        try {
+            $searchableClass = $this->getSearchableClass(ClassUtils::getClass($entity));
+            $searchableClass->update($entity);
+            return true;
+        } catch (UnsupportedClassException) {
             return false;
         }
-
-        $searches = [];
-        foreach ($this->annotationReader->getSearchableProperties($entityClass) as $property => $annotation) {
-            $searches[] = $this->stringify($entity->{$property});
-        }
-
-        foreach ($this->annotationReader->getSearchableMethods($entityClass) as $method => $annotation) {
-            $searches[] = $this->stringify(call_user_func([$entity, $method]));
-        }
-
-        $searches = array_filter($searches);
-        $searches = array_unique($searches);
-
-        $search = implode(' ', $searches);
-        $entity->{$searchable->getSearchField()} = $search;
-
-        return true;
     }
 
-    private function stringify($value): string
+    private function getSearchableClass(string $class): SearchableClass
     {
-        // do not stringify non-scalar or non-stringable value
-        if (!\is_scalar($value) && !$value instanceof \Stringable) {
-            return '';
+        if (!isset($this->searchableCollection[$class])) {
+            $this->searchableCollection[$class] = SearchableClass::createFromClass($class);
         }
 
-        // do not stringify boolean
-        if (\is_bool($value)) {
-            return '';
-        }
-
-        return trim((string) $value);
+        return $this->searchableCollection[$class];
     }
 }

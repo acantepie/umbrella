@@ -6,23 +6,15 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 use Umbrella\CoreBundle\Search\Annotation\SearchableField;
 use Umbrella\CoreBundle\Model\SearchTrait;
 
-/**
- * @Searchable()
- */
+#[Searchable]
 class SearchableEntity
 {
     use SearchTrait;
 
-    /**
-     * @var mixed
-     * @SearchableField()
-     */
+    #[SearchableField]
     public $value1;
 
-    /**
-     * @var mixed
-     * @SearchableField()
-     */
+    #[SearchableField]
     public $value2;
 
 }
