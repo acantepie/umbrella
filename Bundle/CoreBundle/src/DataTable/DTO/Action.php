@@ -7,14 +7,8 @@ use Umbrella\CoreBundle\DataTable\Action\ActionType;
 
 class Action
 {
-    protected ActionType $type;
-
-    protected array $options;
-
-    public function __construct(ActionType $type, array $options)
+    public function __construct(protected ActionType $type, protected array $options)
     {
-        $this->type = $type;
-        $this->options = $options;
     }
 
     public function getType(): ActionType

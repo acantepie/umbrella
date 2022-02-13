@@ -6,8 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DataTableState
 {
-    protected DataTable $dataTable;
-
     protected int $draw = 0;
 
     protected int $start = 0;
@@ -23,9 +21,8 @@ class DataTableState
     /**
      * DataTableState constructor.
      */
-    public function __construct(DataTable $dataTable)
+    public function __construct(protected DataTable $dataTable)
     {
-        $this->dataTable = $dataTable;
     }
 
     public function update(Request $request): bool

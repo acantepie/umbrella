@@ -6,18 +6,13 @@ use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 
 class MenuItemBuilder
 {
-    protected ?MenuItemBuilder $parentBuilder = null;
     protected array $childrenBuilder = [];
-
-    protected MenuItem $item;
 
     /**
      * MenuItemBuilder constructor.
      */
-    public function __construct(MenuItem $item, ?MenuItemBuilder $parentBuilder = null)
+    public function __construct(protected MenuItem $item, protected ?MenuItemBuilder $parentBuilder = null)
     {
-        $this->item = $item;
-        $this->parentBuilder = $parentBuilder;
     }
 
     public function add(string $id): MenuItemBuilder

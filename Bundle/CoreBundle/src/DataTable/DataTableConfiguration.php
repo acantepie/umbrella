@@ -4,14 +4,11 @@ namespace Umbrella\CoreBundle\DataTable;
 
 class DataTableConfiguration
 {
-    protected array $config = [];
-
     /**
      * DataTableConfig constructor.
      */
-    public function __construct(array $config)
+    public function __construct(protected array $config)
     {
-        $this->config = $config;
     }
 
     public function pageLength(): int

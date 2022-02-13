@@ -8,14 +8,11 @@ use Doctrine\ORM\Events;
 
 class SearchableEntitySubscriber implements EventSubscriber
 {
-    private EntityIndexer $entityIndexer;
-
     /**
      * SearchableEntitySubscriber constructor.
      */
-    public function __construct(EntityIndexer $entityIndexer)
+    public function __construct(private EntityIndexer $entityIndexer)
     {
-        $this->entityIndexer = $entityIndexer;
     }
 
     public function prePersist(LifecycleEventArgs $args): void

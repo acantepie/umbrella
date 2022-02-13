@@ -10,18 +10,11 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 
 class DataTableRenderer
 {
-    protected Environment $twig;
-    protected RouterInterface $router;
-    protected RequestStack $requestStack;
-
     /**
      * DataTableRenderer constructor.
      */
-    public function __construct(Environment $twig, RouterInterface $router, RequestStack $requestStack)
+    public function __construct(protected Environment $twig, protected RouterInterface $router, protected RequestStack $requestStack)
     {
-        $this->twig = $twig;
-        $this->router = $router;
-        $this->requestStack = $requestStack;
     }
 
     public function render(DataTable $table): string

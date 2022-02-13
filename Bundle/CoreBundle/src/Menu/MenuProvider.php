@@ -9,14 +9,11 @@ use Umbrella\CoreBundle\Menu\DTO\Menu;
 
 class MenuProvider
 {
-    private MenuRegistry $registry;
-
     /**
      * MenuProvider constructor.
      */
-    public function __construct(MenuRegistry $registry)
+    public function __construct(private MenuRegistry $registry)
     {
-        $this->registry = $registry;
     }
 
     public function get($menu, array $options = []): Menu

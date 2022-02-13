@@ -7,11 +7,8 @@ use Umbrella\CoreBundle\DataTable\DTO\Action;
 
 class ActionRenderer
 {
-    protected Environment $twig;
-
-    public function __construct(Environment $twig)
+    public function __construct(protected Environment $twig)
     {
-        $this->twig = $twig;
     }
 
     public function renderAction(Action $action): string

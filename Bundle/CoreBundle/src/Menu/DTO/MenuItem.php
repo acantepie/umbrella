@@ -7,10 +7,6 @@ use Umbrella\CoreBundle\Utils\Utils;
 
 class MenuItem implements \Countable, \IteratorAggregate
 {
-    protected Menu $menu;
-
-    protected string $name;
-
     protected ?MenuItem $parent = null;
 
     /**
@@ -46,10 +42,8 @@ class MenuItem implements \Countable, \IteratorAggregate
     /**
      * MenuItem constructor.
      */
-    public function __construct(Menu $menu, string $name)
+    public function __construct(protected Menu $menu, protected string $name)
     {
-        $this->menu = $menu;
-        $this->name = $name;
         $this->label = Utils::humanize($name);
     }
 

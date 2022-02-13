@@ -10,19 +10,14 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 class UserManager implements UserManagerInterface
 {
-    protected EntityManagerInterface $em;
-    protected UserPasswordHasherInterface $passwordHasher;
     protected string $class;
     protected ObjectRepository $repo;
 
     /**
      * UserManager constructor.
      */
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, UmbrellaAdminConfiguration $config)
+    public function __construct(protected EntityManagerInterface $em, protected UserPasswordHasherInterface $passwordHasher, UmbrellaAdminConfiguration $config)
     {
-        $this->em = $em;
-        $this->passwordHasher = $passwordHasher;
-
         $this->class = $config->userClass();
         $this->repo = $this->em->getRepository($this->class);
     }

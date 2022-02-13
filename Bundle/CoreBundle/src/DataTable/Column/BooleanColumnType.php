@@ -7,11 +7,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class BooleanColumnType extends PropertyColumnType
 {
-    protected TranslatorInterface $translator;
-
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(protected TranslatorInterface $translator)
     {
-        $this->translator = $translator;
     }
 
     public function renderProperty($value, array $options): string

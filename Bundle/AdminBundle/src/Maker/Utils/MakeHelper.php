@@ -17,20 +17,15 @@ class MakeHelper
 
     public const VIEW_MODAL = 'modal';
     public const VIEW_PAGE = 'page';
-
-    private ManagerRegistry $doctrine;
     private string $rootNamespace;
     private string $entityNamespace;
     private string $baseTemplatePath;
-    private string $rootDirectory;
 
-    public function __construct(ManagerRegistry $doctrine, string $rootDirectory)
+    public function __construct(private ManagerRegistry $doctrine, private string $rootDirectory)
     {
-        $this->doctrine = $doctrine;
         $this->rootNamespace = trim(self::ROOT_NAMESPACE, '\\');
         $this->entityNamespace = $this->rootNamespace . '\\Entity';
         $this->baseTemplatePath = __DIR__ . '/../../../skeleton/';
-        $this->rootDirectory = $rootDirectory;
     }
 
     /**

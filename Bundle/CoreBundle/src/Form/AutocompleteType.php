@@ -20,18 +20,11 @@ use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 
 class AutocompleteType extends AbstractType implements DataMapperInterface, EventSubscriberInterface
 {
-    private RouterInterface $router;
-    private FormRegistryInterface $formRegistry;
-    private UmbrellaSelectConfigurator $configurator;
-
     /**
      * AutocompleteType constructor.
      */
-    public function __construct(RouterInterface $router, FormRegistryInterface $formRegistry, UmbrellaSelectConfigurator $configurator)
+    public function __construct(private RouterInterface $router, private FormRegistryInterface $formRegistry, private UmbrellaSelectConfigurator $configurator)
     {
-        $this->router = $router;
-        $this->formRegistry = $formRegistry;
-        $this->configurator = $configurator;
     }
 
     /**

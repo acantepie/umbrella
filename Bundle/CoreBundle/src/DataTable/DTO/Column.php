@@ -6,17 +6,11 @@ use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 
 class Column
 {
-    protected ColumnType $type;
-
-    protected array $options;
-
     /**
      * Column constructor.
      */
-    public function __construct(ColumnType $type, array $options)
+    public function __construct(protected ColumnType $type, protected array $options)
     {
-        $this->type = $type;
-        $this->options = $options;
     }
 
     public function isOrderable(): bool

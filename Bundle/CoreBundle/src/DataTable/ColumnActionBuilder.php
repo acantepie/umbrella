@@ -8,7 +8,6 @@ use Umbrella\CoreBundle\DataTable\Action\RawActionType;
 
 class ColumnActionBuilder
 {
-    protected DataTableFactory $factory;
     protected array $actionsData = [];
 
     protected int $idx = 0;
@@ -16,9 +15,8 @@ class ColumnActionBuilder
     /**
      * @param DataTableFactory $factory
      */
-    public function __construct(DataTableFactory $factory)
+    public function __construct(protected DataTableFactory $factory)
     {
-        $this->factory = $factory;
     }
 
     public function showLink(array $options = []): self

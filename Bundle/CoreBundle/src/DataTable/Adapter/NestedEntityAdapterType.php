@@ -10,14 +10,11 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
 class NestedEntityAdapterType extends AdapterType implements DoctrineAdapterType
 {
-    protected EntityManagerInterface $em;
-
     /**
      * EntityCollector constructor.
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(protected EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     public function configureOptions(OptionsResolver $resolver)

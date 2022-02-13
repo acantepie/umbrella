@@ -8,15 +8,6 @@ use Umbrella\CoreBundle\DataTable\AdapterException;
 
 class DataTable
 {
-    protected Toolbar $toolbar;
-
-    /**
-     * @var Column[]
-     */
-    protected array $columns;
-
-    protected Adapter $adapter;
-
     protected RowModifier $rowModifier;
 
     protected array $options;
@@ -25,17 +16,16 @@ class DataTable
 
     /**
      * DataTable constructor.
+     *
+     * @param \Umbrella\CoreBundle\DataTable\DTO\Column[] $columns
      */
     public function __construct(
-        Toolbar $toolbar,
-        array $columns,
-        Adapter $adapter,
+        protected Toolbar $toolbar,
+        protected array $columns,
+        protected Adapter $adapter,
         RowModifier $rowModifier,
         array $options
     ) {
-        $this->toolbar = $toolbar;
-        $this->columns = $columns;
-        $this->adapter = $adapter;
         $this->rowModifier = $rowModifier->setIsTree($options['tree']);
         $this->options = $options;
 

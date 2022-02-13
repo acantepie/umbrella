@@ -21,9 +21,6 @@ use Umbrella\CoreBundle\Utils\Utils;
 
 class DataTableBuilder
 {
-    protected DataTableFactory $factory;
-    protected DataTableConfiguration $config;
-    protected DataTableType $type;
     protected RowModifier $rowModifier;
     protected array $options = [];
 
@@ -39,15 +36,12 @@ class DataTableBuilder
      * DataTableBuilder constructor.
      */
     public function __construct(
-        DataTableFactory $factory,
+        protected DataTableFactory $factory,
         FormFactoryInterface $formFactory,
-        DataTableConfiguration $config,
-        DataTableType $type,
+        protected DataTableConfiguration $config,
+        protected DataTableType $type,
         array $options = []
     ) {
-        $this->factory = $factory;
-        $this->config = $config;
-        $this->type = $type;
         $this->rowModifier = new RowModifier();
         $this->resolveOptions($options);
 

@@ -13,14 +13,11 @@ use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
 class NestedTreeParentType extends AbstractType
 {
-    private EntityManagerInterface $em;
-
     /**
      * NestedTreeParentType constructor.
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(private EntityManagerInterface $em)
     {
-        $this->em = $em;
     }
 
     public function finishView(FormView $view, FormInterface $form, array $options)

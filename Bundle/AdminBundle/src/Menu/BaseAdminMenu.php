@@ -11,19 +11,14 @@ use Umbrella\CoreBundle\Menu\MenuType;
 
 class BaseAdminMenu extends MenuType
 {
-    protected Environment $twig;
-    protected UmbrellaAdminConfiguration $configuration;
-
     protected array $defaultRenderOptions;
     protected array $defaultBreadcrumbRenderOptions;
 
     /**
      * BaseAdminMenu constructor.
      */
-    public function __construct(Environment $twig, UmbrellaAdminConfiguration $configuration)
+    public function __construct(protected Environment $twig, protected UmbrellaAdminConfiguration $configuration)
     {
-        $this->twig = $twig;
-        $this->configuration = $configuration;
         $this->defaultRenderOptions = [
             'logo_route' => null,
             'logo' => $this->configuration->appLogo(),

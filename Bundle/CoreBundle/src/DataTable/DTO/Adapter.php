@@ -9,14 +9,8 @@ use Umbrella\CoreBundle\DataTable\AdapterException;
 
 class Adapter
 {
-    protected AdapterType $type;
-
-    protected array $options;
-
-    public function __construct(AdapterType $type, array $options)
+    public function __construct(protected AdapterType $type, protected array $options)
     {
-        $this->type = $type;
-        $this->options = $options;
     }
 
     public function getType(): AdapterType

@@ -4,8 +4,6 @@ namespace Umbrella\CoreBundle\Menu\DTO;
 
 class Menu
 {
-    protected string $name;
-
     protected MenuItem $root;
 
     protected ?MenuItem $current = null;
@@ -15,9 +13,8 @@ class Menu
     /**
      * Menu constructor.
      */
-    public function __construct(string $name)
+    public function __construct(protected string $name)
     {
-        $this->name = $name;
         $this->root = new MenuItem($this, 'root');
     }
 

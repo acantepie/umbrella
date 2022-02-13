@@ -7,31 +7,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class Toolbar
 {
-    protected FormInterface $form;
-
-    /**
-     * @var Action[]
-     */
-    protected array $actions;
-
-    /**
-     * @var Action[]
-     */
-    protected array $bulkActions;
-
-    protected array $options;
-
     protected array $formData = [];
 
     /**
      * Toolbar constructor.
+     *
+     * @param Action[] $actions
+     * @param Action[] $bulkActions
      */
-    public function __construct(FormInterface $form, array $actions, array $bulkActions, array $options)
+    public function __construct(protected FormInterface $form, protected array $actions, protected array $bulkActions, protected array $options)
     {
-        $this->form = $form;
-        $this->actions = $actions;
-        $this->bulkActions = $bulkActions;
-        $this->options = $options;
     }
 
     public function getForm(): FormInterface

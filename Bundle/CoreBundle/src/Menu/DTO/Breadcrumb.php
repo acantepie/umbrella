@@ -4,19 +4,13 @@ namespace Umbrella\CoreBundle\Menu\DTO;
 
 class Breadcrumb implements \IteratorAggregate, \Countable
 {
-    protected string $name;
-
-    protected array $items;
-
     protected ?string $icon = null;
 
     /**
      * Breadcrumb constructor.
      */
-    public function __construct(string $name, array $items = [])
+    public function __construct(protected string $name, protected array $items = [])
     {
-        $this->name = $name;
-        $this->items = $items;
     }
 
     public function getName(): string

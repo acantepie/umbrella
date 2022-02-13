@@ -10,16 +10,11 @@ use Twig\TwigTest;
 
 class CoreExtension extends AbstractExtension
 {
-    private FormRendererInterface $formRenderer;
-    private string $bootstrapLayout;
-
     /**
      * CoreExtension constructor.
      */
-    public function __construct(FormRendererInterface $formRenderer, string $bootstrapLayout)
+    public function __construct(private FormRendererInterface $formRenderer, private string $bootstrapLayout)
     {
-        $this->formRenderer = $formRenderer;
-        $this->bootstrapLayout = $bootstrapLayout;
     }
 
     public function getFunctions(): array

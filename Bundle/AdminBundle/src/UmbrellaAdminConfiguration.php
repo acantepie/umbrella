@@ -6,16 +6,11 @@ use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 
 class UmbrellaAdminConfiguration
 {
-    private array $config;
-    private LogoutUrlGenerator $logoutUrlGenerator;
-
     /**
      * UmbrellaAdminConfiguration constructor.
      */
-    public function __construct(array $config, LogoutUrlGenerator $logoutUrlGenerator)
+    public function __construct(private array $config, private LogoutUrlGenerator $logoutUrlGenerator)
     {
-        $this->config = $config;
-        $this->logoutUrlGenerator = $logoutUrlGenerator;
     }
 
     // Theme

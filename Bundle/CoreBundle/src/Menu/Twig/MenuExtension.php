@@ -9,16 +9,11 @@ use Umbrella\CoreBundle\Menu\MenuProvider;
 
 class MenuExtension extends AbstractExtension
 {
-    private MenuProvider $provider;
-    private TranslatorInterface $translator;
-
     /**
      * MenuExtension constructor.
      */
-    public function __construct(MenuProvider $provider, TranslatorInterface $translator)
+    public function __construct(private MenuProvider $provider, private TranslatorInterface $translator)
     {
-        $this->provider = $provider;
-        $this->translator = $translator;
     }
 
     /**

@@ -9,11 +9,8 @@ use Twig\Environment;
 
 class LinkActionType extends ActionType
 {
-    protected RouterInterface $router;
-
-    public function __construct(RouterInterface $router)
+    public function __construct(protected RouterInterface $router)
     {
-        $this->router = $router;
     }
 
     public function render(Environment $twig, array $options): string

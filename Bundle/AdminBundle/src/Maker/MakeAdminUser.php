@@ -18,11 +18,8 @@ class MakeAdminUser extends AbstractMaker
     private const NAME = 'make:admin:user';
     private const DESCRIPTION = 'Create admin user entity';
 
-    private MakeHelper $helper;
-
-    public function __construct(MakeHelper $helper)
+    public function __construct(private MakeHelper $helper)
     {
-        $this->helper = $helper;
     }
 
     public static function getCommandName(): string

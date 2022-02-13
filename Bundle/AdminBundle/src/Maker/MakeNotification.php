@@ -16,11 +16,8 @@ class MakeNotification extends AbstractMaker
     private const NAME = 'make:admin:notification';
     private const DESCRIPTION = 'Crate admin notification provider';
 
-    private MakeHelper $helper;
-
-    public function __construct(MakeHelper $helper)
+    public function __construct(private MakeHelper $helper)
     {
-        $this->helper = $helper;
     }
 
     public static function getCommandName(): string

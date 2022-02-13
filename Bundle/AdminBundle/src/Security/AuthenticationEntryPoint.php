@@ -13,14 +13,11 @@ use Umbrella\AdminBundle\Controller\SecurityController;
 
 class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
 {
-    private RouterInterface $router;
-
     /**
      * AuthenticationEntryPoint constructor.
      */
-    public function __construct(RouterInterface $router)
+    public function __construct(private RouterInterface $router)
     {
-        $this->router = $router;
     }
 
     /**

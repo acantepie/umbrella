@@ -8,13 +8,8 @@ use Umbrella\CoreBundle\DataTable\DataTableFactory;
 
 class ActionColumnType extends ColumnType
 {
-    protected DataTableFactory $factory;
-    protected ActionRenderer $renderer;
-
-    public function __construct(DataTableFactory $factory, ActionRenderer $renderer)
+    public function __construct(protected DataTableFactory $factory, protected ActionRenderer $renderer)
     {
-        $this->factory = $factory;
-        $this->renderer = $renderer;
     }
 
     public function render($rowData, array $options): string

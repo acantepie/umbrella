@@ -12,14 +12,11 @@ use Umbrella\CoreBundle\Form\PasswordTogglableType;
 
 class ProfileType extends AbstractType
 {
-    private UmbrellaAdminConfiguration $config;
-
     /**
      * ProfileType constructor.
      */
-    public function __construct(UmbrellaAdminConfiguration $config)
+    public function __construct(private UmbrellaAdminConfiguration $config)
     {
-        $this->config = $config;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

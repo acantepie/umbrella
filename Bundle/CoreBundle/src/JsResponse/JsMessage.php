@@ -4,18 +4,11 @@ namespace Umbrella\CoreBundle\JsResponse;
 
 class JsMessage implements \JsonSerializable
 {
-    private string $action;
-    private array $params = [];
-    private int $priority;
-
     /**
      * JsMessage constructor.
      */
-    public function __construct(string $action, array $params = [], int $priority = 0)
+    public function __construct(private string $action, private array $params = [], private int $priority = 0)
     {
-        $this->action = $action;
-        $this->params = $params;
-        $this->priority = $priority;
     }
 
     public function getAction(): string

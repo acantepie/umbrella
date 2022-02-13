@@ -8,14 +8,11 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 class AdminExtension extends AbstractExtension implements GlobalsInterface
 {
-    private UmbrellaAdminConfiguration $configuration;
-
     /**
      * AdminExtension constructor.
      */
-    public function __construct(UmbrellaAdminConfiguration $configuration)
+    public function __construct(private UmbrellaAdminConfiguration $configuration)
     {
-        $this->configuration = $configuration;
     }
 
     public function getGlobals(): array

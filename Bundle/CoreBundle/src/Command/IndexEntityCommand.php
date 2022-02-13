@@ -13,17 +13,14 @@ class IndexEntityCommand extends Command
 {
     public const CMD_NAME = 'umbrella:index:entity';
 
-    private EntityIndexer $indexer;
-
     private ?SymfonyStyle $io = null;
     private ?string $entityClass = null;
 
     /**
      * IndexEntityCommand constructor.
      */
-    public function __construct(EntityIndexer $indexer)
+    public function __construct(private EntityIndexer $indexer)
     {
-        $this->indexer = $indexer;
         parent::__construct();
     }
 

@@ -17,11 +17,8 @@ class MakeTree extends AbstractMaker
     private const NAME = 'make:admin:tree';
     private const DESCRIPTION = 'Creates CRUD with Tree DataTable view';
 
-    private MakeHelper $helper;
-
-    public function __construct(MakeHelper $helper)
+    public function __construct(private MakeHelper $helper)
     {
-        $this->helper = $helper;
     }
 
     public static function getCommandName(): string

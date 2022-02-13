@@ -10,14 +10,11 @@ use Umbrella\CoreBundle\Controller\BaseController;
 
 class UserController extends BaseController
 {
-    private UmbrellaAdminConfiguration $config;
-
     /**
      * UserController constructor.
      */
-    public function __construct(UmbrellaAdminConfiguration $config)
+    public function __construct(private UmbrellaAdminConfiguration $config)
     {
-        $this->config = $config;
     }
 
     public function index(Request $request)

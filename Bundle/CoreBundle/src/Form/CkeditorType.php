@@ -12,14 +12,11 @@ use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 
 class CkeditorType extends AbstractType
 {
-    private CkeditorConfiguration $ckeditorConfig;
-
     /**
      * CkeditorType constructor.
      */
-    public function __construct(CkeditorConfiguration $ckeditorConfig)
+    public function __construct(private CkeditorConfiguration $ckeditorConfig)
     {
-        $this->ckeditorConfig = $ckeditorConfig;
     }
 
     /**

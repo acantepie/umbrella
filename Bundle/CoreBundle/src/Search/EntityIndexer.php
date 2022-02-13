@@ -7,22 +7,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Mapping\MappingException;
 use Psr\Log\LoggerInterface;
 use Umbrella\CoreBundle\Search\Annotation\SearchableAnnotationReader;
-use Umbrella\CoreBundle\Utils\Utils;
 
 class EntityIndexer
 {
-    private EntityManagerInterface $em;
-    private SearchableAnnotationReader $annotationReader;
-    private ?LoggerInterface $logger;
-
     /**
      * EntityIndexer constructor.
      */
-    public function __construct(EntityManagerInterface $em, SearchableAnnotationReader $annotationReader, ?LoggerInterface $logger = null)
+    public function __construct(private EntityManagerInterface $em, private SearchableAnnotationReader $annotationReader, private ?LoggerInterface $logger = null)
     {
-        $this->em = $em;
-        $this->annotationReader = $annotationReader;
-        $this->logger = $logger;
     }
 
     public function isSearchable(string $class): bool
@@ -123,7 +115,7 @@ class EntityIndexer
     private function stringify($value): string
     {
         // do not stringify non-scalar or non-stringable value
-        if  (!\is_scalar($value) && !$value instanceof \Stringable) {
+        if (!\is_scalar($value) && !$value instanceof \Stringable) {
             return '';
         }
 

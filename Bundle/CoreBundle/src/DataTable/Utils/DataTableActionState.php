@@ -6,11 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DataTableActionState implements \Serializable
 {
-    protected array $data;
-
-    public function __construct(array $data = [])
+    public function __construct(protected array $data = [])
     {
-        $this->data = $data;
     }
 
     public static function create(array $data): self

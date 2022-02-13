@@ -6,14 +6,11 @@ use Doctrine\Common\Annotations\Reader;
 
 class SearchableAnnotationReader
 {
-    private Reader $reader;
-
     /**
      * SearchableAnnotationReader constructor.
      */
-    public function __construct(Reader $reader)
+    public function __construct(private Reader $reader)
     {
-        $this->reader = $reader;
     }
 
     public function getSearchable(string $entityClass): ?Searchable

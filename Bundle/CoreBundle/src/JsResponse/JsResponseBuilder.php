@@ -28,20 +28,13 @@ class JsResponseBuilder implements \Countable
 
     public const DOWNLOAD = 'download';
 
-    private TranslatorInterface $translator;
-    private RouterInterface $router;
-    private Environment $twig;
-
     private array $messages = [];
 
     /**
      * JsResponseBuilder constructor.
      */
-    public function __construct(TranslatorInterface $translator, RouterInterface $router, Environment $twig)
+    public function __construct(private TranslatorInterface $translator, private RouterInterface $router, private Environment $twig)
     {
-        $this->translator = $translator;
-        $this->router = $router;
-        $this->twig = $twig;
     }
 
     public function add(string $action, array $params = []): self

@@ -14,22 +14,11 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 class UserMailer implements UserMailerInterface
 {
-    protected Environment $twig;
-    protected RouterInterface $router;
-    protected MailerInterface $mailer;
-    protected TranslatorInterface $translator;
-    protected UmbrellaAdminConfiguration $config;
-
     /**
      * UserMailer constructor.
      */
-    public function __construct(Environment $twig, RouterInterface $router, MailerInterface $mailer, TranslatorInterface $translator, UmbrellaAdminConfiguration $config)
+    public function __construct(protected Environment $twig, protected RouterInterface $router, protected MailerInterface $mailer, protected TranslatorInterface $translator, protected UmbrellaAdminConfiguration $config)
     {
-        $this->twig = $twig;
-        $this->router = $router;
-        $this->mailer = $mailer;
-        $this->translator = $translator;
-        $this->config = $config;
     }
 
     public function sendPasswordRequest(BaseAdminUser $user): void
