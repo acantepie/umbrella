@@ -12,7 +12,7 @@ class EntityIndexer
     /**
      * @var SearchableClass[]
      */
-    private array $searchableCollection = [];
+    private array $searchableClassCollection = [];
 
     /**
      * EntityIndexer constructor.
@@ -101,10 +101,10 @@ class EntityIndexer
 
     private function getSearchableClass(string $class): SearchableClass
     {
-        if (!isset($this->searchableCollection[$class])) {
-            $this->searchableCollection[$class] = SearchableClass::createFromClass($class);
+        if (!isset($this->searchableClassCollection[$class])) {
+            $this->searchableClassCollection[$class] = SearchableClass::createFromClass($class);
         }
 
-        return $this->searchableCollection[$class];
+        return $this->searchableClassCollection[$class];
     }
 }
