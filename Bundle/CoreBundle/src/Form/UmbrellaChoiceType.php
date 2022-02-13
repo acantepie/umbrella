@@ -28,7 +28,7 @@ class UmbrellaChoiceType extends AbstractType
         $jsOptions = $this->configurator->getJsOptions($options);
 
         $view->vars['attr']['is'] = 'umbrella-select';
-        $view->vars['attr']['data-options'] = json_encode($jsOptions);
+        $view->vars['attr']['data-options'] = json_encode($jsOptions, JSON_THROW_ON_ERROR);
 
         // never expand
         $view->vars['expanded'] = false;
@@ -62,17 +62,7 @@ class UmbrellaChoiceType extends AbstractType
             return null;
         }
 
-        if (!is_array($data) && !$data instanceof \JsonSerializable) {
-            throw new \UnexpectedValueException(sprintf('Expected array or JsonSerializable data returned by option[\'expose\'], have %s', gettype($data)));
-        }
-
-        $json = json_encode($data);
-
-        if (false === $json) {
-            throw new \JsonException('Unable serialize data returned by option[\'expose\']');
-        }
-
-        return $json;
+        return json_encode($data, JSON_THROW_ON_ERROR);
     }
 
     /**

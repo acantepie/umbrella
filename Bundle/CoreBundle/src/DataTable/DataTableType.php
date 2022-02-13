@@ -31,9 +31,7 @@ class DataTableType
             ->setDefault('select', false)
             ->setAllowedValues('select', [false, self::SELECT_MULTIPLE, self::SELECT_SINGLE])
 
-            ->setDefault('paging', function (Options $options) {
-                return !$options['tree'];
-            })
+            ->setDefault('paging', fn (Options $options) => !$options['tree'])
             ->setAllowedTypes('paging', 'bool')
 
             ->setDefault('length_change', false)
@@ -48,9 +46,7 @@ class DataTableType
             ->setDefault('scroll_y', null)
             ->setAllowedTypes('scroll_y', ['int', 'null'])
 
-            ->setDefault('orderable', function (Options $options) {
-                return !$options['tree'];
-            })
+            ->setDefault('orderable', fn (Options $options) => !$options['tree'])
             ->setAllowedTypes('orderable', 'bool')
 
             ->setRequired('dom')
@@ -74,9 +70,7 @@ class DataTableType
             ->setAllowedTypes('load_route_params', 'array');
 
         $resolver
-            ->setDefault('toolbar_form_name', function (Options $options) {
-                return sprintf('%s_tbf', $options['id']);
-            })
+            ->setDefault('toolbar_form_name', fn (Options $options) => sprintf('%s_tbf', $options['id']))
             ->setAllowedTypes('toolbar_form_name', 'string')
 
             ->setDefault('toolbar_form_options', [

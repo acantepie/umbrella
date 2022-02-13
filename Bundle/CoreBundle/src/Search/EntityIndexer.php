@@ -21,7 +21,7 @@ class EntityIndexer
     {
         try {
             $md = $this->em->getClassMetadata($class);
-        } catch (MappingException $e) {
+        } catch (MappingException) {
             return false;
         }
 

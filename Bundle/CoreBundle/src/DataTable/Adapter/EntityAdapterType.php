@@ -92,7 +92,7 @@ class EntityAdapterType extends AdapterType implements DoctrineAdapterType
         foreach ($state->getOrderBy() as [$column, $direction]) {
             foreach ($column->getOrderBy() as $path) {
                 // if path is not a sub property path, prefix it by alias
-                if (false === strpos($path, '.')) {
+                if (!str_contains($path, '.')) {
                     $path = sprintf('%s.%s', $options['query_alias'], $path);
                 }
 

@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Umbrella\CoreBundle\Search\Annotation\SearchableField;
 
-abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface, PasswordAuthenticatedUserInterface
+abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface, PasswordAuthenticatedUserInterface, \Stringable
 {
     public ?int $id = null;
 
@@ -116,11 +116,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     public function __unserialize(array $data): void
     {
-        list(
-            $this->id,
-            $this->password,
-            $this->email
-            ) = $data;
+        [$this->id, $this->password, $this->email] = $data;
     }
 
     /**

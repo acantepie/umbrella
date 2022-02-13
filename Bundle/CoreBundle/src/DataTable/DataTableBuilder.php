@@ -60,7 +60,7 @@ class DataTableBuilder
 
         // Configure options from bundle config
         $resolver
-            ->setDefault('id', Utils::type_class_to_id(get_class($this->type)))
+            ->setDefault('id', Utils::type_class_to_id($this->type::class))
             ->setDefault('page_length', $this->config->pageLength())
             ->setDefault('dom', $this->config->dom())
             ->setDefault('container_class', $this->config->containerClass())

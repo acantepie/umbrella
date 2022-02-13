@@ -39,13 +39,11 @@ class UserTableType extends DataTableType
         ]);
 
         $builder->add('name', ColumnType::class, [
-            'render_html' => function (BaseAdminUser $user) {
-                return sprintf(
-                    '<a href data-xhr="%s">%s</a>',
-                    $this->router->generate('umbrella_admin_user_edit', ['id' => $user->id]),
-                    \htmlspecialchars($user->getFullName())
-                );
-            },
+            'render_html' => fn (BaseAdminUser $user) => sprintf(
+                '<a href data-xhr="%s">%s</a>',
+                $this->router->generate('umbrella_admin_user_edit', ['id' => $user->id]),
+                \htmlspecialchars($user->getFullName())
+            ),
             'order' => 'ASC',
             'order_by' => ['firstname', 'lastname'],
             'translation_domain' => 'UmbrellaAdmin'

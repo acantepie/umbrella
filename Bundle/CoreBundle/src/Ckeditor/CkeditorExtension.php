@@ -19,6 +19,6 @@ class CkeditorExtension extends AbstractExtension
 
     public function renderJs(string $id, array $config): string
     {
-        return sprintf('CKEDITOR.replace(\'%s\', %s)', $id, json_encode($config));
+        return sprintf('CKEDITOR.replace(\'%s\', %s)', $id, json_encode($config, JSON_THROW_ON_ERROR));
     }
 }

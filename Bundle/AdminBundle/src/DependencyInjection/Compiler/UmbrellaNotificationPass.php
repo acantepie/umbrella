@@ -19,7 +19,7 @@ class UmbrellaNotificationPass implements CompilerPassInterface
     {
         try {
             $d = $container->findDefinition(NotificationProviderInterface::class);
-        } catch (ServiceNotFoundException $e) {
+        } catch (ServiceNotFoundException) {
             return; // don't care ... notification was disabled
         }
 

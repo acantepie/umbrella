@@ -116,7 +116,7 @@ class MakeHelper
 
         foreach ($this->doctrine->getManagers() as $em) {
             foreach ($em->getMetadataFactory()->getAllMetadata() as $metaData) {
-                if (0 === strpos($metaData->getName(), $this->rootNamespace . '\\')) {
+                if (str_starts_with($metaData->getName(), $this->rootNamespace . '\\')) {
                     $entityClassDetails = new ClassNameDetails($metaData->getName(), $this->entityNamespace);
                     $entities[] = $entityClassDetails->getRelativeName();
                 }

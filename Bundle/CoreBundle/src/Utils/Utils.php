@@ -54,7 +54,7 @@ class Utils
         $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
         $pow = min($pow, count($units) - 1);
 
-        $bytes /= pow(1024, $pow);
+        $bytes /= 1024 ** $pow;
 
         if (!isset($units[$pow])) {
             throw new \InvalidArgumentException('Can\'t convert bytes to human size.');

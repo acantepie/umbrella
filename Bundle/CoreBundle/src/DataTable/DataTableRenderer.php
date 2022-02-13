@@ -103,14 +103,12 @@ class DataTableRenderer
         $vars['attr'] = [
             'id' => $options['id'],
             'class' => $options['container_class'],
-            'data-options' => json_encode($jsOptions),
+            'data-options' => json_encode($jsOptions, JSON_THROW_ON_ERROR),
         ];
         $vars['table_attr'] = [
             'class' => $options['class'] .= ' table js-datatable'
         ];
-        $vars['columns'] = array_map(function (Column $c) {
-            return $this->createColumnView($c);
-        }, $dataTable->getColumns());
+        $vars['columns'] = array_map(fn (Column $c) => $this->createColumnView($c), $dataTable->getColumns());
 
         return $vars;
     }
