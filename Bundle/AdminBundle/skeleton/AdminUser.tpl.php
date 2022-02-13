@@ -10,8 +10,8 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 
 /**
  * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
- * @UniqueEntity("email")
  */
+#[UniqueEntity('email')]
 #[Searchable]
 class <?= $class_name ?> extends BaseAdminUser
 {

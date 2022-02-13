@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\Collection;
 
 interface NestedTreeEntityInterface
 {
-    public function getId();
+    public function getId(): ?int;
 
     public function getLevel(): int;
 

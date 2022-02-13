@@ -9,7 +9,7 @@ doctrine:
     mappings:
       TestEntities:
         is_bundle: false
-        type: annotation
+        type: attribute
         dir: '%kernel.project_dir%/src/Entity'
         prefix: 'Umbrella\AdminBundle\Tests\TestApp\Entity'
         alias: 'app'
