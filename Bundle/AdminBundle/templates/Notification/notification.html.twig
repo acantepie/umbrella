@@ -1,14 +1,14 @@
 {% if url %}
     <a href="{{ url }}" class="list-group-item">
-        {{ _self.notication_inner(_context) }}
+        {{ _self.notication_inner(_context, true) }}
     </a>
 {% else %}
-    <div class="list-group-item">
-        {{ _self.notication_inner(_context) }}
+    <div class="list-group-item disabled">
+        {{ _self.notication_inner(_context, false) }}
     </div>
 {% endif %}
 
-{% macro notication_inner(ctx) %}
+{% macro notication_inner(ctx, isLink = false) %}
     <div class="row g-0 align-items-center">
         <div class="col-2">
             <div class="notification-icon text-{{ ctx.icon_color | default('primary') }}">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="col-10">
-            <div class="text-dark">{{- ctx.title -}}</div>
+            <div class="{{ isLink ? 'text-primary' : 'text-dark' }}">{{- ctx.title -}}</div>
             {% if ctx.text %}
                 <div class="text-muted small mt-1">{{ ctx.text }}</div>
             {% endif %}
