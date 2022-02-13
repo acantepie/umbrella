@@ -12,9 +12,6 @@ class ColumnActionBuilder
 
     protected int $idx = 0;
 
-    /**
-     * @param DataTableFactory $factory
-     */
     public function __construct(protected DataTableFactory $factory)
     {
     }

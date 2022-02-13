@@ -7,9 +7,6 @@ class StringableObject
 
     private string $text;
 
-    /**
-     * @param string $text
-     */
     public function __construct(string $text)
     {
         $this->text = $text;

@@ -13,9 +13,6 @@ use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 
 class UmbrellaChoiceType extends AbstractType
 {
-    /**
-     * @param UmbrellaSelectConfigurator $configurator
-     */
     public function __construct(private UmbrellaSelectConfigurator $configurator)
     {
     }

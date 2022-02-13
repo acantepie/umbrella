@@ -17,7 +17,7 @@ class DataTable
     /**
      * DataTable constructor.
      *
-     * @param \Umbrella\CoreBundle\DataTable\DTO\Column[] $columns
+     * @param Column[] $columns
      */
     public function __construct(
         protected Toolbar $toolbar,
@@ -43,7 +43,7 @@ class DataTable
     }
 
     /**
-     * @return array|Column[]
+     * @return Column[]
      */
     public function getColumns(): array
     {
