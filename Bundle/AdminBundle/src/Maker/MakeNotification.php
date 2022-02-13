@@ -14,7 +14,7 @@ use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 class MakeNotification extends AbstractMaker
 {
     private const NAME = 'make:admin:notification';
-    private const DESCRIPTION = 'Crate admin notification provider';
+    private const DESCRIPTION = 'Generate an admin notification provider';
 
     public function __construct(private MakeHelper $helper)
     {

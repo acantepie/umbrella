@@ -72,5 +72,5 @@ Et voila, now you have to be logged to access administration backends, moreover 
 
 Run following command to create a new admin user:
 ```bash
-php bin/console create:admin_user
+php bin/console umbrella:create:admin_user
 ```

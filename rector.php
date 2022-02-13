@@ -21,4 +21,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // uncomprehensive spaceship operator
     $services->remove(\Rector\Php70\Rector\If_\IfToSpaceshipRector::class);
+
+    // avoid auto promotion
+    $services->remove(\Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector::class);
+
+    $containerConfigurator->import(\Rector\Symfony\Set\SymfonySetList::SYMFONY_60);
+    $containerConfigurator->import(\Rector\Symfony\Set\SymfonySetList::SYMFONY_CODE_QUALITY);
+    $containerConfigurator->import(\Rector\Symfony\Set\SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION);
 };

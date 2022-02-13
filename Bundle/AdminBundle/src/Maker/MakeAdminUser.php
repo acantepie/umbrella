@@ -16,7 +16,7 @@ use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 class MakeAdminUser extends AbstractMaker
 {
     private const NAME = 'make:admin:user';
-    private const DESCRIPTION = 'Create admin user entity';
+    private const DESCRIPTION = 'Generate an admin user entity';
 
     public function __construct(private MakeHelper $helper)
     {

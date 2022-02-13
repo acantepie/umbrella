@@ -15,7 +15,7 @@ use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 class MakeTree extends AbstractMaker
 {
     private const NAME = 'make:admin:tree';
-    private const DESCRIPTION = 'Creates CRUD with Tree DataTable view';
+    private const DESCRIPTION = 'Generate a CRUD with Tree DataTable view';
 
     public function __construct(private MakeHelper $helper)
     {

@@ -17,7 +17,7 @@ use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 class MakeHome extends AbstractMaker
 {
     private const NAME = 'make:admin:home';
-    private const DESCRIPTION = 'Create admin home';
+    private const DESCRIPTION = 'Generate an admin home';
 
     public function __construct(private MakeHelper $helper)
     {

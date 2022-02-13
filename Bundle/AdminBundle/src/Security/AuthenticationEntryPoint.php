@@ -32,13 +32,8 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
      *      return new RedirectResponse('/login');
      *  B) For an API token authentication system, you return a 401 response
      *      return new Response('Auth header required', 401);
-     *
-     * @param Request                 $request       The request that resulted in an AuthenticationException
-     * @param AuthenticationException $authException The exception that started the authentication process
-     *
-     * @return Response
      */
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function start(Request $request, AuthenticationException $authException = null): Response
     {
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse('', 401);

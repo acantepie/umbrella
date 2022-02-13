@@ -11,12 +11,14 @@ use Umbrella\AdminBundle\Service\UserManagerInterface;
 
 class CreateAdminUserCommand extends Command
 {
-    public const CMD_NAME = 'create:admin_user';
+    protected static $defaultName = 'umbrella:create:admin_user';
+    protected static $defaultDescription = 'Create a new admin user.';
+
     private ?SymfonyStyle $io = null;
 
     public function __construct(private UserManagerInterface $userManager)
     {
-        parent::__construct(self::CMD_NAME);
+        parent::__construct();
     }
 
     /**

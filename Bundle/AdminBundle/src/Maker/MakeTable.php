@@ -15,7 +15,7 @@ use Umbrella\AdminBundle\Maker\Utils\MakeHelper;
 class MakeTable extends AbstractMaker
 {
     private const NAME = 'make:admin:table';
-    private const DESCRIPTION = 'Creates CRUD with DataTable view';
+    private const DESCRIPTION = 'Generate a CRUD with DataTable view';
 
     public function __construct(private MakeHelper $helper)
     {

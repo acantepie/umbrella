@@ -11,7 +11,8 @@ use Umbrella\CoreBundle\Search\EntityIndexer;
 
 class IndexEntityCommand extends Command
 {
-    public const CMD_NAME = 'umbrella:index:entity';
+    protected static $defaultName = 'umbrella:index:entity';
+    protected static $defaultDescription = 'Reindex #[searchable] entity.';
 
     private ?SymfonyStyle $io = null;
     private ?string $entityClass = null;
@@ -29,8 +30,6 @@ class IndexEntityCommand extends Command
      */
     protected function configure()
     {
-        $this->setName(self::CMD_NAME);
-        $this->setDescription('Reindex @searchable entity.');
         $this->addArgument('entityClass', InputArgument::OPTIONAL, 'Entity class to index');
     }
 
