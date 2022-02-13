@@ -94,9 +94,4 @@ class Utils
 
         return $result;
     }
-
-    public static function is_stringable($var): bool
-    {
-        return null === $var || \is_scalar($var) || (\is_object($var) && \method_exists($var, '__toString'));
-    }
 }

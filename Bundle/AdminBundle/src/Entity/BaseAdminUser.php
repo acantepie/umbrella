@@ -97,28 +97,38 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     // Serializable implementation
 
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize(): string
+    public function __serialize(): array
     {
-        return serialize([
+        return [
             $this->id,
             $this->password,
-            $this->email,
-        ]);
+            $this->email
+        ];
     }
 
     /**
-     * {@inheritdoc}
+     * @internal
      */
-    public function unserialize($serialized)
+    final public function serialize(): string
+    {
+        return serialize($this->__serialize());
+    }
+
+    public function __unserialize(array $data): void
     {
         list(
             $this->id,
             $this->password,
             $this->email
-            ) = unserialize($serialized);
+            ) = $data;
+    }
+
+    /**
+     * @internal
+     */
+    final public function unserialize($serialized)
+    {
+        $this->__unserialize(unserialize($serialized));
     }
 
     // UserInterface implementation

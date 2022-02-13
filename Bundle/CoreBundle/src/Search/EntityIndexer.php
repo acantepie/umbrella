@@ -122,6 +122,16 @@ class EntityIndexer
 
     private function stringify($value): string
     {
-        return !\is_bool($value) && Utils::is_stringable($value) ? trim($value) : '';
+        // do not stringify non-scalar or non-stringable value
+        if  (!\is_scalar($value) && !$value instanceof \Stringable) {
+            return '';
+        }
+
+        // do not stringify boolean
+        if (\is_bool($value)) {
+            return '';
+        }
+
+        return trim((string) $value);
     }
 }

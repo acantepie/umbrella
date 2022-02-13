@@ -1,7 +1,7 @@
 # Quick Start
 
 ## Technical requirements
-- PHP 7.4 or higher
+- PHP 8.0 or higher
 - PHP extensions: `json`, `mbstring`, `xml`
 - [composer](https://getcomposer.org/)
 

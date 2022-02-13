@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+Next version
+---
+ * Drop support for php 7.4
+ * Drop support for symfony 5.4
+
 5.0
 ---
  * Menu :
