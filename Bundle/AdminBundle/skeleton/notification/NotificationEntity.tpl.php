@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Umbrella\AdminBundle\Entity\BaseNotification;
 
 /**
-* @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
-*/
+ * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
+ */
 class <?= $class_name ?> extends BaseNotification
 {
 //    /**

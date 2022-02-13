@@ -14,8 +14,8 @@ use <?= $repository->getFullName() ?>;
 <?php } ?>
 
 /**
-* @Route("<?= $route['base_path'] ?>")
-*/
+ * @Route("<?= $route['base_path'] ?>")
+ */
 class <?= $class_name ?> extends BaseController
 {
     /**

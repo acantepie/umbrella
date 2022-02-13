@@ -11,8 +11,8 @@ use Umbrella\CoreBundle\Search\Annotation\Searchable;
 <?php } ?>
 
 /**
-* @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
-*/
+ * @ORM\Entity(repositoryClass=<?= $repository->getShortName() ?>::class)
+ */
 <?php if ($entity_searchable) { ?>
 #[Searchable]
 <?php } ?>
