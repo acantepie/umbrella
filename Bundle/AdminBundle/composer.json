@@ -42,7 +42,7 @@
         "stof/doctrine-extensions-bundle": "^1.7"
     },
     "conflict": {
-        "umbrella2/corebundle": "<4.3"
+        "umbrella2/corebundle": "<6.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
