@@ -95,6 +95,10 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('dom')
                         ->defaultValue("< tr><'row table-footer'<'col-sm-12 col-md-5'li><'col-sm-12 col-md-7'p>>")
                         ->info('Default dom for datatable @see https://datatables.net/reference/option/dom')
+                        ->end()
+                    ->booleanNode('reset_paging_on_reload')
+                        ->info('Reset paging when call js()->reloadTable() ?')
+                        ->defaultValue(false)
                         ->end();
     }
 }

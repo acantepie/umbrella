@@ -30,4 +30,9 @@ class DataTableConfiguration
     {
         return $this->config['class'];
     }
+
+    public function resetPagingOnReload(): bool
+    {
+        return $this->config['reset_paging_on_reload'];
+    }
 }

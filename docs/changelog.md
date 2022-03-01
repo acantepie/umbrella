@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+Next version
+---
+ * DataTable : add option `$resetPaging` for method `JsResponseBuilder::reloadTable()` to reset paging , add `umbrella_core.datatable.reset_paging_on_reload` to configure default behaviour of `$resetPaging` param.
+
 6.0
 ---
  * Drop support for php 7.4

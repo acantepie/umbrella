@@ -6,6 +6,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
+use Umbrella\CoreBundle\DataTable\DataTableConfiguration;
 use Umbrella\CoreBundle\Toast\Toast;
 
 class JsResponseBuilder implements \Countable
@@ -33,8 +34,12 @@ class JsResponseBuilder implements \Countable
     /**
      * JsResponseBuilder constructor.
      */
-    public function __construct(private TranslatorInterface $translator, private RouterInterface $router, private Environment $twig)
-    {
+    public function __construct(
+        private TranslatorInterface $translator,
+        private RouterInterface $router,
+        private Environment $twig,
+        private DataTableConfiguration $dataTableConfiguration
+    ) {
     }
 
     public function add(string $action, array $params = []): self
@@ -205,15 +210,17 @@ class JsResponseBuilder implements \Countable
     }
 
     // DataTable actions
-
-    public function reloadTable($ids = null): self
+    public function reloadTable($ids = null, ?bool $resetPaging = null): self
     {
-        return $this->callTable($ids, 'reload');
+        if (null === $resetPaging) {
+            $resetPaging = $this->dataTableConfiguration->resetPagingOnReload();
+        }
+        return $this->callTable($ids, 'reload', $resetPaging);
     }
 
     public function callTable($ids, string $method, ...$methodParams): self
     {
-        return $this->callWebComponent($this->toSelector($ids, 'umbrella-datatable'), $method, $methodParams);
+        return $this->callWebComponent($this->toSelector($ids, 'umbrella-datatable'), $method, ...$methodParams);
     }
 
     public function clearSelectionTable($ids = null): self
