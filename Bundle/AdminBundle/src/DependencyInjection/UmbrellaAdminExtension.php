@@ -70,7 +70,7 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
         if ($config['user']['enabled']) {
             $bundles = $container->getParameter('kernel.bundles');
 
-            if (isset($bundles['StofDoctrineExtensionsBundle']) && $container->hasExtension('stof_doctrine_extensions')) {
+            if (\is_array($bundles) && isset($bundles['StofDoctrineExtensionsBundle']) && $container->hasExtension('stof_doctrine_extensions')) {
                 $config = [
                     'orm' => [
                         'default' => [
