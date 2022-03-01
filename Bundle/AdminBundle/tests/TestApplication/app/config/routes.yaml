@@ -1,16 +1,16 @@
 app_:
-  resource: "../src/Controller/"
-  type: annotation
-  prefix: /
+    resource: "../src/Controller/"
+    type: annotation
+    prefix: /
 
 admin_security_:
-  resource: "@UmbrellaAdminBundle/config/routes/security.php"
-  prefix: /
+    resource: "@UmbrellaAdminBundle/config/routes/security.php"
+    prefix: /
 
 admin_user_:
-  resource: "@UmbrellaAdminBundle/config/routes/user.php"
-  prefix: /
+    resource: "@UmbrellaAdminBundle/config/routes/user.php"
+    prefix: /
 
 admin_profile_:
-  resource: "@UmbrellaAdminBundle/config/routes/profile.php"
-  prefix: /
+    resource: "@UmbrellaAdminBundle/config/routes/profile.php"
+    prefix: /

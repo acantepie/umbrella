@@ -1,4 +1,4 @@
 framework:
     test: true
     router:
-      utf8: true
+        utf8: true

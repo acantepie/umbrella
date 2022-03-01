@@ -20,13 +20,11 @@ class AppTestCase extends WebTestCase
 
     protected static function createKernel(array $options = []): KernelInterface
     {
-        $class = self::getKernelClass();
+        if (null === static::$class) {
+            static::$class = static::getKernelClass();
+        }
 
-        return new $class(
-            static::getVarDir(),
-            $options['environment'] ?? 'test',
-            $options['debug'] ?? false
-        );
+        return new static::$class('test', false);
     }
 
     // Probably ugly as fuck
@@ -54,29 +52,4 @@ class AppTestCase extends WebTestCase
         $application->run($input, $consoleOutput);
     }
 
-    public static function setUpBeforeClass(): void
-    {
-        static::deleteTmpDir();
-
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        static::deleteTmpDir();
-    }
-
-    protected static function deleteTmpDir(): void
-    {
-        if (!file_exists($dir = sys_get_temp_dir() . '/' . static::getVarDir())) {
-            return;
-        }
-
-        $fs = new Filesystem();
-        $fs->remove($dir);
-    }
-
-    protected static function getVarDir(): string
-    {
-        return 'UA' . substr(strrchr(static::class, '\\'), 1);
-    }
 }

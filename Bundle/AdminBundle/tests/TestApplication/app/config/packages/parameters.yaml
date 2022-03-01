@@ -1,2 +1,2 @@
 parameters:
-  kernel.secret: 1234
+    kernel.secret: 1234

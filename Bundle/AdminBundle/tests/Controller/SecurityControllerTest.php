@@ -26,18 +26,8 @@ class SecurityControllerTest extends AppTestCase
         $client->submit($form);
         $client->followRedirect();
 
-
-        // am i logged ?
-        $tkStorage = $this->getContainer()->get('security.untracked_token_storage');
-
-        $this->assertNotNull($tkStorage->getToken());
-        $this->assertInstanceOf(AdminUser::class, $tkStorage->getToken()->getUser());
-
-        /** @var AdminUser $u */
-        $u = $tkStorage->getToken()->getUser();
-
         // I see my name on page ?
-        $this->assertSelectorTextContains('div', $u->getFullName());
+        $this->assertSelectorTextContains('div', 'john.doe@ok.com');
     }
 
     public function testInvalidCredentialsLogin()

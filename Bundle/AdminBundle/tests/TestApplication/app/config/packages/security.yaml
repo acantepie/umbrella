@@ -1,26 +1,26 @@
 security:
-  enable_authenticator_manager: true
-  password_hashers:
-    Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser: 'sodium'
+    enable_authenticator_manager: true
+    password_hashers:
+        Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser: 'sodium'
 
-  providers:
-    entity_provider:
-      entity:
-        class: Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser
-        property: email
+    providers:
+        entity_provider:
+            entity:
+                class: Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser
+                property: email
 
-  firewalls:
-    main:
-      pattern: ^/
-      user_checker: Umbrella\AdminBundle\Security\UserChecker
-      entry_point: Umbrella\AdminBundle\Security\AuthenticationEntryPoint
-      provider: entity_provider
-      lazy: true
-      form_login:
-        login_path: umbrella_admin_login
-        check_path: umbrella_admin_login
-        default_target_path: test.home
-        enable_csrf: true
-      logout:
-        path: umbrella_admin_logout
-        target: umbrella_admin_login
+    firewalls:
+        main:
+            pattern: ^/
+            user_checker: Umbrella\AdminBundle\Security\UserChecker
+            entry_point: Umbrella\AdminBundle\Security\AuthenticationEntryPoint
+            provider: entity_provider
+            lazy: true
+            form_login:
+                login_path: umbrella_admin_login
+                check_path: umbrella_admin_login
+                default_target_path: test.home
+                enable_csrf: true
+            logout:
+                path: umbrella_admin_logout
+                target: umbrella_admin_login

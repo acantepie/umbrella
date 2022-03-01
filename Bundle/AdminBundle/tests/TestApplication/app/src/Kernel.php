@@ -2,80 +2,47 @@
 
 namespace Umbrella\AdminBundle\Tests\TestApp;
 
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
+use Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\HttpKernel\Kernel as BaseKernel;
-use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Component\HttpKernel\Kernel as SymfonyKernel;
+use Umbrella\AdminBundle\UmbrellaAdminBundle;
+use Umbrella\CoreBundle\UmbrellaCoreBundle;
 
-class Kernel extends BaseKernel implements CompilerPassInterface
+final class Kernel extends SymfonyKernel
 {
     use MicroKernelTrait;
 
-    private const SERVICES = [];
-    private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
-
-    private string $varDir;
-
-    public function __construct(string $varDir, string $environment, bool $debug)
+    public function registerBundles(): iterable
     {
-        $this->varDir = $varDir;
-        parent::__construct($environment, $debug);
+        return [
+            new FrameworkBundle(),
+            new DoctrineBundle(),
+            new DoctrineFixturesBundle(),
+            new SecurityBundle(),
+            new StofDoctrineExtensionsBundle(),
+            new TwigBundle(),
+            new UmbrellaCoreBundle(),
+            new UmbrellaAdminBundle()
+        ];
     }
 
-    protected function build(ContainerBuilder $container)
+    public function getCacheDir(): string
     {
-        $container->addCompilerPass($this);
+        return sys_get_temp_dir() . '/umbrella_admin/tests/var/' . $this->environment . '/cache';
+    }
+
+    public function getLogDir(): string
+    {
+        return sys_get_temp_dir() . '/umbrella_admin/tests/var/' . $this->environment . '/log';
     }
 
     public function getProjectDir(): string
     {
         return \dirname(__DIR__);
-    }
-
-    public function getCacheDir(): string
-    {
-        return sys_get_temp_dir() . '/' . $this->varDir . '/cache/' . $this->environment;
-    }
-
-    public function getLogDir(): string
-    {
-        return sys_get_temp_dir() . '/' . $this->varDir . '/log';
-    }
-
-    protected function configureContainer(ContainerConfigurator $container): void
-    {
-        $container->import('../config/{packages}/*.yaml');
-        $container->import('../config/{packages}/' . $this->environment . '/*.yaml');
-
-        if (is_file(\dirname(__DIR__) . '/config/services.yaml')) {
-            $container->import('../config/services.yaml');
-            $container->import('../config/{services}_' . $this->environment . '.yaml');
-        } elseif (is_file($path = \dirname(__DIR__) . '/config/services.php')) {
-            (require $path)($container->withPath($path), $this);
-        }
-    }
-
-    protected function configureRoutes(RoutingConfigurator $routes): void
-    {
-        $routes->import('../config/{routes}/' . $this->environment . '/*.yaml');
-        $routes->import('../config/{routes}/*.yaml');
-
-        if (is_file(\dirname(__DIR__) . '/config/routes.yaml')) {
-            $routes->import('../config/routes.yaml');
-        } elseif (is_file($path = \dirname(__DIR__) . '/config/routes.php')) {
-            (require $path)($routes->withPath($path), $this);
-        }
-    }
-
-    // CompilerPassInterface impl
-    public function process(ContainerBuilder $container)
-    {
-        foreach ($container->getDefinitions() as $id => $definition) {
-            if (in_array($id, self::SERVICES, true)) {
-                $definition->setPublic(true);
-            }
-        }
     }
 }
