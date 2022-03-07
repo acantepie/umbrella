@@ -57,7 +57,7 @@ EMAIL
         'password' => 'Password',
         'enter_your_password' => 'Enter your password',
         'enter_your_new_password' => 'Enter your new password',
-        'password_not_set_if_empty' => 'Let empty to keep your current password.',
+        'password_not_set_if_empty' => 'Leave empty to keep your current password.',
         'email' => 'Email',
         'enter_your_email' => 'Enter your email',
         'newpassword' => 'New password',
