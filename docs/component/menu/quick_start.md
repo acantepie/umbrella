@@ -22,7 +22,7 @@ class MyMenu extends MenuType
         // Create a new entry with url
         $root->add('google')
             ->icon('mdi mdi-google') // Icon of entry
-            ->route('app_welcome'); // Url of entry
+            ->url('https://www.google.com/'); // Url of entry
             
         // Create a nested entry
         $root->add('app')
