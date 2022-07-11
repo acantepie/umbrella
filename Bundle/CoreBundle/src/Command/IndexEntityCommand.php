@@ -2,6 +2,7 @@
 
 namespace Umbrella\CoreBundle\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,10 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Umbrella\CoreBundle\Search\EntityIndexer;
 
+#[AsCommand('umbrella:index:entity', 'Reindex #[searchable] entity.')]
 class IndexEntityCommand extends Command
 {
-    protected static $defaultName = 'umbrella:index:entity';
-    protected static $defaultDescription = 'Reindex #[searchable] entity.';
 
     private ?SymfonyStyle $io = null;
     private ?string $entityClass = null;
