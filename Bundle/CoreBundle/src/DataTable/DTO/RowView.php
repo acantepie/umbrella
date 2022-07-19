@@ -15,7 +15,7 @@ class RowView implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $json = $this->data;
-        //$json['DT_RowId'] = $this->id;
+        // $json['DT_RowId'] = $this->id;
         $json['DT_RowClass'] = 'dt-row ' . $this->class;
         $json['DT_RowAttr'] = $this->attr;
 
