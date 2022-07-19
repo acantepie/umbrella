@@ -13,7 +13,6 @@ use Umbrella\CoreBundle\Search\EntityIndexer;
 #[AsCommand('umbrella:index:entity', 'Reindex #[searchable] entity.')]
 class IndexEntityCommand extends Command
 {
-
     private ?SymfonyStyle $io = null;
     private ?string $entityClass = null;
 
