@@ -3,6 +3,7 @@
 namespace Umbrella\CoreBundle\Menu\DTO;
 
 use function Symfony\Component\String\u;
+
 use Umbrella\CoreBundle\Utils\Utils;
 
 class MenuItem implements \Countable, \IteratorAggregate

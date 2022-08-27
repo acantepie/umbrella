@@ -4,7 +4,9 @@ namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 use function Symfony\Component\Translation\t;
+
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
 use Umbrella\AdminBundle\Service\UserManagerInterface;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;

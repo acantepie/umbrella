@@ -2,6 +2,7 @@
 
 namespace Umbrella\AdminBundle\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -9,11 +10,9 @@ use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Umbrella\AdminBundle\Service\UserManagerInterface;
 
+#[AsCommand('umbrella:create:admin_user', 'Create a new admin user.')]
 class CreateAdminUserCommand extends Command
 {
-    protected static $defaultName = 'umbrella:create:admin_user';
-    protected static $defaultDescription = 'Create a new admin user.';
-
     private ?SymfonyStyle $io = null;
 
     public function __construct(private UserManagerInterface $userManager)

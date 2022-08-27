@@ -2,7 +2,7 @@
 
 namespace Umbrella\CoreBundle\Tests\Menu;
 
-use Monolog\Test\TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Umbrella\CoreBundle\Menu\DTO\Menu;

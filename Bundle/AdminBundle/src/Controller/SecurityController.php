@@ -4,7 +4,9 @@ namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 use function Symfony\Component\Translation\t;
+
 use Umbrella\AdminBundle\Form\UserPasswordConfirmType;
 use Umbrella\AdminBundle\Service\UserMailerInterface;
 use Umbrella\AdminBundle\Service\UserManagerInterface;
