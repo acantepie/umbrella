@@ -40,7 +40,7 @@ class MakeAdminUser extends AbstractMaker
     {
     }
 
-    public function interact(InputInterface $input, ConsoleStyle $io, Command $command)
+    public function interact(InputInterface $input, ConsoleStyle $io, Command $command): void
     {
     }
 
