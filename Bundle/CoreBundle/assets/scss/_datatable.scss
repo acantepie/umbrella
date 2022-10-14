@@ -48,7 +48,7 @@ umbrella-datatable {
     }
 
     // Change icons view
-    thead .sorting {
+    thead tr > th.sorting, thead tr > td.sorting {
       &::after {
         content: "\F04BA";
         font-family: Material Design Icons;
