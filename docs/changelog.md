@@ -1,7 +1,13 @@
 CHANGELOG
 =========
 
-Next version
+6.2
+---
+ * Fix : UmbrellaCollectionType with dropdowns hide the scrollbar #34
+ * Fix : Opening second level menu closes parent #33
+ * Fix : Cannot get ckeditor config to work #32
+
+6.1
 ---
  * DataTable : add option `$resetPaging` for method `JsResponseBuilder::reloadTable()` to reset paging , add `umbrella_core.datatable.reset_paging_on_reload` to configure default behaviour of `$resetPaging` param.
 
