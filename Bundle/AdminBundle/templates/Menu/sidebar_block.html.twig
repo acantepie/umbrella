@@ -12,7 +12,7 @@
                         <span class="align-middle">{{ block('item_label') }}</span>
                         {{ block('item_badge') }}
                     </a>
-                    <ul id="{{ item.cssId }}" data-bs-parent="#sidebar" class="sidebar-dropdown mb-0 list-unstyled collapse {{ item.isActive() ? 'show' }}">
+                    <ul id="{{ item.cssId }}" data-bs-parent="#{{ item.parent and not item.parent.isRoot() ? item.parent.cssId : 'sidebar' }}" class="sidebar-dropdown mb-0 list-unstyled collapse {{ item.isActive() ? 'show' }}">
                         {% for item in item.children  %}
                             {{ block('sidebar_item') }}
                         {% endfor %}
