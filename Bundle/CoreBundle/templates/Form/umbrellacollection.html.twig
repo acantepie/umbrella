@@ -8,33 +8,31 @@
     }) %}
 
     <umbrella-collection {{ block('widget_container_attributes') }}>
-        <div class="table-responsive">
-            <table class="table table-md mb-2">
-                {# never show head if entry_type is not compound (most of time label was not initialized) #}
-                {% if not headless and prototype.vars.compound %}
-                    <thead>
-                    <tr>
-                        {% if not form.vars.disabled and form.vars.sortable %}
-                            <td></td>
-                        {% endif %}
+        <table class="table table-md mb-2">
+            {# never show head if entry_type is not compound (most of time label was not initialized) #}
+            {% if not headless and prototype.vars.compound %}
+                <thead>
+                <tr>
+                    {% if not form.vars.disabled and form.vars.sortable %}
+                        <td></td>
+                    {% endif %}
 
-                        {% for item_form in prototype %}
-                            {{ block('umbrellacollection_item_label') }}
-                        {% endfor %}
+                    {% for item_form in prototype %}
+                        {{ block('umbrellacollection_item_label') }}
+                    {% endfor %}
 
-                        {% if not form.vars.disabled and form.vars.allow_delete %}
-                            <td></td>
-                        {% endif %}
-                    </tr>
-                    </thead>
-                {% endif %}
-                <tbody class="js-item-container">
-                {% for entry_form in form %}
-                    {{ block('umbrellacollection_entry') }}
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    {% if not form.vars.disabled and form.vars.allow_delete %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+                </thead>
+            {% endif %}
+            <tbody class="js-item-container">
+            {% for entry_form in form %}
+                {{ block('umbrellacollection_entry') }}
+            {% endfor %}
+            </tbody>
+        </table>
 
         {% if not form.vars.disabled and form.vars.add_btn_template is defined and form.vars.add_btn_template %}
             {{ form.vars.add_btn_template | raw }}
