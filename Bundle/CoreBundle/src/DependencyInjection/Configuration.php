@@ -63,15 +63,14 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->scalarNode('default_config')
                     ->defaultValue('full')
-                    ->info('Default config to use on CkeditorType (if none specified).')
+                    ->info('Default config to use on CkeditorType (if none specified on CkeditorType).')
                     ->end()
                 ->arrayNode('configs')
                     ->info('List of configs for CkeditorType @see Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration for example.')
                     ->example(['my_custom_config' => CkeditorConfiguration::EXAMPLE_CONFIG])
-                    ->normalizeKeys(false)
                     ->useAttributeAsKey('name')
-                    ->arrayPrototype()
-                        ->scalarPrototype()->end()
+                    ->normalizeKeys(false)
+                    ->variablePrototype()
                     ->end();
     }
 

@@ -58,6 +58,10 @@ class CkeditorConfiguration
         $this->configs['full'] = self::FULL_CONFIG;
 
         foreach ($bundleConfig['configs'] as $configName => $config) {
+            if (!is_array($config)) {
+                throw new \RuntimeException(sprintf('[Ckeditor] Invalid "umbrella_core.configs.%s" config. Ckeditor config must be an array of options. ', $configName));
+            }
+
             $this->configs[$configName] = $config;
         }
 
