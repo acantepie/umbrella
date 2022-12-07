@@ -6,17 +6,15 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Symfony\Component\OptionsResolver\Options;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Umbrella\CoreBundle\DataTable\AdapterException;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableResult;
 use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
 class EntityAdapterType extends AdapterType implements DoctrineAdapterType
 {
-    /**
-     * EntityCollector constructor.
-     */
-    public function __construct(protected EntityManagerInterface $em)
+    public function __construct(protected ManagerRegistry $doctrine)
     {
     }
 
@@ -27,6 +25,9 @@ class EntityAdapterType extends AdapterType implements DoctrineAdapterType
         $resolver
             ->setRequired('class')
             ->setAllowedTypes('class', 'string')
+
+            ->setDefault('em', null)
+            ->setAllowedTypes('em', ['string', 'null'])
 
             ->setDefault('query_alias', 'e')
             ->setAllowedTypes('query_alias', 'string')
@@ -71,10 +72,15 @@ class EntityAdapterType extends AdapterType implements DoctrineAdapterType
 
     public function getQueryBuilder(DataTableState $state, array $options): QueryBuilder
     {
-        $dataTable = $state->getDataTable();
         $formData = $state->getFormData();
 
-        $qb = $this->em->createQueryBuilder()
+        $em = $this->doctrine->getManager($options['em']);
+
+        if (!$em instanceof EntityManagerInterface) {
+            throw new AdapterException('Invalid doctrine manager');
+        }
+
+        $qb = $em->createQueryBuilder()
             ->select($options['query_alias'])
             ->from($options['class'], $options['query_alias']);
 

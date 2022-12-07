@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+Next
+---
+ * DataTable : EntityAdapter / NestedEntityAdapterType : add option `em` to specify which dbal connection is used
 
 6.2
 ---

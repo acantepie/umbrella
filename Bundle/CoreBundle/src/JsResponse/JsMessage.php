@@ -38,7 +38,7 @@ class JsMessage implements \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'action' => $this->action,
