@@ -8,15 +8,14 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .autoProvidejQuery()
 
-    .setOutputPath('./Bundle/AdminBundle/public/')
+    .setOutputPath('./public/')
     .setPublicPath('/bundles/umbrellaadmin/')
     .setManifestKeyPrefix('bundles/umbrellaadmin')
 
     .addAliases({
-        umbrella_core: path.join(__dirname, '/Bundle/CoreBundle/assets/'),
-        umbrella_admin: path.join(__dirname, '/Bundle/AdminBundle/assets/'),
+        umbrella_admin: path.join(__dirname, '/assets/'),
     })
-    .addEntry('admin', './Bundle/AdminBundle/assets/admin.js')
+    .addEntry('admin', './assets/admin.js')
     .enableSassLoader()
 
     .disableSingleRuntimeChunk()

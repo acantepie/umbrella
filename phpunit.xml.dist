@@ -16,8 +16,8 @@
     </php>
 
     <testsuites>
-        <testsuite name="Umbrella Test Suite">
-            <directory>./Bundle/*/tests</directory>
+        <testsuite name="Umbrella Admin Test Suite">
+            <directory>tests/</directory>
         </testsuite>
     </testsuites>
 

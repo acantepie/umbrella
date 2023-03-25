@@ -1,5 +1,5 @@
 {
-    "name": "acantepie/umbrella",
+    "name": "acantepie/umbrella-admin",
     "require": {
         "php": ">=8.1"
     },
@@ -13,7 +13,6 @@
         "phpstan/phpstan": "^1.2",
         "phpstan/phpstan-symfony": "^1.1",
         "psalm/plugin-symfony": "^5.0",
-        "rector/rector": "^0.12.16",
         "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/asset": "^6.0",
         "symfony/browser-kit": "^6.0",
@@ -47,13 +46,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Umbrella\\AdminBundle\\": "Bundle/AdminBundle/src",
-            "Umbrella\\AdminBundle\\Tests\\": "Bundle/AdminBundle/tests/",
-            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "Bundle/AdminBundle/tests/TestApplication/app/src/",
-
-            "Umbrella\\CoreBundle\\": "Bundle/CoreBundle/src",
-            "Umbrella\\CoreBundle\\Tests\\": "Bundle/CoreBundle/tests/",
-            "Umbrella\\CoreBundle\\Tests\\TestApp\\": "Bundle/CoreBundle/tests/TestApplication/app/src/"
+            "Umbrella\\AdminBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Umbrella\\AdminBundle\\Tests\\": "tests/",
+            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "tests/TestApplication/app/src/"
         }
     }
 }

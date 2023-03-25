@@ -15,3 +15,4 @@ composer.lock
 
 ###> phpunit ###
 .phpunit.result.cache
+/_legacy

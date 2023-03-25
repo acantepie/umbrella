@@ -1,7 +1,7 @@
 <?php
 
 $finder = new PhpCsFixer\Finder();
-$finder->in([__DIR__ . '/Bundle/*/src']);
+$finder->in([__DIR__ . '/src']);
 
 $config = new PhpCsFixer\Config();
 
