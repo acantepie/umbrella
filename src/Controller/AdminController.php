@@ -85,7 +85,7 @@ abstract class AdminController extends AbstractController
 
     // Toast Api
 
-    protected function toast(string $type, string|TranslatableMessage $text, string|TranslatableMessage $title = null): void
+    protected function toast(string $type, $text, $title = null): void
     {
         $this->addFlash(self::BAG_TOAST, [
             'type' => $type,
@@ -94,22 +94,22 @@ abstract class AdminController extends AbstractController
         ]);
     }
 
-    protected function toastInfo(string|TranslatableMessage $text, string|TranslatableMessage $title = null): void
+    protected function toastInfo($text, $title = null): void
     {
         $this->toast('info', $text, $title);
     }
 
-    protected function toastSuccess(string|TranslatableMessage $text, string|TranslatableMessage $title = null): void
+    protected function toastSuccess($text, $title = null): void
     {
         $this->toast('success', $text, $title);
     }
 
-    protected function toastWarning(string|TranslatableMessage $text, string|TranslatableMessage $title = null): void
+    protected function toastWarning($text, $title = null): void
     {
         $this->toast('warning', $text, $title);
     }
 
-    protected function toastError(string|TranslatableMessage $text, string|TranslatableMessage $title = null): void
+    protected function toastError($text, $title = null): void
     {
         $this->toast('error', $text, $title);
     }
