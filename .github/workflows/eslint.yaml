@@ -2,8 +2,6 @@ name: "Linter: Js"
 
 on:
   pull_request:
-    paths:
-      - '**.js'
 
 jobs:
   eslint:

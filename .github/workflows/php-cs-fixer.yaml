@@ -2,8 +2,6 @@ name: "Linter: PHP"
 
 on:
   pull_request:
-    paths:
-      - '**.php'
 
 jobs:
   php-cs-fixer:

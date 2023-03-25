@@ -2,8 +2,6 @@ name: Static analysis - psalm
 
 on:
   pull_request:
-    paths:
-      - '**.php'
 
 jobs:
   psalm:

@@ -2,8 +2,6 @@ name: Static analysis - phpstan
 
 on:
   pull_request:
-    paths:
-      - '**.php'
 
 jobs:
   phpstan:

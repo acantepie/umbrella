@@ -2,14 +2,7 @@ name: PHPUnit
 
 on:
   push:
-    paths:
-      - 'Bundle/**'
-      - 'composer.json'
   pull_request:
-    paths:
-      - 'Bundle/**'
-      - 'composer.json'
-      - '.github/workflows/phpunit_maintained_symfony.yaml'
 
 jobs:
   phpunit:
