@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Umbrella\AdminBundle\Tests\TestApplication\:
+        resource: '../src/*'
+        exclude:
+            - '../src/Entity'
+            - '../src/Kernel.php'

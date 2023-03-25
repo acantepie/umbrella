@@ -1,45 +1,49 @@
 {
     "name": "acantepie/umbrella-admin",
     "require": {
-        "php": ">=8.1"
-    },
-    "require-dev": {
+        "php": ">=8.1",
         "ext-json": "*",
         "doctrine/doctrine-bundle": "^2.5",
-        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/orm": "^2.10",
-        "friendsofphp/php-cs-fixer": "^3.6",
-        "knplabs/knp-time-bundle": "^1.18",
-        "phpstan/phpstan": "^1.2",
-        "phpstan/phpstan-symfony": "^1.1",
-        "psalm/plugin-symfony": "^5.0",
-        "stof/doctrine-extensions-bundle": "^1.7",
-        "symfony/asset": "^6.0",
-        "symfony/browser-kit": "^6.0",
-        "symfony/config": "^6.0",
-        "symfony/console": "^6.0",
-        "symfony/css-selector": "^6.0",
-        "symfony/dependency-injection": "^6.0",
         "symfony/event-dispatcher": "^6.0",
+        "symfony/property-access": "^6.0",
+        "symfony/validator": "^6.0",
+        "symfony/asset": "^6.0",
+        "symfony/console": "^6.0",
+        "symfony/config": "^6.0",
+        "symfony/dependency-injection": "^6.0",
         "symfony/filesystem": "^6.0",
         "symfony/form": "^6.0",
         "symfony/framework-bundle": "^6.0",
         "symfony/http-foundation": "^6.0",
         "symfony/http-kernel": "^6.0",
         "symfony/mailer": "^6.0",
-        "symfony/maker-bundle": "^1.36",
         "symfony/mime": "^6.0",
-        "symfony/monolog-bundle": "^3.7",
-        "symfony/options-resolver": "^6.0",
-        "symfony/phpunit-bridge": "^6.0",
-        "symfony/property-access": "^6.0",
         "symfony/routing": "^6.0",
         "symfony/security-bundle": "^6.0",
         "symfony/translation": "^6.0",
+        "symfony/options-resolver": "^6.0",
         "symfony/twig-bundle": "^6.0",
-        "symfony/validator": "^6.0",
         "symfony/yaml": "^6.0",
+        "symfony/maker-bundle": "^1.36",
+        "stof/doctrine-extensions-bundle": "^1.7"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "friendsofphp/php-cs-fixer": "^3.6",
+        "knplabs/knp-time-bundle": "^1.18",
+        "phpstan/phpstan": "^1.2",
+        "phpstan/phpstan-symfony": "^1.1",
+        "psalm/plugin-symfony": "^5.0",
+        "symfony/browser-kit": "^6.0",
+        "symfony/css-selector": "^6.0",
+        "symfony/monolog-bundle": "^3.7",
+        "symfony/phpunit-bridge": "^6.0",
         "vimeo/psalm": "^5.8"
+    },
+    "suggest": {
+        "knplabs/knp-time-bundle": "Display pretty time on notification",
+        "symfony/monolog-bundle": "Symfony logger, used on Indexer for example."
     },
     "config": {
         "sort-packages": true
@@ -52,7 +56,7 @@
     "autoload-dev": {
         "psr-4": {
             "Umbrella\\AdminBundle\\Tests\\": "tests/",
-            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "tests/TestApplication/app/src/"
+            "Umbrella\\AdminBundle\\Tests\\TestApplication\\": "tests/TestApplication/src/"
         }
     }
 }

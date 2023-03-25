@@ -1,0 +1,8 @@
+framework:
+    secret: umbre!!a
+    default_locale: en
+    http_method_override: false
+    test: true
+    csrf_protection: true
+    session:
+        storage_factory_id: session.storage.factory.mock_file

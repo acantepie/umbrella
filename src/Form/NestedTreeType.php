@@ -1,0 +1,38 @@
+<?php
+
+namespace Umbrella\AdminBundle\Form;
+
+use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Umbrella\AdminBundle\ORM\NestedTreeEntityInterface;
+
+class NestedTreeType extends AbstractType
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver
+            ->setDefault('query_builder', fn (EntityRepository $er) => $er->createQueryBuilder('e')
+                ->orderBy('e.left', 'ASC'))
+            ->setDefault('expose', function ($entity) {
+                if (is_a($entity, NestedTreeEntityInterface::class)) {
+                    return ['lvl' => $entity->getLevel()];
+                } else {
+                    return [];
+                }
+            })
+            ->setDefault('template', '<div data-lvl="[[ lvl ]]" class="tree-item"> [[ text ]]</div>')
+            ->setDefault('hide_selected', false);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent(): ?string
+    {
+        return UmbrellaEntityType::class;
+    }
+}
