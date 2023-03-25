@@ -102,7 +102,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function mapDataToForms($viewData, $forms)
+    public function mapDataToForms(mixed $viewData, \Traversable $forms)
     {
         /** @var FormInterface $form */
         $form = current(iterator_to_array($forms, false));
@@ -112,7 +112,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function mapFormsToData($forms, &$viewData)
+    public function mapFormsToData(\Traversable $forms, mixed &$viewData)
     {
         $form = current(iterator_to_array($forms, false));
         $viewData = $form->getData();

@@ -116,7 +116,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     /**
      * @internal
      */
-    final public function unserialize($serialized)
+    final public function unserialize(string $serialized): void
     {
         $this->__unserialize(unserialize($serialized));
     }

@@ -2,7 +2,13 @@ CHANGELOG
 =========
 Next
 ---
+
+6.3
+---
  * DataTable : EntityAdapter / NestedEntityAdapterType : add option `em` to specify which dbal connection is used
+ * Update Js dependency, use webpack 5
+ * Drop support for php 8.0
+
 
 6.2
 ---

@@ -1,4 +1,5 @@
 framework:
+    default_locale: 'en'
     test: true
     router:
         utf8: true
