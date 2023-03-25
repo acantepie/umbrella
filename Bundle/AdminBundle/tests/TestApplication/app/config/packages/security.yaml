@@ -1,5 +1,4 @@
 security:
-    enable_authenticator_manager: true
     password_hashers:
         Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser: 'sodium'
 

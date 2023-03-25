@@ -1,5 +1,6 @@
 framework:
     default_locale: 'en'
+    http_method_override: false
     test: true
     router:
         utf8: true

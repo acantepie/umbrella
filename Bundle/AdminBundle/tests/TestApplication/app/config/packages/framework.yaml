@@ -1,5 +1,6 @@
 framework:
     default_locale: fr
+    http_method_override: false
     test: true
     csrf_protection: true
     session:
