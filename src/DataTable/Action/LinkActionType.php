@@ -49,7 +49,7 @@ class LinkActionType extends ActionType
         $vars['text'] = $options['text'];
         $vars['translation_domain'] = $options['translation_domain'];
 
-        return $twig->render('@UmbrellaCore/DataTable/Action/link.html.twig', $vars);
+        return $twig->render('@UmbrellaAdmin/datatable/action/link.html.twig', $vars);
     }
 
     public function configureOptions(OptionsResolver $resolver)

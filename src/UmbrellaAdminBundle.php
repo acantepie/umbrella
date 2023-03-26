@@ -4,6 +4,7 @@ namespace Umbrella\AdminBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Umbrella\AdminBundle\DependencyInjection\Compiler\UmbrellaComponentPass;
 
 class UmbrellaAdminBundle extends Bundle
 {
@@ -12,11 +13,6 @@ class UmbrellaAdminBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
-        parent::build($container);
-    }
-
-    public function getPath(): string
-    {
-        return \dirname(__DIR__);
+        $container->addCompilerPass(new UmbrellaComponentPass());
     }
 }

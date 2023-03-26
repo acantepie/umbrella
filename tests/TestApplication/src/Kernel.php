@@ -9,12 +9,19 @@ use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as SymfonyKernel;
+use Umbrella\AdminBundle\DataTable\DataTableFactory;
 use Umbrella\AdminBundle\UmbrellaAdminBundle;
 
-final class Kernel extends SymfonyKernel
+final class Kernel extends SymfonyKernel implements CompilerPassInterface
 {
     use MicroKernelTrait;
+
+    private const PUBLIC_SERVICES = [
+        DataTableFactory::class
+    ];
 
     public function __construct()
     {
@@ -34,6 +41,11 @@ final class Kernel extends SymfonyKernel
         ];
     }
 
+    protected function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass($this);
+    }
+
     public function getCacheDir(): string
     {
         return sys_get_temp_dir() . '/umbrella_admin/tests/var/' . $this->environment . '/cache';
@@ -47,5 +59,14 @@ final class Kernel extends SymfonyKernel
     public function getProjectDir(): string
     {
         return \dirname(__DIR__);
+    }
+
+    public function process(ContainerBuilder $container): void
+    {
+        foreach ($container->getDefinitions() as $id => $definition) {
+            if (in_array($id, self::PUBLIC_SERVICES, true)) {
+                $definition->setPublic(true);
+            }
+        }
     }
 }

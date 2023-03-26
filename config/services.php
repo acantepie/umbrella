@@ -20,6 +20,7 @@ use Umbrella\AdminBundle\Menu\Visitor\MenuCurrentVisitor;
 use Umbrella\AdminBundle\Menu\Visitor\MenuVisibilityVisitor;
 use Umbrella\AdminBundle\ORM\Searchable\EntityIndexer;
 use Umbrella\AdminBundle\ORM\Searchable\SearchableEntitySubscriber;
+use Umbrella\AdminBundle\Twig\UmbrellaAdminTwigExtension;
 
 return static function (ContainerConfigurator $configurator): void {
 
@@ -83,4 +84,9 @@ return static function (ContainerConfigurator $configurator): void {
 
     $services->set(FormTypeExtension::class)
         ->tag('form.type_extension');
+
+    // -- Twig -- //
+    $services->set(UmbrellaAdminTwigExtension::class)
+        ->arg(0, service('twig.form.renderer'))
+        ->tag('twig.extension');
 };

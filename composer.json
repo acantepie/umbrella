@@ -1,5 +1,19 @@
 {
-    "name": "acantepie/umbrella-admin",
+    "name": "umbrella/adminbundle",
+    "type": "symfony-bundle",
+    "description": "Umbrella Admin bundle.",
+    "keywords": [
+        "backend",
+        "admin",
+        "umbrella"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrien Cantepie",
+            "email": "adrien.cantepie@gmail.com"
+        }
+    ],
     "require": {
         "php": ">=8.1",
         "ext-json": "*",
