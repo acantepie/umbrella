@@ -57,7 +57,7 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    private function addUserSection(ArrayNodeDefinition $rootNode)
+    private function addUserSection(ArrayNodeDefinition $rootNode): void
     {
         $u = $rootNode->children()
             ->arrayNode('user')->addDefaultsIfNotSet()->canBeEnabled()
@@ -108,7 +108,7 @@ class Configuration implements ConfigurationInterface
                 ->end();
     }
 
-    private function notificationSection(ArrayNodeDefinition $rootNode)
+    private function notificationSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode->children()
             ->arrayNode('notification')->addDefaultsIfNotSet()->canBeEnabled()

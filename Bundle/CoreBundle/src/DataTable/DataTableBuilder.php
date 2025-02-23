@@ -83,7 +83,7 @@ class DataTableBuilder
 
     // Filter Api
 
-    public function addFilter($child, string $type = null, array $options = []): self
+    public function addFilter($child, ?string $type = null, array $options = []): self
     {
         $this->filterBuilder->add($child, $type, $options);
 

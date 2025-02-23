@@ -23,14 +23,17 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * AutocompleteType constructor.
      */
-    public function __construct(private RouterInterface $router, private FormRegistryInterface $formRegistry, private UmbrellaSelectConfigurator $configurator)
-    {
+    public function __construct(
+        private readonly RouterInterface $router,
+        private readonly FormRegistryInterface $formRegistry,
+        private readonly UmbrellaSelectConfigurator $configurator
+    ) {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->addEventSubscriber($this)
@@ -40,11 +43,11 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $jsOptions = $this->configurator->getJsOptions($options);
         $jsOptions['load_url'] = $this->router->generate($options['route'], $options['route_params'], UrlGeneratorInterface::ABSOLUTE_URL);
-//        $jsOptions['page_length'] = $options['page_length'];
+        //        $jsOptions['page_length'] = $options['page_length'];
 
         $view->vars['compound'] = false; // avoid scary <legend> tag when render form ...
         $view->vars['attr']['is'] = 'umbrella-select';
@@ -54,7 +57,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $this->configurator->configureOptions($resolver);
 
@@ -102,7 +105,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function mapDataToForms(mixed $viewData, \Traversable $forms)
+    public function mapDataToForms(mixed $viewData, \Traversable $forms): void
     {
         /** @var FormInterface $form */
         $form = current(iterator_to_array($forms, false));
@@ -112,7 +115,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     /**
      * {@inheritdoc}
      */
-    public function mapFormsToData(\Traversable $forms, mixed &$viewData)
+    public function mapFormsToData(\Traversable $forms, mixed &$viewData): void
     {
         $form = current(iterator_to_array($forms, false));
         $viewData = $form->getData();
@@ -131,7 +134,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         ];
     }
 
-    public function preSetData(FormEvent $event)
+    public function preSetData(FormEvent $event): void
     {
         $form = $event->getForm();
         $data = $event->getData() ?: [];
@@ -144,7 +147,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $form->add('autocomplete', EntityType::class, $options);
     }
 
-    public function preSubmit(FormEvent $event)
+    public function preSubmit(FormEvent $event): void
     {
         $data = $event->getData();
         $form = $event->getForm();

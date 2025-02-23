@@ -10,7 +10,7 @@ class DataTableType
     public const SELECT_MULTIPLE = 'multi';
     public const SELECT_SINGLE = 'single';
 
-    final public static function defaultConfigureOptions(OptionsResolver $resolver)
+    final public static function defaultConfigureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setRequired('id')
@@ -87,11 +87,11 @@ class DataTableType
             ->setDefault('toolbar_form_data', null);
     }
 
-    public function buildTable(DataTableBuilder $builder, array $options)
+    public function buildTable(DataTableBuilder $builder, array $options): void
     {
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
     }
 }

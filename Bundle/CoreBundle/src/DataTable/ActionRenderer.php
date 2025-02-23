@@ -7,7 +7,7 @@ use Umbrella\CoreBundle\DataTable\DTO\Action;
 
 class ActionRenderer
 {
-    public function __construct(protected Environment $twig)
+    public function __construct(protected readonly Environment $twig)
     {
     }
 

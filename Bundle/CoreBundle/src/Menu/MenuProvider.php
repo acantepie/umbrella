@@ -12,7 +12,7 @@ class MenuProvider
     /**
      * MenuProvider constructor.
      */
-    public function __construct(private MenuRegistry $registry)
+    public function __construct(private readonly MenuRegistry $registry)
     {
     }
 

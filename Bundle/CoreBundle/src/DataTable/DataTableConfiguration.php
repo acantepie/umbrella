@@ -7,7 +7,7 @@ class DataTableConfiguration
     /**
      * DataTableConfig constructor.
      */
-    public function __construct(protected array $config)
+    public function __construct(protected readonly array $config)
     {
     }
 

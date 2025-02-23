@@ -12,7 +12,7 @@ class ColumnActionBuilder
 
     protected int $idx = 0;
 
-    public function __construct(protected DataTableFactory $factory)
+    public function __construct(protected readonly DataTableFactory $factory)
     {
     }
 

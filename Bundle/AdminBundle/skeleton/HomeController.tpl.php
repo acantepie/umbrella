@@ -2,7 +2,7 @@
 
 namespace <?= $namespace ?>;
 
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 
 #[Route('<?= $route['base_path'] ?>')]

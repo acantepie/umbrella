@@ -8,7 +8,7 @@ use Umbrella\CoreBundle\Menu\Builder\MenuBuilder;
 class AdminMenu extends BaseAdminMenu
 {
 
-    public function buildMenu(MenuBuilder $builder, array $options)
+    public function buildMenu(MenuBuilder $builder, array $options): void
     {
         $builder->root()
             ->add('Home')

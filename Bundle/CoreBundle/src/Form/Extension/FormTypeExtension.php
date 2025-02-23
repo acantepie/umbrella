@@ -12,14 +12,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FormTypeExtension extends AbstractTypeExtension
 {
-    /**
-     * FormTypeExtension constructor.
-     */
-    public function __construct(private ?string $defaultLabelClass = null, private ?string $defaultGroupClass = null)
-    {
+    public function __construct(
+        private readonly ?string $defaultLabelClass = null,
+        private readonly ?string $defaultGroupClass = null
+    ) {
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $this->setView($view, $form, 'label_class', $this->defaultLabelClass);
         $this->setView($view, $form, 'group_class', $this->defaultGroupClass);
@@ -28,13 +27,13 @@ class FormTypeExtension extends AbstractTypeExtension
         $view->vars['input_addon_container_class'] = $options['input_addon_container_class'];
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->setAttribute($builder, $options, 'label_class');
         $this->setAttribute($builder, $options, 'group_class');
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('label_class', null)
@@ -83,14 +82,14 @@ class FormTypeExtension extends AbstractTypeExtension
 
     /* Helper */
 
-    protected function setAttribute(FormBuilderInterface $builder, array $options, string $optionName)
+    protected function setAttribute(FormBuilderInterface $builder, array $options, string $optionName): void
     {
         if (isset($options[$optionName])) {
             $builder->setAttribute($optionName, $options[$optionName]);
         }
     }
 
-    protected function setView(FormView $view, FormInterface $form, string $attributeName, $defaultValue)
+    protected function setView(FormView $view, FormInterface $form, string $attributeName, $defaultValue): void
     {
         if ($form->getConfig()->hasAttribute($attributeName)) { // if attribute is defined -> set it to view
             $view->vars[$attributeName] = $form->getConfig()->getAttribute($attributeName);

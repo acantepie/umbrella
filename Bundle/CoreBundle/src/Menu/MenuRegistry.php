@@ -19,7 +19,7 @@ class MenuRegistry
      */
     protected array $visitors = [];
 
-    public function registerType(string $name, MenuType $type)
+    public function registerType(string $name, MenuType $type): void
     {
         $this->types[$name] = $type;
     }
@@ -33,7 +33,7 @@ class MenuRegistry
         return $this->types[$name];
     }
 
-    public function registerVisitor(string $name, MenuVisitor $visitor)
+    public function registerVisitor(string $name, MenuVisitor $visitor): void
     {
         $this->visitors[$name] = $visitor;
     }

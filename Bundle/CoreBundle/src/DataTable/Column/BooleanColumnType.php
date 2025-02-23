@@ -7,7 +7,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class BooleanColumnType extends PropertyColumnType
 {
-    public function __construct(protected TranslatorInterface $translator)
+    public function __construct(protected readonly TranslatorInterface $translator)
     {
     }
 
@@ -35,7 +35,7 @@ class BooleanColumnType extends PropertyColumnType
         return true;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

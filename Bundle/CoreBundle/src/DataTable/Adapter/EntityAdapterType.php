@@ -14,11 +14,11 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
 class EntityAdapterType extends AdapterType implements DoctrineAdapterType
 {
-    public function __construct(protected ManagerRegistry $doctrine)
+    public function __construct(protected readonly ManagerRegistry $doctrine)
     {
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

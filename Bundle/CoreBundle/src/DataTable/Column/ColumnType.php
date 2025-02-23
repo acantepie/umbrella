@@ -8,7 +8,7 @@ use Umbrella\CoreBundle\Utils\Utils;
 
 class ColumnType
 {
-    final public static function defaultConfigureOptions(OptionsResolver $resolver)
+    final public static function defaultConfigureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setRequired('name')
@@ -67,7 +67,7 @@ class ColumnType
     /**
      * Configures the options for this type.
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
     }
 }

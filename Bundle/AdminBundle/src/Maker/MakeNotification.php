@@ -16,7 +16,7 @@ class MakeNotification extends AbstractMaker
     private const NAME = 'make:admin:notification';
     private const DESCRIPTION = 'Generate an admin notification provider';
 
-    public function __construct(private MakeHelper $helper)
+    public function __construct(private readonly MakeHelper $helper)
     {
     }
 
@@ -30,15 +30,15 @@ class MakeNotification extends AbstractMaker
         return self::DESCRIPTION;
     }
 
-    public function configureCommand(Command $command, InputConfiguration $inputConfig)
+    public function configureCommand(Command $command, InputConfiguration $inputConfig): void
     {
     }
 
-    public function configureDependencies(DependencyBuilder $dependencies)
+    public function configureDependencies(DependencyBuilder $dependencies): void
     {
     }
 
-    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
+    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $entity = $generator->createClassNameDetails('AdminNotification', 'Entity\\');
         $repository = $generator->createClassNameDetails($entity->getShortName(), 'Repository\\', 'Repository');

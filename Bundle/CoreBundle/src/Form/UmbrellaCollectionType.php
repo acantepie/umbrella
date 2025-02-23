@@ -16,14 +16,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UmbrellaCollectionType extends AbstractType
 {
-    public function __construct(private TranslatorInterface $translator)
+    public function __construct(private readonly TranslatorInterface $translator)
     {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['headless'] = $options['headless'];
         $view->vars['sortable'] = null !== $options['sort_by'];
@@ -46,7 +46,7 @@ class UmbrellaCollectionType extends AbstractType
         $view->vars['collection_compound'] = false;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         // Hack - always set a prototype even if not initialized on CollectionType
         // This is useful to get label on table header
@@ -97,7 +97,7 @@ class UmbrellaCollectionType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('allow_add', true)

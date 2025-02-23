@@ -24,7 +24,7 @@ class PropertyColumnType extends ColumnType
         return (string) $value;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('property_accessor', PropertyAccess::createPropertyAccessor())

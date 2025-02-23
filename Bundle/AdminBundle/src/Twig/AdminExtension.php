@@ -8,10 +8,7 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 class AdminExtension extends AbstractExtension implements GlobalsInterface
 {
-    /**
-     * AdminExtension constructor.
-     */
-    public function __construct(private UmbrellaAdminConfiguration $configuration)
+    public function __construct(private readonly UmbrellaAdminConfiguration $configuration)
     {
     }
 

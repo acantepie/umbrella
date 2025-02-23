@@ -3,6 +3,7 @@
 namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use function Symfony\Component\Translation\t;
@@ -19,11 +20,11 @@ class ProfileController extends BaseController
     /**
      * ProfileController constructor.
      */
-    public function __construct(protected UserManagerInterface $userManager, protected UmbrellaAdminConfiguration $config)
+    public function __construct(protected readonly UserManagerInterface $userManager, protected readonly UmbrellaAdminConfiguration $config)
     {
     }
 
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $user = $this->getUser();
 

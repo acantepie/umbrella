@@ -3,6 +3,7 @@
 namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 use function Symfony\Component\Translation\t;
@@ -21,11 +22,11 @@ class SecurityController extends BaseController
     /**
      * SecurityController constructor.
      */
-    public function __construct(protected UserManagerInterface $userManager, protected UmbrellaAdminConfiguration $config)
+    public function __construct(protected readonly UserManagerInterface $userManager, protected readonly UmbrellaAdminConfiguration $config)
     {
     }
 
-    public function login(AuthenticationUtils $authenticationUtils)
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -39,12 +40,12 @@ class SecurityController extends BaseController
         ]);
     }
 
-    public function logout()
+    public function logout(): never
     {
         throw new \LogicException();
     }
 
-    public function passwordRequest(UserMailerInterface $userMailer, Request $request)
+    public function passwordRequest(UserMailerInterface $userMailer, Request $request): Response
     {
         // form submitted
         if ($request->isMethod('POST')) {
@@ -68,14 +69,14 @@ class SecurityController extends BaseController
         ]);
     }
 
-    public function passwordRequestSuccess(Request $request)
+    public function passwordRequestSuccess(Request $request): Response
     {
         return $this->render('@UmbrellaAdmin/Security/password_request_success.html.twig', [
             'email' => $request->query->get('email'),
         ]);
     }
 
-    public function passwordReset(Request $request, string $token)
+    public function passwordReset(Request $request, string $token): Response
     {
         $user = $this->userManager->findOneByConfirmationToken($token);
 

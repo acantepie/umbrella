@@ -11,7 +11,7 @@ class DateColumnType extends PropertyColumnType
         return $value instanceof \DateTimeInterface ? $value->format($options['format']) : (string) $value;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

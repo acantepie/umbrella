@@ -15,7 +15,7 @@ use Umbrella\CoreBundle\DataTable\DataTableType;
 
 class <?= $class_name ?> extends DataTableType
 {
-    public function buildTable(DataTableBuilder $builder, array $options)
+    public function buildTable(DataTableBuilder $builder, array $options): void
     {
 <?php if ($entity_searchable) { ?>
         $builder->addFilter('search', SearchType::class);

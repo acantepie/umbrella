@@ -1,7 +1,6 @@
 COMPOSER      = composer
 YARN          = yarn
 PHP_CS_FIXER  = ./vendor/bin/php-cs-fixer
-PSALM         = ./vendor/bin/psalm
 PHPSTAN       = ./vendor/bin/phpstan
 PHPUNIT       = ./vendor/bin/simple-phpunit
 
@@ -17,7 +16,6 @@ fix-js: ## Fix files with eslint
 fix-all: fix-php fix-js ## Fix all files
 
 analyse: ## Run php analyser
-	$(PSALM)
 	$(PHPSTAN)
 
 test: ## Run php unit

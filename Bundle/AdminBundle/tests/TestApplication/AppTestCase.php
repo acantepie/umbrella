@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Umbrella\AdminBundle\Tests\TestApp\Kernel;
 
@@ -26,30 +25,4 @@ class AppTestCase extends WebTestCase
 
         return new static::$class('test', false);
     }
-
-    // Probably ugly as fuck
-    protected static function loadFixtures(bool $quiet = true)
-    {
-        if (!static::$booted) {
-            static::bootKernel();
-        }
-
-        $application = new Application(static::$kernel);
-        $application->setAutoExit(false);
-
-        $consoleOutput = new ConsoleOutput($quiet ? OutputInterface::VERBOSITY_QUIET : OutputInterface::VERBOSITY_NORMAL);
-
-        $input = new ArrayInput(['command' => 'doctrine:database:drop', '--no-interaction' => true, '--force' => true]);
-        $application->run($input, $consoleOutput);
-
-        $input = new ArrayInput(['command' => 'doctrine:database:create', '--no-interaction' => true]);
-        $application->run($input, $consoleOutput);
-
-        $input = new ArrayInput(['command' => 'doctrine:schema:create']);
-        $application->run($input, $consoleOutput);
-
-        $input = new ArrayInput(['command' => 'doctrine:fixtures:load', '--no-interaction' => true, '--append' => false]);
-        $application->run($input, $consoleOutput);
-    }
-
 }

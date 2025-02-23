@@ -9,13 +9,10 @@ use Umbrella\CoreBundle\DataTable\DataTableRenderer;
 
 class DataTableExtension extends AbstractExtension
 {
-    public function __construct(protected DataTableRenderer $renderer, protected ActionRenderer $actionRenderer)
+    public function __construct(protected readonly DataTableRenderer $renderer, protected readonly ActionRenderer $actionRenderer)
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [

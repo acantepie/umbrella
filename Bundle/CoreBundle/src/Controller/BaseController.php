@@ -28,7 +28,7 @@ abstract class BaseController extends AbstractController
         ]);
     }
 
-    protected function trans(?string $id, array $parameters = [], string $domain = null, string $locale = null): string
+    protected function trans(?string $id, array $parameters = [], ?string $domain = null, ?string $locale = null): string
     {
         return $this->container->get('translator')->trans($id, $parameters, $domain, $locale);
     }

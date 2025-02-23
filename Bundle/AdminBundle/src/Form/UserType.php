@@ -13,17 +13,11 @@ use Umbrella\CoreBundle\Form\PasswordTogglableType;
 
 class UserType extends AbstractType
 {
-    /**
-     * UserType constructor.
-     */
-    public function __construct(private UmbrellaAdminConfiguration $config)
+    public function __construct(private readonly UmbrellaAdminConfiguration $config)
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('active', CheckboxType::class, [
             'label' => 'label.active',
@@ -59,10 +53,7 @@ class UserType extends AbstractType
         $builder->add('plainPassword', PasswordTogglableType::class, $params);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => $this->config->userClass(),

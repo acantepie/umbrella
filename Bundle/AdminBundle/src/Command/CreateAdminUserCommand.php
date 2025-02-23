@@ -15,7 +15,7 @@ class CreateAdminUserCommand extends Command
 {
     private ?SymfonyStyle $io = null;
 
-    public function __construct(private UserManagerInterface $userManager)
+    public function __construct(private readonly UserManagerInterface $userManager)
     {
         parent::__construct();
     }
@@ -23,7 +23,7 @@ class CreateAdminUserCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
     }

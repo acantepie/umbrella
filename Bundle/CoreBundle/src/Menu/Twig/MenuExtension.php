@@ -12,7 +12,7 @@ class MenuExtension extends AbstractExtension
     /**
      * MenuExtension constructor.
      */
-    public function __construct(private MenuProvider $provider, private TranslatorInterface $translator)
+    public function __construct(private readonly MenuProvider $provider, private readonly TranslatorInterface $translator)
     {
     }
 

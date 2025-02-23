@@ -19,7 +19,7 @@ class ColumnTest extends AppTestCase
         $this->factory = $this->getContainer()->get(DataTableFactory::class);
     }
 
-    public function testColumn()
+    public function testColumn(): void
     {
         $c = $this->factory->createColumn('foo');
         $this->assertEmpty('', $c->render(null));
@@ -45,7 +45,7 @@ class ColumnTest extends AppTestCase
         $this->assertEquals($obj->foo, $c->render($obj));
     }
 
-    public function testPropertyColumn()
+    public function testPropertyColumn(): void
     {
         $obj = new \stdClass();
         $obj->foo = 'foo';
@@ -67,7 +67,7 @@ class ColumnTest extends AppTestCase
         } catch (\Throwable $e) {}
     }
 
-    public function testDateColumn()
+    public function testDateColumn(): void
     {
         $obj = new \stdClass();
         $obj->date = new \DateTime('+1 day');
@@ -88,7 +88,7 @@ class ColumnTest extends AppTestCase
         $this->assertEquals('foo', $c->render($obj));
     }
 
-    public function testBooleanColumn()
+    public function testBooleanColumn(): void
     {
         // lax comparison
         $obj = new \stdClass();

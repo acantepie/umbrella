@@ -10,7 +10,7 @@ use Umbrella\CoreBundle\Form\NestedTreeParentType;
 
 class <?= $class_name ?> extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('parent', NestedTreeParentType::class, [
             'class' => <?= $entity->getShortName() ?>::class,
@@ -18,7 +18,7 @@ class <?= $class_name ?> extends AbstractType
         ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => <?= $entity->getShortName() ?>::class,

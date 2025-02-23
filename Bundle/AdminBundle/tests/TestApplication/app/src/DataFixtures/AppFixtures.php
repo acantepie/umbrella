@@ -9,22 +9,19 @@ use Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser;
 
 class AppFixtures extends Fixture
 {
-    private UserPasswordHasherInterface $hasher;
-
     /**
      * AppFixtures constructor.
      */
-    public function __construct(UserPasswordHasherInterface $hasher)
+    public function __construct(private readonly UserPasswordHasherInterface $hasher)
     {
-        $this->hasher = $hasher;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->loadUser($manager);
     }
 
-    private function loadUser(ObjectManager $manager)
+    private function loadUser(ObjectManager $manager): void
     {
         $u = new AdminUser();
         $u->firstname = 'John';

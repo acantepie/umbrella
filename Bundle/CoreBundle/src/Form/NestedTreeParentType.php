@@ -16,11 +16,11 @@ class NestedTreeParentType extends AbstractType
     /**
      * NestedTreeParentType constructor.
      */
-    public function __construct(private EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         if (null !== $options['current_node']) {
             foreach ($view->vars['choices'] as &$choice) {
@@ -34,7 +34,7 @@ class NestedTreeParentType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('current_node', null)
@@ -46,7 +46,7 @@ class NestedTreeParentType extends AbstractType
     /**
      * @return NestedTreeEntityInterface[]
      */
-    private function getChoices(string $entityClass, NestedTreeEntityInterface $currentNode = null): array
+    private function getChoices(string $entityClass, ?NestedTreeEntityInterface $currentNode = null): array
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select('e');

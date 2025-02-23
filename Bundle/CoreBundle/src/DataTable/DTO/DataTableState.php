@@ -57,7 +57,7 @@ class DataTableState
         return true;
     }
 
-    public function updateFromArray(array $data)
+    public function updateFromArray(array $data): void
     {
         $this->reset();
         $this->updateDatatableState($data);
@@ -66,7 +66,7 @@ class DataTableState
         $this->formData = $this->dataTable->getToolbar()->getFormData();
     }
 
-    private function updateDatatableState(array $data)
+    private function updateDatatableState(array $data): void
     {
         $this->draw = (int) ($data['draw'] ?? $this->draw);
         $this->start = (int) ($data['start'] ?? $this->start);
@@ -99,7 +99,7 @@ class DataTableState
         }
     }
 
-    private function reset()
+    private function reset(): void
     {
         $this->draw = 0;
         $this->start = 0;

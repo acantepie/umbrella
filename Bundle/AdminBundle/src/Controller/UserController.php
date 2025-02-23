@@ -3,6 +3,7 @@
 namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use function Symfony\Component\Translation\t;
 
@@ -15,11 +16,11 @@ class UserController extends BaseController
     /**
      * UserController constructor.
      */
-    public function __construct(private UmbrellaAdminConfiguration $config)
+    public function __construct(private readonly UmbrellaAdminConfiguration $config)
     {
     }
 
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $table = $this->createTable($this->config->userTable());
         $table->handleRequest($request);
@@ -33,7 +34,7 @@ class UserController extends BaseController
         ]);
     }
 
-    public function edit(UserManagerInterface $manager, Request $request, ?int $id = null)
+    public function edit(UserManagerInterface $manager, Request $request, ?int $id = null): Response
     {
         if (null === $id) {
             $entity = $manager->create();
@@ -54,17 +55,19 @@ class UserController extends BaseController
             return $this->js()
                 ->closeModal()
                 ->reloadTable()
-                ->toastSuccess(t('Item updated'));
+                ->toastSuccess(t('Item updated'))
+                ->getResponse();
         }
 
         return $this->js()
             ->modal('@UmbrellaAdmin/User/edit.html.twig', [
                 'form' => $form->createView(),
                 'entity' => $entity,
-            ]);
+            ])
+            ->getResponse();
     }
 
-    public function delete(UserManagerInterface $manager, int $id)
+    public function delete(UserManagerInterface $manager, int $id): Response
     {
         $entity = $manager->find($id);
         $this->throwNotFoundExceptionIfNull($entity);
@@ -73,6 +76,7 @@ class UserController extends BaseController
         return $this->js()
             ->closeModal()
             ->reloadTable()
-            ->toastSuccess(t('Item deleted'));
+            ->toastSuccess(t('Item deleted'))
+            ->getResponse();
     }
 }

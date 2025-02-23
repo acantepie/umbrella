@@ -9,7 +9,7 @@ use Umbrella\CoreBundle\Menu\DTO\MenuItem;
 class MenuDTOTest extends TestCase
 {
 
-    public function testChildManipulation()
+    public function testChildManipulation(): void
     {
         $menu = new Menu('test');
 
@@ -31,7 +31,7 @@ class MenuDTOTest extends TestCase
         $this->assertFalse($menu->getRoot()->hasChild('foo'));
     }
 
-    public function testMatchingRoute()
+    public function testMatchingRoute(): void
     {
         $menu = new Menu('test');
 

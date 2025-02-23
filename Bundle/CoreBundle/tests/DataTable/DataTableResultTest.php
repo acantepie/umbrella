@@ -7,7 +7,7 @@ use Umbrella\CoreBundle\Tests\TestApplication\AppTestCase;
 
 class DataTableResultTest extends AppTestCase
 {
-    public function testCount()
+    public function testCount(): void
     {
         $r = new DataTableResult([1, 2]);
         $this->assertEquals(2, $r->getCount());

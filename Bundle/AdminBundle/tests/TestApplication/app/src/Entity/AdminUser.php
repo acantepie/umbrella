@@ -5,7 +5,7 @@ namespace Umbrella\AdminBundle\Tests\TestApp\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Umbrella\AdminBundle\Entity\BaseAdminUser;
-use Umbrella\CoreBundle\Search\Annotation\Searchable;
+use Umbrella\CoreBundle\Search\Attribute\Searchable;
 
 #[ORM\Entity]
 #[UniqueEntity('email')]

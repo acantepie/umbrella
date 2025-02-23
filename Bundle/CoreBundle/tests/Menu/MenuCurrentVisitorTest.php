@@ -56,7 +56,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->menu = $menu;
     }
 
-    public function testNoRequest()
+    public function testNoRequest(): void
     {
         $requestStack = new RequestStack();
         $visitor = new MenuCurrentVisitor($requestStack);
@@ -65,7 +65,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertNull($this->menu->getCurrent());
     }
 
-    public function testNoRoute()
+    public function testNoRoute(): void
     {
         $requestStack = new RequestStack();
         $requestStack->push(new Request());
@@ -75,7 +75,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertNull($this->menu->getCurrent());
     }
 
-    public function testNotMatchRoute()
+    public function testNotMatchRoute(): void
     {
         $requestStack = new RequestStack();
         $request = new Request();
@@ -87,7 +87,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertNull($this->menu->getCurrent());
     }
 
-    public function testMatchRoute()
+    public function testMatchRoute(): void
     {
         $requestStack = new RequestStack();
         $request = new Request();
@@ -101,7 +101,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertCurrent('four_one');
     }
 
-    public function testMatchSharedRoute()
+    public function testMatchSharedRoute(): void
     {
         $requestStack = new RequestStack();
         $request = new Request();
@@ -114,7 +114,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertCurrent('three');
     }
 
-    public function testDefinedCurrent()
+    public function testDefinedCurrent(): void
     {
         $requestStack = new RequestStack();
         $request = new Request();
@@ -129,7 +129,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertCurrent('one');
     }
 
-    public function testNotMatchRouteWithParameters()
+    public function testNotMatchRouteWithParameters(): void
     {
         $requestStack = new RequestStack();
         $request = new Request();
@@ -143,7 +143,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertNull($this->menu->getCurrent());
     }
 
-    public function testMatchRouteWithParameters()
+    public function testMatchRouteWithParameters(): void
     {
         $requestStack = new RequestStack();
 
@@ -160,7 +160,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertCurrent('one');
     }
 
-    public function testMatchRouteWithParameters2()
+    public function testMatchRouteWithParameters2(): void
     {
         $requestStack = new RequestStack();
 
@@ -177,7 +177,7 @@ class MenuCurrentVisitorTest extends TestCase
         $this->assertCurrent('one_bis');
     }
 
-    public function testMultipleVisit()
+    public function testMultipleVisit(): void
     {
         $requestStack = new RequestStack();
 
@@ -197,7 +197,7 @@ class MenuCurrentVisitorTest extends TestCase
     }
 
 
-    private function assertCurrent(string $expectedName)
+    private function assertCurrent(string $expectedName): void
     {
         $current = $this->menu->getCurrent();
 

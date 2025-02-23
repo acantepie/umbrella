@@ -12,7 +12,7 @@ use Umbrella\CoreBundle\DataTable\DataTableType;
 
 class <?= $class_name ?> extends DataTableType
 {
-    public function buildTable(DataTableBuilder $builder, array $options)
+    public function buildTable(DataTableBuilder $builder, array $options): void
     {
         $builder->addAction('add', ButtonAddActionType::class, [
             'route' => '<?= $route['name_prefix'] ?>_edit',
@@ -47,7 +47,7 @@ class <?= $class_name ?> extends DataTableType
         ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'tree' => true

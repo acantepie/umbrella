@@ -12,14 +12,11 @@ class BreadcrumbItem
 
     protected array $routeParams = [];
 
-    /**
-     * BreadcrumbItem constructor.
-     */
-    public function __construct($data = null)
+    public function __construct(array|string|null $data = null)
     {
         if (is_string($data)) {
             $this->label = $data;
-        } elseif (is_array($data)) {
+        } else {
             $this->label = $data['label'] ?? '';
             $this->translationDomain = $data['translation_domain'] ?? 'messages';
             $this->route = $data['route'] ?? null;

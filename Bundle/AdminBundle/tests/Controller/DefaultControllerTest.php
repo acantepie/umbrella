@@ -7,10 +7,9 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 class DefaultControllerTest extends AppTestCase
 {
-    public function test()
+    public function test(): void
     {
         $client = static::createClient();
-        static::loadFixtures();
 
         $client->request('GET', '/');
 

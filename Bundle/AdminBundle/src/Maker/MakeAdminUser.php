@@ -18,7 +18,7 @@ class MakeAdminUser extends AbstractMaker
     private const NAME = 'make:admin:user';
     private const DESCRIPTION = 'Generate an admin user entity';
 
-    public function __construct(private MakeHelper $helper)
+    public function __construct(private readonly MakeHelper $helper)
     {
     }
 
@@ -32,11 +32,11 @@ class MakeAdminUser extends AbstractMaker
         return self::DESCRIPTION;
     }
 
-    public function configureCommand(Command $command, InputConfiguration $inputConfig)
+    public function configureCommand(Command $command, InputConfiguration $inputConfig): void
     {
     }
 
-    public function configureDependencies(DependencyBuilder $dependencies)
+    public function configureDependencies(DependencyBuilder $dependencies): void
     {
     }
 
@@ -44,7 +44,7 @@ class MakeAdminUser extends AbstractMaker
     {
     }
 
-    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
+    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $entityClass = $this->helper->askEntityClass($io, 'User');
 

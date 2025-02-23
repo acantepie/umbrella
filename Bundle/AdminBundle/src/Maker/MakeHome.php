@@ -19,7 +19,7 @@ class MakeHome extends AbstractMaker
     private const NAME = 'make:admin:home';
     private const DESCRIPTION = 'Generate an admin home';
 
-    public function __construct(private MakeHelper $helper)
+    public function __construct(private readonly MakeHelper $helper)
     {
     }
 
@@ -33,11 +33,11 @@ class MakeHome extends AbstractMaker
         return self::DESCRIPTION;
     }
 
-    public function configureCommand(Command $command, InputConfiguration $inputConfig)
+    public function configureCommand(Command $command, InputConfiguration $inputConfig): void
     {
     }
 
-    public function configureDependencies(DependencyBuilder $dependencies)
+    public function configureDependencies(DependencyBuilder $dependencies): void
     {
     }
 
@@ -45,7 +45,7 @@ class MakeHome extends AbstractMaker
     {
     }
 
-    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
+    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $controllerClass = $this->helper->askControllerClass($io, 'Admin\\HomeController');
 

@@ -16,8 +16,11 @@ class UserManager implements UserManagerInterface
     /**
      * UserManager constructor.
      */
-    public function __construct(protected EntityManagerInterface $em, protected UserPasswordHasherInterface $passwordHasher, UmbrellaAdminConfiguration $config)
-    {
+    public function __construct(
+        protected readonly EntityManagerInterface $em,
+        protected readonly UserPasswordHasherInterface $passwordHasher,
+        UmbrellaAdminConfiguration $config
+    ) {
         $this->class = $config->userClass();
         $this->repo = $this->em->getRepository($this->class);
     }

@@ -8,7 +8,7 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
 class CallableAdapterType extends AdapterType
 {
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

@@ -15,14 +15,14 @@ class CkeditorType extends AbstractType
     /**
      * CkeditorType constructor.
      */
-    public function __construct(private CkeditorConfiguration $ckeditorConfig)
+    public function __construct(private readonly CkeditorConfiguration $ckeditorConfig)
     {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['config'] = $form->getConfig()->getAttribute('config');
         $view->vars['asset_name'] = $this->ckeditorConfig->getAsset();
@@ -31,7 +31,7 @@ class CkeditorType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if (null === $options['config']) {
             $config = $this->ckeditorConfig->getDefaultConfig();
@@ -47,7 +47,7 @@ class CkeditorType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('config', null)

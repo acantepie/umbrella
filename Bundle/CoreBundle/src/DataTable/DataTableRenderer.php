@@ -13,8 +13,11 @@ class DataTableRenderer
     /**
      * DataTableRenderer constructor.
      */
-    public function __construct(protected Environment $twig, protected RouterInterface $router, protected RequestStack $requestStack)
-    {
+    public function __construct(
+        protected readonly Environment $twig,
+        protected readonly RouterInterface $router,
+        protected readonly RequestStack $requestStack
+    ) {
     }
 
     public function render(DataTable $table): string

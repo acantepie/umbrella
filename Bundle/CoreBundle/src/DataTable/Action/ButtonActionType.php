@@ -8,7 +8,7 @@ use Umbrella\CoreBundle\Utils\Utils;
 
 class ButtonActionType extends LinkActionType
 {
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 

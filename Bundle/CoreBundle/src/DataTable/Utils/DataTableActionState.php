@@ -62,11 +62,21 @@ class DataTableActionState implements \Serializable
 
     public function serialize(): string
     {
-        return \serialize($this->data);
+        return serialize($this->__serialize());
+    }
+
+    public function __serialize(): array
+    {
+        return $this->data;
     }
 
     public function unserialize(string $data): void
     {
-        $this->data = \unserialize($data);
+        $this->__unserialize(unserialize($data));
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->data = $data;
     }
 }

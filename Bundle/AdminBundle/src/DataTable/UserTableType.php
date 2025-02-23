@@ -28,7 +28,7 @@ class UserTableType extends DataTableType
     /**
      * {@inheritdoc}
      */
-    public function buildTable(DataTableBuilder $builder, array $options)
+    public function buildTable(DataTableBuilder $builder, array $options): void
     {
         $builder->addFilter('search', SearchType::class);
         $builder->addAction('add', ButtonAddActionType::class, [

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Umbrella\CoreBundle\Model\IdTrait;
 <?php if ($entity_searchable) { ?>
 use Umbrella\CoreBundle\Model\SearchTrait;
-use Umbrella\CoreBundle\Search\Annotation\Searchable;
+use Umbrella\CoreBundle\Search\Attribute\Searchable;
 <?php } ?>
 
 #[ORM\Entity(repositoryClass: <?= $repository->getShortName() ?>::class)]

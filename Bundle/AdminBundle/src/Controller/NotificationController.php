@@ -3,12 +3,13 @@
 namespace Umbrella\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Umbrella\AdminBundle\Notification\NotificationProviderInterface;
 use Umbrella\CoreBundle\Controller\BaseController;
 
 class NotificationController extends BaseController
 {
-    public function list(NotificationProviderInterface $provider)
+    public function list(NotificationProviderInterface $provider): Response
     {
         $notifications = $provider->collect();
 

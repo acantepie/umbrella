@@ -14,7 +14,7 @@ class UmbrellaComponentPass implements CompilerPassInterface
     /**
      * You can modify the container here before it is dumped to PHP code.
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $registry = $container->getDefinition(DataTableRegistry::class);
         $this->addToRegistry($container, $registry, DataTableRegistry::TAG_TYPE, 'registerType');
@@ -27,7 +27,7 @@ class UmbrellaComponentPass implements CompilerPassInterface
         $this->addToRegistry($container, $registry, MenuRegistry::TAG_VISITOR, 'registerVisitor');
     }
 
-    private function addToRegistry(ContainerBuilder $container, Definition $registry, string $tag, string $method)
+    private function addToRegistry(ContainerBuilder $container, Definition $registry, string $tag, string $method): void
     {
         $taggedServices = $container->findTaggedServiceIds($tag);
 

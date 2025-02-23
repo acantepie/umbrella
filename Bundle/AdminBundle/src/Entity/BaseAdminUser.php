@@ -5,7 +5,7 @@ namespace Umbrella\AdminBundle\Entity;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Umbrella\CoreBundle\Search\Annotation\SearchableField;
+use Umbrella\CoreBundle\Search\Attribute\SearchableField;
 
 abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserInterface, PasswordAuthenticatedUserInterface, \Stringable
 {
@@ -63,8 +63,8 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     public function isPasswordRequestNonExpired(int $ttl): bool
     {
-        return $this->passwordRequestedAt instanceof \DateTime &&
-            $this->passwordRequestedAt->getTimestamp() + $ttl > time();
+        return $this->passwordRequestedAt instanceof \DateTime
+            && $this->passwordRequestedAt->getTimestamp() + $ttl > time();
     }
 
     // Equatable implementation
@@ -100,9 +100,6 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
         ];
     }
 
-    /**
-     * @internal
-     */
     final public function serialize(): string
     {
         return serialize($this->__serialize());
@@ -113,17 +110,14 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
         [$this->id, $this->password, $this->email] = $data;
     }
 
-    /**
-     * @internal
-     */
-    final public function unserialize(string $serialized): void
+    final public function unserialize(string $data): void
     {
-        $this->__unserialize(unserialize($serialized));
+        $this->__unserialize(unserialize($data));
     }
 
     // UserInterface implementation
 
-    public function setPassword(?string $password)
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
         $this->passwordRequestedAt = null;
@@ -139,20 +133,9 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
-    public function getSalt(): ?string
-    {
-        return null;
-    }
-
-    /**
      * {@inheritdoc}
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         $this->plainPassword = null;
     }

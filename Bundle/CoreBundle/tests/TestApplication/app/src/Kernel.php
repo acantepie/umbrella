@@ -46,7 +46,7 @@ class Kernel extends SymfonyKernel implements CompilerPassInterface
     }
 
     // CompilerPassInterface impl
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         foreach ($container->getDefinitions() as $id => $definition) {
             if (in_array($id, self::SERVICES, true)) {

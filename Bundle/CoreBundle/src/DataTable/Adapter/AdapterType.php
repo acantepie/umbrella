@@ -9,7 +9,7 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTableState;
 
 abstract class AdapterType
 {
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
     }
 

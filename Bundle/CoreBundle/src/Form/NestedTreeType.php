@@ -12,7 +12,7 @@ class NestedTreeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('query_builder', fn (EntityRepository $er) => $er->createQueryBuilder('e')

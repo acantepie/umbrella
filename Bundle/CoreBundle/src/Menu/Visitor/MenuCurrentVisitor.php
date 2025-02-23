@@ -15,7 +15,7 @@ class MenuCurrentVisitor implements MenuVisitor
     /**
      * MenuCurrentResolver constructor.
      */
-    public function __construct(private RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
     }
 

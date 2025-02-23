@@ -17,7 +17,7 @@ class MakeTree extends AbstractMaker
     private const NAME = 'make:admin:tree';
     private const DESCRIPTION = 'Generate a CRUD with Tree DataTable view';
 
-    public function __construct(private MakeHelper $helper)
+    public function __construct(private readonly MakeHelper $helper)
     {
     }
 
@@ -31,11 +31,11 @@ class MakeTree extends AbstractMaker
         return self::DESCRIPTION;
     }
 
-    public function configureCommand(Command $command, InputConfiguration $inputConfig)
+    public function configureCommand(Command $command, InputConfiguration $inputConfig): void
     {
     }
 
-    public function configureDependencies(DependencyBuilder $dependencies)
+    public function configureDependencies(DependencyBuilder $dependencies): void
     {
     }
 
@@ -43,7 +43,7 @@ class MakeTree extends AbstractMaker
     {
     }
 
-    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
+    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $entityClass = $this->helper->askEntityClass($io);
         $controllerClass = $this->helper->askControllerClass($io, $this->helper->getDefaultControllerClassFromEntityClass($entityClass));

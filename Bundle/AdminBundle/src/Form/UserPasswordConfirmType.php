@@ -14,11 +14,11 @@ class UserPasswordConfirmType extends AbstractType
     /**
      * UserPasswordConfirmType constructor.
      */
-    public function __construct(private UmbrellaAdminConfiguration $config)
+    public function __construct(private readonly UmbrellaAdminConfiguration $config)
     {
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('plainPassword', RepeatedType::class, [
             'type' => PasswordTogglableType::class,
@@ -40,10 +40,7 @@ class UserPasswordConfirmType extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => $this->config->userClass(),

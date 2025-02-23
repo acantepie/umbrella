@@ -17,7 +17,7 @@ class EntityIndexerTest extends AppTestCase
         $this->indexer = $this->getContainer()->get(EntityIndexer::class);
     }
 
-    public function testIndexObject()
+    public function testIndexObject(): void
     {
         $data = [
             [

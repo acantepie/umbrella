@@ -23,7 +23,7 @@ class RowModifier
     /**
      * @var callable|string|null
      */
-    protected $class = null;
+    protected $class;
 
     /**
      * @var callable|array

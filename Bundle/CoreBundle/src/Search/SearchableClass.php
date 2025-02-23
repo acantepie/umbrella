@@ -2,8 +2,8 @@
 
 namespace Umbrella\CoreBundle\Search;
 
-use Umbrella\CoreBundle\Search\Annotation\Searchable;
-use Umbrella\CoreBundle\Search\Annotation\SearchableField;
+use Umbrella\CoreBundle\Search\Attribute\Searchable;
+use Umbrella\CoreBundle\Search\Attribute\SearchableField;
 
 class SearchableClass
 {

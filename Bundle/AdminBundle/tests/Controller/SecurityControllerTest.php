@@ -7,10 +7,9 @@ use Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser;
 
 class SecurityControllerTest extends AppTestCase
 {
-    public function testLogin()
+    public function testLogin(): void
     {
         $client = static::createClient();
-        static::loadFixtures();
 
         $crawler = $client->request('GET', '/login');
 
@@ -30,10 +29,9 @@ class SecurityControllerTest extends AppTestCase
         $this->assertSelectorTextContains('div', 'john.doe@ok.com');
     }
 
-    public function testInvalidCredentialsLogin()
+    public function testInvalidCredentialsLogin(): void
     {
         $client = static::createClient();
-        static::loadFixtures();
 
         $crawler = $client->request('GET', '/login');
 
@@ -50,10 +48,9 @@ class SecurityControllerTest extends AppTestCase
         $this->assertSelectorTextContains('.alert-warning', 'Identifiants invalides');
     }
 
-    public function testDisabledAccountLogin()
+    public function testDisabledAccountLogin(): void
     {
         $client = static::createClient();
-        static::loadFixtures();
 
         $crawler = $client->request('GET', '/login');
 

@@ -9,7 +9,7 @@ use Twig\Environment;
 
 class LinkActionType extends ActionType
 {
-    public function __construct(protected RouterInterface $router)
+    public function __construct(protected readonly RouterInterface $router)
     {
     }
 
@@ -52,7 +52,7 @@ class LinkActionType extends ActionType
         return $twig->render('@UmbrellaCore/DataTable/Action/link.html.twig', $vars);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('class', null)

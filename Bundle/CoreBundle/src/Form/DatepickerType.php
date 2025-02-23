@@ -16,7 +16,7 @@ class DatepickerType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['is'] = 'umbrella-datepicker';
         $view->vars['attr']['autocomplete'] = 'off';
@@ -34,7 +34,7 @@ class DatepickerType extends AbstractType
         parent::buildView($view, $form, $options);
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new CallbackTransformer(
             function ($value) use ($options) {
@@ -56,7 +56,7 @@ class DatepickerType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('data_class', null)
@@ -85,7 +85,7 @@ class DatepickerType extends AbstractType
         return TextType::class;
     }
 
-    private function toDate($value, string $outputFormat = 'Y-m-d')
+    private function toDate($value, string $outputFormat = 'Y-m-d'): ?string
     {
         if (is_string($value)) {
             $value = new \DateTime($value);

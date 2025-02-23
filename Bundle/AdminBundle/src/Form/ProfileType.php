@@ -15,11 +15,11 @@ class ProfileType extends AbstractType
     /**
      * ProfileType constructor.
      */
-    public function __construct(private UmbrellaAdminConfiguration $config)
+    public function __construct(private readonly UmbrellaAdminConfiguration $config)
     {
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('firstname', TextType::class, [
             'label' => 'label.firstname',
@@ -44,7 +44,7 @@ class ProfileType extends AbstractType
         ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => $this->config->userClass(),

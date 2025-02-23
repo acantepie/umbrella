@@ -21,7 +21,7 @@ class MakeHelper
     private string $entityNamespace;
     private string $baseTemplatePath;
 
-    public function __construct(private ManagerRegistry $doctrine, private string $rootDirectory)
+    public function __construct(private readonly ManagerRegistry $doctrine, private readonly string $rootDirectory)
     {
         $this->rootNamespace = trim(self::ROOT_NAMESPACE, '\\');
         $this->entityNamespace = $this->rootNamespace . '\\Entity';

@@ -7,7 +7,7 @@ use Twig\Environment;
 
 abstract class ActionType
 {
-    final public static function defaultConfigureOptions(OptionsResolver $resolver)
+    final public static function defaultConfigureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setRequired('name')
@@ -27,7 +27,7 @@ abstract class ActionType
     /**
      * Configure action
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
     }
 }

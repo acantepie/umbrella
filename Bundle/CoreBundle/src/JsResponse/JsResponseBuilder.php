@@ -35,10 +35,10 @@ class JsResponseBuilder implements \Countable
      * JsResponseBuilder constructor.
      */
     public function __construct(
-        private TranslatorInterface $translator,
-        private RouterInterface $router,
-        private Environment $twig,
-        private DataTableConfiguration $dataTableConfiguration
+        private readonly TranslatorInterface $translator,
+        private readonly RouterInterface $router,
+        private readonly Environment $twig,
+        private readonly DataTableConfiguration $dataTableConfiguration
     ) {
     }
 
@@ -70,7 +70,7 @@ class JsResponseBuilder implements \Countable
 
     // Misc
 
-    public function download(string $content, string $filename = null): self
+    public function download(string $content, ?string $filename = null): self
     {
         return $this->add(self::DOWNLOAD, [
             'content' => $content,

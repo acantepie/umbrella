@@ -6,7 +6,7 @@ use <?= $table->getFullName() ?>;
 use <?= $entity->getFullName() ?>;
 use <?= $form->getFullName() ?>;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 use function Symfony\Component\Translation\t;
 <?php if ($tree_table) { ?>

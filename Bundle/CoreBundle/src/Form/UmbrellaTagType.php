@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UmbrellaTagType extends AbstractType implements DataTransformerInterface
 {
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['is'] = 'umbrella-tag';
         $view->vars['full_name'] .= '[]';
@@ -34,7 +34,7 @@ class UmbrellaTagType extends AbstractType implements DataTransformerInterface
         $view->vars['placeholder_in_choices'] = false;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer($this);
     }
@@ -47,7 +47,7 @@ class UmbrellaTagType extends AbstractType implements DataTransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'compound' => false,

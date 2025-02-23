@@ -19,7 +19,7 @@ class IndexEntityCommand extends Command
     /**
      * IndexEntityCommand constructor.
      */
-    public function __construct(private EntityIndexer $indexer)
+    public function __construct(private readonly EntityIndexer $indexer)
     {
         parent::__construct();
     }
@@ -27,7 +27,7 @@ class IndexEntityCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->addArgument('entityClass', InputArgument::OPTIONAL, 'Entity class to index');
     }
@@ -35,7 +35,7 @@ class IndexEntityCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
         $output->setVerbosity(OutputInterface::VERBOSITY_VERY_VERBOSE);

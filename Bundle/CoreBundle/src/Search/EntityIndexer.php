@@ -2,10 +2,10 @@
 
 namespace Umbrella\CoreBundle\Search;
 
-use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Mapping\MappingException;
 use Psr\Log\LoggerInterface;
+use Umbrella\CoreBundle\Utils\DoctrineUtils;
 
 class EntityIndexer
 {
@@ -17,8 +17,10 @@ class EntityIndexer
     /**
      * EntityIndexer constructor.
      */
-    public function __construct(private EntityManagerInterface $em, private ?LoggerInterface $logger = null)
-    {
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly ?LoggerInterface $logger = null
+    ) {
     }
 
     public function isIndexable(string $class): bool
@@ -91,7 +93,7 @@ class EntityIndexer
     public function indexEntity(object $entity): bool
     {
         try {
-            $searchableClass = $this->getSearchableClass(ClassUtils::getClass($entity));
+            $searchableClass = $this->getSearchableClass(DoctrineUtils::getClass($entity));
             $searchableClass->update($entity);
             return true;
         } catch (UnsupportedClassException) {
@@ -99,6 +101,9 @@ class EntityIndexer
         }
     }
 
+    /**
+     * @throws UnsupportedClassException
+     */
     private function getSearchableClass(string $class): SearchableClass
     {
         if (!isset($this->searchableClassCollection[$class])) {

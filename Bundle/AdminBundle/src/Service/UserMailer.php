@@ -17,8 +17,13 @@ class UserMailer implements UserMailerInterface
     /**
      * UserMailer constructor.
      */
-    public function __construct(protected Environment $twig, protected RouterInterface $router, protected MailerInterface $mailer, protected TranslatorInterface $translator, protected UmbrellaAdminConfiguration $config)
-    {
+    public function __construct(
+        protected readonly Environment $twig,
+        protected readonly RouterInterface $router,
+        protected readonly MailerInterface $mailer,
+        protected readonly TranslatorInterface $translator,
+        protected readonly UmbrellaAdminConfiguration $config
+    ) {
     }
 
     public function sendPasswordRequest(BaseAdminUser $user): void

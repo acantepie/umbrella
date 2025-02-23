@@ -16,7 +16,7 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
     /**
      * AuthenticationEntryPoint constructor.
      */
-    public function __construct(private RouterInterface $router)
+    public function __construct(private readonly RouterInterface $router)
     {
     }
 
@@ -33,7 +33,7 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
      *  B) For an API token authentication system, you return a 401 response
      *      return new Response('Auth header required', 401);
      */
-    public function start(Request $request, AuthenticationException $authException = null): Response
+    public function start(Request $request, ?AuthenticationException $authException = null): Response
     {
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse('', 401);

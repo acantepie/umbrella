@@ -13,14 +13,14 @@ use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 
 class UmbrellaChoiceType extends AbstractType
 {
-    public function __construct(private UmbrellaSelectConfigurator $configurator)
+    public function __construct(private readonly UmbrellaSelectConfigurator $configurator)
     {
     }
 
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $jsOptions = $this->configurator->getJsOptions($options);
 
@@ -34,7 +34,7 @@ class UmbrellaChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         // If required : always add a placeholder else select can be submitted even if empty
         if (true === $options['required'] && !\is_string($view->vars['placeholder'])) {
@@ -65,7 +65,7 @@ class UmbrellaChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $this->configurator->configureOptions($resolver);
 

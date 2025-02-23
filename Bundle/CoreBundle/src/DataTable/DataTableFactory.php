@@ -13,8 +13,11 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 
 class DataTableFactory
 {
-    public function __construct(protected DataTableRegistry $registry, protected FormFactoryInterface $formFactory, protected DataTableConfiguration $config)
-    {
+    public function __construct(
+        protected readonly DataTableRegistry $registry,
+        protected readonly FormFactoryInterface $formFactory,
+        protected readonly DataTableConfiguration $config
+    ) {
     }
 
     public function create(string $type, array $options = []): DataTable

@@ -1,6 +1,7 @@
 includes:
     - vendor/phpstan/phpstan-symfony/extension.neon
     - vendor/phpstan/phpstan-symfony/rules.neon
+    - vendor/phpstan/phpstan-doctrine/extension.neon
 
 parameters:
     level: 5
@@ -8,7 +9,6 @@ parameters:
         - Bundle/AdminBundle/src
         - Bundle/CoreBundle/src
     checkUninitializedProperties: true
-    checkAlwaysTrueCheckTypeFunctionCall: true
-    checkAlwaysTrueInstanceof: true
-    checkAlwaysTrueStrictComparison: true
     checkInternalClassCaseSensitivity: true
+    ignoreErrors:
+        - '#Trait [a-zA-Z0-9\\_]+ is used zero times and is not analysed#'

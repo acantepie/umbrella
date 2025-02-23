@@ -8,7 +8,7 @@ use Umbrella\CoreBundle\Menu\Builder\MenuBuilder;
 class MenuBuilderTest extends TestCase
 {
 
-    public function testTreeBuild()
+    public function testTreeBuild(): void
     {
         $builder = new MenuBuilder('test');
 
@@ -36,7 +36,7 @@ class MenuBuilderTest extends TestCase
         $this->assertCount(0, $m->getRoot()->getChild('bar'));
     }
 
-    public function testCurrent()
+    public function testCurrent(): void
     {
         $builder = new MenuBuilder('test');
         $m = $builder->getMenu();

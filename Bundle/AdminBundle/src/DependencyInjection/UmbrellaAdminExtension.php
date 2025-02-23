@@ -22,7 +22,7 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -50,7 +50,7 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
             ->setArgument(0, $config);
     }
 
-    private function enableNotification(ContainerBuilder $container, array $config)
+    private function enableNotification(ContainerBuilder $container, array $config): void
     {
         $provider = $config['provider'];
 
@@ -61,7 +61,7 @@ class UmbrellaAdminExtension extends Extension implements PrependExtensionInterf
         $container->setAlias(NotificationProviderInterface::class, $provider);
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         // enable timestampable if possible
         $configs = $container->getExtensionConfig($this->getAlias());
