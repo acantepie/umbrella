@@ -1,0 +1,3 @@
+umbrella_admin:
+    user:
+        class: Umbrella\AdminBundle\Tests\App\Entity\AdminUser

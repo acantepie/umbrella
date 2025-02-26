@@ -8,7 +8,7 @@ use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\DateColumnType;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableFactory;
-use Umbrella\CoreBundle\Tests\TestApplication\AppTestCase;
+use Umbrella\CoreBundle\Tests\AppTestCase;
 
 class ColumnTest extends AppTestCase
 {

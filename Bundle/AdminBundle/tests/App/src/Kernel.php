@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\AdminBundle\Tests\TestApp;
+namespace Umbrella\AdminBundle\Tests\App;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;

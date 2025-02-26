@@ -1,14 +1,10 @@
 <?php
 
-namespace Umbrella\AdminBundle\Tests\TestApplication;
+namespace Umbrella\AdminBundle\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Umbrella\AdminBundle\Tests\TestApp\Kernel;
+use Umbrella\AdminBundle\Tests\App\Kernel;
 
 class AppTestCase extends WebTestCase
 {

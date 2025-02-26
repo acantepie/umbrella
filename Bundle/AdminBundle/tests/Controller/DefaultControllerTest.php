@@ -2,7 +2,7 @@
 
 namespace Umbrella\AdminBundle\Tests\Controller;
 
-use Umbrella\AdminBundle\Tests\TestApplication\AppTestCase;
+use Umbrella\AdminBundle\Tests\AppTestCase;
 use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 class DefaultControllerTest extends AppTestCase

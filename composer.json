@@ -48,11 +48,11 @@
         "psr-4": {
             "Umbrella\\AdminBundle\\": "Bundle/AdminBundle/src",
             "Umbrella\\AdminBundle\\Tests\\": "Bundle/AdminBundle/tests/",
-            "Umbrella\\AdminBundle\\Tests\\TestApp\\": "Bundle/AdminBundle/tests/TestApplication/app/src/",
+            "Umbrella\\AdminBundle\\Tests\\App\\": "Bundle/AdminBundle/tests/App/src/",
 
             "Umbrella\\CoreBundle\\": "Bundle/CoreBundle/src",
             "Umbrella\\CoreBundle\\Tests\\": "Bundle/CoreBundle/tests/",
-            "Umbrella\\CoreBundle\\Tests\\TestApp\\": "Bundle/CoreBundle/tests/TestApplication/app/src/"
+            "Umbrella\\CoreBundle\\Tests\\App\\": "Bundle/CoreBundle/tests/App/src/"
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\AdminBundle\Tests\TestApp\Controller;
+namespace Umbrella\AdminBundle\Tests\App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

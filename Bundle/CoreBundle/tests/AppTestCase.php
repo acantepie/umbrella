@@ -1,10 +1,10 @@
 <?php
 
-namespace Umbrella\CoreBundle\Tests\TestApplication;
+namespace Umbrella\CoreBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Umbrella\CoreBundle\Tests\TestApp\Kernel;
+use Umbrella\CoreBundle\Tests\App\Kernel;
 
 class AppTestCase extends KernelTestCase
 {

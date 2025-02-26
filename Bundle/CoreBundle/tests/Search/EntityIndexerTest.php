@@ -3,7 +3,7 @@
 namespace Umbrella\CoreBundle\Tests\Search;
 
 use Umbrella\CoreBundle\Search\EntityIndexer;
-use Umbrella\CoreBundle\Tests\TestApplication\AppTestCase;
+use Umbrella\CoreBundle\Tests\AppTestCase;
 use Umbrella\CoreBundle\Tests\Fixtures\SearchableEntity;
 use Umbrella\CoreBundle\Tests\Fixtures\StringableObject;
 

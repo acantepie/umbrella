@@ -15,5 +15,5 @@ doctrine:
                 is_bundle: false
                 type: attribute
                 dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'Umbrella\AdminBundle\Tests\TestApp\Entity'
+                prefix: 'Umbrella\AdminBundle\Tests\App\Entity'
                 alias: 'app'

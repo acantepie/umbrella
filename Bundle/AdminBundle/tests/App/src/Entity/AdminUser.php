@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\AdminBundle\Tests\TestApp\Entity;
+namespace Umbrella\AdminBundle\Tests\App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;

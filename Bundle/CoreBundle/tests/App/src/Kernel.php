@@ -1,6 +1,6 @@
 <?php
 
-namespace Umbrella\CoreBundle\Tests\TestApp;
+namespace Umbrella\CoreBundle\Tests\App;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;

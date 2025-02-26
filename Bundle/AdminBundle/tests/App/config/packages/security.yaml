@@ -1,11 +1,11 @@
 security:
     password_hashers:
-        Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser: 'sodium'
+        Umbrella\AdminBundle\Tests\TestApp\App\AdminUser: 'sodium'
 
     providers:
         entity_provider:
             entity:
-                class: Umbrella\AdminBundle\Tests\TestApp\Entity\AdminUser
+                class: Umbrella\AdminBundle\Tests\App\Entity\AdminUser
                 property: email
 
     firewalls:
