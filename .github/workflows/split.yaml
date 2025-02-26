@@ -6,7 +6,7 @@ on:
       - 'Bundle/**'
 
 env:
-  INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  INPUT_GITHUB_TOKEN: ${{ secrets.UMBRELLA_GITHUB_TOKEN }}
 
 jobs:
   split:
