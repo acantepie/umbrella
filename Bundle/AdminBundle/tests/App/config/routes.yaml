@@ -1,6 +1,6 @@
 app_:
     resource: "../src/Controller/"
-    type: annotation
+    type: attribute
     prefix: /
 
 admin_security_:
