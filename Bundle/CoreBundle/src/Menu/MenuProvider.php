@@ -9,9 +9,6 @@ use Umbrella\CoreBundle\Menu\DTO\Menu;
 
 class MenuProvider
 {
-    /**
-     * MenuProvider constructor.
-     */
     public function __construct(private readonly MenuRegistry $registry)
     {
     }

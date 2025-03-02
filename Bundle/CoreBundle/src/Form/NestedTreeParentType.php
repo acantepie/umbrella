@@ -13,9 +13,6 @@ use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
 class NestedTreeParentType extends AbstractType
 {
-    /**
-     * NestedTreeParentType constructor.
-     */
     public function __construct(private readonly EntityManagerInterface $em)
     {
     }
@@ -31,9 +28,6 @@ class NestedTreeParentType extends AbstractType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
@@ -79,9 +73,6 @@ class NestedTreeParentType extends AbstractType
         return $this->isChildOf($a->getParent(), $b);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ?string
     {
         return NestedTreeType::class;

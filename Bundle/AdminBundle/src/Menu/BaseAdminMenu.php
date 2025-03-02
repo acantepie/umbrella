@@ -14,9 +14,6 @@ class BaseAdminMenu extends MenuType
     protected array $defaultRenderOptions;
     protected array $defaultBreadcrumbRenderOptions;
 
-    /**
-     * BaseAdminMenu constructor.
-     */
     public function __construct(protected Environment $twig, protected UmbrellaAdminConfiguration $configuration)
     {
         $this->defaultRenderOptions = [
@@ -32,16 +29,10 @@ class BaseAdminMenu extends MenuType
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function buildMenu(MenuBuilder $builder, array $options): void
     {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function renderMenu(Menu $menu, array $options): string
     {
         $options = array_merge($this->defaultRenderOptions, $options);
@@ -52,9 +43,6 @@ class BaseAdminMenu extends MenuType
         ]);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function renderBreadcrumb(Breadcrumb $breadcrumb, array $options): string
     {
         $options = array_merge($this->defaultBreadcrumbRenderOptions, $options);

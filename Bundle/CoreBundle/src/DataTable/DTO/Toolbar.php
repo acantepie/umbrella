@@ -10,8 +10,6 @@ class Toolbar
     protected array $formData = [];
 
     /**
-     * Toolbar constructor.
-     *
      * @param Action[] $actions
      * @param Action[] $bulkActions
      */

@@ -41,9 +41,6 @@ class RowModifier
 
     protected PropertyAccessorInterface $accessor;
 
-    /**
-     * RowModifier constructor.
-     */
     public function __construct()
     {
         $this->accessor = PropertyAccess::createPropertyAccessorBuilder()->getPropertyAccessor();

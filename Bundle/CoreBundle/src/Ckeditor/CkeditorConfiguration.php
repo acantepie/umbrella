@@ -39,9 +39,6 @@ class CkeditorConfiguration
     private array $defaultConfig = [];
     private array $configs = [];
 
-    /**
-     * CkeditorConfiguration constructor.
-     */
     public function __construct(array $bundleConfig)
     {
         $this->resolveConfig($bundleConfig);

@@ -10,9 +10,6 @@ use Umbrella\CoreBundle\DataTable\DTO\DataTable;
 
 class DataTableRenderer
 {
-    /**
-     * DataTableRenderer constructor.
-     */
     public function __construct(
         protected readonly Environment $twig,
         protected readonly RouterInterface $router,

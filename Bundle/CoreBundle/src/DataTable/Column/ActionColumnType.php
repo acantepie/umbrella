@@ -12,7 +12,7 @@ class ActionColumnType extends ColumnType
     {
     }
 
-    public function render($rowData, array $options): string
+    public function render(mixed $rowData, array $options): string
     {
         $builder = $this->factory->createColumnActionBuilder();
         call_user_func($options['build'], $builder, $rowData, $options);

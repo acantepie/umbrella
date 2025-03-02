@@ -15,8 +15,6 @@ class DataTable
     protected DataTableState $state;
 
     /**
-     * DataTable constructor.
-     *
      * @param Column[] $columns
      */
     public function __construct(

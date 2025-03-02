@@ -18,9 +18,6 @@ class DataTableState
 
     protected bool $callback = false;
 
-    /**
-     * DataTableState constructor.
-     */
     public function __construct(protected DataTable $dataTable)
     {
     }

@@ -21,9 +21,6 @@ abstract class BaseNotificationProvider implements NotificationProviderInterface
         $this->timeFormatter = $timeFormatter;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function render(BaseNotification $notification): string
     {
         if (null === $this->timeFormatter) {

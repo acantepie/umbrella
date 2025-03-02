@@ -19,9 +19,6 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
  */
 class UmbrellaAdminExtension extends Extension implements PrependExtensionInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();

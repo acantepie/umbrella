@@ -14,9 +14,6 @@ class EntityIndexer
      */
     private array $searchableClassCollection = [];
 
-    /**
-     * EntityIndexer constructor.
-     */
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly ?LoggerInterface $logger = null

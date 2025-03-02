@@ -17,9 +17,6 @@ class ProfileController extends BaseController
 {
     public const PROFILE_ROUTE = 'umbrella_admin_profile_index';
 
-    /**
-     * ProfileController constructor.
-     */
     public function __construct(protected readonly UserManagerInterface $userManager, protected readonly UmbrellaAdminConfiguration $config)
     {
     }

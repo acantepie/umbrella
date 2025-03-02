@@ -6,9 +6,6 @@ class DataTableResult
 {
     protected int $count; // The count total of data without paging
 
-    /**
-     * DataTableResult constructor.
-     */
     public function __construct(protected iterable $data = [], ?int $count = null)
     {
         if (null === $count) {

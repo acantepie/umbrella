@@ -18,16 +18,10 @@ use Umbrella\CoreBundle\Form\SearchType;
 
 class UserTableType extends DataTableType
 {
-    /**
-     * UserTableType constructor.
-     */
     public function __construct(protected UmbrellaAdminConfiguration $config, protected RouterInterface $router)
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildTable(DataTableBuilder $builder, array $options): void
     {
         $builder->addFilter('search', SearchType::class);

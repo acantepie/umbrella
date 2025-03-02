@@ -6,9 +6,6 @@ class Breadcrumb implements \IteratorAggregate, \Countable
 {
     protected ?string $icon = null;
 
-    /**
-     * Breadcrumb constructor.
-     */
     public function __construct(protected string $name, protected array $items = [])
     {
     }

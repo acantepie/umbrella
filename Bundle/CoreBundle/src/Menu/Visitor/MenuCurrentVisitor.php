@@ -12,9 +12,6 @@ class MenuCurrentVisitor implements MenuVisitor
     private const CONTINUE_TRAVERSE = 0;
     private const STOP_TRAVERSE = 1;
 
-    /**
-     * MenuCurrentResolver constructor.
-     */
     public function __construct(private readonly RequestStack $requestStack)
     {
     }

@@ -72,9 +72,6 @@ class FormTypeExtension extends AbstractTypeExtension
             ->setAllowedTypes('input_suffix_text', ['null', 'string']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getExtendedTypes(): iterable
     {
         return [FormType::class];

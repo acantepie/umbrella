@@ -9,9 +9,6 @@ use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
 class NestedTreeType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
@@ -28,9 +25,6 @@ class NestedTreeType extends AbstractType
             ->setDefault('hide_selected', false);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ?string
     {
         return UmbrellaEntityType::class;

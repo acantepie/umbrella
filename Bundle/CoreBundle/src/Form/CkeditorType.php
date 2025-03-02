@@ -12,25 +12,16 @@ use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 
 class CkeditorType extends AbstractType
 {
-    /**
-     * CkeditorType constructor.
-     */
     public function __construct(private readonly CkeditorConfiguration $ckeditorConfig)
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['config'] = $form->getConfig()->getAttribute('config');
         $view->vars['asset_name'] = $this->ckeditorConfig->getAsset();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if (null === $options['config']) {
@@ -44,9 +35,6 @@ class CkeditorType extends AbstractType
         $builder->setAttribute('config', $config);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
@@ -54,17 +42,11 @@ class CkeditorType extends AbstractType
             ->setAllowedTypes('config', ['null', 'string', 'array']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ?string
     {
         return TextareaType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'ckeditor';

@@ -1,3 +1,5 @@
+import AjaxUtils from 'umbrella_core/utils/AjaxUtils';
+
 export default function configureHandler(handler) {
     handler.registerAction('show_toast', (params) => {
         umbrella.Toast.show(params['type'], params['text'], params['title'], params['options']);
@@ -73,6 +75,10 @@ export default function configureHandler(handler) {
         window.location.href = window.location.href.split('#')[0];
     });
 
+    handler.registerAction('forward', (params) => {
+        AjaxUtils.request(params.ajaxOptions);
+    });
+
     handler.registerAction('update', (params) => {
         document.querySelectorAll(params.selector).forEach((e) => {
             e.innerHTML = params.value.trim()
@@ -85,7 +91,7 @@ export default function configureHandler(handler) {
         })
     });
 
-    handler.registerAction('call_webcomponent', (params) => {
+    handler.registerAction('call', (params) => {
         for (let element of document.querySelectorAll(params.selector)) {
             if (typeof element[params.method] === 'undefined') {
                 console.warn('Function ' + params.method + '() doesn\'t exist for custom element ', element)

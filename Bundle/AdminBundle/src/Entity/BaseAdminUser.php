@@ -69,9 +69,6 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     // Equatable implementation
 
-    /**
-     * {@inheritdoc}
-     */
     public function isEqualTo(UserInterface $user): bool
     {
         if (!$user instanceof self) {
@@ -124,25 +121,16 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
         $this->confirmationToken = null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function eraseCredentials(): void
     {
         $this->plainPassword = null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
@@ -158,9 +146,6 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     // Std implementation
 
-    /**
-     * {@inheritdoc}
-     */
     public function __toString(): string
     {
         return $this->getUserIdentifier();

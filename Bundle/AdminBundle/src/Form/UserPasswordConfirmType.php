@@ -11,9 +11,6 @@ use Umbrella\CoreBundle\Form\PasswordTogglableType;
 
 class UserPasswordConfirmType extends AbstractType
 {
-    /**
-     * UserPasswordConfirmType constructor.
-     */
     public function __construct(private readonly UmbrellaAdminConfiguration $config)
     {
     }

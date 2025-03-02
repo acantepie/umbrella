@@ -20,17 +20,11 @@ class CreateAdminUserCommand extends Command
         parent::__construct();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $u = $this->userManager->create();

@@ -14,9 +14,6 @@ use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
  */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('umbrella_core');

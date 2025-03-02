@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $umbrella-toast-grad0: 3%;
 $umbrella-toast-grad1: 2%;
 
@@ -15,18 +17,18 @@ $umbrella-toast-grad1: 2%;
   }
 
   &.umbrella-toast-success {
-    background: linear-gradient(135deg, lighten($success, $umbrella-toast-grad0), darken($success, $umbrella-toast-grad1));
+    background: linear-gradient(135deg, color.adjust($success, $lightness: $umbrella-toast-grad0), color.adjust($success, $lightness: -$umbrella-toast-grad1));
   }
 
   &.umbrella-toast-error {
-    background: linear-gradient(135deg, lighten($danger, $umbrella-toast-grad0), darken($danger, $umbrella-toast-grad1));
+    background: linear-gradient(135deg, color.adjust($danger, $lightness: $umbrella-toast-grad0), color.adjust($danger, $lightness: -$umbrella-toast-grad1));
   }
 
   &.umbrella-toast-warning {
-    background: linear-gradient(135deg, lighten($warning, $umbrella-toast-grad0), darken($warning, $umbrella-toast-grad1));
+    background: linear-gradient(135deg, color.adjust($warning, $lightness: $umbrella-toast-grad0), color.adjust($warning, $lightness: -$umbrella-toast-grad1));
   }
 
   &.umbrella-toast-info {
-    background: linear-gradient(135deg, lighten($primary, $umbrella-toast-grad0), darken($primary, $umbrella-toast-grad1));
+    background: linear-gradient(135deg, color.adjust($primary, $lightness: $umbrella-toast-grad0), color.adjust($primary, $lightness: -$umbrella-toast-grad1));
   }
 }

@@ -10,9 +10,6 @@ class Menu
 
     protected array $visitors = [];
 
-    /**
-     * Menu constructor.
-     */
     public function __construct(protected string $name)
     {
         $this->root = new MenuItem($this, 'root');

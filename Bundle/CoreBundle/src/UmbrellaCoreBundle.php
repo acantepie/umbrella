@@ -8,9 +8,6 @@ use Umbrella\CoreBundle\DependencyInjection\Compiler\UmbrellaComponentPass;
 
 class UmbrellaCoreBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);

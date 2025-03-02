@@ -4,9 +4,6 @@ namespace Umbrella\CoreBundle\DataTable;
 
 class DataTableConfiguration
 {
-    /**
-     * DataTableConfig constructor.
-     */
     public function __construct(protected readonly array $config)
     {
     }

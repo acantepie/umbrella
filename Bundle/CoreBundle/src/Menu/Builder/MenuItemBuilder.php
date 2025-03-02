@@ -8,9 +8,6 @@ class MenuItemBuilder
 {
     protected array $childrenBuilder = [];
 
-    /**
-     * MenuItemBuilder constructor.
-     */
     public function __construct(protected MenuItem $item, protected ?MenuItemBuilder $parentBuilder = null)
     {
     }

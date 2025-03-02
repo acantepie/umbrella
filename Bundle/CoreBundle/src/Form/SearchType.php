@@ -18,9 +18,6 @@ class SearchType extends AbstractType implements DataTransformerInterface
         $view->vars['type'] = 'text';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -54,9 +51,6 @@ class SearchType extends AbstractType implements DataTransformerInterface
         return '' === $value ? null : $value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ?string
     {
         return TextType::class;

@@ -40,9 +40,6 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     protected bool $visible = true;
 
-    /**
-     * MenuItem constructor.
-     */
     public function __construct(protected Menu $menu, protected string $name)
     {
         $this->label = Utils::humanize($name);
@@ -278,17 +275,11 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     // Interface implementations
 
-    /**
-     * {@inheritdoc}
-     */
     public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->children);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function count(): int
     {
         return count($this->children);

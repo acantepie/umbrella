@@ -17,9 +17,6 @@ class UmbrellaChoiceType extends AbstractType
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $jsOptions = $this->configurator->getJsOptions($options);
@@ -31,9 +28,6 @@ class UmbrellaChoiceType extends AbstractType
         $view->vars['expanded'] = false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         // If required : always add a placeholder else select can be submitted even if empty
@@ -62,9 +56,6 @@ class UmbrellaChoiceType extends AbstractType
         return json_encode($data, JSON_THROW_ON_ERROR);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $this->configurator->configureOptions($resolver);
@@ -78,9 +69,6 @@ class UmbrellaChoiceType extends AbstractType
             ->setNormalizer('placeholder', fn (Options $options, $value) => $value);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ?string
     {
         return ChoiceType::class;

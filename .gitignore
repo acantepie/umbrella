@@ -2,9 +2,15 @@
 /.idea/*
 
 ###> node modules ###
-yarn.lock
-yarn-error.log
 /node_modules
+
+###> yarn ###
+yarn-error.log
+/.pnp.cjs
+/.pnp.loader.mjs
+/.yarn/*
+!/.yarn/releases
+!/.yarn/plugins
 
 ###> composer ###
 /vendor/

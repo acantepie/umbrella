@@ -19,9 +19,6 @@ class SecurityController extends BaseController
     public const LOGIN_ROUTE = 'umbrella_admin_login';
     public const LOGOUT_ROUTE = 'umbrella_admin_logout';
 
-    /**
-     * SecurityController constructor.
-     */
     public function __construct(protected readonly UserManagerInterface $userManager, protected readonly UmbrellaAdminConfiguration $config)
     {
     }

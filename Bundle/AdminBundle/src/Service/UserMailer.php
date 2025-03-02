@@ -14,9 +14,6 @@ use Umbrella\AdminBundle\UmbrellaAdminConfiguration;
 
 class UserMailer implements UserMailerInterface
 {
-    /**
-     * UserMailer constructor.
-     */
     public function __construct(
         protected readonly Environment $twig,
         protected readonly RouterInterface $router,

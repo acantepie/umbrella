@@ -12,9 +12,6 @@ class MenuBuilder
 
     private MenuItemBuilder $rootBuilder;
 
-    /**
-     * MenuBuilder constructor.
-     */
     public function __construct(string $name)
     {
         $this->menu = new Menu($name);

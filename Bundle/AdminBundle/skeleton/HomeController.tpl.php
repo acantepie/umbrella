@@ -2,6 +2,7 @@
 
 namespace <?= $namespace ?>;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 
@@ -10,7 +11,7 @@ class <?= $class_name ?> extends BaseController
 {
 
     #[Route('')]
-    public function index()
+    public function index(): Response
     {
         return $this->render('<?= $template ?>');
     }

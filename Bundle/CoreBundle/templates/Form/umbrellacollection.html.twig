@@ -41,12 +41,10 @@
     </umbrella-collection>
 {% endblock %}
 
-{% block umbrellacollection_prototype_widget %}
-{% apply spaceless %}
-    {%  set entry_form = prototype %}
-    {{ block('umbrellacollection_entry') }}
-{% endapply %}
-{% endblock %}
+{%- block umbrellacollection_prototype_widget -%}
+    {%- set entry_form = prototype -%}
+    {{- block('umbrellacollection_entry') -}}
+{%- endblock -%}
 
 {% block umbrellacollection_entry %}
     <tr class="js-item" data-idx="{{ entry_form.vars.name }}">
@@ -84,7 +82,6 @@
 {% endblock %}
 
 {%- block umbrellacollection_item_label -%}
-{% apply spaceless %}
     {% set label = item_form.vars.label %}
     {% set label_format = item_form.vars.label_format %}
     {% set label_html = item_form.vars.label_html %}
@@ -123,5 +120,4 @@
             {%- endif -%}
         </td>
     {%- endif -%}
-{% endapply %}
 {%- endblock -%}

@@ -6,6 +6,7 @@ use <?= $table->getFullName() ?>;
 use <?= $entity->getFullName() ?>;
 use <?= $form->getFullName() ?>;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Umbrella\CoreBundle\Controller\BaseController;
 use function Symfony\Component\Translation\t;
@@ -18,7 +19,7 @@ class <?= $class_name ?> extends BaseController
 {
 
     #[Route('')]
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $table = $this->createTable(<?= $table->getShortName() ?>::class);
         $table->handleRequest($request);
@@ -33,7 +34,7 @@ class <?= $class_name ?> extends BaseController
     }
 
     #[Route('/edit/{id}', requirements: ['id' => '\d+'])]
-    public function edit(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>Request $request, ?int $id = null)
+    public function edit(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>Request $request, ?int $id = null): Response
     {
         if ($id === null) {
             $entity = new <?= $entity->getShortName() ?>();
@@ -79,7 +80,7 @@ class <?= $class_name ?> extends BaseController
 
 <?php if ($tree_table) { ?>
     #[Route('/move/{id}/{direction}', requirements: ['id' => '\d+'])]
-    public function move(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>int $id, string $direction)
+    public function move(<?php if ($tree_table) { ?><?= $repository->getShortName() ?> $repository, <?php } ?>int $id, string $direction): Response
     {
         $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
 
@@ -95,7 +96,7 @@ class <?= $class_name ?> extends BaseController
 <?php } ?>
 
     #[Route('/delete/{id}', requirements: ['id' => '\d+'])]
-    public function delete(int $id)
+    public function delete(int $id): Response
     {
         $entity = $this->findOrNotFound(<?= $entity->getShortName() ?>::class, $id);
         $this->removeAndFlush($entity);

@@ -9,7 +9,7 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class PropertyColumnType extends ColumnType
 {
-    public function render($rowData, array $options): string
+    public function render(mixed $rowData, array $options): string
     {
         // Symfony accessor only supports array|object
         if (!\is_array($rowData) && !\is_object($rowData)) {
@@ -19,7 +19,7 @@ class PropertyColumnType extends ColumnType
         return $this->renderProperty($options['property_accessor']->getValue($rowData, $options['property_path']), $options);
     }
 
-    public function renderProperty($value, array $options): string
+    public function renderProperty(mixed $value, array $options): string
     {
         return (string) $value;
     }

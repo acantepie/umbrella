@@ -7,9 +7,6 @@ use Twig\TwigFunction;
 
 class CkeditorExtension extends AbstractExtension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [

@@ -44,9 +44,6 @@ class UmbrellaTagType extends AbstractType implements DataTransformerInterface
         return 'choice'; // render as "choice form"
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

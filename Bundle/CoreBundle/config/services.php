@@ -2,6 +2,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Doctrine\ORM\Events;
 use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 use Umbrella\CoreBundle\Ckeditor\CkeditorExtension;
 use Umbrella\CoreBundle\Command\IndexEntityCommand;
@@ -13,15 +14,14 @@ use Umbrella\CoreBundle\DataTable\DataTableType;
 use Umbrella\CoreBundle\DataTable\Twig\DataTableExtension;
 use Umbrella\CoreBundle\Form\Extension\FormTypeExtension;
 use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
-use Umbrella\CoreBundle\JsResponse\JsResponseBuilder;
-use Umbrella\CoreBundle\JsResponse\JsResponseViewListener;
+use Umbrella\CoreBundle\JsResponse\JsResponseFactory;
 use Umbrella\CoreBundle\Menu\MenuRegistry;
 use Umbrella\CoreBundle\Menu\MenuProvider;
 use Umbrella\CoreBundle\Menu\Twig\MenuExtension;
 use Umbrella\CoreBundle\Menu\Visitor\MenuCurrentVisitor;
 use Umbrella\CoreBundle\Menu\Visitor\MenuVisibilityVisitor;
+use Umbrella\CoreBundle\Search\Doctrine\SearchableEntityListener;
 use Umbrella\CoreBundle\Search\EntityIndexer;
-use Umbrella\CoreBundle\Search\SearchableEntitySubscriber;
 use Umbrella\CoreBundle\Twig\CoreExtension;
 
 return static function (ContainerConfigurator $configurator): void {
@@ -44,10 +44,7 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag('twig.extension');
 
     // -- Js Response -- //
-
-    $services->set(JsResponseBuilder::class);
-    $services->set(JsResponseViewListener::class)
-        ->tag('kernel.event_subscriber');
+    $services->set(JsResponseFactory::class);
 
     // -- DataTable -- //
     $services->set(DataTableFactory::class);
@@ -78,8 +75,10 @@ return static function (ContainerConfigurator $configurator): void {
     $services->set(IndexEntityCommand::class)
         ->tag('console.command');
     $services->set(EntityIndexer::class);
-    $services->set(SearchableEntitySubscriber::class)
-        ->tag('doctrine.event_subscriber');
+    $services->set(SearchableEntityListener::class)
+        ->tag('doctrine.event_listener', ['event' => Events::prePersist])
+        ->tag('doctrine.event_listener', ['event' => Events::preUpdate]);
+
 
     // -- Core -- //
     $services->set(CoreExtension::class)

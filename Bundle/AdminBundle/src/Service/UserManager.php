@@ -13,9 +13,6 @@ class UserManager implements UserManagerInterface
     protected string $class;
     protected ObjectRepository $repo;
 
-    /**
-     * UserManager constructor.
-     */
     public function __construct(
         protected readonly EntityManagerInterface $em,
         protected readonly UserPasswordHasherInterface $passwordHasher,

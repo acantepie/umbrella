@@ -6,9 +6,6 @@ use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 
 class Column
 {
-    /**
-     * Column constructor.
-     */
     public function __construct(protected ColumnType $type, protected array $options)
     {
     }
@@ -46,7 +43,7 @@ class Column
         return $this->options[$name];
     }
 
-    public function render($rowData): string
+    public function render(mixed $rowData): string
     {
         if (is_callable($this->options['render'])) {
             $value = (string) call_user_func($this->options['render'], $rowData, $this->options);

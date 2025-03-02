@@ -8,9 +8,6 @@ use Umbrella\AdminBundle\DependencyInjection\Compiler\UmbrellaNotificationPass;
 
 class UmbrellaAdminBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);

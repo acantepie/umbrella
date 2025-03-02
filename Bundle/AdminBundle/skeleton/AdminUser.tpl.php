@@ -14,7 +14,7 @@ use Umbrella\CoreBundle\Search\Attribute\Searchable;
 class <?= $class_name ?> extends BaseAdminUser
 {
     /**
-     * {@inheritdoc}
+     * 
      */
     public function getRoles(): array
     {

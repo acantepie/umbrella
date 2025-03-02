@@ -20,9 +20,6 @@ use Umbrella\AdminBundle\Service\UserManager;
  */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('umbrella_admin');

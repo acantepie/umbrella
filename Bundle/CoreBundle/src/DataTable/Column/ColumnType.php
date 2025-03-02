@@ -51,7 +51,7 @@ class ColumnType
     /**
      * Render the content of column
      */
-    public function render($rowData, array $options): string
+    public function render(mixed $rowData, array $options): string
     {
         return (string) $rowData;
     }

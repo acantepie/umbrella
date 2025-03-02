@@ -32,9 +32,6 @@ class DataTableBuilder
 
     protected ?array $adapterData = null;
 
-    /**
-     * DataTableBuilder constructor.
-     */
     public function __construct(
         protected DataTableFactory $factory,
         FormFactoryInterface $formFactory,

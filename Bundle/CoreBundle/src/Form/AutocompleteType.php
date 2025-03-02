@@ -20,9 +20,6 @@ use Umbrella\CoreBundle\Form\UmbrellaSelect\UmbrellaSelectConfigurator;
 
 class AutocompleteType extends AbstractType implements DataMapperInterface, EventSubscriberInterface
 {
-    /**
-     * AutocompleteType constructor.
-     */
     public function __construct(
         private readonly RouterInterface $router,
         private readonly FormRegistryInterface $formRegistry,
@@ -30,9 +27,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
     ) {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -40,9 +34,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
             ->setDataMapper($this);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $jsOptions = $this->configurator->getJsOptions($options);
@@ -54,9 +45,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $view->vars['attr']['data-options'] = json_encode($jsOptions, JSON_THROW_ON_ERROR);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $this->configurator->configureOptions($resolver);
@@ -92,9 +80,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         */
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'umbrella_autocomplete';
@@ -102,9 +87,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     // DataMapperInterface impl
 
-    /**
-     * {@inheritdoc}
-     */
     public function mapDataToForms(mixed $viewData, \Traversable $forms): void
     {
         /** @var FormInterface $form */
@@ -112,9 +94,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $form->setData($viewData);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function mapFormsToData(\Traversable $forms, mixed &$viewData): void
     {
         $form = current(iterator_to_array($forms, false));
@@ -123,9 +102,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
     // EventSubscriberInterface impl
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [

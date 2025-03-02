@@ -16,25 +16,16 @@ class IndexEntityCommand extends Command
     private ?SymfonyStyle $io = null;
     private ?string $entityClass = null;
 
-    /**
-     * IndexEntityCommand constructor.
-     */
     public function __construct(private readonly EntityIndexer $indexer)
     {
         parent::__construct();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
         $this->addArgument('entityClass', InputArgument::OPTIONAL, 'Entity class to index');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
@@ -42,9 +33,6 @@ class IndexEntityCommand extends Command
         $this->entityClass = $input->getArgument('entityClass');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ($this->entityClass) {

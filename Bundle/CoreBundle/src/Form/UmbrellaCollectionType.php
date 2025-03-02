@@ -20,9 +20,6 @@ class UmbrellaCollectionType extends AbstractType
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['headless'] = $options['headless'];
@@ -94,9 +91,6 @@ class UmbrellaCollectionType extends AbstractType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
@@ -123,17 +117,11 @@ class UmbrellaCollectionType extends AbstractType
             ->setAllowedTypes('add_btn_template', ['null', 'string']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ?string
     {
         return CollectionType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'umbrellacollection';

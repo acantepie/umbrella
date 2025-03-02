@@ -6,7 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DetailsColumnType extends ColumnType
 {
-    public function render($rowData, array $options): string
+    public function render(mixed $rowData, array $options): string
     {
         $details = call_user_func($options['render_details'], $rowData, $options);
 

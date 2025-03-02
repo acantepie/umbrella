@@ -13,9 +13,6 @@ use Umbrella\CoreBundle\Controller\BaseController;
 
 class UserController extends BaseController
 {
-    /**
-     * UserController constructor.
-     */
     public function __construct(private readonly UmbrellaAdminConfiguration $config)
     {
     }
@@ -55,16 +52,14 @@ class UserController extends BaseController
             return $this->js()
                 ->closeModal()
                 ->reloadTable()
-                ->toastSuccess(t('Item updated'))
-                ->getResponse();
+                ->toastSuccess(t('Item updated'));
         }
 
         return $this->js()
             ->modal('@UmbrellaAdmin/User/edit.html.twig', [
                 'form' => $form->createView(),
                 'entity' => $entity,
-            ])
-            ->getResponse();
+            ]);
     }
 
     public function delete(UserManagerInterface $manager, int $id): Response
@@ -76,7 +71,6 @@ class UserController extends BaseController
         return $this->js()
             ->closeModal()
             ->reloadTable()
-            ->toastSuccess(t('Item deleted'))
-            ->getResponse();
+            ->toastSuccess(t('Item deleted'));
     }
 }

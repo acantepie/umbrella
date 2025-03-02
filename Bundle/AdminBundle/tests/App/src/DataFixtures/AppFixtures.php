@@ -10,7 +10,7 @@ use Umbrella\AdminBundle\Tests\App\Entity\AdminUser;
 class AppFixtures extends Fixture
 {
     /**
-     * AppFixtures constructor.
+     
      */
     public function __construct(private readonly UserPasswordHasherInterface $hasher)
     {

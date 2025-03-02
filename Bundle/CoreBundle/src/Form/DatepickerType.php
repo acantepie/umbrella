@@ -13,9 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DatepickerType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['is'] = 'umbrella-datepicker';
@@ -53,9 +50,6 @@ class DatepickerType extends AbstractType
         ));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
@@ -77,9 +71,6 @@ class DatepickerType extends AbstractType
             ->setAllowedTypes('format', 'string');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ?string
     {
         return TextType::class;
