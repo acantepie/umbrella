@@ -22,7 +22,6 @@ Further resources related to this Framework:
     - [material design icons](https://materialdesignicons.com/)
 - Js Library / Tools :
   - [datatables.net](https://datatables.net/) : Advanced HTML table manipulation
-  - [jQuery treetable](http://ludo.cubicphuse.nl/jquery-treetable/) : Render a tree structure on a HTML table
   - [Tom Select](https://tom-select.js.org/) : Advanced Js library for &lt;select&gt;
   - [Flatpickr](https://flatpickr.js.org/) : Lightweight js datetime picker
   - [Dragula](https://bevacqua.github.io/dragula/) : Drag & Drop js library.

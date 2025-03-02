@@ -5775,13 +5775,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery-treetable@npm:^3.2.0-1":
-  version: 3.2.0
-  resolution: "jquery-treetable@npm:3.2.0"
-  checksum: 10c0/82c46060550b893061ce5c609f1cacdc25cedc8f0b531ca1799cb58ce010a66cf4d3bc7b99744ddc5bb3cc5ab49c84ee56cd65dd77c62f99edb262646adcd07c
-  languageName: node
-  linkType: hard
-
 "jquery@npm:1.8 - 4, jquery@npm:^3.6.3":
   version: 3.7.1
   resolution: "jquery@npm:3.7.1"
@@ -8894,7 +8887,6 @@ __metadata:
     eslint: "npm:^8.36.0"
     flatpickr: "npm:^4.6.13"
     jquery: "npm:^3.6.3"
-    jquery-treetable: "npm:^3.2.0-1"
     mustache: "npm:^4.2.0"
     regenerator-runtime: "npm:^0.13.9"
     sass: "npm:^1.85.1"
