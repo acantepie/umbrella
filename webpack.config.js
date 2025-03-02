@@ -17,7 +17,12 @@ Encore
         umbrella_admin: path.join(__dirname, '/Bundle/AdminBundle/assets/'),
     })
     .addEntry('admin', './Bundle/AdminBundle/assets/admin.js')
-    .enableSassLoader()
+    
+    .enableSassLoader((options) => {
+        options.sassOptions = {
+            quietDeps: true,
+        }
+    })
 
     .disableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()

@@ -201,11 +201,6 @@ class JsResponse extends Response
         return $this->call($method, $methodParams, $cssSelector);
     }
 
-    public function reloadGallery(array $options = [], string $cssSelector = 'umbrella-gallery'): self
-    {
-        return $this->call('load', [$options], $cssSelector);
-    }
-
     public function call(string $method, array $methodParams, string $cssSelector): self
     {
         if (!\array_is_list($methodParams)) {
