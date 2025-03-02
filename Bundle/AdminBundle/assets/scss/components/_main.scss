@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .main {
   margin-left: $sidebar-width;
   display: flex;
@@ -23,7 +25,7 @@ body.sidebar-collapsed {
 // https://stackoverflow.com/a/25850649
 
 // Reverted state
-@media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
+@media (min-width: 1px) and (max-width: #{map.get($grid-breakpoints, 'lg') - .02px}) {
   .main {
     margin-left: 0;
   }

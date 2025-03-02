@@ -1,3 +1,4 @@
+@use "sass:map";
 // --- State "sidebar-collapsed"
 
 // Normal state
@@ -11,7 +12,7 @@ body.sidebar-collapsed {
 // https://stackoverflow.com/a/25850649
 
 // Reverted state
-@media (min-width: 1px) and (max-width: #{map-get($grid-breakpoints, 'lg') - .02px}) {
+@media (min-width: 1px) and (max-width: #{map.get($grid-breakpoints, 'lg') - .02px}) {
 
   .sidebar {
     // Sidebar default state (on mobile)
