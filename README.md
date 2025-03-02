@@ -9,7 +9,7 @@
 
 <div align="center">
 
-[![Symfony version](https://img.shields.io/badge/Symfony->=6.0-red?style=for-the-badge)](https://symfony.com/)
+[![Symfony version](https://img.shields.io/badge/Symfony->=6.4-red?style=for-the-badge)](https://symfony.com/)
 [![PHP version](https://img.shields.io/packagist/php-v/umbrella2/corebundle?style=for-the-badge)](https://www.php.net/)
 [![Bootstrap version](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge)](https://getbootstrap.com/)
 
