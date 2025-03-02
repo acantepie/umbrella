@@ -92,31 +92,9 @@ table.dataTable {
       margin-right: 10px;
     }
   }
-
-  .details-handle, .select-handle {
-    text-align: center;
-    padding-bottom: 0;
-    padding-top: 0;
-    cursor: pointer;
-
-    * {
-      cursor: pointer;
-    }
-  }
-
-  .details-handle {
-    i.mdi::before {
-      color: $primary;
-      font-weight: bold;
-      font-size: 1.2em;
-    }
-  }
-
-  .details-handle[aria-expanded=true] i:before {
-    transform: rotate(90deg);
-  }
 }
 
+// toolbar
 .toolbar.inline-toolbar {
 
   .toolbar-filter, .toolbar-action {
@@ -165,7 +143,94 @@ table.dataTable {
     }
 
   }
+}
 
+// select plugin
+.select-toolbar {
+  padding: .5rem $table-cell-padding-x;
+}
 
+table.dataTable {
+  tbody tr {
+    &[data-select=false] .row-select {
+      pointer-events: none;
+      input {
+        display: none;
+      }
+    }
+  }
+}
+
+// child row plugin
+table.dataTable {
+  .toggle-child-row {
+    text-decoration: none;
+
+    &::after {
+      content: '\F0140';
+      font-family: "Material Design Icons";
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+      display: inline-block;
+      text-decoration: inherit;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      font-size: 1.5em;
+    }
+
+    &.collapsed::after {
+      content: '\F0142';
+    }
+  }
+}
+
+// tree plugin
+table.dataTable {
+
+  // tree plugin
+
+  .tree-node.tree-node-first .tree-move-up {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  .tree-node.tree-node-last .tree-move-down {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  .tree-spacer {
+    position: relative;
+    display: inline;
+  }
+
+  a.tree-spacer {
+    text-decoration: none;
+
+    &::after {
+      content: "\F0140";
+      font-family: "Material Design Icons";
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+      display: inline;
+      text-decoration: inherit;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      font-size: 1.5em;
+      top: 0;
+      bottom: 0;
+      position: absolute;
+      right: 0;
+    }
+
+    &.collapsed::after {
+      content: '\F0142';
+    }
+
+  }
 }
 

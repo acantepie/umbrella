@@ -11,6 +11,13 @@
         {% include toolbar.template %}
     {% endblock %}
 
+    {% block select_toolbar %}
+        {% if selectable %}
+            {% include "@UmbrellaCore/DataTable/select_toolbar.html.twig" %}
+        {% endif %}
+    {% endblock %}
+
+
     {% block table %}
         <div class="table-responsive">
             <table {{ _self.attributes(table_attr) }}>

@@ -1,7 +1,19 @@
 CHANGELOG
 =========
-Next
+
+dev
 ---
+ * Drop support for php 8.1
+ * Drop support for symfony version < 6.4
+ * Remove all deprecations
+ * Add missing typehints (BC)
+ * DataTable : Change select plugin / remove bulk actions (use display option insteed) (BC)
+ * DataTable : Change tree plugin (BC)
+ * DataTable : Change row child plugin (RowDetailsColumn) (BC)
+ * DataTable : remove "RowModifier" and method setXRow() on builder. Use buildRowView instead (BC)
+ * FormType : remove NestedTreeType / NestedParentTreeType replaced by NestedEntityType (BC)
+ * Entity : remove NestedEntityInterface (not needed anymore) (BC)
+ * JsResponse : remove response listener / builder is not exposed anymore on controller, use js() method to create a JsResponse instead (BC)
 
 6.3
 ---

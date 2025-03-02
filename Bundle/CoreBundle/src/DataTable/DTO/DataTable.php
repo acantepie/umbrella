@@ -4,12 +4,12 @@ namespace Umbrella\CoreBundle\DataTable\DTO;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Umbrella\CoreBundle\DataTable\AdapterException;
+use Umbrella\CoreBundle\DataTable\DataTableType;
 
 class DataTable
 {
-    protected RowModifier $rowModifier;
-
     protected array $options;
 
     protected DataTableState $state;
@@ -18,13 +18,12 @@ class DataTable
      * @param Column[] $columns
      */
     public function __construct(
+        protected DataTableType $type,
         protected Toolbar $toolbar,
         protected array $columns,
         protected Adapter $adapter,
-        RowModifier $rowModifier,
         array $options
     ) {
-        $this->rowModifier = $rowModifier->setIsTree($options['tree']);
         $this->options = $options;
 
         $this->state = new DataTableState($this);
@@ -93,23 +92,41 @@ class DataTable
     public function getCallbackResponse(): DataTableResponse
     {
         if (!$this->isCallback()) {
-            throw new \RuntimeException('Unable to get callback response, request is not valid');
+            throw new \LogicException('Unable to create callback response, handleRequest() must be called before getCallbackResponse()');
         }
 
         try {
-            $result = $this->getAdapterResult();
+            $result = $this->adapter->getResult($this->state);
         } catch (AdapterException $exception) {
             return DataTableResponse::createError($exception->getMessage());
         }
 
+        $accessor = PropertyAccess::createPropertyAccessorBuilder()
+            ->getPropertyAccessor();
+
         // Create Row Views
         $rowViews = [];
         foreach ($result->getData() as $object) {
-            $view = new RowView();
+            $view = new RowView($object);
+
             foreach ($this->columns as $column) {
                 $view->data[] = $column->render($object);
             }
-            $this->rowModifier->modify($view, $object);
+
+            // add some extra attributes
+            $id = $accessor->getValue($object, $this->options['id_path']);
+            if (null !== $id) {
+                $view->attr['data-id'] = $id;
+            }
+
+            if ($this->options['tree']) {
+                $parentId = $accessor->getValue($object, sprintf('%s?.%s', $this->options['parent_path'], $this->options['id_path']));
+                if (null !== $parentId) {
+                    $view->attr['data-parent-id'] = $parentId;
+                }
+            }
+
+            $this->type->buildRowView($view, $this, $this->options);
             $rowViews[] = $view;
         }
 

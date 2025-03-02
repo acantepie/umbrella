@@ -1,8 +1,8 @@
 const TRANS = {
     en: {
         'row_selected': {
-            '1' : '%c% row selected. <a href class="unselectall-handler">Clear selection</a>',
-            '_': '%c% rows selected. <a href class="unselectall-handler">Clear selection</a>'
+            '1' : '%c% row selected.',
+            '_': '%c% rows selected.'
         },
         'cancel': 'Cancel',
         'confirm': 'Confirm',
@@ -16,8 +16,8 @@ const TRANS = {
 
     fr: {
         'row_selected': {
-            '1' : '%c% ligne sélectionnée. <a href class="unselectall-handler">Effacer la sélection</a>',
-            '_': '%c% lignes sélectionnées. <a href class="unselectall-handler">Effacer la sélection</a>',
+            '1' : '%c% ligne sélectionnée.',
+            '_': '%c% lignes sélectionnées.',
         },
         'cancel': 'Annuler',
         'confirm': 'Confirmer',

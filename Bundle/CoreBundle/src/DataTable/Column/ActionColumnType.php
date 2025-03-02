@@ -19,16 +19,12 @@ class ActionColumnType extends ColumnType
         return $this->renderer->renderActions($builder->getActions());
     }
 
-    public function isSafeHtml(): bool
-    {
-        return true;
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 
         $resolver
+            ->setDefault('is_safe_html', true)
             ->setDefault('class', 'text-end text-nowrap')
             ->setDefault('label', null);
 

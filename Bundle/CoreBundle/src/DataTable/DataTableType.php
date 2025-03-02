@@ -4,12 +4,11 @@ namespace Umbrella\CoreBundle\DataTable;
 
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Umbrella\CoreBundle\DataTable\DTO\DataTable;
+use Umbrella\CoreBundle\DataTable\DTO\RowView;
 
 class DataTableType
 {
-    public const SELECT_MULTIPLE = 'multi';
-    public const SELECT_SINGLE = 'single';
-
     final public static function defaultConfigureOptions(OptionsResolver $resolver): void
     {
         $resolver
@@ -28,8 +27,8 @@ class DataTableType
             ->setDefault('stripe_class', fn (Options $options) => $options['tree'] ? [] : ['odd', 'even'])
             ->setAllowedTypes('stripe_class', ['array'])
 
-            ->setDefault('select', false)
-            ->setAllowedValues('select', [false, self::SELECT_MULTIPLE, self::SELECT_SINGLE])
+            ->setDefault('selectable', false)
+            ->setAllowedTypes('selectable', 'bool')
 
             ->setDefault('paging', fn (Options $options) => !$options['tree'])
             ->setAllowedTypes('paging', 'bool')
@@ -56,11 +55,18 @@ class DataTableType
             ->setAllowedTypes('template', 'string');
 
         $resolver
+            ->setDefault('id_path', 'id')
+            ->setAllowedTypes('id_path', ['string', 'null']);
+        $resolver
+            ->setDefault('parent_path', 'parent')
+            ->setAllowedTypes('parent_path', ['string', 'null']);
+
+        $resolver
             ->setDefault('tree', false)
             ->setAllowedTypes('tree', 'bool')
 
-            ->setDefault('tree_expanded', false)
-            ->setAllowedTypes('tree_expanded', 'bool');
+            ->setDefault('tree_column_index', 0)
+            ->setAllowedTypes('tree_column_index', 'int');
 
         $resolver
             ->setDefault('load_route', null)
@@ -88,6 +94,10 @@ class DataTableType
     }
 
     public function buildTable(DataTableBuilder $builder, array $options): void
+    {
+    }
+
+    public function buildRowView(RowView $view, DataTable $dataTable, array $options): void
     {
     }
 

@@ -41,11 +41,21 @@ class ColumnType
 
         $resolver
             ->setDefault('render', null)
-            ->setAllowedTypes('render', ['null', 'callable']);
+            ->setAllowedTypes('render', ['null', 'callable'])
+            ->setNormalizer('render', function (Options $options, $value) {
+                return $options['render_html'] ?? $value;
+            });
 
         $resolver
             ->setDefault('render_html', null)
             ->setAllowedTypes('render_html', ['null', 'callable']);
+
+        $resolver
+            ->setDefault('is_safe_html', false)
+            ->setAllowedTypes('is_safe_html', 'bool')
+            ->setNormalizer('is_safe_html', function (Options $options, $value) {
+                return $options['render_html'] ? true : $value;
+            });
     }
 
     /**
@@ -54,14 +64,6 @@ class ColumnType
     public function render(mixed $rowData, array $options): string
     {
         return (string) $rowData;
-    }
-
-    /**
-     * Is false, the content of column will be escaped to avoid be rendered as HTML
-     */
-    public function isSafeHtml(): bool
-    {
-        return false;
     }
 
     /**

@@ -15,19 +15,15 @@ use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\Column\PropertyColumnType;
 use Umbrella\CoreBundle\DataTable\DTO\Column;
 use Umbrella\CoreBundle\DataTable\DTO\DataTable;
-use Umbrella\CoreBundle\DataTable\DTO\RowModifier;
 use Umbrella\CoreBundle\DataTable\DTO\Toolbar;
 use Umbrella\CoreBundle\Utils\Utils;
 
 class DataTableBuilder
 {
-    protected RowModifier $rowModifier;
     protected array $options = [];
 
     protected FormBuilderInterface $filterBuilder;
     protected array $actionsData = [];
-    protected array $bulkActionsData = [];
-
     protected array $columnsData = [];
 
     protected ?array $adapterData = null;
@@ -39,7 +35,6 @@ class DataTableBuilder
         protected DataTableType $type,
         array $options = []
     ) {
-        $this->rowModifier = new RowModifier();
         $this->resolveOptions($options);
 
         $this->filterBuilder = $formFactory->createNamedBuilder(
@@ -123,31 +118,6 @@ class DataTableBuilder
         return isset($this->actionsData[$name]);
     }
 
-    // Bulk Action Api
-
-    public function addBulkAction(string $name, string $type = ActionType::class, array $options = []): self
-    {
-        $options['send_state'] = true;
-        $this->bulkActionsData[$name] = [
-            'type' => $type,
-            'options' => $options
-        ];
-
-        return $this;
-    }
-
-    public function removeBulkAction(string $name): self
-    {
-        unset($this->bulkActionsData[$name]);
-
-        return $this;
-    }
-
-    public function hasBulkAction(string $name): bool
-    {
-        return isset($this->bulkActionsData[$name]);
-    }
-
     // Column Api
 
     public function add(string $name, string $type = PropertyColumnType::class, array $options = []): self
@@ -218,58 +188,13 @@ class DataTableBuilder
         return $this;
     }
 
-    // Row Modifier
-
-    public function setRowId($rowId): self
-    {
-        $this->rowModifier->setId($rowId);
-
-        return $this;
-    }
-
-    public function setParentRowId($parentRowId): self
-    {
-        $this->rowModifier->setParentId($parentRowId);
-
-        return $this;
-    }
-
-    public function setRowClass($rowClass): self
-    {
-        $this->rowModifier->setClass($rowClass);
-
-        return $this;
-    }
-
-    public function setRowAttr($rowAttr): self
-    {
-        $this->rowModifier->setAttr($rowAttr);
-
-        return $this;
-    }
-
-    public function setRowSelectable($rowSelectable): self
-    {
-        $this->rowModifier->setSelectable($rowSelectable);
-
-        return $this;
-    }
-
     private function createSelectColumn(): Column
     {
         return $this->factory->createColumn('__select__', ColumnType::class, [
-            'label' => DataTableType::SELECT_MULTIPLE === $this->options['select']
-                ? '<div class="select-handle"><input class="form-check-input" type="checkbox"></div>' : null,
-            'render_html' => function ($rowData) {
-                if ($this->rowModifier->isSelectable($rowData)) {
-                    return DataTableType::SELECT_MULTIPLE === $this->options['select']
-                        ? '<div class="select-handle"><input class="form-check-input" type="checkbox"></div>'
-                        : '<div class="select-handle"><input class="form-check-input" type="radio"></div>';
-                } else {
-                    return '';
-                }
-            },
-            'class' => 'py-0',
+            'class' => 'js-toggle-select row-select',
+            'translation_domain' => false,
+            'label' => null,
+            'render_html' => fn ($rowData) => '<input class="form-check-input" type="checkbox">',
             'width' => '60px'
         ]);
     }
@@ -281,7 +206,7 @@ class DataTableBuilder
         // resolve column
         $columns = [];
 
-        if (false !== $this->options['select']) {
+        if ($this->options['selectable']) {
             $columns[] = $this->createSelectColumn();
         }
 
@@ -302,23 +227,17 @@ class DataTableBuilder
             $resolvedActions[] = $this->factory->createAction($name, $actionData['type'], $actionData['options']);
         }
 
-        $resolvedBulkActions = [];
-        foreach ($this->bulkActionsData as $name => $bulkActionData) {
-            $resolvedBulkActions[] = $this->factory->createAction($name, $bulkActionData['type'], $bulkActionData['options']);
-        }
-
         $toolbar = new Toolbar(
             $this->filterBuilder->getForm(),
             $resolvedActions,
-            $resolvedBulkActions,
             $this->options
         );
 
         return new DataTable(
+            $this->type,
             $toolbar,
             $columns,
             $adapter,
-            $this->rowModifier,
             $this->options
         );
     }

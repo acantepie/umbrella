@@ -2,10 +2,10 @@
   "entrypoints": {
     "admin": {
       "js": [
-        "/bundles/umbrellaadmin/admin.js?0ddf4d6077db7a854b58"
+        "/bundles/umbrellaadmin/admin.js?5c0b85142c9844b8f97f"
       ],
       "css": [
-        "/bundles/umbrellaadmin/admin.css?34425b5325ca6ef4155c"
+        "/bundles/umbrellaadmin/admin.css?d9423c5bcba3fee11e3e"
       ]
     }
   }

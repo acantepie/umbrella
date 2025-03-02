@@ -30,16 +30,13 @@ class BooleanColumnType extends PropertyColumnType
             );
     }
 
-    public function isSafeHtml(): bool
-    {
-        return true;
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 
         $resolver
+            ->setDefault('is_safe_html', true)
+
             ->setDefault('strict_comparison', false)
             ->setAllowedTypes('strict_comparison', 'bool')
 

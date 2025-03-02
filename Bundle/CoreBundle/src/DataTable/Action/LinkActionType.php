@@ -9,6 +9,9 @@ use Twig\Environment;
 
 class LinkActionType extends ActionType
 {
+    public const DISPLAY_SELECTION = 'selection';
+    public const DISPLAY_NO_SELECTION = 'no_selection';
+
     public function __construct(protected readonly RouterInterface $router)
     {
     }
@@ -17,6 +20,14 @@ class LinkActionType extends ActionType
     {
         $vars = [];
         $vars['attr']['href'] = '';
+
+        if ($options['display']) {
+            $vars['attr']['data-display'] = $options['display'];
+
+            if ('selection' === $options['display']) {
+                $vars['attr']['hidden'] = true;
+            }
+        }
 
         $url = $options['route'] ? $this->router->generate($options['route'], $options['route_params']) : (string) $options['url'];
 
@@ -102,5 +113,9 @@ class LinkActionType extends ActionType
         $resolver
             ->setDefault('spinner', false)
             ->setAllowedTypes('spinner', 'bool');
+
+        $resolver
+            ->setDefault('display', null)
+            ->setAllowedValues('display', [null, self::DISPLAY_SELECTION, self::DISPLAY_NO_SELECTION]);
     }
 }

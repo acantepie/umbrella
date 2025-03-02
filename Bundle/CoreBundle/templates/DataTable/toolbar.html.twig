@@ -20,15 +20,4 @@
             {%- endfor -%}
         </div>
     </div>
-
-    <div class="toolbar-row js-bulk-widget toolbar-bulk-row bg-light" hidden>
-        <div class="toolbar-info js-select-info"></div>
-        <div class="toolbar-actions ms-4">
-            {%- for action in toolbar.bulkActions -%}
-                <div class="toolbar-action">
-                    {{- render_action(action) -}}
-                </div>
-            {%- endfor -%}
-        </div>
-    </div>
 </div>

@@ -4,7 +4,7 @@ import 'datatables.net-bs5';
 
 import i18n from './DataTable.i18n.js';
 
-import SelectablePlugin from './plugin/SelectablePlugin';
+import SelectPlugin from './plugin/SelectPlugin';
 import RowDetailsPlugin from './plugin/RowDetailsPlugin';
 import TreePlugin from './plugin/TreePlugin';
 import AjaxUtils from '../utils/AjaxUtils';
@@ -40,8 +40,8 @@ export default class UmbrellaDataTable extends HTMLElement {
         this._bindForm()
 
         // Plugins
-        if (this.options['select']) {
-            this.registerPlugin(new SelectablePlugin(this.options['select']))
+        if (this.options['selectable']) {
+            this.registerPlugin(new SelectPlugin())
         }
 
         if (this.options['tree']) {

@@ -31,7 +31,7 @@ class DataTableRenderer
 
         if ($options['tree']) {
             $jsOptions['tree'] = [
-                'expanded' => $options['tree_expanded']
+                'columnIdx' => $options['tree_column_index']
             ];
         }
 
@@ -51,12 +51,6 @@ class DataTableRenderer
             'method' => $options['method']
         ];
 
-        if (false !== $options['select']) {
-            $jsOptions['select'] = [
-                'multiple' => DataTableType::SELECT_MULTIPLE === $options['select']
-            ];
-        }
-
         if ($options['paging']) {
             $jsOptions['lengthChange'] = $options['length_change'];
             $jsOptions['pageLength'] = $options['page_length'];
@@ -72,6 +66,7 @@ class DataTableRenderer
         $jsOptions['stripeClasses'] = $options['stripe_class'];
         $jsOptions['dom'] = $options['dom'];
         $jsOptions['ordering'] = $options['orderable'];
+        $jsOptions['selectable'] = $options['selectable'];
 
         // columns options
         $jsOptions['columns'] = [];
@@ -92,11 +87,11 @@ class DataTableRenderer
         }
 
         $vars = [];
+        $vars['selectable'] = $options['selectable'];
         $vars['toolbar'] = [
             'template' => $options['toolbar_template'],
             'form' => $dataTable->getToolbar()->getForm()->createView(),
-            'actions' => $dataTable->getToolbar()->getActions(),
-            'bulkActions' => $dataTable->getToolbar()->getBulkActions()
+            'actions' => $dataTable->getToolbar()->getActions()
         ];
         $vars['template'] = $options['template'];
         $vars['id'] = $options['id'];

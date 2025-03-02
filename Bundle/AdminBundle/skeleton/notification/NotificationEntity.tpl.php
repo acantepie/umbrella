@@ -10,7 +10,7 @@ use Umbrella\AdminBundle\Entity\BaseNotification;
 class <?= $class_name ?> extends BaseNotification
 {
 //    /**
-//     * @var ArrayCollection|AdminUser[]
+//     * @var ArrayCollection<int, AdminUser>
 //     */
 //    #[ORM\ManyToMany(targetEntity: AdminUser::class)]
 //    #[ORM\JoinColumn(onDelete: 'CASCADE')]

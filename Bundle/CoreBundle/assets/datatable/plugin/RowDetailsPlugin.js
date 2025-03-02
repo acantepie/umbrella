@@ -10,37 +10,32 @@ export default class RowDetailsPlugin {
     configure(umbrellaDatatable) {
         this.umbrellaDatatable = umbrellaDatatable
 
-        umbrellaDatatable.datatable.on('draw', () => {
+        this.umbrellaDatatable.datatable.on('draw', () => {
+            this.umbrellaDatatable.tbody.querySelectorAll('.js-toggle-child-row-btn').forEach($btn => this._bind($btn))
+        })
 
-            umbrellaDatatable.tbody.querySelectorAll('.details-handle').forEach(action => {
-                action.addEventListener('click', (e) => {
-                    e.preventDefault()
-                    this.__toggleDetails(action)
-                })
+    }
 
-                if ('true' === action.ariaExpanded) {
-                    this.__toggleDetails(action)
+    _bind($btn) {
+        $btn.addEventListener('click', evt => {
+            evt.preventDefault()
+            const $row = $btn.closest('tr')
+            const row = this.umbrellaDatatable.datatable.row($row)
+
+            const html = $btn.firstElementChild.innerHTML
+
+            if (row) {
+                if (row.child.isShown()) {
+                    row.child.hide()
+                    $btn.classList.add('collapsed');
+                } else {
+                    row.child(html)
+                    row.child.show()
+                    $btn.classList.remove('collapsed');
                 }
-            })
+            }
         })
     }
 
-    __toggleDetails(action) {
-        const template = action.querySelector('template')
 
-        if (null === template) {
-            return;
-        }
-
-        const row = action.closest('.dt-row')
-        const dataTableRow = this.umbrellaDatatable.datatable.row(row)
-
-        if (dataTableRow.child.isShown()) {
-            action.ariaExpanded = false
-            dataTableRow.child.hide()
-        } else {
-            action.ariaExpanded = true
-            dataTableRow.child(template.innerHTML).show()
-        }
-    }
 }

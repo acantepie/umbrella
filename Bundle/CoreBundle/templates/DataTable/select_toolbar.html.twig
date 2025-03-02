@@ -1,0 +1,19 @@
+<div class="js-select-toolbar select-toolbar border-top border-bottom d-flex gap-3 align-items-center bg-light mt-2">
+    <input class="form-check-input js-toggle-select-page m-0" type="checkbox">
+    <div class="js-select-info"></div>
+
+    <div class="ms-auto d-flex gap-2 align-items-center">
+        <a href="#" class="js-unselect-all" hidden><i class="uil-times"></i> {{ 'Clear selection' | trans }}</a>
+
+        <div class="vr"></div>
+        <div class="dropdown">
+            <a href="#" data-bs-toggle="dropdown">
+                <i class="uil-ellipsis-v"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item js-select-page" href="#">{{ 'Select page' | trans }}</a></li>
+                <li><a class="dropdown-item js-unselect-page" href="#">{{ 'Unselect page' | trans }}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

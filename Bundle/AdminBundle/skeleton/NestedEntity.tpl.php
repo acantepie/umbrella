@@ -9,11 +9,10 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Umbrella\CoreBundle\Model\IdTrait;
-use Umbrella\CoreBundle\Model\NestedTreeEntityInterface;
 
 #[ORM\Entity(repositoryClass: <?= $repository->getShortName() ?>::class)]
 #[Gedmo\Tree(type: 'nested')]
-class <?= $class_name ?> implements NestedTreeEntityInterface, \Stringable
+class <?= $class_name ?>
 {
     use IdTrait;
 
@@ -40,76 +39,30 @@ class <?= $class_name ?> implements NestedTreeEntityInterface, \Stringable
     public ?<?= $class_name ?> $parent = null;
 
     /**
-     * @var <?= $class_name ?>[]|ArrayCollection
+     * @var ArrayCollection<int, <?= $class_name ?>>
      */
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: <?= $class_name ?>::class, cascade: ['ALL'])]
     #[ORM\OrderBy(['left' => 'ASC'])]
     public Collection $children;
 
-    /**
-     * <?= $class_name ?> constructor.
-     */
     public function __construct()
     {
         $this->children = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function addChild(<?= $class_name ?> $child): void
     {
-        return $this->id;
-    }
-
-    public function getLevel(): int
-    {
-        return $this->level;
-    }
-
-    /**
-     * @return ?<?= $class_name . "\n" ?>
-     */
-    public function getParent(): ?NestedTreeEntityInterface
-    {
-        return $this->parent;
-    }
-
-    /**
-     * @param ?<?= $class_name ?> $parent
-     */
-    public function setParent(?NestedTreeEntityInterface $parent)
-    {
-        $this->parent = $parent;
-    }
-
-    /**
-     * @return <?= $class_name ?>[]|ArrayCollection
-     */
-    public function getChildren(): Collection
-    {
-        return $this->children;
-    }
-
-    /**
-     * @param <?= $class_name ?> $child
-     */
-    public function addChild(NestedTreeEntityInterface $child)
-    {
-        $child->setParent($this);
+        $child->parent = $this;
         $this->children->add($child);
     }
 
-    /**
-     * @param <?= $class_name ?> $child
-     */
-    public function removeChild(NestedTreeEntityInterface $child)
+    public function removeChild(<?= $class_name ?> $child): void
     {
-        $child->setParent(null);
+        $child->parent = null;
         $this->children->removeElement($child);
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return $this === $this->root ? '/' : (string) $this->id;
     }

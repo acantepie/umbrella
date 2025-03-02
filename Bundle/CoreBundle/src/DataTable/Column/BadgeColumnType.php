@@ -11,16 +11,12 @@ class BadgeColumnType extends PropertyColumnType
         return $value ? sprintf('<span class="badge %s">%s<span>', $options['badge_class'], htmlspecialchars($value)) : '';
     }
 
-    public function isSafeHtml(): bool
-    {
-        return true;
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 
         $resolver
+            ->setDefault('is_safe_html', true)
             ->setDefault('badge_class', 'bg-primary')
             ->setAllowedTypes('badge_class', ['null', 'string']);
     }
