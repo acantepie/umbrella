@@ -1,7 +1,7 @@
 import AjaxUtils from 'umbrella_core/utils/AjaxUtils';
 
 export default function configureHandler(handler) {
-    handler.registerAction('show_toast', (params) => {
+    handler.registerAction('toast', (params) => {
         umbrella.Toast.show(params['type'], params['text'], params['title'], params['options']);
     });
 
