@@ -13,17 +13,17 @@ class BooleanColumnType extends PropertyColumnType
 
     public function renderProperty(mixed $value, array $options): string
     {
-        if ($options['strict_comparison'] && !is_bool($value)) {
+        if ($options['strict_comparison'] && !\is_bool($value)) {
             return '';
         }
 
         return $value
-            ? sprintf(
+            ? \sprintf(
                 '<span class="badge bg-success"><i class="%s"></i> %s</span>',
                 $options['yes_icon'],
                 $this->translator->trans($options['yes_value'])
             )
-            : sprintf(
+            : \sprintf(
                 '<span class="badge bg-danger"><i class="%s"></i> %s</span>',
                 $options['no_icon'],
                 $this->translator->trans($options['no_value'])

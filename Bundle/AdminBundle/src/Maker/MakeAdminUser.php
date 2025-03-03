@@ -97,7 +97,7 @@ class MakeAdminUser extends AbstractMaker
         $manipulator->setData($data);
         $this->helper->writeFileContents($configPath, $manipulator->getContents());
 
-        $io->writeln(sprintf(' <fg=yellow>updated</>: %s', $configPath));
+        $io->writeln(\sprintf(' <fg=yellow>updated</>: %s', $configPath));
     }
 
     private function updateSecurityConfig(SymfonyStyle $io, string $userClass): void
@@ -125,6 +125,6 @@ class MakeAdminUser extends AbstractMaker
         $manipulator->setData($data);
         $this->helper->writeFileContents($configPath, $manipulator->getContents());
 
-        $io->writeln(sprintf(' <fg=yellow>updated</>: %s', $configPath));
+        $io->writeln(\sprintf(' <fg=yellow>updated</>: %s', $configPath));
     }
 }

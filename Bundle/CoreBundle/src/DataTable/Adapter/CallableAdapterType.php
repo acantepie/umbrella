@@ -19,6 +19,6 @@ class CallableAdapterType extends AdapterType
 
     public function getResult(DataTableState $state, array $options): DataTableResult
     {
-        return call_user_func($options['callable'], $state);
+        return \call_user_func($options['callable'], $state);
     }
 }

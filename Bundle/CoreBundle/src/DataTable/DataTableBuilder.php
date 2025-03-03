@@ -146,11 +146,11 @@ class DataTableBuilder
 
     public function useAdapter($type, array $options = []): self
     {
-        if (!is_callable($type) && !is_string($type)) {
+        if (!\is_callable($type) && !\is_string($type)) {
             throw new \InvalidArgumentException('Invalid apadater type');
         }
 
-        if (is_callable($type)) {
+        if (\is_callable($type)) {
             $options = ['callable' => $type];
             $type = CallableAdapterType::class;
         }
@@ -165,20 +165,20 @@ class DataTableBuilder
 
     public function useEntityAdapter($options = []): self
     {
-        if (!is_string($options) && !is_array($options)) {
+        if (!\is_string($options) && !\is_array($options)) {
             throw new \InvalidArgumentException('Options must be of an array or string');
         }
 
-        return $this->useAdapter(EntityAdapterType::class, is_string($options) ? ['class' => $options] : $options);
+        return $this->useAdapter(EntityAdapterType::class, \is_string($options) ? ['class' => $options] : $options);
     }
 
     public function useNestedEntityAdapter($options = []): self
     {
-        if (!is_string($options) && !is_array($options)) {
+        if (!\is_string($options) && !\is_array($options)) {
             throw new \InvalidArgumentException('Options must be of an array or string');
         }
 
-        return $this->useAdapter(NestedEntityAdapterType::class, is_string($options) ? ['class' => $options] : $options);
+        return $this->useAdapter(NestedEntityAdapterType::class, \is_string($options) ? ['class' => $options] : $options);
     }
 
     public function clearAdapter(): self

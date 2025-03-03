@@ -22,7 +22,7 @@ class UmbrellaChoiceType extends AbstractType
         $jsOptions = $this->configurator->getJsOptions($options);
 
         $view->vars['attr']['is'] = 'umbrella-select';
-        $view->vars['attr']['data-options'] = json_encode($jsOptions, JSON_THROW_ON_ERROR);
+        $view->vars['attr']['data-options'] = json_encode($jsOptions, \JSON_THROW_ON_ERROR);
 
         // never expand
         $view->vars['expanded'] = false;
@@ -35,7 +35,7 @@ class UmbrellaChoiceType extends AbstractType
             $view->vars['placeholder'] = '';
         }
 
-        if (is_callable($options['expose'])) {
+        if (\is_callable($options['expose'])) {
             foreach ($view->vars['choices'] as &$choice) {
                 if ($choice instanceof ChoiceView) {
                     $data = $this->getSerializedData($options['expose']($choice->data, $options));
@@ -53,7 +53,7 @@ class UmbrellaChoiceType extends AbstractType
             return null;
         }
 
-        return json_encode($data, JSON_THROW_ON_ERROR);
+        return json_encode($data, \JSON_THROW_ON_ERROR);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

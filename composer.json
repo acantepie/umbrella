@@ -7,9 +7,9 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "doctrine/doctrine-fixtures-bundle": "^4.0.0",
         "doctrine/dbal": "^3.9.4",
         "doctrine/doctrine-bundle": "^2.13.2",
+        "doctrine/doctrine-fixtures-bundle": "^4.0.0",
         "doctrine/orm": "^3.3.2",
         "friendsofphp/php-cs-fixer": "^3.70",
         "knplabs/knp-time-bundle": "^2.4",
@@ -55,6 +55,12 @@
             "Umbrella\\CoreBundle\\": "Bundle/CoreBundle/src",
             "Umbrella\\CoreBundle\\Tests\\": "Bundle/CoreBundle/tests/",
             "Umbrella\\CoreBundle\\Tests\\App\\": "Bundle/CoreBundle/tests/App/src/"
+        }
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "6.4.*"
         }
     }
 }

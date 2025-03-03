@@ -76,7 +76,7 @@ class DataTableType
             ->setAllowedTypes('load_route_params', 'array');
 
         $resolver
-            ->setDefault('toolbar_form_name', fn (Options $options) => sprintf('%s_tbf', $options['id']))
+            ->setDefault('toolbar_form_name', fn (Options $options) => \sprintf('%s_tbf', $options['id']))
             ->setAllowedTypes('toolbar_form_name', 'string')
 
             ->setDefault('toolbar_form_options', [

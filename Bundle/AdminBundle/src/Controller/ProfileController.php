@@ -26,7 +26,7 @@ class ProfileController extends BaseController
         $user = $this->getUser();
 
         if (!$user instanceof BaseAdminUser) {
-            throw new NotFoundHttpException(sprintf('Profile view are only available for fully authenticate %s user.', BaseAdminUser::class));
+            throw new NotFoundHttpException(\sprintf('Profile view are only available for fully authenticate %s user.', BaseAdminUser::class));
         }
 
         $settingsForm = $this->createForm($this->config->userProfileForm(), $user);

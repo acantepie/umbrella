@@ -25,7 +25,7 @@ class UmbrellaNotificationPass implements CompilerPassInterface
 
         // Check implements right interface (Probably a hack ...)
         if (!isset(class_implements($d->getClass())[NotificationProviderInterface::class])) {
-            throw new LogicException(sprintf('Service "%s" must extends interface "%s"', $d->getClass(), NotificationProviderInterface::class));
+            throw new LogicException(\sprintf('Service "%s" must extends interface "%s"', $d->getClass(), NotificationProviderInterface::class));
         }
 
         if (isset(class_parents($d->getClass())[BaseNotificationProvider::class])) {

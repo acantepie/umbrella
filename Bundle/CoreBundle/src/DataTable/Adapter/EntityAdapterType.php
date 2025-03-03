@@ -63,7 +63,7 @@ class EntityAdapterType extends DoctrineAdapterType
             ->select($options['query_alias'])
             ->from($options['class'], $options['query_alias']);
 
-        if (is_callable($options['query'])) {
+        if (\is_callable($options['query'])) {
             $options['query']($qb, $formData);
         }
 
@@ -86,7 +86,7 @@ class EntityAdapterType extends DoctrineAdapterType
         foreach ($orderBy as $dqlPath) {
             // if path is not a sub property path, prefix it by alias
             if (!str_contains($dqlPath, '.')) {
-                $dqlPath = sprintf('%s.%s', $options['query_alias'], $dqlPath);
+                $dqlPath = \sprintf('%s.%s', $options['query_alias'], $dqlPath);
             }
 
             $qb->addOrderBy($dqlPath, strtoupper($direction));

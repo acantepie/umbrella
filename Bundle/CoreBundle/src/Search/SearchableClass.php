@@ -44,7 +44,7 @@ class SearchableClass
         }
 
         $searchableAttrs = $refClass->getAttributes(Searchable::class, \ReflectionAttribute::IS_INSTANCEOF);
-        if (0 === count($searchableAttrs)) {
+        if (0 === \count($searchableAttrs)) {
             throw new UnsupportedClassException($class);
         }
 
@@ -54,19 +54,19 @@ class SearchableClass
 
         $properties = [];
         foreach ($refClass->getProperties() as $refProp) {
-            if (count($refProp->getAttributes(SearchableField::class, \ReflectionAttribute::IS_INSTANCEOF)) > 0) {
+            if (\count($refProp->getAttributes(SearchableField::class, \ReflectionAttribute::IS_INSTANCEOF)) > 0) {
                 $properties[] = $refProp->getName();
             }
         }
 
         $methods = [];
         foreach ($refClass->getMethods() as $refMethod) {
-            if (count($refMethod->getAttributes(SearchableField::class, \ReflectionAttribute::IS_INSTANCEOF)) > 0) {
+            if (\count($refMethod->getAttributes(SearchableField::class, \ReflectionAttribute::IS_INSTANCEOF)) > 0) {
                 $methods[] = $refMethod->getName();
             }
         }
 
-        return new SearchableClass($class, $searchField, $properties, $methods);
+        return new self($class, $searchField, $properties, $methods);
     }
 
     public function getEntityClass(): string

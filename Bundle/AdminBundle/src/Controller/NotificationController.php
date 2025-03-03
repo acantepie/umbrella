@@ -13,7 +13,7 @@ class NotificationController extends BaseController
     {
         $notifications = $provider->collect();
 
-        if (0 === count($notifications)) {
+        if (0 === \count($notifications)) {
             return new JsonResponse([
                 'count' => 0,
                 'html' => $this->renderView('@UmbrellaAdmin/Notification/empty.html.twig')
@@ -28,7 +28,7 @@ class NotificationController extends BaseController
         }
 
         return new JsonResponse([
-            'count' => count($notifications),
+            'count' => \count($notifications),
             'notifications' => $notificationData
         ]);
     }

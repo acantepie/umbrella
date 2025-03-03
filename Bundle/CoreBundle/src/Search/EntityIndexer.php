@@ -59,10 +59,10 @@ class EntityIndexer
         }
 
         if ($this->logger) {
-            $this->logger->info(sprintf('>> Index %s', $searchableClass->getEntityClass()));
+            $this->logger->info(\sprintf('>> Index %s', $searchableClass->getEntityClass()));
         }
 
-        $query = $this->em->createQuery(sprintf('SELECT e FROM %s e', $searchableClass->getEntityClass()));
+        $query = $this->em->createQuery(\sprintf('SELECT e FROM %s e', $searchableClass->getEntityClass()));
 
         $i = 1;
         foreach ($query->toIterable() as $entity) {
@@ -73,7 +73,7 @@ class EntityIndexer
                 $this->em->clear();
 
                 if ($this->logger) {
-                    $this->logger->info(sprintf('... ... ... %d', $i));
+                    $this->logger->info(\sprintf('... ... ... %d', $i));
                 }
             }
             ++$i;
@@ -83,7 +83,7 @@ class EntityIndexer
         $this->em->clear();
 
         if ($this->logger) {
-            $this->logger->info(sprintf('> Total : %s', $i));
+            $this->logger->info(\sprintf('> Total : %s', $i));
         }
     }
 

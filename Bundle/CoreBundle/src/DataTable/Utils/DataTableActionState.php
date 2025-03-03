@@ -12,7 +12,7 @@ class DataTableActionState implements \Serializable
 
     public static function create(array $data): self
     {
-        return new DataTableActionState($data);
+        return new self($data);
     }
 
     public static function createFromRequest(Request $request): self

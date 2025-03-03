@@ -37,8 +37,8 @@ class MenuExtension extends AbstractExtension
             $menuItem = $menuItem->getParent();
         }
 
-        $menuTitleParts = \array_reverse($menuTitleParts);
+        $menuTitleParts = array_reverse($menuTitleParts);
 
-        return \implode($separator, $menuTitleParts);
+        return implode($separator, $menuTitleParts);
     }
 }

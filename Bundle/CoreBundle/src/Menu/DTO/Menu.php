@@ -30,19 +30,19 @@ class Menu
         return $this->current;
     }
 
-    public function setCurrent(?MenuItem $current): Menu
+    public function setCurrent(?MenuItem $current): self
     {
         $this->current = $current;
         return $this;
     }
 
-    public function addVisitor(string $visitorName): Menu
+    public function addVisitor(string $visitorName): self
     {
         $this->visitors[] = $visitorName;
         return $this;
     }
 
-    public function clearVisitors(): Menu
+    public function clearVisitors(): self
     {
         $this->visitors = [];
         return $this;

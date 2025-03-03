@@ -49,7 +49,7 @@ class FormTypeExtension extends AbstractTypeExtension
             ->setAllowedTypes('input_prefix', ['null', 'string'])
             ->setNormalizer('input_prefix', function (Options $options, $value) {
                 if ($options['input_prefix_text']) {
-                    return sprintf('<span class="input-group-text">%s</span>', $options['input_prefix_text']);
+                    return \sprintf('<span class="input-group-text">%s</span>', $options['input_prefix_text']);
                 }
 
                 return $value;
@@ -59,7 +59,7 @@ class FormTypeExtension extends AbstractTypeExtension
             ->setAllowedTypes('input_suffix', ['null', 'string'])
             ->setNormalizer('input_suffix', function (Options $options, $value) {
                 if ($options['input_suffix_text']) {
-                    return sprintf('<span class="input-group-text">%s</span>', $options['input_suffix_text']);
+                    return \sprintf('<span class="input-group-text">%s</span>', $options['input_suffix_text']);
                 }
 
                 return $value;

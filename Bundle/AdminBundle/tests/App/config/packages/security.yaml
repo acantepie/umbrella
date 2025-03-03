@@ -1,6 +1,6 @@
 security:
     password_hashers:
-        Umbrella\AdminBundle\Tests\TestApp\App\AdminUser: 'sodium'
+        Umbrella\AdminBundle\Tests\App\Entity\AdminUser: 'sodium'
 
     providers:
         entity_provider:

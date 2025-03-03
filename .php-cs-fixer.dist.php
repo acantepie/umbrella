@@ -9,6 +9,7 @@ return $config
     ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRules([
         '@Symfony' => true,
+        '@Symfony:risky' => true,
         'phpdoc_summary' => false,
         'no_unneeded_final_method' => false,
         'no_superfluous_phpdoc_tags' => true,

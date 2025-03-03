@@ -203,7 +203,7 @@ class JsResponse extends Response
 
     public function call(string $method, array $methodParams, string $cssSelector): self
     {
-        if (!\array_is_list($methodParams)) {
+        if (!array_is_list($methodParams)) {
             throw new \InvalidArgumentException('JsResponse::call() "$methodParams" must be a list.');
         }
 
@@ -222,7 +222,7 @@ class JsResponse extends Response
     // lazy content - write it only if sent
     public function sendContent(): static
     {
-        $this->content = \json_encode($this->messages);
+        $this->content = json_encode($this->messages);
         return parent::sendContent();
     }
 }

@@ -95,6 +95,6 @@ class MakeHome extends AbstractMaker
         $manipulator->setData($data);
 
         $this->helper->writeFileContents($configPath, $manipulator->getContents());
-        $io->writeln(sprintf(' <fg=yellow>updated</>: %s', $configPath));
+        $io->writeln(\sprintf(' <fg=yellow>updated</>: %s', $configPath));
     }
 }

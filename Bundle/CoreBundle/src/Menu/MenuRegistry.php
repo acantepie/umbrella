@@ -27,7 +27,7 @@ class MenuRegistry
     public function getType(string $name): MenuType
     {
         if (!isset($this->types[$name])) {
-            throw new \InvalidArgumentException(sprintf('Menu "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(\sprintf('Menu "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->types[$name];
@@ -41,7 +41,7 @@ class MenuRegistry
     public function getVisitor(string $name): MenuVisitor
     {
         if (!isset($this->visitors[$name])) {
-            throw new \InvalidArgumentException(sprintf('MenuVisitor "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(\sprintf('MenuVisitor "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->visitors[$name];

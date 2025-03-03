@@ -9,10 +9,10 @@ class DataTableResult
     public function __construct(protected iterable $data = [], ?int $count = null)
     {
         if (null === $count) {
-            if (!\is_countable($data)) {
+            if (!is_countable($data)) {
                 throw new \InvalidArgumentException('You must precise count argument if data is not countable');
             }
-            $this->count = count($data);
+            $this->count = \count($data);
         } else {
             $this->count = $count;
         }

@@ -53,7 +53,7 @@ abstract class BaseAdminUser implements EquatableInterface, \Serializable, UserI
 
     public function getFullName(): string
     {
-        return sprintf('%s %s', $this->firstname, $this->lastname);
+        return \sprintf('%s %s', $this->firstname, $this->lastname);
     }
 
     public function generateConfirmationToken(): void

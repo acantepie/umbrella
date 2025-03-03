@@ -44,14 +44,14 @@ class NestedEntityAdapterType extends DoctrineAdapterType
         $qb = $em->createQueryBuilder()
             ->select($options['query_alias'])
             ->from($options['class'], $options['query_alias'])
-            ->addOrderBy(sprintf('%s.%s', $options['query_alias'], $options['left_path']), 'ASC');
+            ->addOrderBy(\sprintf('%s.%s', $options['query_alias'], $options['left_path']), 'ASC');
 
         if ($options['min_level'] > 0) {
-            $qb->andWhere(sprintf('%s.%s >= :__minLevel__', $options['query_alias'], $options['level_path']));
+            $qb->andWhere(\sprintf('%s.%s >= :__minLevel__', $options['query_alias'], $options['level_path']));
             $qb->setParameter('__minLevel__', $options['min_level']);
         }
 
-        if (is_callable($options['query'])) {
+        if (\is_callable($options['query'])) {
             $options['query']($qb, $formData, $state->getDataTable()->getOptions());
         }
 

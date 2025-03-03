@@ -36,7 +36,7 @@ class Utils
         $units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
         $bytes = max($bytes, 0);
         $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-        $pow = min($pow, count($units) - 1);
+        $pow = min($pow, \count($units) - 1);
 
         $bytes /= 1024 ** $pow;
 
@@ -49,7 +49,7 @@ class Utils
 
     public static function array_merge_recursive()
     {
-        $args = func_get_args();
+        $args = \func_get_args();
 
         return self::_array_merge_recursive($args);
     }
@@ -63,9 +63,9 @@ class Utils
                 // Renumber integer keys as array_merge_recursive() does. Note that PHP
                 // automatically converts array keys that are integer strings (e.g., '1')
                 // to integers.
-                if (is_integer($key)) {
+                if (\is_int($key)) {
                     $result[] = $value;
-                } elseif (isset($result[$key]) && is_array($result[$key]) && is_array($value)) {
+                } elseif (isset($result[$key]) && \is_array($result[$key]) && \is_array($value)) {
                     $result[$key] = self::_array_merge_recursive([
                         $result[$key],
                         $value,

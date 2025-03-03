@@ -69,7 +69,7 @@ class UmbrellaCollectionType extends AbstractType
             $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use (&$orders) {
                 $data = $event->getData();
 
-                if (\is_iterable($data)) {
+                if (is_iterable($data)) {
                     $i = 0;
                     foreach ($event->getData() as $name => $_) {
                         $orders[$name] = ++$i;
@@ -80,7 +80,7 @@ class UmbrellaCollectionType extends AbstractType
             $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use (&$orders, $options) {
                 $data = $event->getData();
 
-                if (\is_iterable($data)) {
+                if (is_iterable($data)) {
                     $propertyAccessor = PropertyAccess::createPropertyAccessor();
                     foreach ($data as $name => &$item) {
                         $propertyAccessor->setValue($item, $options['sort_by'], $orders[$name]);

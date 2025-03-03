@@ -8,7 +8,7 @@ class BadgeColumnType extends PropertyColumnType
 {
     public function renderProperty(mixed $value, array $options): string
     {
-        return $value ? sprintf('<span class="badge %s">%s<span>', $options['badge_class'], htmlspecialchars($value)) : '';
+        return $value ? \sprintf('<span class="badge %s">%s<span>', $options['badge_class'], htmlspecialchars($value)) : '';
     }
 
     public function configureOptions(OptionsResolver $resolver): void

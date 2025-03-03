@@ -37,7 +37,7 @@ class IndexEntityCommand extends Command
     {
         if ($this->entityClass) {
             if (!$this->indexer->isIndexable($this->entityClass)) {
-                $this->io->error(sprintf('Entity class %s is not indexable', $this->entityClass));
+                $this->io->error(\sprintf('Entity class %s is not indexable', $this->entityClass));
 
                 return self::FAILURE;
             }

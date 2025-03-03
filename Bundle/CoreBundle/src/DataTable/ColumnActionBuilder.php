@@ -88,7 +88,7 @@ class ColumnActionBuilder
 
     public function add(string $type = ActionType::class, array $options = []): self
     {
-        $name = sprintf('action_%d', ++$this->idx);
+        $name = \sprintf('action_%d', ++$this->idx);
         $this->actionsData[$name] = [
             'type' => $type,
             'options' => $options

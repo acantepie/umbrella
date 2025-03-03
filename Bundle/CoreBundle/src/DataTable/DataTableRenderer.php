@@ -98,7 +98,7 @@ class DataTableRenderer
         $vars['attr'] = [
             'id' => $options['id'],
             'class' => $options['container_class'],
-            'data-options' => json_encode($jsOptions, JSON_THROW_ON_ERROR),
+            'data-options' => json_encode($jsOptions, \JSON_THROW_ON_ERROR),
         ];
         $vars['table_attr'] = [
             'class' => $options['class'] .= ' table js-datatable'
@@ -115,7 +115,7 @@ class DataTableRenderer
         $vars = [];
         $vars['attr'] = [
             'class' => $options['class'],
-            'style' => $options['width'] ? sprintf('width:%s', $options['width']) : null,
+            'style' => $options['width'] ? \sprintf('width:%s', $options['width']) : null,
         ];
 
         $vars['label'] = $options['label'];

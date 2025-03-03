@@ -15,7 +15,7 @@ class Breadcrumb implements \IteratorAggregate, \Countable
         return $this->name;
     }
 
-    public function add($data): Breadcrumb
+    public function add($data): self
     {
         if ($data instanceof BreadcrumbItem) {
             $this->items[] = $data;
@@ -26,7 +26,7 @@ class Breadcrumb implements \IteratorAggregate, \Countable
         return $this;
     }
 
-    public function clear(): Breadcrumb
+    public function clear(): self
     {
         $this->items = [];
 
@@ -56,6 +56,6 @@ class Breadcrumb implements \IteratorAggregate, \Countable
 
     public function count(): int
     {
-        return count($this->items);
+        return \count($this->items);
     }
 }

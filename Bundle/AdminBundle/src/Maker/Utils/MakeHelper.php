@@ -34,7 +34,7 @@ class MakeHelper
     public function askEntityClass(ConsoleStyle $io, ?string $default = null): string
     {
         if (null === $default) {
-            $question = new Question(sprintf('Class name of the entity to create (e.g. <fg=yellow>%s</>)', Str::asClassName(Str::getRandomTerm())));
+            $question = new Question(\sprintf('Class name of the entity to create (e.g. <fg=yellow>%s</>)', Str::asClassName(Str::getRandomTerm())));
         } else {
             $question = new Question('Class name of the entity to create', $default);
         }
@@ -50,7 +50,7 @@ class MakeHelper
      */
     public function getDefaultControllerClassFromEntityClass(string $entityClass): string
     {
-        return 'Admin\\' . Str::asClassName(sprintf('%s Controller', $entityClass));
+        return 'Admin\\' . Str::asClassName(\sprintf('%s Controller', $entityClass));
     }
 
     /**
@@ -84,7 +84,7 @@ class MakeHelper
 
     public function template(string $name): string
     {
-        return $this->baseTemplatePath . DIRECTORY_SEPARATOR . ltrim($name, DIRECTORY_SEPARATOR);
+        return $this->baseTemplatePath . \DIRECTORY_SEPARATOR . ltrim($name, \DIRECTORY_SEPARATOR);
     }
 
     public function getRouteConfig(ClassNameDetails $controller, ?string $basePath = null): array
@@ -129,7 +129,7 @@ class MakeHelper
 
     private function absolutizePath(string $path): string
     {
-        return sprintf('%s/%s', $this->rootDirectory, $path);
+        return \sprintf('%s/%s', $this->rootDirectory, $path);
     }
 
     public function fileExists(string $path): bool
@@ -140,7 +140,7 @@ class MakeHelper
     public function getFileContents(string $path): string
     {
         if (!$this->fileExists($path)) {
-            throw new \InvalidArgumentException(sprintf('Cannot find file "%s"', $path));
+            throw new \InvalidArgumentException(\sprintf('Cannot find file "%s"', $path));
         }
 
         return file_get_contents($this->absolutizePath($path));

@@ -49,7 +49,7 @@ class Toolbar
         // Limitation
         // To avoid error on adapter - Toolbar only accept array data from FormType
 
-        if (null !== $data && !is_array($data)) {
+        if (null !== $data && !\is_array($data)) {
             throw new \InvalidArgumentException('Toolbar can only handle array form::getData()');
         }
 
@@ -62,7 +62,7 @@ class Toolbar
     {
         $name = $this->form->getName();
 
-        if (isset($data[$name]) && is_array($data[$name])) {
+        if (isset($data[$name]) && \is_array($data[$name])) {
             $this->form->submit($data[$name]);
         }
 

@@ -120,7 +120,7 @@ class DataTable
             }
 
             if ($this->options['tree']) {
-                $parentId = $accessor->getValue($object, sprintf('%s?.%s', $this->options['parent_path'], $this->options['id_path']));
+                $parentId = $accessor->getValue($object, \sprintf('%s?.%s', $this->options['parent_path'], $this->options['id_path']));
                 if (null !== $parentId) {
                     $view->attr['data-parent-id'] = $parentId;
                 }

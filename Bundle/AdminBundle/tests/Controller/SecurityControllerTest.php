@@ -9,6 +9,7 @@ class SecurityControllerTest extends AppTestCase
     public function testLogin(): void
     {
         $client = static::createClient();
+        static::initDb($client->getKernel());
 
         $crawler = $client->request('GET', '/login');
 
@@ -31,6 +32,7 @@ class SecurityControllerTest extends AppTestCase
     public function testInvalidCredentialsLogin(): void
     {
         $client = static::createClient();
+        static::initDb($client->getKernel());
 
         $crawler = $client->request('GET', '/login');
 
@@ -50,6 +52,7 @@ class SecurityControllerTest extends AppTestCase
     public function testDisabledAccountLogin(): void
     {
         $client = static::createClient();
+        static::initDb($client->getKernel());
 
         $crawler = $client->request('GET', '/login');
 

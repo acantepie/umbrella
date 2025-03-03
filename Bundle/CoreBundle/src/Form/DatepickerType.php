@@ -26,7 +26,7 @@ class DatepickerType extends AbstractType
             'maxDate' => $this->toDate($options['max'], $options['format'])
         ];
 
-        $view->vars['attr']['data-options'] = json_encode($jsOptions, JSON_THROW_ON_ERROR);
+        $view->vars['attr']['data-options'] = json_encode($jsOptions, \JSON_THROW_ON_ERROR);
 
         parent::buildView($view, $form, $options);
     }
@@ -35,7 +35,7 @@ class DatepickerType extends AbstractType
     {
         $builder->addModelTransformer(new CallbackTransformer(
             function ($value) use ($options) {
-                if (\is_a($value, \DateTimeInterface::class)) {
+                if (is_a($value, \DateTimeInterface::class)) {
                     return $value->format($options['format']);
                 }
 
@@ -78,11 +78,11 @@ class DatepickerType extends AbstractType
 
     private function toDate($value, string $outputFormat = 'Y-m-d'): ?string
     {
-        if (is_string($value)) {
+        if (\is_string($value)) {
             $value = new \DateTime($value);
         }
 
-        if (!\is_a($value, \DateTimeInterface::class)) {
+        if (!is_a($value, \DateTimeInterface::class)) {
             return null;
         }
 

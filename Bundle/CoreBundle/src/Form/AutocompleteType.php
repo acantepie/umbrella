@@ -42,7 +42,7 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
 
         $view->vars['compound'] = false; // avoid scary <legend> tag when render form ...
         $view->vars['attr']['is'] = 'umbrella-select';
-        $view->vars['attr']['data-options'] = json_encode($jsOptions, JSON_THROW_ON_ERROR);
+        $view->vars['attr']['data-options'] = json_encode($jsOptions, \JSON_THROW_ON_ERROR);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

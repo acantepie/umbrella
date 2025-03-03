@@ -82,9 +82,9 @@ class NestedEntityType extends AbstractType
 
         $resolver->setDefault('query_builder', fn (Options $options) => function (EntityRepository $er) use ($options) {
             return $er->createQueryBuilder('e')
-                ->andWhere(sprintf('e.%s >= :min_level', $options['level_path']))
+                ->andWhere(\sprintf('e.%s >= :min_level', $options['level_path']))
                 ->setParameter('min_level', $options['min_level'])
-                ->orderBy(sprintf('e.%s', $options['left_path']), 'ASC');
+                ->orderBy(\sprintf('e.%s', $options['left_path']), 'ASC');
         });
     }
 

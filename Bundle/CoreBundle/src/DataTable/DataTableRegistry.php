@@ -46,7 +46,7 @@ class DataTableRegistry
     public function getType(string $name): DataTableType
     {
         if (!isset($this->types[$name])) {
-            throw new \InvalidArgumentException(sprintf('DataTableType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(\sprintf('DataTableType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->types[$name];
@@ -62,7 +62,7 @@ class DataTableRegistry
     public function getColumnType(string $name): ColumnType
     {
         if (!isset($this->columnTypes[$name])) {
-            throw new \InvalidArgumentException(sprintf('ColumnType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(\sprintf('ColumnType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->columnTypes[$name];
@@ -78,7 +78,7 @@ class DataTableRegistry
     public function getActionType(string $name): ActionType
     {
         if (!isset($this->actionTypes[$name])) {
-            throw new \InvalidArgumentException(sprintf('ActionType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(\sprintf('ActionType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->actionTypes[$name];
@@ -94,7 +94,7 @@ class DataTableRegistry
     public function getAdapterType(string $name): AdapterType
     {
         if (!isset($this->adaptersType[$name])) {
-            throw new \InvalidArgumentException(sprintf('AdapterType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
+            throw new \InvalidArgumentException(\sprintf('AdapterType "%s" doesn\'t exist, maybe you have forget to register it ?', $name));
         }
 
         return $this->adaptersType[$name];

@@ -15,7 +15,7 @@ class ActionColumnType extends ColumnType
     public function render(mixed $rowData, array $options): string
     {
         $builder = $this->factory->createColumnActionBuilder();
-        call_user_func($options['build'], $builder, $rowData, $options);
+        \call_user_func($options['build'], $builder, $rowData, $options);
         return $this->renderer->renderActions($builder->getActions());
     }
 

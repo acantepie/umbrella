@@ -17,7 +17,7 @@ class Column
 
     public function getDefaultOrder(): ?string
     {
-        return is_string($this->options['order']) ? $this->options['order'] : null;
+        return \is_string($this->options['order']) ? $this->options['order'] : null;
     }
 
     public function getOrderBy(): array
@@ -45,12 +45,12 @@ class Column
 
     public function render(mixed $rowData): string
     {
-        if (is_callable($this->options['render'])) {
+        if (\is_callable($this->options['render'])) {
             $value = (string) $this->options['render']($rowData, $this->options);
         } else {
             $value = $this->type->render($rowData, $this->options);
         }
 
-        return $this->options['is_safe_html'] ? $value : \htmlspecialchars($value);
+        return $this->options['is_safe_html'] ? $value : htmlspecialchars($value);
     }
 }

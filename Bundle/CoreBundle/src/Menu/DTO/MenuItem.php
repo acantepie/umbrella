@@ -52,7 +52,7 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     public function getCssId(): string
     {
-        return sprintf('menu-item-%s-%d', u($this->name)->snake(), $this->getLevel());
+        return \sprintf('menu-item-%s-%d', u($this->name)->snake(), $this->getLevel());
     }
 
     public function getMenu(): Menu
@@ -65,7 +65,7 @@ class MenuItem implements \Countable, \IteratorAggregate
         return $this->parent;
     }
 
-    public function setParent(?MenuItem $parent): self
+    public function setParent(?self $parent): self
     {
         $this->parent = $parent;
 
@@ -84,10 +84,10 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     public function hasChildren(): bool
     {
-        return count($this->children) > 0;
+        return \count($this->children) > 0;
     }
 
-    public function addChild(MenuItem $child): self
+    public function addChild(self $child): self
     {
         $child->parent = $this;
         $this->children[$child->name] = $child;
@@ -154,7 +154,7 @@ class MenuItem implements \Countable, \IteratorAggregate
         return !empty($this->badgeLabel);
     }
 
-    public function setBadge(string $badgeLabel, ?string $badgeClass = null): MenuItem
+    public function setBadge(string $badgeLabel, ?string $badgeClass = null): self
     {
         $this->badgeLabel = $badgeLabel;
         $this->badgeClass = $badgeClass;
@@ -282,6 +282,6 @@ class MenuItem implements \Countable, \IteratorAggregate
 
     public function count(): int
     {
-        return count($this->children);
+        return \count($this->children);
     }
 }

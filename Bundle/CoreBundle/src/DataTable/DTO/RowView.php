@@ -36,7 +36,7 @@ class RowView implements \JsonSerializable
             $this->attr['data-select'] = 'false';
         }
 
-        if (count($this->attr) > 0) {
+        if (\count($this->attr) > 0) {
             $json['DT_RowAttr'] = $this->attr;
         }
 
