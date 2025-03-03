@@ -54,7 +54,7 @@ export default class UmbrellaCollection extends HTMLElement {
         const template = document.createElement('tbody')
         template.innerHTML = this._prototype.replace(regexp, this.index.toString())
 
-        const rowElement = template.firstChild
+        const rowElement = template.firstElementChild
         const delAction = rowElement.querySelector('.js-del-item')
 
         if (delAction) {
