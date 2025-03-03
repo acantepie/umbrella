@@ -7,7 +7,7 @@ use Umbrella\AdminBundle\Entity\BaseNotification;
 interface NotificationProviderInterface
 {
     /**
-     * @return iterable|BaseNotification[]
+     * @return iterable<BaseNotification>
      */
     public function collect(): iterable;
 

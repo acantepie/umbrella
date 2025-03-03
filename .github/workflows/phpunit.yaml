@@ -9,7 +9,6 @@ on:
     paths:
       - 'Bundle/**'
       - 'composer.json'
-      - '.github/workflows/phpunit_maintained_symfony.yaml'
 
 jobs:
   phpunit:
