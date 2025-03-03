@@ -5,7 +5,6 @@ namespace Umbrella\CoreBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -20,7 +19,6 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
 
         $this->addFormSection($rootNode);
-        $this->ckeditorSection($rootNode);
         $this->datatableSection($rootNode);
 
         return $treeBuilder;
@@ -46,28 +44,6 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('group_class')
                     ->defaultValue('col-sm-10')
                     ->info('Default group class for horizontal bootstrap layout.')
-                    ->end();
-    }
-
-    private function ckeditorSection(ArrayNodeDefinition $rootNode): void
-    {
-        $rootNode->children()
-            ->arrayNode('ckeditor')->addDefaultsIfNotSet()
-            ->children()
-                ->scalarNode('asset')
-                    ->defaultNull()
-                    ->info('Name of javascript asset to load with CkeditorType.')
-                    ->end()
-                ->scalarNode('default_config')
-                    ->defaultValue('full')
-                    ->info('Default config to use on CkeditorType (if none specified on CkeditorType).')
-                    ->end()
-                ->arrayNode('configs')
-                    ->info('List of configs for CkeditorType @see Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration for example.')
-                    ->example(['my_custom_config' => CkeditorConfiguration::EXAMPLE_CONFIG])
-                    ->useAttributeAsKey('name')
-                    ->normalizeKeys(false)
-                    ->variablePrototype()
                     ->end();
     }
 

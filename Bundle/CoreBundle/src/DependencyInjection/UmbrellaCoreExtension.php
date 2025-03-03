@@ -6,7 +6,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
 use Umbrella\CoreBundle\DataTable\Adapter\AdapterType;
 use Umbrella\CoreBundle\DataTable\Column\ColumnType;
 use Umbrella\CoreBundle\DataTable\DataTableConfiguration;
@@ -32,10 +31,6 @@ class UmbrellaCoreExtension extends Extension
 
         $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.php');
-
-        $container
-            ->getDefinition(CkeditorConfiguration::class)
-            ->setArgument(0, $config['ckeditor']);
 
         $container
             ->register(DataTableConfiguration::class)

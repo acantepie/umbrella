@@ -1,9 +1,0 @@
-{% block ckeditor_widget %}
-    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
-    {% if asset_name %}
-        <script src="{{ asset(asset_name) }}"></script>
-    {% endif %}
-    <script type="text/javascript">
-        {{ render_ckeditor_js(form.vars.id, config) }}
-    </script>
-{% endblock %}

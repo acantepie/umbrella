@@ -19,22 +19,6 @@ umbrella_core:
 
         # Default group class for horizontal bootstrap layout.
         group_class:          col-sm-10
-    ckeditor:
-
-        # Name of javascript asset to load with CkeditorType.
-        asset:                null
-
-        # Default config to use on CkeditorType (if none specified).
-        default_config:       full
-
-        # List of configs for CkeditorType @see Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration for example.
-        configs:
-
-            # Example:
-            my_custom_config:    { toolbar: [{ name: clipboard, items: [Undo, Redo] }], uiColor: '#FEFEFE' }
-
-            # Prototype
-            name:                 []
     datatable:
 
         # Default page length for datatable.

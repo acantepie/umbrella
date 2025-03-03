@@ -3,8 +3,6 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Doctrine\ORM\Events;
-use Umbrella\CoreBundle\Ckeditor\CkeditorConfiguration;
-use Umbrella\CoreBundle\Ckeditor\CkeditorExtension;
 use Umbrella\CoreBundle\Command\IndexEntityCommand;
 use Umbrella\CoreBundle\DataTable\ActionRenderer;
 use Umbrella\CoreBundle\DataTable\DataTableFactory;
@@ -65,11 +63,6 @@ return static function (ContainerConfigurator $configurator): void {
 
     $services->load('Umbrella\\CoreBundle\\DataTable\\Action\\', '../src/DataTable/Action/*')
         ->tag(DataTableRegistry::TAG_ACTION_TYPE);
-
-    // -- Ckeditor -- //
-    $services->set(CkeditorConfiguration::class);
-    $services->set(CkeditorExtension::class)
-        ->tag('twig.extension');
 
     // -- Search -- //
     $services->set(IndexEntityCommand::class)
