@@ -4,7 +4,7 @@ Create user entity class with maker :
 php bin/console make:admin:user
 ```
 
-> :warning Disable XML validation for doctrine mapping, if you have error `libxml error: ....` when running command.
+> :warning: Disable XML validation for doctrine mapping, if you have error `libxml error: ....` when running command.
 ```yaml
 # config/packages/doctrine.yaml
 doctrine:
