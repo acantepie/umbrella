@@ -8,7 +8,9 @@
 If you plan to use Umbrella on a new project, [create a new Symfony app first](https://symfony.com/doc/current/setup.html#creating-symfony-applications) using this command : 
 
 ```bash
-composer create-project symfony/website-skeleton my_project_name
+composer create-project symfony/skeleton:"7.2.x" my_project_directory
+cd my_project_directory
+composer require webapp
 ```
 
 ## Installation

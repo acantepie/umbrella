@@ -71,8 +71,6 @@ Update doctrine schema `php bin/console doctrine:schema:update --force` \
 Et voila, now you have to be logged to access administration backends, moreover you can manage users.
 
 
-> :warning: If your entity isn't found by doctrine, make sure you have enabled [doctrine attributes](https://symfony.com/bundles/DoctrineBundle/current/configuration.html#mapping-configuration) (mapping type must be **attribute**)
-
 Run following command to create a new admin user:
 ```bash
 php bin/console umbrella:create:admin_user
