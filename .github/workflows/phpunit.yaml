@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         php-version: ['8.2']
-        symfony-version: ['6.4']
+        symfony-version: ['6.4', '7.2']
       fail-fast: false
 
     steps:
@@ -38,7 +38,9 @@ jobs:
         env:
           SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
         run: |
-          composer update --no-interaction --prefer-dist --optimize-autoloader --prefer-stable --no-progress
+          composer global config --no-plugins allow-plugins.symfony/flex true
+          composer global require symfony/flex
+          composer update --no-interaction --prefer-dist --no-progress
           vendor/bin/simple-phpunit install
 
       - name: 'Run tests'
