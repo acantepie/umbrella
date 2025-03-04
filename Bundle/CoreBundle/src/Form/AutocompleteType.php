@@ -72,12 +72,6 @@ class AutocompleteType extends AbstractType implements DataMapperInterface, Even
         $resolver
             ->setDefault('route_params', [])
             ->setAllowedTypes('route_params', 'array');
-        /*
-                $resolver
-                    ->setDefault('page_length', null)
-                    ->setAllowedTypes('page_length', ['null', 'int'])
-                    ->setAllowedValues('page_length', Validation::createIsValidCallable(new GreaterThanOrEqual(10)));
-        */
     }
 
     public function getBlockPrefix(): string
