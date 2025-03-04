@@ -70,7 +70,6 @@ Regenerate Symfony cache `php bin/console cache:clear` \
 Update doctrine schema `php bin/console doctrine:schema:update --force` \
 Et voila, now you have to be logged to access administration backends, moreover you can manage users.
 
-
 Run following command to create a new admin user:
 ```bash
 php bin/console umbrella:create:admin_user
