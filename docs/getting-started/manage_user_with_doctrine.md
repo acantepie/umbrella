@@ -4,6 +4,23 @@ Create user entity class with maker :
 php bin/console make:admin:user
 ```
 
+>:warning Disable XML validation for doctrine mapping, if you have error `libxml error: ....` when running command.
+```yaml
+# config/packages/doctrine.yaml
+doctrine:
+    orm:
+        validate_xml_mapping: false
+```
+
+Configure StofDoctrineExtensionsBundle :
+```yaml
+# config/packages/stof_doctrine_extensions.yaml
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true # enable timestampable listener
+```
+
 Configure firewall :
 ```yaml
 # config/packages/security.yaml
@@ -53,7 +70,7 @@ umbrella_admin_security_:
 
 ```
 
-Add entry on menu :
+Add entry on menu to manage admin user :
 ```php
 // src/Menu/AdminMenu.php
 public function buildMenu(MenuBuilder $builder, array $options)
