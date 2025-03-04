@@ -49,7 +49,7 @@ class MakeHelper
      */
     public function getDefaultControllerClassFromEntityClass(string $entityClass): string
     {
-        return Str::asClassName(\sprintf('%s Controller', $entityClass));
+        return 'Admin\\' . Str::asClassName(\sprintf('%s Controller', $entityClass));
     }
 
     /**

@@ -47,7 +47,7 @@ class MakeHome extends AbstractMaker
 
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
-        $controllerClass = $this->helper->askControllerClass($io, 'HomeController');
+        $controllerClass = $this->helper->askControllerClass($io, 'Admin\\HomeController');
 
         $controller = $generator->createClassNameDetails($controllerClass, 'Controller\\', 'Controller');
         $menu = $generator->createClassNameDetails('AdminMenu', 'Menu\\', 'Menu');

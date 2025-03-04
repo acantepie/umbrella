@@ -38,12 +38,12 @@
         "symfony/options-resolver": "^6.4|^7.0",
         "symfony/twig-bundle": "^6.4|^7.0",
         "symfony/yaml": "^6.4|^7.0",
-        "umbrella2/corebundle": "*",
+        "umbrella2/corebundle": "*|dev-master",
         "symfony/maker-bundle": "^1.36",
         "stof/doctrine-extensions-bundle": "^1.7"
     },
     "conflict": {
-        "umbrella2/corebundle": "<6.0"
+        "umbrella2/corebundle": "<6.4"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
