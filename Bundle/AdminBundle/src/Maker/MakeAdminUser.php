@@ -111,8 +111,6 @@ class MakeAdminUser extends AbstractMaker
         $manipulator = new YamlSourceManipulator($configContent);
         $data = $manipulator->getData();
 
-        $data['security']['enable_authenticator_manager'] = true;
-
         // password hashers
         $data['security']['password_hashers'][$userClass] = 'auto';
 
