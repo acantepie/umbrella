@@ -29,8 +29,8 @@ class <?= $class_name ?> extends NestedTreeRepository
 
         if (null === $root && $create) {
             $root = new <?= $entity->getShortName() ?>();
-            $this->_em->persist($root);
-            $this->_em->flush();
+            $this->getEntityManager()->persist($root);
+            $this->getEntityManager()->flush();
         }
 
         return $root;

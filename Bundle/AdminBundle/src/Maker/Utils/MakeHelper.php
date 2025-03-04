@@ -14,7 +14,6 @@ class MakeHelper
 {
     // TODO : Use root_namespace config from symfony/maker
     private const ROOT_NAMESPACE = 'App';
-
     public const VIEW_MODAL = 'modal';
     public const VIEW_PAGE = 'page';
     private string $rootNamespace;
@@ -50,7 +49,7 @@ class MakeHelper
      */
     public function getDefaultControllerClassFromEntityClass(string $entityClass): string
     {
-        return 'Admin\\' . Str::asClassName(\sprintf('%s Controller', $entityClass));
+        return Str::asClassName(\sprintf('%s Controller', $entityClass));
     }
 
     /**

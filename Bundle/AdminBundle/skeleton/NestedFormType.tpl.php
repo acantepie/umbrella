@@ -6,15 +6,15 @@ use <?= $entity->getFullName() ?>;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Umbrella\CoreBundle\Form\NestedTreeParentType;
+use Umbrella\CoreBundle\Form\NestedEntityType;
 
 class <?= $class_name ?> extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('parent', NestedTreeParentType::class, [
+        $builder->add('parent', NestedEntityType::class, [
             'class' => <?= $entity->getShortName() ?>::class,
-            'current_node' => $builder->getData(),
+            'disable_node' => $builder->getData(),
         ]);
     }
 

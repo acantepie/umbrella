@@ -12,7 +12,7 @@ use Umbrella\CoreBundle\Model\IdTrait;
 
 #[ORM\Entity(repositoryClass: <?= $repository->getShortName() ?>::class)]
 #[Gedmo\Tree(type: 'nested')]
-class <?= $class_name ?>
+class <?= $class_name."\n" ?>
 {
     use IdTrait;
 
