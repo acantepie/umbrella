@@ -43,6 +43,10 @@ jobs:
           composer update --no-interaction --prefer-dist --no-progress
           vendor/bin/simple-phpunit install
 
+      - name: 'Show installed dependencies'
+        run: |
+          composer show
+
       - name: 'Run tests'
         env:
           SYMFONY_DEPRECATIONS_HELPER: 'disabled'
