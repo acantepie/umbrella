@@ -15,5 +15,8 @@ composer require webapp
 
 ## Installation
 ```bash
-composer require umbrella2/adminbundle
+composer require umbrella2/admin-bundle
+
+# For last development version
+# composer require umbrella2/admin-bundle:"dev-master"
 ```

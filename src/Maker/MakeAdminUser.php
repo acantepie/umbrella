@@ -78,7 +78,7 @@ class MakeAdminUser extends AbstractMaker
         $io->text(' - Add entry on admin menu');
 
         $io->writeln('');
-        $io->writeln('Read more about it on <href=https://github.com/acantepie/umbrella/blob/master/docs/manage_user_with_doctrine.md>Documentation</>');
+        $io->writeln('Read more about it on <href=https://github.com/acantepie/umbrella-admin-bundle/blob/master/docs/manage_user_with_doctrine.md>Documentation</>');
         $io->writeln('');
     }
 
