@@ -23,7 +23,7 @@
 
 <p align="center">
     <a href="https://umbrella-corp.dev"><b>Online demo</b></a> •
-    <a href="https://acantepie.github.io/umbrella/"><b>Documentation</b></a>
+    <a href="https://acantepie.github.io/umbrella-admin-bundle/"><b>Documentation</b></a>
 </p> 
 
 
@@ -33,11 +33,11 @@
 </p>
 
 ## Introduction
-- [Documentation](https://acantepie.github.io/umbrella/) - How to install and use Umbrella Admin Bundle
+- [Documentation](https://acantepie.github.io/umbrella-admin-bundle/) - How to install and use Umbrella Admin Bundle
 - [Online demo](https://umbrella-corp.dev) - Online demo application using Bundle ([github repo](https://github.com/acantepie/umbrella-admin-demo)).
 
 ## Contributing
-Want to contribute ? Check out the [contributing guidelines](https://acantepie.github.io/umbrella/#/contributing) to get involved.
+Want to contribute ? Check out the [contributing guidelines](https://acantepie.github.io/umbrella-admin-bundle//#/contributing) to get involved.
 
 ## License
 This software is published under the [MIT License](LICENSE.md)
