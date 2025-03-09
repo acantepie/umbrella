@@ -35,7 +35,6 @@ export default class UmbrellaDataTable extends HTMLElement {
         this.options['ajax']['error'] = this._ajaxError.bind(this)
         this.options['drawCallback'] = this._drawCallback.bind(this)
 
-        console.log(this.options)
         this.datatable = new DataTable(this.table, this.options)
         this._bindActions()
         this._bindForm()
