@@ -8,11 +8,11 @@
 
         <div class="d-flex">
             <button type="button" class="btn btn-light ms-auto me-1" data-bs-dismiss="offcanvas">
-                <i class="mdi mdi-close me-1"></i> {{ 'Cancel' | trans }}
+                <i class="mdi mdi-close me-1"></i> {{ 'action.cancel' | trans({}, 'UmbrellaAdmin') }}
             </button>
 
             <button type="submit" class="btn btn-primary">
-                <i class="mdi mdi-check me-1"></i> {{ 'Save' | trans }}
+                <i class="mdi mdi-check me-1"></i> {{ 'action.save' | trans({}, 'UmbrellaAdmin') }}
             </button>
         </div>
     {{ form_end(form) }}

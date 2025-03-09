@@ -36,7 +36,7 @@ class ProfileType extends AbstractType
             'translation_domain' => 'UmbrellaAdmin',
             'required' => false,
             'attr' => [
-                'placeholder' => 'label.password_not_set_if_empty',
+                'placeholder' => 'message.leave_empty_to_keep_current_password',
             ],
         ]);
     }

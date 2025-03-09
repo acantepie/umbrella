@@ -29,7 +29,7 @@ class UserTableType extends DataTableType
         $builder->addFilter('search', SearchType::class);
         $builder->addAction('add', ButtonAddActionType::class, [
             'route' => 'umbrella_admin_user_edit',
-            'text' => 'action.add',
+            'text' => 'action.add_user',
             'xhr' => true,
             'translation_domain' => 'UmbrellaAdmin'
         ]);
@@ -50,7 +50,7 @@ class UserTableType extends DataTableType
             'translation_domain' => 'UmbrellaAdmin'
         ]);
         $builder->add('createdAt', DateColumnType::class, [
-            'label' => 'label.createdAt',
+            'label' => 'label.created_at',
             'translation_domain' => 'UmbrellaAdmin'
         ]);
         $builder->add('active', BooleanColumnType::class, [

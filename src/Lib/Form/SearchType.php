@@ -9,14 +9,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SearchType extends AbstractType implements DataTransformerInterface
 {
-    public function __construct(private readonly TranslatorInterface $translator)
-    {
-    }
-
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['data-toolbar-type'] = 'search';
@@ -29,8 +24,9 @@ class SearchType extends AbstractType implements DataTransformerInterface
             'required' => false,
             'input_addon_container_class' => 'input-icon',
             'input_prefix' => '<span class="input-icon-addon"><i class="mdi mdi-magnify"></i></span>',
+            'translation_domain' => 'UmbrellaAdmin',
             'attr' => [
-                'placeholder' => $this->translator->trans('label.search...', [], 'UmbrellaAdmin'),
+                'placeholder' => 'label.search...',
             ],
         ]);
     }

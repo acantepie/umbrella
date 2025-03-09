@@ -23,7 +23,6 @@ return static function (ContainerConfigurator $configurator): void {
         ->autowire(true)
         ->autoconfigure(false);
 
-
     // Asset
     $services->set(AssetPackage::class)
         ->tag('assets.package', ['package' => AssetPackage::PACKAGE_NAME]);

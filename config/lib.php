@@ -3,6 +3,7 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Doctrine\ORM\Events;
+use Umbrella\AdminBundle\Command\IndexEntityCommand;
 use Umbrella\AdminBundle\Lib\DataTable\ActionRenderer;
 use Umbrella\AdminBundle\Lib\DataTable\DataTableFactory;
 use Umbrella\AdminBundle\Lib\DataTable\DataTableRegistry;
@@ -63,6 +64,8 @@ return static function (ContainerConfigurator $configurator): void {
         ->tag(DataTableRegistry::TAG_ACTION_TYPE);
 
     // -- Search -- //
+    $services->set(IndexEntityCommand::class)
+        ->tag('console.command');
     $services->set(EntityIndexer::class);
     $services->set(SearchableEntityListener::class)
         ->tag('doctrine.event_listener', ['event' => Events::prePersist])

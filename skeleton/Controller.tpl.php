@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Umbrella\AdminBundle\Lib\Controller\AdminController;
-use function Symfony\Component\Translation\t;
 <?php if ($tree_table) { ?>
 use <?= $repository->getFullName() ?>;
 <?php } ?>
@@ -55,9 +54,9 @@ class <?= $class_name ?> extends AdminController
             return $this->js()
                 ->closeModal()
                 ->reloadTable()
-                ->toastSuccess(t('Item updated'));
+                ->toastSuccess('Item updated');
 <?php } else { ?>
-            $this->toastSuccess(t('Item updated'));
+            $this->toastSuccess('Item updated');
             return $this->redirectToRoute('<?= $route['name_prefix'] ?>_edit', [
                 'id' => $entity->id
             ]);
@@ -103,6 +102,6 @@ class <?= $class_name ?> extends AdminController
 
         return $this->js()
             ->reloadTable()
-            ->toastSuccess(t('Item deleted'));
+            ->toastSuccess('Item deleted');
     }
 }

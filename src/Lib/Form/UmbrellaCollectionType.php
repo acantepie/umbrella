@@ -31,7 +31,7 @@ class UmbrellaCollectionType extends AbstractType
                 $h = '<div>';
                 $h .= '<a class="js-add-item btn btn-light btn-sm" href="#">';
                 $h .= '<i class="mdi mdi-plus mr-1"></i>';
-                $h .= $this->translator->trans('Add item');
+                $h .= $this->translator->trans('action.add_item', [], 'UmbrellaAdmin');
                 $h .= '</a>';
                 $h .= '</div>';
                 $view->vars['add_btn_template'] = $h;

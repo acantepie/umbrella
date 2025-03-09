@@ -3,7 +3,8 @@
 $finder = new PhpCsFixer\Finder();
 $finder->in([
     __DIR__ . '/src',
-    __DIR__ . '/tests'
+    __DIR__ . '/tests',
+    __DIR__ . '/bin'
 ]);
 
 $config = new PhpCsFixer\Config();

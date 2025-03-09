@@ -47,7 +47,7 @@ class UserType extends AbstractType
         ];
 
         if (!$options['password_required']) {
-            $params['attr']['placeholder'] = 'label.password_not_set_if_empty';
+            $params['attr']['placeholder'] = 'message.leave_empty_to_keep_current_password';
         }
 
         $builder->add('plainPassword', PasswordTogglableType::class, $params);

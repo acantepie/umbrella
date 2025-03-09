@@ -3,27 +3,27 @@
 
 use Symfony\Component\Config\Definition\Dumper\YamlReferenceDumper;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Umbrella\AdminBundle\DependencyInjection\UmbrellaAdminExtension;
 
-require "./vendor/autoload.php";
+require './vendor/autoload.php';
 
 function dumpConfig(ExtensionInterface $extension, string $filename): void
 {
-    $cb = new \Symfony\Component\DependencyInjection\ContainerBuilder();
+    $cb = new ContainerBuilder();
     $configs = $extension->getConfiguration([], $cb);
 
     $dumper = new YamlReferenceDumper();
-    $config =  $dumper->dump($configs);
+    $config = $dumper->dump($configs);
 
     $mdFile = __DIR__ . '/../docs/config/' . $filename . '.md';
     if (!file_exists($mdFile)) {
-        throw new \Exception(sprintf('Missing file %s', $mdFile));
+        throw new Exception(sprintf('Missing file %s', $mdFile));
     }
 
     $mdContent = file_get_contents($mdFile);
 
-    $newMdContent = '';
-
-    $idx = strpos($mdContent,'```yaml');
+    $idx = strpos($mdContent, '```yaml');
     if (false !== $idx) {
         $newMdContent = substr($mdContent, 0, $idx);
     } else {
@@ -32,8 +32,6 @@ function dumpConfig(ExtensionInterface $extension, string $filename): void
 
     $newMdContent .= "```yaml\n" . $config . '```';
     file_put_contents($mdFile, $newMdContent);
-
 }
 
-
-dumpConfig(new \Umbrella\AdminBundle\DependencyInjection\UmbrellaAdminExtension(), 'umbrella_admin');
+dumpConfig(new UmbrellaAdminExtension(), 'umbrella_admin');

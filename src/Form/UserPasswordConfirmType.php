@@ -32,8 +32,7 @@ class UserPasswordConfirmType extends AbstractType
                     'placeholder' => 'label.confirm_your_new_password'
                 ]
             ],
-            'required' => true,
-            'invalid_message' => 'error.password_mismatch',
+            'required' => true
         ]);
     }
 

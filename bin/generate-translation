@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+require_once './vendor/autoload.php';
+
+$translationLoader = new \Umbrella\AdminBundle\Utils\TranslationDumper();
+echo $translationLoader->dumpTranslationsToJson();
+
+

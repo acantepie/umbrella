@@ -19,7 +19,8 @@ class ColumnActionBuilder
     public function showLink(array $options = []): self
     {
         return $this->link(array_merge([
-            'title' => 'Show',
+            'title' => 'action.show',
+            'translation_domain' => 'UmbrellaAdmin',
             'icon' => 'mdi mdi-eye-outline'
         ], $options));
     }
@@ -27,7 +28,8 @@ class ColumnActionBuilder
     public function editLink(array $options = []): self
     {
         return $this->link(array_merge([
-            'title' => 'Edit',
+            'title' => 'action.edit',
+            'translation_domain' => 'UmbrellaAdmin',
             'icon' => 'mdi mdi-square-edit-outline'
         ], $options));
     }
@@ -67,10 +69,11 @@ class ColumnActionBuilder
     public function deleteLink(array $options = []): self
     {
         return $this->link(array_merge([
-            'title' => 'Delete',
+            'title' => 'action.delete',
+            'translation_domain' => 'UmbrellaAdmin',
             'icon' => 'mdi mdi-delete-outline',
             'xhr' => true,
-            'confirm' => 'Confirm delete ?'
+            'confirm' => 'message.delete_confirm'
         ], $options));
     }
 
