@@ -15,6 +15,9 @@ dev
  * Entity : remove NestedEntityInterface (not needed anymore) (BC)
  * JsResponse : remove response listener / builder is not exposed anymore on controller, use js() method to create a JsResponse instead (BC)
  * Drop support for ckeditor4 (use https://github.com/egeloen/IvoryCKEditorBundle)
+ * **Merge 2 legacy bundles into One**
+
+## Legacy versions
 
 6.3
 ---

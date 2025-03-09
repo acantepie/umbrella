@@ -1,4 +1,3 @@
-const path = require('path');
 const Encore = require('@symfony/webpack-encore');
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -6,17 +5,12 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    .autoProvidejQuery()
 
-    .setOutputPath('./Bundle/AdminBundle/public/')
-    .setPublicPath('/bundles/umbrellaadmin/')
-    .setManifestKeyPrefix('bundles/umbrellaadmin')
+    .setOutputPath('./public/')
+    .setPublicPath('.')
+    .setManifestKeyPrefix('')
 
-    .addAliases({
-        umbrella_core: path.join(__dirname, '/Bundle/CoreBundle/assets/'),
-        umbrella_admin: path.join(__dirname, '/Bundle/AdminBundle/assets/'),
-    })
-    .addEntry('admin', './Bundle/AdminBundle/assets/admin.js')
+    .addEntry('umbrella_admin', './assets/admin.js')
     
     .enableSassLoader((options) => {
         options.sassOptions = {
@@ -30,21 +24,11 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
 
+    .autoProvidejQuery()
+
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = '3.23';
-    })
-
-    // add hash after file name
-    .configureImageRule({
-        filename: 'images/[name][ext]?[hash:8]',
-    })
-    .configureFontRule({
-        filename: 'fonts/[name][ext]?[hash:8]'
-    })
-    .configureFilenames({
-        js: '[name].js?[chunkhash]',
-        css: '[name].css?[contenthash]',
     })
 ;
 

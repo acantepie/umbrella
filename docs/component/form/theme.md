@@ -2,8 +2,8 @@
 
 Umbrella bundle adding new form types and form extensions (for select or collection).
 If you plan to use it on your project, you have to apply one of the following form theme :
- - `@UmbrellaCore/Form/layout_horizontal.html.twig` (extends `bootstrap_5_horizontal_layout.html.twig` symfony form theme)
- - `@UmbrellaCore/Form/layout.html.twig` (extends `bootstrap_5_layout.html.twig` symfony form theme)
+ - `@UmbrellaAdmin/lib/form/layout_horizontal.html.twig` (extends `bootstrap_5_horizontal_layout.html.twig` symfony form theme)
+ - `@UmbrellaAdmin/lib/form/layout.html.twig` (extends `bootstrap_5_layout.html.twig` symfony form theme)
 
 Check out [Symfony documentation](https://symfony.com/doc/current/form/form_themes.html) to apply a form theme.
 
@@ -24,8 +24,8 @@ Boostrap 5 Horizontal theme :
 `horizontal` or `default` is an optional parameter and can be configured globally :
 
 ```yaml
-# config/packages/umbrella_core.yaml
-umbrella_core:
+# config/packages/umbrella_admin.yaml
+umbrella_admin:
   form:
     layout: 'default' # or 'horizontal'
 ```

@@ -7,9 +7,7 @@ module.exports = {
         jquery: true,
     },
     'globals': {
-        'umbrella': true,
-        'flatpickr': true,
-        'bootstrap': true
+        'umbrella': true
     },
     'parserOptions': {
         'requireConfigFile': false,

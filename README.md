@@ -1,5 +1,5 @@
 <h1 align="center" style="border-bottom: none">
-    <img src="./docs/umbrella.svg" width="25" height="25" alt="Umbrella logo"/> Umbrella framework
+    <img src="./docs/umbrella.svg" width="25" height="25" alt="Umbrella logo"/> Umbrella Admin Bundle
 </h1>
 
 <p align="center">
@@ -33,8 +33,8 @@
 </p>
 
 ## Introduction
-- [Documentation](https://acantepie.github.io/umbrella/) - How to install and use Umbrella
-- [Online demo](https://umbrella-corp.dev) - Online demo application using Umbrella ([github repo](https://github.com/acantepie/umbrella-admin-demo)).
+- [Documentation](https://acantepie.github.io/umbrella/) - How to install and use Umbrella Admin Bundle
+- [Online demo](https://umbrella-corp.dev) - Online demo application using Bundle ([github repo](https://github.com/acantepie/umbrella-admin-demo)).
 
 ## Contributing
 Want to contribute ? Check out the [contributing guidelines](https://acantepie.github.io/umbrella/#/contributing) to get involved.

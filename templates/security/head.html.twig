@@ -1,0 +1,7 @@
+<div class="text-center mb-4">
+    {% if umbrella_admin.appLogo() %}
+        <img src="{{ asset(umbrella_admin.appLogo()) }}" height="36" alt="{{ umbrella_admin.appName() }}">
+    {% else %}
+        <h1>{{ umbrella_admin.appName() }}</h1>
+    {% endif %}
+</div>

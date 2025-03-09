@@ -1,0 +1,25 @@
+{% extends "@UmbrellaAdmin/lib/modal/default.html.twig" %}
+
+{% block modal_wrapper %}
+    {{ form_start(form, {attr: {'action' : null, 'data-xhr' : action | default(app.request.uri) }}) }}
+        {{ parent() }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block modal_content %}
+    {{ umbrella_form_theme(form, form_layout | default(null)) }}
+    {{ form_errors(form) }}
+    {{ form_rest(form) }}
+{% endblock %}
+
+{% block modal_footer %}
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light ms-auto" data-bs-dismiss="modal">
+            <i class="mdi mdi-close me-1"></i> {{ 'Cancel' | trans }}
+        </button>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="mdi mdi-check me-1"></i> {{ 'Save' | trans }}
+        </button>
+    </div>
+{% endblock %}

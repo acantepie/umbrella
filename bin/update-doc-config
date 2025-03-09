@@ -6,7 +6,7 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 require "./vendor/autoload.php";
 
-function dumpConfig(ExtensionInterface $extension, string $filename)
+function dumpConfig(ExtensionInterface $extension, string $filename): void
 {
     $cb = new \Symfony\Component\DependencyInjection\ContainerBuilder();
     $configs = $extension->getConfiguration([], $cb);
@@ -36,5 +36,4 @@ function dumpConfig(ExtensionInterface $extension, string $filename)
 }
 
 
-dumpConfig(new \Umbrella\CoreBundle\DependencyInjection\UmbrellaCoreExtension(), 'umbrella_core');
 dumpConfig(new \Umbrella\AdminBundle\DependencyInjection\UmbrellaAdminExtension(), 'umbrella_admin');

@@ -7,6 +7,7 @@ php bin/console make:admin:home
 Files generated are :
 
 #### Controller
+
 ```php
 // src/Controller/Admin/HomeController.php
 <?php
@@ -14,10 +15,10 @@ Files generated are :
 namespace App\Controller\Admin;
 
 use Symfony\Component\Routing\Annotation\Route;
-use Umbrella\CoreBundle\Controller\BaseController;
+use Umbrella\AdminBundle\Lib\Controller\AdminController;
 
 #[Route('/admin')]
-class HomeController extends BaseController
+class HomeController extends AdminController
 {
 
     #[Route('')]
@@ -42,6 +43,7 @@ The super class `BaseController` provides some helper to use Umbrella Components
 All your admin view must extend `@UmbrellaAdmin/layout.html.twig`.
 
 #### Admin Menu
+
 ```php
 // src/Menu/AdminMenu.php
 <?php
@@ -49,7 +51,7 @@ All your admin view must extend `@UmbrellaAdmin/layout.html.twig`.
 namespace App\Menu;
 
 use Umbrella\AdminBundle\Menu\BaseAdminMenu;
-use Umbrella\CoreBundle\Menu\Builder\MenuBuilder;
+use Umbrella\AdminBundle\Lib\Menu\Builder\MenuBuilder;
 
 class AdminMenu extends BaseAdminMenu
 {

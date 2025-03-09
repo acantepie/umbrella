@@ -3,11 +3,11 @@ name: PHPUnit
 on:
   push:
     paths:
-      - 'Bundle/**'
+      - 'src/**'
       - 'composer.json'
   pull_request:
     paths:
-      - 'Bundle/**'
+      - 'src/**'
       - 'composer.json'
 
 jobs:

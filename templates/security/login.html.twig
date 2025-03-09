@@ -1,0 +1,66 @@
+{% extends '@UmbrellaAdmin/security/layout.html.twig' %}
+
+{% trans_default_domain 'UmbrellaAdmin' %}
+
+{% block title %}
+    <title>{{ 'login.title' | trans }} | {{ umbrella_admin.appName() }}</title>
+{% endblock %}
+
+{% block content %}
+    {% include '@UmbrellaAdmin/security/head.html.twig' %}
+
+    <div class="card p-3">
+        <div class="card-body">
+
+            <h4 class="card-title text-center mb-4">{{ 'login.title' | trans }}</h4>
+
+            {% if error %}
+                <div class="alert alert-warning text-center">
+                    {{ error.messageKey | trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form action="{{ path(constant('Umbrella\\AdminBundle\\Controller\\SecurityController::LOGIN_ROUTE')) }}" method="post">
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">{{ 'label.email' | trans }}</label>
+                    <input
+                            class="form-control"
+                            type="text"
+                            id="username"
+                            required="required"
+                            name="_username"
+                            placeholder="{{ 'label.enter_your_email' | trans }}"
+                            value="{{ last_username }}"
+                            autofocus />
+                </div>
+
+                <div class="mb-4">
+                    <a href="{{ path('umbrella_admin_security_passwordrequest') }}" class="float-end">
+                        <small>{{ 'login.forget_password' | trans }}</small>
+                    </a>
+                    <label for="password" class="form-label">{{ 'label.password' | trans }}</label>
+                    <div is="password-togglable">
+                        <input
+                                autocomplete="current-password"
+                                class="form-control"
+                                type="password"
+                                required="required"
+                                id="password"
+                                name="_password"
+                                placeholder="{{ 'label.enter_your_password' | trans }}" />
+                    </div>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button class="btn btn-primary w-100" type="submit">
+                    {{ 'action.sign_in' | trans }}
+                </button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+

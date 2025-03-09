@@ -35,8 +35,8 @@
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production --progress",
-    "lint": "eslint Bundle/*/assets",
-    "lint-fix": "eslint Bundle/*/assets --fix"
+    "lint": "eslint assets",
+    "lint-fix": "eslint assets --fix"
   },
   "packageManager": "yarn@4.7.0"
 }

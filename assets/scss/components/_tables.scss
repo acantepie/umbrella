@@ -1,0 +1,27 @@
+.table {
+	thead, tbody, tfoot, tr, td, th {
+		border-color: $table-border-color;
+	}
+	
+	> :not(:last-child) > :last-child > * {
+		border-color: $table-border-color;
+	}
+}
+
+.table.table-centered > tbody > tr > td, .table.table-centered > tbody > tr > th {
+	vertical-align: middle;
+}
+
+@each $color, $value in $theme-colors {
+	.table tr.row-border-#{$color} {
+		> td, > th {
+			border-color: $value;
+		}
+	}
+}
+
+.table tr.selected  {
+	>td, > th {
+		border-color: $primary;
+	}
+}

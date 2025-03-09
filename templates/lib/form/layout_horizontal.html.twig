@@ -1,0 +1,30 @@
+{% use "bootstrap_5_horizontal_layout.html.twig"  %}
+
+{% use "@UmbrellaAdmin/lib/form/umbrellacollection.html.twig" %}
+{% use "@UmbrellaAdmin/lib/form/autocomplete.html.twig" %}
+{% use "@UmbrellaAdmin/lib/form/vich_file.html.twig" %}
+{% use "@UmbrellaAdmin/lib/form/password_togglable.html.twig" %}
+
+{% block form_group_class -%}
+    {{ group_class }}
+{%- endblock form_group_class %}
+
+{% block form_label_class -%}
+    {{ label_class }}
+{%- endblock form_label_class %}
+
+{% block form_widget_simple -%}
+    {% if input_prefix or input_suffix %}
+        <div class="{{ input_addon_container_class }}">
+            {% if input_prefix %}
+                {{ input_prefix | raw }}
+            {% endif %}
+            {{- parent() -}}
+            {% if input_suffix %}
+                {{ input_suffix | raw }}
+            {% endif %}
+        </div>
+    {% else %}
+        {{- parent() -}}
+    {% endif %}
+{%- endblock form_widget_simple %}

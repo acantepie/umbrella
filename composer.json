@@ -1,27 +1,33 @@
 {
-    "name": "acantepie/umbrella",
+    "name": "umbrella2/admin-bundle",
+    "type": "symfony-bundle",
+    "description": "Umbrella Admin Symfony bundle.",
+    "keywords": [
+        "backend",
+        "admin",
+        "umbrella"
+    ],
+    "homepage": "https://github.com/acantepie/umbrella",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrien Cantepie",
+            "email": "adrien.cantepie@gmail.com"
+        }
+    ],
     "require": {
-        "php": ">=8.2"
-    },
-    "require-dev": {
+        "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
         "doctrine/dbal": "^3.9.4",
         "doctrine/doctrine-bundle": "^2.13.2",
-        "doctrine/doctrine-fixtures-bundle": "^4.0.0",
         "doctrine/orm": "^3.3.2",
-        "friendsofphp/php-cs-fixer": "^3.70",
         "knplabs/knp-time-bundle": "^2.4",
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-doctrine": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0",
         "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/asset": "^6.4|^7.0",
-        "symfony/browser-kit": "^6.4|^7.0",
         "symfony/config": "^6.4|^7.0",
         "symfony/console": "^6.4|^7.0",
-        "symfony/css-selector": "^6.4|^7.0",
         "symfony/dependency-injection": "^6.4|^7.0",
         "symfony/event-dispatcher": "^6.4|^7.0",
         "symfony/filesystem": "^6.4|^7.0",
@@ -32,9 +38,7 @@
         "symfony/mailer": "^6.4|^7.0",
         "symfony/maker-bundle": "^1.36",
         "symfony/mime": "^6.4|^7.0",
-        "symfony/monolog-bundle": "^3.7",
         "symfony/options-resolver": "^6.4|^7.0",
-        "symfony/phpunit-bridge": "^6.4|^7.0",
         "symfony/property-access": "^6.4|^7.0",
         "symfony/routing": "^6.4|^7.0",
         "symfony/security-bundle": "^6.4|^7.0",
@@ -42,6 +46,16 @@
         "symfony/twig-bundle": "^6.4|^7.0",
         "symfony/validator": "^6.4|^7.0",
         "symfony/yaml": "^6.4|^7.0"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^6.4|^7.0",
+        "doctrine/doctrine-fixtures-bundle": "^4.0.0",
+        "friendsofphp/php-cs-fixer": "^3.70",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "symfony/browser-kit": "^6.4|^7.0",
+        "symfony/css-selector": "^6.4|^7.0"
     },
     "config": {
         "sort-packages": true,
@@ -51,13 +65,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Umbrella\\AdminBundle\\": "Bundle/AdminBundle/src",
-            "Umbrella\\AdminBundle\\Tests\\": "Bundle/AdminBundle/tests/",
-            "Umbrella\\AdminBundle\\Tests\\App\\": "Bundle/AdminBundle/tests/App/src/",
-
-            "Umbrella\\CoreBundle\\": "Bundle/CoreBundle/src",
-            "Umbrella\\CoreBundle\\Tests\\": "Bundle/CoreBundle/tests/",
-            "Umbrella\\CoreBundle\\Tests\\App\\": "Bundle/CoreBundle/tests/App/src/"
+            "Umbrella\\AdminBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Umbrella\\AdminBundle\\Tests\\": "tests/",
+            "Umbrella\\AdminBundle\\Tests\\App\\": "tests/App/src/"
         }
     }
 }

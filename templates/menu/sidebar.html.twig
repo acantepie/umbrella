@@ -1,0 +1,23 @@
+{% use "@UmbrellaAdmin/menu/sidebar_block.html.twig" %}
+
+<nav id="sidebar" class="sidebar" is="umbrella-sidebar">
+    <div class="sidebar-content">
+
+        {% include "@UmbrellaAdmin/menu/head.html.twig" %}
+
+        {% if options.searchable %}
+            <div class="sidebar-search">
+                <i class="mdi mdi-magnify"></i>
+                <input type="text" placeholder="Search ..." class="form-control" autofocus>
+            </div>
+        {% endif %}
+
+        {% block items_container %}
+            <div class="sidebar-nav">
+                {% for item in menu.root %}
+                    {{ block('sidebar_item') }}
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+</nav>
