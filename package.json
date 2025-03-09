@@ -2,19 +2,19 @@
   "name": "umbrella",
   "license": "MIT",
   "dependencies": {
-    "@iconscout/unicons": "^4.0.6",
-    "@mdi/font": "^7.1.96",
-    "@popperjs/core": "^2.11.6",
-    "bootstrap": "5.2.3",
-    "datatables.net": "^1.13.3",
-    "datatables.net-bs5": "^1.13.3",
+    "@iconscout/unicons": "^4.2.0",
+    "@mdi/font": "^7.4.47",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "datatables.net": "^2.2.2",
+    "datatables.net-bs5": "^2.2.2",
     "dragula": "^3.7.3",
     "flatpickr": "^4.6.13",
-    "jquery": "^3.6.3",
+    "jquery": "^3.7.1",
     "mustache": "^4.2.0",
-    "simplebar": "^6.2.1",
+    "simplebar": "^6.3.0",
     "toastify-js": "^1.12.0",
-    "tom-select": "^2.2.2"
+    "tom-select": "^2.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",

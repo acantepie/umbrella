@@ -14,24 +14,24 @@ $small-font-size: 80% !default;
 $spacer: 1rem !default;
 
 $spacers: (
-  0: 0,
-  1: ($spacer * .25),
-  2: ($spacer * .5),
-  3: $spacer,
-  4: ($spacer * 1.5),
-  5: ($spacer * 3),
-  6: ($spacer * 4.5),
-  7: ($spacer * 6)
+        0: 0,
+        1: ($spacer * .25),
+        2: ($spacer * .5),
+        3: $spacer,
+        4: ($spacer * 1.5),
+        5: ($spacer * 3),
+        6: ($spacer * 4.5),
+        7: ($spacer * 6)
 ) !default;
 
 // Grid breakpoints
 $grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1440px
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1440px
 ) !default;
 
 // Grid gutter
@@ -39,10 +39,10 @@ $grid-gutter-width: 24px;
 
 // Grid containers
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1200px
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1200px
 ) !default;
 
 $container-padding-x: .75rem !default;
@@ -52,6 +52,7 @@ $min-contrast-ratio: 3 !default;
 $enable-validation-icons: false !default;
 $enable-rfs: false !default;
 $enable-negative-margins: true !default;
+$enable-dark-mode: false !default;
 
 // Transitions
 $transition-base: all .35s ease-in-out !default;
@@ -90,29 +91,29 @@ $light:         #f5f7fb !default;
 $dark:          $gray-900 !default;
 
 $theme-colors: (
-  "primary": $primary,
-  "secondary": $secondary,
-  "success": $success,
-  "info": $info,
-  "warning": $warning,
-  "danger": $danger,
-  "light": $light,
-  "dark": $dark
+        "primary": $primary,
+        "secondary": $secondary,
+        "success": $success,
+        "info": $info,
+        "warning": $warning,
+        "danger": $danger,
+        "light": $light,
+        "dark": $dark
 ) !default;
 
 // Social colors
 $social-colors: (
-  "facebook": #3b5998,
-  "twitter": #1da1f2,
-  "google": #dc4e41,
-  "youtube": #f00,
-  "vimeo": #1ab7ea,
-  "dribbble": #ea4c89,
-  "github": #181717,
-  "instagram": #e4405f,
-  "pinterest": #bd081c,
-  "flickr": #0063dc,
-  "bitbucket": #0052cc
+        "facebook": #3b5998,
+        "twitter": #1da1f2,
+        "google": #dc4e41,
+        "youtube": #f00,
+        "vimeo": #1ab7ea,
+        "dribbble": #ea4c89,
+        "github": #181717,
+        "instagram": #e4405f,
+        "pinterest": #bd081c,
+        "flickr": #0063dc,
+        "bitbucket": #0052cc
 ) !default;
 
 // Body
@@ -143,13 +144,13 @@ $headings-font-weight: 400 !default;
 
 // Displays
 $display-font-sizes: (
-	1: 6rem,
-  2: 5.5rem,
-  3: 4.5rem,
-  4: 3.5rem,
-  5: 3rem,
-  6: 2.5rem
-  ) !default;
+        1: 6rem,
+        2: 5.5rem,
+        3: 4.5rem,
+        4: 3.5rem,
+        5: 3rem,
+        6: 2.5rem
+) !default;
 
 // Shadows
 $box-shadow-sm:    0 0.05rem 0.2rem rgba($black, .05) !default;
@@ -158,18 +159,6 @@ $box-shadow-lg:    0 0.2rem 0.2rem rgba($black, .05) !default;
 
 // Navbar input
 $navbar-input-bg: color.adjust($body-bg, $lightness: -0.5%) !default;
-
-// Border
-$border-width:                1px !default;
-$border-widths: (
-        1: 1px,
-        2: 2px,
-        3: 3px,
-        4: 4px,
-        5: 5px
-) !default;
-
-$border-color:                $gray-300 !default;
 
 // Border radius
 $border-radius-sm: .1rem !default;
@@ -219,6 +208,7 @@ $input-height-inner-lg: ($font-size-lg * $input-btn-line-height-lg) + ($input-bt
 $input-height-lg: calc(#{$input-height-inner-lg} + #{$input-height-border}) !default;
 
 // Cards
+$card-bg: $white !default;
 $card-border-radius: .25rem !default;
 $card-inner-border-radius: $card-border-radius !default;
 $card-border-width: 0 !default;
@@ -238,11 +228,12 @@ $table-cell-padding-y: .75rem !default;
 $table-cell-padding-x: .75rem !default;
 $table-cell-padding-y-sm: .3rem !default;
 $table-cell-padding-x-sm: .3rem !default;
+$table-bg: transparent !default;
 $table-striped-bg: $gray-100 !default;
 $table-hover-bg: rgba($black, .0375) !default;
-
-$table-border-color: $border-color !default;
-$table-group-separator-color: $table-border-color !default;
+$table-color: $body-color !default;
+$table-selected-bg: $table-bg !default;
+$table-selected-color: $table-color !default;
 
 // Sidebar general
 $sidebar-width: 260px !default;
@@ -304,12 +295,19 @@ $modal-lg: 900px !default;
 $modal-md: 600px !default;
 $modal-sm: 400px !default;
 $modal-transition: transform .25s ease-out !default;
-$modal-backdrop-opacity: .7 !default;
+$modal-content-bg: $white !default;
+$modal-content-border-radius: $border-radius-lg !default;
 
-// Badges
+// Offcancas
+$offcanvas-bg-color: $white !default;
+
+  // Badges
 $badge-font-size: 80% !default;
 $badge-padding-y: .3em !default;
 $badge-padding-x: .45em !default;
+
+// Dropdowns
+$dropdown-bg: $white !default;
 
 // Main
 $main-box-shadow: inset .75rem 0px 1.5rem 0px rgba($black, 0.075);
@@ -317,9 +315,6 @@ $main-box-shadow: inset .75rem 0px 1.5rem 0px rgba($black, 0.075);
 // Content
 $content-padding-desktop: 1rem 1rem .5rem !default;
 $content-padding-mobile: .5rem .5rem .25rem !default;
-
-//$content-padding-desktop: 3rem 3rem 1.5rem !default;
-//$content-padding-mobile: 1.5rem 1.5rem .75rem !default;
 
 // Datetimepicker
 $bs-datetimepicker-active-bg: $primary !default;
@@ -336,3 +331,6 @@ $hamburger-width-bottom: 16px !default;
 $stat-bg: color.adjust($primary, $lightness: 35%) !default;
 $stat-icon-color: $primary !default;
 $stat-padding: $spacer * 0.75 !default;
+
+// Pagination
+$pagination-bg: $white !default;

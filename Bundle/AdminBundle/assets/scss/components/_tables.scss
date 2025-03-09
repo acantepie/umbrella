@@ -12,10 +12,6 @@
 	vertical-align: middle;
 }
 
-.table > :not(:first-child) {
-	border-top: $table-border-width solid $table-group-separator-color;
-}
-
 @each $color, $value in $theme-colors {
 	.table tr.row-border-#{$color} {
 		> td, > th {
@@ -28,9 +24,4 @@
 	>td, > th {
 		border-color: $primary;
 	}
-}
-
-table.dataTable>tbody>tr.selected>* {
-	box-shadow: inherit;
-	color: inherit;
 }

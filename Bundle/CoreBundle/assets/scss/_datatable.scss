@@ -42,195 +42,164 @@ umbrella-datatable {
   table.dataTable {
     width: 100% !important;
 
-    > tbody > tr.odd > * {
-      --#{$variable-prefix}table-accent-bg: var(--#{$variable-prefix}table-striped-bg);
-      color: var(--#{$variable-prefix}table-striped-color);
-    }
-
     // Change icons view
-    thead tr > th.sorting, thead tr > td.sorting {
+    thead > tr > th.dt-orderable-asc span.dt-column-order,
+    thead > tr > th.dt-orderable-desc span.dt-column-order {
       &::after {
         content: "\F04BA";
         font-family: Material Design Icons;
         font-size: 1rem;
+        line-height: 24px;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
       }
 
       &::before {
         content: '';
       }
-
-      &.sorting_asc::after {
-        content: "\F0045";
-        opacity: 1;
-      }
-
-      &.sorting_desc::after {
-        content: "\F005D";
-        opacity: 1;
-      }
-
-    }
-  }
-}
-
-table.dataTable {
-
-  // tree
-  tr.branch {
-
-    &.expanded .indenter a i.mdi::before {
-      transform: rotate(90deg);
     }
 
-    .indenter a i.mdi::before {
-      font-weight: bold;
-      font-size: 1.2em;
+    thead .dt-orderable-asc.dt-ordering-asc span.dt-column-order::after {
+      content: "\F0045";
+      opacity: 1;
     }
 
-    .indenter {
-      background-image: none;
-      margin-right: 10px;
+    thead .dt-orderable-desc.dt-ordering-desc span.dt-column-order::after {
+      content: "\F005D";
+      opacity: 1;
     }
-  }
-}
 
-// toolbar
-.toolbar.inline-toolbar {
-
-  .toolbar-filter, .toolbar-action {
-    margin-bottom: .5rem;
   }
 
-  .toolbar-bulk-row {
+  // toolbar
+  .toolbar.inline-toolbar {
     display: flex;
-    align-items: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 
-    .toolbar-info {
-      line-height: 2.2rem;
-    }
-
-    .toolbar-filter, .toolbar-action {
-      margin-top: .5rem;
+    .toolbar-filters, .toolbar-actions {
+      display: flex;
+      gap: 0.5rem;
     }
   }
 
-  @include media-breakpoint-up(md) {
+  // footer
+  .table-footer {
+    margin-top: .5rem !important;
 
-    .toolbar-row {
-      display: flex;
+    .dt-info {
+      padding-top: .85rem;
     }
 
-    .toolbar-filters {
-      display: flex;
-      flex-wrap: wrap;
-
-      .toolbar-filter:not(:last-child) {
-        margin-right: .5rem;
-      }
-
+    .dt-paging {
+      float: right;
     }
-
-    .toolbar-actions {
-      display: flex;
-      flex-wrap: wrap;
-
-      .toolbar-action:not(:last-child) {
-        margin-right: 0.5rem;
-      }
-
-    }
-
   }
-}
 
-// select plugin
-.select-toolbar {
-  padding: .5rem $table-cell-padding-x;
-}
+  // select plugin
+  .select-toolbar {
+    padding: .5rem $table-cell-padding-x;
+  }
 
-table.dataTable {
-  tbody tr {
-    &[data-select=false] .row-select {
-      pointer-events: none;
-      input {
-        display: none;
+  table.dataTable {
+    tbody tr {
+      &[data-select=false] .row-select {
+        pointer-events: none;
+
+        input {
+          display: none;
+        }
       }
     }
   }
-}
 
-// child row plugin
-table.dataTable {
-  .toggle-child-row {
-    text-decoration: none;
+  // child row plugin
+  table.dataTable {
+    .toggle-child-row {
+      text-decoration: none;
 
-    &::after {
-      content: '\F0140';
-      font-family: "Material Design Icons";
-      font-style: normal;
-      font-weight: normal;
-      speak: none;
-      display: inline-block;
-      text-decoration: inherit;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-      font-size: 1.5em;
-    }
+      &::after {
+        content: '\F0140';
+        font-family: "Material Design Icons";
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        display: inline-block;
+        text-decoration: inherit;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        font-size: 1.5em;
+      }
 
-    &.collapsed::after {
-      content: '\F0142';
+      &.collapsed::after {
+        content: '\F0142';
+      }
     }
   }
-}
-
-// tree plugin
-table.dataTable {
 
   // tree plugin
+  table.dataTable {
 
-  .tree-node.tree-node-first .tree-move-up {
-    pointer-events: none;
-    opacity: 0.3;
-  }
+    // tree plugin
 
-  .tree-node.tree-node-last .tree-move-down {
-    pointer-events: none;
-    opacity: 0.3;
-  }
+    .tree-node.tree-node-first .tree-move-up {
+      pointer-events: none;
+      opacity: 0.3;
+    }
 
-  .tree-spacer {
-    position: relative;
-    display: inline;
-  }
+    .tree-node.tree-node-last .tree-move-down {
+      pointer-events: none;
+      opacity: 0.3;
+    }
 
-  a.tree-spacer {
-    text-decoration: none;
-
-    &::after {
-      content: "\F0140";
-      font-family: "Material Design Icons";
-      font-style: normal;
-      font-weight: normal;
-      speak: none;
+    .tree-spacer {
+      position: relative;
       display: inline;
-      text-decoration: inherit;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-      font-size: 1.5em;
-      top: 0;
-      bottom: 0;
-      position: absolute;
-      right: 0;
     }
 
-    &.collapsed::after {
-      content: '\F0142';
-    }
+    a.tree-spacer {
+      text-decoration: none;
 
+      &::after {
+        content: "\F0140";
+        font-family: "Material Design Icons";
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        display: inline;
+        text-decoration: inherit;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        font-size: 1.5em;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        right: 0;
+      }
+
+      &.collapsed::after {
+        content: '\F0142';
+      }
+
+    }
+  }
+
+
+  // overwrite bootstrap theme
+  table.table.dataTable > tbody > tr > * {
+    box-shadow: none !important;
+  }
+
+  table.table.dataTable > tbody > tr.selected > * {
+    color: $table-color;
+  }
+
+  table.table.dataTable.table-striped > tbody > tr:nth-of-type(2n+1) > * {
+    background-color: $table-striped-bg;
   }
 }
 

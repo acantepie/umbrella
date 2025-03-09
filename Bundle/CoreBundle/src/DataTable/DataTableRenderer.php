@@ -63,7 +63,6 @@ class DataTableRenderer
             $jsOptions['scrollY'] = $options['scroll_y'];
         }
 
-        $jsOptions['stripeClasses'] = $options['stripe_class'];
         $jsOptions['dom'] = $options['dom'];
         $jsOptions['ordering'] = $options['orderable'];
         $jsOptions['selectable'] = $options['selectable'];
